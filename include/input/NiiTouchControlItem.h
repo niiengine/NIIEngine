@@ -50,7 +50,7 @@ namespace NII_MEDIA
     class _EngineAPI TouchControlItem : public ControlItem
     {
     public:
-		TouchControlItem();
+        TouchControlItem();
         
         /** 当按下时候触发
         @param[in] args 触屏事件参数
@@ -72,8 +72,8 @@ namespace NII_MEDIA
         */
         virtual void onCancel(const TouchControlArgs * args);
 
-		/// @copydetails ControlItem::getType
-		ControlDevType getType() const;
+        /// @copydetails ControlItem::getType
+        ControlDevType getType() const;
     protected:
         /// @copydetails ControlItem::raise
         void raise(const EventArgs * arg);

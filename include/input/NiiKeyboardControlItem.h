@@ -39,6 +39,9 @@
 #include "NiiPreInclude.h"
 #include "NiiControlItem.h"
 #include "NiiMouseControlItem.h"
+#include "NiiCommandObj.h"
+
+using namespace NII::NII_COMMAND;
 
 namespace NII
 {
@@ -85,7 +88,6 @@ namespace NII_MEDIA
     {
     public:
         /** 无分配
-        @remark 火星人使用的
         @version NIIEngine 3.0.0
         */
         static const KeyValue Unknow;
@@ -726,11 +728,8 @@ namespace NII_MEDIA
     class _EngineAPI KeyboardArgs : public EventArgs
     {
     public:
-        /** 键盘控制器事件
-        @param[in] k
-        */
         KeyboardArgs(KeyValue k);
-
+    public:
         KeyValue mKey;                          ///< 按键的编码
     };
 
@@ -2238,13 +2237,1830 @@ namespace NII_MEDIA
         Nui8 mModifiers;                    ///< 复码缓存
     };
 
-    /**
+    /** 虚拟键盘控制单元
     @version NIIEngine 3.0.0
     */
     class DummyKeyboardControlItem : public KeyboardControlItem, public ControlAlloc
     {
+    protected:
+        ///@copydetails KeyboardControlItem::onPress
+        void onPress(KeyValue) { /*do nothing*/}
+
+        ///@copydetails KeyboardControlItem::onRelease
+        void onRelease(KeyValue) {/*do nothing*/ }
+    };
+
+    /** 监听级键盘控制单元
+    @remark
+        用于配置自定义键盘按键映射
+    @version NIIEngine 3.0.0
+    */
+    class _EngineAPI ListenerKeyboardControlItem : public KeyboardControlItem
+    {
     public:
-        DummyKeyboardControlItem() {}
+        ListenerKeyboardControlItem();
+        virtual ~ListenerKeyboardControlItem();
+
+        /// 获取监听到的键盘字符的ascii码
+        inline NIIb getAsciiChar() const { return mChar; }
+
+        /// 获取监听到的键盘字符的unicode码
+        inline Nwchar getUnicodeChar() const { return mWChar; }
+
+        inline const String & getVerbose() const { return mDescrip; }
+    public:
+        /// @copydetails ListenerKeyboardControlItem::onPressEsc
+        virtual void onPressEsc(const KeyboardArgs * arg);
+
+        /// @copydetails ListenerKeyboardControlItem::onPress1
+        virtual void onPress1(const KeyboardArgs * arg);
+
+        /// @copydetails ListenerKeyboardControlItem::onPress2
+        virtual void onPress2(const KeyboardArgs * arg);
+
+        /// @copydetails ListenerKeyboardControlItem::onPress3
+        virtual void onPress3(const KeyboardArgs * arg);
+
+        /// @copydetails ListenerKeyboardControlItem::onPress4
+        virtual void onPress4(const KeyboardArgs * arg);
+
+        /// @copydetails ListenerKeyboardControlItem::onPress5
+        virtual void onPress5(const KeyboardArgs * arg);
+
+        /// @copydetails ListenerKeyboardControlItem::onPress6
+        virtual void onPress6(const KeyboardArgs * arg);
+
+        /// @copydetails ListenerKeyboardControlItem::onPress7
+        virtual void onPress7(const KeyboardArgs * arg);
+
+        /// @copydetails ListenerKeyboardControlItem::onPress8
+        virtual void onPress8(const KeyboardArgs * arg);
+
+        /// @copydetails ListenerKeyboardControlItem::onPress9
+        virtual void onPress9(const KeyboardArgs * arg);
+
+        /// @copydetails ListenerKeyboardControlItem::onPress0
+        virtual void onPress0(const KeyboardArgs * arg);
+
+        /// @copydetails ListenerKeyboardControlItem::onPressMinus
+        virtual void onPressMinus(const KeyboardArgs * arg);
+
+        /// @copydetails ListenerKeyboardControlItem::onPressEqual
+        virtual void onPressEqual(const KeyboardArgs * arg);
+
+        /// @copydetails ListenerKeyboardControlItem::onPressBK
+        virtual void onPressBK(const KeyboardArgs * arg);
+
+        /// @copydetails ListenerKeyboardControlItem::onPressTAB
+        virtual void onPressTAB(const KeyboardArgs * arg);
+
+        /// @copydetails ListenerKeyboardControlItem::onPressQ
+        virtual void onPressQ(const KeyboardArgs * arg);
+
+        /// @copydetails ListenerKeyboardControlItem::onPressW
+        virtual void onPressW(const KeyboardArgs * arg);
+
+        /// @copydetails ListenerKeyboardControlItem::onPressE
+        virtual void onPressE(const KeyboardArgs * arg);
+
+        /// @copydetails ListenerKeyboardControlItem::onPressR
+        virtual void onPressR(const KeyboardArgs * arg);
+
+        /// @copydetails ListenerKeyboardControlItem::onPressT
+        virtual void onPressT(const KeyboardArgs * arg);
+
+        /// @copydetails ListenerKeyboardControlItem::onPressY
+        virtual void onPressY(const KeyboardArgs * arg);
+
+        /// @copydetails ListenerKeyboardControlItem::onPressU
+        virtual void onPressU(const KeyboardArgs * arg);
+
+        /// @copydetails ListenerKeyboardControlItem::onPressI
+        virtual void onPressI(const KeyboardArgs * arg);
+
+        /// @copydetails ListenerKeyboardControlItem::onPressO
+        virtual void onPressO(const KeyboardArgs * arg);
+
+        /// @copydetails ListenerKeyboardControlItem::onPressP
+        virtual void onPressP(const KeyboardArgs * arg);
+
+        /// @copydetails ListenerKeyboardControlItem::onPressLBracket
+        virtual void onPressLBracket(const KeyboardArgs * arg);
+
+        /// @copydetails ListenerKeyboardControlItem::onPressRBracket
+        virtual void onPressRBracket(const KeyboardArgs * arg);
+
+        /// @copydetails ListenerKeyboardControlItem::onPressEnter
+        virtual void onPressEnter(const KeyboardArgs * arg);
+
+        /// @copydetails ListenerKeyboardControlItem::onPressLCtrl
+        virtual void onPressLCtrl(const KeyboardArgs * arg);
+
+        /// @copydetails ListenerKeyboardControlItem::onPressA
+        virtual void onPressA(const KeyboardArgs * arg);
+
+        /// @copydetails ListenerKeyboardControlItem::onPressS
+        virtual void onPressS(const KeyboardArgs * arg);
+
+        /// @copydetails ListenerKeyboardControlItem::onPressD
+        virtual void onPressD(const KeyboardArgs * arg);
+
+        /// @copydetails ListenerKeyboardControlItem::onPressF
+        virtual void onPressF(const KeyboardArgs * arg);
+
+        /// @copydetails ListenerKeyboardControlItem::onPressG
+        virtual void onPressG(const KeyboardArgs * arg);
+
+        /// @copydetails ListenerKeyboardControlItem::onPressH
+        virtual void onPressH(const KeyboardArgs * arg);
+
+        /// @copydetails ListenerKeyboardControlItem::onPressJ
+        virtual void onPressJ(const KeyboardArgs * arg);
+
+        /// @copydetails ListenerKeyboardControlItem::onPressK
+        virtual void onPressK(const KeyboardArgs * arg);
+
+        /// @copydetails ListenerKeyboardControlItem::onPressL
+        virtual void onPressL(const KeyboardArgs * arg);
+
+        /// @copydetails ListenerKeyboardControlItem::onPressSemicolon
+        virtual void onPressSemicolon(const KeyboardArgs * arg);
+
+        /// @copydetails ListenerKeyboardControlItem::onPressApostrophe
+        virtual void onPressApostrophe(const KeyboardArgs * arg);
+
+        /// @copydetails ListenerKeyboardControlItem::onPressGrave
+        virtual void onPressGrave(const KeyboardArgs * arg);
+
+        /// @copydetails ListenerKeyboardControlItem::onPressLShift
+        virtual void onPressLShift(const KeyboardArgs * arg);
+
+        /// @copydetails ListenerKeyboardControlItem::onPressBackSlash
+        virtual void onPressBackSlash(const KeyboardArgs * arg);
+
+        /// @copydetails ListenerKeyboardControlItem::onPressZ
+        virtual void onPressZ(const KeyboardArgs * arg);
+
+        /// @copydetails ListenerKeyboardControlItem::onPressX
+        virtual void onPressX(const KeyboardArgs * arg);
+
+        /// @copydetails ListenerKeyboardControlItem::onPressC
+        virtual void onPressC(const KeyboardArgs * arg);
+
+        /// @copydetails ListenerKeyboardControlItem::onPressV
+        virtual void onPressV(const KeyboardArgs * arg);
+
+        /// @copydetails ListenerKeyboardControlItem::onPressB
+        virtual void onPressB(const KeyboardArgs * arg);
+
+        /// @copydetails ListenerKeyboardControlItem::onPressN
+        virtual void onPressN(const KeyboardArgs * arg);
+
+        /// @copydetails ListenerKeyboardControlItem::onPressM
+        virtual void onPressM(const KeyboardArgs * arg);
+
+        /// @copydetails ListenerKeyboardControlItem::onPressComma
+        virtual void onPressComma(const KeyboardArgs * arg);
+
+        /// @copydetails ListenerKeyboardControlItem::onPressPeriod
+        virtual void onPressPeriod(const KeyboardArgs * arg);
+
+        /// @copydetails ListenerKeyboardControlItem::onPressSlash
+        virtual void onPressSlash(const KeyboardArgs * arg);
+
+        /// @copydetails ListenerKeyboardControlItem::onPressRShift
+        virtual void onPressRShift(const KeyboardArgs * arg);
+
+        /// @copydetails ListenerKeyboardControlItem::onPressNumMul
+        virtual void onPressNumMul(const KeyboardArgs * arg);
+
+        /// @copydetails ListenerKeyboardControlItem::onPressLAlt
+        virtual void onPressLAlt(const KeyboardArgs * arg);
+
+        /// @copydetails ListenerKeyboardControlItem::onPressSpace
+        virtual void onPressSpace(const KeyboardArgs * arg);
+
+        /// @copydetails ListenerKeyboardControlItem::onPressCapsLock
+        virtual void onPressCapsLock(const KeyboardArgs * arg);
+
+        /// @copydetails ListenerKeyboardControlItem::onPressF1
+        virtual void onPressF1(const KeyboardArgs * arg);
+
+        /// @copydetails ListenerKeyboardControlItem::onPressF2
+        virtual void onPressF2(const KeyboardArgs * arg);
+
+        /// @copydetails ListenerKeyboardControlItem::onPressF3
+        virtual void onPressF3(const KeyboardArgs * arg);
+
+        /// @copydetails ListenerKeyboardControlItem::onPressF4
+        virtual void onPressF4(const KeyboardArgs * arg);
+
+        /// @copydetails ListenerKeyboardControlItem::onPressF5
+        virtual void onPressF5(const KeyboardArgs * arg);
+
+        /// @copydetails ListenerKeyboardControlItem::onPressF6
+        virtual void onPressF6(const KeyboardArgs * arg);
+
+        /// @copydetails ListenerKeyboardControlItem::onPressF7
+        virtual void onPressF7(const KeyboardArgs * arg);
+
+        /// @copydetails ListenerKeyboardControlItem::onPressF8
+        virtual void onPressF8(const KeyboardArgs * arg);
+
+        /// @copydetails ListenerKeyboardControlItem::onPressF9
+        virtual void onPressF9(const KeyboardArgs * arg);
+
+        /// @copydetails ListenerKeyboardControlItem::onPressF10
+        virtual void onPressF10(const KeyboardArgs * arg);
+
+        /// @copydetails ListenerKeyboardControlItem::onPressNumLock
+        virtual void onPressNumLock(const KeyboardArgs * arg);
+
+        /// @copydetails ListenerKeyboardControlItem::onPressMidScrLock
+        virtual void onPressMidScrLock(const KeyboardArgs * arg);
+
+        /// @copydetails ListenerKeyboardControlItem::onPressNum7
+        virtual void onPressNum7(const KeyboardArgs * arg);
+
+        /// @copydetails ListenerKeyboardControlItem::onPressNum8
+        virtual void onPressNum8(const KeyboardArgs * arg);
+
+        /// @copydetails ListenerKeyboardControlItem::onPressNum9
+        virtual void onPressNum9(const KeyboardArgs * arg);
+
+        /// @copydetails ListenerKeyboardControlItem::onPressNumSubtract
+        virtual void onPressNumSubtract(const KeyboardArgs * arg);
+
+        /// @copydetails ListenerKeyboardControlItem::onPressNum4
+        virtual void onPressNum4(const KeyboardArgs * arg);
+
+        /// @copydetails ListenerKeyboardControlItem::onPressNum5
+        virtual void onPressNum5(const KeyboardArgs * arg);
+
+        /// @copydetails ListenerKeyboardControlItem::onPressNum6
+        virtual void onPressNum6(const KeyboardArgs * arg);
+
+        /// @copydetails ListenerKeyboardControlItem::onPressNumAdd
+        virtual void onPressNumAdd(const KeyboardArgs * arg);
+
+        /// @copydetails ListenerKeyboardControlItem::onPressNum1
+        virtual void onPressNum1(const KeyboardArgs * arg);
+
+        /// @copydetails ListenerKeyboardControlItem::onPressNum2
+        virtual void onPressNum2(const KeyboardArgs * arg);
+
+        /// @copydetails ListenerKeyboardControlItem::onPressNum3
+        virtual void onPressNum3(const KeyboardArgs * arg);
+
+        /// @copydetails ListenerKeyboardControlItem::onPressNum0
+        virtual void onPressNum0(const KeyboardArgs * arg);
+
+        /// @copydetails ListenerKeyboardControlItem::onPressNumDot
+        virtual void onPressNumDot(const KeyboardArgs * arg);
+
+        /// @copydetails ListenerKeyboardControlItem::onPressF11
+        virtual void onPressF11(const KeyboardArgs * arg);
+
+        /// @copydetails ListenerKeyboardControlItem::onPressF12
+        virtual void onPressF12(const KeyboardArgs * arg);
+
+        /// @copydetails ListenerKeyboardControlItem::onPressNumEnter
+        virtual void onPressNumEnter(const KeyboardArgs * arg);
+
+        /// @copydetails ListenerKeyboardControlItem::onPressRCtrl
+        virtual void onPressRCtrl(const KeyboardArgs * arg);
+
+        /// @copydetails ListenerKeyboardControlItem::onPressRAlt
+        virtual void onPressRAlt(const KeyboardArgs * arg);
+
+        /// @copydetails ListenerKeyboardControlItem::onPressLWin
+        virtual void onPressLWin(const KeyboardArgs * arg);
+
+        /// @copydetails ListenerKeyboardControlItem::onPressRWin
+        virtual void onPressRWin(const KeyboardArgs * arg);
+
+        /// @copydetails ListenerKeyboardControlItem::onPressCompose
+        virtual void onPressCompose(const KeyboardArgs * arg);
+
+        /// @copydetails ListenerKeyboardControlItem::onPressNumDivide
+        virtual void onPressNumDivide(const KeyboardArgs * arg);
+
+        /// @copydetails ListenerKeyboardControlItem::onPressMidSysRQ
+        virtual void onPressMidSysRQ(const KeyboardArgs * arg);
+
+        /// @copydetails ListenerKeyboardControlItem::onPressMidPause
+        virtual void onPressMidPause(const KeyboardArgs * arg);
+
+        /// @copydetails ListenerKeyboardControlItem::onPressMidHome
+        virtual void onPressMidHome(const KeyboardArgs * arg);
+
+        /// @copydetails ListenerKeyboardControlItem::onPressMidUp
+        virtual void onPressMidUp(const KeyboardArgs * arg);
+
+        /// @copydetails ListenerKeyboardControlItem::onPressMidPgUp
+        virtual void onPressMidPgUp(const KeyboardArgs * arg);
+
+        /// @copydetails ListenerKeyboardControlItem::onPressMidLeft
+        virtual void onPressMidLeft(const KeyboardArgs * arg);
+
+        /// @copydetails ListenerKeyboardControlItem::onPressMidRight
+        virtual void onPressMidRight(const KeyboardArgs * arg);
+
+        /// @copydetails ListenerKeyboardControlItem::onPressMidEnd
+        virtual void onPressMidEnd(const KeyboardArgs * arg);
+
+        /// @copydetails ListenerKeyboardControlItem::onPressMidDown
+        virtual void onPressMidDown(const KeyboardArgs * arg);
+
+        /// @copydetails ListenerKeyboardControlItem::onPressMidPgDown
+        virtual void onPressMidPgDown(const KeyboardArgs * arg);
+
+        /// @copydetails ListenerKeyboardControlItem::onPressMidInsert
+        virtual void onPressMidInsert(const KeyboardArgs * arg);
+
+        /// @copydetails ListenerKeyboardControlItem::onPressMidDelete
+        virtual void onPressMidDelete(const KeyboardArgs * arg);
+    protected:
+        NIIb mChar;
+        Nwchar mWChar;
+        String mDescrip;
+    };
+
+    class IOMap;
+
+    /** 事件级键盘控制单元
+    @remark
+        复杂型键盘控制单元,用于描述操作逻辑复杂的事件级对象,用于顶层设计中也可以方便
+        事件连接.
+    @version NIIEngine 3.0.0
+    */
+    class _EngineAPI SignalKeyboardControlItem : public KeyboardControlItem, public CommandObj
+    {
+    public:
+        SignalKeyboardControlItem();
+
+        virtual ~SignalKeyboardControlItem();
+    public:
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID PressEscEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID ReleaseEscEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID Press1Event;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID Release1Event;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID Press2Event;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID Release2Event;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID Press3Event;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID Release3Event;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID Press4Event;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID Release4Event;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID Press5Event;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID Release5Event;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID Press6Event;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID Release6Event;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID Press7Event;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID Release7Event;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID Press8Event;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID Release8Event;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID Press9Event;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID Release9Event;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID Press0Event;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID Release0Event;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID PressMinusEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID ReleaseMinusEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID PressEqualEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID ReleaseEqualEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID PressBKEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID ReleaseBKEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID PressTABEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID ReleaseTABEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID PressQEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID ReleaseQEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID PressWEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID ReleaseWEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID PressEEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID ReleaseEEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID PressREvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID ReleaseREvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID PressTEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID ReleaseTEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID PressYEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID ReleaseYEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID PressUEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID ReleaseUEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID PressIEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID ReleaseIEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID PressOEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID ReleaseOEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID PressPEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID ReleasePEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID PressLBracketEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID ReleaseLBracketEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID PressRBracketEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID ReleaseRBracketEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID PressEnterEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID ReleaseEnterEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID PressLCtrlEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID ReleaseLCtrlEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID PressAEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID ReleaseAEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID PressSEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID ReleaseSEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID PressDEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID ReleaseDEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID PressFEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID ReleaseFEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID PressGEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID ReleaseGEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID PressHEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID ReleaseHEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID PressJEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID ReleaseJEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID PressKEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID ReleaseKEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID PressLEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID ReleaseLEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID PressSemicolonEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID ReleaseSemicolonEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID PressApostropheEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID ReleaseApostropheEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID PressGraveEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID ReleaseGraveEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID PressLShiftEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID ReleaseLShiftEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID PressBackSlashEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID ReleaseBackSlashEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID PressZEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID ReleaseZEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID PressXEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID ReleaseXEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID PressCEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID ReleaseCEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID PressVEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID ReleaseVEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID PressBEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID ReleaseBEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID PressNEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID ReleaseNEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID PressMEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID ReleaseMEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID PressCommaEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID ReleaseCommaEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID PressPeriodEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID ReleasePeriodEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID PressSlashEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID ReleaseSlashEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID PressRShiftEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID ReleaseRShiftEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID PressNumMulEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID ReleaseNumMulEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID PressLAltEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID ReleaseLAltEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID PressSpaceEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID ReleaseSpaceEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID PressCapsLockEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID ReleaseCapsLockEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID PressF1Event;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID ReleaseF1Event;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID PressF2Event;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID ReleaseF2Event;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID PressF3Event;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID ReleaseF3Event;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID PressF4Event;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID ReleaseF4Event;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID PressF5Event;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID ReleaseF5Event;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID PressF6Event;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID ReleaseF6Event;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID PressF7Event;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID ReleaseF7Event;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID PressF8Event;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID ReleaseF8Event;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID PressF9Event;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID ReleaseF9Event;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID PressF10Event;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID ReleaseF10Event;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID PressNumLockEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID ReleaseNumLockEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID PressMidScrLockEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID ReleaseMidScrLockEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID PressNum7Event;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID ReleaseNum7Event;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID PressNum8Event;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID ReleaseNum8Event;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID PressNum9Event;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID ReleaseNum9Event;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID PressNumSubtractEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID ReleaseNumSubtractEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID PressNum4Event;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID ReleaseNum4Event;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID PressNum5Event;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID ReleaseNum5Event;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID PressNum6Event;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID ReleaseNum6Event;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID PressNumAddEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID ReleaseNumAddEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID PressNum1Event;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID ReleaseNum1Event;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID PressNum2Event;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID ReleaseNum2Event;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID PressNum3Event;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID ReleaseNum3Event;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID PressNum0Event;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID ReleaseNum0Event;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID PressNumDotEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID ReleaseNumDotEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID PressF11Event;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID ReleaseF11Event;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID PressF12Event;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID ReleaseF12Event;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID PressNumEnterEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID ReleaseNumEnterEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID PressRCtrlEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID ReleaseRCtrlEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID PressRAltEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID ReleaseRAltEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID PressLWinEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID ReleaseLWinEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID PressRWinEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID ReleaseRWinEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID PressComposeEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID ReleaseComposeEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID PressNumDivideEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID ReleaseNumDivideEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID PressMidSysRQEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID ReleaseMidSysRQEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID PressMidPauseEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID ReleaseMidPauseEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID PressMidHomeEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID ReleaseMidHomeEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID PressMidUpEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID ReleaseMidUpEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID PressMidPgUpEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID ReleaseMidPgUpEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID PressMidLeftEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID ReleaseMidLeftEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID PressMidRightEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID ReleaseMidRightEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID PressMidEndEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID ReleaseMidEndEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID PressMidDownEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID ReleaseMidDownEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID PressMidPgDownEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID ReleaseMidPgDownEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID PressMidInsertEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID ReleaseMidInsertEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID PressMidDeleteEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID ReleaseMidDeleteEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID EventCount;
+    public:
+        /// @copydetail KeyboardControlItem::onPressEsc
+        virtual void onPressEsc(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onReleaseEsc
+        virtual void onReleaseEsc(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onPress1
+        virtual void onPress1(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onRelease1
+        virtual void onRelease1(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onPress2
+        virtual void onPress2(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onRelease2
+        virtual void onRelease2(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onPress3
+        virtual void onPress3(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onRelease3
+        virtual void onRelease3(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onPress4
+        virtual void onPress4(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onRelease4
+        virtual void onRelease4(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onPress5
+        virtual void onPress5(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onRelease5
+        virtual void onRelease5(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onPress6
+        virtual void onPress6(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onRelease6
+        virtual void onRelease6(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onPress7
+        virtual void onPress7(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onRelease7
+        virtual void onRelease7(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onPress8
+        virtual void onPress8(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onRelease8
+        virtual void onRelease8(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onPress9
+        virtual void onPress9(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onRelease9
+        virtual void onRelease9(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onPress0
+        virtual void onPress0(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onRelease0
+        virtual void onRelease0(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onPressMinus
+        virtual void onPressMinus(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onReleaseMinus
+        virtual void onReleaseMinus(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onPressEqual
+        virtual void onPressEqual(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onReleaseEqual
+        virtual void onReleaseEqual(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onPressBK
+        virtual void onPressBK(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onReleaseBK
+        virtual void onReleaseBK(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onPressTAB
+        virtual void onPressTAB(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onReleaseTAB
+        virtual void onReleaseTAB(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onPressQ
+        virtual void onPressQ(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onReleaseQ
+        virtual void onReleaseQ(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onPressW
+        virtual void onPressW(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onReleaseW
+        virtual void onReleaseW(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onPressE
+        virtual void onPressE(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onReleaseE
+        virtual void onReleaseE(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onPressR
+        virtual void onPressR(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onReleaseR
+        virtual void onReleaseR(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onPressT
+        virtual void onPressT(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onReleaseT
+        virtual void onReleaseT(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onPressY
+        virtual void onPressY(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onReleaseY
+        virtual void onReleaseY(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onPressU
+        virtual void onPressU(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onReleaseU
+        virtual void onReleaseU(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onPressI
+        virtual void onPressI(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onReleaseI
+        virtual void onReleaseI(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onPressO
+        virtual void onPressO(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onReleaseO
+        virtual void onReleaseO(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onPressP
+        virtual void onPressP(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onReleaseP
+        virtual void onReleaseP(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onPressLBracket
+        virtual void onPressLBracket(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onReleaseLBracket
+        virtual void onReleaseLBracket(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onPressRBracket
+        virtual void onPressRBracket(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onReleaseRBracket
+        virtual void onReleaseRBracket(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onPressEnter
+        virtual void onPressEnter(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onReleaseEnter
+        virtual void onReleaseEnter(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onPressLCtrl
+        virtual void onPressLCtrl(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onReleaseLCtrl
+        virtual void onReleaseLCtrl(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onPressA
+        virtual void onPressA(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onReleaseA
+        virtual void onReleaseA(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onPressS
+        virtual void onPressS(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onReleaseS
+        virtual void onReleaseS(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onPressD
+        virtual void onPressD(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onReleaseD
+        virtual void onReleaseD(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onPressF
+        virtual void onPressF(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onReleaseF
+        virtual void onReleaseF(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onPressG
+        virtual void onPressG(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onReleaseG
+        virtual void onReleaseG(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onPressH
+        virtual void onPressH(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onReleaseH
+        virtual void onReleaseH(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onPressJ
+        virtual void onPressJ(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onReleaseJ
+        virtual void onReleaseJ(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onPressK
+        virtual void onPressK(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onReleaseK
+        virtual void onReleaseK(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onPressL
+        virtual void onPressL(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onReleaseL
+        virtual void onReleaseL(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onPressSemicolon
+        virtual void onPressSemicolon(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onReleaseSemicolon
+        virtual void onReleaseSemicolon(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onPressApostrophe
+        virtual void onPressApostrophe(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onReleaseApostrophe
+        virtual void onReleaseApostrophe(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onPressGrave
+        virtual void onPressGrave(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onReleaseGrave
+        virtual void onReleaseGrave(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onPressLShift
+        virtual void onPressLShift(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onReleaseLShift
+        virtual void onReleaseLShift(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onPressBackSlash
+        virtual void onPressBackSlash(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onReleaseBackSlash
+        virtual void onReleaseBackSlash(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onPressZ
+        virtual void onPressZ(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onReleaseZ
+        virtual void onReleaseZ(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onPressX
+        virtual void onPressX(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onReleaseX
+        virtual void onReleaseX(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onPressC
+        virtual void onPressC(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onReleaseC
+        virtual void onReleaseC(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onPressV
+        virtual void onPressV(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onReleaseV
+        virtual void onReleaseV(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onPressB
+        virtual void onPressB(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onReleaseB
+        virtual void onReleaseB(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onPressN
+        virtual void onPressN(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onReleaseN
+        virtual void onReleaseN(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onPressM
+        virtual void onPressM(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onReleaseM
+        virtual void onReleaseM(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onPressComma
+        virtual void onPressComma(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onReleaseComma
+        virtual void onReleaseComma(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onPressPeriod
+        virtual void onPressPeriod(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onReleasePeriod
+        virtual void onReleasePeriod(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onPressSlash
+        virtual void onPressSlash(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onReleaseSlash
+        virtual void onReleaseSlash(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onPressRShift
+        virtual void onPressRShift(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onReleaseRShift
+        virtual void onReleaseRShift(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onPressNumMul
+        virtual void onPressNumMul(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onReleaseNumMul
+        virtual void onReleaseNumMul(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onPressLAlt
+        virtual void onPressLAlt(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onReleaseLAlt
+        virtual void onReleaseLAlt(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onPressSpace
+        virtual void onPressSpace(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onReleaseSpace
+        virtual void onReleaseSpace(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onPressCapsLock
+        virtual void onPressCapsLock(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onReleaseCapsLock
+        virtual void onReleaseCapsLock(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onPressF1
+        virtual void onPressF1(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onReleaseF1
+        virtual void onReleaseF1(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onPressF2
+        virtual void onPressF2(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onReleaseF2
+        virtual void onReleaseF2(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onPressF3
+        virtual void onPressF3(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onReleaseF3
+        virtual void onReleaseF3(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onPressF4
+        virtual void onPressF4(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onReleaseF4
+        virtual void onReleaseF4(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onPressF5
+        virtual void onPressF5(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onReleaseF5
+        virtual void onReleaseF5(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onPressF6
+        virtual void onPressF6(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onReleaseF6
+        virtual void onReleaseF6(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onPressF7
+        virtual void onPressF7(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onReleaseF7
+        virtual void onReleaseF7(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onPressF8
+        virtual void onPressF8(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onReleaseF8
+        virtual void onReleaseF8(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onPressF9
+        virtual void onPressF9(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onReleaseF9
+        virtual void onReleaseF9(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onPressF10
+        virtual void onPressF10(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onReleaseF10
+        virtual void onReleaseF10(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onPressNumLock
+        virtual void onPressNumLock(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onReleaseNumLock
+        virtual void onReleaseNumLock(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onPressMidScrLock
+        virtual void onPressMidScrLock(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onReleaseMidScrLock
+        virtual void onReleaseMidScrLock(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onPressNum7
+        virtual void onPressNum7(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onReleaseNum7
+        virtual void onReleaseNum7(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onPressNum8
+        virtual void onPressNum8(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onReleaseNum8
+        virtual void onReleaseNum8(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onPressNum9
+        virtual void onPressNum9(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onReleaseNum9
+        virtual void onReleaseNum9(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onPressNumSubtract
+        virtual void onPressNumSubtract(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onReleaseNumSubtract
+        virtual void onReleaseNumSubtract(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onPressNum4
+        virtual void onPressNum4(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onReleaseNum4
+        virtual void onReleaseNum4(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onPressNum5
+        virtual void onPressNum5(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onReleaseNum5
+        virtual void onReleaseNum5(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onPressNum6
+        virtual void onPressNum6(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onReleaseNumNO6
+        virtual void onReleaseNum6(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onPressNumAdd
+        virtual void onPressNumAdd(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onReleaseNumAdd
+        virtual void onReleaseNumAdd(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onPressNum1
+        virtual void onPressNum1(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onReleaseNum1
+        virtual void onReleaseNum1(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onPressNum2
+        virtual void onPressNum2(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onReleaseNum2
+        virtual void onReleaseNum2(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onPressNum3
+        virtual void onPressNum3(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onReleaseNum3
+        virtual void onReleaseNum3(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onPressNum0
+        virtual void onPressNum0(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onReleaseNum0
+        virtual void onReleaseNum0(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onPressNumDot
+        virtual void onPressNumDot(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onReleaseNumDot
+        virtual void onReleaseNumDot(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onPressF11
+        virtual void onPressF11(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onReleaseF11
+        virtual void onReleaseF11(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onPressF12
+        virtual void onPressF12(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onReleaseF12
+        virtual void onReleaseF12(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onPressNumEnter
+        virtual void onPressNumEnter(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onReleaseNumEnter
+        virtual void onReleaseNumEnter(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onPressRCtrl
+        virtual void onPressRCtrl(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onReleaseRCtrl
+        virtual void onReleaseRCtrl(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onPressRAlt
+        virtual void onPressRAlt(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onReleaseRAlt
+        virtual void onReleaseRAlt(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onPressLWin
+        virtual void onPressLWin(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onReleaseLWin
+        virtual void onReleaseLWin(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onPressRWin
+        virtual void onPressRWin(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onReleaseRWin
+        virtual void onReleaseRWin(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onPressCompose
+        virtual void onPressCompose(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onReleaseCompose
+        virtual void onReleaseCompose(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onPressNumDivide
+        virtual void onPressNumDivide(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onReleaseNumDivide
+        virtual void onReleaseNumDivide(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onPressMidSysRQ
+        virtual void onPressMidSysRQ(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onReleaseMidSysRQ
+        virtual void onReleaseMidSysRQ(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onPressMidPause
+        virtual void onPressMidPause(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onReleaseMidPause
+        virtual void onReleaseMidPause(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onPressMidHome
+        virtual void onPressMidHome(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onReleaseMidHome
+        virtual void onReleaseMidHome(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onPressMidUp
+        virtual void onPressMidUp(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onReleaseMidUp
+        virtual void onReleaseMidUp(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onPressMidPgUp
+        virtual void onPressMidPgUp(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onReleaseMidPgUp
+        virtual void onReleaseMidPgUp(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onPressMidLeft
+        virtual void onPressMidLeft(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onReleaseMidLeft
+        virtual void onReleaseMidLeft(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onPressMidRight
+        virtual void onPressMidRight(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onReleaseMidRight
+        virtual void onReleaseMidRight(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onPressMidEnd
+        virtual void onPressMidEnd(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onReleaseMidEnd
+        virtual void onReleaseMidEnd(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onPressMidDown
+        virtual void onPressMidDown(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onReleaseMidDown
+        virtual void onReleaseMidDown(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onPressMidPgDown
+        virtual void onPressMidPgDown(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onReleaseMidPgDown
+        virtual void onReleaseMidPgDown(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onPressMidInsert
+        virtual void onPressMidInsert(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onReleaseMidInsert
+        virtual void onReleaseMidInsert(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onPressMidDelete
+        virtual void onPressMidDelete(const KeyboardArgs * arg);
+
+        /// @copydetail KeyboardControlItem::onReleaseMidDelete
+        virtual void onReleaseMidDelete(const KeyboardArgs * arg);
     };
 }
 }

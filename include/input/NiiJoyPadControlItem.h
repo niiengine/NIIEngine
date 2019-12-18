@@ -38,8 +38,10 @@
 
 #include "NiiPreInclude.h"
 #include "NiiControlItem.h"
-#include "NiiJoyPadControlButtonArgs.h"
-#include "NiiJoyPadControlAxisArgs.h"
+#include "NiiJoyDevControlArgs.h"
+#include "NiiCommandObj.h"
+
+using namespace NII::NII_COMMAND;
 
 namespace NII
 {
@@ -51,39 +53,73 @@ namespace NII_MEDIA
     class _EngineAPI JoyPadControlItem : public ControlItem
     {
     public:
-		JoyPadControlItem() {}
-		virtual ~JoyPadControlItem() {}
+        JoyPadControlItem() {}
+        virtual ~JoyPadControlItem() {}
         
         ///@copydetails ControlItem::getType
         virtual ControlDevType getType() const 
-		{
-			return CDT_JoyPad;
-		};
+        {
+            return CDT_JoyPad;
+        };
     public:
         /** 当摇杆中的普通键按下时触发
         @param[in] args 摇杆按键事件参数
         @version NIIEngine 3.0.0
         */
-		virtual void onPressButton(const JoyPadControlButtonArgs * args) {}
+        virtual void onPressButton(const JoyPadControlButtonArgs * args) {}
         
         /** 当摇杆中的普通键按下后释放时触发
         @param[in] args
         @version NIIEngine 3.0.0
         */
-		virtual void onReleaseButton(const JoyPadControlButtonArgs * args) {}
+        virtual void onReleaseButton(const JoyPadControlButtonArgs * args) {}
     
         /** 当摇杆中的摇杆摇动时触发
         @param[in] args 摇杆杆事件参数
         @version NIIEngine 3.0.0
         */
-		virtual void onTwistAxis(const JoyPadControlAxisArgs * args) {}
+        virtual void onTwistAxis(const JoyPadControlAxisArgs * args) {}
     };
 
-	class _EngineAPI DummyJoyPadControlItem : public JoyPadControlItem, public ControlAlloc
-	{
-	public:
-		DummyJoyPadControlItem() {}
-	};
+    class _EngineAPI DummyJoyPadControlItem : public JoyPadControlItem, public ControlAlloc
+    {
+    public:
+        DummyJoyPadControlItem() {}
+    };
+
+    class _EngineAPI ListenerJoyPadControlItem : public JoyPadControlItem, public ControlAlloc
+    {
+    public:
+        ListenerJoyPadControlItem() {}
+        virtual ~ListenerJoyPadControlItem() {}
+    };
+
+    /** 事件级 JoyPadControlItem
+    @remark
+        游戏对象可以灵活的转换控制单元从而不同的效果,把部分事件写出来获得更多的处理
+        性能提升.如果需要使用它,需要继承它并重写部分或全部方法
+    @version NIIEngine 3.0.0
+    */
+    class _EngineAPI SignalJoyPadControlItem : public JoyPadControlItem, public CommandObj
+    {
+    public:
+        SignalJoyPadControlItem();
+        virtual ~SignalJoyPadControlItem();
+    public:
+        static const EventID PressButtonEvent;
+        static const EventID ReleaseButtonEvent;
+        static const EventID TwistAxisEvent;
+        static const EventID EventCount;
+    public:
+        /// @copydetails JoyControlItem::onPressButton
+        virtual void onPressButton(const JoyPadControlButtonArgs * args);
+
+        /// @copydetails JoyControlItem::onReleaseButton
+        virtual void onReleaseButton(const JoyPadControlButtonArgs * args);
+
+        /// @copydetails JoyControlItem::onTwistAxis
+        virtual void onTwistAxis(const JoyPadControlAxisArgs * args);
+    };
 }
 }
 #endif

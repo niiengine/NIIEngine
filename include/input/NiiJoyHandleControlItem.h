@@ -38,7 +38,8 @@
 
 #include "NiiPreInclude.h"
 #include "NiiJoyStickControlItem.h"
-#include "NiiJoyHandleControlVectorArgs.h"
+#include "NiiJoyDevControlArgs.h"
+#include "NiiJoyPadControlItem.h"
 
 namespace NII
 {
@@ -50,27 +51,65 @@ namespace NII_MEDIA
     class _EngineAPI JoyHandleControlItem : public JoyStickControlItem
     {
     public:
-		JoyHandleControlItem() {}
-		virtual ~JoyHandleControlItem() {}
+        JoyHandleControlItem() {}
+        virtual ~JoyHandleControlItem() {}
         
         ///@copydetails ControlItem::getType
         ControlDevType getType() const
-		{
-			return CDT_JoyHandle;
-		}
+        {
+            return CDT_JoyHandle;
+        }
     public:
         /** 当摇杆中的向量输出时触发
         @param[in] args 摇杆向量输出事件参数
         @version NIIEngine 3.0.0
         */
-		virtual void onHandleVector(const JoyHandleControlVectorArgs * args) {}
+        virtual void onHandleVector(const JoyHandleControlVectorArgs * args) {}
     };
 
-	class _EngineAPI DummyJoyHandleControlItem : public JoyHandleControlItem, public ControlAlloc
-	{
-	public:
-		DummyJoyHandleControlItem() {}
-	};
+    class _EngineAPI DummyJoyHandleControlItem : public JoyHandleControlItem, public ControlAlloc
+    {
+    public:
+        DummyJoyHandleControlItem() {}
+    };
+
+    /**
+    @version NIIEngine 3.0.0
+    */
+    class _EngineAPI ListenerJoyHandleControlItem : public JoyHandleControlItem, public ControlAlloc
+    {
+    public:
+        ListenerJoyHandleControlItem() {};
+        virtual ~ListenerJoyHandleControlItem() {};
+    };
+
+    /** 游戏手把类型控制器
+    @remark
+        游戏对象可以灵活的转换控制单元从而不同的效果,把部分事件写出来获得更多的处理
+        性能提升.如果需要使用它,需要继承它并重写部分或全部方法
+    @version NIIEngine 3.0.0
+    */
+    class _EngineAPI SignalJoyHandleControlItem : public JoyHandleControlItem,
+        public SignalJoyPadControlItem
+    {
+    public:
+        SignalJoyHandleControlItem();
+        virtual ~SignalJoyHandleControlItem();
+    public:
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID HandleVectorEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID EventCount;
+    public:
+        /** 当摇杆中的向量输出时触发
+        @param[in] args 摇杆向量输出事件参数
+        */
+        virtual void onHandleVector(const JoyHandleControlVectorArgs * args);
+    };
 }
 }
 

@@ -39,6 +39,9 @@
 #include "NiiPreInclude.h"
 #include "NiiControlItem.h"
 #include "NiiEventArgs.h"
+#include "NiiCommandObj.h"
+
+using namespace NII::NII_COMMAND;
 
 namespace NII
 {
@@ -276,13 +279,226 @@ namespace NII_MEDIA
         NIIf mFactor;                        ///< 加速因子
     };
 
-    /**
+    /** 虚拟鼠标
     @version NIIEngine 3.0.0
     */
-    class DummyMouseControlItem : public MouseControlItem, public ControlAlloc
+    class _EngineAPI DummyMouseControlItem : public MouseControlItem, public ControlAlloc
+    {
+    protected:
+        /// @copydetails MouseControlItem::onPress
+        void onPress(const MousePressArgs *) {/*do nothing*/}
+
+        /// @copydetails MouseControlItem::onRelease
+        void onRelease(const MousePressArgs *) {/*do nothing*/}
+    };
+
+    /** 
+    @version NIIEngine 3.0.0
+    */
+    class _EngineAPI ListenerMouseControlItem : public MouseControlItem, public ControlAlloc
     {
     public:
-        DummyMouseControlItem() {}
+        ListenerMouseControlItem();
+        virtual ~ListenerMouseControlItem();
+
+        /// 获取监听到的键盘字符的ascii码
+        inline bool isButtonPress() const { return mButtonPress; }
+
+        /// 获取监听到的键盘字符的unicode码
+        inline MouseButton getButton() const { return mButton; }
+
+        inline const String & getVerbose() const { return mDescrip; }
+    public:
+        /// @copydetails MouseControlItem::onPressLeft
+        virtual void onPressLeft(const MousePressArgs * arg);
+
+        /// @copydetails MouseControlItem::onReleaseLeft
+        virtual void onReleaseLeft(const MousePressArgs * arg);
+
+        /// @copydetails MouseControlItem::onPressRight
+        virtual void onPressRight(const MousePressArgs * arg);
+
+        /// @copydetails MouseControlItem::onReleaseRight
+        virtual void onReleaseRight(const MousePressArgs * arg);
+
+        /// @copydetails MouseControlItem::onPressMiddle
+        virtual void onPressMiddle(const MousePressArgs * arg);
+
+        /// @copydetails MouseControlItem::onReleaseMiddle
+        virtual void onReleaseMiddle(const MousePressArgs * arg);
+
+        /// @copydetails MouseControlItem::onPressButton3
+        virtual void onPressButton3(const MousePressArgs * arg);
+
+        /// @copydetails MouseControlItem::onReleaseButton3
+        virtual void onReleaseButton3(const MousePressArgs * arg);
+
+        /// @copydetails MouseControlItem::onPressButton4
+        virtual void onPressButton4(const MousePressArgs * arg);
+
+        /// @copydetails MouseControlItem::onReleaseButton4
+        virtual void onReleaseButton4(const MousePressArgs * arg);
+
+        /// @copydetails MouseControlItem::onPressButton5
+        virtual void onPressButton5(const MousePressArgs * arg);
+
+        /// @copydetails MouseControlItem::onReleaseButton5
+        virtual void onReleaseButton5(const MousePressArgs * arg);
+
+        /// @copydetails MouseControlItem::onPressButton6
+        virtual void onPressButton6(const MousePressArgs * arg);
+
+        /// @copydetails MouseControlItem::onReleaseButton6
+        virtual void onReleaseButton6(const MousePressArgs * arg);
+
+        /// @copydetails MouseControlItem::onPressButton7
+        virtual void onPressButton7(const MousePressArgs * arg);
+
+        /// @copydetails MouseControlItem::onReleaseButton7
+        virtual void onReleaseButton7(const MousePressArgs * arg);
+
+        /// @copydetails MouseControlItem::onMove
+        virtual void onMove(const MouseMoveArgs * arg);
+    protected:
+        MouseButton mButton;
+        Ni32 mX;
+        Ni32 mY;
+        Ni32 mScroll;
+        String mDescrip;
+        bool mButtonPress;
+    };
+
+    /** 事件级鼠标控制单元
+    @remark 游戏对象可以灵活的转换控制单元从而不同的效果,用于描述操作逻辑复杂的事件级对象,
+        用于顶层设计中也可以方便事件连接.
+    @version NIIEngine 3.0.0
+    */
+    class _EngineAPI SignalMouseControlItem : public MouseControlItem, public CommandObj
+    {
+    public:
+        SignalMouseControlItem();
+
+        virtual ~SignalMouseControlItem();
+    public:
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID PressLeftEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID ReleaseLeftEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID PressRightEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID ReleaseRightEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID PressMiddleEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID ReleaseMiddleEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID PressButton3Event;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID ReleaseButton3Event;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID PressButton4Event;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID ReleaseButton4Event;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID PressButton5Event;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID ReleaseButton5Event;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID PressButton6Event;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID ReleaseButton6Event;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID PressButton7Event;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID ReleaseButton7Event;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID MoveEvent;
+    public:
+        /// @copydetails MouseControlItem::onPressLeft
+        virtual void onPressLeft(const MousePressArgs * arg);
+
+        /// @copydetails MouseControlItem::onReleaseLeft
+        virtual void onReleaseLeft(const MousePressArgs * arg);
+
+        /// @copydetails MouseControlItem::onPressRight
+        virtual void onPressRight(const MousePressArgs * arg);
+
+        /// @copydetails MouseControlItem::onReleaseRight
+        virtual void onReleaseRight(const MousePressArgs * arg);
+
+        /// @copydetails MouseControlItem::onPressMiddle
+        virtual void onPressMiddle(const MousePressArgs * arg);
+
+        /// @copydetails MouseControlItem::onReleaseMiddle
+        virtual void onReleaseMiddle(const MousePressArgs * arg);
+
+        /// @copydetails MouseControlItem::onPressButton3
+        virtual void onPressButton3(const MousePressArgs * arg);
+
+        /// @copydetails MouseControlItem::onReleaseButton3
+        virtual void onReleaseButton3(const MousePressArgs * arg);
+
+        /// @copydetails MouseControlItem::onPressButton4
+        virtual void onPressButton4(const MousePressArgs * arg);
+
+        /// @copydetails MouseControlItem::onReleaseButton4
+        virtual void onReleaseButton4(const MousePressArgs * arg);
+
+        /// @copydetails MouseControlItem::onPressButton5
+        virtual void onPressButton5(const MousePressArgs * arg);
+
+        /// @copydetails MouseControlItem::onReleaseButton5
+        virtual void onReleaseButton5(const MousePressArgs * arg);
+
+        /// @copydetails MouseControlItem::onPressButton6
+        virtual void onPressButton6(const MousePressArgs * arg);
+
+        /// @copydetails MouseControlItem::onReleaseButton6
+        virtual void onReleaseButton6(const MousePressArgs * arg);
+
+        /// @copydetails MouseControlItem::onPressButton7
+        virtual void onPressButton7(const MousePressArgs * arg);
+
+        /// @copydetails MouseControlItem::onReleaseButton7
+        virtual void onReleaseButton7(const MousePressArgs * arg);
+
+        /// @copydetails MouseControlItem::onMove
+        virtual void onMove(const MouseMoveArgs * arg);
     };
 }
 }

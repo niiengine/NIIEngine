@@ -42,7 +42,7 @@ namespace NII
 {
 namespace NII_MEDIA
 {
-	class JoyDevForceFeedback;
+    class JoyDevForceFeedback;
     /**
     @version NIIEngine 3.0.0
     */
@@ -50,9 +50,9 @@ namespace NII_MEDIA
     {
         friend class JoyStickControlPattern;
     public:
-		/**
-		@version NIIEngine 3.0.0
-		*/
+        /**
+        @version NIIEngine 3.0.0
+        */
         enum ForceEffectType
         {
             EFT_Unknown,                    ///< 无效的
@@ -63,9 +63,9 @@ namespace NII_MEDIA
             EFT_Custom                      ///< 自定义
         };
 
-		/**
-		@version NIIEngine 3.0.0
-		*/
+        /**
+        @version NIIEngine 3.0.0
+        */
         enum ForceEffectFactorType
         {
             FEFT_Unknown,                   ///< 无效的
@@ -121,11 +121,78 @@ namespace NII_MEDIA
         ForceEffectType mType;              ///<
         ForceEffectDirection mDirection;    ///<
         ForceEffectFactorType mFactorType;  ///<
-		Nui16 mTriggerButton;               ///<
-		Nui32 mTriggerInterval;             ///<
-		Nui32 mReplayLength;                ///<
-		Nui32 mReplayDelay;                 ///<
-		NIIs mAxes;                         ///< 多少个摇杆影响这个效果
+        Nui16 mTriggerButton;               ///<
+        Nui32 mTriggerInterval;             ///<
+        Nui32 mReplayLength;                ///<
+        Nui32 mReplayDelay;                 ///<
+        NIIs mAxes;                         ///< 多少个摇杆影响这个效果
+    };
+
+    /**
+    @version NIIEngine 3.0.0
+    */
+    class _EngineAPI JoyStickConstantEffect : public JoyStickEffect
+    {
+    public:
+        JoyStickConstantEffect() :
+            mLevel(5000) {}
+
+        Envelope mEnvelope;     ///< 基础成分
+        NIIs mLevel;            ///< -10K 到 +10k
+    };
+
+    /**
+    @version NIIEngine 3.0.0
+    */
+    class _EngineAPI JoyStickPeriodicEffect : public JoyStickEffect
+    {
+    public:
+        JoyStickPeriodicEffect() :
+            mMagnitude(0),
+            mOffset(0),
+            mPhase(0),
+            mPeriod(0) {}
+
+        Envelope mEnvelope;     ///< 基础成分
+        Nui16 mMagnitude;       ///< 0 到 10,0000
+        NIIs mOffset;
+        Nui16 mPhase;           ///< Position at which playback begins 0 到 35,999
+        Nui32 mPeriod;          ///< Period of effect (microseconds)
+    };
+
+    /**
+    @version NIIEngine 3.0.0
+    */
+    class _EngineAPI JoyStickRampEffect : public JoyStickEffect
+    {
+    public:
+        JoyStickRampEffect() :
+            mStartLevel(0),
+            mEndLevel(0) {}
+
+        Envelope mEnvelope;         ///< 基础成分
+        Nui16 mStartLevel;          ///< -10K 到 +10k
+        Nui16 mEndLevel;            ///< -10K 到 +10k
+    };
+
+    /**
+    @version NIIEngine 3.0.0
+    */
+    class _EngineAPI JoyStickConditionalEffect : public JoyStickEffect
+    {
+    public:
+        JoyStickConditionalEffect() :
+            mRightCoeff(0),
+            mLeftCoeff(0),
+            mRightSaturation(0),
+            mLeftSaturation(0),
+            mDeadband(0) {}
+
+        NIIs mRightCoeff;
+        NIIs mLeftCoeff;
+        Nui16 mRightSaturation;
+        Nui16 mLeftSaturation;
+        Nui16 mDeadband;
     };
 }
 }

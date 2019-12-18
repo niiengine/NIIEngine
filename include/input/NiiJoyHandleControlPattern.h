@@ -64,42 +64,42 @@ namespace NII_MEDIA
         ///@copydetails ControlItem::getType
         ControlDevType getType() const;
     protected:
-		JoyHandleControlPattern();
+        JoyHandleControlPattern();
 
-		JoyHandleControlPattern(Nid id, const ViewWindow * own);
+        JoyHandleControlPattern(Nid id, const ViewWindow * own);
 
-		void handle(NIIi v, NIIf x, NIIf y, NIIf z);
+        void handle(NIIi v, NIIf x, NIIf y, NIIf z);
     };
 
-	/** ¿þÀÜ¿ØÖÆÆ÷
-	@version NIIEngine 3.0.0
-	*/
-	class DummyJoyHandleControlPattern : public JoyHandleControlPattern
-	{
-	public:
-		DummyJoyHandleControlPattern() {}
+    /** ¿þÀÜ¿ØÖÆÆ÷
+    @version NIIEngine 3.0.0
+    */
+    class DummyJoyHandleControlPattern : public JoyHandleControlPattern
+    {
+    public:
+        DummyJoyHandleControlPattern() {}
 
-		///@copydetails ControlPattern::_init
-		bool _init() { return true; }
+        ///@copydetails ControlPattern::_init
+        bool _init() { return true; }
 
-		///@copydetails ControlPattern::_end
-		bool _end() { return true; }
+        ///@copydetails ControlPattern::_end
+        bool _end() { return true; }
 
-		///@copydetails ControlPattern::_update
-		void _update() {}
+        ///@copydetails ControlPattern::_update
+        void _update() {}
 
-		///@copydetails KeyboardControlPattern::_reset
-		void _reset() {}
+        ///@copydetails KeyboardControlPattern::_reset
+        void _reset() {}
 
-		///@copydetails KeyboardControlPattern::_start
-		void _start() {}
+        ///@copydetails KeyboardControlPattern::_start
+        void _start() {}
 
-		///@copydetails KeyboardControlPattern::_pause
-		void _pause() {}
+        ///@copydetails KeyboardControlPattern::_pause
+        void _pause() {}
 
-		///@copydetails KeyboardControlPattern::_stop
-		void _stop() {}
-	};
+        ///@copydetails KeyboardControlPattern::_stop
+        void _stop() {}
+    };
 }
 }
 #endif

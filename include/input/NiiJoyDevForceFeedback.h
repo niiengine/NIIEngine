@@ -49,7 +49,7 @@ namespace NII_MEDIA
     class _EngineAPI JoyDevForceFeedback : public PatternAlloc
     {
     public:
-		typedef multimap<JoyStickEffect::ForceEffectType, JoyStickEffect::ForceEffectFactorType>::type SupportedEffectList;
+        typedef multimap<JoyStickEffect::ForceEffectType, JoyStickEffect::ForceEffectFactorType>::type SupportedEffectList;
     public:
         JoyDevForceFeedback();
         virtual ~JoyDevForceFeedback();
@@ -64,71 +64,71 @@ namespace NII_MEDIA
         @remark
         @version NIIEngine 3.0.0
         */
-		void _setAutoCenterSupport(bool set);
+        void _setAutoCenterSupport(bool set);
 
-		/**
-		@remarks
-		@param level
+        /**
+        @remarks
+        @param level
         @version NIIEngine 3.0.0
-		*/
-		virtual void setMasterGain(float level) = 0;
+        */
+        virtual void setMasterGain(float level) = 0;
 
-		/**
-		@remarks
-		@param set
+        /**
+        @remarks
+        @param set
         @version NIIEngine 3.0.0
-		*/
-		virtual void setAutoCenterMode(bool set) = 0;
+        */
+        virtual void setAutoCenterMode(bool set) = 0;
 
-		/**
-		@remarks
+        /**
+        @remarks
         @version NIIEngine 3.0.0
-		*/
-		virtual void upload(const JoyStickEffect * effect) = 0;
+        */
+        virtual void upload(const JoyStickEffect * effect) = 0;
 
-		/**
-		@remarks 
+        /**
+        @remarks 
         @version NIIEngine 3.0.0
-		*/
-		virtual void modify(const JoyStickEffect * effect) = 0;
+        */
+        virtual void modify(const JoyStickEffect * effect) = 0;
 
-		/**
-		@remarks 
+        /**
+        @remarks 
         @version NIIEngine 3.0.0
-		*/
-		virtual void remove(const JoyStickEffect * effect) = 0;
+        */
+        virtual void remove(const JoyStickEffect * effect) = 0;
 
-		/**
-		@remarks 
+        /**
+        @remarks 
         @version NIIEngine 3.0.0
-		*/
+        */
         virtual short getFFAxesNumber() = 0;
 
-		/**
-		@remarks 
+        /**
+        @remarks 
         @version NIIEngine 3.0.0
-		*/
-		virtual unsigned short getFFMemoryLoad() = 0;
+        */
+        virtual unsigned short getFFMemoryLoad() = 0;
         
-		/**
-		@remarks
+        /**
+        @remarks
         @version NIIEngine 3.0.0
-		*/
-		const SupportedEffectList& getSupportedEffects() const;
+        */
+        const SupportedEffectList& getSupportedEffects() const;
 
-		/**
-		@remarks
+        /**
+        @remarks
         @version NIIEngine 3.0.0
-		*/
-		bool supportsEffect(JoyStickEffect::ForceEffectType force,
+        */
+        bool supportsEffect(JoyStickEffect::ForceEffectType force,
             JoyStickEffect::ForceEffectFactorType type) const;
 
-		void _addEffectTypes(JoyStickEffect::ForceEffectType force,
+        void _addEffectTypes(JoyStickEffect::ForceEffectType force,
             JoyStickEffect::ForceEffectFactorType type);
     protected:
-		SupportedEffectList mSupportedEffects;
-		bool mSetGainSupport;
-		bool mSetAutoCenterSupport;
+        SupportedEffectList mSupportedEffects;
+        bool mSetGainSupport;
+        bool mSetAutoCenterSupport;
     };
 }
 }

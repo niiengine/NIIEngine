@@ -38,7 +38,7 @@
 
 #include "NiiPreInclude.h"
 #include "NiiJoyPadControlItem.h"
-#include "NiiJoyWheelControlArgs.h"
+#include "NiiJoyDevControlArgs.h"
 
 namespace NII
 {
@@ -53,27 +53,60 @@ namespace NII_MEDIA
     class _EngineAPI JoyWheelControlItem : public JoyPadControlItem
     {
     public:
-		JoyWheelControlItem() {}
-		virtual ~JoyWheelControlItem() {}
+        JoyWheelControlItem() {}
+        virtual ~JoyWheelControlItem() {}
 
         ///@copydetails ControlItem::getType
         ControlDevType getType() const
-		{
-			return CDT_JoyWheel;
-		}
+        {
+            return CDT_JoyWheel;
+        }
     public:
         /** 当摇杆中的滑块推动时触发
         @param[in] args 摇杆按键事件参数
         @version NIIEngine 3.0.0
         */
-		virtual void onWheel(const JoyWheelControlArgs * args) {}
+        virtual void onWheel(const JoyWheelControlArgs * args) {}
     };
 
-	class _EngineAPI DummyJoyWheelControlItem : public JoyWheelControlItem, public ControlAlloc
-	{
-	public:
-		DummyJoyWheelControlItem() {}
-	};
+    class _EngineAPI DummyJoyWheelControlItem : public JoyWheelControlItem, public ControlAlloc
+    {
+    public:
+        DummyJoyWheelControlItem() {}
+    };
+
+    class _EngineAPI ListenerJoyWheelControlItem : public JoyWheelControlItem, public ControlAlloc
+    {
+    public:
+        ListenerJoyWheelControlItem() {}
+        virtual ~ListenerJoyWheelControlItem() {}
+    };
+
+    /** 事件级 JoyWheelControlItem
+    @remark
+        游戏对象可以灵活的转换控制单元从而不同的效果,把部分事件写出来获得更多的处理
+        性能提升.如果需要使用它,需要继承它并重写部分或全部方法
+    @version NIIEngine 3.0.0
+    */
+    class _EngineAPI SignalJoyWheelControlItem : public JoyWheelControlItem,
+        public SignalJoyPadControlItem
+    {
+    public:
+        SignalJoyWheelControlItem();
+        virtual ~SignalJoyWheelControlItem();
+    public:
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID WheelEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID EventCount;
+    public:
+        /// @copydetails SignalJoyWheelControlItem::onSlipSlider
+        virtual void onWheel(const JoyWheelControlArgs * args);
+    };
 }
 }
 #endif

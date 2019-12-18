@@ -50,8 +50,8 @@ namespace NII_MEDIA
     {
     public:
         TouchControlArgs(const Vector3<NIIi> & p, const Vector3<NIIi> & r) :
-			pos(p),
-			rel(r) {}
+            pos(p),
+            rel(r) {}
         
         const Vector3<NIIi> & pos;  ///< 当前位置
         const Vector3<NIIi> & rel;  ///< 当前位置和上次位置的差值

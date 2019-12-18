@@ -53,9 +53,9 @@ namespace NII_MEDIA
     class _EngineAPI JoyWheelControlPattern : public JoyPadControlPattern
     {
     protected:
-		JoyWheelControlPattern();
+        JoyWheelControlPattern();
 
-		JoyWheelControlPattern(Nid id, const ViewWindow * own);
+        JoyWheelControlPattern(Nid id, const ViewWindow * own);
 
         virtual ~JoyWheelControlPattern();
 
@@ -79,40 +79,40 @@ namespace NII_MEDIA
         ///@copedetails ControlPattern::getType
         ControlDevType getType() const;
     protected:
-		NIIf mWheel;					///< 摇盘值
-        JoyWheelControlItem * mTarget;	///< 当前对焦的控制单元
+        NIIf mWheel;                    ///< 摇盘值
+        JoyWheelControlItem * mTarget;    ///< 当前对焦的控制单元
     };
 
-	/** 傀儡控制器
-	@remark 用于对象完整性，或全局性
-	@version NIIEngine 3.0.0
-	*/
-	class DummyJoyWheelControlPattern : public JoyWheelControlPattern
-	{
-	public:
-		DummyJoyWheelControlPattern() {}
+    /** 傀儡控制器
+    @remark 用于对象完整性，或全局性
+    @version NIIEngine 3.0.0
+    */
+    class DummyJoyWheelControlPattern : public JoyWheelControlPattern
+    {
+    public:
+        DummyJoyWheelControlPattern() {}
 
-		///@copydetails ControlPattern::_init
-		bool _init() { return true; }
+        ///@copydetails ControlPattern::_init
+        bool _init() { return true; }
 
-		///@copydetails ControlPattern::_end
-		bool _end() { return true; }
+        ///@copydetails ControlPattern::_end
+        bool _end() { return true; }
 
-		///@copydetails ControlPattern::_update
-		void _update() {}
+        ///@copydetails ControlPattern::_update
+        void _update() {}
 
-		///@copydetails KeyboardControlPattern::_reset
-		void _reset() {}
+        ///@copydetails KeyboardControlPattern::_reset
+        void _reset() {}
 
-		///@copydetails KeyboardControlPattern::_start
-		void _start() {}
+        ///@copydetails KeyboardControlPattern::_start
+        void _start() {}
 
-		///@copydetails KeyboardControlPattern::_pause
-		void _pause() {}
+        ///@copydetails KeyboardControlPattern::_pause
+        void _pause() {}
 
-		///@copydetails KeyboardControlPattern::_stop
-		void _stop() {}
-	};
+        ///@copydetails KeyboardControlPattern::_stop
+        void _stop() {}
+    };
 }
 }
 #endif

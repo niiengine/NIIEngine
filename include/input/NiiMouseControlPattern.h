@@ -39,7 +39,7 @@
 #include "NiiPreInclude.h"
 #include "NiiControlPattern.h"
 #include "NiiMouseControlItem.h"
-#include "NiiMouseButton.h"
+#include "NiiMouseControlItem.h"
 
 namespace NII
 {
@@ -93,7 +93,7 @@ namespace NII_MEDIA
         */
         MouseControlPattern(Nid id, const ViewWindow * own);
 
-		virtual ~MouseControlPattern();
+        virtual ~MouseControlPattern();
 
         /** 按下鼠标按键
         @remark 这个方法引发鼠标按键按下事件
@@ -135,34 +135,34 @@ namespace NII_MEDIA
         MouseControlItem * mTarget; ///< 当前对焦的控制单元
     };
 
-	/** 傀儡
-	@version NIIEngine 3.0.0
-	*/
-	class DummyMouseControlPattern : public MouseControlPattern
-	{
-	public:
-		DummyMouseControlPattern() {}
-		///@copydetails ControlPattern::_init
-		bool _init() { return true; }
+    /** 傀儡
+    @version NIIEngine 3.0.0
+    */
+    class DummyMouseControlPattern : public MouseControlPattern
+    {
+    public:
+        DummyMouseControlPattern() {}
+        ///@copydetails ControlPattern::_init
+        bool _init() { return true; }
 
-		///@copydetails ControlPattern::_end
-		bool _end() { return true; }
+        ///@copydetails ControlPattern::_end
+        bool _end() { return true; }
 
-		///@copydetails ControlPattern::_update
-		void _update() {}
+        ///@copydetails ControlPattern::_update
+        void _update() {}
 
-		///@copydetails KeyboardControlPattern::_reset
-		void _reset() {}
+        ///@copydetails KeyboardControlPattern::_reset
+        void _reset() {}
 
-		///@copydetails KeyboardControlPattern::_start
-		void _start() {}
+        ///@copydetails KeyboardControlPattern::_start
+        void _start() {}
 
-		///@copydetails KeyboardControlPattern::_pause
-		void _pause() {}
+        ///@copydetails KeyboardControlPattern::_pause
+        void _pause() {}
 
-		///@copydetails KeyboardControlPattern::_stop
-		void _stop() {}
-	};
+        ///@copydetails KeyboardControlPattern::_stop
+        void _stop() {}
+    };
 }
 }
 #endif

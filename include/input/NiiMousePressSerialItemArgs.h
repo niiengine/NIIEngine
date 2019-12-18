@@ -37,8 +37,8 @@
 #define _NII_MOUSE_PRESS_SERIAL_ITEM_ARGS_H_
 
 #include "NiiPreInclude.h"
-#include "NiiSerialItemArgs.h"
-#include "NiiMouseButton.h"
+#include "NiiSerialItem.h"
+#include "NiiMouseControlItem.h"
 
 namespace NII
 {
@@ -51,25 +51,25 @@ namespace NII_MEDIA
     {
     public:
         MousePressSerialItemArgs(MouseButton b) :
-			mButton(b) {}
+            mButton(b) {}
 
         /// @copydetails ItemSerialArgs::operator ==
         bool operator == (const EventArgs * other) const 
-		{
-			MouseButton src = static_cast<const MousePressArgs *>(o)->mButton;
-			if (mButton == src)
-				return true;
-			return false;
-		}
+        {
+            MouseButton src = static_cast<const MousePressArgs *>(o)->mButton;
+            if (mButton == src)
+                return true;
+            return false;
+        }
 
         /// @copydetails ItemSerialArgs::operator !=
         bool operator != (const EventArgs * other) const 
-		{
-			MouseButton src = static_cast<const MousePressArgs *>(o)->mButton;
-			if (mButton == src)
-				return false;
-			return true;
-		}
+        {
+            MouseButton src = static_cast<const MousePressArgs *>(o)->mButton;
+            if (mButton == src)
+                return false;
+            return true;
+        }
 
         MouseButton mButton;            ///<
     };

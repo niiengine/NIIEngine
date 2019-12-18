@@ -34,7 +34,7 @@
 */
 
 #include "NiiPreInclude.h"
-#include "NiiSerialItemArgs.h"
+#include "NiiSerialItem.h"
 
 namespace NII
 {
@@ -46,26 +46,26 @@ namespace NII_MEDIA
     class _EngineAPI TouchSerialItemArgs : public SerialItemArgs
     {
     public:
-		TouchSerialItemArgs() {}
-		~TouchSerialItemArgs() {}
+        TouchSerialItemArgs() {}
+        ~TouchSerialItemArgs() {}
 
         /// @copydetails ItemSerialArgs::operator ==
         bool operator == (const EventArgs * other) const 
-		{
-			const TouchSerialItemArgs * temp = static_cast<const TouchSerialItemArgs *>(o);
-			if (temp->dest == dest)
-				return true;
-			return false;
-		}
+        {
+            const TouchSerialItemArgs * temp = static_cast<const TouchSerialItemArgs *>(o);
+            if (temp->dest == dest)
+                return true;
+            return false;
+        }
 
         /// @copydetails ItemSerialArgs::operator !=
         bool operator != (const EventArgs * other) const 
-		{
-			const TouchSerialItemArgs * temp = static_cast<const TouchSerialItemArgs *>(o);
-			if (temp->dest != dest)
-				return true;
-			return false;
-		}
+        {
+            const TouchSerialItemArgs * temp = static_cast<const TouchSerialItemArgs *>(o);
+            if (temp->dest != dest)
+                return true;
+            return false;
+        }
 
         Vector3<NIIi> dest;  ///< Ä¿±êÎ»ÖÃ
     };

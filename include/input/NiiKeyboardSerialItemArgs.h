@@ -37,8 +37,8 @@
 #define _NII_KEYBOARD_CONTROL_ITEM_ARGS_H_
 
 #include "NiiPreInclude.h"
-#include "NiiSerialItemArgs.h"
-#include "NiiKeyBoardKey.h"
+#include "NiiSerialItem.h"
+#include "NiiKeyBoardControlItem.h"
 
 namespace NII
 {

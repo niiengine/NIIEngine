@@ -38,8 +38,7 @@
 
 #include "NiiPreInclude.h"
 #include "NiiJoyPadControlItem.h"
-#include "NiiJoyStickControlSliderArgs.h"
-#include "NiiJoyStickControlPovArgs.h"
+#include "NiiJoyDevControlArgs.h"
 
 namespace NII
 {
@@ -54,33 +53,73 @@ namespace NII_MEDIA
     class _EngineAPI JoyStickControlItem : public JoyPadControlItem
     {
     public:
-		JoyStickControlItem() {}
-		virtual ~JoyStickControlItem() {}
+        JoyStickControlItem() {}
+        virtual ~JoyStickControlItem() {}
 
         ///@copydetails ControlItem::getType
-		ControlDevType getType() const
-		{
-			return CDT_JoyStick;
-		}
+        ControlDevType getType() const
+        {
+            return CDT_JoyStick;
+        }
     public:
         /** 当摇杆中的滑块推动时触发
         @param[in] args 摇杆按键事件参数
         @version NIIEngine 3.0.0
         */
-		virtual void onSlipSlider(const JoyStickControlSliderArgs * args) {}
+        virtual void onSlipSlider(const JoyStickControlSliderArgs * args) {}
 
         /** 当摇杆中的方向键按下时触发
         @param[in] args 摇杆杆上按键事件参数
         @version NIIEngine 3.0.0
         */
-		virtual void onPushPOV(const JoyStickControlPovArgs * args) {}
+        virtual void onPushPOV(const JoyStickControlPovArgs * args) {}
     };
 
-	class _EngineAPI DummyJoyStickControlItem : public JoyStickControlItem, public ControlAlloc
-	{
-	public:
-		DummyJoyStickControlItem() {}
-	};
+    class _EngineAPI DummyJoyStickControlItem : public JoyStickControlItem, public ControlAlloc
+    {
+    public:
+        DummyJoyStickControlItem() {}
+    };
+
+    class _EngineAPI ListenerJoyStickControlItem : public JoyStickControlItem, public ControlAlloc
+    {
+    public:
+        ListenerJoyStickControlItem() {}
+        virtual ~ListenerJoyStickControlItem() {}
+    };
+
+    /** 事件级 JoyStickControlItem
+    @remark
+        游戏对象可以灵活的转换控制单元从而不同的效果,把部分事件写出来获得更多的处理
+        性能提升.如果需要使用它,需要继承它并重写部分或全部方法
+    @version NIIEngine 3.0.0
+    */
+    class _EngineAPI SignalJoyStickControlItem : public JoyStickControlItem,
+        public SignalJoyPadControlItem
+    {
+    public:
+        SignalJoyStickControlItem();
+        virtual ~SignalJoyStickControlItem();
+    public:
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID SlipSliderEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID PushPOVEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID EventCount;
+    public:
+        /// @copydetails SignalJoyPadControlItem::onSlipSlider
+        virtual void onSlipSlider(const JoyStickControlSliderArgs * args);
+
+        /// @copydetails SignalJoyPadControlItem::onPushPOV
+        virtual void onPushPOV(const JoyStickControlPovArgs * args);
+    };
 }
 }
 #endif

@@ -94,13 +94,13 @@ namespace NII_MEDIA
         void setPovCount(NCount num);
 
         /// 获取按纽摇帽数量
-		NCount getPovCount() const;
+        NCount getPovCount() const;
 
         /// 设置划块数量
         void setSliderCount(NCount num);
 
         /// 获取划块数量
-		NCount getSliderCount() const;
+        NCount getSliderCount() const;
 
         /// @copydetails ControlPattern::apply
         void apply(ControlItem * item);
@@ -116,35 +116,35 @@ namespace NII_MEDIA
         JoyStickControlItem * mTarget;  ///< 当前对焦的控制单元
     };
 
-	/** 傀儡控制器
-	@remark 用于对象完整性，或全局性
-	@version NIIEngine 3.0.0
-	*/
-	class DummyJoyStickControlPattern : public JoyStickControlPattern
-	{
-	public:
-		DummyJoyStickControlPattern() {}
-		///@copydetails ControlPattern::_init
-		bool _init() { return true; }
+    /** 傀儡控制器
+    @remark 用于对象完整性，或全局性
+    @version NIIEngine 3.0.0
+    */
+    class DummyJoyStickControlPattern : public JoyStickControlPattern
+    {
+    public:
+        DummyJoyStickControlPattern() {}
+        ///@copydetails ControlPattern::_init
+        bool _init() { return true; }
 
-		///@copydetails ControlPattern::_end
-		bool _end() { return true; }
+        ///@copydetails ControlPattern::_end
+        bool _end() { return true; }
 
-		///@copydetails ControlPattern::_update
-		void _update() {}
+        ///@copydetails ControlPattern::_update
+        void _update() {}
 
-		///@copydetails KeyboardControlPattern::_reset
-		void _reset() {}
+        ///@copydetails KeyboardControlPattern::_reset
+        void _reset() {}
 
-		///@copydetails KeyboardControlPattern::_start
-		void _start() {}
+        ///@copydetails KeyboardControlPattern::_start
+        void _start() {}
 
-		///@copydetails KeyboardControlPattern::_pause
-		void _pause() {}
+        ///@copydetails KeyboardControlPattern::_pause
+        void _pause() {}
 
-		///@copydetails KeyboardControlPattern::_stop
-		void _stop() {}
-	};
+        ///@copydetails KeyboardControlPattern::_stop
+        void _stop() {}
+    };
 }
 }
 #endif

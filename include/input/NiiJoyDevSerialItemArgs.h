@@ -37,8 +37,9 @@
 #define _NII_JOYDEV_SERIAL_ITEM_ARGS_H_
 
 #include "NiiPreInclude.h"
-#include "NiiSerialItemArgs.h"
+#include "NiiSerialItem.h"
 #include "NiiJoyDevControlType.h"
+#include "NiiPovDirection.h"
 
 namespace NII
 {
@@ -50,11 +51,46 @@ namespace NII_MEDIA
     class _EngineAPI JoyDevSerialItemArgs : public SerialItemArgs
     {
     public:
-		JoyDevSerialItemArgs(JoyDevControlType t) :
-			mType(t) {}
-		virtual ~JoyDevSerialItemArgs() {}
+        JoyDevSerialItemArgs(JoyDevControlType t) :
+            mType(t) {}
+        virtual ~JoyDevSerialItemArgs() {}
         
         JoyDevControlType mType;   ///< 类型
+    };
+
+    /**
+    @version NIIEngine 3.0.0
+    */
+    class _EngineAPI JoyPadSerialButtonItemArgs : public JoyDevSerialItemArgs
+    {
+    public:
+        JoyPadSerialButtonItemArgs(Nui8 b);
+
+        /// @copydetails ItemSerialArgs::operator ==
+        bool operator == (const EventArgs * other) const;
+
+        /// @copydetails ItemSerialArgs::operator !=
+        bool operator != (const EventArgs * other) const;
+
+        Nui8 mButton;
+    };
+
+    /**
+    @version NIIEngine 3.0.0
+    */
+    class _EngineAPI JoyStickSerialPovItemArgs : public JoyDevSerialItemArgs
+    {
+    public:
+        JoyStickSerialPovItemArgs(Nui8 pov, PovType dir);
+
+        /// @copydetails ItemSerialArgs::operator ==
+        bool operator == (const EventArgs * o) const;
+
+        /// @copydetails ItemSerialArgs::operator !=
+        bool operator != (const EventArgs * o) const;
+
+        Nui8 mPov;                      ///< 
+        PovType mDirection;             ///< pov方向
     };
 }
 }

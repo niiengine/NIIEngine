@@ -38,7 +38,7 @@
 
 #include "NiiPreInclude.h"
 #include "NiiControlPattern.h"
-#include "NiiKeyBoardKey.h"
+#include "NiiKeyBoardControlItem.h"
 
 namespace NII
 {
@@ -118,7 +118,7 @@ namespace NII_MEDIA
         */
         KeyboardControlPattern(Nid id, const ViewWindow * own);
 
-		virtual ~KeyboardControlPattern();
+        virtual ~KeyboardControlPattern();
 
         /** 激活按下编码
         @remark 这个方法引发按键事件,
@@ -145,35 +145,35 @@ namespace NII_MEDIA
         Nui8 mModifiers;                            ///< 复码模式
     };
 
-	/** 傀儡
-	@version NIIEngine 3.0.0
-	*/
-	class DummyKeyboardControlPattern : public KeyboardControlPattern
-	{
-	public:
-		DummyKeyboardControlPattern() {}
+    /** 傀儡
+    @version NIIEngine 3.0.0
+    */
+    class DummyKeyboardControlPattern : public KeyboardControlPattern
+    {
+    public:
+        DummyKeyboardControlPattern() {}
 
-		///@copydetails ControlPattern::_init
-		bool _init() { return true; }
+        ///@copydetails ControlPattern::_init
+        bool _init() { return true; }
 
-		///@copydetails ControlPattern::_end
-		bool _end() { return true; }
+        ///@copydetails ControlPattern::_end
+        bool _end() { return true; }
 
-		///@copydetails ControlPattern::_update
-		void _update() {}
+        ///@copydetails ControlPattern::_update
+        void _update() {}
 
-		///@copydetails KeyboardControlPattern::_reset
-		void _reset() {}
+        ///@copydetails KeyboardControlPattern::_reset
+        void _reset() {}
 
-		///@copydetails KeyboardControlPattern::_start
-		void _start() {}
+        ///@copydetails KeyboardControlPattern::_start
+        void _start() {}
 
-		///@copydetails KeyboardControlPattern::_pause
-		void _pause() {}
+        ///@copydetails KeyboardControlPattern::_pause
+        void _pause() {}
 
-		///@copydetails KeyboardControlPattern::_stop
-		void _stop() {}
-	};
+        ///@copydetails KeyboardControlPattern::_stop
+        void _stop() {}
+    };
 }
 }
 #endif
