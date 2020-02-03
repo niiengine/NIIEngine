@@ -71,18 +71,18 @@ namespace NII
     */
     enum ShadowFeture
     {
-        SF_None = 0x00,                        ///<没有阴影
-        SF_Additive = 0x01,                    ///<叠加类阴影
-        SF_Modulate = 0x02,                    ///<调制类阴影
-        SF_Fusion = 0x04,                    ///<混合类阴影
-        SF_Stencil = 0x10,                    ///<模版类阴影
-        SF_Texture = 0x20,                    ///<纹理阴影标志
-        SF_Modulate_Stencil = 0x12,            ///<基于模版阴影技术,渲染所有阴影体积到一个调制结果
-        SF_Additive_Stencil = 0x11,            ///<基于模版阴影技术,独立渲染每个阴影体积附加到一个结果中
-        SF_Modulate_Texture = 0x22,            ///<基于纹理阴影技术,渲染投射纹理到一个调制通道
-        SF_Additive_Texture = 0x21,            ///<基于纹理阴影技术,独立渲染每个阴影体积附加到一个结果中
-        SF_Additive_Fusion_Texture = 0x25,    ///<基于SF_Additive_Texture的混合
-        SF_Modulate_Fusion_Texture = 0x26    ///<基础SF_Modulate_Texture的混合
+        SF_None = 0x00,                     ///<没有阴影
+        SF_Additive = 0x01,                 ///<叠加类阴影
+        SF_Modulate = 0x02,                 ///<调制类阴影
+        SF_Fusion = 0x04,                   ///<混合类阴影
+        SF_Stencil = 0x10,                  ///<模版类阴影
+        SF_Texture = 0x20,                  ///<纹理阴影标志
+        SF_Modulate_Stencil = 0x12,         ///<基于模版阴影技术,渲染所有阴影体积到一个调制结果
+        SF_Additive_Stencil = 0x11,         ///<基于模版阴影技术,独立渲染每个阴影体积附加到一个结果中
+        SF_Modulate_Texture = 0x22,         ///<基于纹理阴影技术,渲染投射纹理到一个调制通道
+        SF_Additive_Texture = 0x21,         ///<基于纹理阴影技术,独立渲染每个阴影体积附加到一个结果中
+        SF_Additive_Fusion_Texture = 0x25,  ///<基于SF_Additive_Texture的混合
+        SF_Modulate_Fusion_Texture = 0x26   ///<基础SF_Modulate_Texture的混合
     };
 
     /** 比较函数,用于深度/模板缓存操作和其他
@@ -90,14 +90,14 @@ namespace NII
     */
     enum CmpMode
     {
-        CPM_EQUAL = 1,                        ///< 当等于时通过
-        CPM_NOT_EQUAL = 2,                    ///< 当不等于时通过
+        CPM_EQUAL = 1,                      ///< 当等于时通过
+        CPM_NOT_EQUAL = 2,                  ///< 当不等于时通过
         CPM_ALWAYS_FAIL = 3,                ///< 总是不通过
         CPM_ALWAYS_PASS = 4,                ///< 总是通过
-        CPM_GREATER_EQUAL = 5,                ///< 当不小于时通过
+        CPM_GREATER_EQUAL = 5,              ///< 当不小于时通过
         CPM_GREATER = 6,                    ///< 当大于时通过
-        CPM_LESS = 7,                        ///< 当小于时通过
-        CPM_LESS_EQUAL = 8,                    ///< 当不大于时通过
+        CPM_LESS = 7,                       ///< 当小于时通过
+        CPM_LESS_EQUAL = 8,                 ///< 当不大于时通过
         CPM_NONE = 9                        ///< 任何情况都通过
     };
 
@@ -130,10 +130,32 @@ namespace NII
     */
     enum StereoModeType
     {
-        SMT_NONE = 0,
+        SMT_NONE        = 0,
         SMT_Stereo
     };
 
+    /** 视口类型
+    @version NIIEngine 4.0.0
+    */
+    enum ViewportType
+    {
+        CBT_BACK        = 0,
+        CBT_BACK_LEFT,
+        CBT_BACK_RIGHT
+    };
+
+    /** 处理优先级
+    @version NIIEngine 4.0.0
+    */
+    enum PrcLevel
+    {
+        PL_High,
+        PL_Mid_High,
+        PL_Mid,
+        PL_Mid_Low,
+        PL_Low
+    };
+    
     /** 文件路径结构
     @version NIIEngine 3.0.0
     */

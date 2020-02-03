@@ -44,7 +44,7 @@ namespace NII
     /** 线程条件触发器
     @version NIIEngine 3.0.0
     */
-    class ThreadCondition
+    class _EngineAPI ThreadCondition
     {
     public:
         ThreadCondition() = default;
@@ -70,10 +70,10 @@ namespace NII
     /** 线程事件条件触发器
     @version NIIEngine 3.0.0
     */
-    class ThreadConditionEvent
+    class _EngineAPI ThreadConditionEvent
     {
     public:
-        ThreadConditionEvent(ThreadCondition & cond, atomic_bool & signal) : mCondition(cond), mSignal(signal) {}
+        ThreadConditionEvent(ThreadCondition & cond, bool & signal) : mCondition(cond), mSignal(signal) {}
 
         void wait(ThreadMutex & mutex);
         bool wait(ThreadMutex & mutex, Nui64 ms);
@@ -81,7 +81,7 @@ namespace NII
         inline void notifyAll() { mCondition.notifyAll(); }
         inline void notify() { mCondition.notify(); }
     private:
-        atomic_bool & mSignal;
+        volatile bool & mSignal;
         ThreadCondition & mCondition;
     };
 }

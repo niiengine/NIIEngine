@@ -40,28 +40,38 @@
 
 #define TWait_Interrupt     -1
 #define TWait_Signaled      0 
-#define TWait_timeout       1
+#define TWait_Timeout       1
 
 namespace NII
 {
+    inline void Nsleep(TimeDurMS ms)
+    {
+    #ifdef _WIN32
+        Sleep(ms);
+    #else
+        usleep(ms * 1000);
+    #endif
+    }
+
     /** 线程主函数
     @version NIIEngine 3.0.0
     */
-    class ThreadMain
+    class _EngineAPI ThreadMain : public JobAlloc
     {
     public:
         virtual ~ThreadMain() {}
-        virtual void run() = 0;
+        virtual void run(void * arg) = 0;
         virtual void cancel() {}
+        virtual bool isLoop() const { return false; }
     };
 
     /** 线程
     @version NIIEngine 3.0.0
     */
-    class Thread
+    class _EngineAPI Thread : public JobAlloc
     {
     public:
-        Thread(const String & name, ThreadMain * main_);
+        Thread(const String & name, ThreadMain * main_, bool autoDestroyMain = true);
         virtual ~Thread();
 
         /** 创建实例
@@ -118,6 +128,11 @@ namespace NII
         @version NIIEngine 3.0.0
         */
         NIIi getPriority() const;
+        
+        /** 获取线程主函数
+        @version NIIEngine 3.0.0
+        */
+        ThreadMain * getThreadMain() const;
 
         /** 获取优先级(最小)
         @version NIIEngine 3.0.0
@@ -154,7 +169,7 @@ namespace NII
         */
         static std::uintptr_t getCurrentNativeHandle();
     protected:
-        explicit Thread(const String & name);
+        Thread(const String & name);
 
         /**
         @version NIIEngine 3.0.0
@@ -181,7 +196,7 @@ namespace NII
         */
         virtual void onExit() {}
     protected:
-        void Action();
+        void action();
     protected:
         String mName;
         std::thread * mThread;
@@ -194,8 +209,76 @@ namespace NII
         NIIf mLastRelUsage;
         ThreadEvent mStopEvent;
         ThreadEvent mStartEvent;
-        atomic_bool mStop;
+        STbool mStop;
         bool mAutoDestroy;
+        bool mMainAutoDestroy;
+    };
+    
+    /** 线程主函数
+    @version NIIEngine 3.0.0
+    */
+    class _EngineAPI GroupThreadMain : public JobAlloc
+    {
+    public:
+        virtual ~GroupThreadMain();
+        
+        /** 添加任务
+        @version NIIEngine 3.0.0
+        */
+        void addMain(ThreadMain * task, void * arg = 0, bool autoDestroy = true);
+        
+        /// @copydetails ThreadMain::run
+        virtual void run();
+        
+        /// @copydetails ThreadMain::cancel
+        virtual void cancel();
+    protected:
+        class _EngineAPI Task : public JobAlloc
+        {
+        public:
+            Task(ThreadMain * task, void * arg = 0, bool autoDestroy = true) :
+                mTask(task),
+                mArg(arg),
+                mAutoDestroy(autoDestroy){}
+        public:  
+            ThreadMain * mTask;
+            void * mArg;
+            bool mAutoDestroy;
+        };
+        typedef list<Task *>::type ThreadMainList;
+    protected:
+        ThreadMainList mThreadMainList;
+        ThreadCondition mThreadMainCondition;
+        ThreadMutex mThreadMainMutex;
+        bool mRun;
+    };
+    
+    /** 线程池
+    @version NIIEngine 3.0.0
+    */
+    class _EngineAPI ThreadPool
+    {
+    public:
+        ThreadPool(){}
+        ~ThreadPool();
+        
+        /**
+        @version NIIEngine 3.0.0
+        */
+        int setup(NCount threadcnt);
+        
+        /**
+        @version NIIEngine 3.0.0
+        */
+        void addTask(ThreadMain * task, void * arg = 0, bool autoDestroy = true);
+        
+        /**
+        @version NIIEngine 3.0.0
+        */
+        void shutdown();
+    protected:
+        typedef vector<Thread *>::type ThreadList;
+        ThreadList mThreadList;
     };
 }
 

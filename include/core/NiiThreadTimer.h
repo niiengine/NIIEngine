@@ -43,7 +43,7 @@ namespace NII
     /** 线程计时器
     @version NIIEngine 3.0.0
     */
-    class ThreadTimer : public Thread
+    class _EngineAPI ThreadTimer : public Thread
     {
     public:
         ThreadTimer(ThreadMain * _main);

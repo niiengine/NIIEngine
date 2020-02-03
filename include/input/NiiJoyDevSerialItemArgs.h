@@ -38,8 +38,7 @@
 
 #include "NiiPreInclude.h"
 #include "NiiSerialItem.h"
-#include "NiiJoyDevControlType.h"
-#include "NiiPovDirection.h"
+#include "NiiJoyDevControlArgs.h"
 
 namespace NII
 {

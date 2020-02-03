@@ -86,6 +86,102 @@ namespace NII_COMMAND
         ///@copydetails Functor()
         bool execute(const EventArgs * args);
     };
+
+    /** 引用型函数
+    @remark
+    @version NIIEngine 3.0.0
+    */
+    class RefFunctor : public Functor
+    {
+    public:
+        RefFunctor(Functor & func);
+
+        /// @copydetails Functor::execute
+        bool execute(const EventArgs * args);
+
+        /// @copydetails Functor::clone
+        Functor * clone() const;
+    private:
+        Functor & mReal;
+    };
+
+    class PtrFunctor : public Functor
+    {
+    public:
+        PtrFunctor(Functor * func);
+
+        /// @copydetails Functor::execute
+        bool execute(const EventArgs * args);
+
+        /// @copydetails Functor::clone
+        Functor * clone() const;
+    private:
+        Functor * mReal;
+    };
+
+    typedef void(Event::*EventMethod)(const EventArgs *);
+
+    /** 普通的函数
+    @remark
+        拥有 bool 返回和 const EventArgs * 作为参数的普通函数
+    @version NIIEngine 3.0.0
+    */
+    class _EngineAPI MethodFunctor : public Functor
+    {
+    public:
+        MethodFunctor(Event * obj, EventMethod m);
+
+        /// @copydetails Functor::execute
+        bool execute(const EventArgs * args);
+
+        /// @copydetails Funcotr::clone
+        Functor * clone() const;
+    protected:
+        Event * mObj;
+        EventMethod mMethod;
+    };
+
+    /** 副本型函数
+    @remark
+    @note Functor 中的 clone 是为这个类而生的
+    @version NIIEngine 3.0.0
+    */
+    class _EngineAPI CopyFunctor : public Functor
+    {
+    public:
+        CopyFunctor(const Functor & func);
+        ~CopyFunctor();
+
+        /// @copydetails Functor::operator()
+        bool execute(const EventArgs * args);
+
+        /// @copydetails Functor::clone
+        Functor * clone() const;
+    private:
+        Functor * mReal;
+    };
+
+    typedef void(CommandObj::*CmdObjMemberFunc)(const EventArgs *);
+
+    /** 命令对象的成员函数
+    @remark
+        引擎事件机制中的命令对象独有的成员函数
+    @version NIIEngine 3.0.0
+    */
+    class _EngineAPI CommandObjFunctor : public Functor
+    {
+    public:
+        CommandObjFunctor(CommandObj * obj, CmdObjMemberFunc mf);
+
+        /// @copydetails Functor::execute
+        bool execute(const EventArgs * args);
+
+        /// @copydetails Functor::clone
+        Functor * clone() const;
+    private:
+        CommandObj * mObj;
+        CmdObjMemberFunc mMethod;
+    };
 }
 }
 

@@ -38,13 +38,22 @@
 
 #include "NiiPreInclude.h"
 #include "NiiEventArgs.h"
-#include "NiiJoyDevControlType.h"
 #include "NiiPovDirection.h"
 
 namespace NII
 {
 namespace NII_MEDIA
 {
+    enum JoyDevControlType
+    {
+        JDCT_Button,
+        JDCT_Slider,
+        JDCT_Pov,
+        JDCT_Vector,
+        JDCT_Axis,
+        JDCT_Wheel
+    };
+
     /**
     @version NIIEngine 3.0.0
     */

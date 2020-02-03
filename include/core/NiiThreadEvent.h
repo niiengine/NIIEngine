@@ -41,17 +41,18 @@
 
 namespace NII
 {
-    class ThreadEvent
+    class _EngineAPI ThreadEvent
     {
         friend class ThreadEventGroup;
     public:
-        ThreadEvent(bool auto_ = true, bool signal_ = false);
+        ThreadEvent();
+        ThreadEvent(bool autoreset = true, bool signal_);
 
-        inline void reset() { mSignal = false; }
+        inline void reset() { ScopeLock lock(mMutex); mSignal = false; }
 
         void set();
 
-        inline bool isSignal() const { return mSignal; }
+        inline bool isSignal() const { ScopeLock lock(mMutex); return mSignal; }
 
         bool wait(Nui64 ms);
 
@@ -69,17 +70,17 @@ namespace NII
         ThreadEventGroupList mGroupList;
         mutable ThreadMutex mMutex;
         ThreadMutex mGroupMutex;
-        atomic_bool mSignal;
         NCount mCount;
         ThreadCondition mCondition;
         ThreadConditionEvent mConditionEvent;
+        volatile bool mSignal;        
         bool mAutoReset;
     };
 
-    class ThreadEventGroup
+    class _EngineAPI ThreadEventGroup
     {
     public:
-        ThreadEventGroup(std::initializer_list<ThreadEvent *> eventlist);
+        ThreadEventGroup(std::initializer_list<ThreadEvent *> events);
 
         ~ThreadEventGroup();
 
@@ -95,12 +96,12 @@ namespace NII
         ThreadEventGroup & operator=(const ThreadEventGroup & o) {}
     protected:
         ThreadEventList mEventList;
+        mutable ThreadMutex mMutex;        
         NCount mCount;
         ThreadEvent * mEvent;
-        atomic_bool mSignal;
         ThreadCondition mCondition;
         ThreadConditionEvent mConditionEvent;
-        mutable ThreadMutex mMutex;
+        volatile bool mSignal;
     };
 }
 

@@ -37,13 +37,24 @@
 
 #include "NiiPreInclude.h"
 #include <mutex>
+#include <atomic>
+
+using namespace std;
 
 namespace NII
 {
+    typedef STbool              STbool;
+    typedef atomic_int16_t      STNi16;
+    typedef atomic_uint16_t     STNui16;
+    typedef atomic_int32_t      STNi32;
+    typedef atomic_uint32_t     STNui32;
+    typedef std::atomic<NCount> STNCount;
+    typedef std::atomic<NIIf>   STNIIf;
+    
     /** Ïß³Ì»¥³â
     @version NIIEngine 3.0.0
     */
-    class ThreadMutex
+    class _EngineAPI ThreadMutex
     {
         friend class ThreadCondition;
     public:
@@ -68,7 +79,7 @@ namespace NII
     /** Ïß³Ì»¥³âËø
     @version NIIEngine 3.0.0
     */
-    class ScopeLock
+    class _EngineAPI ScopeLock
     {
     public:
         explicit ScopeLock(ThreadMutex & mutex) : mMutex(mutex), mCurrent(true) { mMutex.lock(); }
@@ -95,7 +106,7 @@ namespace NII
     /** Ïß³Ì»¥³â½âËø
     @version NIIEngine 3.0.0
     */
-    class ScopeUnlock
+    class _EngineAPI ScopeUnlock
     {
     public:
         explicit ScopeUnlock(ThreadMutex & mutex) : mMutex(mutex) { mCount = mMutex.unlock(0); }
@@ -108,7 +119,7 @@ namespace NII
     /** Ïß³Ì¶ÁÐ´»¥³â
     @version NIIEngine 3.0.0
     */
-    class ThreadRWMutex
+    class _EngineAPI ThreadRWMutex
     {
     public:
         inline ThreadRWMutex() : mCount(0), mSignal(true), mConditionEvent(mCondition, mSignal) {}
@@ -124,14 +135,14 @@ namespace NII
         ThreadMutex mMutex;
         ThreadCondition mCondition;
         ThreadConditionEvent mConditionEvent;
-        atomic_bool mSignal;
+        STbool mSignal;
         NCount mCount;
     };
 
     /** Ïß³Ì¶ÁÐ´»¥³âËø
     @version NIIEngine 3.0.0
     */
-    class ScopeRWLock
+    class _EngineAPI ScopeRWLock
     {
     public:
         explicit ScopeRWLock(ThreadRWMutex & mutex, bool write = false) : mMutex(mutex), mCurrent(true), mWrite(write)
@@ -193,6 +204,15 @@ namespace NII
         ThreadRWMutex & mMutex;
         bool mCurrent;
         bool mWrite;
+    };
+    
+    class _EngineAPI ScopeSpinLock
+    {
+    public:
+        explicit ScopeSpinLock(std::atomic_flag & lock);
+        ~ScopeSpinLock();
+    private:
+        std::atomic_flag & mLock;
     };
 }
 #endif

@@ -110,9 +110,9 @@ namespace NII_COMMAND
         */
         virtual bool check(const EventArgs * arg) = 0;
     protected:
-        EventObj * mOwn;		///< 所属的可命令对象
-        DestList mDestList;		///< 
-        bool mEnable;			///< 
+        EventObj * mOwn;        ///< 所属的可命令对象
+        DestList mDestList;        ///< 
+        bool mEnable;            ///< 
     };
 }
 }
