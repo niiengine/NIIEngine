@@ -37,12 +37,58 @@
 #define _NII_NET_UNIQUE_ADDRESS_H_
 
 #include "NiiNetPreInclude.h"
-#include "NiiNetUniqueID.h"
 
 namespace NII
 {
 namespace NII_NET
 {
+        /** 网络唯一标识
+    @remark 即使是使用同个IP同个端口, 在运行机制中同一个socket可能包含多个处理机制
+    @version NIIEngine 3.0.0
+    */
+    class _EngineAPI UniqueID : public NetAlloc
+    {
+	public:
+        UniqueID();
+        UniqueID(Nui64 g);
+
+        UniqueID & operator = (const UniqueID & o);
+
+        bool operator == (const UniqueID & o) const;
+        bool operator != (const UniqueID & o) const;
+        bool operator > (const UniqueID & o) const;
+        bool operator < (const UniqueID & o) const;
+
+		/**
+		*/
+        void write(String & out) const;
+
+		/**
+		*/
+        bool read(const String & in);
+
+		/**
+		*/
+        void write(NetSerializer * out) const;
+
+		/**
+		*/
+        void read(const NetSerializer * in);
+
+		/**
+		*/
+        static NCount size();
+
+		/**
+		*/
+        static Nul toNum(const UniqueID & g);
+
+        static const UniqueID INVALID;
+	public:
+        Nindex mIndex;
+        Nui64 g;
+    };
+    
     class _EngineAPI UniqueAddress : public NetAlloc
     {
     public:

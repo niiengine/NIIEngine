@@ -233,10 +233,22 @@ namespace NII
         */
         virtual JobResult * handle(Job * jop) = 0;
 
-        /** 回馈处理
+        /** 处理回馈
         @version NIIEngine 3.0.0
         */
-        virtual void handle(JobResult * result) = 0;
+        virtual void handle(JobResult * result){}
+    protected:
+        JobPrc(){}
+        
+        /** 处理任务前
+        @version NIIEngine 3.0.0
+        */
+        virtual void onPrcBegin(Job * jop){}
+        
+        /** 处理任务后
+        @version NIIEngine 3.0.0
+        */
+        virtual void onPrcEnd(Job * jop){}
     protected:
         bool mAutoDestroy;
     };

@@ -42,6 +42,60 @@ namespace NII
 {
 namespace NII_NET
 {
+    /** 游戏引擎内部的网络地址
+    @remark 这个ID只有在成功连接游戏引擎后才会产生的,而且是唯一对象的标识
+	@version NIIEngine 3.0.0
+    */
+    class _EngineAPI AddressID : public NetWorkAlloc
+    {
+    public:
+        AddressID();
+        AddressID(Nui64 id);
+
+		/** 设置索引
+		@version NIIEngine 3.0.0
+		*/
+		void setIndex(Nui16 idx);
+
+		/** 获取索引
+		@version NIIEngine 3.0.0
+		*/
+		Nui16 getIndex() const;
+
+        /// 从指定字符串中转换出网络ID
+        bool read(const String & in);
+
+        /// 转换网络ID到一个指定字符串
+        void write(String & out) const;
+
+        /// 等于操作符
+        AddressID & operator =(const AddressID & org);
+
+        /// 相等操作符
+        bool operator == (const AddressID & org);
+
+        /// 不等操作符
+        bool operator != (const AddressID & org);
+
+        /// 大于操作符
+        bool operator > (const AddressID & org);
+
+        /// 小于操作符
+        bool operator < (const AddressID & org);
+
+        /// 缩位操作符
+        operator Nui32() const;
+
+        /// 网络ID结构大小
+        static NCount getSize() const;
+
+        /// 无效的网络ID
+        static const AddressID INVALID;
+    protected:
+        Nui64 mID;                      ///< 应用体系中的唯一ID
+        Nui16 mIdex;                    ///< 本地唯一ID
+    };
+    
     /** 网络地址
     @version NIIEngine 3.0.0
     */
