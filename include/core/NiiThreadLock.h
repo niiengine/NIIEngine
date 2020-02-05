@@ -83,7 +83,8 @@ namespace NII
     {
     public:
         explicit ScopeLock(ThreadMutex & mutex) : mMutex(mutex), mCurrent(true) { mMutex.lock(); }
-
+        explicit ScopeLock(ThreadMutex * mutex) : mMutex(*mutex), mCurrent(true) { mMutex.lock(); }
+        
         ~ScopeLock() { if (mCurrent) mMutex.unlock(); }
     public:
         inline bool isCurrent() const { return mCurrent; }
@@ -152,7 +153,15 @@ namespace NII
             else
                 mMutex.lockW();
         }
-
+        
+        explicit ScopeRWLock(ThreadRWMutex * mutex, bool write = false) : mMutex(*mutex), mCurrent(true), mWrite(write)
+        {
+            if (mWrite)
+                mMutex.lockR();
+            else
+                mMutex.lockW();
+        }
+        
         ~ScopeRWLock()
         {
             if (mCurrent)

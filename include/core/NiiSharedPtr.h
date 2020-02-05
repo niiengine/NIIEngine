@@ -51,32 +51,25 @@ namespace NII
         /// 析构中用来释放内存的方法
         enum MemMode
         {
-            MU_Delete,    ///< 使用N_delete
-            MU_Delete_T,  ///< 使用N_delete_t
-            MU_Free       ///< 使用N_free
+            MU_Delete,      ///< 使用N_delete
+            MU_Delete_T,    ///< 使用N_delete_t
+            MU_Free         ///< 使用N_free
         };
     public:
-        /** 构造函数,没有初始化SharedPtr.
-        @remark 必须先调用bind()再使用SharedPtr.
-        */
         SharedPtr() :
             mPtr(0),
             mCount(0),
             mMode(MU_Delete){}
 
-        /** 构造函数
-        @param[in] obj 指针实体
-        @param[in] freeMode 用来释放内存的机制
-        */
-        template<class Y> explicit SharedPtr(Y * obj, MemMode mode = MU_Delete) :
+        explicit SharedPtr(T * obj, MemMode mode = MU_Delete) :
             mPtr(obj),
             mCount(obj ? (NCount *)N_alloc(sizeof(NCount)) : 0),
             mMode(mode)
         {
-			if (mCount)
-			{
-				*mCount = 1;
-			}
+            if (mCount)
+            {
+                *mCount = 1;
+            }
         }
 
         SharedPtr(const SharedPtr & o) :
@@ -103,8 +96,7 @@ namespace NII
 
         virtual ~SharedPtr()
         {
-            if(mPtr)
-                release();
+            setNull();
         }
 
         SharedPtr & operator=(const SharedPtr & o)
@@ -112,15 +104,16 @@ namespace NII
             if(mPtr != o.mPtr)
             {
                 if(mPtr)
+                {
                     release();
-
-                mPtr = o.mPtr;
-                mMode = o.mMode;
-
-                if(mPtr)
+                }
+                if(o.mPtr)
                 {
                     mCount = o.mCount;
                     ++(*mCount);
+                    mPtr = o.mPtr;
+                    mMode = o.mMode;
+                    equal(o);
                 }
                 else
                 {
@@ -135,15 +128,16 @@ namespace NII
             if(mPtr != o.mPtr)
             {
                 if(mPtr)
+                {
                     release();
-
-                mPtr = o.mPtr;
-                mMode = o.mMode;
-
-                if(mPtr)
+                }
+                if(o.mPtr)
                 {
                     mCount = o.mCount;
                     ++(*mCount);
+                    mPtr = o.mPtr;
+                    mMode = o.mMode;
+                    equal(o);
                 }
                 else
                 {
@@ -158,11 +152,19 @@ namespace NII
             if(mPtr)
             {
                 release();
-                mPtr = 0; //todo
+            }
+            else
+            {
+                mCount = 0;                
             }
         }
 
         inline bool isNull() const
+        {
+            return mPtr == 0;
+        }
+
+        inline bool operator!() const
         {
             return mPtr == 0;
         }
@@ -191,17 +193,17 @@ namespace NII
 
         void bind(T * obj, MemMode mode = MU_Delete)
         {
-            N_assert(!mPtr && !mCount, "error");
+            setNull();
             mCount = N_alloc_t(NCount, 1);
             *mCount = 1;
             mPtr = obj;
             mMode = mode;
         }
 
-		inline bool isValid() const
-		{
-			return mPtr != 0;
-		}
+        inline bool isValid() const
+        {
+            return mPtr != 0;
+        }
 
         inline bool isOneRef() const
         {
@@ -225,38 +227,30 @@ namespace NII
             return mPtr;
         }
     protected:
-        virtual void swap(SharedPtr<T> & o)
+        virtual void equal(SharedPtr<T> & o)
         {
-            std::swap(mPtr, o.mPtr);
-            std::swap(mCount, o.mCount);
-            std::swap(mMode, o.mMode);
         }
 
-        inline void release()
+        void release()
         {
             if(--(*mCount) == 0)
             {
-                destroy();
+                switch(mMode)
+                {
+                case MU_Delete:
+                    N_delete mPtr;
+                    break;
+                case MU_Delete_T:
+                    N_delete_t(mPtr, T);
+                    break;
+                case MU_Free:
+                    N_free(mPtr);
+                    break;
+                };
+                N_free(mCount);
+                mPtr = 0;
+                mCount = 0;
             }
-        }
-
-        virtual void destroy()
-        {
-            switch(mMode)
-            {
-            case MU_Delete:
-                N_delete mPtr;
-                break;
-            case MU_Delete_T:
-                N_delete_t(mPtr, T);
-                break;
-            case MU_Free:
-                N_free(mPtr);
-                break;
-            };
-            N_free(mCount);
-            mPtr = 0;
-            mCount = 0;
         }
     protected:
         T * mPtr;

@@ -60,7 +60,7 @@ namespace NII
             PS_Response
         };
     public:
-        Job(RequestID id, void * data = 0, NCount retry = 0);
+        Job(NCount retry);
         virtual ~Job();
 
         /** 执行任务
@@ -85,14 +85,10 @@ namespace NII
         bool isStop() const;
 
         /** 获取ID
+        @note 如果返回0则代表任务没有启动
         @version NIIEngine 3.0.0
         */
         inline RequestID getID() const { return mID; }
-
-        /** 获取内部数据
-        @version NIIEngine 3.0.0
-        */
-        inline void * getData() const { return mData; }
 
         /** 设置重试次数
         @version NIIEngine 3.0.0
@@ -167,7 +163,6 @@ namespace NII
         PrcLevel mLevel;
         NCount mRetryCount;
         volatile ProcessStage mStage;
-        void * mData;
         bool mAborted;
         bool mAlone;
     };
@@ -190,11 +185,6 @@ namespace NII
         */
         inline const Job * getJob() const { return mJob; }
 
-        /** 返回"回馈"数据
-        @version NIIEngine 3.0.0 高级api
-        */
-        inline void * getData() const { return mData; }
-
         /** 获取回馈信息
         @version NIIEngine 3.0.0
         */
@@ -211,7 +201,6 @@ namespace NII
         void retry(JobPrc * prc);
     private:
         Job * mJob;
-        void * mData;
         String mMessages;
         bool mSuccess;
         bool mAbort;

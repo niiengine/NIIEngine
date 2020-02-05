@@ -99,12 +99,12 @@ namespace NII
         */
         TimeDurMS getUpdateTimeOut() const;
         
-        /**
+        /** 添加任务
         @version NIIEngine 4.0.0
         */
-        void add(Job * job, JobPrc * prc, bool sync);
+        RequestID add(Job * job, JobPrc * prc, bool sync);
 
-        /**
+        /** 
         @version NIIEngine 4.0.0
         */
         void add(JobResult * result);
@@ -119,32 +119,32 @@ namespace NII
         */
         NCount getInputSize() const { ScopeLock temp(mInMutex); return mRequestList.size(); }
 
-        /**
+        /** 获取所有输出
         @version NIIEngine 4.0.0
         */
         void removeAllInput();
         
-        /**
+        /** 获取所有输出
         @version NIIEngine 4.0.0
         */
         void removeAllOutput();
         
-        /**
+        /** 获取输入
         @version NIIEngine 4.0.0
         */
         Job * getInput(Nui32 index){ ScopeLock temp(mInMutex); return mRequestList[index].first; }
 
-        /**
+        /** 移去输入
         @version NIIEngine 4.0.0
         */
         void removeInput(Nui32 index);
 
-        /**
+        /** 获取输出
         @version NIIEngine 4.0.0
         */
         JobResult * getOutput(Nui32 index){ScopeLock temp(mOutMutex); return mResponseList[index].first;}
 
-        /**
+        /** 移去输出
         @version NIIEngine 4.0.0
         */
         void removeOutput(Nui32 index);

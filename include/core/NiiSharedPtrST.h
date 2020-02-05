@@ -50,100 +50,137 @@ namespace NII
     public:
         enum MemMode
         {
-            MU_Delete,    ///< 使用N_delete
-            MU_Delete_T,  ///< 使用N_delete_t
-            MU_Free       ///< 使用N_free
+            MU_Delete,      ///< 使用N_delete
+            MU_Delete_T,    ///< 使用N_delete_t
+            MU_Free         ///< 使用N_free
         };
     public:
-        NII_AUTO_SHARED_MUTEX
-
-        /** 基本函数
-        @version NIIEngine 3.0.0
-        */
         SharedPtrST() :
             mPtr(0),
             mCount(0),
             mMode(MU_Delete)
         {
-            NII_SET_AUTO_SHARED_MUTEX_NULL
+            mMutex = 0;
         }
 
-        /** 构造函数
-        @param[in] ptr 指针实体
-        @param[in] usage 用来释放内存的机制
-        */
-        template<class Y> explicit SharedPtrST(Y * ptr, MemMode usage = MU_Delete) :
+        explicit SharedPtrST(T * ptr, MemMode usage = MU_Delete) :
             mPtr(ptr),
-            mCount(ptr ? N_new_t(NCount)(1) : 0),
             mMode(usage)
         {
-            NII_SET_AUTO_SHARED_MUTEX_NULL
             if(ptr)
             {
-                NII_NEW_AUTO_SHARED_MUTEX
+                mMutex = new ThreadMutex();
+                mCount = N_new_t(NCount)(1);
+            }
+            else
+            {
+                mMutex = 0;
+                mCount = 0;
             }
         }
 
-        SharedPtrST(const SharedPtrST & r) :
-            mPtr(0),
-            mCount(0),
-            mMode(MU_Delete)
+        SharedPtrST(const SharedPtrST & o)
         {
-            NII_SET_AUTO_SHARED_MUTEX_NULL
-            NII_MUTEX_CONDITIONAL(r.N_mutex1_name)
+            if(o.mMutex)
             {
-                N_lock_mutex(*r.N_mutex1_name)
-                NII_COPY_AUTO_SHARED_MUTEX(r.N_mutex1_name)
-                mPtr = r.mPtr;
-                mCount = r.mCount;
-                mMode = r.mMode;
-                if(mCount)
-                {
-                    ++(*mCount);
-                }
+                ScopeLock templock(*o.mMutex)
+                ++(*o.mCount);
+                mMutex = o.mMutex;
+                mPtr = o.mPtr;
+                mCount = o.mCount;
+                mMode = o.mMode;
+            }
+            else
+            {
+                mMutex = 0; 
+                mCount = 0;
+                mPtr = 0;
+                mMode = MU_Delete;
             }
         }
 
-        template< class Y> SharedPtrST(const SharedPtrST<Y> & r) :
-            mPtr(0),
-            mCount(0),
-            mMode(MU_Delete)
+        template<class Y> SharedPtrST(const SharedPtrST<Y> & o)
         {
-            NII_SET_AUTO_SHARED_MUTEX_NULL
-            NII_MUTEX_CONDITIONAL(r.N_mutex1_name)
+            if(o.mMutex)
             {
-                N_lock_mutex(*r.N_mutex1_name)
-                NII_COPY_AUTO_SHARED_MUTEX(r.N_mutex1_name)
-                mPtr = r.getPointer();
-                mCount = r.getRefCountPtr();
-                mMode = r.getMemMode();
-                if(mCount)
-                {
-                    ++(*mCount);
-                }
+                ScopeLock templock(*o.mMutex)
+                ++(*o.mCount);
+                mMutex = o.mMutex;
+                mPtr = o.mPtr;
+                mCount = o.mCount;
+                mMode = o.mMode;
+            }
+            else
+            {
+                mMutex = 0;
+                mCount = 0;
+                mPtr = 0;
+                mMode = MU_Delete;
             }
         }
 
         virtual ~SharedPtrST()
         {
-            release();
+            setNull();
         }
 
-        SharedPtrST & operator=(const SharedPtrST & r)
+        SharedPtrST & operator=(const SharedPtrST & o)
         {
-            if (mPtr == r.mPtr)
-                return *this;
-            SharedPtrST<T> tmp(r);
-            swap(tmp);
+            if(mPtr != o.mPtr)
+            {
+                if(mPtr)
+                {
+                    release();
+                }
+                if(o.mMutex)
+                {
+                    ScopeLock templock(o.mMutex);
+                    if(o.mPtr)
+                    {
+                        ++(*o.mCount);
+                        mCount = o.mCount;
+                        mPtr = o.mPtr;
+                        mMode = o.mMode;
+                        mMutex = o.mMutex;
+                        equal(o);
+                    }
+                    else
+                    {
+                        mCount = 0;
+                        mMutex = 0;
+                    }
+                }
+            }
             return *this;
         }
 
-        template<class Y> SharedPtrST & operator=(const SharedPtrST<Y> & r)
+        template<class Y> SharedPtrST & operator=(const SharedPtrST<Y> & o)
         {
-            if(mPtr == r.getPointer())
-                return *this;
-            SharedPtrST<T> tmp(r);
-            swap(tmp);
+            if(mPtr != o.mPtr)
+            {
+                if(mPtr)
+                {
+                    release();
+                }
+                if(o.mMutex)
+                {
+                    ScopeLock templock(o.mMutex);
+                    if(o.mPtr)
+                    {
+                        ++(*o.mCount);
+                        mCount = o.mCount;
+                        mPtr = o.mPtr;
+                        mMode = o.mMode;
+                        mMutex = o.mMutex;
+                        equal(o);
+                    }
+                    else
+                    {
+                        mCount = 0;
+                        mMutex = 0;
+                    }
+                }
+            }
             return *this;
         }
 
@@ -152,8 +189,11 @@ namespace NII
             if (mPtr)
             {
                 release();
-                mPtr = 0; //todo
-                mCount = 0; //todo
+            }
+            else
+            {
+                mCount = 0;
+                mMutex = 0;
             }
         }
 
@@ -184,14 +224,11 @@ namespace NII
             return mMode;
         }
 
-        /** 绑定 rep 到 SharedPtrST.
-        @remark 假设 SharedPtrST 使用未初始化的内存!
-        */
         void bind(T * rep, MemMode usage = MU_Delete)
         {
-            N_assert(!mPtr && !mCount, "error");
-            NII_NEW_AUTO_SHARED_MUTEX
-            NII_LOCK_AUTO_SHARED_MUTEX
+            setNull(); 
+            mMutex = new ThreadMutex();
+            ScopeLock tmplock(mMutex);           
             mCount = N_new_t(NCount)(1);
             mPtr = rep;
             mMode = usage;
@@ -199,14 +236,14 @@ namespace NII
 
         inline bool isOneRef() const
         {
-            NII_LOCK_AUTO_SHARED_MUTEX
+            ScopeLock tmplock(mMutex);
             N_assert(mCount, "error");
             return *mCount == 1;
         }
 
         inline NCount getRefCount() const
         {
-            NII_LOCK_AUTO_SHARED_MUTEX
+            ScopeLock tmplock(mMutex);
             N_assert(mCount, "error");
             return *mCount;
         }
@@ -221,61 +258,37 @@ namespace NII
             return mPtr;
         }
     protected:
-        inline void release()
+        virtual void equal(SharedPtr<T> & o){}
+        
+        void release()
         {
-            bool destroyThis = false;
-
-            // 如果互斥锁未初始化化为一个非0值,即不是pUseCount也不是pRep
-            NII_MUTEX_CONDITIONAL(N_mutex1_name)
+            mMutex.lock();
+            if (--(*mCount) == 0)
             {
-                // 有限作用域锁定自己的互斥(必须在删除前解锁)
-                NII_LOCK_AUTO_SHARED_MUTEX
-                if (mCount)
+                switch(mMode)
                 {
-                    if (--(*mCount) == 0)
-                    {
-                        destroyThis = true;
-                    }
-                }
+                case MU_Delete:
+                    N_delete mPtr;
+                    break;
+                case MU_Delete_T:
+                    N_delete_t(mPtr, T);
+                    break;
+                case MU_Free:
+                    N_free(mPtr);
+                    break;
+                };
+                N_free(mCount);
+                mCount = 0;
+                mPtr = 0;
+                mMutex.unlock();
+                delete mMutex;
+                mMutex = 0;
+                return;
             }
-            if (destroyThis)
-                destroy();
-
-            NII_SET_AUTO_SHARED_MUTEX_NULL
-        }
-
-        virtual void destroy()
-        {
-            /* 如果你在这里获取是一个崩溃.你忘了在关闭NII前释放指针.在关闭前
-                使用setNull(),或确保你的指针离开了范围在NII关闭前避免它.
-            */
-            switch(mMode)
-            {
-            case MU_Delete:
-                N_delete mPtr;
-                break;
-            case MU_Delete_T:
-                N_delete_t(mPtr, T);
-                break;
-            case MU_Free:
-                N_free(mPtr);
-                break;
-            };
-            N_free(mCount);
-            NII_DELETE_AUTO_SHARED_MUTEX
-        }
-
-        virtual void swap(SharedPtrST<T> & o)
-        {
-            std::swap(mPtr, o.mPtr);
-            std::swap(mCount, o.mCount);
-            std::swap(mMode, o.mMode);
-            //使用了线程
-#if NII_THREAD_SUPPORT
-            std::swap(N_mutex1_name, o.N_mutex1_name);
-#endif
+            mMutex.unlock();
         }
     protected:
+        ThreadMutex * mMutex;
         T * mPtr;
         NCount * mCount;
         MemMode mMode;
@@ -299,8 +312,6 @@ namespace NII
         return std::less<const void *>()(l.get(), r.get());
     }
 
-#define STPtr(value) SharedPtrST<value>
-    /** @} */
-    /** @} */
+    #define STPtr(value) SharedPtrST<value>
 }
 #endif
