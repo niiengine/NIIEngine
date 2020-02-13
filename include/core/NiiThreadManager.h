@@ -57,37 +57,37 @@ namespace NII
         /** 交换后台处理数据到主线程(主处理机制)
         @version NIIEngine 4.0.0
         */
-        void update();
+        void update(Nui32 type);
         
         /** 是否启动
         @version NIIEngine 4.0.0
         */
-        bool isRun() const;
+        bool isRun(Nui32 type) const;
         
         /** 是否处于工作状态
         @version NIIEngine 4.0.0
         */
-        bool isWorking() const;
+        bool isWorking(Nui32 type) const;
         
         /** 启动
         @version NIIEngine 4.0.0
         */
-        bool startup(int threadCnt);
+        bool startup(Nui32 type, int threadCnt, ThreadMain * task, void * arg = 0);
 
         /** 关闭
         @version NIIEngine 4.0.0
         */
-        void shutdown();
+        void shutdown(Nui32 type);
 
         /** 暂停处理
         @version NIIEngine 4.0.0
         */
-        bool pause();
+        bool pause(Nui32 type);
 
         /** 恢复处理
         @version NIIEngine 4.0.0
         */
-        void resume();
+        void resume(Nui32 type);
         
         /** 设置更新时限
         @version NIIEngine 4.0.0
@@ -97,58 +97,38 @@ namespace NII
         /** 获取更新时限
         @version NIIEngine 4.0.0
         */
-        TimeDurMS getUpdateTimeOut() const;
+        TimeDurMS getUpdateTimeOut(Nui32 type) const;
         
         /** 添加任务
         @version NIIEngine 4.0.0
         */
-        RequestID add(Job * job, JobPrc * prc, bool sync);
-
-        /** 
-        @version NIIEngine 4.0.0
-        */
-        void add(JobResult * result);
-
-        /**
-        @version NIIEngine 4.0.0
-        */
-        NCount getOutputSize() const { ScopeLock temp(mOutMutex); return mResponseList.size();}
-
-        /**
-        @version NIIEngine 4.0.0
-        */
-        NCount getInputSize() const { ScopeLock temp(mInMutex); return mRequestList.size(); }
-
-        /** 获取所有输出
-        @version NIIEngine 4.0.0
-        */
-        void removeAllInput();
+        RequestID add(Nui32 type, Job * job, JobPrc * prc, bool sync);
         
-        /** 获取所有输出
-        @version NIIEngine 4.0.0
-        */
-        void removeAllOutput();
-        
-        /** 获取输入
-        @version NIIEngine 4.0.0
-        */
-        Job * getInput(Nui32 index){ ScopeLock temp(mInMutex); return mRequestList[index].first; }
-
         /** 移去输入
         @version NIIEngine 4.0.0
         */
-        void removeInput(Nui32 index);
-
-        /** 获取输出
-        @version NIIEngine 4.0.0
-        */
-        JobResult * getOutput(Nui32 index){ScopeLock temp(mOutMutex); return mResponseList[index].first;}
-
-        /** 移去输出
-        @version NIIEngine 4.0.0
-        */
-        void removeOutput(Nui32 index);
+        void remove(Nui32 type, const Job::Identifier & id);
         
+        /** 获取输入数量
+        @version NIIEngine 4.0.0
+        */
+        NCount getInputSize(Nui32 type) const;
+        
+        /** 获取输出数量
+        @version NIIEngine 4.0.0
+        */
+        NCount getOutputSize(Nui32 type) const;
+
+        /** 获取所有输出
+        @version NIIEngine 4.0.0
+        */
+        void removeAllInput(Nui32 type = 0);
+        
+        /** 获取所有输出
+        @version NIIEngine 4.0.0
+        */
+        void removeAllOutput(Nui32 type = 0);
+
         /** 终止请求
         @version NIIEngine 3.0.0
         */
@@ -162,12 +142,12 @@ namespace NII
         /** 终止请求
         @version NIIEngine 3.0.0
         */
-        void abort();
+        void abort(Nui32 type);
 
         /** 获取工作中的线程数量
         @version NIIEngine 4.0.0
         */
-        NCount getWorkingCount() const;
+        NCount getWorkingCount(Nui32 type) const;
         
         /// @copydetails Singleton::getOnly
         static ThreadManager & getOnly();
@@ -185,6 +165,7 @@ namespace NII
     protected:
         typedef list<std::pair<Job *, JobPrc *> >::type PrcMap;
         typedef list<std::pair<JobResult *, JobPrc *> >::type ResponseMap;
+        typedef map<Nui32, std::pair<PrcMap, ResponseMap> >::type TypeList;
     protected:
         ThreadList mThreadList;
         RequestID mValidJobID;
@@ -201,7 +182,7 @@ namespace NII
         volatile NCount mThreadCount;
         volatile NCount mRunThreadCount;
         volatile bool mRun;
-        volatile bool mPause;        
+        volatile bool mPause;
     };
 }
 #endif

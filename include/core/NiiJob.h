@@ -53,6 +53,14 @@ namespace NII
     {
         friend class ThreadManager;
     public:
+        class Identifier
+        {
+        public:
+            virtual ~Identifier(){}
+            
+            virtual bool isOnly() const { return true; }
+        };
+        
         enum ProcessStage
         {
             PS_Request,
@@ -139,24 +147,44 @@ namespace NII
         /** 获取相对使用率
         @version NIIEngine 3.0.0
         */
-        virtual NIIf getRelUsage();
+        virtual NIIf getRelUsage() const;
 
         /** 获取绝对使用率
         @version NIIEngine 3.0.0
         */
-        virtual Nui64 getAbsUsage();
+        virtual Nui64 getAbsUsage() const;
+        
+        /** 是否相等概念
+        @version NIIEngine 4.0.0
+        */
+        virtual bool equal(const Identifier * id);
     protected:
         Job();
         
-        /** 周期断点到达时发生
+        /** 周期断点到达时触发
         @version NIIEngine 3.0.0
         */
         virtual void onProcess();
 
-        /** 属性/状态改变时发生
+        /** 属性/状态改变时触发
         @version NIIEngine 3.0.0
         */
         virtual void onNotify();
+        
+        /** 完成时触发
+        @version NIIEngine 4.0.0
+        */
+        virtual void onComplete();
+        
+        /** 触发
+        @version NIIEngine 4.0.0
+        */
+        virtual void onFail();
+        
+        /** 重试时触发
+        @version NIIEngine 4.0.0
+        */
+        virtual void onRetry();
     protected:
         RequestID mID;
         TimeDurMS mTimeOut;
@@ -167,12 +195,12 @@ namespace NII
         bool mAlone;
     };
     
-    /// 反馈结构.
+    /// 工作反馈结构.
     class _EngineAPI JobResult : public JobAlloc
     {
         friend class ThreadManager;
     public:
-        JobResult(Job * src, void * data, bool complete, const String & msg = StrUtil::WBLANK);
+        JobResult(Job * src, bool complete = true, const String & msg = StrUtil::WBLANK);
         virtual ~JobResult();
 
         /** 是否完成任务
@@ -207,17 +235,25 @@ namespace NII
         bool mRetry;
     };
     
-    /** 任务处理
+    /** 工作处理器
     @version NIIEngine 3.0.0
     */
     class _EngineAPI JobPrc
     {
         friend class ThreadManager;
     public:
-        JobPrc(bool autodestroy = false) : mAutoDestroy(autodestroy) {}
+        JobPrc(bool autodestroy = true) : mAutoDestroy(autodestroy) {}
         virtual ~JobPrc() {}
-
+        
+        /** 是否自动删除
+        @version NIIEngine 3.0.0
+        */
+        inline bool isAutoDestroy() const { return mAutoDestroy; }
+    protected:
+        JobPrc() : mAutoDestroy(true) {}
+        
         /** 处理任务
+        @return 如果没有需要主线程处理的事务则返回0
         @version NIIEngine 3.0.0
         */
         virtual JobResult * handle(Job * jop) = 0;
@@ -226,8 +262,6 @@ namespace NII
         @version NIIEngine 3.0.0
         */
         virtual void handle(JobResult * result){}
-    protected:
-        JobPrc(){}
         
         /** 处理任务前
         @version NIIEngine 3.0.0

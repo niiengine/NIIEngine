@@ -58,11 +58,23 @@ namespace NII
     */
     class _EngineAPI ThreadMain : public JobAlloc
     {
+        friend class Thread;
     public:
         virtual ~ThreadMain() {}
-        virtual void run(void * arg) = 0;
         virtual void cancel() {}
         virtual bool isLoop() const { return false; }
+    protected:
+        virtual void run(void * arg) = 0;
+    
+        /** 主函数运行前触发
+        @version NIIEngine 3.0.0
+        */
+        virtual void onPrcBegin(void *){}
+        
+        /** 主函数结束后触发
+        @version NIIEngine 3.0.0
+        */
+        virtual void onPrcEnd(void *){}
     };
 
     /** 线程
@@ -71,7 +83,7 @@ namespace NII
     class _EngineAPI Thread : public JobAlloc
     {
     public:
-        Thread(const String & name, ThreadMain * main_, bool autoDestroyMain = true);
+        Thread(const String & name, ThreadMain * task, void * arg = 0, bool autoDestroyMain = true);
         virtual ~Thread();
 
         /** 创建实例
@@ -201,6 +213,7 @@ namespace NII
         String mName;
         std::thread * mThread;
         ThreadMain * mMain;
+        void * mMainArg;
         ThreadMutex mMutex;
         ThreadId mID;
         std::future<bool> mRun;
