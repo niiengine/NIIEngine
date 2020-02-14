@@ -42,7 +42,7 @@
 namespace NII
 {
     /** 这个日志管理器为应用程序处理创建/检索日志
-	@version NIIEngine 3.0.0
+    @version NIIEngine 3.0.0
     */
     class _EngineAPI LogManager : public Singleton<LogManager>, public LogAlloc
     {
@@ -53,62 +53,86 @@ namespace NII
 
         /** 给定名字创建一个新的日志
         @param[in] name 给定log的名字 如'Nii.log'
-        @param[in] defaultLog 如果为真,这是一个默认的log输出
+        @param[in] default_ 如果为真,这是一个默认的log输出
         @param[in] debugger 如果为真,此日志输出也将传给调试器的输出窗
-        @param[in] logicOutput 仅仅逻辑记录,不输出到文件
-		@version NIIEngine 3.0.0
+        @param[in] logic 仅仅逻辑记录,不输出到文件
+        @version NIIEngine 3.0.0
         */
-        Log * createLog(const String & name, bool defaultLog = false, bool debugger = true,
-            bool logicOutput = false);
+        Log * create(const String & name, bool default_ = false, bool debugger = true, bool logic = false);
 
         /** 检索这个类管理的日志
-		@version NIIEngine 3.0.0
-		*/
-		Log * getLog(const String & name);
-
-        /** 返回默认日志的一个指针
-		@version NIIEngine 3.0.0
-		*/
-		Log * getLog();
+        @version NIIEngine 3.0.0
+        */
+        Log * get(const String & name = N_StrBlank);
 
         /** 关闭删除关闭日志
-		@version NIIEngine 3.0.0
-		*/
-		void destroyLog(const String & name);
+        @version NIIEngine 3.0.0
+        */
+        void destroyLog(const String & name);
 
         /** 关闭删除关闭日志
-		@version NIIEngine 3.0.0
-		*/
-		void destroyLog(Log * log);
+        @version NIIEngine 3.0.0
+        */
+        void destroyLog(Log * log);
 
         /** 设置输入的日志为默认日志
         @return 前一个默认log
-		@version NIIEngine 3.0.0
+        @version NIIEngine 3.0.0
         */
         Log * setDefaultLog(Log * newLog);
 
         /** 记录消息到默认日志
-		@version NIIEngine 3.0.0
-		*/
-		void log(const String & message, LogLevel lml = LML_NORMAL, bool debug = false);
+        @version NIIEngine 3.0.0
+        */
+        void log(const String & message, LogLevel lml = LL_Info, bool debug = false);
 
         /** 记录消息到默认日志
-		@version NIIEngine 3.0.0
-		*/
-		inline void log(LogLevel lml, const String & msg, bool maskDebug = false) 
+        @version NIIEngine 3.0.0
+        */
+        inline void log(LogLevel lml, const String & msg, bool debug = false) 
         { 
-            log(msg, lml, maskDebug);
+            log(msg, lml, debug);
         }
 
+        /** 记录消息到默认日志
+        @version NIIEngine 4.0.0
+        */
+        void trace(const Nchar * msgformat, ...);
+
+        /** 记录消息到默认日志
+        @version NIIEngine 4.0.0
+        */
+        void warning(const Nchar * msgformat, ...);
+
+        /** 记录消息到默认日志
+        @version NIIEngine 4.0.0
+        */
+        void fatal(const Nchar * msgformat, ...);
+
+        /** 记录消息到默认日志
+        @version NIIEngine 4.0.0
+        */
+        void debug(const Nchar * msgformat, ...);
+
+        /** 记录消息到默认日志
+        @version NIIEngine 4.0.0
+        */
+        void info(const Nchar * msgformat, ...);
+
+        /** 记录消息到默认日志
+        @version NIIEngine 4.0.0
+        */
+        void error(const Nchar * msgformat, ...);
+
         /** 获取在默认日志的的流
-		@version NIIEngine 3.0.0
-		*/
-		Log::Stream stream(LogLevel lml = LML_NORMAL, bool maskDebug = false);
+        @version NIIEngine 3.0.0
+        */
+        Log::Stream stream(LogLevel ll = LL_Info, bool debug = false);
 
         /** 设置默认详细程度
-		@version NIIEngine 3.0.0
-		*/
-		void setLogDetail(LogLife ll);
+        @version NIIEngine 3.0.0
+        */
+        void setLogDetail(LogDetail ll);
 
         /// @copydetails Singleton::getOnly
         static LogManager & getOnly();
@@ -116,11 +140,47 @@ namespace NII
         /// @copydetails Singleton::getOnlyPtr
         static LogManager * getOnlyPtr();
     protected:
-		N_mutex1
+        N_mutex1
         typedef map<String, Log *>::type LogList;
-	protected:
+    protected:
         LogList mLogs;
-        Log * mDefaultLog;  ///< 默认的日志,其输出已完成
+        Log * mDefaultLog;
     };
+
+#define N_LOG(x) N_Only(Log).log(x)
+
+#if N_PLAT == N_PLAT_WIN32
+    #ifdef N_DEBUG
+        #define N_trace(msg, ...)       N_Only(Log).trace   ("<%s>|<%d>|<%s>,"msg, N_FLF, ##__VA_ARGS__)
+        #define N_warning(msg, ...)     N_Only(Log).warning ("<%s>|<%d>|<%s>,"msg, N_FLF, ##__VA_ARGS__)
+        #define N_fatal(msg, ...)       N_Only(Log).fatal   ("<%s>|<%d>|<%s>,"msg, N_FLF, ##__VA_ARGS__)
+        #define N_debug(msg, ...)       N_Only(Log).debug   ("<%s>|<%d>|<%s>,"msg, N_FLF, ##__VA_ARGS__)
+        #define N_info(msg, ...)        N_Only(Log).info    ("<%s>|<%d>|<%s>,"msg, N_FLF, ##__VA_ARGS__)
+        #define N_error(msg, ...)       N_Only(Log).error   ("<%s>|<%d>|<%s>,"msg, N_FLF, ##__VA_ARGS__)
+    #else
+        #define N_trace(msg, ...)       N_Only(Log).trace   ("<%s>|<%d>|<%s>,"msg, N_FLF, ##__VA_ARGS__)
+        #define N_warning(msg, ...)     N_Only(Log).warning ("<%s>|<%d>|<%s>,"msg, N_FLF, ##__VA_ARGS__)
+        #define N_fatal(msg, ...)       N_Only(Log).fatal   ("<%s>|<%d>|<%s>,"msg, N_FLF, ##__VA_ARGS__)
+        #define N_debug(msg, ...)       N_Only(Log).debug   ("<%s>|<%d>|<%s>,"msg, N_FLF, ##__VA_ARGS__)
+        #define N_info(msg, ...)        N_Only(Log).info    ("<%s>|<%d>|<%s>,"msg, N_FLF, ##__VA_ARGS__)
+        #define N_error(msg, ...)       N_Only(Log).error   ("<%s>|<%d>|<%s>,"msg, N_FLF, ##__VA_ARGS__)
+    #endif
+#else
+    #ifdef N_DEBUG
+        #define N_trace(msg, args...)   N_Only(Log).trace   ("<%s>|<%d>|<%s>," msg, N_FLF, ##args)
+        #define N_warning(msg, args...) N_Only(Log).warning ("<%s>|<%d>|<%s>," msg, N_FLF, ##args)
+        #define N_fatal(msg, args...)   N_Only(Log).fatal   ("<%s>|<%d>|<%s>," msg, N_FLF, ##args)
+        #define N_debug(msg, args...)   N_Only(Log).debug   ("<%s>|<%d>|<%s>," msg, N_FLF, ##args)
+        #define N_info(msg, args...)    N_Only(Log).info    ("<%s>|<%d>|<%s>," msg, N_FLF, ##args)
+        #define N_error(msg, args...)   N_Only(Log).error   ("<%s>|<%d>|<%s>," msg, N_FLF, ##args)
+    #else
+        #define N_trace(msg, args...)   N_Only(Log).trace   ("<%s>|<%d>|<%s>," msg, N_FLF, ##args)
+        #define N_warning(msg, args...) N_Only(Log).warning ("<%s>|<%d>|<%s>," msg, N_FLF, ##args)
+        #define N_fatal(msg, args...)   N_Only(Log).fatal   ("<%s>|<%d>|<%s>," msg, N_FLF, ##args)
+        #define N_debug(msg, args...)   N_Only(Log).debug   ("<%s>|<%d>|<%s>," msg, N_FLF, ##args)
+        #define N_info(msg, args...)    N_Only(Log).info    ("<%s>|<%d>|<%s>," msg, N_FLF, ##args)
+        #define N_error(msg, args...)   N_Only(Log).error   ("<%s>|<%d>|<%s>," msg, N_FLF, ##args)
+    #endif
+#endif
 }
 #endif

@@ -33,13 +33,16 @@
 ------------------------------------------------------------------------------
 */
 
-#ifndef _NII_SOCKETPRC_H__
-#define _NII_SOCKETPRC_H__
+#ifndef _NII_SOCKETPRC_H_
+#define _NII_SOCKETPRC_H_
 
 #include "NiiNetPreInclude.h"
 
 namespace NII
 {
+    /** socket处理
+    @version NIIEngine 4.0.0
+    */
     class SocketPrc
     {
         friend class SocketManager;
@@ -57,136 +60,126 @@ namespace NII
         SocketPrc();
         virtual ~SocketPrc();
 
-        /**
-        @version NIIEngine 4.0.0
-        */
-        SOCKET getSocket() const { return mSocket; }
-        
-        /**
+        /** 设置socket
         @version NIIEngine 4.0.0
         */
         void setSocket(SOCKET s) { mSocket = s; }
         
-        /**
+        /** 获取socket
+        @version NIIEngine 4.0.0
+        */
+        SOCKET getSocket() const { return mSocket; }
+
+        /** 设置状态
         @version NIIEngine 4.0.0
         */
         void setState(State state) { mState = state; }
-        
-        /**
+
+        /** 发送
         @version NIIEngine 4.0.0
         */
         int send(void * buf, int len);
 
-        /**
+        /** 接收
         @version NIIEngine 4.0.0
         */
         int receive(void * buf, int len);
 
-        /**
+        /** 关闭
         @version NIIEngine 4.0.0
         */
         int close();
-        
-        /**
-        @version NIIEngine 4.0.0
-        */
-        void setRemoteIP(const VString & ip) { mRemoteIP = ip; }
-        
-        /**
-        @version NIIEngine 4.0.0
-        */
-        void setRemotePort(Nui16 port) { mRemotePort = port; }
-        
-        /**
+
+        /** 设置发送缓存大小
         @version NIIEngine 4.0.0
         */
         void setSendSize(Nui32 size);
-        
-        /**
+
+        /** 获取发送缓存大小
         @version NIIEngine 4.0.0
         */
         Nui32 getSendSize() const;
-        
-        /**
+
+        /** 设置接收大小
         @version NIIEngine 4.0.0
         */
         void setReceiveSize(Nui32 size);
-        
-        /**
+
+        /** 获取接收大小
         @version NIIEngine 4.0.0
         */
         Nui32 getReceiveSize() const;
 
-        /**
+        /** 获取连向的远端ip
         @version NIIEngine 4.0.0
         */
         const VString & getRemoteIP() const { return mRemoteIP; }
-        
-        /**
+
+        /** 获取本地接收的ip
         @version NIIEngine 4.0.0
         */
         const VString & GetLocalIP() const { return mIP; }
-        
-        /**
+
+        /** 获取连向的远端port
         @version NIIEngine 4.0.0
         */
         Nui16 getRemotePort() const { return mRemotePort; }
-        
-        /**
+
+        /** 获取本地接收的port
         @version NIIEngine 4.0.0
         */
         Nui16 GetLocalPort() const { return mPort; }
     public:
-        /**
+        /** 当读取时
         @version NIIEngine 4.0.0
         */
         void onRead();
-        
-        /**
+
+        /** 当写入时
         @version NIIEngine 4.0.0
         */
         void onWrite();
-        
-        /**
+
+        /** 当关闭时
         @version NIIEngine 4.0.0
         */
         void onClose();
     protected:
-        /**
+        /** 创建监听(被动连接)socket
         @version NIIEngine 4.0.0
         */
         int listen(const String & ip, Nui16 port);
 
-        /**
+        /** 创建主动连接socket
         @version NIIEngine 4.0.0
         */
         Nid connect(const String & ip, Nui16 port);
-    
-        /**
+
+        /** 设置地址
         @version NIIEngine 4.0.0
         */
         void setAddress(const String & ip, Nui16 port, sockaddr_in * addr);
-        
-        /**
+
+        /** 当前操作失败是否属于阻塞问题
         @version NIIEngine 4.0.0
         */
         bool isBlock(int error_code);
 
-        /**
+        /** 设置非阻塞连接
         @version NIIEngine 4.0.0
         */
         void setNonBlock(SOCKET fd);
         
-        /**
+        /** 设置重新连接地址
         @version NIIEngine 4.0.0
         */
         void setReuseAddress(SOCKET fd);
         
-        /**
+        /** 设置非延迟发送
         @version NIIEngine 4.0.0
         */
         void setNoDelay(SOCKET fd);
-    private:
+    protected:
         SOCKET mSocket;
         VString mRemoteIP;
         VString mIP;        

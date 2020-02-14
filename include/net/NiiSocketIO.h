@@ -58,18 +58,18 @@ namespace NII
     public:
         SocketIO();
         virtual ~SocketIO();
-        
-        /**
+
+        /** 发送数据
         @version NIIEngine 4.0.0
         */
-        int send(void * data, int len);
-        
-        /**
+        int send(void * data, NCount size);
+
+        /** 发送数据
         @version NIIEngine 4.0.0
         */
         inline int send(MdfMessage * msg) { return send(msg->getBuffer(), msg->getSize()); }
-        
-        /**
+
+        /** 
         @version NIIEngine 4.0.0
         */
         virtual void onRead();
@@ -78,12 +78,12 @@ namespace NII
         @version NIIEngine 4.0.0
         */
         virtual void onWrite();
-        
+
         /**
         @version NIIEngine 4.0.0
         */
         virtual void onClose() {}
-        
+
         /**
         @version NIIEngine 4.0.0
         */
@@ -93,7 +93,7 @@ namespace NII
         @version NIIEngine 4.0.0
         */
         virtual void onMessage(MdfMessage * msg) {}
-        
+
         /**
         @version NIIEngine 4.0.0
         */
@@ -106,7 +106,7 @@ namespace NII
             
             return send(msg.getBuffer(), msg.getSize());
         }
-        
+
         /**
         @version NIIEngine 4.0.0
         */
@@ -120,7 +120,7 @@ namespace NII
             
             return send(msg.getBuffer(), msg.getSize());
         }
-        
+
         /**
         @version NIIEngine 4.0.0
         */
@@ -153,8 +153,9 @@ namespace NII
         friend class SocketManager;
     public:
         ServerSocketIO();
-        
-        /**
+        virtual ~ServerSocketIO();
+
+        /** 确认连接时触发
         @version NIIEngine 4.0.0
         */
         virtual void onConfirm() {}
@@ -168,8 +169,9 @@ namespace NII
         friend class SocketManager;
     public:
         ClientSocketIO();
-        
-        /**
+        virtual ~ClientSocketIO();
+
+        /** 连接时触发
         @version NIIEngine 4.0.0
         */
         virtual void onConnect() {}
