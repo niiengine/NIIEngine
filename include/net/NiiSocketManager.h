@@ -100,6 +100,21 @@ namespace NII
         */
         bool isRun() const { return mRunning; }
         
+        /** 是否运行中
+        @version NIIEngine 4.0.0
+        */
+        void addPrc(SocketPrc * prc);
+        
+        /** 是否运行中
+        @version NIIEngine 4.0.0
+        */
+        void removePrc(SocketPrc * prc);
+        
+        /** 是否运行中
+        @version NIIEngine 4.0.0
+        */
+        SocketPrc * getPrc(Nid fd) const;
+        
         /** 添加socket消息
         @version NIIEngine 4.0.0
         */
@@ -158,7 +173,12 @@ namespace NII
     protected:
         SocketManager();
     protected:
-        list<TimerItem *>::type mTimerList;
+        typedef HashMap<Nid, SocketPrc *> PrcList;
+        typedef list<TimerItem *>::type TimerList;
+        
+        PrcList mPrcList;
+        TimerList mTimerList;
+        
 #ifdef _WIN32
         fd_set mReadSet;
         fd_set mWriteSet;

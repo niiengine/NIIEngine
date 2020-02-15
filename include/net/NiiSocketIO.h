@@ -172,10 +172,10 @@ namespace NII
         ServerSocketIO();
         virtual ~ServerSocketIO();
 
-        /** 确认连接时触发
+        /** 连接时触发
         @version NIIEngine 4.0.0
         */
-        virtual void onConfirm() {}
+        virtual void onConnect() {}
     };
     
     /** ClientSocketIO
@@ -187,11 +187,11 @@ namespace NII
     public:
         ClientSocketIO();
         virtual ~ClientSocketIO();
-
-        /** 连接时触发
+        
+        /** 确认连接时触发
         @version NIIEngine 4.0.0
         */
-        virtual void onConnect() {}
+        virtual void onConfirm() {}
     };
 }
 #endif
