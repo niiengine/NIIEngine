@@ -43,7 +43,7 @@ namespace NII
     /** 管理器
     @version NIIEngine 4.0.0
     */
-    class _EngineAPI SocketManager : public Singleton<SocketManager>
+    class _EngineAPI SocketManager : public Singleton<SocketManager> , public NetworkAlloc
     {
     public:
         /**
@@ -51,17 +51,15 @@ namespace NII
         */
         enum OptionType
         {
-            OT_SET_Callback			= 1,	
-            OT_SET_CallbackData	    = 2,
-            OT_SET_SendSize	        = 3,
-            OT_SET_ReceiveSize	    = 4,
-            OT_SET_Block            = 5,
-            OT_SET_NoDelay          = 6,
-            OT_SET_ReuseAddress     = 7,
-            OT_GET_RemoteIP		    = 8,
-            OT_GET_RemotePort		= 9,
-            OT_GET_LocalIP			= 10,
-            OT_GET_LocalPort		= 11
+            OT_SET_SendSize	        = 1,
+            OT_SET_ReceiveSize	    = 2,
+            OT_SET_Block            = 3,
+            OT_SET_NoDelay          = 4,
+            OT_SET_ReuseAddress     = 5,
+            OT_GET_RemoteIP		    = 6,
+            OT_GET_RemotePort		= 7,
+            OT_GET_LocalIP			= 8,
+            OT_GET_LocalPort		= 9
         }
         
         /** 

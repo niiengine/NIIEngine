@@ -43,21 +43,21 @@ namespace NII
     /** socket处理
     @version NIIEngine 4.0.0
     */
-    class SocketPrc
+    class _EngineAPI SocketPrc : public NetworkAlloc
     {
         friend class SocketManager;
     public:
         enum State
         {
-            S_Unknow,
-            S_Listening,
-            S_Connecting,
-            S_Connected,
-            S_Closing,
-            S_Closed
+            S_Unknow,           ///< 
+            S_Listening,        ///<
+            S_Connecting,       ///<
+            S_Connected,        ///<
+            S_Closing,          ///<
+            S_Closed            ///<
         };
     public:
-        SocketPrc();
+        SocketPrc(SocketIO * io);
         virtual ~SocketPrc();
 
         /** 设置socket
@@ -78,12 +78,12 @@ namespace NII
         /** 发送
         @version NIIEngine 4.0.0
         */
-        int send(void * buf, int len);
+        int send(void * data, int len);
 
         /** 接收
         @version NIIEngine 4.0.0
         */
-        int receive(void * buf, int len);
+        int receive(void * data, int len);
 
         /** 关闭
         @version NIIEngine 4.0.0
@@ -145,6 +145,8 @@ namespace NII
         */
         void onClose();
     protected:
+        SocketPrc();
+        
         /** 创建监听(被动连接)socket
         @version NIIEngine 4.0.0
         */
@@ -163,7 +165,7 @@ namespace NII
         /** 当前操作失败是否属于阻塞问题
         @version NIIEngine 4.0.0
         */
-        bool isBlock(int error_code);
+        bool isBlock(int ecode);
 
         /** 设置非阻塞连接
         @version NIIEngine 4.0.0
@@ -180,6 +182,7 @@ namespace NII
         */
         void setNoDelay(SOCKET fd);
     protected:
+        SocketIO * mIO;
         SOCKET mSocket;
         VString mRemoteIP;
         VString mIP;        

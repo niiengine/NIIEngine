@@ -86,7 +86,7 @@
     #include "NiiMemoryStdAlloc.h"
 #else
     #if !defined(N_Alloc) || !defined(N_AlignAlloc)
-        #error "没有内存分配代码"
+        #error "No Memory allocation"
     #endif
 #endif
 
@@ -121,12 +121,12 @@ namespace NII
             return t::alloc(s N_MEMTRACK_Param);
         }
 
-            N_FORCEINLINE void * operator new[](NCount s)
+        N_FORCEINLINE void * operator new[](NCount s)
         {
             return t::alloc(s N_MEMTRACK_INVO);
         }
 
-            N_FORCEINLINE void operator delete(void * ptr)
+        N_FORCEINLINE void operator delete(void * ptr)
         {
             t::dealloc(ptr);
         }
@@ -146,23 +146,22 @@ namespace NII
             t::dealloc(ptr);
         }
 
-            N_FORCEINLINE void operator delete[](void * ptr, const Ntchar *, NIIi, const Ntchar *)
+        N_FORCEINLINE void operator delete[](void * ptr, const Ntchar *, NIIi, const Ntchar *)
         {
             t::dealloc(ptr);
         }
     };
 
-    typedef AllocObj<N_Alloc>   InputSysAllocObj;
-    typedef AllocObj<N_Alloc>   PhysicalAllocObj;
-    typedef AllocObj<N_Alloc>   SoundSysAllocObj;
-    typedef AllocObj<N_Alloc>   RenderSysAllocObj;
-    typedef AllocObj<N_Alloc>   ResourceAllocObj;
-    typedef AllocObj<N_Alloc>   ScriptSysAllocObj;
-    typedef AllocObj<N_Alloc>   SceneObjAllocObj;
-    typedef AllocObj<N_Alloc>   CommonAllocObj;
-    typedef AllocObj<N_Alloc>   GeometryAllocObj;
-    typedef AllocObj<N_Alloc>   OverlayAllocObj;
-    typedef AllocObj<N_Alloc>   EventAllocObj;
+    typedef AllocObj<N_Alloc>       NetSysAllocObj;
+    typedef AllocObj<N_Alloc>       InputSysAllocObj;
+    typedef AllocObj<N_Alloc>       PhysicalAllocObj;
+    typedef AllocObj<N_Alloc>       SoundSysAllocObj;
+    typedef AllocObj<N_Alloc>       RenderSysAllocObj;
+    typedef AllocObj<N_Alloc>       ResourceAllocObj;
+    typedef AllocObj<N_Alloc>       SceneObjAllocObj;
+    typedef AllocObj<N_Alloc>       CommonAllocObj;
+    typedef AllocObj<N_Alloc>       GeometryAllocObj;
+    typedef AllocObj<N_Alloc>       EventAllocObj;
 
     #define CommonAlignAllocObj(align)      AllocObj<N_AlignAlloc(align)>
     #define GeometryAlignAllocObj(align)    AllocObj<N_AlignAlloc(align)>
@@ -173,75 +172,75 @@ namespace NII
     #define SoundSysAlignAllocObj(align)    AllocObj<N_AlignAlloc(align)>
     #define InputSysAlignAllocObj(align)    AllocObj<N_AlignAlloc(align)>
 
-    typedef CommonAllocObj      VFSAlloc;
-    typedef CommonAllocObj      XmlAlloc;
-    typedef GeometryAllocObj    GeometryAlloc;
-    typedef GeometryAllocObj    AnimableAlloc;
-    typedef RenderSysAllocObj   BufferAlloc;
-    typedef CommonAllocObj      CodecAlloc;
-    typedef CommonAllocObj      ConfigAlloc;
-    typedef CommonAllocObj      ControlAlloc;
-    typedef GeometryAllocObj    DebugGeoAlloc;
-    typedef CommonAllocObj      DynamicModuleAlloc;
-    typedef GeometryAllocObj    GeoEdgetAlloc;
-    typedef CommonAllocObj      FactoryAlloc;
-    typedef SceneObjAllocObj    FXAlloc;
-    typedef CommonAllocObj      ImageAlloc;
-    typedef GeometryAllocObj    IndexDataAlloc;
-    typedef CommonAllocObj      LogAlloc;
-    typedef SceneObjAllocObj    SpaceAlloc;
-    typedef SceneObjAllocObj    NodeAlloc;
-    typedef SceneObjAllocObj    OverlayAlloc;
-    typedef RenderSysAllocObj   GpuParamsAlloc;
-    typedef ResourceAllocObj    PassAlloc;
-    typedef GeometryAllocObj    PatchAlloc;
-    typedef CommonAllocObj      PluginAlloc;
-    typedef CommonAllocObj      ProfilerAlloc;
-    typedef GeometryAllocObj    ProgMeshAlloc;
-    typedef SceneObjAllocObj    RenderQueueAlloc;
-    typedef SceneObjAllocObj    RenderAlloc;
-    typedef RenderSysAllocObj   RenderSysAlloc;
-    typedef CommonAllocObj      UserAlloc;
-    typedef CommonAllocObj      EngineAlloc;
-    typedef ResourceAllocObj    ResourceAlloc;
-    typedef CommonAllocObj      SerializerAlloc;
-    typedef SceneObjAllocObj    SceneAlloc;
-    typedef ScriptSysAllocObj   ScriptAlloc;
-    typedef SceneObjAllocObj    ShadowAlloc;
-    typedef CommonAllocObj      StreamAlloc;
-    typedef SceneObjAllocObj    GeometryObjAlloc;
-    typedef GeometryAllocObj    BatchObjectAlloc;
-    typedef ResourceAllocObj    SubMeshAlloc;
-    typedef ResourceAllocObj    MaterialAlloc;
-    typedef CommonAllocObj      ShaderAlloc;
-    typedef CommonAllocObj      TimerAlloc;
-    typedef ResourceAllocObj    ShaderChAlloc;
-    typedef CommonAllocObj      UtilityAlloc;
-    typedef GeometryAllocObj    VertexDataAlloc;
-    typedef RenderSysAllocObj   TextureAlloc;
-    typedef RenderSysAllocObj   ViewportAlloc;
-    typedef SceneObjAllocObj    LodAlloc;
-    typedef CommonAllocObj      SysAlloc;
-    typedef CommonAllocObj      AudioAlloc;
-    typedef CommonAllocObj      VideoAlloc;
-    typedef CommonAllocObj      ManagerAlloc;
-    typedef CommonAllocObj      FactoryAlloc;
-    typedef CommonAllocObj      PatternAlloc;
-    typedef CommonAllocObj      EventAlloc;
-    typedef CommonAllocObj      NetWorkAlloc;
-    typedef CommonAllocObj      GameAlloc;
-    typedef CommonAllocObj      FilePatchAlloc;
-    typedef CommonAllocObj      FontAlloc;
-    typedef CommonAllocObj      PhysicalAlloc;
-    typedef CommonAllocObj      JobAlloc;
-    typedef CommonAllocObj      CPUAlloc;
-    typedef CommonAllocObj      GPUAlloc;
-    typedef CommonAllocObj      DataAlloc;
-    typedef CommonAllocObj      SoundAlloc;
-    typedef CommonAllocObj      UIAlloc;
-    typedef CommonAllocObj      IDAlloc;
-    typedef CommonAllocObj      FrameAlloc;
-    typedef CommonAllocObj      ParticleAlloc;
+    typedef ResourceAllocObj        VFSAlloc;
+    typedef ResourceAllocObj        XmlAlloc;
+    typedef GeometryAllocObj        GeometryAlloc;
+    typedef GeometryAllocObj        AnimableAlloc;
+    typedef RenderSysAllocObj       BufferAlloc;
+    typedef CommonAllocObj          CodecAlloc;
+    typedef ResourceAllocObj        ConfigAlloc;
+    typedef CommonAllocObj          ControlAlloc;
+    typedef GeometryAllocObj        DebugGeoAlloc;
+    typedef CommonAllocObj          DynamicModuleAlloc;
+    typedef GeometryAllocObj        GeoEdgetAlloc;
+    typedef ResourceAllocObj        FactoryAlloc;
+    typedef SceneObjAllocObj        FXAlloc;
+    typedef CommonAllocObj          ImageAlloc;
+    typedef GeometryAllocObj        IndexDataAlloc;
+    typedef CommonAllocObj          LogAlloc;
+    typedef SceneObjAllocObj        SpaceAlloc;
+    typedef SceneObjAllocObj        NodeAlloc;
+    typedef SceneObjAllocObj        OverlayAlloc;
+    typedef RenderSysAllocObj       GpuParamsAlloc;
+    typedef ResourceAllocObj        PassAlloc;
+    typedef GeometryAllocObj        PatchAlloc;
+    typedef CommonAllocObj          PluginAlloc;
+    typedef CommonAllocObj          ProfilerAlloc;
+    typedef GeometryAllocObj        ProgMeshAlloc;
+    typedef SceneObjAllocObj        RenderQueueAlloc;
+    typedef SceneObjAllocObj        RenderAlloc;
+    typedef RenderSysAllocObj       RenderSysAlloc;
+    typedef CommonAllocObj          UserAlloc;
+    typedef CommonAllocObj          EngineAlloc;
+    typedef ResourceAllocObj        ResourceAlloc;
+    typedef CommonAllocObj          SerializerAlloc;
+    typedef SceneObjAllocObj        SceneAlloc;
+    typedef ResourceAllocObj        ScriptAlloc;
+    typedef SceneObjAllocObj        ShadowAlloc;
+    typedef CommonAllocObj          StreamAlloc;
+    typedef SceneObjAllocObj        GeometryObjAlloc;
+    typedef GeometryAllocObj        BatchObjectAlloc;
+    typedef ResourceAllocObj        SubMeshAlloc;
+    typedef ResourceAllocObj        MaterialAlloc;
+    typedef CommonAllocObj          ShaderAlloc;
+    typedef CommonAllocObj          TimerAlloc;
+    typedef GeometryAllocObj        ShaderChAlloc;
+    typedef CommonAllocObj          UtilityAlloc;
+    typedef GeometryAllocObj        VertexDataAlloc;
+    typedef RenderSysAllocObj       TextureAlloc;
+    typedef RenderSysAllocObj       ViewportAlloc;
+    typedef SceneObjAllocObj        LodAlloc;
+    typedef CommonAllocObj          SysAlloc;
+    typedef SoundSysAllocObj        AudioAlloc;
+    typedef SceneObjAllocObj        VideoAlloc;
+    typedef CommonAllocObj          ManagerAlloc;
+    typedef ResourceAllocObj        FactoryAlloc;
+    typedef CommonAllocObj          PatternAlloc;
+    typedef EventAllocObj           EventAlloc;
+    typedef NetSysAllocObj          NetWorkAlloc;
+    typedef CommonAllocObj          GameAlloc;
+    typedef ResourceAllocObj        FilePatchAlloc;
+    typedef ResourceAllocObj        FontAlloc;
+    typedef CommonAllocObj          PhysicalAlloc;
+    typedef ResourceAllocObj        JobAlloc;
+    typedef CommonAllocObj          CPUAlloc;
+    typedef CommonAllocObj          GPUAlloc;
+    typedef CommonAllocObj          DataAlloc;
+    typedef SoundSysAllocObj        SoundAlloc;
+    typedef GeometryAllocObj        UIAlloc;
+    typedef ResourceAllocObj        IDAlloc;
+    typedef CommonAllocObj          FrameAlloc;
+    typedef CommonAllocObj          ParticleAlloc;
 }
 
 namespace NII
@@ -304,9 +303,6 @@ namespace NII
     #define N_delete_t_simd(ptr, T) if(ptr){(ptr)->~T(); N_AlignAlloc(16)::dealloc(ptr);}
     /// 释放多个并行算术内存对齐对象
     #define N_delete_array_t_simd(ptr, T, count) if(ptr){for (NCount b = 0; b < count; ++b) { (ptr)[b].~T();} N_AlignAlloc(16)::dealloc(ptr);}
-
-    #define N_new new N_MEMTRACK_NewINVO
-    #define N_delete delete
 #else
     /// 分配内存
     #define N_alloc(size) N_Alloc::alloc(size N_MEMTRACK_INVO)
@@ -357,10 +353,9 @@ namespace NII
     #define N_delete_t_simd(ptr, T) if(ptr){(ptr)->~T(); N_AlignAlloc(16)::dealloc(ptr);}
     /// 释放并行算术内存对齐对象数组
     #define N_delete_array_t_simd(ptr, T, count) if(ptr){for (NCount b = 0; b < count; ++b) { (ptr)[b].~T();} N_AlignAlloc(16)::dealloc(ptr);}
-
-    #define N_new new N_MEMTRACK_NewINVO
-    #define N_delete delete
 #endif
+#define N_new new N_MEMTRACK_NewINVO
+#define N_delete delete
 }
 
 #endif

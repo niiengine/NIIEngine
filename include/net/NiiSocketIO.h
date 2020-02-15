@@ -49,16 +49,22 @@ namespace protobuf
 
 namespace NII
 {
-    /**
+    /** SocketIO
     @version NIIEngine 3.0.0
     */
-    class _EngineAPI SocketIO
+    class _EngineAPI SocketIO : public NetworkAlloc
     {
         friend class SocketManager;
+        friend class SocketPrc;
     public:
         SocketIO();
         virtual ~SocketIO();
 
+        /** 获取端口处理对象
+        @version NIIEngine 4.0.0
+        */
+        SocketPrc * getPrc() const;
+        
         /** 发送数据
         @version NIIEngine 4.0.0
         */
@@ -69,32 +75,37 @@ namespace NII
         */
         inline int send(MdfMessage * msg) { return send(msg->getBuffer(), msg->getSize()); }
 
-        /** 
+        /** 数据读取时触发
         @version NIIEngine 4.0.0
         */
-        virtual void onRead();
+        virtual void onRead(){}
 
-        /**
+        /** 数据写入时触发
         @version NIIEngine 4.0.0
         */
-        virtual void onWrite();
+        virtual void onWrite(){}
 
-        /**
+        /** 关闭连接时触发
         @version NIIEngine 4.0.0
         */
-        virtual void onClose() {}
+        virtual void onClose(){}
+        
+        /** 发生错误时触发
+        @version NIIEngine 4.0.0
+        */
+        virtual void onException{}
 
-        /**
+        /** 定时任务触发
         @version NIIEngine 4.0.0
         */
         virtual void onTimer(TimeDurMS tick) {}
 
-        /**
+        /** 收到消息时触发
         @version NIIEngine 4.0.0
         */
         virtual void onMessage(MdfMessage * msg) {}
 
-        /**
+        /** 发送数据
         @version NIIEngine 4.0.0
         */
         inline int send(Nui16 sid, Nui16 cid, const google::protobuf::MessageLite * proto)
@@ -107,7 +118,7 @@ namespace NII
             return send(msg.getBuffer(), msg.getSize());
         }
 
-        /**
+        /** 发送数据
         @version NIIEngine 4.0.0
         */
         inline int send(Nui16 sid, Nui16 cid, Nui16 seq, const google::protobuf::MessageLite * proto)
@@ -121,7 +132,7 @@ namespace NII
             return send(msg.getBuffer(), msg.getSize());
         }
 
-        /**
+        /** 发送数据
         @version NIIEngine 4.0.0
         */
         inline int send(Nui16 sid, Nui16 cid, Nui16 seq, const google::protobuf::MessageLite * proto)
@@ -135,6 +146,12 @@ namespace NII
             return send(msg.getBuffer(), msg.getSize());
         }
     protected:
+        /** 设置端口处理对象
+        @version NIIEngine 4.0.0
+        */
+        void setPrc(SocketPrc * prc);
+    protected:
+        SocketPrc * mSocketPrc;
         RingBuffer mInBuffer;
         RingBuffer mOutBuffer;
         VString mIP;
