@@ -63,12 +63,12 @@ namespace NII
         /** 设置socket
         @version NIIEngine 4.0.0
         */
-        void setSocket(SOCKET s) { mSocket = s; }
+        void setSocket(Nsocket s) { mSocket = s; }
         
         /** 获取socket
         @version NIIEngine 4.0.0
         */
-        SOCKET getSocket() const { return mSocket; }
+        Nsocket getSocket() const { return mSocket; }
 
         /** 设置状态
         @version NIIEngine 4.0.0
@@ -170,20 +170,45 @@ namespace NII
         /** 设置非阻塞连接
         @version NIIEngine 4.0.0
         */
-        void setNonBlock(SOCKET fd);
+        void setNonBlock(Nsocket fd);
         
         /** 设置重新连接地址
         @version NIIEngine 4.0.0
         */
-        void setReuseAddress(SOCKET fd);
+        void setReuseAddress(Nsocket fd);
         
         /** 设置非延迟发送
         @version NIIEngine 4.0.0
         */
-        void setNoDelay(SOCKET fd);
+        void setNoDelay(Nsocket fd);
+        
+        /** 设置延时关闭
+        @version NIIEngine 4.0.0
+        */
+        void setLinger(Nsocket fd, bool set, TimeDurMS time);
+        
+        /** 设置接收超时
+        @version NIIEngine 4.0.0
+        */
+        void setSendTimeOut(Nsocket fd, TimeDurMS time);
+
+        /** 设置发送超时
+        @version NIIEngine 4.0.0
+        */
+        void setRecvTimeOut(Nsocket fd, TimeDurMS time);
+        
+        /** 设置优先级
+        @version NIIEngine 4.0.0
+        */
+        void setTOS(Nsocket fd, Ni32 tos);
+        
+        /** 设置生命周期
+        @version NIIEngine 4.0.0
+        */
+        void setTTL(Nsocket fd, Ni32 ttl);
     protected:
         SocketIO * mIO;
-        SOCKET mSocket;
+        Nsocket mSocket;
         VString mRemoteIP;
         VString mIP;        
         Nui16 mRemotePort;

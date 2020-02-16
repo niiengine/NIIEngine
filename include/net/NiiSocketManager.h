@@ -118,12 +118,12 @@ namespace NII
         /** 添加socket消息
         @version NIIEngine 4.0.0
         */
-        void addEvent(SOCKET fd, Nmark mark);
+        void addEvent(Nsocket fd, Nmark mark);
         
         /** 移去socket消息
         @version NIIEngine 4.0.0
         */
-        void removeEvent(SOCKET fd, Nmark mark);
+        void removeEvent(Nsocket fd, Nmark mark);
 
         /** 添加定时器
         @version NIIEngine 4.0.0
@@ -178,7 +178,6 @@ namespace NII
         
         PrcList mPrcList;
         TimerList mTimerList;
-        
 #ifdef _WIN32
         fd_set mReadSet;
         fd_set mWriteSet;

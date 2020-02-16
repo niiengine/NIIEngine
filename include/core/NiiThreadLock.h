@@ -43,7 +43,7 @@ using namespace std;
 
 namespace NII
 {
-    typedef STbool              STbool;
+    typedef atomic_bool         STbool;
     typedef atomic_int16_t      STNi16;
     typedef atomic_uint16_t     STNui16;
     typedef atomic_int32_t      STNi32;

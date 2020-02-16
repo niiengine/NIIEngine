@@ -60,6 +60,39 @@ namespace NII
         SocketIO();
         virtual ~SocketIO();
 
+        /** 中断
+        @version NIIEngine 4.0.0
+        */
+        inline void abort()
+        {
+            mStop = true;
+            mAbort = true;
+        }
+
+        /** 是否中断
+        @version NIIEngine 4.0.0
+        */
+        inline bool isAbort() const
+        {
+            return mStop;
+        }
+
+		/** 停止
+		@version NIIEngine 4.0.0
+		*/
+		inline void stop()
+		{
+			mStop = true;
+		}
+
+		/** 是否停止
+		@version NIIEngine 4.0.0
+		*/
+		inline bool isStop() const
+		{
+			return mStop;
+		}
+        
         /** 获取端口处理对象
         @version NIIEngine 4.0.0
         */
@@ -75,20 +108,30 @@ namespace NII
         */
         inline int send(MdfMessage * msg) { return send(msg->getBuffer(), msg->getSize()); }
 
+		/** 设置定时器
+		@version NIIEngine 4.0.0
+		*/
+		void setTimer(bool set, TimeDurMS delay, TimeDurMS interval);
+        
         /** 数据读取时触发
         @version NIIEngine 4.0.0
         */
-        virtual void onRead(){}
+        virtual void onRead();
 
         /** 数据写入时触发
         @version NIIEngine 4.0.0
         */
-        virtual void onWrite(){}
+        virtual void onWrite();
 
         /** 关闭连接时触发
         @version NIIEngine 4.0.0
         */
-        virtual void onClose(){}
+        virtual void onClose();
+        
+		/** 接收错误时触发
+		@version 0.9.1
+		*/
+		virtual void onReceiveError(){}
         
         /** 发生错误时触发
         @version NIIEngine 4.0.0
@@ -145,6 +188,11 @@ namespace NII
             
             return send(msg.getBuffer(), msg.getSize());
         }
+        
+        /** 创建消息
+        @version NIIEngine 4.0.0
+        */
+        virtual Message * create(Nui8 * buf, Nui32 len);
     protected:
         /** 设置端口处理对象
         @version NIIEngine 4.0.0
@@ -158,7 +206,9 @@ namespace NII
         Nui16 mPort;        
         TimeDurMS mLastSend;
         TimeDurMS mLastReceive;
-        bool mBusy;
+        STbool mStop;
+        STbool mAbort;
+        STbool mBusy;
     };
     
     
