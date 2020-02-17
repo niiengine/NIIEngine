@@ -39,7 +39,6 @@
 #include "NiiUTFString.h"
 
 #if N_COMPILER == N_CPP_GNUC && N_COMPILER_VER >= 310 && !defined(STLPORT)
-    // For gcc 4.3 see http://gcc.gnu.org/gcc-4.3/changes.html
     #if N_COMPILER_VER >= 430
         #include <tr1/unordered_map>
     #else
@@ -48,17 +47,16 @@
     {
         template <> struct hash<NII::String>
         {
-            NCount operator()(const NII::String _stringBase) const
+            NCount operator()(const NII::String & o) const
             {
                 /* This is the PRO-STL way, but it seems to cause problems with VC7.1
                    and in some other cases (although I can't recreate it)
                 hash<const NIIb*> H;
-                return H(_stringBase.c_str());
+                return H(o.c_str());
                 */
-                /** This is our custom way */
                 register NCount ret = 0;
-                NII::String::const_iterator it, itend = _stringBase.end()
-                for(it = _stringBase.begin(); it != itend; ++it)
+                NII::String::const_iterator it, itend = o.end()
+                for(it = o.begin(); it != itend; ++it)
                     ret = 5 * ret + *it;
 
                 return ret;
@@ -70,10 +68,10 @@
 
 #if N_UNICODE_SUPPORT
     typedef ThirdPart::UTFString    ViewString;
-    #define N_Font_Char(it) it.getCharacter()
+    #define N_Font_Char(it)         it.getCharacter()
 #else
-    typedef NII::String        ViewString;
-    #define N_Font_Char(it) *it
+    typedef NII::String             ViewString;
+    #define N_Font_Char(it)         *it
 #endif
 
 #if N_PLAT == N_PLAT_WIN32
@@ -309,29 +307,29 @@ namespace NII
         */
         static VString replaceAll(const VString & src, const VString & dst, const VString & target);
 
-        static const String BLANK;
-        static const WString WBLANK;
-        static const VString VBLANK;
+        static const String     BLANK;
+        static const WString    WBLANK;
+        static const VString    VBLANK;
     };
 
     #if N_COMPILER == N_CPP_GNUC && N_COMPILER_VER >= 310 && !defined(STLPORT)
     #if N_COMPILER_VER < 430
-        typedef ::__gnu_cxx::hash<String> _StringHash;
+        typedef ::__gnu_cxx::hash<String>   _StringHash;
     #else
-        typedef ::std::tr1::hash<String> _StringHash;
+        typedef ::std::tr1::hash<String>    _StringHash;
     #endif
     #elif N_COMPILER == N_CPP_GCCE
     #if defined(_LIBCPP_VERSION)
-        typedef ::std::hash<String> _StringHash;
+        typedef ::std::hash<String>         _StringHash;
     #else
-        typedef ::std::tr1::hash<String> _StringHash;
+        typedef ::std::tr1::hash<String>    _StringHash;
     #endif
     #elif N_COMPILER == N_CPP_MSVC && N_COMPILER_VER >= 1600 && !defined(STLPORT) // VC++ 10.0
-        typedef ::std::tr1::hash<String> _StringHash;
+        typedef ::std::tr1::hash<String>    _StringHash;
     #elif !defined(_STLP_HASH_FUN_H)
         typedef stdext::hash_compare<String, std::less<String> > _StringHash;
     #else
-        typedef std::hash<String> _StringHash;
+        typedef std::hash<String>           _StringHash;
     #endif
 }
 #endif
