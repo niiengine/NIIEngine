@@ -39,42 +39,42 @@ namespace Mdf
         RingBuffer();
         ~RingBuffer();
 
-        /*
+        /** 获取缓存
         @version 0.9.1
         */
         inline Mui8 * getBuffer() const { return mData; }
 
-        /*
+        /** 获取分配大小
         @version 0.9.1
         */
         inline MCount getAllocSize() const { return mAllocSize; }
 
-        /*
+        /** 获取写入大小
         @version 0.9.1
         */
         inline MCount getWriteSize() const { return mWriteSize; }
 
-        /*
+        /** 读取指针跳转
         @version 0.9.1
         */
         void readSkip(MCount cnt);
         
-        /*
+        /** 写入指针跳转
         @version 0.9.1
         */
         void writeSkip(MCount cnt);
         
-        /*
+        /** 扩大分配的内存
         @version 0.9.1
         */
         void enlarge(MCount cnt);
         
-        /*
+        /** 写入
         @version 0.9.1
         */
         Mui32 write(const void * in, MCount cnt);
 
-        /*
+        /** 读取
         @version 0.9.1
         */
         Mui32 read(void * out, MCount cnt) const;
@@ -84,7 +84,7 @@ namespace Mdf
         mutable Mui32 mWriteSize;
     };
     
-    /**
+    /** 环形循环缓存
     @version 0.9.1
     */
     class RingLoopBuffer
@@ -93,42 +93,42 @@ namespace Mdf
         RingLoopBuffer();
         ~RingLoopBuffer();
 
-        /**
+        /** 获取分配大小
         @version 0.9.1
         */
         inline Mui32 getAllocSize() const { return mAllocSize; }
 
-        /**
+        /** 获取写入大小
         @version 0.9.1
         */
         inline Mui32 getWriteSize() const { return mWriteSize; }
 
-        /**
+        /** 获取有效读取大小
         @version 0.9.1
         */
         inline Mui32 getRemainSize() const { return mAllocSize - mWriteSize; }
 
-        /**
+        /** 分配大小
         @version 0.9.1
         */
         bool alloc(Mui32 nsize);
 
-        /**
+        /** 释放分配
         @version 0.9.1
         */
         void free();
 
-        /**
+        /** 写入
         @version 0.9.1
         */
         Mui32 write(const void * in, int size);
 
-        /**
+        /** 读取(移动读取指针)
         @version 0.9.1
         */
         Mui32 read(void * out, int size) const;
 
-        /**
+        /** 读取(不移动读取指针)
         @version 0.9.1
         */
         Mui32 peek(void * out, int size) const;

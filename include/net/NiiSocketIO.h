@@ -101,12 +101,12 @@ namespace NII
         /** 发送数据
         @version NIIEngine 4.0.0
         */
-        int send(void * data, NCount size);
+        NIIi send(void * data, NCount size);
 
         /** 发送数据
         @version NIIEngine 4.0.0
         */
-        inline int send(MdfMessage * msg) { return send(msg->getBuffer(), msg->getSize()); }
+        inline NIIi send(MdfMessage * msg) { return send(msg->getBuffer(), msg->getSize()); }
 
 		/** 设置定时器
 		@version NIIEngine 4.0.0
@@ -151,7 +151,7 @@ namespace NII
         /** 发送数据
         @version NIIEngine 4.0.0
         */
-        inline int send(Nui16 sid, Nui16 cid, const google::protobuf::MessageLite * proto)
+        inline NIIi send(Nui16 sid, Nui16 cid, const google::protobuf::MessageLite * proto)
         {
             MdfMessage msg;
             msg.setProto(proto);
@@ -164,7 +164,7 @@ namespace NII
         /** 发送数据
         @version NIIEngine 4.0.0
         */
-        inline int send(Nui16 sid, Nui16 cid, Nui16 seq, const google::protobuf::MessageLite * proto)
+        inline NIIi send(Nui16 sid, Nui16 cid, Nui16 seq, const google::protobuf::MessageLite * proto)
         {
             MdfMessage msg;
             msg.setProto(proto);
@@ -178,7 +178,7 @@ namespace NII
         /** 发送数据
         @version NIIEngine 4.0.0
         */
-        inline int send(Nui16 sid, Nui16 cid, Nui16 seq, const google::protobuf::MessageLite * proto)
+        inline NIIi send(Nui16 sid, Nui16 cid, Nui16 seq, const google::protobuf::MessageLite * proto)
         {
             MdfMessage msg;
             msg.setProto(proto);
@@ -192,16 +192,20 @@ namespace NII
         /** 创建消息
         @version NIIEngine 4.0.0
         */
-        virtual Message * create(Nui8 * buf, Nui32 len);
+        virtual Message * create(Nui8 * buf, Nui32 len) const;
     protected:
         /** 设置端口处理对象
         @version NIIEngine 4.0.0
         */
         void setPrc(SocketPrc * prc);
     protected:
+        typedef list<RingBuffer *>::type BufferList;
+
         SocketPrc * mSocketPrc;
-        RingBuffer mInBuffer;
-        RingBuffer mOutBuffer;
+        ThreadMutex mInMutex;
+        ThreadMutex mOutMutex;
+        BufferList mInBuffer;
+        BufferList mOutBuffer;
         VString mIP;
         Nui16 mPort;        
         TimeDurMS mLastSend;

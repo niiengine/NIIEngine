@@ -49,12 +49,12 @@ namespace NII
     public:
         enum State
         {
-            S_Unknow,           ///< 
-            S_Listening,        ///<
-            S_Connecting,       ///<
-            S_Connected,        ///<
-            S_Closing,          ///<
-            S_Closed            ///<
+            S_Unknow,           ///< 未初始化
+            S_Listening,        ///< 监听
+            S_Connecting,       ///< 连接
+            S_Connected,        ///< 已连接
+            S_Closing,          ///< 关闭中
+            S_Closed            ///< 已关闭
         };
     public:
         SocketPrc(SocketIO * io);
@@ -78,17 +78,17 @@ namespace NII
         /** 发送
         @version NIIEngine 4.0.0
         */
-        int send(void * data, int len);
+        NIIi send(void * data, int len);
 
         /** 接收
         @version NIIEngine 4.0.0
         */
-        int receive(void * data, int len);
+        NIIi receive(void * data, int len);
 
         /** 关闭
         @version NIIEngine 4.0.0
         */
-        int close();
+        NIIi close();
 
         /** 设置发送缓存大小
         @version NIIEngine 4.0.0
@@ -150,7 +150,7 @@ namespace NII
         /** 创建监听(被动连接)socket
         @version NIIEngine 4.0.0
         */
-        int listen(const String & ip, Nui16 port);
+        Nid listen(const String & ip, Nui16 port);
 
         /** 创建主动连接socket
         @version NIIEngine 4.0.0

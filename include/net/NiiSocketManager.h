@@ -46,7 +46,7 @@ namespace NII
     class _EngineAPI SocketManager : public Singleton<SocketManager> , public NetworkAlloc
     {
     public:
-        /**
+        /** 操作类型
         @version NIIEngine 4.0.0
         */
         enum OptionType
@@ -62,7 +62,7 @@ namespace NII
             OT_GET_LocalPort		= 9
         }
         
-        /** 
+        /** 事件类型
         @version NIIEngine 4.0.0
         */
         enum SocketEventType
@@ -135,35 +135,37 @@ namespace NII
         */
         void removeTimer(ThreadMain * func, void * data);
         
-        /**
+        /** 监听
+        @return 返回 -1 则代表失败
         @version NIIEngine 4.0.0
         */
-        static Ni32 listen(const String & ip, Nui16 port);
+        static Nid listen(const String & ip, Nui16 port, ServerSocketIO * io);
 
-        /**
+        /** 连接
+        @return 返回 -1 则代表失败
         @version NIIEngine 4.0.0
         */
-        static Nid connect(const String & ip, Nui16 port);
+        static Nid connect(const String & ip, Nui16 port, ClientSocketIO * io);
 
-        /**
+        /** 发送
         @version NIIEngine 4.0.0
         */
-        static int send(Nid handle, void * buf, int size);
+        static NIIi send(Nid handle, void * buf, int size);
 
-        /**
+        /** 接收
         @version NIIEngine 4.0.0
         */
-        static int receive(Nid handle, void * buf, int size);
+        static NIIi receive(Nid handle, void * buf, int size);
 
-        /**
+        /** 关闭连接
         @version NIIEngine 4.0.0
         */
-        static int close(Nid handle);
+        static NIIi close(Nid handle);
         
-        /**
+        /** 设置选项
         @version NIIEngine 4.0.0
         */
-        static int setOption(Nid handle, OptionType type, void * value);
+        static NIIi setOption(Nid handle, OptionType type, void * value);
 
         /// @copydetails Singleton::getOnly
         static SocketManager & getOnly();
@@ -188,7 +190,7 @@ namespace NII
         int mEpoll;
 #endif
         ThreadMutex mMutex;
-        bool mRunning;
+        STbool mRunning;
     };
 }
 #endif
