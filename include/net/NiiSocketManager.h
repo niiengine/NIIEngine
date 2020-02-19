@@ -95,6 +95,11 @@ namespace NII
         */
         void shutdown();
         
+        /** 创建对象
+        @version NIIEngine 4.0.0
+        */
+        SocketObj * createSocket();
+        
         /** 是否运行中
         @version NIIEngine 4.0.0
         */
@@ -167,6 +172,16 @@ namespace NII
         */
         static NIIi setOption(Nid handle, OptionType type, void * value);
 
+        /** 获取本地主机
+        @version NIIEngien 4.0.0
+        */
+        void getLocalHost(AddressList & out);
+        
+        /** 解析主机
+        @version NIIEngien 4.0.0
+        */
+        VString resolveDomain(const VString & name);
+        
         /// @copydetails Singleton::getOnly
         static SocketManager & getOnly();
 

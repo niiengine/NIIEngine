@@ -61,17 +61,17 @@
 	#define N_net_close                 WinRTClose
 	#define N_net_socket                WinRTCreateDatagramSocket
 	#define N_net_bind                  WinRTBind
-	#define N_net_getsockname           RNS2_WindowsStore8::WinRTGetSockName
+	#define N_net_getsockname           WinStore8Socket::getSockName
 	#define N_net_getsockopt            WinRTGetSockOpt
-	#define N_net_inet_addr             RNS2_WindowsStore8::WinRTInet_Addr
-	#define N_net_ioctl                 RNS2_WindowsStore8::WinRTIOCTLSocket
+	#define N_net_inet_addr             WinStore8Socket::inetAddr
+	#define N_net_ioctl                 WinStore8Socket::ioctlSocket
 	#define N_net_listen                WinRTListen
 	#define N_net_recv                  WinRTRecv
 	#define N_net_recvfrom              WinRTRecvFrom
 	#define N_net_select                WinRTSelect
 	#define N_net_send                  WinRTSend
 	#define N_net_sendto                WinRTSendTo
-	#define N_net_setsockopt            RNS2_WindowsStore8::WinRTSetSockOpt
+	#define N_net_setsockopt            WinStore8Socket::setSockOpt
 	#define N_net_shutdown              WinRTShutdown
     #define N_SocketError               SOCKET_ERROR
     #define N_InvalidSocket             INVALID_SOCKET    

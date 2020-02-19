@@ -33,25 +33,20 @@
 ------------------------------------------------------------------------------
 */
 
-#ifndef _NII_NET_OBJ_H_
-#define _NII_NET_OBJ_H_
+#ifndef _NII_NET_EXCEPTION_H_
+#define _NII_NET_EXCEPTION_H_
 
 #include "NiiNetPreInclude.h"
-#include "NiiNetSerializer.h"
+#include "NiiException.h"
 
 namespace NII
 {
-    /** ÍøÂç¶ÔÏó
-    @version NIIEngine 4.0.0
-    */
-    class _EngineAPI NetObj
-    {
-    public:
-        NetObj();
-        virtual ~NetObj();
-
-        virtual void write(const NetSerializer * out);
-        virtual void read(NetSerializer * in) const;
-    };
+    N_EXCEPT_DEF(InvalidHost);
+    N_EXCEPT_DEF(InvalidPeer);
+    N_EXCEPT_DEF(SocketFamily);
+    N_EXCEPT_DEF(SocketPort);
+    N_EXCEPT_DEF(GenerateGuid);
+    N_EXCEPT_DEF(SetupError);
 }
+
 #endif
