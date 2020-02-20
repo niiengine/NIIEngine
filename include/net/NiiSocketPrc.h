@@ -78,12 +78,12 @@ namespace NII
         /** 发送
         @version NIIEngine 4.0.0
         */
-        NIIi send(void * data, int len);
+        NIIi send(void * data, NCount len);
 
         /** 接收
         @version NIIEngine 4.0.0
         */
-        NIIi receive(void * data, int len);
+        NIIi receive(void * data, NCount len);
 
         /** 关闭
         @version NIIEngine 4.0.0

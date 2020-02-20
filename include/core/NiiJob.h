@@ -262,12 +262,12 @@ namespace NII
         @version NIIEngine 3.0.0
         */
         virtual void handle(JobResult * result){}
-        
+
         /** 处理任务前
         @version NIIEngine 3.0.0
         */
         virtual void onPrcBegin(Job * jop){}
-        
+
         /** 处理任务后
         @version NIIEngine 3.0.0
         */

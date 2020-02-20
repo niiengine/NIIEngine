@@ -60,7 +60,7 @@ namespace NII
     {
         friend class Thread;
     public:
-        virtual ~ThreadMain() {}
+        virtual ~ThreadMain();
         virtual void cancel() {}
         virtual bool isLoop() const { return false; }
     protected:

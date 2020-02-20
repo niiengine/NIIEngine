@@ -131,9 +131,10 @@ namespace NII
         void removeEvent(Nsocket fd, Nmark mark);
 
         /** 添加定时器
+        @param[in] sync 是否主线程执行调用
         @version NIIEngine 4.0.0
         */
-        void addTimer(ThreadMain * func, void * data, Nui64 interval);
+        void addTimer(ThreadMain * func, void * data, Nui64 interval, bool sync = true);
         
         /** 添加定时器
         @version NIIEngine 4.0.0

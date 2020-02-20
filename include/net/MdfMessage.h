@@ -64,12 +64,12 @@ namespace Mdf
         */
         Mui32 read(void * out, MCount cnt) const;
 
-        /*
+        /**
         @version 0.9.1
         */
         void readSkip(MCount cnt);
 
-        /*
+        /**
         @version 0.9.1
         */
         void writeSkip(MCount cnt);
@@ -79,7 +79,7 @@ namespace Mdf
         */
         inline Mui8 * getBuffer() const { return mData; }
 
-        /*
+        /**
         @version 0.9.1
         */
         inline MCount getWriteSize() const { return mWriteSize; }
@@ -87,7 +87,7 @@ namespace Mdf
         /**
         @version 0.9.1
         */
-        virtual Mui32 getSize() const { return mWriteSize; }
+        virtual MCount getSize() const { return mWriteSize; }
 
         /**
         @version 0.9.1
@@ -116,7 +116,7 @@ namespace Mdf
     protected:
         Mui8 * mData;
         Mui32 mAllocSize;
-        mutable Mui32 mWriteSize;
+        mutable MCount mWriteSize;
 		bool mCopyData;
     };
 

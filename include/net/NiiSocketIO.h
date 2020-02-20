@@ -109,9 +109,10 @@ namespace NII
         inline NIIi send(MdfMessage * msg) { return send(msg->getBuffer(), msg->getSize()); }
 
 		/** 设置定时器
+        @param[in] sync 是否主线程执行调用
 		@version NIIEngine 4.0.0
 		*/
-		void setTimer(bool set, TimeDurMS delay, TimeDurMS interval);
+		void setTimer(bool set, TimeDurMS delay, TimeDurMS interval, bool sync = true);
         
         /** 数据读取时触发
         @version NIIEngine 4.0.0
@@ -126,7 +127,7 @@ namespace NII
         /** 关闭连接时触发
         @version NIIEngine 4.0.0
         */
-        virtual void onClose();
+        virtual void onClose(){}
         
 		/** 接收错误时触发
 		@version 0.9.1
@@ -141,7 +142,7 @@ namespace NII
         /** 定时任务触发
         @version NIIEngine 4.0.0
         */
-        virtual void onTimer(TimeDurMS tick) {}
+        virtual void onTimer(TimeDurMS cost) {}
 
         /** 收到消息时触发
         @version NIIEngine 4.0.0
@@ -192,7 +193,7 @@ namespace NII
         /** 创建消息
         @version NIIEngine 4.0.0
         */
-        virtual Message * create(Nui8 * buf, Nui32 len) const;
+        virtual Message * create(Nui8 * buf, Nui32 size) const;
     protected:
         /** 设置端口处理对象
         @version NIIEngine 4.0.0
@@ -200,12 +201,15 @@ namespace NII
         void setPrc(SocketPrc * prc);
     protected:
         typedef list<RingBuffer *>::type BufferList;
-
+        typedef list<MdfMessage *>::type MessageList;
+        
         SocketPrc * mSocketPrc;
+        ThreadMain * mTimer;
         ThreadMutex mInMutex;
         ThreadMutex mOutMutex;
-        BufferList mInBuffer;
-        BufferList mOutBuffer;
+        MessageList mInList;
+        BufferList mOutList;
+        RingBuffer mInBuffer;
         VString mIP;
         Nui16 mPort;        
         TimeDurMS mLastSend;

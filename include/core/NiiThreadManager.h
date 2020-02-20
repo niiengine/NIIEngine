@@ -42,12 +42,13 @@
 
 namespace NII
 {
+    
     /** 线程管理器
     @remark
     @note 一般是2个体系 Win32 和 Posix
     @version NIIEngine 3.0.0
     */
-    class _EngineAPI ThreadManager : public ThreadMain, public Singleton<ThreadManager>, public JobAlloc
+    class _EngineAPI ThreadManager : public Singleton<ThreadManager>, public JobAlloc
     {
         friend class Engine;
     public:
@@ -155,9 +156,6 @@ namespace NII
         /// @copydetails Singleton::getOnlyPtr
         static ThreadManager * getOnlyPtr();
     protected:
-        /// @coypdetals ThreadMain::run
-        void run(void * arg);
-        
         /** 处理任务
         @version NIIEngine 3.0.0 inner
         */
@@ -165,24 +163,37 @@ namespace NII
     protected:
         typedef list<std::pair<Job *, JobPrc *> >::type PrcMap;
         typedef list<std::pair<JobResult *, JobPrc *> >::type ResponseMap;
-        typedef map<Nui32, std::pair<PrcMap, ResponseMap> >::type TypeList;
+
+        class ThreadMainGroup : public ThreadMain
+        {
+        public:
+            ThreadMainGroup():
+                
+            /// @copydetails ThreadMain::run
+            void run(void * arg);
+        protected:
+            ThreadList mThreadList;
+            RequestID mValidJobID;
+            PrcMap mRequestList;
+            ResponseMap mResponseList;      
+            mutable ThreadMutex mInMutex;
+            mutable ThreadMutex mOutMutex;
+            mutable ThreadMutex mExistMutex;
+            mutable ThreadMutex mQuitMutex;
+            ThreadCondition mPauseCondition;
+            ThreadCondition mExistCondition;
+            ThreadCondition mQuitCondition;
+            TimeDurMS mUpdateTimeOut;
+            volatile NCount mThreadCount;
+            volatile NCount mRunThreadCount;
+            volatile bool mRun;
+            volatile bool mPause;
+        };
+        
+        typedef map<Nui32, ThreadMainGroup *>::type GroupList;
     protected:
-        ThreadList mThreadList;
-        RequestID mValidJobID;
-        PrcMap mRequestList;
-        ResponseMap mResponseList;      
-        mutable ThreadMutex mInMutex;
-        mutable ThreadMutex mOutMutex;
-        mutable ThreadMutex mExistMutex;
-        mutable ThreadMutex mQuitMutex;
-        ThreadCondition mPauseCondition;
-        ThreadCondition mExistCondition;
-        ThreadCondition mQuitCondition;
-        TimeDurMS mUpdateTimeOut;
-        volatile NCount mThreadCount;
-        volatile NCount mRunThreadCount;
-        volatile bool mRun;
-        volatile bool mPause;
+        ThreadMutex mGroupMutex;
+        GroupList mGroupList;
     };
 }
 #endif
