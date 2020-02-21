@@ -53,7 +53,7 @@ namespace NII
     {
         friend class ThreadManager;
     public:
-        class Identifier
+        class Identifier : public JobAlloc
         {
         public:
             virtual ~Identifier(){}
@@ -157,7 +157,7 @@ namespace NII
         /** 是否相等概念
         @version NIIEngine 4.0.0
         */
-        virtual bool equal(const Identifier * id);
+        virtual bool equal(const Identifier & id);
     protected:
         Job();
         
@@ -200,7 +200,7 @@ namespace NII
     {
         friend class ThreadManager;
     public:
-        JobResult(Job * src, bool complete = true, const String & msg = StrUtil::WBLANK);
+        JobResult(Job * src, bool complete = true, const String & tips = StrUtil::WBLANK);
         virtual ~JobResult();
 
         /** 是否完成任务
