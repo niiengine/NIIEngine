@@ -41,6 +41,7 @@
 #else
 #include <locale.h>
 #endif
+
 #ifdef _UNICODE
 #define Nprintf     wprintf    
 #define Nscanf_s    wscanf
@@ -61,60 +62,64 @@
 #define Nremove     ::_wremove
 #define Nstat       _wstat
 #define Nstruct_stat struct _stat64i32
-#define Ntostream   std::wostream
-#define Ntofstream  std::wofstream
-#define Ntistringstream std::wistringstream
-#define Ntostringstream std::wostringstream
-#define Ncout        std::wcout
-#define Ncerr        std::wcerr
-#define Nmemset      ::wmemset
-#define Nmemcpy      ::wmemcpy
+#define Nostream    std::wostream
+#define Nofstream   std::wofstream
+#define Nistringstream std::wistringstream
+#define Nostringstream std::wostringstream
+#define Ncout       std::wcout
+#define Ncerr       std::wcerr
+#define Nmemset     ::wmemset
+#define Nmemcpy     ::wmemcpy
 #ifdef WIN32
 #define Nsntprintf  _snwprintf
-#define NsnprintfW  _snwprintf
-#define NsnprintfV  _snprintf
+#define Nvsntprintf _vsntprintf
 #else
 #define Nsntprintf  snwprintf
-#define NsnprintfW  snwprintf
-#define NsnprintfV  snprintf
+#define Nvsntprintf vsntprintf
 #endif
 #else
-#define Nprintf    printf
-#define Nscanf_s   scanf
-#define Nsscanf    sscanf
-#define Natoi      atoi
-#define Nstrcmp    strcmp
-#define Nstrchr    strchr
-#define Nstrcspn   strcspn
-#define Nslen      strlen
-#define Nstrcat    strcat
-#define Nstrcpy    strcpy
-#define Nstprintf  sprintf
-#define Nfopen     fopen
-#define Nfputs     fputs
-#define Nfinddata  _finddata_t
-#define Nfindfirst _findfirst
-#define Nfindnext  _findnext
-#define Nremove    ::remove
-#define Nstat      _stat
+#define Nprintf     printf
+#define Nscanf_s    scanf
+#define Nsscanf     sscanf
+#define Natoi       atoi
+#define Nstrcmp     strcmp
+#define Nstrchr     strchr
+#define Nstrcspn    strcspn
+#define Nslen       strlen
+#define Nstrcat     strcat
+#define Nstrcpy     strcpy
+#define Nstprintf   sprintf
+#define Nfopen      fopen
+#define Nfputs      fputs
+#define Nfinddata   _finddata_t
+#define Nfindfirst  _findfirst
+#define Nfindnext   _findnext
+#define Nremove     ::remove
+#define Nstat       _stat
 #define Nstruct_stat struct _stat64i32
-#define Ntostream    std::ostream
-#define Ntofstream   std::ofstream
-#define Ntistringstream std::istringstream
-#define Ntostringstream std::ostringstream
-#define Ncout        std::cout
-#define Ncerr        std::cerr
-#define Nmemset      ::memset
-#define Nmemcpy      ::memcpy
+#define Nostream    std::ostream
+#define Nofstream   std::ofstream
+#define Nistringstream std::istringstream
+#define Nostringstream std::ostringstream
+#define Ncout       std::cout
+#define Ncerr       std::cerr
+#define Nmemset     ::memset
+#define Nmemcpy     ::memcpy
 #ifdef WIN32
-#define Nsntprintf   _snprintf
+#define Nsntprintf  _snprintf
+#define Nvsntprintf _vsnprintf
+#else
+#define Nsntprintf  snprintf
+#define Nvsntprintf vsnprintf
+#endif
+#endif
+
+#ifdef WIN32
 #define NsnprintfW  _snwprintf
 #define NsnprintfV  _snprintf
 #else
-#define Nsntprintf   snprintf
-#define NsnprintfW   snwprintf
-#define NsnprintfV   snprintf
-#endif
+#define NsnprintfW  snwprintf
+#define NsnprintfV  snprintf
 #endif
 
 #include <locale.h>  
@@ -226,7 +231,7 @@ typedef _WStringBase WString;
 typedef _VStringStreamBase VStringStream;
 typedef _WStringStreamBase WStringStream;
 
-#if NII_STRING == NII_W_STRING || _UNICODE
+#if NII_STRING
     #define NIILW(T) L##T
     #define _NIILW(T) NIILW(T)
     typedef _WStringBase        String;
