@@ -174,6 +174,18 @@ namespace NII
         static void tokenise(const VString & str, VStringList & out, const VString & delims = "\t\n ",
             const VString & enddelims = "\"", Nui32 cnt = 0);
 
+        /** 格式化字符串
+        @param c 仅支持不大于1024个字符
+        @version NIIEngine 4.0.0
+        */
+        static const WString & format(WString & out, Nwchar * c, ...);
+        
+        /** 格式化字符串
+        @param c 仅支持不大于1024个字符
+        @version NIIEngine 4.0.0
+        */
+        static const VString & format(VString & out, Nchar * c, ...);
+
         /** 检测字符串是否以指定匹配结尾
         @param[in] match 匹配
         @param[in] lowerCase 把字符串转换成小写字母去匹配
@@ -228,7 +240,15 @@ namespace NII
         @param[out] path 路径
         @version NIIEngine 3.0.0
         */
-        static void splitFilename(const String & file, String & name, String & path);
+        static void splitFilename(const WString & file, WString & name, WString & path);
+
+        /** 分割路径文件名成分
+        @param[in] file 完整的文件路径名
+        @param[out] name 文件名(含扩展名)
+        @param[out] path 路径
+        @version NIIEngine 3.0.0
+        */
+        static void splitFilename(const VString & file, VString & name, VString & path);
 
         /** 分割路径成分
         extension and path.
