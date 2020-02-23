@@ -221,6 +221,11 @@ namespace NII_NET
 		@version NIIEngine 3.0.0
 		*/
 		static bool isNum(const String & src);
+        
+        /** 是否相同
+        @version NIIEngine 3.0.0
+        */
+        static bool isEqual(const String o1, const String & o2);
     protected:
         Nindex mIndex;              ///< 局部区域中的索引
     };
