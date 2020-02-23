@@ -95,7 +95,7 @@ namespace NII
         /** 路径斜杠
         @version NIIEngine 4.0.0
         */
-        static bool isPathSlash(Nui8 c);
+        static bool isPathSlash(Ntchar c);
         
         /** 路径存在
         @version NIIEngine 4.0.0

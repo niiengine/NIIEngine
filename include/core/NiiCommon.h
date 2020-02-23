@@ -286,4 +286,27 @@ namespace NII
     */
     NIIi _EngineAPI findCmdArgs(NIIi args, Ntchar ** argv, SingleArgList & arg1, ComplexArgList & arg2);
 }
+
+#if (N_PLAT != N_PLAT_WIN32) && !defined(__GNUC__)  &&!defined(__GCCXML__)
+
+#include <time.h>
+struct timezone
+{
+	int tz_minuteswest;
+	int tz_dsttime;
+};
+#if defined(N_PLAT_WINRT)
+struct timeval 
+{
+	long tv_sec;
+	long tv_usec;
+};
+#endif
+int gettimeofday(struct timeval *tv, struct timezone *tz);
+
+#else
+    
+#include <sys/time.h>
+
+#endif
 #endif

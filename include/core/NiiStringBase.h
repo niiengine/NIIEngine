@@ -43,6 +43,7 @@
 #endif
 
 #ifdef _UNICODE
+
 #define Nprintf     wprintf    
 #define Nscanf_s    wscanf
 #define Nsscanf     swscanf
@@ -73,11 +74,15 @@
 #ifdef WIN32
 #define Nsntprintf  _snwprintf
 #define Nvsntprintf _vsntprintf
+#define Nmkdir(x)   _wmkdir(x)
 #else
 #define Nsntprintf  snwprintf
 #define Nvsntprintf vsntprintf
+#define Nmkdir(x)   wmkdir(x, 0744)
 #endif
+
 #else
+    
 #define Nprintf     printf
 #define Nscanf_s    scanf
 #define Nsscanf     sscanf
@@ -108,10 +113,13 @@
 #ifdef WIN32
 #define Nsntprintf  _snprintf
 #define Nvsntprintf _vsnprintf
+#define Nmkdir(x)     _mkdir(x)
 #else
 #define Nsntprintf  snprintf
 #define Nvsntprintf vsnprintf
+#define Nmkdir(x)     mkdir(x, 0744)
 #endif
+
 #endif
 
 #ifdef WIN32
