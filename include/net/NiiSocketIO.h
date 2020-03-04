@@ -56,6 +56,7 @@ namespace NII
     {
         friend class SocketManager;
         friend class SocketPrc;
+        friend class NetworkObj;
     public:
         SocketIO();
         virtual ~SocketIO();
@@ -96,7 +97,7 @@ namespace NII
         /** 获取端口处理对象
         @version NIIEngine 4.0.0
         */
-        SocketPrc * getPrc() const;
+        inline SocketPrc * getPrc() const { return mSocketPrc; }
         
         /** 发送数据
         @version NIIEngine 4.0.0
@@ -113,6 +114,14 @@ namespace NII
 		@version NIIEngine 4.0.0
 		*/
 		void setTimer(bool set, TimeDurMS delay, TimeDurMS interval, bool sync = true);
+        
+        /** 设置信息处理方式
+        @remark 关于 onMessage 处理方式，默认主线程处理
+        @param[in] interval 异步处理间隔，当参数sync == false时有效。
+        @param[in] sync 是否主线程执行调用
+		@version NIIEngine 4.0.0
+        */
+        void setMessageTimer(TimeDurMS interval, bool sync = true);
         
         /** 数据读取时触发
         @version NIIEngine 4.0.0
@@ -193,12 +202,12 @@ namespace NII
         /** 创建消息
         @version NIIEngine 4.0.0
         */
-        virtual Message * create(Nui8 * buf, Nui32 size) const;
+        virtual SocketMessage * create(Nui8 * buf, Nui32 size) const;
     protected:
         /** 设置端口处理对象
         @version NIIEngine 4.0.0
         */
-        void setPrc(SocketPrc * prc);
+        inline void setPrc(SocketPrc * prc){ mSocketPrc = prc; }
     protected:
         typedef list<RingBuffer *>::type BufferList;
         typedef list<MdfMessage *>::type MessageList;
@@ -209,16 +218,14 @@ namespace NII
         ThreadMutex mOutMutex;
         MessageList mInList;
         BufferList mOutList;
-        RingBuffer mInBuffer;
-        VString mIP;
-        Nui16 mPort;        
+        RingBuffer mInBuffer;       
         TimeDurMS mLastSend;
         TimeDurMS mLastReceive;
         STbool mStop;
         STbool mAbort;
         STbool mBusy;
     };
-    
+    typedef vector<SocketIO *>::type SocketIOList; 
     
     /** ServerSocketIO
     @version NIIEngine 4.0.0

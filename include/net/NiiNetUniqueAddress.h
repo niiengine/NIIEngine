@@ -42,7 +42,7 @@ namespace NII
 {
 namespace NII_NET
 {
-        /** 网络唯一标识
+    /** 网络唯一标识
     @remark 即使是使用同个IP同个端口, 在运行机制中同一个socket可能包含多个处理机制
     @version NIIEngine 3.0.0
     */
@@ -94,7 +94,7 @@ namespace NII_NET
     public:
         UniqueAddress();
 
-        UniqueAddress(Message * msg);
+        UniqueAddress(SocketMessage * msg);
 
         UniqueAddress(const UniqueID & o);
 

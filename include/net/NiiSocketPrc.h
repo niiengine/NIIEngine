@@ -51,7 +51,7 @@ namespace NII
         {
             S_Unknow,           ///< 未初始化
             S_Listening,        ///< 监听
-            S_Connecting,       ///< 连接
+            S_Connecting,       ///< 连接中
             S_Connected,        ///< 已连接
             S_Closing,          ///< 关闭中
             S_Closed            ///< 已关闭
@@ -61,34 +61,29 @@ namespace NII
         virtual ~SocketPrc();
 
         /** 设置socket
-        @version NIIEngine 4.0.0
+        @version NIIEngine 4.0.0 adv api
         */
-        void setSocket(Nsocket s) { mSocket = s; }
+        inline SocketIO * getStream() const { return mIO; }
+        
+        /** 设置socket
+        @version NIIEngine 4.0.0 adv api
+        */
+        inline void setSocket(Nsocket s) { mSocket = s; }
         
         /** 获取socket
         @version NIIEngine 4.0.0
         */
-        Nsocket getSocket() const { return mSocket; }
+        inline Nsocket getSocket() const { return mSocket; }
 
         /** 设置状态
         @version NIIEngine 4.0.0
         */
-        void setState(State state) { mState = state; }
-
-        /** 发送
-        @version NIIEngine 4.0.0
-        */
-        NIIi send(void * data, NCount len);
-
-        /** 接收
-        @version NIIEngine 4.0.0
-        */
-        NIIi receive(void * data, NCount len);
+        inline void setState(State state) { mState = state; }
 
         /** 关闭
         @version NIIEngine 4.0.0
         */
-        NIIi close();
+        virtual NIIi close();
 
         /** 设置发送缓存大小
         @version NIIEngine 4.0.0
@@ -113,49 +108,59 @@ namespace NII
         /** 获取连向的远端ip
         @version NIIEngine 4.0.0
         */
-        const VString & getRemoteIP() const { return mRemoteIP; }
+        inline const VString & getRemoteIP() const { return mRemoteIP; }
 
         /** 获取本地接收的ip
         @version NIIEngine 4.0.0
         */
-        const VString & GetLocalIP() const { return mIP; }
+        inline const VString & GetLocalIP() const { return mIP; }
 
         /** 获取连向的远端port
         @version NIIEngine 4.0.0
         */
-        Nui16 getRemotePort() const { return mRemotePort; }
+        inline Nui16 getRemotePort() const { return mRemotePort; }
 
         /** 获取本地接收的port
         @version NIIEngine 4.0.0
         */
-        Nui16 GetLocalPort() const { return mPort; }
+        inline Nui16 GetLocalPort() const { return mPort; }
     public:
         /** 当读取时
         @version NIIEngine 4.0.0
         */
-        void onRead();
+        virtual void onRead();
 
         /** 当写入时
         @version NIIEngine 4.0.0
         */
-        void onWrite();
+        virtual void onWrite();
 
         /** 当关闭时
         @version NIIEngine 4.0.0
         */
-        void onClose();
+        virtual void onClose();
     protected:
         SocketPrc();
         
         /** 创建监听(被动连接)socket
         @version NIIEngine 4.0.0
         */
-        Nid listen(const String & ip, Nui16 port);
+        virtual Nid listen(const String & ip, Nui16 port, NCount maxlink);
 
         /** 创建主动连接socket
         @version NIIEngine 4.0.0
         */
-        Nid connect(const String & ip, Nui16 port);
+        virtual Nid connect(const String & ip, Nui16 port);
+        
+        /** 发送
+        @version NIIEngine 4.0.0
+        */
+        virtual NIIi send(void * data, NCount len);
+
+        /** 接收
+        @version NIIEngine 4.0.0
+        */
+        virtual NIIi receive(void * data, NCount len);
 
         /** 设置地址
         @version NIIEngine 4.0.0
@@ -181,6 +186,11 @@ namespace NII
         @version NIIEngine 4.0.0
         */
         void setNoDelay(Nsocket fd);
+        
+        /** 设置广播模式
+        @version NIIEngine 4.0.0
+        */
+        void setBroadcast(Nsocket fd);
         
         /** 设置延时关闭
         @version NIIEngine 4.0.0
@@ -208,9 +218,10 @@ namespace NII
         void setTTL(Nsocket fd, Ni32 ttl);
     protected:
         SocketIO * mIO;
+        Address * mAddress;
         Nsocket mSocket;
         VString mRemoteIP;
-        VString mIP;        
+        VString mIP; 
         Nui16 mRemotePort;
         Nui16 mPort;
         State mState;

@@ -51,6 +51,7 @@ namespace NII_NET
     {
     public:
         IPV6Address();
+        IPV6Address(const IPV6Address & o);
         IPV6Address(const String & src);
         IPV6Address(const String & src, Nui16 port);
 
@@ -148,6 +149,14 @@ namespace NII_NET
         
 		/// @copydetails Address::getLocalHost
         const Address & getLocalHost() const;
+        
+        /// @copydetails Address::clone
+        Address * clone() const;
+        
+        /** 是否属于IPV6地址成分
+        @version NIIEngine 4.0.0
+        */
+        static bool isAddress(const String & str);
 	public:
         static const IPV6Address LOCALHOST;
         static const IPV6Address INVALID;

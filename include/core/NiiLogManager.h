@@ -147,7 +147,7 @@ namespace NII
         Log * mDefaultLog;
     };
 
-#define N_LOG(x) N_Only(Log).log(x)
+#define N_log(x) N_Only(Log).log(x)
 
 #if N_PLAT == N_PLAT_WIN32
     #ifdef N_DEBUG

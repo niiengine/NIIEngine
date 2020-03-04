@@ -120,6 +120,23 @@ namespace Mdf
 		bool mCopyData;
     };
 
+	/**
+	@version 0.9.1
+	*/
+    class MdfNetAPI SocketMessage : public Message
+    {
+    public:
+        SocketMessage(NCount size);
+        SocketMessage(Nui8 * data, NCount size, bool copydata, bool autoDestroy = true, bool inner = false);
+        ~SocketMessage();
+	public:
+        UniqueID mID;
+        Address * mAddress;
+        NBitCount mBitCount;
+        bool mAutoDestroy;
+        bool mLocal;
+    };
+    
     /** Mdf Application layer messages
     @version 0.9.1
     */

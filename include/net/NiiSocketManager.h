@@ -37,6 +37,8 @@
 #define _NII_SOCKETManager_H_
 
 #include "NiiNetPreInclude.h"
+#include "NiiSingleton.h"
+#include "NiiNetAddress.h"
 
 namespace NII
 {

@@ -104,6 +104,12 @@ namespace NII_NET
     public:
         virtual ~Address(){}
 
+        /// 相等操作符
+        virtual bool operator == (const Address & o) = 0;
+
+        /// 不等操作符
+        virtual bool operator != (const Address & o) = 0;
+        
         /** 设置本地字节序端口
         @remark 字节序无别
         @param[in] port 端口号
@@ -225,11 +231,136 @@ namespace NII_NET
         /** 是否相同
         @version NIIEngine 3.0.0
         */
-        static bool isEqual(const String o1, const String & o2);
+        static bool isEqual(const String & o1, const String & o2);
     protected:
         Nindex mIndex;              ///< 局部区域中的索引
     };
     typedef vector<Address *>::type AddressList;
+    
+    /** 网络地址
+    @version NIIEngine 3.0.0
+    */
+    class _EngineAPI AutoAddress : public NetAlloc
+    {
+    public:
+        Address(Address * mData);
+        virtual ~AutoAddress();
+
+        /** 设置本地字节序端口
+        @remark 字节序无别
+        @param[in] port 端口号
+        */
+        virtual void setHSBPort(Nui16 port);
+
+        /** 获取本地字节序端口
+        @remark 字节序无别
+        @version NIIEngine 3.0.0
+        */
+        virtual Nui16 getHSBPort() const;
+
+        /** 设置网络字节序端口
+        @remark 字节序有别
+        @param[in] port 端口好
+        */
+        virtual void setNSBPort(Nui16 port);
+
+        /** 获取网络字节序端口
+        @remark 字节序有别
+        @version NIIEngine 3.0.0
+        */
+        virtual Nui16 getNSBPort() const;
+
+        /** 获取IP版本
+        @version NIIEngine 3.0.0
+        */
+        virtual Nui32 getVersion() const;
+
+        /** 获取协议包类型
+        @version NIIEngine 3.0.0
+        */
+        virtual Nui32 getProto() const;
+
+        /** 获取结构大小
+        @version NIIEngine 3.0.0
+        */
+        virtual NCount getSize() const;
+
+        /** 设置成本地
+        @version NIIEngine 3.0.0
+        */
+        virtual void setLocalHost();
+
+        /** 设置为无效地址
+        @version NIIEngine 3.0.0
+        */
+        virtual void setInvalid();
+
+        /** 本地
+        @version NIIEngine 3.0.0
+        */
+        virtual bool isLocalHost() const;
+
+        /** 局域网
+        @version NIIEngine 3.0.0
+        */
+        virtual bool isLan() const;
+
+		/** 是否无效地址
+		@version NIIEngine 3.0.0
+		*/
+		bool isInvalid() const;
+
+        /** 转换位数值
+        @version NIIEngine 3.0.0
+        */
+        virtual operator Nul() const;
+
+        /** 把数据写入到字符串中
+        @param[in] 输出字符串
+        @param[in] 是否包含端口端口
+        @version NIIEngine 3.0.0
+        */
+        virtual void write(String & out, bool port = true) const;
+
+        /** 从字符串中读取数据
+        @param[in] 地址字符串
+        */
+        virtual bool read(const String & in);
+
+		/** 从字符串中读取数据
+		@param[in] in 地址字符串
+		@param[in] port 端口号
+		*/
+		virtual bool read(const String & in, Nui16 port);
+
+        /** 把数据读取到网络序列中
+        @version NIIEngine 3.0.0
+        */
+        virtual void write(NetSerializer * out) const;
+
+		/** 把网络序列写入到数据中
+		@version NIIEngine 3.0.0
+		*/
+		virtual void read(const NetSerializer * in);
+
+        /** 副本对象
+        @note 使用完必须用 N_delete 释放,否则内存泄露
+        @version NIIEngine 3.0.0
+        */
+        Address * clone() const;
+        
+        /** 获取一个无效地址
+        @version NIIEngine 3.0.0
+        */
+        const Address & getInvalid() const;
+
+        /** 获取本地地址
+        @version NIIEngine 3.0.0
+        */
+        const Address & getLocalHost() const;
+    protected:
+        Address * mData;
+    };
 }
 }
 #endif
