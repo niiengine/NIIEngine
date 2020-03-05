@@ -57,74 +57,69 @@ namespace NII_NET
         NetworkObj();
         virtual ~NetworkObj();
         
-        /**
+        /** 是否运行
         @version NIIEngine 4.0.0
         */
         bool isRun() const;
         
-        /**
+        /** 运行
         @version NIIEngien 4.0.0
         */
         bool run(Nui16 maxLink, NIIi prclevel = N_ThreadPriorityHigh);
 
-        /**
+        /** 停止运作
         @version NIIEngine 4.0.0
         */
         void stop();
         
-        /**
+        /** 创建服务端(监听)
         @version NIIEngien 4.0.0
         */
         Nid listen(const String & ip, Nui16 port, Nui16 maxLink = 64, Nui16 sfamily = AF_INET, 
             const String & certfile = "", const String & keyfile = "", const String & keypw = "");
 
-        /**
+        /** 创建客服端
         @version NIIEngine 4.0.0
         */
         Address * connect(const String & host, Nui16 port, Nui16 sfamily = AF_INET, 
             const String & certfile = "", const String & keyfile = "", const String & keypw = "");
 
-        /**
+        /** 关闭连接
         @version NIIEngine 4.0.0
         */
         void close(const Address & address);
         
-        /**
+        /** 启用SSL加密
         @version NIIEngine 4.0.0
         */
         void setSSL(const Address & address, bool set = true);
 
-        /**
+        /** 是否启用SSL加密
         @version NIIEngine 4.0.0
         */
         bool isSSLActive(const Address & address);
 
-        /**
+        /** 发送
         @version NIIEngine 4.0.0
         */
         virtual void send(const Nui8 * data, NCount size, const Address & address, bool broadcast);
 
-        /**
+        /** 获取发送剩余大小
         @version NIIEngine 4.0.0
         */
         Nui32 getOutputSize(const Address & address) const;
 
-        /**
+        /** 接收
         @version NIIEngine 4.0.0
         */
         virtual SocketMessage * receive();
 
-        /**
+        /** 获取所有连接
         @version NIIEngine 4.0.0
         */
         void getConnect(AddressList & remotelist) const;
 
-        /**
-        @version NIIEngine 4.0.0
-        */
-        NCount getConnectCount() const;
-
-        /** 
+        /** 接收(主动添加)
         @version NIIEngine 4.0.0
         */
         void addMessage(SocketMessage * msg, bool head);
@@ -212,7 +207,7 @@ namespace NII_NET
     #endif
     };
 
-    /**
+    /** 集群
     @version NIIEngine 4.0.0
     */
     class _EngineAPI ClusterNetworkObj : public NetworkObj
