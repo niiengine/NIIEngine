@@ -123,11 +123,11 @@ namespace Mdf
 	/**
 	@version 0.9.1
 	*/
-    class MdfNetAPI SocketMessage : public Message
+    class _EngineAPI SocketMessage : public Message
     {
     public:
         SocketMessage(NCount size);
-        SocketMessage(Nui8 * data, NCount size, bool copydata, bool autoDestroy = true, bool inner = false);
+        SocketMessage(Nui8 * data, NCount size, bool copydata = true, bool autoDestroy = true, bool inner = false);
         ~SocketMessage();
 	public:
         UniqueID mID;

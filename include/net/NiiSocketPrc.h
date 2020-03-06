@@ -124,7 +124,7 @@ namespace NII
         @version NIIEngine 4.0.0
         */
         inline Nui16 GetLocalPort() const { return mPort; }
-    public:
+    protected:
         /** 当读取时
         @version NIIEngine 4.0.0
         */
@@ -139,6 +139,16 @@ namespace NII
         @version NIIEngine 4.0.0
         */
         virtual void onClose();
+        
+        /** 服务端连接时触发
+        @version NIIEngine 4.0.0
+        */
+        virtual void onConnect(Address *){}
+        
+        /** 客户端连接时触发
+        @version NIIEngine 4.0.0
+        */
+        virtual void onConfirm(Address *){}
     protected:
         SocketPrc();
         
@@ -226,5 +236,7 @@ namespace NII
         Nui16 mPort;
         State mState;
     };
+    
+    typedef vector<SocketPrc *>::type SocketPrcList;
 }
 #endif

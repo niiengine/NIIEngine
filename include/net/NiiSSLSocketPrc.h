@@ -56,18 +56,27 @@ namespace NII
     public:
         SSLSocketPrc(SocketIO * io);
         virtual ~SSLSocketPrc();
-        
-        /// 构建ssl
-        bool setupSSL(SSL_CTX * ctx, SSL_METHOD * meth);
 
-        /// 关闭ssl
+        /** 初始化ssl上下文
+        @version NIIEngine 4.0.0
+        */
+        int initSSLCTX(const String & certfile, const String & keyfile, const String & keypw)
+
+        /** 构建ssl
+        @version NIIEngine 4.0.0
+        */
+        SSL * setupSSL(SSL_CTX * ctx);
+
+        /** 关闭ssl
+        @version NIIEngine 4.0.0
+        */
         void shutdownSSL();
-        
+
         /** 获取ssl上下文
         @version NIIEngine 4.0.0
         */
         inline SSL_CTX * getSSLCTX() const { return mSSLctx; }
-        
+
         /** 获取ssl
         @version NIIEngine 4.0.0
         */
@@ -99,7 +108,7 @@ namespace NII
         @version NIIEngine 4.0.0
         */
         inline void setSSLCTX(SSL_CTX * ctx) { mSSLctx = ctx; }
-        
+
         /** 发送
         @version NIIEngine 4.0.0
         */
@@ -109,15 +118,18 @@ namespace NII
         @version NIIEngine 4.0.0
         */
         NIIi receive(void * data, NCount size);
-        
+
         /// 连接ssl
         Ni32 connectSSL();
-        
+
         /// 输出ssl错误
         void getSSLError(NIIi res);
     protected:
         SSL * mSSL;
         SSL_CTX * mSSLctx;
+        String mCertFile;
+        String mKeyFile;
+        String mKeyPW;
         bool mSSLConnect;
     };
 }

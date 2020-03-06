@@ -194,17 +194,11 @@ namespace NII_NET
         NIIi mThreadPrcLevel;
         STNui32 mRunThreadCount;
         STbool mRun;
-    #if N_OpenSSLSupport == 1
-        SSL_CTX * mSSLctx;
-        SSL_METHOD * mSSLMethod;
-        String mCertFile;
-        String mKeyFile;
-        String mKeyPW;
+
         ThreadMutex mSSLConnectMutex;
         ThreadMutex mSSLAddressMutex;
         AddressList mSSLAddressList;
         AddressList mSSLConnectList;
-    #endif
     };
 
     /** ¼¯Èº

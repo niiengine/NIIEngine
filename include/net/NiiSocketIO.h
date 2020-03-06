@@ -203,6 +203,11 @@ namespace NII
         @version NIIEngine 4.0.0
         */
         virtual SocketMessage * create(Nui8 * buf, Nui32 size) const;
+        
+        /** 创建实例
+        @version NIIEngine 4.0.0
+        */
+        virtual SocketIO * createInstance() const = 0;
     protected:
         /** 设置端口处理对象
         @version NIIEngine 4.0.0
@@ -241,6 +246,9 @@ namespace NII
         @version NIIEngine 4.0.0
         */
         virtual void onConnect() {}
+        
+        /// SocketIO::createInstance
+        virtual SocketIO * createInstance() const;
     };
     
     /** ClientSocketIO
@@ -257,6 +265,9 @@ namespace NII
         @version NIIEngine 4.0.0
         */
         virtual void onConfirm() {}
+        
+        /// SocketIO::createInstance
+        virtual SocketIO * createInstance() const;
     };
 }
 #endif
