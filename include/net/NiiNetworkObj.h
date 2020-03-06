@@ -33,8 +33,6 @@
 ------------------------------------------------------------------------------
 */
 
-#include "NativeFeatureIncludes.h"
-
 #ifndef _NII_NETWORKOBJ_H_
 #define _NII_NETWORKOBJ_H_
 

@@ -107,7 +107,7 @@ namespace NII
         /** 发送数据
         @version NIIEngine 4.0.0
         */
-        inline NIIi send(MdfMessage * msg) { return send(msg->getBuffer(), msg->getSize()); }
+        inline NIIi send(Message * msg) { return send(msg->getBuffer(), msg->getSize()); }
 
 		/** 设置定时器
         @param[in] sync 是否主线程执行调用
@@ -156,7 +156,7 @@ namespace NII
         /** 收到消息时触发
         @version NIIEngine 4.0.0
         */
-        virtual void onMessage(MdfMessage * msg) {}
+        virtual void onMessage(Message * msg) {}
 
         /** 发送数据
         @version NIIEngine 4.0.0

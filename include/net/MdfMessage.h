@@ -82,12 +82,12 @@ namespace Mdf
         /**
         @version 0.9.1
         */
-        inline MCount getWriteSize() const { return mWriteSize; }
-
+        virtual MCount getSize() const { return mWriteSize; }
+        
         /**
         @version 0.9.1
         */
-        virtual MCount getSize() const { return mWriteSize; }
+        inline MCount getWriteSize() const { return mWriteSize; }
 
         /**
         @version 0.9.1

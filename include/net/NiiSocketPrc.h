@@ -105,6 +105,11 @@ namespace NII
         */
         Nui32 getReceiveSize() const;
 
+        /** 获取地址
+        @version NIIEngine 4.0.0
+        */
+        inline Address * getAddress() const { return mAddress; }
+
         /** 获取连向的远端ip
         @version NIIEngine 4.0.0
         */
