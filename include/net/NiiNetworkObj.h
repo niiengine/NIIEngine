@@ -73,7 +73,7 @@ namespace NII_NET
         /** 创建服务端(监听)
         @version NIIEngien 4.0.0
         */
-        Nid listen(const String & ip, Nui16 port, Nui16 maxLink = 64, Nui16 sfamily = AF_INET, 
+        Nid listen(const String & ip, Nui16 port, Nui16 sfamily = AF_INET, Nui16 maxLink = 128,
             const String & certfile = "", const String & keyfile = "", const String & keypw = "");
 
         /** 创建客服端
@@ -170,6 +170,7 @@ namespace NII_NET
         typedef list<SocketMessage *>::type MessageList;
         typedef list<Address *>::type AddressList;
     protected:
+        SocketPrcList mListenList;
         SocketIOList mRemoteList;
         Plugins mPluginList;
         ThreadMutex mClientSocketMutex;
@@ -194,7 +195,7 @@ namespace NII_NET
         STbool mRun;
 
         ThreadMutex mSSLConnectMutex;
-        ThreadMutex mSSLAddressMutex;
+        ThreadRWMutex mSSLAddressMutex;
         AddressList mSSLAddressList;
         AddressList mSSLConnectList;
     };

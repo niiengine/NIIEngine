@@ -61,19 +61,19 @@ namespace NII_NET
 
 		/**
 		*/
-        void write(String & out) const;
+        void read(String & out) const;
 
 		/**
 		*/
-        bool read(const String & in);
+        bool write(const String & in);
 
 		/**
 		*/
-        void write(NetSerializer * out) const;
+        void read(NetSerializer * out) const;
 
 		/**
 		*/
-        void read(const NetSerializer * in);
+        void write(const NetSerializer * in);
 
 		/**
 		*/
@@ -114,11 +114,11 @@ namespace NII_NET
 
 		/**
 		*/
-		void write(String & out, bool port = true) const;
+		void read(String & out, bool port = true) const;
 
 		/**
 		*/
-		void read(const String & in, bool port = true);
+		void write(const String & in, bool port = true);
 
 		/**
 		*/

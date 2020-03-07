@@ -57,10 +57,10 @@ namespace NII_NET
         /// 等于操作符
         IPV4Address & operator = (const IPV4Address & o);
 
-        /// 相等操作符
+        /// @copydetail Address::operator ==
         bool operator == (const Address & o);
 
-        /// 不等操作符
+        /// @copydetail Address::operator !=
         bool operator != (const Address & o);
 
         /// 大于操作符
@@ -120,25 +120,25 @@ namespace NII_NET
         operator Nul() const;
 
         /// @copydetail Address::read
-        void write(String & out, bool port = true) const;
+        void read(String & out, bool port = true) const;
 
         /**
         @copydetail Address::write
         @note 标准格式 192.168.0.1:9393
         */
-        bool read(const String & in);
+        bool write(const String & in);
 
         /**
         @copydetail Address::write
         @note 标准格式 192.168.0.1:9393 or localhost:9393
         */
-        bool read(const String & in, Nui16 port);
+        bool write(const String & in, Nui16 port);
+
+        /// @copydetail Address::read
+        void read(NetSerializer * out) const;
 
         /// @copydetail Address::write
-        void write(NetSerializer * out) const;
-
-        /// @copydetail Address::write
-        void read(const NetSerializer * in);
+        void write(const NetSerializer * in);
 
         /// @copydetails Address::getInvalid
         const Address & getInvalid() const;

@@ -59,6 +59,16 @@ namespace NII
     public:
         SocketPrc(SocketIO * io);
         virtual ~SocketPrc();
+        
+        /** 创建监听(被动连接)socket
+        @version NIIEngine 4.0.0
+        */
+        virtual Nid listen(const String & ip, Nui16 port, Nui16 sfamily = AF_INET, NCount maxlink = 128);
+
+        /** 创建主动连接socket
+        @version NIIEngine 4.0.0
+        */
+        virtual Nid connect(const String & ip, Nui16 port, Nui16 sfamily = AF_INET);
 
         /** 设置socket
         @version NIIEngine 4.0.0 adv api
@@ -148,24 +158,14 @@ namespace NII
         /** 服务端连接时触发
         @version NIIEngine 4.0.0
         */
-        virtual void onConnect(Address *){}
+        virtual void onConnect(){}
         
         /** 客户端连接时触发
         @version NIIEngine 4.0.0
         */
-        virtual void onConfirm(Address *){}
+        virtual void onConfirm(){}
     protected:
         SocketPrc();
-        
-        /** 创建监听(被动连接)socket
-        @version NIIEngine 4.0.0
-        */
-        virtual Nid listen(const String & ip, Nui16 port, NCount maxlink);
-
-        /** 创建主动连接socket
-        @version NIIEngine 4.0.0
-        */
-        virtual Nid connect(const String & ip, Nui16 port);
         
         /** 发送
         @version NIIEngine 4.0.0

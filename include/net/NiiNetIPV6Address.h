@@ -58,10 +58,10 @@ namespace NII_NET
         /// 等于操作符
         IPV6Address & operator = (const IPV6Address & o);
 
-        /// 相等操作符
+        /// @copydetails Address::operator ==
         bool operator == (const IPV6Address & o);
 
-        /// 不等操作符
+        /// @copydetails Address::operator !=
         bool operator != (const IPV6Address & o);
 
         /// 大于操作符
@@ -121,28 +121,28 @@ namespace NII_NET
         operator Nul() const;
 
         /**
-        @copydetails Address::write
+        @copydetails Address::read
         @note 标准格式 [bbb1:aaad:eee3:ccc:3333:1111:aaaa:2222]:9394
         */
-        void write(String & out, bool port = true) const;
+        void read(String & out, bool port = true) const;
 
         /**
-        @copydetails Address::read
+        @copydetails Address::write
         @note 标准格式 [ddd1:aaad:eee3:ccc:3333:1111:dddd:2222]:9394
         */
-        bool read(const String & in);
+        bool write(const String & in);
 
         /**
-        @copydetails Address::read
+        @copydetails Address::write
         @note 标准格式 [ccc1:aaad:eee3:ccc:3333:1111:dddd:2222]:9394
         */
-        bool read(const String & in, Nui16 port);
-
-        /// @copydetails Address::write
-        void write(NetSerializer * out) const;
+        bool write(const String & in, Nui16 port);
 
         /// @copydetails Address::read
-        void read(const NetSerializer * in);
+        void read(NetSerializer * out) const;
+
+        /// @copydetails Address::write
+        void write(const NetSerializer * in);
 
 		/// @copydetails Address::getInvalid
         const Address & getInvalid() const;

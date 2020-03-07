@@ -63,10 +63,10 @@ namespace NII_NET
 		Nui16 getIndex() const;
 
         /// 从指定字符串中转换出网络ID
-        bool read(const String & in);
+        bool write(const String & in);
 
         /// 转换网络ID到一个指定字符串
-        void write(String & out) const;
+        void read(String & out) const;
 
         /// 等于操作符
         AddressID & operator =(const AddressID & org);
@@ -104,10 +104,14 @@ namespace NII_NET
     public:
         virtual ~Address(){}
 
-        /// 相等操作符
+        /** 相等操作符
+        @version NIIEngine 3.0.0
+        */
         virtual bool operator == (const Address & o) = 0;
 
-        /// 不等操作符
+        /** 不等操作符
+        @version NIIEngine 3.0.0
+        */
         virtual bool operator != (const Address & o) = 0;
         
         /** 设置本地字节序端口
@@ -184,28 +188,28 @@ namespace NII_NET
         @param[in] 是否包含端口端口
         @version NIIEngine 3.0.0
         */
-        virtual void write(String & out, bool port = true) const = 0;
+        virtual void read(String & out, bool port = true) const = 0;
 
         /** 从字符串中读取数据
         @param[in] 地址字符串
         */
-        virtual bool read(const String & in) = 0;
+        virtual bool write(const String & in) = 0;
 
 		/** 从字符串中读取数据
 		@param[in] in 地址字符串
 		@param[in] port 端口号
 		*/
-		virtual bool read(const String & in, Nui16 port) = 0;
+		virtual bool write(const String & in, Nui16 port) = 0;
 
         /** 把数据读取到网络序列中
         @version NIIEngine 3.0.0
         */
-        virtual void write(NetSerializer * out) const = 0;
+        virtual void read(NetSerializer * out) const = 0;
 
 		/** 把网络序列写入到数据中
 		@version NIIEngine 3.0.0
 		*/
-		virtual void read(const NetSerializer * in) = 0;
+		virtual void write(const NetSerializer * in) = 0;
 
         /** 副本对象
         @note 使用完必须用 N_delete 释放,否则内存泄露
@@ -240,123 +244,79 @@ namespace NII_NET
     /** 网络地址
     @version NIIEngine 3.0.0
     */
-    class _EngineAPI AutoAddress : public NetAlloc
+    class _EngineAPI AutoAddress : public Address
     {
     public:
-        Address(Address * mData);
+        Address(Address * data);
         virtual ~AutoAddress();
 
-        /** 设置本地字节序端口
-        @remark 字节序无别
-        @param[in] port 端口号
-        */
+        /// @copydetails Address::operator ==
+        virtual bool operator == (const Address & o) = 0;
+
+        /// @copydetails Address::operator !=
+        virtual bool operator != (const Address & o) = 0;
+        
+        /// @copydetails Address::setHSBPort
         virtual void setHSBPort(Nui16 port);
 
-        /** 获取本地字节序端口
-        @remark 字节序无别
-        @version NIIEngine 3.0.0
-        */
+        /// @copydetails Address::getHSBPort
         virtual Nui16 getHSBPort() const;
 
-        /** 设置网络字节序端口
-        @remark 字节序有别
-        @param[in] port 端口好
-        */
+        /// @copydetails Address::setNSBPort
         virtual void setNSBPort(Nui16 port);
 
-        /** 获取网络字节序端口
-        @remark 字节序有别
-        @version NIIEngine 3.0.0
-        */
+        /// @copydetails Address::getNSBPort
         virtual Nui16 getNSBPort() const;
 
-        /** 获取IP版本
-        @version NIIEngine 3.0.0
-        */
+        /// @copydetails Address::getVersion
         virtual Nui32 getVersion() const;
 
-        /** 获取协议包类型
-        @version NIIEngine 3.0.0
-        */
+        /// @copydetails Address::getProto
         virtual Nui32 getProto() const;
 
-        /** 获取结构大小
-        @version NIIEngine 3.0.0
-        */
+        /// @copydetails Address::getSize
         virtual NCount getSize() const;
 
-        /** 设置成本地
-        @version NIIEngine 3.0.0
-        */
+        /// @copydetails Address::setLocalHost
         virtual void setLocalHost();
 
-        /** 设置为无效地址
-        @version NIIEngine 3.0.0
-        */
+        /// @copydetails Address::setInvalid
         virtual void setInvalid();
 
-        /** 本地
-        @version NIIEngine 3.0.0
-        */
+        /// @copydetails Address::isLocalHost
         virtual bool isLocalHost() const;
 
-        /** 局域网
-        @version NIIEngine 3.0.0
-        */
+        /// @copydetails Address::isLan
         virtual bool isLan() const;
 
-		/** 是否无效地址
-		@version NIIEngine 3.0.0
-		*/
+		/// @copydetails Address::isInvalid
 		bool isInvalid() const;
 
-        /** 转换位数值
-        @version NIIEngine 3.0.0
-        */
+        /// @copydetails Address::Nul
         virtual operator Nul() const;
 
-        /** 把数据写入到字符串中
-        @param[in] 输出字符串
-        @param[in] 是否包含端口端口
-        @version NIIEngine 3.0.0
-        */
-        virtual void write(String & out, bool port = true) const;
+        /// @copydetails Address::read
+        virtual void read(String & out, bool port = true) const;
 
-        /** 从字符串中读取数据
-        @param[in] 地址字符串
-        */
-        virtual bool read(const String & in);
+        /// @copydetails Address::write
+        virtual bool write(const String & in);
 
-		/** 从字符串中读取数据
-		@param[in] in 地址字符串
-		@param[in] port 端口号
-		*/
-		virtual bool read(const String & in, Nui16 port);
+		/// @copydetails Address::write
+		virtual bool write(const String & in, Nui16 port);
 
-        /** 把数据读取到网络序列中
-        @version NIIEngine 3.0.0
-        */
-        virtual void write(NetSerializer * out) const;
+        /// @copydetails Address::read
+        virtual void read(NetSerializer * out) const;
 
-		/** 把网络序列写入到数据中
-		@version NIIEngine 3.0.0
-		*/
-		virtual void read(const NetSerializer * in);
+		/// @copydetails Address::write
+		virtual void write(const NetSerializer * in);
 
-        /** 副本对象
-        @note 使用完必须用 N_delete 释放,否则内存泄露
-        @version NIIEngine 3.0.0
-        */
+        /// @copydetails Address::clone
         Address * clone() const;
         
-        /** 获取一个无效地址
-        @version NIIEngine 3.0.0
-        */
+        /// @copydetails Address::getInvalid
         const Address & getInvalid() const;
 
-        /** 获取本地地址
-        @version NIIEngine 3.0.0
-        */
+        /// @copydetails Address::getLocalHost
         const Address & getLocalHost() const;
     protected:
         Address * mData;

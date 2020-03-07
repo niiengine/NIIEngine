@@ -60,7 +60,7 @@ namespace NII
         /** 初始化ssl上下文
         @version NIIEngine 4.0.0
         */
-        int initSSLCTX(const String & certfile, const String & keyfile, const String & keypw)
+        SSL_CTX * initSSLCTX(const String & certfile, const String & keyfile, const String & keypw);
 
         /** 构建ssl
         @version NIIEngine 4.0.0
@@ -107,7 +107,7 @@ namespace NII
         /** 设置ssl上下文
         @version NIIEngine 4.0.0
         */
-        inline void setSSLCTX(SSL_CTX * ctx) { mSSLctx = ctx; }
+        void setSSLCTX(SSL_CTX * ctx);
 
         /** 发送
         @version NIIEngine 4.0.0
