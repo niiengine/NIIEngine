@@ -96,6 +96,58 @@ namespace NII_NET
         Nui16 mIdex;                    ///< 本地唯一ID
     };
     
+    /** 网络唯一标识
+    @version NIIEngine 3.0.0
+    */
+    class _EngineAPI UniqueID : public NetAlloc
+    {
+	public:
+        UniqueID();
+        UniqueID(Nui64 g);
+
+        UniqueID & operator = (const UniqueID & o);
+
+        bool operator == (const UniqueID & o) const;
+        bool operator != (const UniqueID & o) const;
+        bool operator > (const UniqueID & o) const;
+        bool operator < (const UniqueID & o) const;
+
+		/** 读取
+        @version NIIEngine 3.0.0
+		*/
+        void read(String & out) const;
+
+		/** 写入
+        @version NIIEngine 3.0.0
+		*/
+        bool write(const String & in);
+
+		/** 读取
+        @version NIIEngine 3.0.0
+		*/
+        void read(NetSerializer * out) const;
+
+		/** 写入
+        @version NIIEngine 3.0.0
+		*/
+        void write(const NetSerializer * in);
+
+		/** 获取大小
+        @version NIIEngine 3.0.0
+		*/
+        static NCount size();
+
+		/** 数字化
+        @version NIIEngine 3.0.0
+		*/
+        static Nul toNum(const UniqueID & guid);
+
+        static const UniqueID INVALID;
+	public:
+        Nindex mIndex;
+        Nui64 mGuid;
+    };
+    
     /** 网络地址
     @version NIIEngine 3.0.0
     */
@@ -104,6 +156,16 @@ namespace NII_NET
     public:
         virtual ~Address(){}
 
+        /** 设置索引
+        @version NIIEngine 3.0.0
+        */
+        inline void setIndex(Nindex idx){ mIndex = idx; }
+        
+        /** 获取索引
+        @version NIIEngine 3.0.0
+        */
+        inline Nindex getIndex() const { return mIndex; }
+        
         /** 相等操作符
         @version NIIEngine 3.0.0
         */
@@ -240,6 +302,56 @@ namespace NII_NET
         Nindex mIndex;              ///< 局部区域中的索引
     };
     typedef vector<Address *>::type AddressList;
+    
+    /** 网络唯一地址
+    @version NIIEngine 3.0.0
+    */
+    class _EngineAPI UniqueAddress : public NetAlloc
+    {
+    public:
+        UniqueAddress();
+
+        ~UniqueAddress();
+
+        UniqueAddress(SocketMessage * msg);
+
+        UniqueAddress(const UniqueID & o);
+
+        UniqueAddress(const Address * o);
+
+        UniqueAddress(const UniqueAddress & o);
+        
+        UniqueAddress & operator = (const UniqueID & o);
+
+        UniqueAddress & operator = (const Address & o);
+
+        UniqueAddress & operator = (const UniqueAddress & o);
+
+        bool operator == (const UniqueAddress & o) const;
+
+		/** 读取
+        @version NIIEngine 3.0.0
+		*/
+		void read(String & out, bool port = true) const;
+
+		/** 写入
+        @version NIIEngine 3.0.0
+		*/
+		void write(const String & in, bool port = true);
+
+		/** 是否有效
+        @version NIIEngine 3.0.0
+		*/
+		bool isValid() const;
+
+		/** 数字化
+        @version NIIEngine 3.0.0
+		*/
+        static Nul toNum(const UniqueAddress & obj);
+	public:
+        UniqueID mID;
+        Address * mAddress;
+    };
     
     /** 网络地址
     @version NIIEngine 3.0.0

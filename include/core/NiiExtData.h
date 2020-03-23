@@ -92,20 +92,10 @@ namespace NII
         */
         void getExtData(Nid key, String & value) const;
 
-        /** 获取第一个数据
+        /** 获取指定下标数据
         @version NIIEngine 3.0.0
         */
-        void * getFirst();
-
-        /** 获取第二个数据
-        @version NIIEngine 3.0.0
-        */
-        void * getSecond();
-
-        /** 获取第三个数据
-        @version NIIEngine 3.0.0
-        */
-        void * getThird();
+        void * getIndexData(Nidex idx);
 
         /** 清除所有数据
         @version NIIEngine 3.0.0

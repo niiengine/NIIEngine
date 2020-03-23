@@ -48,7 +48,7 @@ namespace NII_NET
     /** 网络对象
     @version NIIEngine 4.0.0
     */
-    class _EngineAPI NetworkObj
+    class _EngineAPI NetworkObj : public ThreadMain
     {
         friend class NetObjSocketPrc;
     public:
@@ -63,24 +63,22 @@ namespace NII_NET
         /** 运行
         @version NIIEngien 4.0.0
         */
-        bool run(Nui16 maxLink, NIIi prclevel = N_ThreadPriorityHigh);
+        bool start(Nui16 maxLink, NIIi prclevel = N_ThreadPriorityHigh);
 
         /** 停止运作
         @version NIIEngine 4.0.0
         */
         void stop();
-        
+
         /** 创建服务端(监听)
         @version NIIEngien 4.0.0
         */
-        Nid listen(const String & ip, Nui16 port, Nui16 sfamily = AF_INET, Nui16 maxLink = 128,
-            const String & certfile = "", const String & keyfile = "", const String & keypw = "");
+        Nid listen(const String & ip, Nui16 port, Nui16 sfamily = AF_INET, Nui16 maxConnect = 128);
 
         /** 创建客服端
         @version NIIEngine 4.0.0
         */
-        Address * connect(const String & host, Nui16 port, Nui16 sfamily = AF_INET, 
-            const String & certfile = "", const String & keyfile = "", const String & keypw = "");
+        Address * connect(const String & host, Nui16 port, Nui16 sfamily = AF_INET);
 
         /** 关闭连接
         @version NIIEngine 4.0.0
@@ -90,7 +88,7 @@ namespace NII_NET
         /** 启用SSL加密
         @version NIIEngine 4.0.0
         */
-        void setSSL(const Address & address, bool set = true);
+        void setSSL(const Address & address, const String & certfile = "", const String & keyfile = "", const String & keypw = "");
 
         /** 是否启用SSL加密
         @version NIIEngine 4.0.0
@@ -106,11 +104,6 @@ namespace NII_NET
         @version NIIEngine 4.0.0
         */
         Nui32 getOutputSize(const Address & address) const;
-
-        /** 接收
-        @version NIIEngine 4.0.0
-        */
-        virtual SocketMessage * receive();
 
         /** 获取所有连接
         @version NIIEngine 4.0.0
@@ -132,71 +125,75 @@ namespace NII_NET
         */
         void detach(Plugin * plugin);
     protected:
-        /** 更新/交换数据，由主线程调用
+        /// @copydetails ThreadMain::run
+        virtual void run(void * arg);
+
+        /** 创建消息包
         @version NIIEngine 4.0.0
         */
-        void update();
+        virtual SocketMessage * createMessage(NCount size);
+
+        /** 当接收到信息时触发
+        @version NIIEngine 4.0.0
+        */
+        virtual void onMessage(SocketMessage * msg) = 0;
         
-        /** 当信息
+        /** 当以客服端连接时
         @version NIIEngine 4.0.0
         */
-        void onMessage(SocketMessage * msg);
+        virtual void onClientConnect(Address * address);
 
-        /**
+        /** 当以服务端连接时
         @version NIIEngine 4.0.0
         */
-        SocketMessage * createMessage(NCount size);
+        virtual void onServerConnect(Address * address);
 
-        /**
+        /** 连接失败时
         @version NIIEngine 4.0.0
         */
-        void onClientConnect(Address * address);
+        virtual void onConnectFail(Address * address);
 
-        /**
+        /** 连接关闭时时
         @version NIIEngine 4.0.0
         */
-        void onServerConnect(Address * address);
-
-        /**
-        @version NIIEngine 4.0.0
-        */
-        void onConnectFail(Address * address);
-
-        /**
-        @version NIIEngine 4.0.0
-        */
-        void onConnectClose(Address * address);
+        virtual void onConnectClose(Address * address);
     protected:
         typedef list<SocketMessage *>::type MessageList;
         typedef list<Address *>::type AddressList;
+        
+        typedef struct _SSLData
+        {
+            Address * mAddres;
+            String mCertFile;
+            String mKeyFile;
+            String mKeyPW;
+        }SSLData;
+
+        typedef list<SSLData>::type SSLAddressList;
     protected:
         SocketPrcList mListenList;
         SocketIOList mRemoteList;
+        MessageList mInList;
         Plugins mPluginList;
-        ThreadMutex mClientSocketMutex;
+        ThreadMutex mRemoteListMutex;
         ThreadMutex mClientConnectMutex;
         ThreadMutex mServerConnectMutex;
         ThreadMutex mConnectFailMutex;        
         ThreadMutex mConnectCloseMutex;
         ThreadMutex mInMutex;
         Thread * mUpdateThread;
-        Thread * mConnectThread;
         AddressList mClientList;
         AddressList mServerList;
         AddressList mConnectFailList;
         AddressList mConnectClosetList;
-        AddressList mPrcClientList;
-        AddressList mPrcServerList;
-        AddressList mPrcClientCloseList;
-        AddressList mPrcClientFailList;
 
         NIIi mThreadPrcLevel;
         STNui32 mRunThreadCount;
         STbool mRun;
 
-        ThreadMutex mSSLConnectMutex;
+        ThreadRWMutex mSSLConnectMutex;
         ThreadRWMutex mSSLAddressMutex;
-        AddressList mSSLAddressList;
+        SSLAddressList mSSLAddressList;
         AddressList mSSLConnectList;
     };
 
@@ -215,26 +212,28 @@ namespace NII_NET
         /// @copydetails ClusterNetworkObj::send
         void send(const Nui8 * data, NCount size, const Address & address, bool broadcast);
 
-        /// @copydetails ClusterNetworkObj::receive
-        SocketMessage * receive();
-
         /// @copydetails ClusterNetworkObj::close
         void close(Address * address);
-
-        /// @copydetails ClusterNetworkObj::onClientConnect
+    protected:
+        /// @copydetails ThreadMain::run
+        void run(void * arg);
+        
+        /// @copydetails NetworkObj::onClientConnect
         void onClientConnect(Address * address);
 
-        /// @copydetails ClusterNetworkObj::onServerConnect
+        /// @copydetails NetworkObj::onServerConnect
         void onServerConnect(Address * address);
         
-        /// @copydetails ClusterNetworkObj::onConnectFail()
+        /// @copydetails NetworkObj::onConnectFail()
         void onConnectFail(Address * address);
 
-        /// @copydetails ClusterNetworkObj::onConnectClose
+        /// @copydetails NetworkObj::onConnectClose
         void onConnectClose(Address * address);
     protected:
-        typedef vector<SocketIO *>::type ConnectList; 
-        ConnectList mConnectList;
+        AddressList mPrcClientList;
+        AddressList mPrcServerList;
+        AddressList mPrcClientCloseList;
+        AddressList mPrcClientFailList;
     };
 }
 }

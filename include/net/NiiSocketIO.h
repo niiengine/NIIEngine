@@ -47,6 +47,10 @@ namespace protobuf
 }
 }
 
+#define SocketIOServerType 0
+
+#define SocketIOClientType 100000
+
 namespace NII
 {
     /** SocketIO
@@ -60,7 +64,12 @@ namespace NII
     public:
         SocketIO();
         virtual ~SocketIO();
-
+        
+        /** 获取类型
+        @version NIIEngine 4.0.0
+        */
+        virtual Nui32 getType() const = 0;
+        
         /** 中断
         @version NIIEngine 4.0.0
         */
@@ -107,7 +116,17 @@ namespace NII
         /** 发送数据
         @version NIIEngine 4.0.0
         */
+        NIIi sendHead(void * data, NCount size);
+
+        /** 发送数据
+        @version NIIEngine 4.0.0
+        */
         inline NIIi send(Message * msg) { return send(msg->getBuffer(), msg->getSize()); }
+
+        /** 发送数据
+        @version NIIEngine 4.0.0
+        */
+        inline NIIi sendHead(Message * msg) { return sendHead(msg->getBuffer(), msg->getSize()); }
 
 		/** 设置定时器
         @param[in] sync 是否主线程执行调用
@@ -122,7 +141,7 @@ namespace NII
 		@version NIIEngine 4.0.0
         */
         void setMessageTimer(TimeDurMS interval, bool sync = true);
-        
+
         /** 数据读取时触发
         @version NIIEngine 4.0.0
         */
@@ -226,6 +245,7 @@ namespace NII
         RingBuffer mInBuffer;       
         TimeDurMS mLastSend;
         TimeDurMS mLastReceive;
+        volatile bool mMessageSplit;
         STbool mStop;
         STbool mAbort;
         STbool mBusy;
@@ -246,8 +266,11 @@ namespace NII
         @version NIIEngine 4.0.0
         */
         virtual void onConnect() {}
-        
-        /// SocketIO::createInstance
+
+        /// @copydetail SocketIO::getType
+        Nui32 getType() const{ return SocketIOServerType; }
+
+        /// @copydetail SocketIO::createInstance
         virtual SocketIO * createInstance() const;
     };
     
@@ -260,12 +283,15 @@ namespace NII
     public:
         ClientSocketIO();
         virtual ~ClientSocketIO();
-        
+
         /** 确认连接时触发
         @version NIIEngine 4.0.0
         */
         virtual void onConfirm() {}
-        
+
+        /// @copydetail SocketIO::getType
+        Nui32 getType() const{ return SocketIOClientType; }
+
         /// SocketIO::createInstance
         virtual SocketIO * createInstance() const;
     };

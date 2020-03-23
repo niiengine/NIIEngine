@@ -171,7 +171,7 @@ namespace NII
         @version NIIEngine 4.0.0
         */
         virtual NIIi send(void * data, NCount len);
-
+        
         /** 接收
         @version NIIEngine 4.0.0
         */

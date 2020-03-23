@@ -121,14 +121,29 @@ namespace Mdf
     };
 
 	/**
-	@version 0.9.1
+	@version NIIEngine 3.0.0
 	*/
     class _EngineAPI SocketMessage : public Message
     {
     public:
-        SocketMessage(NCount size);
+        SocketMessage(NCount size, bool autoDestroy = true, bool inner = false);
         SocketMessage(Nui8 * data, NCount size, bool copydata = true, bool autoDestroy = true, bool inner = false);
         ~SocketMessage();
+
+        /**
+        @version NIIEngine 3.0.0 adv
+        */
+        void setHeadSize(Nui32 size);
+
+        /**
+        @version NIIEngine 3.0.0
+        */
+        Nui32 getHeadSize() const;
+
+        /**
+        @version NIIEngine 3.0.0 adv
+        */
+        Nui8 * getBodyData(NCount maxsize) const;
 	public:
         UniqueID mID;
         Address * mAddress;

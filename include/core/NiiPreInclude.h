@@ -41,7 +41,7 @@
 #include "NiiBasicTypes.h"
 #include "NiiThreadInclude.h"
 #include "NiiStdInclude.h"
-#include "NiiMemAllocConfig.h"
+#include "NiiMemConfig.h"
 #include "NiiSTLPreDefine.h"
 #include "NiiStringBase.h"
 #include "NiiHash.h"
@@ -86,16 +86,15 @@ namespace NII
     class ThreadEvent;
     class Job;
     class JobPrc;
-    class JobResponse;
+    class JobResult;
     class JobQueue;
     class Buffer;
     class PropertyData;
     class RenderEffect;
     class SerializerFactoryObj;
     class GpuProgramParam;
-    class GpuParamDefs;
+    class GpuParamDefSet;
     class GpuPreDefineValue;
-    class ShaderChTextureUnit;
     class PropertyCmdSet;
     class PixelChain;
     class PixelBuffer;
@@ -339,6 +338,7 @@ namespace NII
     class TagBone;
     class ShaderFusion;
     class ExtTexture;
+    class TextureSample;
     class ShaderChTextureUnit;
     class ShaderChFog;
     class ShaderChColour;
@@ -389,7 +389,22 @@ namespace NII
         class Command;
         class EventObj;
         class CommandObj;
+        class EventSignal;
+        class Functor;
+        class RefFunctor;
+        class PtrFunctor;
+        class MethodFunctor;
+        class CopyFunctor;
+        class CommandObjFunctor;
+        class EventFunctor;
+        class MemberFunctor;
+        class EventObjectManager;
         class Event;
+    }
+
+    namespace NII_NET
+    {
+
     }
 
     namespace NII_MEDIA
@@ -414,11 +429,27 @@ namespace NII
         class MouseMoveBaseArgs;
         class MousePressArgs;
         class MousePressBaseArgs;
+
+        class SoundSys;
+        class AudioLoader;
+        class SoundReceive;
+        class SoundSource;
+        class AudioBuffer;
+        class Sound;
+        class BgSound;
+        class MusicSound;
+        class NormalSound;
+        class FusionSound;
+        class SoundUnit;
+        class DefaultSoundUnit;
+        class MusicSoundUnit;
+        class SoundReceiveObj;
     }
 
     typedef vector<Font *>::type FontList;
     typedef vector<Material *>::type MaterialList;
     typedef vector<Texture *>::type TextureList;
+    typedef vector<Sound *>::type SoundList;
     typedef set<Texture *>::type TextureSet;
     typedef vector<GeometryObj *>::type GeometryObjList;
     typedef vector<ShadowVolume *>::type ShadowVolumeList;
@@ -432,6 +463,7 @@ namespace NII
 
     typedef vector<Ni32>::type IntArray;
     typedef vector<NIIf>::type FloatArray;
+    typedef vector<NIId>::type DoubleArray;
     typedef vector<Nid>::type IDList;
     typedef vector<ResourceID>::type ResourceIDList;
     typedef vector<GroupID>::type GroupIDList;
@@ -552,10 +584,11 @@ namespace NII
     #define N_Null_Obj                  0
     #define N_Parent_Obj                4294967295
 
-    #define N_Only(mag) NII::mag##Manager::getOnly()
-    #define N_OnlyPtr(mag) NII::mag##Manager::getOnlyPtr()
-    #define N_Engine() NII::Engine::getOnly()
-    #define N_EnginePtr() NII::Engine::getOnlyPtr()
+    #define N_Only(mag)     NII::mag##Manager::getOnly()
+    #define N_OnlyPtr(mag)  NII::mag##Manager::getOnlyPtr()
+    #define N_Engine()      NII::Engine::getOnly()
+    #define N_EnginePtr()   NII::Engine::getOnlyPtr()
+    #define N_Timer()       NII::Engine::getOnly().getTimer()
 }
 
 #endif
