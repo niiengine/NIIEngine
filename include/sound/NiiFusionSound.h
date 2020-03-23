@@ -148,7 +148,7 @@ namespace NII
     /**
     @version NIIEngine 3.0.0
     */
-    class _EngineAPI FusionSoundUnit : public SoundUnit, public SoundSys::IMixerEvent
+    class _EngineAPI FusionSoundUnit : public SoundUnit
     {
     public:
         FusionSoundUnit(FusionSound * sound, SpaceNode * node = 0);
@@ -190,7 +190,7 @@ namespace NII
         /// @copydetails SoundUnit::onUpdate
         void onUpdate();
 
-        /// @copydetails IMixerEvent::onTime
+        /// @copydetails SoundUnit::onTime
         void onTime();
 
         /// @copydetails SoundUnit::onSwap

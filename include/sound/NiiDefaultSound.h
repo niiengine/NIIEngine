@@ -95,7 +95,7 @@ namespace NII
     /**
     @version NIIEngine 4.0.0
     */
-    class _EngineAPI DefaultSoundUnit : public SoundUnit, public SoundSys::IMixerEvent
+    class _EngineAPI DefaultSoundUnit : public SoundUnit
     {
         friend class SoundSys;
     public:
@@ -154,7 +154,7 @@ namespace NII
         /// @copydetails SoundUnit::getSound
         virtual Sound * getSound();
     protected:
-        /// @copydetails IMixerEvent::onTime
+        /// @copydetails SoundUnit::onTime
         virtual void onTime();
     protected:
         DefaultSound * mSound;
