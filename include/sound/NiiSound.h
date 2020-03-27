@@ -410,7 +410,7 @@ namespace NII
         /**
         @version NIIEngine 4.0.0
         */
-        virtual TimeDurMS getPlayTime();
+        virtual TimeDurMS getPlayTime() const;
     protected:
         SoundUnit();
         

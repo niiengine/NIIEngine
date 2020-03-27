@@ -78,7 +78,7 @@ namespace NII
             /** 整块(整体)操作
             @version NIIEngine 3.0.0
             */
-            M_BLOCK = 0x200,
+            M_WHOLE = 0x200,
 
             /** 操作时以线程形式
             @version NIIEngine 3.0.0
@@ -98,7 +98,7 @@ namespace NII
             /** 实例数据
             @version NIIEngine 3.0.0
             */
-            M_Instance = 0x2000,
+            M_INSTANCE = 0x2000,
 
             /** 绑定计数自动删除
             @version NIIEngine 3.0.0
@@ -258,7 +258,7 @@ namespace NII
         */
         virtual void read(void * out, NCount oft, NCount size) = 0;
 
-        /** 从一个系统内存区写入数据到缓冲区.注意,您必须确保您的缓冲区足够大.
+        /** 从一个系统内存区写入数据到缓冲区.必须确保缓冲区足够大.
         @param[in] in 写入的数据资源
         @param[in] oft 从缓存开始到开始写入的字节偏移量
         @param[in] size 写入数据的大小,单位字节
@@ -266,17 +266,17 @@ namespace NII
         */
         virtual void write(const void * in, NCount oft, NCount size) = 0;
 
-        /** 从另一个缓冲区复制到这一个数据里.
+        /** 从另一个缓冲区复制数据
         @remark 来源缓存要有 M_WRITE 功能, 目标缓存要有 M_READ 功能
         @param[in] src 需要读取的数据源缓存
-        @param[in] oft 数据源读取的位置
-        @param[in] doft 这个缓存写入的位置
+        @param[in] srcoft 数据源读取的位置
+        @param[in] dstoft 这个缓存写入的位置
         @param[in] size 复制的数据长度,单位:字节
         @version NIIEngine 3.0.0
         */
-        virtual void memcpy(Buffer * src, NCount oft, NCount doft, NCount size);
+        virtual void memcpy(Buffer * src, NCount srcoft, NCount dstoft, NCount size);
 
-        /** 从另一个缓冲区复制所有数据到缓冲里.
+        /** 从另一个缓冲区复制所有数据
         @remark 来源缓存要有 M_WRITE 功能, 目标缓存要有 M_READ 功能
         @note 注意缓存大小
         @version NIIEngine 3.0.0
@@ -287,15 +287,16 @@ namespace NII
         @param[in] m Buffer::Mode 选项
         @version NIIEngine 3.0.0
         */
-        virtual Buffer * clone(Nmark m = Buffer::M_WRITE | Buffer::M_BLOCK | Buffer::M_CPU) const = 0;
+        virtual Buffer * clone(Nmark m = Buffer::M_WRITE | Buffer::M_WHOLE | Buffer::M_CPU) const = 0;
 
         /** 正式引用
+        @remark 引用数量为0,这个缓存将被销毁
         @version NIIEngine 3.0.0
         */
         NCount touch();
 
         /** 解除引用
-        @remark 如果调用后,引用数量为0,在这个函数结束后这个缓存将被销毁
+        @remark 引用数量为0,这个缓存将被销毁
         @version NIIEngine 3.0.0
         */
         NCount untouch();

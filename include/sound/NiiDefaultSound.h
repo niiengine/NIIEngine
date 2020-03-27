@@ -101,7 +101,7 @@ namespace NII
     public:
         DefaultSoundUnit(DefaultSound * sound, SpaceNode * node = 0);
         virtual ~DefaultSoundUnit();
-        
+
         /**
         @version NIIEngine 4.0.0
         */
@@ -123,7 +123,7 @@ namespace NII
         virtual bool isPlaying();
 
         /// @copydetails SoundUnit::getPlayTime
-        virtual uint32 getPlayTime();
+        virtual TimeDurMS getPlayTime();
 
         /// @copydetails SoundUnit::setPos
         virtual void setPos(const Vector3f & pos);

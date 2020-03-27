@@ -467,9 +467,9 @@ namespace NII
     typedef vector<Nid>::type IDList;
     typedef vector<ResourceID>::type ResourceIDList;
     typedef vector<GroupID>::type GroupIDList;
-    typedef vector<ObjID>::type ObjIDs;
-    typedef vector<GameObjID>::type GameObjIDs;
-    typedef vector<EventID>::type EventIDs;
+    typedef vector<ObjID>::type ObjIDList;
+    typedef vector<GameObjID>::type GameObjIDList;
+    typedef vector<EventID>::type EventIDList;
     typedef vector<PropertyID>::type PropertyArray;
     typedef vector<void *>::type PtrList;
     typedef vector<Nui16>::type BoneIndexList;

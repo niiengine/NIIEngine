@@ -34,6 +34,8 @@
 
 #ifndef _NII_BASIC_TYPES_
 #define _NII_BASIC_TYPES_
+
+#include <stdint.h>
 namespace NII
 {
     //////////////////////////////////
@@ -41,46 +43,39 @@ namespace NII
     typedef char                Nchar;
     typedef char                NIIb;                             
     typedef short               NIIs;                             
-    typedef int                 NIIi;                            
+    typedef int                 NIIi;
     typedef float               NIIf;                            
     typedef double              NIId;                           
     typedef long                NIIl;                          
     typedef unsigned char       NCountb;                     
-    typedef unsigned short      NCounts;                     
-    typedef unsigned int        NCounti;                    
-    typedef unsigned long       Nul;                       
-    typedef size_t              NCount;                   
-    typedef unsigned int        NBitCount;               
+    typedef unsigned short      NCounts;   
+    typedef size_t              NCount;
+    typedef unsigned int        Nui;
+    typedef unsigned long       Nul;                                         
     /////////////////////////////////
-    typedef uint64              Nui64;            
+    typedef uint64_t            Nui64;            
     typedef unsigned int        Nui32;              
     typedef unsigned short      Nui16;           
     typedef unsigned char       Nui8;            
-    typedef int64               Ni64;             
+    typedef int64_t             Ni64;             
     typedef int                 Ni32;     
     typedef short               Ni16;       
-    typedef char                Ni8;  
-    /////////////////////////////////
-    typedef long long           NBigi;       
-    typedef unsigned long long  NBigui;    
+    typedef char                Ni8;   
     /////////////////////////////////
     typedef Ni32                Nid;
     typedef size_t              Nidx;
     typedef Nui32               Nmark;
     /////////////////////////////////
-    typedef long long           Nll;  
-    typedef unsigned long long  Null;
-    /////////////////////////////////
     typedef char                Nutf8;
-    typedef void *              NIIp;
-    typedef const void *        NIIcp;
+    typedef void *              Nvoid;
+    typedef const void *        Ncvoid;
     typedef Nui32               CodePoint;
     typedef Nui32               CodecResult;
     typedef unsigned int        TimeDurS;     //时间级[能区分136.1年]
     typedef Nui64               TimeTotalS;   //时段级
     typedef Nui32               TimeDurMS;    //时段级[能区分24.8天]
     typedef Nui64               TimeTotalMS;  //时段级
-    typedef Nui32               TimeDurUS;    //处理级[能区分35.7分钟]
+    typedef Nui64               TimeDurUS;    //处理级
     typedef Nui64               TimeTotalUS;  //时段级
 
     //以下的ID概念范围(0, N_Max_Valid_ID), 0被NIIEngine定义为无效的ID或是形式NULL对象
@@ -94,6 +89,7 @@ namespace NII
     typedef Nid QueueID;
     typedef Nid ParentID;
     typedef Nid ChildID;
+    typedef Nid BufferID;
     typedef Nid PoseID;
     typedef Nid BoneID;
     typedef Nid MeshID;

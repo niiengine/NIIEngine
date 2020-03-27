@@ -50,7 +50,7 @@ namespace NII
     class _EngineAPI ResourceManager : public ScriptParserSys, public ResourceAlloc
     {
         friend class Engine;
-		friend class RenderSys;
+        friend class RenderSys;
     public:
         enum VerboseMode
         {
@@ -69,8 +69,6 @@ namespace NII
         virtual ~ResourceManager();
 
         /** 创建一个资源
-        @param[in] rid 资源ID
-        @param[in] gid 资源组ID
         @param[in] ls 加载策略
         @param[in] rs 结果策略
         @param[in] params 额外参数
@@ -103,20 +101,18 @@ namespace NII
         virtual bool isExist(PrcID pid);
 
         /** 引用资源
-        @note 一般对公共资源使用这个函数
-        @param[in] rid 资源ID
-        @param[in] gid 资源组ID
+        @note 一般对公共资源使用这个函数(引用值加一)
         @param[in] ls 加载策略,仅对新创建资源有效,对已经存在的资源无效
         @param[in] rs 结果策略,仅对新创建资源有效,对已经存在的资源无效
         @param[in] params 额外参数,仅对新创建资源有效,对已经存在的资源无效
         @version NIIEngine 3.0.0
         */
-        virtual TouchResult touch(ResourceID rid, GroupID gid,
+        virtual TouchResult touch(ResourceID rid, GroupID gid = GroupUnknow,
             ResourceLoadScheme * ls = 0, ResourceResultScheme * rs = 0,
                 const PropertyData * params = 0);
 
         /** 解除资源
-        @note 一般对公共资源使用这个函数
+        @note 一般对公共资源使用这个函数(引用值减一)
         @param[in] rid 资源ID
         @param[in] gid 资源组ID
         @version NIIEngine 3.0.0
@@ -127,8 +123,6 @@ namespace NII
         @remark
             计划资源主要是为了检测是否有条件被加载或者使用备用方案,再或者是为了促进
             加载策略和结果策略
-        @param[in] rid 资源ID
-        @param[in] gid 资源组ID
         @param[in] ls 加载策略
         @param[in] rs 结果策略
         @param[in] params 额外参数
@@ -139,8 +133,6 @@ namespace NII
                 const PropertyData * params = 0);
 
         /** 加载资源
-        @param[in] rid 资源ID
-        @param[in] gid 资源组ID
         @param[in] ls 加载策略
         @param[in] ls 结果策略
         @param[in] params 额外参数
@@ -188,12 +180,6 @@ namespace NII
         @note 一般这类是资源的总,确定是使用 remove 而不是使用 destroy
         @version NIIEngine 3.0.0 高级api
         */
-        virtual void remove(Resource * obj);
-
-        /** 移去资源
-        @note 一般这类是资源的总,确定是使用 remove 而不是使用 destroy
-        @version NIIEngine 3.0.0 高级api
-        */
         virtual void remove(ResourceID rid);
 
         /** 移去资源
@@ -213,12 +199,6 @@ namespace NII
         @version NIIEngine 3.0.0 高级api
         */
         virtual void removeAll();
-
-        /** 删除资源
-        @note 和 remove 相比会自动调用 N_delete,更适合管理器使用
-        @version NIIEngine 3.0.0
-        */
-        virtual void destroy(Resource * r);
 
         /** 删除资源
         @note 和 remove 相比会自动调用 N_delete,更适合管理器使用
@@ -315,8 +295,6 @@ namespace NII
 
         /** 创建一个与这个管理器兼容的新资源实例(没有自定义参数可以在这里填充)
         @remark
-        @param[in] rid 资源ID
-        @param[in] gid 资源组ID
         @param[in] ls 加载策略
         @param[in] rs 结果策略
         @param[in] params 参数

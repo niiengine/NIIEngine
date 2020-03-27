@@ -170,7 +170,7 @@ namespace NII
         virtual bool isPlaying();
 
         /// @copydetails SoundUnit::getPlayTime
-        virtual TimeDurMS getPlayTime();
+        virtual TimeDurMS getPlayTime() const;
 
         /// @copydetails SoundUnit::setPos
         virtual void setPos(const Vector3f & pos);

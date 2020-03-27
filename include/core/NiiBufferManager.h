@@ -37,12 +37,57 @@
 
 #include "NiiPreInclude.h"
 #include "NiiSingleton.h"
-#include "NiiTempBufferCtl.h"
 #include "NiiBuffer.h"
 
 namespace NII
 {
     class TempBufferCtlPrc;
+    
+    /** 临时缓存
+    @remark 一般用于非CPU存储外的内存,非CPU存储在创建/释放占用的系统时间多
+    @version NIIEngine 3.0.0 高级api
+    */
+    class _EngineAPI TempBufferCtl
+    {
+    public:
+        /** 操作频繁类型
+        @version NIIEngine 3.0.0 高级api
+        */
+        enum OpType
+        {
+            T_ReadLess,     ///< 不经常读取
+            T_ReadMore,     ///< 经常读取
+            T_WriteLess,    ///< 不经常写入
+            T_WriteMore     ///< 经常写入
+        };
+    public:
+        TempBufferCtl(bool autoDsy = true);
+        virtual ~TempBufferCtl();
+
+        /** 设置是否自动删除
+        @version NIIEngine 3.0.0
+        */
+        void setAutoDestroy(bool b);
+
+        /** 获取是否自动删除
+        @version NIIEngine 3.0.0
+        */
+        bool isAutoDestroy() const;
+
+        /** 任务的频繁类型
+        @note 用于调整缓存存储结构
+        @param[in] mark OpType的多个或单个枚举
+        */
+        virtual void task(Nmark mark);
+
+        /** 执行过期
+        @version NIIEngine 3.0.0
+        */
+        virtual void expire(Buffer * src);
+    protected:
+        bool mAutoDestroy;
+    };
+    
     /** 缓存管理器基类
     @note 帧级别的临时缓存
     @version NIIEngine 3.0.0

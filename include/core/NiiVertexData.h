@@ -37,28 +37,71 @@
 
 #include "NiiPreInclude.h"
 #include "NiiVertexBuffer.h"
-#include "NiiVertexBuffer.h"
 #include "NiiVertexCom.h"
 #include "NiiQuaternion.h"
 #include "NiiAABox.h"
 
 namespace NII
 {
-    /** 硬件顶点数据
+    /** 临时顶点缓存
     @version NIIEngine 3.0.0
     */
-    struct HWAniData
+    class _EngineInner AniTempBuffer : public TempBufferCtl, public BufferAlloc
     {
-        NIIf mFactor;
-        Nui16 mBufferIndex;
-    };
-    typedef vector<HWAniData>::type HWAniList;
+    public:
+        AniTempBuffer(bool autoDsy = true);
+        ~AniTempBuffer();
 
+        /** 设置映射源
+        @param[in] src 源缓存
+        @version NIIEngine 3.0.0
+        */
+        void map(const VertexData * src);
+
+        /** 分配副本
+        @version NIIEngine 3.0.0
+        */
+        void alloc(bool pos = true, bool normal = true);
+
+        /** 续定临时缓存
+        @version NIIEngine 3.0.0
+        */
+        bool refill(bool pos = true, bool normal = true) const;
+
+        /** 绑定副本到指定顶点数据中
+        @param[in] dst 指定顶点数据
+        @param[in] syn 是否同步前后缓存
+        @version NIIEngine 3.0.0
+        */
+        void bind(VertexData * dst, bool syn);
+
+        /// @copydetails TempBufferCtl::expire
+        void expire(Buffer * buffer);
+    private:
+        VertexBuffer * mSrcPos;     ///< 源头指针(位置)
+        VertexBuffer * mSrcNrls;    ///< 源头指针(法线)
+        VertexBuffer * mDstPos;     ///< 副本指针(位置)
+        VertexBuffer * mDstNrls;    ///< 副本指针(法线)
+        Nui16 mPosIndex;
+        Nui16 mNrlsIndex;
+        Nui8 mMark;
+    };
+    
     /** 硬件动画
     @version NIIEngine 3.0.0
     */
     class _EngineInner HardwareAnimation : public BufferAlloc
     {
+    public:
+        /** 硬件顶点数据
+        @version NIIEngine 3.0.0
+        */
+        struct Fusion
+        {
+            NIIf mFactor;
+            Nui16 mBufferIndex;
+        };
+        typedef vector<Fusion>::type FusionList;
     public:
         HardwareAnimation();
         ~HardwareAnimation();
@@ -73,7 +116,7 @@ namespace NII
         */
         void free(VertexData * dst, NCount cnt, bool nrls);
     public:
-        HWAniList mFusionData;
+        FusionList mFusionData;
         NCount mFusionIndex;
     };
 

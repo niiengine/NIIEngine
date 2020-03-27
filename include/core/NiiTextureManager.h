@@ -101,8 +101,6 @@ namespace NII
         /** 创建纹理
         @param rid 句柄
         @param gid 资源组
-        @param w 宽度
-        @param h 高度
         @param d 深度
         @version NIIEngine 3.0.0 高级api
         */
@@ -112,8 +110,6 @@ namespace NII
             NCount fsaa = 0, const String & fsaaHint = StrUtil::WBLANK);
 
         /** 安排资源
-        @param[in] rid 资源句柄
-        @param[in] gid 资源组
         @version NIIEngine 3.0.0
         */
         virtual Texture * plan(ResourceID rid, GroupID gid, Texture::Type type = Texture::T_2D,
@@ -121,8 +117,6 @@ namespace NII
             Nmark mark = Texture::MM_AGP_COLOUR | Texture::MM_AGP_ALPHA);
 
         /** 加载
-        @param[in] rid 资源句柄
-        @param[in] gid 资源组
         @version NIIEngine 3.0.0
         */
         virtual Texture * load(ResourceID rid, GroupID gid, Texture::Type type = Texture::T_2D,
@@ -130,8 +124,6 @@ namespace NII
             Nmark mark = Texture::MM_AGP_COLOUR | Texture::MM_AGP_ALPHA);
 
         /** 从图片中加载
-        @param[in] rid 资源句柄
-        @param[in] gid 资源组
         @param[in] img 像素来源
         @version NIIEngine 3.0.0
         */
@@ -140,8 +132,6 @@ namespace NII
             NIIf gamma = 1.0f, Nmark mark = Texture::MM_AGP_COLOUR | Texture::MM_AGP_ALPHA);
 
         /** 从流中加载
-        @param[in] rid 资源句柄
-        @param[in] gid 资源组
         @param[in] stream 像素来源,未编码的数据流
         @version NIIEngine 3.0.0
         */
@@ -165,10 +155,6 @@ namespace NII
         /** 计算纹理大小(辅助)
         @param[in] mipmaps LOD映射
         @param[in] faces 面数量
-        @param[in] w 宽
-        @param[in] h 高
-        @param[in] d 深度
-        @param[in] pf 像素格式
         @version NIIEngine 3.0.0
         */
         static NCount calcSize(NCount mipmaps, NCount faces, NCount w, NCount h, NCount d, PixelFormat pf);
