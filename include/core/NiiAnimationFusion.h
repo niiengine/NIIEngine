@@ -41,11 +41,35 @@
 #include "NiiCommandObj.h"
 #include "NiiEventFunctor.h"
 #include "NiiAnimation.h"
+#include "NiiDataEquation.h"
 
 using namespace NII::NII_COMMAND;
 
 namespace NII
 {
+    /** 动画进度控制器
+    @version NIIEngine 3.0.0
+    */
+    class _EngineAPI AnimationDataValue : public DataValue<NIIf>
+    {
+    public:
+        AnimationDataValue(AnimationFusion * target);
+
+        ~AnimationDataValue();
+
+        /** 获取进度值
+        @version NIIEngine 3.0.0
+        */
+        const NIIf getValue() const;
+
+        /** 设置进度值
+        @version NIIEngine 3.0.0
+        */
+        void setValue(const NIIf & value);
+    protected:
+        AnimationFusion * mTargetFusion;
+    };
+
     /** 动画对象的动画实际混合(实例)
     @remark 这个用于描述具体对象的具体动画状态
     @version NIIEngine 3.0.0

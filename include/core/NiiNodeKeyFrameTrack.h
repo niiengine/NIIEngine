@@ -41,7 +41,7 @@
 
 namespace NII
 {
-    struct KeyFrameSpline;
+    struct NodeKeyFrameSpline;
     /** 节点变换的专用KeyFrameTrack
     @version NIIEngine 3.0.0
     */
@@ -112,8 +112,7 @@ namespace NII
         @param[in] count
         @version NIIEngine 3.0.0 高级api
         */
-        static void fusion(const Vector3f * src, Vector3f * dst,
-            const Matrix4f * const * space, NCount count);
+        static void fusion(const Vector3f * src, Vector3f * dst, const Matrix4f * const * space, NCount count);
 
         /** 顶点数据混合
         @param[in] src
@@ -122,9 +121,8 @@ namespace NII
         @param[in] count
         @version NIIEngine 3.0.0 高级api
         */
-        static void fusion(const Vector3f * src, const Vector3f * srcnormal,
-            Vector3f * dst, Vector3f * dstnormal, const Matrix4f * const * space,
-                NCount count);
+        static void fusion(const Vector3f * src, const Vector3f * srcnormal, Vector3f * dst, Vector3f * dstnormal, 
+            const Matrix4f * const * space, NCount count);
 
         /** 顶点数据混合
         @param[in] src 来源数据
@@ -133,8 +131,7 @@ namespace NII
         @param[in] count 数据数量
         @param[in] normal 包含法线的计算
         */
-        static void fusion(const VertexData * src, VertexData * dest,
-            const Matrix4f * const * space, NCount count, bool normal);
+        static void fusion(const VertexData * src, VertexData * dest, const Matrix4f * const * space, NCount count, bool normal);
     protected:
         /// @copydetails KeyFrameTrack::createImpl
         KeyFrame * createImpl(TimeDurMS time);
@@ -143,7 +140,7 @@ namespace NII
         void notifyImpl() const;
     protected:
         PosNode * mTarget;
-        KeyFrameSpline * mSplines;
+        NodeKeyFrameSpline * mSplines;
         bool mShortPath;
     };
 }

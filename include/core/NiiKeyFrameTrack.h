@@ -189,5 +189,6 @@ namespace NII
         KeyFrames mKeyFrames;   ///<
         CalcMode mMode;         ///< 混算模式
     };
+    typedef vector<KeyFrameTrack *>::type KeyFrameTrackList; 
 }
 #endif

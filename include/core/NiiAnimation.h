@@ -98,7 +98,7 @@ namespace NII
     public:
         /** 构造函数
         @param[in] id 动画的ID,在父对象里是唯一的
-        @param[in] dur 动画的长度(单位:秒)
+        @param[in] dur 动画的长度
         */
         Animation(AnimationID id, TimeDurMS dur, AnimationMode mode);
         ~Animation();
@@ -157,13 +157,13 @@ namespace NII
         @param[in] obj 容器对象(非状态对象)
         @version NIIEngine 3.0.0
         */
-        void set(AnimationObj * obj);
+        inline void setObj(AnimationObj * obj){ mContainer = obj; }
 
         /** 获取动画所属
         @param[out] obj 容器对象(非状态对象)
         @version NIIEngine 3.0.0
         */
-        void get(AnimationObj *& obj);
+        inline AnimationObj * getObj() const { return mContainer; }
 
         /** 添加动画轨迹
         @param[in] obj 动画轨迹

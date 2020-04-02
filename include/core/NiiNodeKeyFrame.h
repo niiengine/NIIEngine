@@ -66,7 +66,7 @@ namespace NII
 
         /** 设置这个关键针应用到动画对象在它的时间索引中的缩放因子
         @param[in] scale
-            通过该向量缩放(留心应用到这个向量任何成分为0的值,它将缩放对象到0尺寸)
+            通过该向量缩放(任何成分为0的值,它将缩放对象到0尺寸)
         @version NIIEngine 3.0.0
         */
         void setScale(const Vector3f & scale);
