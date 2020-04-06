@@ -102,7 +102,7 @@ namespace NII
         @param[in] value 值
         @version NIIEngine 3.0.0
         */
-        void setConfig(const String & name, const String & value);
+        virtual void setConfig(const String & name, const String & value);
 
         /** 获取自定义属性集
         @version NIIEngine 3.0.0
@@ -128,7 +128,7 @@ namespace NII
         /** 获取渲染系统能力
         @version NIIEngine 3.0.0
         */
-        inline const RenderFeature * getFeature() const { N_assert(mFeature, "SYS Uninitialized");  return mFeature; }
+        inline RenderFeature * getFeature() const { N_assert(mFeature, "SYS Uninitialized");  return mFeature; }
 
         /** 构建固定编程管线着色程序参数
         @version NIIEngine 5.0.0

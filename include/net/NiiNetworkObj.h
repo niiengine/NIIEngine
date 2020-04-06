@@ -186,7 +186,11 @@ namespace NII_NET
         AddressList mServerList;
         AddressList mConnectFailList;
         AddressList mConnectClosetList;
-
+        AddressList mPrcClientList;
+        AddressList mPrcServerList;
+        AddressList mPrcClientCloseList;
+        AddressList mPrcClientFailList;
+        
         NIIi mThreadPrcLevel;
         STNui32 mRunThreadCount;
         STbool mRun;
@@ -195,45 +199,6 @@ namespace NII_NET
         ThreadRWMutex mSSLAddressMutex;
         SSLAddressList mSSLAddressList;
         AddressList mSSLConnectList;
-    };
-
-    /** ¼¯Èº
-    @version NIIEngine 4.0.0
-    */
-    class _EngineAPI ClusterNetworkObj : public NetworkObj
-    {
-    public:
-        ClusterNetworkObj();
-        virtual ~ClusterNetworkObj();
-
-        /// @copydetails ClusterNetworkObj::stop
-        void stop();
-
-        /// @copydetails ClusterNetworkObj::send
-        void send(const Nui8 * data, NCount size, const Address & address, bool broadcast);
-
-        /// @copydetails ClusterNetworkObj::close
-        void close(Address * address);
-    protected:
-        /// @copydetails ThreadMain::run
-        void run(void * arg);
-        
-        /// @copydetails NetworkObj::onClientConnect
-        void onClientConnect(Address * address);
-
-        /// @copydetails NetworkObj::onServerConnect
-        void onServerConnect(Address * address);
-        
-        /// @copydetails NetworkObj::onConnectFail()
-        void onConnectFail(Address * address);
-
-        /// @copydetails NetworkObj::onConnectClose
-        void onConnectClose(Address * address);
-    protected:
-        AddressList mPrcClientList;
-        AddressList mPrcServerList;
-        AddressList mPrcClientCloseList;
-        AddressList mPrcClientFailList;
     };
 }
 }

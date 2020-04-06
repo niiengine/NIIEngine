@@ -147,6 +147,7 @@ namespace NII_NET
         Nindex mIndex;
         Nui64 mGuid;
     };
+    typedef vector<UniqueID *>::type UniqueIDList;
     
     /** ÍøÂçµØÖ·
     @version NIIEngine 3.0.0
@@ -318,6 +319,8 @@ namespace NII_NET
         UniqueAddress(const UniqueID & o);
 
         UniqueAddress(const Address * o);
+        
+        UniqueAddress(const Address * addr, const UniqueID & id);
 
         UniqueAddress(const UniqueAddress & o);
         
@@ -352,6 +355,7 @@ namespace NII_NET
         UniqueID mID;
         Address * mAddress;
     };
+    typedef vector<UniqueAddress>::type UniqueAddressList;
     
     /** ÍøÂçµØÖ·
     @version NIIEngine 3.0.0

@@ -217,7 +217,6 @@ namespace Mdf
         */
         inline void setMessageID(Mui8 msgid)
         {
-            mMsgID = mMsgID;
             mCmdID = (mMsgType << 8) | mMsgID;
             MemStream::write(mData + 5, msgid);
         }
