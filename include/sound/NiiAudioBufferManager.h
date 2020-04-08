@@ -111,6 +111,16 @@ namespace NII
         /** 
         @version NIIEngine 3.0.0
         */
+        GroupAudio * createGroup(GroupID gid);
+        
+        /** 
+        @version NIIEngine 3.0.0
+        */
+        void removeGroup(GroupID gid);
+        
+        /** 
+        @version NIIEngine 3.0.0
+        */
         GroupAudio * getGroup(GroupID gid);
 
         /** 

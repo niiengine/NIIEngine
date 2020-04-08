@@ -132,6 +132,11 @@ namespace NII_NET
 		*/
         void write(const NetSerializer * in);
 
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static Nui64 genLocalGuid();
+        
 		/** 获取大小
         @version NIIEngine 3.0.0
 		*/
