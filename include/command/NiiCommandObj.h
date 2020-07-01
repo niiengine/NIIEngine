@@ -1,35 +1,27 @@
 ﻿/*
 -----------------------------------------------------------------------------
-大型多媒体框架
+A
+     __      _   _   _   ______
+    |   \   | | | | | | |  ____)                    _
+    | |\ \  | | | | | | | |         ___      ___   (_)   ___
+    | | \ \ | | | | | | | |____    / _ \   / ___ \  _   / _ \   ___
+    | |  \ \| | | | | | |  ____)  | / \ | | |  | | | | | / \ | / _ )
+    | |   \ | | | | | | | |_____  | | | | | |__| | | | | | | | | __/
+    |_|    \ _| |_| |_| |_______) |_| |_|  \___| | |_| |_| |_| |___|
+                                             __/ |                 
+                                            \___/   
+                                                
+                                                
+                                                                 F i l e
 
-时间: 2015-5-7
 
-文本编码: utf-8
+Copyright: NIIEngine Team Group
 
-所属公司: 深圳闽登科技有限公司
+Home page: www.niiengine.com 
 
-命名风格: 概论命名法
+Email: niiengine@gmail.com OR niiengine@163.com
 
-编程风格: 统筹式
-
-管理模式: 分布式
-
-内部成分: UI对象 网络对象 音频对象 物理对象 事件驱动对象(扩散性设计)
-
-主要成分: c++(80%) c(20%)
-
-用途: 操作系统桌面(包围操作系统内核api)
-      三维应用软件
-        计算机辅助立体设计软件(CAD)
-        地理信息系统软件(GIS)
-        电影背景立体重构软件
-        立体游戏软件
-
-偏向用途: 立体游戏软件
-
-主页: www.niiengine.com 电子邮箱: niiengine@gmail.com OR niiengine@163.com
-
-授权方式:商业授权(www.niiengine.com/license)(3种)
+Licence: commerce(www.niiengine.com/license)(Three kinds)
 ------------------------------------------------------------------------------
 */
 
@@ -57,7 +49,6 @@ namespace NII_COMMAND
 
         /** 触发事件信号
         @param[in] id
-        @param[in] arg
         @version NIIEngine 3.0.0
         */
         virtual void signal(EventID id, const EventArgs * arg);
@@ -66,33 +57,82 @@ namespace NII_COMMAND
         @param[in] id 事件
         @version NIIEngine 3.0.0
         */
-        virtual Event * addEvent(EventID eid);
+        virtual Event * bind(EventID eid);
 
         /** 移去事件集
-        @param[in] id 事件
         @version NIIEngine 3.0.0
         */
-        virtual void removeEvent(EventID eid);
+        virtual void unbind(EventID eid);
 
         /** 添加事件集处理函子
-        @remark
-        @param[in] id 事件
-        @param[in] slot 处理函子
         @version NIIEngine 3.0.0
         */
-        virtual SignalPtr addEvent(EventID id, EventFunctor * slot);
+        virtual SignalPtr bind(EventID id, EventFunctor * func);
 
         /** 移去事件集处理函子
-        @remark
-        @param[in] id 事件
-        @param[in] slot 事件函子
         @version NIIEngine 3.0.0
         */
-        virtual void removeEvent(EventID id, EventFunctor * slot);
+        virtual void unbind(EventID id, EventFunctor * func);
+
+		/** 添加事件集处理函子
+		@version NIIEngine 3.0.0
+		*/
+		inline SignalPtr bind(EventID id, Event * event, EventMethod em)
+		{
+			EventFunctor * ef = N_new EventFunctor(event, em);
+			return bind(id, ef);
+		}
+
+		/** 移去事件集处理函子
+		@version NIIEngine 3.0.0
+		*/
+		inline void unbind(EventID id, Event * event, EventMethod em)
+		{
+			EventFunctor ef(event, em);
+			unbind(id, &ef);
+		}
+
+		/** 添加事件集处理函子
+		@version NIIEngine 3.0.0
+		*/
+		inline SignalPtr bind(EventID id, CommandObj * obj, CommandObjFunctor mf)
+		{
+			EventFunctor * ef = N_new EventFunctor(obj, mf);
+			return bind(id, ef);
+		}
+
+		/** 移去事件集处理函子
+		@version NIIEngine 3.0.0
+		*/
+		inline void unbind(EventID id, CommandObj * obj, CommandObjFunctor mf)
+		{
+			EventFunctor ef(obj, mf);
+			unbind(id, &ef);
+		}
+
+        /** 添加事件集处理函子
+        @version NIIEngine 3.0.0
+        */
+		template <typename _class, typename _earg> 
+			inline SignalPtr bind(EventID id, _class * obj, void (_class::*method)(const _earg *))
+		{
+			ObjFunctor<_class, _earg> * of = N_new ObjFunctor<_class, _earg>(obj, method);
+			EventFunctor * ef = N_new EventFunctor(of);
+			return bind(id, ef);
+		}
+
+        /** 移去事件集处理函子
+        @version NIIEngine 3.0.0
+        */
+		template <typename _class, typename _earg> 
+			inline void unbind(EventID id, _class * obj, void (_class::*method)(const _earg *))
+		{
+			ObjFunctor<_class, _earg> * of = N_new ObjFunctor<_class, _earg>(obj, method);
+			EventFunctor ef(of);
+			unbind(id, &ef);
+		}
 
         /** 获取事件集
-        @param[in]
-        @param[in]
         @version NIIEngine 3.0.0
         */
         Event * getEvent(EventID id, bool add = false);
@@ -117,7 +157,7 @@ namespace NII_COMMAND
         @version NIIEngine 3.0.0
         */
         bool isSignalEnable() const;
-        
+
         /** 返回这个对象是否还有效
         @remark 当这个对象中没有任何参子的时候,就会无效
         @version NIIEngine 3.0.0

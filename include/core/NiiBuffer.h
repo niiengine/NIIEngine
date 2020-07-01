@@ -1,34 +1,27 @@
 ﻿/*
 -----------------------------------------------------------------------------
-大型多媒体框架
+A
+     __      _   _   _   ______
+    |   \   | | | | | | |  ____)                    _
+    | |\ \  | | | | | | | |         ___      ___   (_)   ___
+    | | \ \ | | | | | | | |____    / _ \   / ___ \  _   / _ \   ___
+    | |  \ \| | | | | | |  ____)  | / \ | | |  | | | | | / \ | / _ )
+    | |   \ | | | | | | | |_____  | | | | | |__| | | | | | | | | __/
+    |_|    \ _| |_| |_| |_______) |_| |_|  \___| | |_| |_| |_| |___|
+                                             __/ |                 
+                                            \___/   
+                                                
+                                                
+                                                                 F i l e
 
-时间: 2016-1-14
 
-文本编码: utf-8
+Copyright: NIIEngine Team Group
 
-所属公司: 深圳闽登科技有限公司
+Home page: www.niiengine.com 
 
-命名风格: 概论命名法
+Email: niiengine@gmail.com OR niiengine@163.com
 
-编程风格: 统筹式
-
-管理模式: 分布式
-
-内部成分: UI对象 网络对象 音频对象 物理对象 事件驱动对象(扩散性设计)
-
-主要成分: c++(80%) c(20%)
-
-用途: 操作系统桌面(包围操作系统内核api)
-      三维应用软件
-        地理信息系统软件(GIS)
-        电影背景立体重构软件
-        立体游戏软件
-
-偏向用途: 立体游戏软件
-
-主页: www.niiengine.com 电子邮箱: niiengine@gmail.com OR niiengine@163.com
-
-授权方式:商业授权(www.niiengine.com/license)(3种)
+Licence: commerce(www.niiengine.com/license)(Three kinds)
 ------------------------------------------------------------------------------
 */
 
@@ -49,7 +42,7 @@ namespace NII
     */
     class _EngineAPI Buffer : public BufferAlloc
     {
-        friend class GBufferManager;
+        friend class BufferManager;
         friend class ABufferManager;
     public:
         /// 缓存特征
@@ -58,132 +51,150 @@ namespace NII
             /** cpu读取快,cpu写入快,gpu读取中,gpu写入慢
             @version NIIEngine 3.0.0
             */
-            M_CPU = 0x10,
+            M_CPU = 0x01,
 
-            /** gpu读取快,gpu写入快,cpu读取慢,cpu写入中
+            /** gpu读取快,gpu写入快,如果没有M_CPU标识,cpu不能操作
             @version NIIEngine 3.0.0
             */
-            M_GPU = 0x20,
+            M_GPU = 0x02,
 
             /** 拥有读取功能
             @version NIIEngine 3.0.0
             */
-            M_READ = 0x80,
+            M_READ = 0x04,
 
             /** 拥有写入功能
             @version NIIEngine 3.0.0
             */
-            M_WRITE = 0x100,
+            M_WRITE = 0x08,
+
+            /** 拥有首次写入功能，之后不能再写入
+            @version NIIEngine 3.0.0
+            */
+            M_CONST = 0x10,
 
             /** 整块(整体)操作
             @version NIIEngine 3.0.0
             */
-            M_WHOLE = 0x200,
+            M_WHOLE = 0x20,
 
             /** 操作时以线程形式
             @version NIIEngine 3.0.0
             */
-            M_THREAD = 0x400,
+            M_THREAD = 0x40,
 
             /** 同步CPU->GPU缓存
             @version NIIEngine 3.0.0
             */
-            M_SYN = 0x800,
+            M_SYN = 0x80,
             
             /** 被动标记,不使用
             @version NIIEngine 3.0.0
             */
-            M_LOCK = 0x1000,            
+            M_LOCK = 0x100,            
 
             /** 实例数据
             @version NIIEngine 3.0.0
             */
-            M_INSTANCE = 0x2000,
+            M_INSTANCE = 0x200,
 
             /** 绑定计数自动删除
             @version NIIEngine 3.0.0
             */
-            M_AttachRef_Destroy = 0x4000,
+            M_AttachRef_Destroy = 0x400,
 
             /** 被动标记,不使用
             @version NIIEngine 3.0.0
             */
-            M_SHADOW_ASYN = 0x8000,
+            M_SHADOW_ASYN = 0x800,
 
             /** 被动标记,不使用
             @version NIIEngine 3.0.0
             */
-            M_SHADOW_Refresh = 0x80000000,
+            M_SHADOW_Refresh = 0x1000,
+
+            M_Reserve1 =  0x2000,
+            
+            M_Reserve2 = 0x4000,
+            
+            M_Reserve3 = 0x8000,
+            
+            M_Reserve4 = 0x10000,
 
             /** 扩展标记
             @version NIIEngine 3.0.0
             */
-            M_EXT1 = 0x10000,
+            M_EXT1 = 0x20000,
 
             /** 扩展标记
             @version NIIEngine 3.0.0
             */
-            M_EXT2 = 0x20000,
+            M_EXT2 = 0x40000,
 
             /** 扩展标记
             @version NIIEngine 3.0.0
             */
-            M_EXT3 = 0x40000,
+            M_EXT3 = 0x80000,
 
             /** 扩展标记
             @version NIIEngine 3.0.0
             */
-            M_EXT4 = 0x80000,
+            M_EXT4 = 0x100000,
 
             /** 扩展标记
             @version NIIEngine 3.0.0
             */
-            M_EXT5 = 0x100000,
+            M_EXT5 = 0x200000,
 
             /** 扩展标记
             @version NIIEngine 3.0.0
             */
-            M_EXT6 = 0x200000,
+            M_EXT6 = 0x400000,
 
             /** 扩展标记
             @version NIIEngine 3.0.0
             */
-            M_EXT7 = 0x400000,
+            M_EXT7 = 0x800000,
 
             /** 扩展标记
             @version NIIEngine 3.0.0
             */
-            M_EXT8 = 0x800000,
+            M_EXT8 = 0x1000000,
 
             /** 扩展标记
             @version NIIEngine 3.0.0
             */
-            M_EXT9 = 0x1000000,
+            M_EXT9 = 0x2000000,
 
             /** 扩展标记
             @version NIIEngine 3.0.0
             */
-            M_EXT10 = 0x2000000,
+            M_EXT10 = 0x4000000,
 
             /** 扩展标记
             @version NIIEngine 3.0.0
             */
-            M_EXT11 = 0x4000000,
+            M_EXT11 = 0x8000000,
 
             /** 扩展标记
             @version NIIEngine 3.0.0
             */
-            M_EXT12 = 0x8000000,
+            M_EXT12 = 0x10000000,
 
             /** 扩展标记
             @version NIIEngine 3.0.0
             */
-            M_EXT13 = 0x10000000,
+            M_EXT13 = 0x20000000,
 
             /** 扩展标记
             @version NIIEngine 3.0.0
             */
-            M_EXT14 = 0x20000000
+            M_EXT14 = 0x40000000,
+
+            /** 扩展标记
+            @version NIIEngine 3.0.0
+            */
+            M_EXT15 = 0x80000000
         };
         /** 锁定特征
         @remark 用于上锁操作
@@ -191,10 +202,11 @@ namespace NII
         */
         enum MuteMode
         {
-            MM_READ = 0x01,
-            MM_WRITE = 0x02,
-            MM_BLOCK = 0x04,
-            MM_EVENT = 0x08
+            MM_COMPUTE  = 0x0,
+            MM_READ     = 0x01,
+            MM_WRITE    = 0x02,
+            MM_BLOCK    = 0x04,
+            MM_EVENT    = 0x08
         };
     public:
         /** 构造函数
@@ -250,7 +262,7 @@ namespace NII
         */
         virtual void unlock();
 
-        /** 从缓冲中读取数据并放置在内存中所指向的pDest.
+        /** 从缓冲中读取数据
         @param[in] out 内存区域
         @param[in] oft 从缓存开始到开始读取的字节偏移量
         @param[in] size 读取的区域大小 单位字节
@@ -258,7 +270,7 @@ namespace NII
         */
         virtual void read(void * out, NCount oft, NCount size) = 0;
 
-        /** 从一个系统内存区写入数据到缓冲区.必须确保缓冲区足够大.
+        /** 把系统内存写入到缓冲区
         @param[in] in 写入的数据资源
         @param[in] oft 从缓存开始到开始写入的字节偏移量
         @param[in] size 写入数据的大小,单位字节
@@ -266,22 +278,22 @@ namespace NII
         */
         virtual void write(const void * in, NCount oft, NCount size) = 0;
 
-        /** 从另一个缓冲区复制数据
+        /** 从指定缓冲区复制数据
         @remark 来源缓存要有 M_WRITE 功能, 目标缓存要有 M_READ 功能
         @param[in] src 需要读取的数据源缓存
         @param[in] srcoft 数据源读取的位置
-        @param[in] dstoft 这个缓存写入的位置
+        @param[in] oft 这个缓存写入的位置
         @param[in] size 复制的数据长度,单位:字节
         @version NIIEngine 3.0.0
         */
-        virtual void memcpy(Buffer * src, NCount srcoft, NCount dstoft, NCount size);
+        virtual void write(Buffer * src, NCount srcoft, NCount oft, NCount size);
 
         /** 从另一个缓冲区复制所有数据
         @remark 来源缓存要有 M_WRITE 功能, 目标缓存要有 M_READ 功能
         @note 注意缓存大小
         @version NIIEngine 3.0.0
         */
-        virtual void memcpy(Buffer * src);
+        virtual void write(Buffer * src);
 
         /** 副本对象
         @param[in] m Buffer::Mode 选项
@@ -304,22 +316,22 @@ namespace NII
         /** 获取引用数量
         @version NIIEngine 3.0.0
         */
-        NCount getRefCount();
+        inline NCount getRefCount() { return mRefCount;  }
 
         /** 返回此缓冲区字节的大小
         @version NIIEngine 3.0.0
         */
-        NCount getSize() const;
+        inline NCount getSize() const { return mSize;  }
 
         /** 返回缓冲创建时使用用法标志
         @version NIIEngine 3.0.0
         */
-        Nmark getModeMark() const;
+        inline Nmark getModeMark() const { return mMark;  }
 
         /** 管理器
         @version NIIEngine 3.0.0
         */
-        BufferManager * getManager() const;
+        inline BufferManager * getManager() const { return mMag; }
     protected:
         /** 同步硬件与系统缓存
         @version NIIEngine 3.0.0 高级api
@@ -338,11 +350,11 @@ namespace NII
     protected:
         BufferManager * mMag;
         Buffer * mShadow;
-        NCount mSize;           ///< 缓存大小(单位:字节)
+        NCount mSize;
         NCount mMuteOft;        ///< 当前上锁位处
         NCount mMuteSize;       ///< 当前上锁大小(单位:字节)
-        NCount mRefCount;       ///< 引用数量
-        Nmark mMark;            ///< 缓存定义
+        NCount mRefCount;
+        Nmark mMark;
     };
     typedef vector<Buffer *>::type BufferList;
 }

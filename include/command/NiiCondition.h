@@ -1,35 +1,27 @@
 /*
 -----------------------------------------------------------------------------
-大型多媒体框架
+A
+     __      _   _   _   ______
+    |   \   | | | | | | |  ____)                    _
+    | |\ \  | | | | | | | |         ___      ___   (_)   ___
+    | | \ \ | | | | | | | |____    / _ \   / ___ \  _   / _ \   ___
+    | |  \ \| | | | | | |  ____)  | / \ | | |  | | | | | / \ | / _ )
+    | |   \ | | | | | | | |_____  | | | | | |__| | | | | | | | | __/
+    |_|    \ _| |_| |_| |_______) |_| |_|  \___| | |_| |_| |_| |___|
+                                             __/ |                 
+                                            \___/   
+                                                
+                                                
+                                                                 F i l e
 
-时间: 2014-5-7
 
-文本编码: utf-8
+Copyright: NIIEngine Team Group
 
-所属公司: 深圳闽登科技有限公司
+Home page: www.niiengine.com 
 
-命名风格: 概论命名法
+Email: niiengine@gmail.com OR niiengine@163.com
 
-编程风格: 统筹式
-
-管理模式: 分布式
-
-内部成分: UI对象 网络对象 音频对象 物理对象 事件驱动对象(扩散性设计)
-
-主要成分: c++(80%) c(20%)
-
-用途: 操作系统桌面(包围操作系统内核api)
-      三维应用软件
-        计算机辅助立体设计软件(CAD)
-        地理信息系统软件(GIS)
-        电影背景立体重构软件
-        立体游戏软件
-
-偏向用途: 立体游戏软件
-
-主页: www.niiengine.com 电子邮箱: niiengine@gmail.com OR niiengine@163.com
-
-授权方式:商业授权(www.niiengine.com/license)(3种)
+Licence: commerce(www.niiengine.com/license)(Three kinds)
 ------------------------------------------------------------------------------
 */
 
@@ -37,12 +29,22 @@
 #define _NII_CONDITION_H_
 
 #include "NiiPreInclude.h"
+#include "NiiEventArgs.h"
 #include "NiiCommon.h"
 
 namespace NII
 {
 namespace NII_COMMAND
 {
+    class _EngineAPI ConditionReachArgs : public EventArgs
+    {
+    public:
+        ConditionReachArgs(const Condition * co) : mCondition(co) {}
+        ~ConditionReachArgs() {}
+
+        const Condition * mCondition;
+    };
+
     /** 条件判断器
     @remark
         可以通过实现具体的reach()操作来决定条件是否成立
@@ -58,7 +60,7 @@ namespace NII_COMMAND
     class _EngineAPI Condition : public EventAlloc
     {
         friend class MemberFunctor;
-		friend class EventObj;
+        friend class EventObj;
     public:
         /** 调整事件具体执行需要的参数
         @version NIIEngine 3.0.0
@@ -82,21 +84,21 @@ namespace NII_COMMAND
 
         typedef map<EventID, ConditionParam *>::type ConditionParams;
     public:
-		Condition();
+        Condition();
         Condition(Command * command);
         virtual ~Condition();
 
-		/** 设置条件达成后执行的命令
-		@remark
-			非线程安全,而且推荐所有的事件机制在同一个线程中执行,这样可以保证同步和
-			效率问题,NII引擎设计一个Condition执行一个Command,但Command设置是可以
-			存在多个函子的,所以如果想同时执行多个Command,请把多个Command合成到一个
-			Command中.一个Condition执行一个Command理论上是效率问题的考虑
-		@param[in] co 命令对象
-		@par 这个对象不管理这个参数的内存
-		@version NIIEngine 3.0.0
-		*/
-		void setExec(Command * co);
+        /** 设置条件达成后执行的命令
+        @remark
+            非线程安全,而且推荐所有的事件机制在同一个线程中执行,这样可以保证同步和
+            效率问题,NII引擎设计一个Condition执行一个Command,但Command设置是可以
+            存在多个函子的,所以如果想同时执行多个Command,请把多个Command合成到一个
+            Command中.一个Condition执行一个Command理论上是效率问题的考虑
+        @param[in] co 命令对象
+        @par 这个对象不管理这个参数的内存
+        @version NIIEngine 3.0.0
+        */
+        void setExec(Command * co);
 
         /** 添加一个参子
         @remark
@@ -129,10 +131,10 @@ namespace NII_COMMAND
         */
         const ConditionParam * find(EventID mid) const;
 
-		/** 执行条件成立后的事务
-		@version NIIEngine 3.0.0
-		*/
-		void exec(const EventArgs * args);
+        /** 执行条件成立后的事务
+        @version NIIEngine 3.0.0
+        */
+        void exec(const EventArgs * args);
 
         /** 编译所有成立的参子
         @remark 调用这个方法后,将会丢失所有在机制中成立的参子
@@ -176,9 +178,9 @@ namespace NII_COMMAND
         */
         virtual bool reached() = 0;
     protected:
-		Command * mExec;			///< 条件成立后执行的命令
-        ConditionParams mParams;	///< 条件的参子
-        bool mAutoReset;			///< 完成条件驱动后是否自动删除
+        Command * mExec;            ///< 条件成立后执行的命令
+        ConditionParams mParams;    ///< 条件的参子
+        bool mAutoReset;            ///< 完成条件驱动后是否自动删除
     };
 }
 }

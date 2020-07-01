@@ -1,34 +1,27 @@
 /*
 -----------------------------------------------------------------------------
-大型多媒体框架
+A
+     __      _   _   _   ______
+    |   \   | | | | | | |  ____)                    _
+    | |\ \  | | | | | | | |         ___      ___   (_)   ___
+    | | \ \ | | | | | | | |____    / _ \   / ___ \  _   / _ \   ___
+    | |  \ \| | | | | | |  ____)  | / \ | | |  | | | | | / \ | / _ )
+    | |   \ | | | | | | | |_____  | | | | | |__| | | | | | | | | __/
+    |_|    \ _| |_| |_| |_______) |_| |_|  \___| | |_| |_| |_| |___|
+                                             __/ |                 
+                                            \___/   
+                                                
+                                                
+                                                                 F i l e
 
-时间: 2014-5-7
 
-文本编码: utf-8
+Copyright: NIIEngine Team Group
 
-所属公司: 深圳闽登科技有限公司
+Home page: www.niiengine.com 
 
-命名风格: 概论命名法
+Email: niiengine@gmail.com OR niiengine@163.com
 
-编程风格: 统筹式
-
-管理模式: 分布式
-
-内部成分: UI对象 网络对象 音频对象 物理对象 事件驱动对象(扩散性设计)
-
-主要成分: c++(80%) c(20%)
-
-用途: 操作系统桌面(包围操作系统内核api)
-      三维应用软件
-        地理信息系统软件(GIS)
-        电影背景立体重构软件
-        立体游戏软件
-
-偏向用途: 立体游戏软件
-
-主页: www.niiengine.com 电子邮箱: niiengine@gmail.com OR niiengine@163.com
-
-授权方式:商业授权(www.niiengine.com/license)(3种)
+Licence: commerce(www.niiengine.com/license)(Three kinds)
 ------------------------------------------------------------------------------
 */
 
@@ -37,32 +30,32 @@
 
 #include "NiiPreInclude.h"
 
-#if NII_ARCH_TYPE == N_ARCH_32
+#if N_ARCH == N_ARCH_32
     #define IOTemp      Nui16
     #define IOMark      5
     #define IOValid     31
     #define IOByteCount 4
-#elif NII_ARCH_TYPE == N_ARCH_64
+#elif N_ARCH == N_ARCH_64
     #define IOTemp      Nui16
     #define IOMark      6
     #define IOValid     63
     #define IOByteCount 8
-#elif NII_ARCH_TYPE == N_ARCH_128
+#elif N_ARCH == N_ARCH_128
     #define IOTemp      Nui16
     #define IOMark      7
     #define IOValid     127
     #define IOByteCount 16
-#elif NII_ARCH_TYPE == N_ARCH_256
+#elif N_ARCH == N_ARCH_256
     #define IOTemp      Nui16
     #define IOMark      8
     #define IOValid     255
     #define IOByteCount 32
-#elif NII_ARCH_TYPE == N_ARCH_512
+#elif N_ARCH == N_ARCH_512
     #define IOTemp      Nui16
     #define IOMark      9
     #define IOValid     511
     #define IOByteCount 64
-#elif NII_ARCH_TYPE == N_ARCH_1024
+#elif N_ARCH == N_ARCH_1024
     #define IOTemp      Nui16
     #define IOMark      10
     #define IOValid     1023

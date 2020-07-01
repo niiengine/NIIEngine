@@ -1,34 +1,27 @@
 ﻿/*
 -----------------------------------------------------------------------------
-大型多媒体框架
+A
+     __      _   _   _   ______
+    |   \   | | | | | | |  ____)                    _
+    | |\ \  | | | | | | | |         ___      ___   (_)   ___
+    | | \ \ | | | | | | | |____    / _ \   / ___ \  _   / _ \   ___
+    | |  \ \| | | | | | |  ____)  | / \ | | |  | | | | | / \ | / _ )
+    | |   \ | | | | | | | |_____  | | | | | |__| | | | | | | | | __/
+    |_|    \ _| |_| |_| |_______) |_| |_|  \___| | |_| |_| |_| |___|
+                                             __/ |                 
+                                            \___/   
+                                                
+                                                
+                                                                 F i l e
 
-时间: 2014-5-7
 
-文本编码: utf-8
+Copyright: NIIEngine Team Group
 
-所属公司: 深圳闽登科技有限公司
+Home page: www.niiengine.com 
 
-命名风格: 概论命名法
+Email: niiengine@gmail.com OR niiengine@163.com
 
-编程风格: 统筹式
-
-管理模式: 分布式
-
-内部成分: UI对象 网络对象 音频对象 物理对象 事件驱动对象(扩散性设计)
-
-主要成分: c++(80%) c(20%)
-
-用途: 操作系统桌面(包围操作系统内核api)
-      三维应用软件
-        地理信息系统软件(GIS)
-        电影背景立体重构软件
-        立体游戏软件
-
-偏向用途: 立体游戏软件
-
-主页: www.niiengine.com 电子邮箱: niiengine@gmail.com OR niiengine@163.com
-
-授权方式:商业授权(www.niiengine.com/license)(3种)
+Licence: commerce(www.niiengine.com/license)(Three kinds)
 ------------------------------------------------------------------------------
 */
 
@@ -39,6 +32,7 @@
 
 namespace NII
 {
+    // Mono8, Mono16ADPCM, Mono16, Stereo8, Stereo16
     /** 样本格式
     @version NIIEngine 3.0.0
     */
@@ -145,7 +139,7 @@ namespace NII
 
     /** 声音段,描述音乐的组成段
     @remark 描述声音流信息
-	@version NIIEngine 3.0.0
+    @version NIIEngine 3.0.0
     */
     class _EngineAPI SoundFormat
     {
@@ -177,14 +171,14 @@ namespace NII
 
         /** 返回相应样本频率的值
         @param[in] sr 样本频率枚举
-		@version NIIEngine 3.0.0
+        @version NIIEngine 3.0.0
         */
         static NCount toNum(SampleRate sr);
 
         /** 返回相应值的样本频率枚举
-		@version NIIEngine 3.0.0
+        @version NIIEngine 3.0.0
         */
-		static SampleRate toSampleRate(Nui32 num);
+        static SampleRate toSampleRate(Nui32 num);
         
         /// 计算一个音频块1秒钟的大小(单位字节)
         static NCount calcSize(Nui32 bits, Nui32 sr, Nui8 ch);
@@ -201,29 +195,29 @@ namespace NII
         /** 音频数据格式转换函数
         @param[in] sf 目标格式
         @return 转换函数
-		@version NIIEngine 3.0.0
+        @version NIIEngine 3.0.0
         */
         convert Nui8toNui8(SampleFormat sf);
 
         /** 音频数据格式转换函数
         @param[in] sf 目标格式
         @return 转换函数
-		@version NIIEngine 3.0.0
+        @version NIIEngine 3.0.0
         */
-		convert Nui8toNIIf(SampleFormat sf);
+        convert Nui8toNIIf(SampleFormat sf);
 
         /** 音频数据格式转换
         @param[in] sf
         @return 转换函数
-		@version NIIEngine 3.0.0
+        @version NIIEngine 3.0.0
         */
-		convert NIIftoNui8(SampleFormat sf);
+        convert NIIftoNui8(SampleFormat sf);
 
         /** Nui8 到 Ni16 的转换
         @param[in] in 输入
         @param[out] out 输出
         @param[in] count 数据单位数量
-		@version NIIEngine 3.0.0
+        @version NIIEngine 3.0.0
         */
         static void Nui8toNi16(Nui8 * in, Nui8 * out, NCount count);
 
@@ -231,7 +225,7 @@ namespace NII
         @param[in] in 输入
         @param[out] out 输出
         @param[in] count 数据单位数量
-		@version NIIEngine 3.0.0
+        @version NIIEngine 3.0.0
         */
         static void Nui8toNi24be(Nui8 * in, Nui8 * out, NCount count);
 
@@ -239,7 +233,7 @@ namespace NII
         @param[in] in 输入
         @param[out] out 输出
         @param[in] count 数据单位数量
-		@version NIIEngine 3.0.0
+        @version NIIEngine 3.0.0
         */
         static void Nui8toNi24le(Nui8 * in, Nui8 * out, NCount count);
 
@@ -247,7 +241,7 @@ namespace NII
         @param[in] in 输入
         @param[out] out 输出
         @param[in] count 数据单位数量
-		@version NIIEngine 3.0.0
+        @version NIIEngine 3.0.0
         */
         static void Nui8toNi32(Nui8 * in, Nui8 * out, NCount count);
 
@@ -255,7 +249,7 @@ namespace NII
         @param[in] in 输入
         @param[out] out 输出
         @param[in] count 数据单位数量
-		@version NIIEngine 3.0.0
+        @version NIIEngine 3.0.0
         */
         static void Nui8toNIIf(Nui8 * in, Nui8 * out, NCount count);
 
@@ -263,7 +257,7 @@ namespace NII
         @param[in] in 输入
         @param[out] out 输出
         @param[in] count 数据单位数量
-		@version NIIEngine 3.0.0
+        @version NIIEngine 3.0.0
         */
         static void Nui8toNIId(Nui8 * in, Nui8 * out, NCount count);
 
@@ -271,7 +265,7 @@ namespace NII
         @param[in] in 输入
         @param[out] out 输出
         @param[in] count 数据单位数量
-		@version NIIEngine 3.0.0
+        @version NIIEngine 3.0.0
         */
         static void Ni16toNui8(Nui8 * in, Nui8 * out, NCount count);
 
@@ -279,7 +273,7 @@ namespace NII
         @param[in] in 输入
         @param[out] out 输出
         @param[in] count 数据单位数量
-		@version NIIEngine 3.0.0
+        @version NIIEngine 3.0.0
         */
         static void Ni16toNi24be(Nui8 * in, Nui8 * out, NCount count);
 
@@ -287,7 +281,7 @@ namespace NII
         @param[in] in 输入
         @param[out] out 输出
         @param[in] count 数据单位数量
-		@version NIIEngine 3.0.0
+        @version NIIEngine 3.0.0
         */
         static void Ni16toNi24le(Nui8 * in, Nui8 * out, NCount count);
 
@@ -295,7 +289,7 @@ namespace NII
         @param[in] in 输入
         @param[out] out 输出
         @param[in] count 数据单位数量
-		@version NIIEngine 3.0.0
+        @version NIIEngine 3.0.0
         */
         static void Ni16toNi32(Nui8 * in, Nui8 * out, NCount count);
 
@@ -303,7 +297,7 @@ namespace NII
         @param[in] in 输入
         @param[out] out 输出
         @param[in] count 数据单位数量
-		@version NIIEngine 3.0.0
+        @version NIIEngine 3.0.0
         */
         static void Ni16toNIIf(Nui8 * in, Nui8 * out, NCount count);
 
@@ -311,7 +305,7 @@ namespace NII
         @param[in] in 输入
         @param[out] out 输出
         @param[in] count 数据单位数量
-		@version NIIEngine 3.0.0
+        @version NIIEngine 3.0.0
         */
         static void Ni16toNIId(Nui8 * in, Nui8 * out, NCount count);
 
@@ -319,7 +313,7 @@ namespace NII
         @param[in] in 输入
         @param[out] out 输出
         @param[in] count 数据单位数量
-		@version NIIEngine 3.0.0
+        @version NIIEngine 3.0.0
         */
         static void Ni24toNui8be(Nui8 * in, Nui8 * out, NCount count);
 
@@ -327,7 +321,7 @@ namespace NII
         @param[in] in 输入
         @param[out] out 输出
         @param[in] count 数据单位数量
-		@version NIIEngine 3.0.0
+        @version NIIEngine 3.0.0
         */
         static void Ni24toNui8le(Nui8 * in, Nui8 * out, NCount count);
 
@@ -335,7 +329,7 @@ namespace NII
         @param[in] in 输入
         @param[out] out 输出
         @param[in] count 数据单位数量
-		@version NIIEngine 3.0.0
+        @version NIIEngine 3.0.0
         */
         static void Ni24toNi16be(Nui8 * in, Nui8 * out, NCount count);
 
@@ -343,7 +337,7 @@ namespace NII
         @param[in] in 输入
         @param[out] out 输出
         @param[in] count 数据单位数量
-		@version NIIEngine 3.0.0
+        @version NIIEngine 3.0.0
         */
         static void Ni24toNi16le(Nui8 * in, Nui8 * out, NCount count);
 
@@ -351,7 +345,7 @@ namespace NII
         @param[in] in 输入
         @param[out] out 输出
         @param[in] count 数据单位数量
-		@version NIIEngine 3.0.0
+        @version NIIEngine 3.0.0
         */
         static void Ni24toNi24(Nui8 * in, Nui8 * out, NCount count);
 
@@ -359,7 +353,7 @@ namespace NII
         @param[in] in 输入
         @param[out] out 输出
         @param[in] count 数据单位数量
-		@version NIIEngine 3.0.0
+        @version NIIEngine 3.0.0
         */
         static void Ni24toNi32be(Nui8 * in, Nui8 * out, NCount count);
 
@@ -367,7 +361,7 @@ namespace NII
         @param[in] in 输入
         @param[out] out 输出
         @param[in] count 数据单位数量
-		@version NIIEngine 3.0.0
+        @version NIIEngine 3.0.0
         */
         static void Ni24toNi32le(Nui8 * in, Nui8 * out, NCount count);
 
@@ -375,7 +369,7 @@ namespace NII
         @param[in] in 输入
         @param[out] out 输出
         @param[in] count 数据单位数量
-		@version NIIEngine 3.0.0
+        @version NIIEngine 3.0.0
         */
         static void Ni24toNIIfbe(Nui8 * in, Nui8 * out, NCount count);
 
@@ -383,7 +377,7 @@ namespace NII
         @param[in] in 输入
         @param[out] out 输出
         @param[in] count 数据单位数量
-		@version NIIEngine 3.0.0
+        @version NIIEngine 3.0.0
         */
         static void Ni24toNIIfle(Nui8 * out, Nui8 * in, NCount count);
 
@@ -391,7 +385,7 @@ namespace NII
         @param[in] in 输入
         @param[out] out 输出
         @param[in] count 数据单位数量
-		@version NIIEngine 3.0.0
+        @version NIIEngine 3.0.0
         */
         static void Ni24toNIIdbe(Nui8 * in, Nui8 * out, NCount count);
 
@@ -399,7 +393,7 @@ namespace NII
         @param[in] in 输入
         @param[out] out 输出
         @param[in] count 数据单位数量
-		@version NIIEngine 3.0.0
+        @version NIIEngine 3.0.0
         */
         static void Ni24toNIIdle(Nui8 * in, Nui8 * out, NCount count);
 
@@ -407,7 +401,7 @@ namespace NII
         @param[in] in 输入
         @param[out] out 输出
         @param[in] count 数据单位数量
-		@version NIIEngine 3.0.0
+        @version NIIEngine 3.0.0
         */
         static void Ni32toNui8(Nui8 * in, Nui8 * out, NCount count);
 
@@ -415,7 +409,7 @@ namespace NII
         @param[in] in 输入
         @param[out] out 输出
         @param[in] count 数据单位数量
-		@version NIIEngine 3.0.0
+        @version NIIEngine 3.0.0
         */
         static void Ni32toNi16(Nui8 * in, Nui8 * out, NCount count);
 
@@ -423,7 +417,7 @@ namespace NII
         @param[in] in 输入
         @param[out] out 输出
         @param[in] count 数据单位数量
-		@version NIIEngine 3.0.0
+        @version NIIEngine 3.0.0
         */
         static void Ni32toNi24be(Nui8 * in, Nui8 * out, NCount count);
 
@@ -431,7 +425,7 @@ namespace NII
         @param[in] in 输入
         @param[out] out 输出
         @param[in] count 数据单位数量
-		@version NIIEngine 3.0.0
+        @version NIIEngine 3.0.0
         */
         static void Ni32toNi24le(Nui8 * in, Nui8 * out, NCount count);
 
@@ -439,7 +433,7 @@ namespace NII
         @param[in] in 输入
         @param[out] out 输出
         @param[in] count 数据单位数量
-		@version NIIEngine 3.0.0
+        @version NIIEngine 3.0.0
         */
         static void Ni32toNIIf(Nui8 * in, Nui8 * out, NCount count);
 
@@ -447,7 +441,7 @@ namespace NII
         @param[in] in 输入
         @param[out] out 输出
         @param[in] count 数据单位数量
-		@version NIIEngine 3.0.0
+        @version NIIEngine 3.0.0
         */
         static void Ni32toNIId(Nui8 * in, Nui8 * out, NCount count);
 
@@ -455,7 +449,7 @@ namespace NII
         @param[in] in 输入
         @param[out] out 输出
         @param[in] count 数据单位数量
-		@version NIIEngine 3.0.0
+        @version NIIEngine 3.0.0
         */
         static void NIIftoNui8(Nui8 * in, Nui8 * out, NCount count);
 
@@ -463,7 +457,7 @@ namespace NII
         @param[in] in 输入
         @param[out] out 输出
         @param[in] count 数据单位数量
-		@version NIIEngine 3.0.0
+        @version NIIEngine 3.0.0
         */
         static void NIIftoNi16(Nui8 * in, Nui8 * out, NCount count);
 
@@ -471,7 +465,7 @@ namespace NII
         @param[in] in 输入
         @param[out] out 输出
         @param[in] count 数据单位数量
-		@version NIIEngine 3.0.0
+        @version NIIEngine 3.0.0
         */
         static void NIIftoNi24be(Nui8 * in, Nui8 * out, NCount count);
 
@@ -479,7 +473,7 @@ namespace NII
         @param[in] in 输入
         @param[out] out 输出
         @param[in] count 数据单位数量
-		@version NIIEngine 3.0.0
+        @version NIIEngine 3.0.0
         */
         static void NIIftoNi24le(Nui8 * in, Nui8 * out, NCount count);
 
@@ -487,7 +481,7 @@ namespace NII
         @param[in] in 输入
         @param[out] out 输出
         @param[in] count 数据单位数量
-		@version NIIEngine 3.0.0
+        @version NIIEngine 3.0.0
         */
         static void NIIftoNi32(Nui8 * in, Nui8 * out, NCount count);
 
@@ -495,7 +489,7 @@ namespace NII
         @param[in] in 输入
         @param[out] out 输出
         @param[in] count 数据单位数量
-		@version NIIEngine 3.0.0
+        @version NIIEngine 3.0.0
         */
         static void NIIftoNIId(Nui8 * in, Nui8 * out, NCount count);
 
@@ -503,7 +497,7 @@ namespace NII
         @param[in] in 输入
         @param[out] out 输出
         @param[in] count 数据单位数量
-		@version NIIEngine 3.0.0
+        @version NIIEngine 3.0.0
         */
         static void NIIdtoNui8(Nui8 * in, Nui8 * out, NCount count);
 
@@ -511,7 +505,7 @@ namespace NII
         @param[in] in 输入
         @param[out] out 输出
         @param[in] count 数据单位数量
-		@version NIIEngine 3.0.0
+        @version NIIEngine 3.0.0
         */
         static void NIIdtoNi16(Nui8 * in, Nui8 * out, NCount count);
 
@@ -519,7 +513,7 @@ namespace NII
         @param[in] in 输入
         @param[out] out 输出
         @param[in] count 数据单位数量
-		@version NIIEngine 3.0.0
+        @version NIIEngine 3.0.0
         */
         static void NIIdtoNi24be(Nui8 * in, Nui8 * out, NCount count);
 
@@ -527,7 +521,7 @@ namespace NII
         @param[in] in 输入
         @param[out] out 输出
         @param[in] count 数据单位数量
-		@version NIIEngine 3.0.0
+        @version NIIEngine 3.0.0
         */
         static void NIIdtoNi24le(Nui8 * in, Nui8 * out, NCount count);
 
@@ -535,7 +529,7 @@ namespace NII
         @param[in] in 输入
         @param[out] out 输出
         @param[in] count 数据单位数量
-		@version NIIEngine 3.0.0
+        @version NIIEngine 3.0.0
         */
         static void NIIdtoNi32(Nui8 * in, Nui8 * out, NCount count);
 
@@ -543,7 +537,7 @@ namespace NII
         @param[in] in 输入
         @param[out] out 输出
         @param[in] count 数据单位数量
-		@version NIIEngine 3.0.0
+        @version NIIEngine 3.0.0
         */
         static void NIIdtoNIIf(Nui8 * in, Nui8 * out, NCount count);
     };

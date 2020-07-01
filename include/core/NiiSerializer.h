@@ -1,35 +1,27 @@
 ﻿/*
 -----------------------------------------------------------------------------
-大型多媒体框架
+A
+     __      _   _   _   ______
+    |   \   | | | | | | |  ____)                    _
+    | |\ \  | | | | | | | |         ___      ___   (_)   ___
+    | | \ \ | | | | | | | |____    / _ \   / ___ \  _   / _ \   ___
+    | |  \ \| | | | | | |  ____)  | / \ | | |  | | | | | / \ | / _ )
+    | |   \ | | | | | | | |_____  | | | | | |__| | | | | | | | | __/
+    |_|    \ _| |_| |_| |_______) |_| |_|  \___| | |_| |_| |_| |___|
+                                             __/ |                 
+                                            \___/   
+                                                
+                                                
+                                                                 F i l e
 
-时间: 2014-5-7
 
-文本编码: utf-8
+Copyright: NIIEngine Team Group
 
-所属公司: 深圳闽登科技有限公司
+Home page: www.niiengine.com 
 
-命名风格: 概论命名法
+Email: niiengine@gmail.com OR niiengine@163.com
 
-编程风格: 统筹式
-
-管理模式: 分布式
-
-内部成分: UI对象 网络对象 音频对象 物理对象 事件驱动对象(扩散性设计)
-
-主要成分: c++(80%) c(20%)
-
-用途: 操作系统桌面(包围操作系统内核api)
-      三维应用软件
-        计算机辅助立体设计软件(CAD)
-        地理信息系统软件(GIS)
-        电影背景立体重构软件
-        立体游戏软件
-
-偏向用途: 立体游戏软件
-
-主页: www.niiengine.com 电子邮箱: niiengine@gmail.com OR niiengine@163.com
-
-授权方式:商业授权(www.niiengine.com/license)(3种)
+Licence: commerce(www.niiengine.com/license)(Three kinds)
 ------------------------------------------------------------------------------
 */
 
@@ -46,8 +38,8 @@ namespace NII
 {
     /** 文件的字节序
     @version NIIEngine 3.0.0
-	*/
-	enum Endian
+    */
+    enum Endian
     {
         E_Native,   ///< 使用平台自身
         E_B,        ///< 使用大字节序 (0x1000 为 0x1000)
@@ -68,12 +60,12 @@ namespace NII
 
         virtual ~Serializer();
     public:
-		/** 写入一个布尔型
-		@remark 一般使用Nui8数据类型去描述一个bool
-		@param[in] in 输入数据
-		@version NIIEngine 3.0.0
-		*/
-		void write(bool in);
+        /** 写入一个布尔型
+        @remark 一般使用Nui8数据类型去描述一个bool
+        @param[in] in 输入数据
+        @version NIIEngine 3.0.0
+        */
+        void write(bool in);
 
         /** 写入一个或多个布尔
         @remark 一般使用Nui8数据类型去描述一个bool
@@ -83,11 +75,11 @@ namespace NII
         */
         void write(const bool * in, NCount cnt = 1);
 
-		/** 写入一个Ni8
-		@param[in] in 输入数据
-		@version NIIEngine 3.0.0
-		*/
-		void write(Ni8 in);
+        /** 写入一个Ni8
+        @param[in] in 输入数据
+        @version NIIEngine 3.0.0
+        */
+        void write(Ni8 in);
 
         /** 写入一个或多个Ni8
         @param[in] in 输入数据
@@ -96,11 +88,11 @@ namespace NII
         */
         void write(const Ni8 * in, NCount cnt = 1);
 
-		/** 写入一个Nui8
-		@param[in] in 输入数据
-		@version NIIEngine 3.0.0
-		*/
-		void write(Nui8 in);
+        /** 写入一个Nui8
+        @param[in] in 输入数据
+        @version NIIEngine 3.0.0
+        */
+        void write(Nui8 in);
 
         /** 写入一个或多个Nui8
         @param[in] in 输入数据
@@ -109,11 +101,11 @@ namespace NII
         */
         void write(const Nui8 * in, NCount cnt = 1);
 
-		/** 写入一个Ni16
-		@param[in] in 输入数据
-		@version NIIEngine 3.0.0
-		*/
-		void write(Ni16 in);
+        /** 写入一个Ni16
+        @param[in] in 输入数据
+        @version NIIEngine 3.0.0
+        */
+        void write(Ni16 in);
 
         /** 写入一个或多个Ni16
         @param[in] in 输入数据
@@ -122,11 +114,11 @@ namespace NII
         */
         void write(const Ni16 * in, NCount cnt = 1);
 
-		/** 写入一个Nui16
-		@param[in] in 输入数据
-		@version NIIEngine 3.0.0
-		*/
-		void write(Nui16 in);
+        /** 写入一个Nui16
+        @param[in] in 输入数据
+        @version NIIEngine 3.0.0
+        */
+        void write(Nui16 in);
 
         /** 写入一个或多个Nui16
         @param[in] in 输入数据
@@ -135,11 +127,11 @@ namespace NII
         */
         void write(const Nui16 * in, NCount cnt = 1);
 
-		/** 写入一个Ni32
-		@param[in] in 输入数据
-		@version NIIEngine 3.0.0
-		*/
-		void write(Ni32 in);
+        /** 写入一个Ni32
+        @param[in] in 输入数据
+        @version NIIEngine 3.0.0
+        */
+        void write(Ni32 in);
 
         /** 写入一个或多个Ni32
         @param[in] in 输入数据
@@ -148,11 +140,11 @@ namespace NII
         */
         void write(const Ni32 * in, NCount cnt = 1);
 
-		/** 写入一个Nui32
-		@param[in] in 输入数据
-		@version NIIEngine 3.0.0
-		*/
-		void write(Nui32 in);
+        /** 写入一个Nui32
+        @param[in] in 输入数据
+        @version NIIEngine 3.0.0
+        */
+        void write(Nui32 in);
 
         /** 写入一个或多个Nui32
         @param[in] in 输入数据
@@ -161,11 +153,11 @@ namespace NII
         */
         void write(const Nui32 * in, NCount cnt = 1);
 
-		/** 写入一个NIIf
-		@param[in] in 输入数据
-		@version NIIEngine 3.0.0
-		*/
-		void write(NIIf in);
+        /** 写入一个NIIf
+        @param[in] in 输入数据
+        @version NIIEngine 3.0.0
+        */
+        void write(NIIf in);
 
         /** 写入一个或多个NIIf
         @param[in] in 输入数据
@@ -174,11 +166,11 @@ namespace NII
         */
         void write(const NIIf * in, NCount cnt = 1);
 
-		/** 写入一个NIId
-		@param[in] in 输入数据
-		@version NIIEngine 3.0.0
-		*/
-		void write(NIId in);
+        /** 写入一个NIId
+        @param[in] in 输入数据
+        @version NIIEngine 3.0.0
+        */
+        void write(NIId in);
 
         /** 写入一个或多个NIId
         @param[in] in 输入数据
@@ -191,7 +183,13 @@ namespace NII
         @param[in] in 输入数据
         @version NIIEngine 3.0.0
         */
-        void write(const String & in);
+        void write(const WString & in);
+
+        /** 写入一个字符串
+        @param[in] in 输入数据
+        @version NIIEngine 3.0.0
+        */
+        void write(const VString & in);
 
         /** 写入一个射线
         @param[in] in 输入数据
@@ -211,18 +209,18 @@ namespace NII
         */
         void write(const Quaternion & in);
 
-		/** 写入一个方向角
-		@param[in] in 输入数据
-		@param[in] cnt 数据类型个数
-		@version NIIEngine 3.0.0
-		*/
-		void write(const Quaternion * in, NCount cnt = 1);
+        /** 写入一个方向角
+        @param[in] in 输入数据
+        @param[in] cnt 数据类型个数
+        @version NIIEngine 3.0.0
+        */
+        void write(const Quaternion * in, NCount cnt = 1);
 
-		/** 写入一个任意类型的Vector2
-		@param[in] in 输入数据
-		@version NIIEngine 3.0.0
-		*/
-		template <typename t> void write(const Vector2<t> & in);
+        /** 写入一个任意类型的Vector2
+        @param[in] in 输入数据
+        @version NIIEngine 3.0.0
+        */
+        template <typename t> void write(const Vector2<t> & in);
 
         /** 写入一个或多个任意类型的Vector2
         @param[in] in 输入数据
@@ -231,11 +229,11 @@ namespace NII
         */
         template <typename t> void write(const Vector2<t> * in, NCount cnt = 1);
 
-		/** 写入一个任意类型的Vector3
-		@param[in] in 输入数据
-		@version NIIEngine 3.0.0
-		*/
-		template <typename t> void write(const Vector3<t> & in);
+        /** 写入一个任意类型的Vector3
+        @param[in] in 输入数据
+        @version NIIEngine 3.0.0
+        */
+        template <typename t> void write(const Vector3<t> & in);
 
         /** 写入一个或多个任意类型的Vector3
         @param[in] in 输入数据
@@ -244,11 +242,11 @@ namespace NII
         */
         template <typename t> void write(const Vector3<t> * in, NCount cnt = 1);
 
-		/** 写入一个任意类型的Vector4
-		@param[in] in 输入数据
-		@version NIIEngine 3.0.0
-		*/
-		template <typename t> void write(const Vector4<t> & in);
+        /** 写入一个任意类型的Vector4
+        @param[in] in 输入数据
+        @version NIIEngine 3.0.0
+        */
+        template <typename t> void write(const Vector4<t> & in);
 
         /** 写入一个或多个任意类型的Vector4
         @param[in] in 输入数据
@@ -257,11 +255,11 @@ namespace NII
         */
         template <typename t> void write(const Vector4<t> * in, NCount cnt = 1);
 
-		/** 写入一个任意类型的Matrix3
-		@param[in] in 输入数据
-		@version NIIEngine 3.0.0
-		*/
-		template <typename t> void write(const Matrix3<t> & in);
+        /** 写入一个任意类型的Matrix3
+        @param[in] in 输入数据
+        @version NIIEngine 3.0.0
+        */
+        template <typename t> void write(const Matrix3<t> & in);
 
         /** 写入一个或多个任意类型的Matrix3
         @param[in] in 输入数据
@@ -270,11 +268,11 @@ namespace NII
         */
         template <typename t> void write(const Matrix3<t> * in, NCount cnt = 1);
 
-		/** 写入一个任意类型的Matrix4
-		@param[in] in 输入数据
-		@version NIIEngine 3.0.0
-		*/
-		template <typename t> void write(const Matrix4<t> & in);
+        /** 写入一个任意类型的Matrix4
+        @param[in] in 输入数据
+        @version NIIEngine 3.0.0
+        */
+        template <typename t> void write(const Matrix4<t> & in);
 
         /** 写入一个或多个任意类型的Matrix4
         @param[in] in 输入数据
@@ -360,7 +358,13 @@ namespace NII
         @param[in] 一个字符串
         @version NIIEngine 3.0.0
         */
-        NCount read(String & out) const;
+        NCount read(WString & out) const;
+
+        /** 读取一个指定长度的字符串
+        @param[in] 一个字符串
+        @version NIIEngine 3.0.0
+        */
+        NCount read(VString & out) const;
 
         /** 读取一个或多个射线
         @param[out] out 输出数据
@@ -380,12 +384,12 @@ namespace NII
         */
         NCount read(AABox & out) const;
 
-		/** 读取一个或多个方向角
-		@param[out] out 输出数据
-		@param[in] cnt 数据类型个数
-		@version NIIEngine 3.0.0
-		*/
-		NCount read(Quaternion * out, NCount cnt = 1) const;
+        /** 读取一个或多个方向角
+        @param[out] out 输出数据
+        @param[in] cnt 数据类型个数
+        @version NIIEngine 3.0.0
+        */
+        NCount read(Quaternion * out, NCount cnt = 1) const;
 
         /** 读取一个或多个
         @param[out] out 输出数据
@@ -434,7 +438,12 @@ namespace NII
         /** 获取字符串序列化中的大小
         @version NIIEngine 3.0.0
         */
-        NCount getSize(const String & str);
+        NCount getSize(const WString & str);
+
+        /** 获取字符串序列化中的大小
+        @version NIIEngine 3.0.0
+        */
+        NCount getSize(const VString & str);
 
         /** 翻转字节(仅字节型)
         @param[in] in 输入数据

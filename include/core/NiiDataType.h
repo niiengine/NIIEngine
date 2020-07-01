@@ -1,34 +1,27 @@
 /*
 -----------------------------------------------------------------------------
-大型多媒体框架
+A
+     __      _   _   _   ______
+    |   \   | | | | | | |  ____)                    _
+    | |\ \  | | | | | | | |         ___      ___   (_)   ___
+    | | \ \ | | | | | | | |____    / _ \   / ___ \  _   / _ \   ___
+    | |  \ \| | | | | | |  ____)  | / \ | | |  | | | | | / \ | / _ )
+    | |   \ | | | | | | | |_____  | | | | | |__| | | | | | | | | __/
+    |_|    \ _| |_| |_| |_______) |_| |_|  \___| | |_| |_| |_| |___|
+                                             __/ |                 
+                                            \___/   
+                                                
+                                                
+                                                                 F i l e
 
-时间: 2015-11-4
 
-文本编码: utf-8
+Copyright: NIIEngine Team Group
 
-所属公司: 深圳闽登科技有限公司
+Home page: www.niiengine.com 
 
-命名风格: 概论命名法
+Email: niiengine@gmail.com OR niiengine@163.com
 
-编程风格: 统筹式
-
-管理模式: 分布式
-
-内部成分: UI对象 网络对象 音频对象 物理对象 事件驱动对象(扩散性设计)
-
-主要成分: c++(80%) c(20%)
-
-用途: 操作系统桌面(包围操作系统内核api)
-      三维应用软件
-        地理信息系统软件(GIS)
-        电影背景立体重构软件
-        立体游戏软件
-
-偏向用途: 立体游戏软件
-
-主页: www.niiengine.com 电子邮箱: niiengine@gmail.com OR niiengine@163.com
-
-授权方式:商业授权(www.niiengine.com/license)(3种)
+Licence: commerce(www.niiengine.com/license)(Three kinds)
 ------------------------------------------------------------------------------
 */
 
@@ -44,24 +37,44 @@ namespace NII
     */
     enum DataType
     {
-        DT_Float1x = 0,         ///< 以1个浮点为单位的
-        DT_Float2x = 1,         ///< 以2个浮点为单位的
-        DT_Float3x = 2,         ///< 以3个浮点为单位的
-        DT_Float4x = 3,         ///< 以4个浮点为单位的
-        DT_Colour = 4,          ///< 颜色格式(一般是32位)
-        DT_Colour_ARGB = 5,     ///< 颜色格式(D3D期望)
-        DT_Colour_ABGR = 6,     ///< 颜色格式(GL期望)
-        DT_Short1x = 7,         ///< 以1个短整形为单位的
-        DT_Short2x = 8,         ///< 以2个短整形为单位的
-        DT_Short3x = 9,         ///< 以3个短整形为单位的
-        DT_Short4x = 10,        ///< 以4个短整形为单位的
-        DT_Vector2f = 11,       ///< 以2个浮点为单位的
-        DT_Vector3f = 12,       ///< 以3个浮点为单位的
-        DT_Vector4f = 13,       ///< 以4个浮点为单位的
-        DT_Matrix3f = 14,       ///< 以9个浮点为单位的
-        DT_Matrix4f = 15,       ///< 以16个浮点为单位的
-        DT_U_Byte = 16,         ///< 无符号(32位)
-        DT_Unkonw = 17
+        DT_Float1x      = 0,         ///< 以1个浮点为单位的
+        DT_Float2x      = 1,         ///< 以2个浮点为单位的
+        DT_Float3x      = 2,         ///< 以3个浮点为单位的
+        DT_Float4x      = 3,         ///< 以4个浮点为单位的
+        DT_Doubel1x     = 4,
+        DT_Double2x     = 5,
+        DT_Double3x     = 6,
+        DT_Double4x     = 7,
+        DT_Int1x        = 8,
+        DT_Int2x        = 9,
+        DT_Int3x        = 10,
+        DT_Int4x        = 11,
+        DT_UInt1x       = 12,
+        DT_UInt2x       = 13,
+        DT_UInt3x       = 14,
+        DT_UInt4x       = 15,
+        DT_Colour       = 16,       ///< 颜色格式(一般是32位)
+        DT_Colour_ARGB  = 17,       ///< 颜色格式(D3D期望)
+        DT_Colour_ABGR  = 18,       ///< 颜色格式(GL期望)
+        DT_Short2x      = 20,       ///< 以2个短整形为单位的
+        DT_Short4x      = 22,       ///< 以4个短整形为单位的
+        DT_UShort2x     = 24,       ///< 以2个无符号短整形为单位的
+        DT_UShort4x     = 26,       ///< 以4个无符号短整形为单位的
+        DT_ShortUnit2x  = 27,
+        DT_ShortUnit4x  = 28,
+        DT_UShortUnit2x = 29,   
+        DT_UShortUnit4x = 30,
+        DT_Vector2f     = 31,       ///< 以2个浮点为单位的
+        DT_Quaternion   = 32,       ///< 以4个浮点为单位的
+        DT_Vector4f     = 33,       ///< 以4个浮点为单位的
+        DT_Matrix4f     = 35,       ///< 以16个浮点为单位的
+        DT_UByte4x      = 36,       ///< 无符号(32位)
+        DT_Byte4x       = 37,
+        DT_UByteUnit4x  = 38,  
+        DT_ByteUnit4x   = 39,
+        DT_HalfFloat2x  = 40,
+        DT_HalfFloat4x  = 41,
+        DT_Unkonw       = 42
     };
     
     /** 数据类型辅助

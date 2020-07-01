@@ -1,34 +1,27 @@
 /*
 -----------------------------------------------------------------------------
-大型多媒体框架
+A
+     __      _   _   _   ______
+    |   \   | | | | | | |  ____)                    _
+    | |\ \  | | | | | | | |         ___      ___   (_)   ___
+    | | \ \ | | | | | | | |____    / _ \   / ___ \  _   / _ \   ___
+    | |  \ \| | | | | | |  ____)  | / \ | | |  | | | | | / \ | / _ )
+    | |   \ | | | | | | | |_____  | | | | | |__| | | | | | | | | __/
+    |_|    \ _| |_| |_| |_______) |_| |_|  \___| | |_| |_| |_| |___|
+                                             __/ |                 
+                                            \___/   
+                                                
+                                                
+                                                                 F i l e
 
-时间: 2015-8-26
 
-文本编码: utf-8
+Copyright: NIIEngine Team Group
 
-所属公司: 深圳闽登科技有限公司
+Home page: www.niiengine.com 
 
-命名风格: 概论命名法
+Email: niiengine@gmail.com OR niiengine@163.com
 
-编程风格: 统筹式
-
-管理模式: 分布式
-
-内部成分: UI对象 网络对象 音频对象 物理对象 事件驱动对象(扩散性设计)
-
-主要成分: c++(80%) c(20%)
-
-用途: 操作系统桌面(包围操作系统内核api)
-	  三维应用软件
-		地理信息系统软件(GIS)
-		电影背景立体重构软件
-		立体游戏软件
-
-偏向用途: 立体游戏软件
-
-主页: www.niiengine.com 电子邮箱: niiengine@gmail.com OR niiengine@163.com
-
-授权方式:商业授权(www.niiengine.com/license)(3种)
+Licence: commerce(www.niiengine.com/license)(Three kinds)
 ------------------------------------------------------------------------------
 */
 #ifndef _NII_XMLSerializer_H_
@@ -75,19 +68,19 @@ namespace NII
     class _EngineAPI XmlSerializer : public ScriptAlloc
     {
     public:
-        XmlSerializer(Ntostream * out, NCount indentSpace = 4);
-		XmlSerializer(Ntostream * out, const ScriptProperty * obj, NCount indent = 4);
-		~XmlSerializer();
+        XmlSerializer(Nostream * out, NCount indentSpace = 4);
+        XmlSerializer(Nostream * out, const ScriptProperty * obj, NCount indent = 4);
+        ~XmlSerializer();
 
-		/** 开始新的Tag节点
-		@param name Tag节点单元ID
-		@return 当前操作的Tag节点
-		*/
-		XmlSerializer & begin(XmlUnitID uid);
+        /** 开始新的Tag节点
+        @param name Tag节点单元ID
+        @return 当前操作的Tag节点
+        */
+        XmlSerializer & begin(XmlUnitID uid);
 
         /** 开始新的Tag节点
         @param name Tag节点名字
-		@return 当前操作的Tag节点
+        @return 当前操作的Tag节点
         */
         XmlSerializer & begin(const String & name);
 
@@ -96,12 +89,12 @@ namespace NII
         */
         XmlSerializer & end();
 
-		/** 添加属性
-		@param name 属性ID
-		@param value 属性值
-		@return 当前操作的Tag节点
-		*/
-		XmlSerializer & attribute(PropertyID pid, const String & value);
+        /** 添加属性
+        @param name 属性ID
+        @param value 属性值
+        @return 当前操作的Tag节点
+        */
+        XmlSerializer & attribute(PropertyID pid, const String & value);
 
         /** 添加属性
         @param name 属性名字
@@ -110,135 +103,135 @@ namespace NII
         */
         XmlSerializer & attribute(const String & name, const String & value);
 
-		/** 添加属性
-		@param name 属性ID
-		@param value 属性值
-		@return 当前操作的Tag节点
-		*/
-		XmlSerializer & attribute(PropertyID pid, bool value)
-		{
-			return attribute(pid, StrConv::conv(value));
-		}
+        /** 添加属性
+        @param name 属性ID
+        @param value 属性值
+        @return 当前操作的Tag节点
+        */
+        XmlSerializer & attribute(PropertyID pid, bool value)
+        {
+            return attribute(pid, N_conv(value));
+        }
 
-		/** 添加属性
-		@param name 属性名字
-		@param value 属性值
-		@return 当前操作的Tag节点
-		*/
-		inline XmlSerializer & attribute(const String & name, bool value)
-		{
-			return attribute(name, StrConv::conv(value));
-		}
+        /** 添加属性
+        @param name 属性名字
+        @param value 属性值
+        @return 当前操作的Tag节点
+        */
+        inline XmlSerializer & attribute(const String & name, bool value)
+        {
+            return attribute(name, N_conv(value));
+        }
 
-		/** 添加属性
-		@param name 属性ID
-		@param value 属性值
-		@return 当前操作的Tag节点
-		*/
-		inline XmlSerializer & attribute(PropertyID pid, Nui16 value)
-		{
-			return attribute(pid, StrConv::conv(value));
-		}
+        /** 添加属性
+        @param name 属性ID
+        @param value 属性值
+        @return 当前操作的Tag节点
+        */
+        inline XmlSerializer & attribute(PropertyID pid, Nui16 value)
+        {
+            return attribute(pid, N_conv(value));
+        }
 
-		/** 添加属性
-		@param name 属性名字
-		@param value 属性值
-		@return 当前操作的Tag节点
-		*/
-		inline XmlSerializer & attribute(const String & name, Nui16 value)
-		{
-			return attribute(name, StrConv::conv(value));
-		}
+        /** 添加属性
+        @param name 属性名字
+        @param value 属性值
+        @return 当前操作的Tag节点
+        */
+        inline XmlSerializer & attribute(const String & name, Nui16 value)
+        {
+            return attribute(name, N_conv(value));
+        }
 
-		/** 添加属性
-		@param name 属性ID
-		@param value 属性值
-		@return 当前操作的Tag节点
-		*/
-		inline XmlSerializer & attribute(PropertyID pid, Ni16 value)
-		{
-			return attribute(pid, StrConv::conv(value));
-		}
+        /** 添加属性
+        @param name 属性ID
+        @param value 属性值
+        @return 当前操作的Tag节点
+        */
+        inline XmlSerializer & attribute(PropertyID pid, Ni16 value)
+        {
+            return attribute(pid, N_conv(value));
+        }
 
-		/** 添加属性
-		@param name 属性名字
-		@param value 属性值
-		@return 当前操作的Tag节点
-		*/
-		inline XmlSerializer & attribute(const String & name, Ni16 value)
-		{
-			return attribute(name, StrConv::conv(value));
-		}
+        /** 添加属性
+        @param name 属性名字
+        @param value 属性值
+        @return 当前操作的Tag节点
+        */
+        inline XmlSerializer & attribute(const String & name, Ni16 value)
+        {
+            return attribute(name, N_conv(value));
+        }
 
-		/** 添加属性
-		@param name 属性ID
-		@param value 属性值
-		@return 当前操作的Tag节点
-		*/
-		inline XmlSerializer & attribute(PropertyID pid, Nui32 value)
-		{
-			return attribute(pid, StrConv::conv(value));
-		}
+        /** 添加属性
+        @param name 属性ID
+        @param value 属性值
+        @return 当前操作的Tag节点
+        */
+        inline XmlSerializer & attribute(PropertyID pid, Nui32 value)
+        {
+            return attribute(pid, N_conv(value));
+        }
 
-		/** 添加属性
-		@param name 属性名字
-		@param value 属性值
-		@return 当前操作的Tag节点
-		*/
-		inline XmlSerializer & attribute(const String & name, Nui32 value)
-		{
-			return attribute(name, StrConv::conv(value));
-		}
+        /** 添加属性
+        @param name 属性名字
+        @param value 属性值
+        @return 当前操作的Tag节点
+        */
+        inline XmlSerializer & attribute(const String & name, Nui32 value)
+        {
+            return attribute(name, N_conv(value));
+        }
 
-		/** 添加属性
-		@param name 属性ID
-		@param value 属性值
-		@version NIIEngine 3.0.0
-		*/
-		inline XmlSerializer & attribute(PropertyID pid, Ni32 value)
-		{
-			return attribute(pid, StrConv::conv(value));
-		}
+        /** 添加属性
+        @param name 属性ID
+        @param value 属性值
+        @version NIIEngine 3.0.0
+        */
+        inline XmlSerializer & attribute(PropertyID pid, Ni32 value)
+        {
+            return attribute(pid, N_conv(value));
+        }
 
-		/** 添加属性
-		@param name 属性名字
-		@param value 属性值
-		@version NIIEngine 3.0.0
-		*/
-		inline XmlSerializer & attribute(const String & name, Ni32 value)
-		{
-			return attribute(name, StrConv::conv(value));
-		}
+        /** 添加属性
+        @param name 属性名字
+        @param value 属性值
+        @version NIIEngine 3.0.0
+        */
+        inline XmlSerializer & attribute(const String & name, Ni32 value)
+        {
+            return attribute(name, N_conv(value));
+        }
 
-		/** 添加属性
-		@param name ID
-		@param value 属性值
-		@version NIIEngine 3.0.0
-		*/
-		inline XmlSerializer & attribute(PropertyID pid, NIIf value)
-		{
-			return attribute(pid, StrConv::conv(value));
-		}
+        /** 添加属性
+        @param name ID
+        @param value 属性值
+        @version NIIEngine 3.0.0
+        */
+        inline XmlSerializer & attribute(PropertyID pid, NIIf value)
+        {
+            return attribute(pid, N_conv(value));
+        }
 
-		/** 属性节点
-		@param name 属性名字
-		@param value 属性值
-		@version NIIEngine 3.0.0
-		*/
-		inline XmlSerializer & attribute(const String & name, NIIf value)
-		{
-			return attribute(name, StrConv::conv(value));
-		}
+        /** 属性节点
+        @param name 属性名字
+        @param value 属性值
+        @version NIIEngine 3.0.0
+        */
+        inline XmlSerializer & attribute(const String & name, NIIf value)
+        {
+            return attribute(name, N_conv(value));
+        }
 
         /** 添加文本节点
         @param text 节点的文本
         @return 当前操作的Tag节点
-		@version NIIEngine 3.0.0
+        @version NIIEngine 3.0.0
         */
         XmlSerializer & text(const String & text);
 
         /** 获取当前Tag节点数量
-		@version NIIEngine 3.0.0
+        @version NIIEngine 3.0.0
         */
         NCount getTagCount() const;
 
@@ -253,7 +246,7 @@ namespace NII
         /** 状态是否异常
         @version NIIEngine 3.0.0
         */
-		inline bool isUnvalid() const
+        inline bool isUnvalid() const
         {
             return false != mError;
         }
@@ -263,12 +256,12 @@ namespace NII
         XmlSerializer & operator=(const XmlSerializer & o);
     private:
         /** 缩行
-		@version NIIEngine 3.0.0
+        @version NIIEngine 3.0.0
         */
         void indentLine();
     private:
-		const ScriptProperty * mCmdObj;
-        Ntostream * mStream;
+        const ScriptProperty * mCmdObj;
+        Nostream * mStream;
         StringList mTagList;
         NCount mTagCount;
         NCount mCurrentDepth;

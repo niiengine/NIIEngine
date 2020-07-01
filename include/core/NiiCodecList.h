@@ -1,34 +1,27 @@
 /*
 -----------------------------------------------------------------------------
-大型多媒体框架
+A
+     __      _   _   _   ______
+    |   \   | | | | | | |  ____)                    _
+    | |\ \  | | | | | | | |         ___      ___   (_)   ___
+    | | \ \ | | | | | | | |____    / _ \   / ___ \  _   / _ \   ___
+    | |  \ \| | | | | | |  ____)  | / \ | | |  | | | | | / \ | / _ )
+    | |   \ | | | | | | | |_____  | | | | | |__| | | | | | | | | __/
+    |_|    \ _| |_| |_| |_______) |_| |_|  \___| | |_| |_| |_| |___|
+                                             __/ |                 
+                                            \___/   
+                                                
+                                                
+                                                                 F i l e
 
-时间: 2015-3-15
 
-文本编码: utf-8
+Copyright: NIIEngine Team Group
 
-所属公司: 深圳闽登科技有限公司
+Home page: www.niiengine.com 
 
-命名风格: 概论命名法
+Email: niiengine@gmail.com OR niiengine@163.com
 
-编程风格: 统筹式
-
-管理模式: 分布式
-
-内部成分: UI对象 网络对象 音频对象 物理对象 事件驱动对象(扩散性设计)
-
-主要成分: c++(80%) c(20%)
-
-用途: 操作系统桌面(包围操作系统内核api)
-      三维应用软件
-        地理信息系统软件(GIS)
-        电影背景立体重构软件
-        立体游戏软件
-
-偏向用途: 立体游戏软件
-
-主页: www.niiengine.com 电子邮箱: niiengine@gmail.com OR niiengine@163.com
-
-授权方式:商业授权(www.niiengine.com/license)(3种)
+Licence: commerce(www.niiengine.com/license)(Three kinds)
 ------------------------------------------------------------------------------
 */
 ///@warnning 不要手动修改此文件
@@ -73,15 +66,15 @@
 #define N_IMAGE_OPENJPEG        31
 #define N_IMAGE_PSP             32
 #define N_IMAGE_PVRT            33
-#define N_IMAGE_INNER1			34
-#define N_IMAGE_INNER2			35
-#define N_IMAGE_INNER3			36
-#define N_IMAGE_INNER4			37
-#define N_IMAGE_INNER5			38
-#define N_IMAGE_INNER6			39
-#define N_IMAGE_INNER7			40
-#define N_IMAGE_INNER8			41
-#define N_IMAGE_INNER9			42
+#define N_IMAGE_INNER1            34
+#define N_IMAGE_INNER2            35
+#define N_IMAGE_INNER3            36
+#define N_IMAGE_INNER4            37
+#define N_IMAGE_INNER5            38
+#define N_IMAGE_INNER6            39
+#define N_IMAGE_INNER7            40
+#define N_IMAGE_INNER8            41
+#define N_IMAGE_INNER9            42
 #define N_IMAGE_EXT20           43
 #define N_IMAGE_EXT19           44
 #define N_IMAGE_EXT18           45

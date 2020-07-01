@@ -1,34 +1,27 @@
 ﻿/*
 -----------------------------------------------------------------------------
-大型多媒体框架
+A
+     __      _   _   _   ______
+    |   \   | | | | | | |  ____)                    _
+    | |\ \  | | | | | | | |         ___      ___   (_)   ___
+    | | \ \ | | | | | | | |____    / _ \   / ___ \  _   / _ \   ___
+    | |  \ \| | | | | | |  ____)  | / \ | | |  | | | | | / \ | / _ )
+    | |   \ | | | | | | | |_____  | | | | | |__| | | | | | | | | __/
+    |_|    \ _| |_| |_| |_______) |_| |_|  \___| | |_| |_| |_| |___|
+                                             __/ |                 
+                                            \___/   
+                                                
+                                                
+                                                                 F i l e
 
-时间: 2014-5-7
 
-文本编码: utf-8
+Copyright: NIIEngine Team Group
 
-所属公司: 深圳闽登科技有限公司
+Home page: www.niiengine.com 
 
-命名风格: 概论命名法
+Email: niiengine@gmail.com OR niiengine@163.com
 
-编程风格: 统筹式
-
-管理模式: 分布式
-
-内部成分: UI对象 网络对象 音频对象 物理对象 事件驱动对象(扩散性设计)
-
-主要成分: c++(80%) c(20%)
-
-用途: 操作系统桌面(包围操作系统内核api)
-      三维应用软件
-        地理信息系统软件(GIS)
-        电影背景立体重构软件
-        立体游戏软件
-
-偏向用途: 立体游戏软件
-
-主页: www.niiengine.com 电子邮箱: niiengine@gmail.com OR niiengine@163.com
-
-授权方式:商业授权(www.niiengine.com/license)(3种)
+Licence: commerce(www.niiengine.com/license)(Three kinds)
 ------------------------------------------------------------------------------
 */
 
@@ -51,7 +44,6 @@
 #include <fnmatch.h>
 #endif
 
-/* 我们的简化数据输入结构 */
 struct _finddata_t
 {
     NIIb * name;
@@ -60,15 +52,17 @@ struct _finddata_t
 };
 
 #if N_PLAT != N_PLAT_SYMBIAN
-    #define _A_NORMAL 0x00  /* 普通文件-没有 读/写 限制 */
+    #define _A_NORMAL 0x00  /* 普通文件-没有读写限制 */
     #define _A_RDONLY 0x01  /* 只读文件 */
     #define _A_HIDDEN 0x02  /* 隐藏文件 */
     #define _A_SYSTEM 0x04  /* 系统文件 */
+    #define _A_VOLID  0x08  /* 卷号 */
     #define _A_ARCH   0x20  /* 存档文件 */
+    
 #endif
     #define _A_SUBDIR 0x10  /* 子目录 */
 
-    intptr_t _findfirst(const NIIb * pattern, struct _finddata_t * data);
+    intptr_t _findfirst(const char * pattern, struct _finddata_t * data);
 
     NIIi _findnext(intptr_t id, struct _finddata_t * data);
 

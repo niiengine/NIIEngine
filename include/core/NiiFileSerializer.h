@@ -1,35 +1,27 @@
 /*
 -----------------------------------------------------------------------------
-大型多媒体框架
+A
+     __      _   _   _   ______
+    |   \   | | | | | | |  ____)                    _
+    | |\ \  | | | | | | | |         ___      ___   (_)   ___
+    | | \ \ | | | | | | | |____    / _ \   / ___ \  _   / _ \   ___
+    | |  \ \| | | | | | |  ____)  | / \ | | |  | | | | | / \ | / _ )
+    | |   \ | | | | | | | |_____  | | | | | |__| | | | | | | | | __/
+    |_|    \ _| |_| |_| |_______) |_| |_|  \___| | |_| |_| |_| |___|
+                                             __/ |                 
+                                            \___/   
+                                                
+                                                
+                                                                 F i l e
 
-时间: 2014-7-22
 
-文本编码: utf-8
+Copyright: NIIEngine Team Group
 
-所属公司: 深圳闽登科技有限公司
+Home page: www.niiengine.com 
 
-命名风格: 概论命名法
+Email: niiengine@gmail.com OR niiengine@163.com
 
-编程风格: 统筹式
-
-管理模式: 分布式
-
-内部成分: UI对象 网络对象 音频对象 物理对象 事件驱动对象(扩散性设计)
-
-主要成分: c++(80%) c(20%)
-
-用途: 操作系统桌面(包围操作系统内核api)
-      三维应用软件
-        计算机辅助立体设计软件(CAD)
-        地理信息系统软件(GIS)
-        电影背景立体重构软件
-        立体游戏软件
-
-偏向用途: 立体游戏软件
-
-主页: www.niiengine.com 电子邮箱: niiengine@gmail.com OR niiengine@163.com
-
-授权方式:商业授权(www.niiengine.com/license)(3种)
+Licence: commerce(www.niiengine.com/license)(Three kinds)
 ------------------------------------------------------------------------------
 */
 
@@ -41,7 +33,7 @@
 
 namespace NII
 {
-    // 12字节       + 2字节  + 4字节  + 4字节    + 2字节       + 4字节		    + 2字节    + 4字节
+    // 12字节       + 2字节  + 4字节  + 4字节    + 2字节       + 4字节            + 2字节    + 4字节
     // NIIEngine300 + 字节序 + UnitID + 对象的ID + 加密压缩成分 + 文件中的成分大小 + 序列版本 + 下一个资源的开始位置(保留)
     #define NII_SERIAL_FILE_COM_SIZE 31
 
@@ -111,7 +103,7 @@ namespace NII
         @remark .niiengine 文件头
         @version NIIEngine 3.0.0
         */
-		virtual void readFileHeader();
+        virtual void readFileHeader();
 
         /** 写入单元头
         @version NIIEngine 3.0.0 高级api
@@ -193,12 +185,12 @@ namespace NII
     protected:
         Nui32 mUnitID;          ///< 对应所解析的单元类型(读写)
         Nui32 mObjectID;        ///< 当前部件对象的ID(读写)
-        Nui32 mComSize;         ///< 当前部件的总长度(就是序列文件中的大小,不包含压缩未压缩概念)(读写)
+        Nui32 mUnitSize;         ///< 当前部件的总长度(就是序列文件中的大小,不包含压缩未压缩概念)(读写)
         Nui32 mFileSize;        ///< 当前部件的总大小(读写)
         Nui32 mNextPos;
         Nui16 mVersion;         ///< 当前部件序列的版本(读写)
         Nui16 mFormat;          ///< 当前部件的加密压缩(2个成分)(读写)
-		Endian mEndian;
+        Endian mEndian;
         Nui32 mComHeaderPos;    ///< 单元头位置
         Nui32 mChunkSize;       ///< 当前部件成分的长度(读写)
         Listener * mListener;

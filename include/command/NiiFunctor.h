@@ -1,35 +1,27 @@
 /*
 -----------------------------------------------------------------------------
-大型多媒体框架
+A
+     __      _   _   _   ______
+    |   \   | | | | | | |  ____)                    _
+    | |\ \  | | | | | | | |         ___      ___   (_)   ___
+    | | \ \ | | | | | | | |____    / _ \   / ___ \  _   / _ \   ___
+    | |  \ \| | | | | | |  ____)  | / \ | | |  | | | | | / \ | / _ )
+    | |   \ | | | | | | | |_____  | | | | | |__| | | | | | | | | __/
+    |_|    \ _| |_| |_| |_______) |_| |_|  \___| | |_| |_| |_| |___|
+                                             __/ |                 
+                                            \___/   
+                                                
+                                                
+                                                                 F i l e
 
-时间: 2014-5-7
 
-文本编码: utf-8
+Copyright: NIIEngine Team Group
 
-所属公司: 深圳闽登科技有限公司
+Home page: www.niiengine.com 
 
-命名风格: 概论命名法
+Email: niiengine@gmail.com OR niiengine@163.com
 
-编程风格: 统筹式
-
-管理模式: 分布式
-
-内部成分: UI对象 网络对象 音频对象 物理对象 事件驱动对象(扩散性设计)
-
-主要成分: c++(80%) c(20%)
-
-用途: 操作系统桌面(包围操作系统内核api)
-      三维应用软件
-        计算机辅助立体设计软件(CAD)
-        地理信息系统软件(GIS)
-        电影背景立体重构软件
-        立体游戏软件
-
-偏向用途: 立体游戏软件
-
-主页: www.niiengine.com 电子邮箱: niiengine@gmail.com OR niiengine@163.com
-
-授权方式:商业授权(www.niiengine.com/license)(3种)
+Licence: commerce(www.niiengine.com/license)(Three kinds)
 ------------------------------------------------------------------------------
 */
 
@@ -50,6 +42,19 @@ namespace NII_COMMAND
     {
     public:
         virtual ~Functor();
+
+		/**
+		@version NIIEngine 3.0.0
+		*/
+		virtual bool operator ==(const Functor & o) const = 0;
+
+		/**
+		@version NIIEngine 3.0.0
+		*/
+		inline bool operator !=(const Functor & o) const
+		{
+			return !operator ==(o);
+		}
 
         /** 运行函子
         @param[in] args 因子
@@ -73,7 +78,7 @@ namespace NII_COMMAND
         @note 子类需要重写这个函数
         @version NIIEngine 3.0.0
         */
-        virtual Functor * clone() const;
+		virtual Functor * clone() const = 0;
     };
 
     /// 傀儡
@@ -83,8 +88,14 @@ namespace NII_COMMAND
         DummyFunctor();
         ~DummyFunctor();
         
-        ///@copydetails Functor()
+		///@copydetails Functor::operator ==
+		bool operator ==(const Functor & o) const;
+
+        ///@copydetails Functor::execute
         bool execute(const EventArgs * args);
+
+		///@copydetails Functor::clone
+		virtual Functor * clone() const;
     };
 
     /** 引用型函数
@@ -95,6 +106,9 @@ namespace NII_COMMAND
     {
     public:
         RefFunctor(Functor & func);
+
+		///@copydetails Functor::operator ==
+		bool operator ==(const Functor & o) const;
 
         /// @copydetails Functor::execute
         bool execute(const EventArgs * args);
@@ -109,6 +123,9 @@ namespace NII_COMMAND
     {
     public:
         PtrFunctor(Functor * func);
+
+		///@copydetails Functor::operator ==
+		bool operator ==(const Functor & o) const;
 
         /// @copydetails Functor::execute
         bool execute(const EventArgs * args);
@@ -129,7 +146,10 @@ namespace NII_COMMAND
     class _EngineAPI MethodFunctor : public Functor
     {
     public:
-        MethodFunctor(Event * obj, EventMethod m);
+        MethodFunctor(Event * event, EventMethod m);
+
+		///@copydetails Functor::operator ==
+		bool operator ==(const Functor & o) const;
 
         /// @copydetails Functor::execute
         bool execute(const EventArgs * args);
@@ -137,8 +157,8 @@ namespace NII_COMMAND
         /// @copydetails Funcotr::clone
         Functor * clone() const;
     protected:
-        Event * mObj;
-        EventMethod mMethod;
+		Event * mObj;
+		EventMethod mMethod;
     };
 
     /** 副本型函数
@@ -152,6 +172,9 @@ namespace NII_COMMAND
         CopyFunctor(const Functor & func);
         ~CopyFunctor();
 
+		///@copydetails Functor::operator ==
+		bool operator ==(const Functor & o) const;
+
         /// @copydetails Functor::operator()
         bool execute(const EventArgs * args);
 
@@ -161,17 +184,25 @@ namespace NII_COMMAND
         Functor * mReal;
     };
 
-    typedef void(CommandObj::*CmdObjMemberFunc)(const EventArgs *);
+    typedef void(CommandObj::*COFunc)(const EventArgs *);
+	typedef COFunc CommandObjFunctor;
+	template <typename _class, typename _earg> COFunc convCmdObjFunc(void (_class::*f)(const _earg *))
+	{
+		return static_cast<COFunc>(reinterpret_cast<void (_class::*)(const EventArgs *)>(f));
+	}
 
     /** 命令对象的成员函数
     @remark
         引擎事件机制中的命令对象独有的成员函数
     @version NIIEngine 3.0.0
     */
-    class _EngineAPI CommandObjFunctor : public Functor
+    class _EngineAPI CommandFunctor : public Functor
     {
     public:
-        CommandObjFunctor(CommandObj * obj, CmdObjMemberFunc mf);
+        CommandFunctor(CommandObj * obj, CommandObjFunctor mf);
+
+		///@copydetails Functor::operator ==
+		bool operator ==(const Functor & o) const;
 
         /// @copydetails Functor::execute
         bool execute(const EventArgs * args);
@@ -180,8 +211,44 @@ namespace NII_COMMAND
         Functor * clone() const;
     private:
         CommandObj * mObj;
-        CmdObjMemberFunc mMethod;
+        CommandObjFunctor mMethod;
     };
+
+	template <typename _class, typename _earg>
+		class ObjFunctor : public Functor
+	{
+	public:
+		ObjFunctor(_class * obj, void (_class::*mf)(const _earg *)) :
+			mObj(obj),
+			mMethod(mf)
+		{
+		}
+
+		///@copydetails Functor::operator ==
+		bool operator ==(const Functor & o) const
+		{
+			const ObjFunctor<_class, _earg> * temp = dynamic_cast<const ObjFunctor<_class, _earg> *>(&o);
+			if (temp)
+				return mObj == temp->mObj && mMethod == temp->mMethod;
+			return false;
+		}
+
+		///@copydetails Functor::execute
+		bool execute(const EventArgs * args)
+		{
+			(mObj->*mMethod)(static_cast<const _earg *>(args));
+			return true;
+		}
+
+		///@copydetails Functor::clone
+		Functor * clone() const
+		{
+			return N_new ObjFunctor(mObj, mMethod);
+		}
+	private:
+		_class * mObj;
+		void (_class::*mMethod)(const _earg *);
+	};
 }
 }
 
