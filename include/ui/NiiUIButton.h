@@ -1,35 +1,27 @@
 /*
 -----------------------------------------------------------------------------
-大型多媒体框架
+A
+     __      _   _   _   ______
+    |   \   | | | | | | |  ____)                    _
+    | |\ \  | | | | | | | |         ___      ___   (_)   ___
+    | | \ \ | | | | | | | |____    / _ \   / ___ \  _   / _ \   ___
+    | |  \ \| | | | | | |  ____)  | / \ | | |  | | | | | / \ | / _ )
+    | |   \ | | | | | | | |_____  | | | | | |__| | | | | | | | | __/
+    |_|    \ _| |_| |_| |_______) |_| |_|  \___| | |_| |_| |_| |___|
+                                             __/ |                 
+                                            \___/   
+                                                
+                                                
+                                                                 F i l e
 
-时间: 2015-5-7
 
-文本编码: utf-8
+Copyright: NIIEngine Team Group
 
-所属公司: 深圳闽登科技有限公司
+Home page: www.niiengine.com 
 
-命名风格: 概论命名法
+Email: niiengine@gmail.com OR niiengine@163.com
 
-编程风格: 统筹式
-
-管理模式: 分布式
-
-内部成分: UI对象 网络对象 音频对象 物理对象 事件驱动对象(扩散性设计)
-
-主要成分: c++(80%) c(20%)
-
-用途: 操作系统桌面(包围操作系统内核api)
-      三维应用软件
-        计算机辅助立体设计软件(CAD)
-        地理信息系统软件(GIS)
-        电影背景立体重构软件
-        立体游戏软件
-
-偏向用途: 立体游戏软件
-
-主页: www.niiengine.com 电子邮箱: niiengine@gmail.com OR niiengine@163.com
-
-授权方式:商业授权(www.niiengine.com/license)(3种)
+Licence: commerce(www.niiengine.com/license)(Three kinds)
 ------------------------------------------------------------------------------
 */
 
@@ -37,6 +29,7 @@
 #define _NII_UI_BUTTON_H_
 
 #include "NiiUIPreInclude.h"
+#include "NiiUIWidgetView.h"
 #include "NiiUIWidget.h"
 
 namespace NII
@@ -51,7 +44,7 @@ namespace UI
     {
     public:
         Button(WidgetID wid, FactoryID fid, Container * own, const String & name = N_StrBlank, 
-			ScriptTypeID stid = N_CMD_Button, LangID lid = N_PrimaryLang);
+            ScriptTypeID stid = N_CmdObj_Button, LangID lid = N_PrimaryLang);
 
         virtual ~Button();
 
@@ -60,15 +53,15 @@ namespace UI
         */
         void press(bool b);
 
-		/** 设置是否处于选中状态
-		@version NIIEngine 3.0.0
-		*/
-		void select(bool b);
+        /** 设置是否处于选中状态
+        @version NIIEngine 3.0.0
+        */
+        void select(bool b);
 
-		/** 获取是否处于选中状态
-		@version NIIEngine 3.0.0
-		*/
-		bool isSelect() const;
+        /** 获取是否处于选中状态
+        @version NIIEngine 3.0.0
+        */
+        bool isSelect() const;
         
         /** 游标是否在这个UI单元对象上方
         @version NIIEngine 3.0.0
@@ -80,8 +73,8 @@ namespace UI
         */
         bool isPress() const;
     protected:
-		/// @copydetails Button::onSelectChange
-		virtual void onSelectChange(const WidgetEventArgs * arg);
+        /// @copydetails Button::onSelect
+        virtual void onSelect(const WidgetEventArgs * arg);
 
         /// @copydetails Widget::onCursorMove
         virtual void onCursorMove(const CursorEventArgs * arg);
@@ -97,38 +90,47 @@ namespace UI
 
         /// @copydetails Widget::onLost
         virtual void onLost(const WidgetEventArgs * arg);
-	public:
-		/** 选中属性
-		@version NIIEngine 3.0.0
-		*/
-		static const PropertyID SelectProperty;
+    public:
+        /** 选中事件
+        @version NIIEngine 3.0.0
+        */
+        static const EventID SelectChangeEvent;
 
-		/** 属性总数
-		@version NIIEngine 3.0.0
-		*/
-		static const PropertyID PropertyCount;
-
-		/** 选中事件
-		@version NIIEngine 3.0.0
-		*/
-		static const EventID SelectChangeEvent;
-
-		/** 事件总数
-		@version NIIEngine 3.0.0
-		*/
-		static const EventID EventCount;
+        /** 事件总数
+        @version NIIEngine 3.0.0
+        */
+        static const EventID EventCount;
     protected:
-		///@copydetails Widget::int;
-		bool init(PropertyCmdSet * dest);
+        ///@copydetails Widget::int;
+        bool initCmd(PropertyCmdSet * dest);
 
         /** 更新UI单元对象
         @param pos UI体系中的位
         */
-        void update(const Vector2f & pos);
+        void update(const Vector2f & cursorpos);
     protected:
         bool mPress;    ///< 是否处于被按下状态
         bool mOver;     ///< 游标覆盖状态下
-		bool mSelect;
+        bool mSelect;
+    };
+
+    /** 默认按纽
+    @version NIIEngine 3.0.0
+    */
+    class _EngineAPI ButtonView : public WidgetView
+    {
+    public:
+        ButtonView(WidgetModelID wsid);
+
+        /// @copydetails WidgetView::flush
+        virtual void flush();
+
+        virtual StateID alter(StateID pid) const;
+    public:
+        static const StateID HoverState;
+        static const StateID PushState;
+        static const StateID PushOffState;
+        static const StateID StateCount;
     };
 }
 }

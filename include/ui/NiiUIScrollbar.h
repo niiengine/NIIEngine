@@ -1,35 +1,27 @@
 /*
 -----------------------------------------------------------------------------
-大型多媒体框架
+A
+     __      _   _   _   ______
+    |   \   | | | | | | |  ____)                    _
+    | |\ \  | | | | | | | |         ___      ___   (_)   ___
+    | | \ \ | | | | | | | |____    / _ \   / ___ \  _   / _ \   ___
+    | |  \ \| | | | | | |  ____)  | / \ | | |  | | | | | / \ | / _ )
+    | |   \ | | | | | | | |_____  | | | | | |__| | | | | | | | | __/
+    |_|    \ _| |_| |_| |_______) |_| |_|  \___| | |_| |_| |_| |___|
+                                             __/ |                 
+                                            \___/   
+                                                
+                                                
+                                                                 F i l e
 
-时间: 2015-5-7
 
-文本编码: utf-8
+Copyright: NIIEngine Team Group
 
-所属公司: 深圳闽登科技有限公司
+Home page: www.niiengine.com 
 
-命名风格: 概论命名法
+Email: niiengine@gmail.com OR niiengine@163.com
 
-编程风格: 统筹式
-
-管理模式: 分布式
-
-内部成分: UI对象 网络对象 音频对象 物理对象 事件驱动对象(扩散性设计)
-
-主要成分: c++(80%) c(20%)
-
-用途: 操作系统桌面(包围操作系统内核api)
-      三维应用软件
-        计算机辅助立体设计软件(CAD)
-        地理信息系统软件(GIS)
-        电影背景立体重构软件
-        立体游戏软件
-
-偏向用途: 立体游戏软件
-
-主页: www.niiengine.com 电子邮箱: niiengine@gmail.com OR niiengine@163.com
-
-授权方式:商业授权(www.niiengine.com/license)(3种)
+Licence: commerce(www.niiengine.com/license)(Three kinds)
 ------------------------------------------------------------------------------
 */
 #ifndef _NII_UI_SCROLLBAR_H_
@@ -37,6 +29,7 @@
 
 #include "NiiUIPreInclude.h"
 #include "NiiUIContainer.h"
+#include "NiiUIWidgetView.h"
 
 namespace NII
 {
@@ -49,7 +42,7 @@ namespace UI
     {
     public:
         Scrollbar(WidgetID wid, FactoryID fid, Container * own, const String & name = N_StrBlank,
-			LangID lid = N_PrimaryLang);
+            LangID lid = N_PrimaryLang);
         ~Scrollbar();
 
         /** 设置总页大小
@@ -60,7 +53,7 @@ namespace UI
         /** 获取总页大小
         @version NIIEngine 3.0.0
         */
-        NIIf getDocSize() const;
+        inline NIIf getDocSize() const{ return mDocSize; }
 
         /** 设置按键步大小
         @version NIIEngine 3.0.0
@@ -70,7 +63,7 @@ namespace UI
         /** 获取按键步大小
         @version NIIEngine 3.0.0
         */
-        NIIf getStepSize() const;
+        inline NIIf getStepSize() const{ return mStepSize; }
 
         /** 设置页大小
         @version NIIEngine 3.0.0
@@ -80,7 +73,7 @@ namespace UI
         /** 获取页大小
         @version NIIEngine 3.0.0
         */
-        NIIf getPageSize() const;
+        inline NIIf getPageSize() const{ return mPageSize; }
         
         /** 设置页余大小
         @version NIIEngine 3.0.0
@@ -90,7 +83,7 @@ namespace UI
         /** 获取页余大小
         @version NIIEngine 3.0.0
         */
-        NIIf getOverlapSize() const;
+        inline NIIf getOverlapSize() const { return mPageRemian; }
 
         /** 设置当前位置
         @param[in] pos [0 <= pos <= doc - page]
@@ -102,7 +95,7 @@ namespace UI
         @param[in] pos [0 <= pos <= doc - page]
         @version NIIEngine 3.0.0
         */
-        NIIf getCurrent() const;
+        inline NIIf getCurrent() const{ return mCurrentPos;}
 
         /** 设置单位化当前位置
         @param[in] upos [0, 1]
@@ -139,38 +132,38 @@ namespace UI
         /** 获取位置指标
         @version NIIEngine 3.0.0
         */
-        PosButton * getThumb() const;
+        inline PosButton * getThumb() const { return mThumb; }
 
         /** 获取减向按纽
         @version NIIEngine 3.0.0
         */
-        PushButton * getNegative() const;
+        inline PushButton * getNegative() const{ return mNegative; }
         
         /** 获取加向按纽
         @version NIIEngine 3.0.0
         */
-        PushButton * getPositive() const;
+        inline PushButton * getPositive() const { return mPositive;}
 
         /** 设置是否自动末尾
         @version NIIEngine 3.0.0
         */
-        void setAutoEndPos(bool b);
+        inline void setAutoEndPos(bool b){ mAutoEnd = b;}
 
         /** 获取是否自动末尾
         @version NIIEngine 3.0.0
         */
-        bool isAutoEndPos() const;
+        inline bool isAutoEndPos() const{ return mAutoEnd; }
         
         /** 综合设置
         @version NIIEngine 3.0.0
         */
         void setConfig(NIIf doc, NIIf page, NIIf step, NIIf pageremain, NIIf pos);
     protected:
-        /// @copydetails Container::init
-        void init();
+        /// @copydetails Container::initChild
+        void initChild();
 
-        /// @copydetails PropertyCmdObj::init
-        bool init(PropertyCmdSet * dest);
+        /// @copydetails PropertyCmdObj::initCmd
+        bool initCmd(PropertyCmdSet * dest);
 
         /** 设置当前位置
         @version NIIEngine 3.0.0
@@ -212,8 +205,8 @@ namespace UI
         */
         void ThumbEndMFunc(const EventArgs * e);
 
-        /// @copydetail Widget::check
-        virtual bool check(const WidgetModel * style) const;
+        /// @copydetail Widget::validImpl
+        virtual bool validImpl(const WidgetView * view) const;
 
         /** 当前位置变化时触发
         @version NIIEngine 3.0.0
@@ -244,36 +237,6 @@ namespace UI
         /// @copydetails Widget::disableWrite
         void disableWrite();
     public:
-		/** 
-		@version NIIEngine 3.0.0
-		*/
-		static const PropertyID DocSizeProperty;
-
-		/**
-		@version NIIEngine 3.0.0
-		*/
-		static const PropertyID PageSizeProperty;
-
-		/**
-		@version NIIEngine 3.0.0
-		*/
-		static const PropertyID StepSizeProperty;
-
-		/**
-		@version NIIEngine 3.0.0
-		*/
-		static const PropertyID OverlapSizeProperty;
-
-		/**
-		@version NIIEngine 3.0.0
-		*/
-		static const PropertyID CurrentProperty;
-
-		/**
-		@version NIIEngine 3.0.0
-		*/
-		static const PropertyID PropertyCount;
-
         /** 当前位置变化时
         @version NIIEngine 3.0.0
         */
@@ -308,6 +271,34 @@ namespace UI
         NIIf mPageRemian;
         NIIf mCurrentPos;
         bool mAutoEnd;
+    };
+
+    /** 
+    @version NIIEngine 3.0.0
+    */
+    class _EngineAPI ScrollbarView : public WidgetView
+    {
+        friend class Scrollbar;
+    public:
+        ScrollbarView(WidgetModelID wsid);
+
+        bool isVertical() const;
+
+        void setVertical(bool b);
+
+        virtual NIIf getThumbValue() const;
+
+        virtual NIIf getDirection(const Vector2f & pt) const;
+
+        /// @copydetails WidgetView::flush
+        void flush();
+
+        /// @copydetails WidgetView::layout
+        void layout();
+    protected:
+        virtual void updateThumb();
+    protected:
+        bool mYDirection;
     };
 }
 }

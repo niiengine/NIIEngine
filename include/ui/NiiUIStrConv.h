@@ -1,34 +1,27 @@
 ﻿/*
 -----------------------------------------------------------------------------
-大型多媒体框架
+A
+     __      _   _   _   ______
+    |   \   | | | | | | |  ____)                    _
+    | |\ \  | | | | | | | |         ___      ___   (_)   ___
+    | | \ \ | | | | | | | |____    / _ \   / ___ \  _   / _ \   ___
+    | |  \ \| | | | | | |  ____)  | / \ | | |  | | | | | / \ | / _ )
+    | |   \ | | | | | | | |_____  | | | | | |__| | | | | | | | | __/
+    |_|    \ _| |_| |_| |_______) |_| |_|  \___| | |_| |_| |_| |___|
+                                             __/ |                 
+                                            \___/   
+                                                
+                                                
+                                                                 F i l e
 
-时间: 2017-5-7
 
-文本编码: utf-8
+Copyright: NIIEngine Team Group
 
-所属公司: 深圳闽登科技有限公司
+Home page: www.niiengine.com 
 
-命名风格: 概论命名法
+Email: niiengine@gmail.com OR niiengine@163.com
 
-编程风格: 统筹式
-
-管理模式: 分布式
-
-内部成分: UI对象 网络对象 音频对象 物理对象 事件驱动对象(扩散性设计)
-
-主要成分: c++(80%) c(20%)
-
-用途: 操作系统桌面(包围操作系统内核api)
-      三维应用软件
-        地理信息系统软件(GIS)
-        电影背景立体重构软件
-        立体游戏软件
-
-偏向用途: 立体游戏软件
-
-主页: www.niiengine.com 电子邮箱: niiengine@gmail.com OR niiengine@163.com
-
-授权方式:商业授权(www.niiengine.com/license)(3种)
+Licence: commerce(www.niiengine.com/license)(Three kinds)
 ------------------------------------------------------------------------------
 */
 
@@ -39,7 +32,7 @@
 #include "NiiStrConv.h"
 #include "NiiUICommon.h"
 #include "NiiUIStyleSectionFrameUnit.h"
-#include "NiiUIListHeaderSegment.h"
+#include "NiiUIListHeaderItem.h"
 #include "NiiUIMultiColumnList.h"
 #include "NiiUITabControl.h"
 #include "NiiColourArea.h"
@@ -55,7 +48,7 @@ namespace UI
     class _EngineAPI UIStrConv : public StrConv
     {
     public:
-		using StrConv::conv;
+        using StrConv::conv;
 
         /** 从字符串中解析出 PlaneSizef
         @remark 格式"width hegiht", 2个NIIf
@@ -73,7 +66,7 @@ namespace UI
         @param[in] o 默认值
         @version NIIEngine 3.0.0
         */
-        static void conv(const String & in, RelVector2 & out, const RelVector2 & o = RelVector2(RelPos(0, 0), RelPos(0, 0)));
+        static void conv(const String & in, RelVector2f & out, const RelVector2f & o = RelVector2f(RelPosf(0, 0), RelPosf(0, 0)));
 
         /** 从字符串中解析出 RelPlaneSize
         @remark 格式"mWidth.mScale mWidth.mOffset mHeight.mScale mHeight.mOffset", 4个NIIf
@@ -82,7 +75,7 @@ namespace UI
         @param[in] o 默认值
         @version NIIEngine 3.0.0
         */
-        static void conv(const String & in, RelPlaneSize & out, const RelPlaneSize & o = RelPlaneSize(RelPos(0, 0), RelPos(0, 0)));
+        static void conv(const String & in, RelPlaneSizef & out, const RelPlaneSizef & o = RelPlaneSizef(RelPosf(0, 0), RelPosf(0, 0)));
         
         /** 从字符串中解析出 AspectMode
         @param[in] in 来源数据
@@ -92,29 +85,29 @@ namespace UI
         */
         static void conv(const String & in, AspectMode & out, const AspectMode & o = AM_None);
 
-        /** 从字符串中解析出 TabControl::TabPanePosition
+        /** 从字符串中解析出 TabControl::TabType
         @param[in] in 来源数据
         @param[out] out 输出数据
         @param[in] o 默认值
         @version NIIEngine 3.0.0
         */
-        static void conv(const String & in, TabControl::TabPanePosition & out, const TabControl::TabPanePosition & o = TabControl::Top);
+        static void conv(const String & in, TabControl::TabType & out, const TabControl::TabType & o = TabControl::Top);
 
-        /** 从字符串中解析出 ListHeaderSegment::SortDirection
+        /** 从字符串中解析出 ListHeaderItem::SortMode
         @param[in] in 来源数据
         @param[out] out 输出数据
         @param[in] o 默认值
         @version NIIEngine 3.0.0
         */
-        static void conv(const String & in, ListHeaderSegment::SortDirection & out, const ListHeaderSegment::SortDirection & o = ListHeaderSegment::None);
+        static void conv(const String & in, ListHeaderItem::SortMode & out, const ListHeaderItem::SortMode & o = ListHeaderItem::SM_None);
 
-        /** 从字符串中解析出 MultiColumnList::SelectionMode
+        /** 从字符串中解析出 MultiColumnList::SelectMode
         @param[in] in 来源数据
         @param[out] out 输出数据
         @param[in] o 默认值
         @version NIIEngine 3.0.0
         */
-        static void conv(const String & in, MultiColumnList::SelectionMode & out, const MultiColumnList::SelectionMode & o = MultiColumnList::RowSingle);
+        static void conv(const String & in, MultiColumnList::SelectMode & out, const MultiColumnList::SelectMode & o = MultiColumnList::SM_SingleRow);
 
         /** 从字符串中解析出 SizeType
         @param[in] in 来源数据
@@ -122,15 +115,15 @@ namespace UI
         @param[in] o 默认值
         @version NIIEngine 3.0.0
         */
-        static void conv(const String & in, SizeType & out, const SizeType & o = DT_INVALID);
+        static void conv(const String & in, SizeType & out, const SizeType & o = ST_Unknow);
 
-        /** 从字符串中解析出 FontMetricType
+        /** 从字符串中解析出 FontSizeType
         @param[in] in 来源数据
         @param[out] out 输出数据
         @param[in] o 默认值
         @version NIIEngine 3.0.0
         */
-        static void conv(const String & in, FontMetricType & out, const FontMetricType & o = FMT_HORZ_EXTENT);
+        static void conv(const String & in, FontSizeType & out, const FontSizeType & o = FST_TextEntent);
 
         /** 从字符串中解析出 SizeOpType
         @param[in] in 来源数据
@@ -138,7 +131,7 @@ namespace UI
         @param[in] o 默认值
         @version NIIEngine 3.0.0
         */
-        static void conv(const String & in, SizeOpType &out, const SizeOpType & o = DOP_NOOP);
+        static void conv(const String & in, SizeOpType &out, const SizeOpType & o = SOT_Unknow);
 
         /** 从字符串中解析出 FrameComType
         @param[in] in 来源数据
@@ -208,94 +201,100 @@ namespace UI
         /** 转换 PlaneSizef 为字符串.
         @version NIIEngine 3.0.0
         */
-        static String conv(const PlaneSizef & in);
+        static const String & conv(const PlaneSizef & in, String & out);
 
         /** 转换 RelVector2 为字符串.
         @version NIIEngine 3.0.0
         */
-        static String conv(const RelVector2 & in);
+        static const String & conv(const RelVector2f & in, String & out);
 
         /** 转换 RelPlaneSize 为字符串.
         @version NIIEngine 3.0.0
         */
-        static String conv(const RelPlaneSize & in);
+        static const String & conv(const RelPlaneSizef & in, String & out);
 
         /** 转换 AspectMode 为字符串.
         @version NIIEngine 3.0.0
         */
-        static String conv(const AspectMode & in);
+        static const String & conv(const AspectMode & in, String & out);
 
-        /** 转换 TabControl::TabPanePosition 为字符串.
+        /** 转换 TabControl::TabType 为字符串.
         @version NIIEngine 3.0.0
         */
-        static String conv(const TabControl::TabPanePosition & in);
+        static const String & conv(const TabControl::TabType & in, String & out);
 
-        /** 转换 ListHeaderSegment::SortDirection 为字符串.
+        /** 转换 ListHeaderItem::SortMode 为字符串.
         @version NIIEngine 3.0.0
         */
-        static String conv(const ListHeaderSegment::SortDirection & in);
+        static const String & conv(const ListHeaderItem::SortMode & in, String & out);
 
-        /** 转换 MultiColumnList::SelectionMode 为字符串.
+        /** 转换 MultiColumnList::SelectMode 为字符串.
         @version NIIEngine 3.0.0
         */
-        static String conv(const MultiColumnList::SelectionMode & in);
+        static const String & conv(const MultiColumnList::SelectMode & in, String & out);
 
         /** 转换 SizeType 为字符串.
         @version NIIEngine 3.0.0
         */
-        static String conv(const SizeType & in);
+        static const String & conv(const SizeType & in, String & out);
 
-        /** 转换 FontMetricType 为字符串.
+        /** 转换 FontSizeType 为字符串.
         @version NIIEngine 3.0.0
         */
-        static String conv(const FontMetricType & in);
+        static const String & conv(const FontSizeType & in, String & out);
 
         /** 转换 SizeOpType 为字符串.
         @version NIIEngine 3.0.0
         */
-        static String conv(const SizeOpType & in);
+        static const String & conv(const SizeOpType & in, String & out);
 
         /** 转换 FrameComType 为字符串.
         @version NIIEngine 3.0.0
         */
-        static String conv(const FrameComType & in);
+        static const String & conv(const FrameComType & in, String & out);
 
-		/*
-		@version NIIEngine 3.0.0
-		*/
-        static String conv(const HAlign & in);
+        /** 转换
+        @version NIIEngine 3.0.0
+        */
+        static const String & conv(const HAlign & in, String & out);
 
-		/*
-		@version NIIEngine 3.0.0
-		*/
-        static String conv(const VAlign & in);
+        /** 转换
+        @version NIIEngine 3.0.0
+        */
+        static const String & conv(const VAlign & in, String & out);
 
-		/*
-		@version NIIEngine 3.0.0
-		*/
-        static String conv(const VLayout & in);
+        /** 转换
+        @version NIIEngine 3.0.0
+        */
+        static const String & conv(const VLayout & in, String & out);
 
-		/*
-		@version NIIEngine 3.0.0
-		*/
-        static String conv(const HTextLayout & in);
+        /** 转换
+        @version NIIEngine 3.0.0
+        */
+        static const String & conv(const HTextLayout & in, String & out);
 
-		/*
-		@version NIIEngine 3.0.0
-		*/
-        static String conv(const HLayout & in);
+        /** 转换
+        @version NIIEngine 3.0.0
+        */
+        static const String & conv(const HLayout & in, String & out);
 
-		/*
-		@version NIIEngine 3.0.0
-		*/
-        static String conv(const VTextLayout & in);
+        /** 转换
+        @version NIIEngine 3.0.0
+        */
+        static const String & conv(const VTextLayout & in, String & out);
 
         /** 转换ColourArea为字符串.
         @remark 格式"r g b a",4个NIIf
         @version NIIEngine 3.0.0
         */
-        static String conv(const ColourArea & in);
+        static const String & conv(const ColourArea & in, String & out);
     };
+
+    template<typename T> N_FORCEINLINE String NUI_conv(T in)
+    {
+        String temp;
+        return UIStrConv::conv(in, temp);
+    }
 }
 }
 #endif

@@ -1,35 +1,27 @@
 /*
 -----------------------------------------------------------------------------
-大型多媒体框架
+A
+     __      _   _   _   ______
+    |   \   | | | | | | |  ____)                    _
+    | |\ \  | | | | | | | |         ___      ___   (_)   ___
+    | | \ \ | | | | | | | |____    / _ \   / ___ \  _   / _ \   ___
+    | |  \ \| | | | | | |  ____)  | / \ | | |  | | | | | / \ | / _ )
+    | |   \ | | | | | | | |_____  | | | | | |__| | | | | | | | | __/
+    |_|    \ _| |_| |_| |_______) |_| |_|  \___| | |_| |_| |_| |___|
+                                             __/ |                 
+                                            \___/   
+                                                
+                                                
+                                                                 F i l e
 
-时间: 2014-5-7
 
-文本编码: utf-8
+Copyright: NIIEngine Team Group
 
-所属公司: 深圳闽登科技有限公司
+Home page: www.niiengine.com 
 
-命名风格: 概论命名法
+Email: niiengine@gmail.com OR niiengine@163.com
 
-编程风格: 统筹式
-
-管理模式: 分布式
-
-内部成分: UI对象 网络对象 音频对象 物理对象 事件驱动对象(扩散性设计)
-
-主要成分: c++(80%) c(20%)
-
-用途: 操作系统桌面(包围操作系统内核api)
-      三维应用软件
-        计算机辅助立体设计软件(CAD)
-        地理信息系统软件(GIS)
-        电影背景立体重构软件
-        立体游戏软件
-
-偏向用途: 立体游戏软件
-
-主页: www.niiengine.com 电子邮箱: niiengine@gmail.com OR niiengine@163.com
-
-授权方式:商业授权(www.niiengine.com/license)(3种)
+Licence: commerce(www.niiengine.com/license)(Three kinds)
 ------------------------------------------------------------------------------
 */
 #ifndef _NII_UI_PopupMenu_H_
@@ -37,7 +29,6 @@
 
 #include "NiiUIPreInclude.h"
 #include "NiiUIMenubar.h"
-#include "NiiUIListContainerWidgetModel.h"
 
 namespace NII
 {
@@ -48,36 +39,36 @@ namespace UI
     */
     class _EngineAPI PopupMenu : public Menubar
     {
-	public:
+    public:
         PopupMenu(WidgetID wid, FactoryID fid, Container * own, const String & name = N_StrBlank,
-			LangID lid = N_PrimaryLang);
+            LangID lid = N_PrimaryLang);
 
         virtual ~PopupMenu();
 
         /** 是否处于打开状态
         @version NIIEngine 3.0.0
         */
-        bool isOpenState() const;
+        inline bool isOpenState() const{ return mOpenState; }
 
         /** 设置谈入时段
         @version NIIEngine 3.0.0
         */
-        void setFadeInTime(TimeDurMS time);
+        inline void setFadeInTime(TimeDurMS time){ mPopupFadeIn = time; }
 
         /** 获取谈入时段
         @version NIIEngine 3.0.0
         */
-        TimeDurMS getFadeInTime() const;
+        inline TimeDurMS getFadeInTime() const{ return mPopupFadeIn; }
 
         /** 设置谈出时段
         @version NIIEngine 3.0.0
         */
-        void setFadeOutTime(TimeDurMS time);
+        inline void setFadeOutTime(TimeDurMS time){ mPopupFadeOut = time; }
 
         /** 获取谈出时段
         @version NIIEngine 3.0.0
         */
-        TimeDurMS getFadeOutTime() const;
+        inline TimeDurMS getFadeOutTime() const{ return mPopupFadeOut; }
 
         /** 激发打开
         @version NIIEngine 3.0.0
@@ -89,8 +80,8 @@ namespace UI
         */
         void toggleClose(bool parent = true);
     protected:
-        /// @copydetails PropertyCmdObj::init
-        bool init(PropertyCmdSet * dest);
+        /// @copydetails PropertyCmdObj::initCmd
+        bool initCmd(PropertyCmdSet * dest);
     protected:
         /// @copydetails Widget::updateImpl
         virtual void updateImpl(TimeDurMS cost);
@@ -101,8 +92,8 @@ namespace UI
         /// @copydetails PopupMenu::getContentSize
         virtual PlaneSizef getContentSize() const;
 
-        /// @copydetails Container::onAlphaChange
-        virtual void onAlphaChange(const WidgetEventArgs * arg);
+        /// @copydetails Container::onAlpha
+        virtual void onAlpha(const WidgetEventArgs * arg);
 
         /// @copydetails Widget::onDestroy
         virtual void onDestroy(const WidgetEventArgs * arg);
@@ -128,22 +119,23 @@ namespace UI
         bool mOpenState;
     };
 
-	/**
-	@version NIIEngine 3.0.0
-	*/
-	class _EngineAPI DefaultPopupMenuWidgetModel : public ListContainerWidgetModel
-	{
-	public:
-		DefaultPopupMenuWidgetModel(WidgetModelID wmid);
+    /**
+    @version NIIEngine 3.0.0
+    */
+    class _EngineAPI PopupMenuView : public ListContainerView
+    {
+    public:
+        PopupMenuView(WidgetModelID wmid);
 
-		/// @copydetails ListContainerWidgetModel::flush
-		void flush();
+        /// @copydetails ListContainerView::flush
+        void flush();
 
-		Rectf getItemRenderArea() const;
+		/// @copydetails ListContainerView::getRenderArea
+        Rectf getRenderArea() const;
 
-		static const StateID ItemRenderAreaState;
-		static const StateID StateCount;
-	};
+        static const StateID ItemRenderAreaState;
+        static const StateID StateCount;
+    };
 }
 }
 #endif

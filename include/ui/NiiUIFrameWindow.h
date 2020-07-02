@@ -1,35 +1,27 @@
 /*
 -----------------------------------------------------------------------------
-大型多媒体框架
+A
+     __      _   _   _   ______
+    |   \   | | | | | | |  ____)                    _
+    | |\ \  | | | | | | | |         ___      ___   (_)   ___
+    | | \ \ | | | | | | | |____    / _ \   / ___ \  _   / _ \   ___
+    | |  \ \| | | | | | |  ____)  | / \ | | |  | | | | | / \ | / _ )
+    | |   \ | | | | | | | |_____  | | | | | |__| | | | | | | | | __/
+    |_|    \ _| |_| |_| |_______) |_| |_|  \___| | |_| |_| |_| |___|
+                                             __/ |                 
+                                            \___/   
+                                                
+                                                
+                                                                 F i l e
 
-时间: 2015-3-8
 
-文本编码: utf-8
+Copyright: NIIEngine Team Group
 
-所属公司: 深圳闽登科技有限公司
+Home page: www.niiengine.com 
 
-命名风格: 概论命名法
+Email: niiengine@gmail.com OR niiengine@163.com
 
-编程风格: 统筹式
-
-管理模式: 分布式
-
-内部成分: UI对象 网络对象 音频对象 物理对象 事件驱动对象(扩散性设计)
-
-主要成分: c++(80%) c(20%)
-
-用途: 操作系统桌面(包围操作系统内核api)
-      三维应用软件
-        计算机辅助立体设计软件(CAD)
-        地理信息系统软件(GIS)
-        电影背景立体重构软件
-        立体游戏软件
-
-偏向用途: 立体游戏软件
-
-主页: www.niiengine.com 电子邮箱: niiengine@gmail.com OR niiengine@163.com
-
-授权方式:商业授权(www.niiengine.com/license)(3种)
+Licence: commerce(www.niiengine.com/license)(Three kinds)
 ------------------------------------------------------------------------------
 */
 
@@ -38,7 +30,7 @@
 
 #include "NiiUIPreInclude.h"
 #include "NiiUIWindow.h"
-#include "NiiUIWidgetModel.h"
+#include "NiiUIWidgetView.h"
 
 namespace NII
 {
@@ -67,7 +59,7 @@ namespace UI
         };
     public:
         FrameWindow(WidgetID wid, FactoryID fid, Container * own, UISheet * sheet = 0, 
-			const String & name = N_StrBlank, LangID lid = N_PrimaryLang);
+            const String & name = N_StrBlank, LangID lid = N_PrimaryLang);
 
         virtual ~FrameWindow();
 
@@ -109,12 +101,12 @@ namespace UI
         /** 设置拖放边框调整大小
         @version NIIEngine 3.0.0
         */
-        void setDragFrameResize(bool b);
+        void setDragResize(bool b);
 
         /** 是否拖放边框调整大小
         @version NIIEngine 3.0.0
         */
-        bool isDragFrameResize() const;
+        bool isDragResize() const;
 
         /** 设置启动边框
         @version NIIEngine 3.0.0
@@ -139,12 +131,12 @@ namespace UI
         /** 设置拖拽标题栏可移动
         @version NIIEngine 3.0.0
         */
-        void setDragTitleBarMoving(bool b);
+        void setDragMove(bool b);
 
         /** 是否拖拽标题栏可移动
         @version NIIEngine 3.0.0
         */
-        bool isDragTitleBarMoving() const;
+        bool isDragMove() const;
 
         /** 设置启动最小化
         @version NIIEngine 3.0.0
@@ -174,7 +166,7 @@ namespace UI
         /** 获取拖放图标
         @version NIIEngine 3.0.0
         */
-		PixelBuffer * getCursor(ResizeType type) const;
+        PixelBuffer * getCursor(ResizeType type) const;
 
         /** 获取标题栏
         @version NIIEngine 3.0.0
@@ -197,12 +189,12 @@ namespace UI
         /** 拖放大小开始事件
         @version NIIEngine 3.0.0
         */
-        static const EventID DragSizeBeginEvent;
+        static const EventID DragResizeBeginEvent;
 
         /** 拖放大小结束事件
         @version NIIEngine 3.0.0
         */
-        static const EventID DragSizeEndEvent;
+        static const EventID DragResizeEndEvent;
 
         /** 关闭按纽事件
         @version NIIEngine 3.0.0
@@ -214,16 +206,16 @@ namespace UI
         */
         static const EventID EventCount;
     protected:
-        /// @copydetails Window::init
-        virtual void init();
+        /// @copydetails Container::initChild
+        virtual void initChild();
 
-        /// @copydetails PropertyCmdObj::init
-        bool init(PropertyCmdSet * dest);
+        /// @copydetails PropertyCmdObj::initCmd
+        bool initCmd(PropertyCmdSet * dest);
 
         /** 转变游标
         @version NIIEngine 3.0.0 api
         */
-        void alterCursor(const Vector2f & cursor) const;
+        void alterCursor(const Vector2f & cursorpos) const;
 
         /** 获取调整大小类型
         @version NIIEngine 3.0.0 api
@@ -233,24 +225,24 @@ namespace UI
         /** 从左侧调整大小
         @version NIIEngine 3.0.0
         */
-        bool resizeLeft(NIIf delta, RelRect & out_area);
+        bool resizeLeft(NIIf delta, RelRectf & out_area);
 
         /** 从右侧调整大小
         @version NIIEngine 3.0.0
         */
-        bool resizeRight(NIIf delta, RelRect & out_area);
+        bool resizeRight(NIIf delta, RelRectf & out_area);
 
         /** 从上侧调整大小
         @version NIIEngine 3.0.0
         */
-        bool resizeTop(NIIf delta, RelRect & out_area);
+        bool resizeTop(NIIf delta, RelRectf & out_area);
 
         /** 从下侧调整大小
         @version NIIEngine 3.0.0
         */
-        bool resizeBottom(NIIf delta, RelRect & out_area);
+        bool resizeBottom(NIIf delta, RelRectf & out_area);
     protected:
-		void CloseButtonMFunc(const EventArgs * arg);
+        void CloseButtonMFunc(const EventArgs * arg);
 
         /** 当最小化切换时触发
         @version NIIEngine 3.0.0
@@ -294,7 +286,7 @@ namespace UI
         Titlebar * mTitlebar;
         PushButton * mPushButton;
         PixelBuffer * mResizeCursor[4];
-        Vector2f mDragBegin;
+        Vector2f mDragPos;
         NIIf mBorderSize;
         
         bool mRollUp;
@@ -305,38 +297,33 @@ namespace UI
         bool mResizeEnable;
     };
 
-	/** FrameWindow class for the WidgetModel module.
-		This class requires Style to be assigned.  The Style should provide the following:
-	Named Areas:
-		- ClientWithTitleWithFrame
-		- ClientWithTitleNoFrame
-		- ClientNoTitleWithFrame
-		- ClientNoTitleNoFrame
-	*/
-	class _EngineAPI DefaultFrameWindowWidgetModel : public WidgetModel
-	{
-	public:
-		DefaultFrameWindowWidgetModel(WidgetModelID type);
+    /**
+    @verison NIIEngine 3.0.0
+    */
+    class _EngineAPI FrameWindowView : public WidgetView
+    {
+    public:
+        FrameWindowView(WidgetModelID type);
 
-		/// @copydetails WidgetModel::flush
-		void flush();
+        /// @copydetails WidgetView::flush
+        void flush();
 
-		/// @copydetails WidgetModel::getArea
-		Rectf getArea() const;
-	public:
-		static const StateID ActiveTitleFrameState;
-		static const StateID InactiveTitleFrameState;
-		static const StateID DisableTitleFrameState;
-		static const StateID ActiveTitleState;
-		static const StateID InactiveTitleState;
-		static const StateID DisableTitleState;
-		static const StateID ActiveFrameState;
-		static const StateID InactiveFrameState;
-		static const StateID DisableFrameState;
-		static const StateID ActiveState;
-		static const StateID InactiveState;
-		static const StateID StateCount;
-	};
+        /// @copydetails WidgetView::getArea
+        Rectf getArea() const;
+    public:
+        static const StateID ActiveTitleFrameState;
+        static const StateID InactiveTitleFrameState;
+        static const StateID DisableTitleFrameState;
+        static const StateID ActiveTitleState;
+        static const StateID InactiveTitleState;
+        static const StateID DisableTitleState;
+        static const StateID ActiveFrameState;
+        static const StateID InactiveFrameState;
+        static const StateID DisableFrameState;
+        static const StateID ActiveState;
+        static const StateID InactiveState;
+        static const StateID StateCount;
+    };
 }
 }
 #endif

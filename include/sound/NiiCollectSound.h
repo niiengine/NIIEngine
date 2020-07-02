@@ -71,9 +71,9 @@ namespace NII
         ~CollectSound();
 
         void init();
-        
+
         Sound * getSound(Info & info);
-        
+
         /// @copydetails Sound::getSoundType
         Type getSoundType() const { return T_Collect; }
 
@@ -82,13 +82,13 @@ namespace NII
 
         /// @copydetails Sound::getSub
         virtual Sound * getSub(Nidx idx) const;
-        
+
         /// @copydetails Sound::getSubCount
         virtual NCount getSubCount() const;
 
         /// @copydetails Resource::read
         virtual void read(Serializer * out) const;
-        
+
         /// @copydetails Resource::write
         virtual void write(const Serializer * in);
 
@@ -99,8 +99,8 @@ namespace NII
         virtual void loadImpl();
     private:
         Collecter * mContainer;
-        String _PatternName;
-        String _BaseName;
+        String mParam;
+        String mBase;
         Nui32 mValue;
     };
 }

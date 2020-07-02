@@ -1,35 +1,27 @@
 /*
 -----------------------------------------------------------------------------
-大型多媒体框架
+A
+     __      _   _   _   ______
+    |   \   | | | | | | |  ____)                    _
+    | |\ \  | | | | | | | |         ___      ___   (_)   ___
+    | | \ \ | | | | | | | |____    / _ \   / ___ \  _   / _ \   ___
+    | |  \ \| | | | | | |  ____)  | / \ | | |  | | | | | / \ | / _ )
+    | |   \ | | | | | | | |_____  | | | | | |__| | | | | | | | | __/
+    |_|    \ _| |_| |_| |_______) |_| |_|  \___| | |_| |_| |_| |___|
+                                             __/ |                 
+                                            \___/   
+                                                
+                                                
+                                                                 F i l e
 
-时间: 2015-5-7
 
-文本编码: utf-8
+Copyright: NIIEngine Team Group
 
-所属公司: 深圳闽登科技有限公司
+Home page: www.niiengine.com 
 
-命名风格: 概论命名法
+Email: niiengine@gmail.com OR niiengine@163.com
 
-编程风格: 统筹式
-
-管理模式: 分布式
-
-内部成分: UI对象 网络对象 音频对象 物理对象 事件驱动对象(扩散性设计)
-
-主要成分: c++(80%) c(20%)
-
-用途: 操作系统桌面(包围操作系统内核api)
-      三维应用软件
-        计算机辅助立体设计软件(CAD)
-        地理信息系统软件(GIS)
-        电影背景立体重构软件
-        立体游戏软件
-
-偏向用途: 立体游戏软件
-
-主页: www.niiengine.com 电子邮箱: niiengine@gmail.com OR niiengine@163.com
-
-授权方式:商业授权(www.niiengine.com/license)(3种)
+Licence: commerce(www.niiengine.com/license)(Three kinds)
 ------------------------------------------------------------------------------
 */
 
@@ -51,7 +43,7 @@ namespace UI
     {
     public:
         PosButton(WidgetID wid, FactoryID fid, Container * own, const String & name = N_StrBlank,
-			LangID lid = N_PrimaryLang);
+            LangID lid = N_PrimaryLang);
 
         virtual ~PosButton();
 
@@ -109,14 +101,14 @@ namespace UI
         /** 这个UI对象开始拖拽时触发
         @remark
             达成拖拽条件一般是指游标在这个UI对象的位置区域里,而且按下触发拖拽的按键
-		@version NIIEngine 3.0.0
+        @version NIIEngine 3.0.0
         */
         virtual void onMoveBegin(const WidgetEventArgs * arg);
 
         /** 这个UI对象结束拖拽时触发
         @remark
             达成拖拽条件后,又达成了拖拽结束的条件后触发,一般是指释放了游标的按键
-		@version NIIEngine 3.0.0
+        @version NIIEngine 3.0.0
         */
         virtual void onMoveEnd(const WidgetEventArgs * arg);
 
@@ -124,7 +116,7 @@ namespace UI
         @remark
             依赖相应的是否同步位置变化事件的设计,如果同步则实时触发(存在多次),否则
             是以在每次开始拖拽事件到结束拖拽事件后触发一次.
-		@version NIIEngine 3.0.0
+        @version NIIEngine 3.0.0
         */
         virtual void onPosChange(const WidgetEventArgs * arg);
 
@@ -137,8 +129,8 @@ namespace UI
         /// @copydetails Widget::onLost
         virtual void onLost(const WidgetEventArgs * arg);
     protected:
-        /// @copydetails PropertyCmdObj::init
-        virtual bool init(PropertyCmdSet * dest);
+        /// @copydetails PropertyCmdObj::initCmd
+        virtual bool initCmd(PropertyCmdSet * dest);
 
         /// @copydetails Widget::disableWrite
         void disableWrite();
@@ -162,46 +154,16 @@ namespace UI
         @version NIIEngine 3.0.0
         */
         static const EventID EventCount;
-
-		/**
-		@version NIIEngine 3.0.0
-		*/
-		static const PropertyID PosEventProperty;
-
-		/**
-		@version NIIEngine 3.0.0
-		*/
-		static const PropertyID YRangeProperty;
-
-		/**
-		@version NIIEngine 3.0.0
-		*/
-		static const PropertyID XRangeProperty;
-
-		/**
-		@version NIIEngine 3.0.0
-		*/
-		static const PropertyID YMoveProperty;
-
-		/**
-		@version NIIEngine 3.0.0
-		*/
-		static const PropertyID XMoveProperty;
-
-		/**
-		@version NIIEngine 3.0.0
-		*/
-		static const PropertyID PropertyCount;
     protected:
-        Vector2f mDragPos;  ///<
-        NIIf mVMin;         ///<
-        NIIf mVMax;         ///<
-        NIIf mHMin;         ///<
-        NIIf mHMax;	        ///<
-        bool mSynEvent;     ///< 是否同步位置变化事件
-        bool mDrag;         ///< 
-        bool mYMove;	    ///< 
-        bool mXMove;        ///<
+        Vector2f mDragPos;
+        NIIf mVMin;
+        NIIf mVMax;
+        NIIf mHMin;
+        NIIf mHMax;
+        bool mSynEvent;
+        bool mDrag;
+        bool mYMove;
+        bool mXMove;
     };
 }
 }

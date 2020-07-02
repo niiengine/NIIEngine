@@ -1,35 +1,27 @@
 /*
 -----------------------------------------------------------------------------
-大型多媒体框架
+A
+     __      _   _   _   ______
+    |   \   | | | | | | |  ____)                    _
+    | |\ \  | | | | | | | |         ___      ___   (_)   ___
+    | | \ \ | | | | | | | |____    / _ \   / ___ \  _   / _ \   ___
+    | |  \ \| | | | | | |  ____)  | / \ | | |  | | | | | / \ | / _ )
+    | |   \ | | | | | | | |_____  | | | | | |__| | | | | | | | | __/
+    |_|    \ _| |_| |_| |_______) |_| |_|  \___| | |_| |_| |_| |___|
+                                             __/ |                 
+                                            \___/   
+                                                
+                                                
+                                                                 F i l e
 
-时间: 2015-5-7
 
-文本编码: utf-8
+Copyright: NIIEngine Team Group
 
-所属公司: 深圳闽登科技有限公司
+Home page: www.niiengine.com 
 
-命名风格: 概论命名法
+Email: niiengine@gmail.com OR niiengine@163.com
 
-编程风格: 统筹式
-
-管理模式: 分布式
-
-内部成分: UI对象 网络对象 音频对象 物理对象 事件驱动对象(扩散性设计)
-
-主要成分: c++(80%) c(20%)
-
-用途: 操作系统桌面(包围操作系统内核api)
-      三维应用软件
-        计算机辅助立体设计软件(CAD)
-        地理信息系统软件(GIS)
-        电影背景立体重构软件
-        立体游戏软件
-
-偏向用途: 立体游戏软件
-
-主页: www.niiengine.com 电子邮箱: niiengine@gmail.com OR niiengine@163.com
-
-授权方式:商业授权(www.niiengine.com/license)(3种)
+Licence: commerce(www.niiengine.com/license)(Three kinds)
 ------------------------------------------------------------------------------
 */
 
@@ -53,7 +45,7 @@ namespace UI
         friend class UISheet;
     public:
         Window(WidgetID wid, FactoryID fid, Container * own, UISheet * sheet = 0, const String & name = N_StrBlank,
-			ScriptTypeID stid = N_CMD_Window, LangID lid = N_PrimaryLang);
+            ScriptTypeID stid = N_CmdObj_Window, LangID lid = N_PrimaryLang);
         virtual ~Window();
 
         /** 设置旋转
@@ -83,13 +75,13 @@ namespace UI
         /** 设置鼠标事件是否穿过这个对象而触发其背后对象
         @param b 是或否
         */
-        void setOvergo(bool b);
+        inline void setOvergo(bool b) { mOvergo = b;}
 
         /** 返回鼠标事件是否穿过这个对象而触发其背后对象
         @return 是或否
         @version NIIEngine 3.0.0
         */
-        bool isOvergo() const;
+        inline bool isOvergo() const { return mOvergo;}
 
         /** 设置自动生成渲染体
         @version NIIEngine 3.0.0
@@ -109,7 +101,7 @@ namespace UI
         /** 获取独立渲染体
         @version NIIEngine 3.0.0 高级api
         */
-        UIInstance * getRender() const;
+        inline UIInstance * getRender() const { return mRender;}
 
         /** 设置UI画盘
         @version NIIEngine 3.0.0 高级api
@@ -119,7 +111,7 @@ namespace UI
         /** 获取UI画盘
         @version NIIEngine 3.0.0 高级api
         */
-        UISheet * getSheet() const;
+        inline UISheet * getSheet() const { return mSheet;}
 
         /** 获取一个投影后的位置在机制中的实际位置
         @param[in] pos 投影后(可见结果)的位置
@@ -128,8 +120,8 @@ namespace UI
         */
         Vector2f affine(const Vector2f & pos) const;
 
-		/// @copydetails Widget::isPos
-		bool isPos(const Vector2f & pos, bool disable) const;
+        /// @copydetails Widget::isPos
+        bool isPos(const Vector2f & pos, bool disable) const;
 
         /// @copydetails Widget::activate
         void activate();
@@ -149,13 +141,13 @@ namespace UI
         virtual void onButtonDown(const CursorEventArgs * arg);
 
         /// @copydetails Widget::onRemove
-		virtual void onRemove(const WidgetEventArgs * arg);
+        virtual void onRemove(const WidgetEventArgs * arg);
 
         /// @copydetails Container::onChildMove
         virtual void onChildMove(const WidgetEventArgs * arg);
     protected:
-        /// @copydetails PropertyCmdObj::init
-        virtual bool init(PropertyCmdSet * dest);
+        /// @copydetails PropertyCmdObj::initCmd
+        virtual bool initCmd(PropertyCmdSet * dest);
 
         /// @copydetails Widget::getClipAreaImpl
         virtual Rectf getClipAreaImpl() const;
@@ -170,7 +162,7 @@ namespace UI
         virtual void updateImpl(SheetContext * rc);
 
         /// @copydetails Widget::getContextImpl
-        virtual void getContextImpl(SheetContext *& ctx) const;
+        virtual void getContextImpl(SheetContext & ctx) const;
 
         /// @copydetails Widget::refreshFaceImpl
         virtual void refreshFaceImpl();
@@ -181,16 +173,49 @@ namespace UI
         /** 分配渲染面
         @version NIIEngine 3.0.0
         */
-        void allocRender();
+        void allocRenderCtx();
 
         /** 删除渲染面
         @version NIIEngine 3.0.0
         */
-        void freeRender();
+        void freeRenderCtx();
     protected:
-        UIInstance * mRender;   ///< 实际的渲染面
-        bool mAutoGenRender;    ///< 自动创建渲染面
-        bool mOvergo;           ///< 鼠标类事件穿透这个窗体
+        UIInstance * mRender;
+        bool mAutoCtx;
+        bool mOvergo;           ///< 光标类事件穿透这个窗体
+    };
+    
+    /**
+    @version NIIEngine 3.0.0
+    */
+    class _EngineAPI DefaultWindow : public Window
+    {
+    public:
+        DefaultWindow(WidgetID wid, FactoryID fid, Container * own, UISheet * sheet = 0, 
+            const String & name = N_StrBlank, LangID lid = N_PrimaryLang);
+
+        virtual ~DefaultWindow();
+    protected:
+        /// @copydetails Window::moveFrontImpl
+        bool moveFrontImpl(bool click);
+    protected:
+        /// @copydetails Widget::onCursorMove
+        void onCursorMove(const CursorEventArgs * arg);
+
+        /// @copydetails Widget::onCursorDrag
+        void onCursorDrag(const CursorEventArgs * arg);
+
+        /// @copydetails Widget::onButtonDown
+        void onButtonDown(const CursorEventArgs * arg);
+
+        /// @copydetails Widget::onButtonUp
+        void onButtonUp(const CursorEventArgs * arg);
+
+        /// @copydetails Widget::onCursorTouch
+        void onCursorTouch(const CursorEventArgs * arg);
+
+        /// @copydetails Widget::onCursorMultiTouch
+        void onCursorMultiTouch(const CursorEventArgs * arg);
     };
 }
 }

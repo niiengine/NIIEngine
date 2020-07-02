@@ -1,35 +1,27 @@
 /*
 -----------------------------------------------------------------------------
-大型多媒体框架
+A
+     __      _   _   _   ______
+    |   \   | | | | | | |  ____)                    _
+    | |\ \  | | | | | | | |         ___      ___   (_)   ___
+    | | \ \ | | | | | | | |____    / _ \   / ___ \  _   / _ \   ___
+    | |  \ \| | | | | | |  ____)  | / \ | | |  | | | | | / \ | / _ )
+    | |   \ | | | | | | | |_____  | | | | | |__| | | | | | | | | __/
+    |_|    \ _| |_| |_| |_______) |_| |_|  \___| | |_| |_| |_| |___|
+                                             __/ |                 
+                                            \___/   
+                                                
+                                                
+                                                                 F i l e
 
-时间: 2015-5-7
 
-文本编码: utf-8
+Copyright: NIIEngine Team Group
 
-所属公司: 深圳闽登科技有限公司
+Home page: www.niiengine.com 
 
-命名风格: 概论命名法
+Email: niiengine@gmail.com OR niiengine@163.com
 
-编程风格: 统筹式
-
-管理模式: 分布式
-
-内部成分: UI对象 网络对象 音频对象 物理对象 事件驱动对象(扩散性设计)
-
-主要成分: c++(80%) c(20%)
-
-用途: 操作系统桌面(包围操作系统内核api)
-      三维应用软件
-        计算机辅助立体设计软件(CAD)
-        地理信息系统软件(GIS)
-        电影背景立体重构软件
-        立体游戏软件
-
-偏向用途: 立体游戏软件
-
-主页: www.niiengine.com 电子邮箱: niiengine@gmail.com OR niiengine@163.com
-
-授权方式:商业授权(www.niiengine.com/license)(3种)
+Licence: commerce(www.niiengine.com/license)(Three kinds)
 ------------------------------------------------------------------------------
 */
 
@@ -144,22 +136,25 @@ namespace UI
         FST_TextEntent      ///<
     };
 
-    typedef Vector2<RelPos> RelVector2;
-    typedef PlaneSize<RelPos> RelPlaneSize;
+    typedef Vector2<RelPosi> RelVector2i;
+    typedef Vector2<RelPosf> RelVector2f;
 
-    inline Vector2f abs(const RelVector2 & pos, const PlaneSizef & base, bool pixelAlign = true)
+    typedef PlaneSize<RelPosi> RelPlaneSizei;
+    typedef PlaneSize<RelPosf> RelPlaneSizef;
+
+    template <typename T, typename T2> inline Vector2<T2> abs(const Vector2<T> & pos, const PlaneSize<T2> & base, bool pixelAlign = true)
     {
-        return Vector2f(pos.x.abs(base.mWidth, pixelAlign), pos.y.abs(base.mHeight, pixelAlign));
+        return Vector2<T2>(pos.x.abs(base.mWidth, pixelAlign), pos.y.abs(base.mHeight, pixelAlign));
     }
 
-    inline PlaneSizef abs(const RelPlaneSize & pos, const PlaneSizef & base, bool pixelAlign = true)
+    template <typename T, typename T2> inline PlaneSize<T2> abs(const PlaneSize<T> & pos, const PlaneSize<T2> & base, bool pixelAlign = true)
     {
-        return PlaneSizef(pos.mWidth.abs(base.mWidth, pixelAlign), pos.mHeight.abs(base.mHeight, pixelAlign));
+        return PlaneSize<T2>(pos.mWidth.abs(base.mWidth, pixelAlign), pos.mHeight.abs(base.mHeight, pixelAlign));
     }
 
-    inline Rectf abs(const RelRect & pos, const PlaneSizef & base, bool pixelAlign = true)
+    template <typename T, typename T2> inline TRect<T2> abs(const TRect<T> & pos, const PlaneSize<T2> & base, bool pixelAlign = true)
     {
-        return Rectf(
+        return TRect<T2>(
             pos.mLeft.abs(base.mWidth, pixelAlign),
             pos.mTop.abs(base.mHeight, pixelAlign),
             pos.mRight.abs(base.mWidth, pixelAlign),

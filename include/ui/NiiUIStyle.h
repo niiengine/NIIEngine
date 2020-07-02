@@ -1,35 +1,27 @@
 ﻿/*
 -----------------------------------------------------------------------------
-大型多媒体框架
+A
+     __      _   _   _   ______
+    |   \   | | | | | | |  ____)                    _
+    | |\ \  | | | | | | | |         ___      ___   (_)   ___
+    | | \ \ | | | | | | | |____    / _ \   / ___ \  _   / _ \   ___
+    | |  \ \| | | | | | |  ____)  | / \ | | |  | | | | | / \ | / _ )
+    | |   \ | | | | | | | |_____  | | | | | |__| | | | | | | | | __/
+    |_|    \ _| |_| |_| |_______) |_| |_|  \___| | |_| |_| |_| |___|
+                                             __/ |                 
+                                            \___/   
+                                                
+                                                
+                                                                 F i l e
 
-时间: 2014-6-26
 
-文本编码: utf-8
+Copyright: NIIEngine Team Group
 
-所属公司: 深圳闽登科技有限公司
+Home page: www.niiengine.com 
 
-命名风格: 概论命名法
+Email: niiengine@gmail.com OR niiengine@163.com
 
-编程风格: 统筹式
-
-管理模式: 分布式
-
-内部成分: UI对象 网络对象 音频对象 物理对象 事件驱动对象(扩散性设计)
-
-主要成分: c++(80%) c(20%)
-
-用途: 操作系统桌面(包围操作系统内核api)
-      三维应用软件
-        计算机辅助立体设计软件(CAD)
-        地理信息系统软件(GIS)
-        电影背景立体重构软件
-        立体游戏软件
-
-偏向用途: 立体游戏软件
-
-主页: www.niiengine.com 电子邮箱: niiengine@gmail.com OR niiengine@163.com
-
-授权方式:商业授权(www.niiengine.com/license)(3种)
+Licence: commerce(www.niiengine.com/license)(Three kinds)
 ------------------------------------------------------------------------------
 */
 
@@ -194,15 +186,17 @@ namespace UI
         bool isSpecialExist(Nid id) const;
 
         /**
-        @param[out] out
         @version NIIEngine 3.0.0
         */
         void write(XmlSerializer * out) const;
 
+        /**
+        @version NIIEngine 3.0.0
+        */
         bool notifyFont(Widget * w, const Font * font) const;
     protected:
-		Style & operator=(const Style & o);
-	protected:
+        Style & operator=(const Style & o);
+    protected:
         typedef map<Nid, StyleLayout>::type States;
         typedef map<Nid, StyleSection>::type Designs;
         typedef map<Nid, StyleSpecial>::type Specials;
@@ -212,8 +206,8 @@ namespace UI
         typedef vector<ListenerProperty *>::type ListenerPropertyList;
         typedef vector<ListenerEvent>::type ListenerEvents;
     protected:
-		StyleID mID;
-		StyleID mInheritID;
+        StyleID mID;
+        StyleID mInheritID;
 
         Designs mDesigns;
         Widgets mWidgets;
