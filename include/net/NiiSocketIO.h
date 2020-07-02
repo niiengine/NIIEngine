@@ -1,35 +1,27 @@
 /*
 -----------------------------------------------------------------------------
-大型多媒体框架
+A
+     __      _   _   _   ______
+    |   \   | | | | | | |  ____)                    _
+    | |\ \  | | | | | | | |         ___      ___   (_)   ___
+    | | \ \ | | | | | | | |____    / _ \   / ___ \  _   / _ \   ___
+    | |  \ \| | | | | | |  ____)  | / \ | | |  | | | | | / \ | / _ )
+    | |   \ | | | | | | | |_____  | | | | | |__| | | | | | | | | __/
+    |_|    \ _| |_| |_| |_______) |_| |_|  \___| | |_| |_| |_| |___|
+                                             __/ |                 
+                                            \___/   
+                                                
+                                                
+                                                                 F i l e
 
-时间: 2016-5-7
 
-文本编码: utf-8
+Copyright: NIIEngine Team Group
 
-所属公司: 深圳闽登科技有限公司
+Home page: www.niiengine.com 
 
-命名风格: 概论命名法
+Email: niiengine@gmail.com OR niiengine@163.com
 
-编程风格: 统筹式
-
-管理模式: 分布式
-
-内部成分: UI对象 网络对象 音频对象 物理对象 事件驱动对象(扩散性设计)
-
-主要成分: c++(80%) c(20%)
-
-用途: 操作系统桌面(包围操作系统内核api)
-      三维应用软件
-        计算机辅助立体设计软件(CAD)
-        地理信息系统软件(GIS)
-        电影背景立体重构软件
-        立体游戏软件
-
-偏向用途: 立体游戏软件
-
-主页: www.niiengine.com 电子邮箱: niiengine@gmail.com OR niiengine@163.com
-
-授权方式:商业授权(www.niiengine.com/license)(3种)
+Licence: commerce(www.niiengine.com/license)(Three kinds)
 ------------------------------------------------------------------------------
 */
 
@@ -64,12 +56,12 @@ namespace NII
     public:
         SocketIO();
         virtual ~SocketIO();
-        
+
         /** 获取类型
         @version NIIEngine 4.0.0
         */
         virtual Nui32 getType() const = 0;
-        
+
         /** 中断
         @version NIIEngine 4.0.0
         */
@@ -133,7 +125,7 @@ namespace NII
 		@version NIIEngine 4.0.0
 		*/
 		void setTimer(bool set, TimeDurMS delay, TimeDurMS interval, bool sync = true);
-        
+
         /** 设置信息处理方式
         @remark 关于 onMessage 处理方式，默认主线程处理
         @param[in] interval 异步处理间隔，当参数sync == false时有效。
@@ -142,6 +134,11 @@ namespace NII
         */
         void setMessageTimer(TimeDurMS interval, bool sync = true);
 
+        /** 获取发送大小
+        @version NIIEngine 4.0.0
+        */
+        NCount getSendSize() const;
+        
         /** 数据读取时触发
         @version NIIEngine 4.0.0
         */
@@ -186,7 +183,7 @@ namespace NII
             msg.setProto(proto);
             msg.setMessageID(sid);
             msg.setCommandID(cid);
-            
+
             return send(msg.getBuffer(), msg.getSize());
         }
 
@@ -200,7 +197,7 @@ namespace NII
             msg.setMessageID(sid);
             msg.setCommandID(cid);
             msg.setSeqIdx(seq);
-            
+
             return send(msg.getBuffer(), msg.getSize());
         }
 
@@ -214,15 +211,15 @@ namespace NII
             msg.setMessageID(sid);
             msg.setCommandID(cid);
             msg.setSeqIdx(seq);
-            
+
             return send(msg.getBuffer(), msg.getSize());
         }
-        
+
         /** 创建消息
         @version NIIEngine 4.0.0
         */
-        virtual SocketMessage * create(Nui8 * buf, Nui32 size) const;
-        
+        virtual Message * create(Nui8 * buf, Nui32 size) const;
+
         /** 创建实例
         @version NIIEngine 4.0.0
         */
