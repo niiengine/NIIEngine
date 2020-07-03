@@ -50,6 +50,9 @@ namespace NII
     public:
         FusionSound();
         virtual ~FusionSound();
+        
+        /// @copydetails Sound::setProperty
+        void setProperty(PropertyData * param);
 
         /**
         @version NIIEngine 4.0.0

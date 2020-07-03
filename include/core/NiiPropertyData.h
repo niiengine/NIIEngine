@@ -102,7 +102,7 @@ namespace NII
 		@param[in] idx 属性ID
 		@version NIIEngine 3.0.0 adv api
 		*/
-		void * getVoid(Nidx idx) const;
+		const void * getVoid(Nidx idx) const;
 
         /** 获取值
         @param pid 属性ID

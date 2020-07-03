@@ -48,6 +48,9 @@ namespace NII
     public:
         BgSound();
         ~BgSound();
+        
+        /// @copydetails Sound::setProperty
+        void setProperty(PropertyData * param);
 
         /// @copydetails Sound::getSoundType
         Type getSoundType() const { return T_Bg; }

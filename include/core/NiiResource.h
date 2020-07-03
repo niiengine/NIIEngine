@@ -30,6 +30,7 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 
 #include "NiiPreInclude.h"
 #include "NiiPropertyCmdObj.h"
+#include "NiiPropertyData.h"
 #include "NiiResourceType.h"
 #include "NiiSharedPtr.h"
 
@@ -118,24 +119,29 @@ namespace NII
         /** 辅助名字
         @version NIIEngine 4.0.0
         */
-        inline const String & getName() const { return mName; }
+        inline const String & getName() const       { return mName; }
 
 		/** 获取资源ID
 		@remark 资源需要定义才能正常映射路径/协议和资源ID的关系
 		@version NIIEngine 3.0.0
 		*/
-		inline ResourceID getOriginID() const { return mOriginID; }
+		inline ResourceID getOriginID() const       { return mOriginID; }
 
 		/** 获取处理ID
 		@remark 这个看起来和资源ID差不多,但在运行过程中数字上更连续
 		@version NIIEngine 3.0.0
 		*/
-		inline PrcID getPrc() const { return mPrc; }
+		inline PrcID getPrc() const                 { return mPrc; }
 
 		/** 返回当前加载状态.
 		@version NIIEngine 3.0.0
 		*/
-		inline LoadingState getState() const { return mState; }
+		inline LoadingState getState() const        { return mState; }
+        
+        /** 设置属性
+        @version NIIEngine 3.0.0
+        */
+        virtual void setProperty(PropertyData * param);
 
         /** 加入监听
         @remark 用于嵌入控制
@@ -178,13 +184,13 @@ namespace NII
         @param[in] src 协议/文件名
         @version NIIEngine 3.0.0
         */
-        inline void setSrc(const String & src) { mSrc = src; }
+        inline void setSrc(const String & src)      { mSrc = src; }
 
         /** 获取资源的来源.
         @return 协议/文件名
         @version NIIEngine 3.0.0
         */
-        inline const String & getSrc() const { return mSrc; }
+        inline const String & getSrc() const        { return mSrc; }
 
         /** 设置资源所属资源群组.
         @remark
@@ -258,7 +264,7 @@ namespace NII
         @note 用于自动释放资源
         @version NIIEngine 3.0.0
         */
-        NCount getRefCount() const;
+        inline NCount getRefCount() const           { return mRefCount; }
 
         /** 返回资源当前是否加载中.
         @version NIIEngine 3.0.0
@@ -358,13 +364,13 @@ namespace NII
         /** 计算资源大小
         @version NIIEngine 3.0.0 高级api
         */
-        virtual NCount calcSize() const { return 0; }
+        virtual NCount calcSize() const             { return 0; }
 
         /** 获取工作量化因子
         @remark 这个参数和具体的计算机硬件系统性能有关,用于配合多线程协调加载
         @version NIIEngine 3.0.0 高级api
         */
-        virtual NCount getWorkFactor() const { return 0; }
+        virtual NCount getWorkFactor() const        { return 0; }
     private:
         Resource() {}
     protected:
@@ -382,7 +388,7 @@ namespace NII
         LoadingState mState;
         ResLoadScheme * mLoader;
         ResResultScheme * mResulter;
-        bool mAutoDestroy;      ///< 是否自动删除
+        bool mAutoDestroy;
     };
     typedef SharedPtr<Resource> ResourcePtr;
     typedef vector<ResourceID>::type ResourceIDList;

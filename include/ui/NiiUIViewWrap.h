@@ -97,19 +97,16 @@ namespace UI
 
         PixelUnitGrid rstring, lstring;
         rstring = *mPixelGrid;
-        NIIf rs_width;
 
         T * frs;
         NCount l, lend = rstring.getLineCount();
         for(l = 0; l < lend; ++l)
         {
+            NIIf rs_width;
             while((rs_width = rstring.getPixelSize(dest, l).mWidth) > 0)
             {
-                // skip line if no wrapping occurs
                 if (rs_width <= area_size.mWidth)
                     break;
-
-                // split rstring at width into lstring and remaining rstring
                 rstring.split(dest, l, area_size.mWidth, lstring);
                 frs = N_new T(N_new PixelUnitGrid(lstring));
                 frs->layout(dest, area_size);
@@ -127,7 +124,7 @@ namespace UI
         const Vector2f & pos, const ColourArea * colour, const Rectf * clip) const
     {
         Vector2f line_pos(pos);
-        typename LineList::const_iterator i, iend = mLineList.begin();
+        LineList::const_iterator i, iend = mLineList.begin();
         for(i = mLineList.begin(); i != iend; ++i)
         {
             (*i)->draw(dest, buffer, line_pos, colour, clip);
@@ -142,28 +139,27 @@ namespace UI
     //------------------------------------------------------------------------
     template <typename T> NIIf ViewWrap<T>::getHExtent(const Widget * dest) const
     {
-        NIIf finalw = 0;
-        NIIf w;
-        typename LineList::const_iterator i, iend = mLineList.end();
+        NIIf re = 0;
+        LineList::const_iterator i, iend = mLineList.end();
         for(i = mLineList.begin(); i != iend; ++i)
         {
-            w = (*i)->getHExtent(dest);
-            if (w > finalw)
-                finalw = w;
+            NIIf w = (*i)->getHExtent(dest);
+            if (w > re)
+                re = w;
         }
 
-        return finalw;
+        return re;
     }
     //------------------------------------------------------------------------
     template <typename T> NIIf ViewWrap<T>::getVExtent(const Widget * dest) const
     {
-        NIIf reh = 0;
-        typename LineList::const_iterator i, iend = mLineList.end();
+        NIIf re = 0;
+        LineList::const_iterator i, iend = mLineList.end();
         for(i = mLineList.begin(); i != iend; ++i)
         {
-            reh += (*i)->getVExtent(dest);
+            re += (*i)->getVExtent(dest);
         }
-        return reh;
+        return re;
     }
     //------------------------------------------------------------------------
 }

@@ -73,6 +73,9 @@ namespace NII
         void init();
 
         Sound * getSound(Info & info);
+        
+        /// @copydetails Sound::setProperty
+        void setProperty(PropertyData * param);
 
         /// @copydetails Sound::getSoundType
         Type getSoundType() const { return T_Collect; }

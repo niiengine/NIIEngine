@@ -41,6 +41,9 @@ namespace NII
     public:
         DefaultSound();
         virtual ~DefaultSound();
+        
+        /// @copydetails Sound::setProperty
+        void setProperty(PropertyData * param);
 
         /// @copydetails Sound::getSoundType
         Type getSoundType() const {return T_Unkonw; }

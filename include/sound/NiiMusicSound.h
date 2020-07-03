@@ -48,6 +48,9 @@ namespace NII_MEDIA
         @version NIIEngine 4.0.0
         */
         inline TimeDurMS getReplayDelay() const {return mReplayDelay; }
+        
+        /// @copydetails Sound::setProperty
+        void setProperty(PropertyData * param);
 
         /// @copydetails Sound::getSoundType
         virtual Type getSoundType() const {return T_Music;}

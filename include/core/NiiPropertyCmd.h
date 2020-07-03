@@ -62,7 +62,7 @@ namespace NII
         /** 获取属性ID
         @version NIIEngine 3.0.0
         */
-        PropertyID getID() const;
+        inline PropertyID getID() const             { return mID; }
 
         /** 初始化控制对象
         @version NIIEngine 3.0.0
