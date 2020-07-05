@@ -53,11 +53,11 @@ namespace NII
             StyleID mStyle;
             EffectID mEffect;
             FactoryID mFactory;
-            WidgetModelID mWidgetModel;
+            WidgetViewlID mWidgetModel;
         };
 
         typedef map<FactoryID, WidgetModelFactory *>::type WidgetModelList;
-        typedef    map<FactoryID, WidgetFactory *>::type WidgetFactoryList;
+        typedef map<FactoryID, WidgetFactory *>::type WidgetFactoryList;
         typedef map<FactoryID, WidgetModelDefine>::type StyleDefineList;
     public:
         UIWidgetManager();
@@ -161,7 +161,7 @@ namespace NII
         /** 添加风格定义
         @version NIIEngine 3.0.0
         */
-        void addStyle(FactoryID fid, StyleID sid, WidgetModelID wsid, EffectID eid);
+        void addStyle(FactoryID fid, StyleID sid, WidgetViewlID wsid, EffectID eid);
 
         /** 风格定义是否存在
         @version NIIEngine 3.0.0

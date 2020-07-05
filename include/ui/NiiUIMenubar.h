@@ -134,7 +134,7 @@ namespace UI
     class _EngineAPI DefaultListContainerView : public ListContainerView
     {
     public:
-        DefaultListContainerView(WidgetModelID wsid);
+        DefaultListContainerView(WidgetViewlID wsid);
 
         /// @copydetails WidgetView::flush
         void flush();

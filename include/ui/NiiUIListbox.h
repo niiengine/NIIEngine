@@ -356,7 +356,7 @@ namespace UI
     class _EngineAPI ListboxView : public WidgetView
     {
     public:
-        ListboxView(WidgetModelID wmid);
+        ListboxView(WidgetViewlID wmid);
 
         ///@copydetails WidgetView::flush
         void flush();

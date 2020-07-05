@@ -43,7 +43,7 @@ namespace UI
     class _EngineAPI ListContainerView : public WidgetView
     {
     public:
-        ListContainerView(WidgetModelID wmid):
+        ListContainerView(WidgetViewlID wmid):
             WidgetView(wmid, N_MODEL_ListContainer){}
 
         /**

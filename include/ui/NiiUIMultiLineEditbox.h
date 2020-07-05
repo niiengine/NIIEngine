@@ -442,7 +442,7 @@ namespace UI
     class _EngineAPI MultiEditboxView : public WidgetView
     {
     public:
-        MultiEditboxView(WidgetModelID wmid);
+        MultiEditboxView(WidgetViewlID wmid);
 
         /**
         @version NIIEngine 3.0.0

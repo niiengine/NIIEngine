@@ -77,7 +77,7 @@ namespace UI
     class _EngineAPI RadioButtonView : public ButtonView
     {
     public:
-        RadioButtonView(WidgetModelID wsid);
+        RadioButtonView(WidgetViewlID wsid);
 
         static const StateID SelectEnableState;
         static const StateID SelectHoverState;

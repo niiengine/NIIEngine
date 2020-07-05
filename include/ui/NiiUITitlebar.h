@@ -98,7 +98,7 @@ namespace UI
     class _EngineAPI TitlebarView : public WidgetView
     {
     public:
-        TitlebarView(WidgetModelID wsid);
+        TitlebarView(WidgetViewlID wsid);
 
         /// @copydetails WidgetView::flush
         void flush();

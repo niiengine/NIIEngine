@@ -350,7 +350,7 @@ namespace UI
     class _EngineAPI EditboxView : public WidgetView
     {
     public:
-        EditboxView(WidgetModelID wsid);
+        EditboxView(WidgetViewlID wsid);
 
         /** 
         @version NIIEngine 3.0.0

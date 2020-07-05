@@ -247,7 +247,7 @@ namespace UI
         @param wsid 单元风格
         @version NIIEngine 3.0.0
         */
-        void setStyle(StyleID sid, WidgetModelID wsid);
+        void setStyle(StyleID sid, WidgetViewlID wsid);
 
         /** 设置设计风格
         @version NIIEngine 3.0.0
@@ -262,7 +262,7 @@ namespace UI
         /** 设置单元风格
         @version NIIEngine 3.0.0
         */
-        void setWidgetModel(WidgetModelID wsid);
+        void setWidgetModel(WidgetViewlID wsid);
 
         /** 获取单元风格
         @version NIIEngine 3.0.0

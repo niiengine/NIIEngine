@@ -303,7 +303,7 @@ namespace UI
     class _EngineAPI FrameWindowView : public WidgetView
     {
     public:
-        FrameWindowView(WidgetModelID type);
+        FrameWindowView(WidgetViewlID type);
 
         /// @copydetails WidgetView::flush
         void flush();

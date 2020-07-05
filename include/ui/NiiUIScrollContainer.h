@@ -283,7 +283,7 @@ namespace UI
     class _EngineAPI ScrollContainerView : public WidgetView
     {
     public:
-        ScrollContainerView(WidgetModelID wsid);
+        ScrollContainerView(WidgetViewlID wsid);
 
         virtual Rectf getViewableArea() const;
 

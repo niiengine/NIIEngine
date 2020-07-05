@@ -117,6 +117,14 @@ namespace NII
         @param[in] init 属性默认值
         @version NIIEngine 3.0.0
         */
+        bool get(PropertyID pid, String & out, const String & init = _T("")) const;
+
+        /** 获取值
+        @param[in] pid 属性ID
+        @param[out] out 输出
+        @param[in] init 属性默认值
+        @version NIIEngine 3.0.0
+        */
         bool get(PropertyID pid, bool & out, bool init = false) const;
 
         /** 获取值

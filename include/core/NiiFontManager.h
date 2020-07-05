@@ -51,7 +51,7 @@ namespace NII
         /** 从脚本中创建字体
         @version NIIEngine 3.0.0
         */
-        Font * createFromScript(const String & file, GroupID gid);
+        Font * create(const String & file, GroupID gid);
 
         /** 创建TTF字体
         @param[in] fid 字体ID

@@ -180,7 +180,7 @@ namespace UI
     class _EngineAPI TooltipView : public WidgetView
     {
     public:
-        TooltipView(WidgetModelID wmid);
+        TooltipView(WidgetViewlID wmid);
 
         /// @copydetails WidgetView::flush
         void flush();

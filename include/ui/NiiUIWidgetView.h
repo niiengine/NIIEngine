@@ -45,18 +45,18 @@ namespace UI
     {
         friend class Widget;
     public:
-        WidgetView(WidgetModelID wsid, WidgetModelID type);
+        WidgetView(WidgetViewlID wsid, WidgetViewlID type);
         virtual ~WidgetView();
 
         /** UI渲染形式ID
         @version NIIEngine 3.0.0
         */
-		inline WidgetModelID getID() const { return mID; }
+		inline WidgetViewlID getID() const { return mID; }
 
         /** UI渲染形式类型
         @version NIIEngine 3.0.0
         */
-		inline WidgetModelID getType() const { return mType; }
+		inline WidgetViewlID getType() const { return mType; }
 
 		/** 获取使用的风格
 		@version NIIEngine 3.0.0
@@ -141,8 +141,8 @@ namespace UI
         typedef vector<std::pair<PropertyCmd *, bool> >::type PropertyCmdList;
     protected:
         Widget * mSrc;
-        WidgetModelID mID;
-        WidgetModelID mType;
+        WidgetViewlID mID;
+        WidgetViewlID mType;
         PropertyCmdList mCmdList;
     };
 
@@ -152,7 +152,7 @@ namespace UI
     class _EngineAPI DefaultView : public WidgetView
     {
     public:
-        DefaultView(WidgetModelID wsid);
+        DefaultView(WidgetViewlID wsid);
 
         /// @copydetails WidgetView::flush
         void flush();
@@ -164,7 +164,7 @@ namespace UI
     class _EngineAPI StaticView : public WidgetView
     {
     public:
-        StaticView(WidgetModelID wsid, WidgetModelID type = N_MODEL_Static);
+        StaticView(WidgetViewlID wsid, WidgetViewlID type = N_MODEL_Static);
 
         /** 
         @version NIIEngine 3.0.0
@@ -207,7 +207,7 @@ namespace UI
     class _EngineAPI StaticTextView : public StaticView, public NII_COMMAND::CommandObj
     {
     public:
-        StaticTextView(WidgetModelID wsid);
+        StaticTextView(WidgetViewlID wsid);
         ~StaticTextView();
 
         /**
@@ -330,7 +330,7 @@ namespace UI
     class _EngineAPI StaticImageView : public StaticView
     {
     public:
-        StaticImageView(WidgetModelID wsid);
+        StaticImageView(WidgetViewlID wsid);
 
         void setImage(PixelBuffer * img);
         

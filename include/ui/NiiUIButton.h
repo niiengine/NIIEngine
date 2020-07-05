@@ -120,7 +120,7 @@ namespace UI
     class _EngineAPI ButtonView : public WidgetView
     {
     public:
-        ButtonView(WidgetModelID wsid);
+        ButtonView(WidgetViewlID wsid);
 
         /// @copydetails WidgetView::flush
         virtual void flush();

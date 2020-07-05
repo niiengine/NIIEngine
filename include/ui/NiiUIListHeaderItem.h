@@ -287,7 +287,7 @@ namespace UI
     class _EngineAPI ListHeaderItemView : public WidgetView
     {
     public:
-        ListHeaderItemView(WidgetModelID type);
+        ListHeaderItemView(WidgetViewlID type);
 
         ///@copydetail WidgetView::flush
         void flush();

@@ -125,7 +125,7 @@ namespace UI
     class _EngineAPI PopupMenuView : public ListContainerView
     {
     public:
-        PopupMenuView(WidgetModelID wmid);
+        PopupMenuView(WidgetViewlID wmid);
 
         /// @copydetails ListContainerView::flush
         void flush();

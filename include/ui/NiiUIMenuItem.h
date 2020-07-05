@@ -200,7 +200,7 @@ namespace UI
     class _EngineAPI MenuItemView : public ListItemView
     {
     public:
-        MenuItemView(WidgetModelID wsid);
+        MenuItemView(WidgetViewlID wsid);
 
         /// @copydetails WidgetView::flush
         void flush();

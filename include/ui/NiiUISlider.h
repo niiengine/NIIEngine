@@ -159,7 +159,7 @@ namespace UI
     {
         friend class Slider;
     public:
-        SliderView(WidgetModelID type);
+        SliderView(WidgetViewlID type);
 
         bool isVertical() const;
 

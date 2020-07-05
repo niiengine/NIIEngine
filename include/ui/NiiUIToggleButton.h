@@ -82,7 +82,7 @@ namespace UI
     class _EngineAPI ToggleButtonView : public ButtonView
     {
     public:
-        ToggleButtonView(WidgetModelID wsid);
+        ToggleButtonView(WidgetViewlID wsid);
 
         static const StateID SelectEnableState;
         static const StateID SelecteHoverState;

@@ -33,7 +33,7 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 namespace NII
 {
     typedef Nid WidgetID;
-    typedef Nid WidgetModelID;
+    typedef Nid WidgetViewlID;
     typedef Nid StyleID;
 namespace UI
 {

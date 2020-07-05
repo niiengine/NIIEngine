@@ -390,7 +390,7 @@ namespace UI
     class _EngineAPI ListHeaderView : public WidgetView
     {
     public:
-        ListHeaderView(WidgetModelID type);
+        ListHeaderView(WidgetViewlID type);
 
         /**
         @version NIIEngine 3.0.0

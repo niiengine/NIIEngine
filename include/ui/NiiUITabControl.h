@@ -259,7 +259,7 @@ namespace UI
     class _EngineAPI TabControlView : public WidgetView
     {
     public:
-        TabControlView(WidgetModelID wsid);
+        TabControlView(WidgetViewlID wsid);
 
         /**
         @version NIIEngine 3.0.0

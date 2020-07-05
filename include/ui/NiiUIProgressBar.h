@@ -117,7 +117,7 @@ namespace UI
     class _EngineAPI ProgressBarView : public WidgetView
     {
     public:
-        ProgressBarView(WidgetModelID type);
+        ProgressBarView(WidgetViewlID type);
 
         bool isVertical() const;
         bool isReversed() const;

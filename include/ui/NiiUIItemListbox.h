@@ -146,7 +146,7 @@ namespace UI
     class _EngineAPI ItemListboxView : public ListContainerView
     {
     public:
-        ItemListboxView(WidgetModelID wsid);
+        ItemListboxView(WidgetViewlID wsid);
 
         /// @copydetails ListContainerView::flush
         void flush();

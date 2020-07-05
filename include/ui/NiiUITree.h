@@ -440,7 +440,7 @@ namespace UI
     class _EngineAPI TreeView : public WidgetView
     {
     public:
-        TreeView(WidgetModelID wmid);
+        TreeView(WidgetViewlID wmid);
         ~TreeView();
 
         static const WidgetID VScrollbarID;

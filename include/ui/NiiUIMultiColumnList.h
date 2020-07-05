@@ -742,7 +742,7 @@ namespace UI
     class _EngineAPI MultiColumnListView : public WidgetView
     {
     public:
-        MultiColumnListView(WidgetModelID wmid);
+        MultiColumnListView(WidgetViewlID wmid);
 
         /**
         @version NIIEngine 3.0.0

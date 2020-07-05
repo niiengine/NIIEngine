@@ -114,7 +114,7 @@ namespace UI
     class _EngineAPI TabButtonView : public WidgetView
     {
     public:
-        TabButtonView(WidgetModelID wsid);
+        TabButtonView(WidgetViewlID wsid);
 
         /// @copydetails WidgetView::flush
         void flush();

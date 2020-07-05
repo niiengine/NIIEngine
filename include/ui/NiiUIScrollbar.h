@@ -280,7 +280,7 @@ namespace UI
     {
         friend class Scrollbar;
     public:
-        ScrollbarView(WidgetModelID wsid);
+        ScrollbarView(WidgetViewlID wsid);
 
         bool isVertical() const;
 

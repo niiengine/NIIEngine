@@ -41,7 +41,7 @@ namespace UI
     class _EngineAPI ListItemView : public WidgetView
     {
     public:
-        ListItemView(WidgetModelID wmid);
+        ListItemView(WidgetViewlID wmid);
 
         /**
         @version NIIEngine 3.0.0
@@ -132,7 +132,7 @@ namespace UI
     class _EngineAPI DefaultListItemView : public ListItemView
     {
     public:
-        DefaultListItemView(WidgetModelID wmid);
+        DefaultListItemView(WidgetViewlID wmid);
 
         /// @copydetails WidgetView::flush
         void flush();
