@@ -74,7 +74,7 @@ namespace UI
         /** 获取ID
         @version NIIEngine 3.0.0
         */
-        StyleID getID() const;
+        inline StyleID getID() const            { return mID; }
 
         /** 添加风格状态
         @par 这将产生副本数据

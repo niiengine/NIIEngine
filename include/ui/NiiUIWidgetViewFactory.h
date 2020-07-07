@@ -25,34 +25,59 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 ------------------------------------------------------------------------------
 */
 
-#ifndef _NII_PreDefineWidgetModelFactory_H_
-#define _NII_PreDefineWidgetModelFactory_H_
+#ifndef _NII_WidgetModelFactory_H_
+#define _NII_WidgetModelFactory_H_
 
 #include "NiiUIPreInclude.h"
-#include "NiiUIWidgetModelFactory.h"
 #include "NiiUIWidget.h"
 
-#define N_WidgetModeFactory(c, id) PreDefineWidgetModelFactory<c>(id)
+#define N_WidgetModeFactory(c, id) TWidgetViewFactory<c>(id)
 
 namespace NII
 {
 namespace UI
 {
+    /** 单元风格工厂类
+    @version NIIEngine 3.0.0
+    */
+    class _EngineAPI WidgetViewFactory : public FactoryAlloc
+    {
+    public:
+        WidgetViewFactory(){}
+        virtual ~WidgetViewFactory() {}
+
+        /** 获取ID
+        @version NIIEngine 3.0.0
+        */
+        virtual FactoryID getID() const = 0;
+
+        /** 创建单元风格
+        @version NIIEngine 3.0.0
+        */
+        virtual WidgetView * create() = 0;
+
+        /** 删除单元风格
+        @version NIIEngine 3.0.0
+        */
+        virtual void destroy(WidgetView * obj) = 0;
+
+    };
+    
     /** 预定制UI风格工厂类
     @version NIIEngine 3.0.0
     */
-    template <typename T> class PreDefineWidgetModelFactory : public WidgetModelFactory
+    template <typename T> class TWidgetViewFactory : public WidgetViewFactory
     {
     public:
-        PreDefineWidgetModelFactory(FactoryID fid);
+        TWidgetViewFactory(FactoryID fid);
 
-        ///@copydetails WidgetModelFactory::getID
+        ///@copydetails WidgetViewFactory::getID
         FactoryID getID() const { return mID; }
 
-        ///@copydetails WidgetModelFactory::create
+        ///@copydetails WidgetViewFactory::create
         WidgetView * create();
 
-        ///@copydetails WidgetModelFactory::destroy
+        ///@copydetails WidgetViewFactory::destroy
         void destroy(WidgetView * wr);
 
         /** 注入到系统中
@@ -68,22 +93,22 @@ namespace UI
         FactoryID mID;
     };
     //-------------------------------------------------------------------------
-    template <typename T> PreDefineWidgetModelFactory<T>::PreDefineWidgetModelFactory(FactoryID fid) :
+    template <typename T> TWidgetViewFactory<T>::TWidgetViewFactory(FactoryID fid) :
         mID(fid){}
     //-------------------------------------------------------------------------
-    template <typename T> WidgetView * PreDefineWidgetModelFactory<T>::create()
+    template <typename T> WidgetView * TWidgetViewFactory<T>::create()
     {
         return N_new T(mID);
     }
     //-------------------------------------------------------------------------
-    template <typename T> void PreDefineWidgetModelFactory<T>::destroy(WidgetView * obj)
+    template <typename T> void TWidgetViewFactory<T>::destroy(WidgetView * obj)
     {
         N_delete obj;
     }
     //-------------------------------------------------------------------------
-    template <typename T> void PreDefineWidgetModelFactory<T>::plugin()
+    template <typename T> void TWidgetViewFactory<T>::plugin()
     {
-        WidgetModelFactory * factory = N_new PreDefineWidgetModelFactory<T>(mID);
+        WidgetViewFactory * factory = N_new TWidgetViewFactory<T>(mID);
 
         if(N_OnlyPtr(UIWidget))
         {
@@ -94,11 +119,11 @@ namespace UI
         }
     }
     //-------------------------------------------------------------------------
-    template <typename T> void PreDefineWidgetModelFactory<T>::unplugin()
+    template <typename T> void TWidgetViewFactory<T>::unplugin()
     {
         if(N_OnlyPtr(UIWidget))
         {
-            WidgetModelFactory * factory = N_Only(UIWidget).getModelFactory(mID);
+            WidgetViewFactory * factory = N_Only(UIWidget).getModelFactory(mID);
             if(factory != 0)
             {
                 N_Only(UIWidget).removeModelFactory(mID);

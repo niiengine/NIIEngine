@@ -31,6 +31,9 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 #include "NiiUIPreInclude.h"
 #include "NiiPlaneSize.h"
 #include "NiiRect.h"
+#include "NiiUICommon.h"
+#include "NiiColourArea.h"
+#include "NiiScriptProperty.h"
 
 namespace NII
 {
@@ -42,7 +45,7 @@ namespace UI
     class _EngineAPI PixelUnitGrid : public UIAlloc
     {
     public:
-        typedef vector<PixelUnit *>::type ComponentList;
+        typedef vector<PixelUnit *>::type UnitList;
     public:
         PixelUnitGrid();
         PixelUnitGrid(const PixelUnitGrid & o);
@@ -74,17 +77,17 @@ namespace UI
         /**
         @version NIIEngine 3.0.0
         */
-        void appendComponent(const PixelUnit & com);
+        void add(const PixelUnit & com);
 
         /**
         @version NIIEngine 3.0.0
         */
-        void appendLineBreak();
+        void addEnter();
         
         /**
         @version NIIEngine 3.0.0
         */
-        void clearComponents();
+        void removeAll();
 
         /**
         @version NIIEngine 3.0.0
@@ -111,27 +114,61 @@ namespace UI
         */
         void setSelection(const Widget * widget, NIIf start, NIIf end);
     protected:
-        /**
-        @version NIIEngine 3.0.0
-        */
-        void cloneComponentList(const ComponentList & list);
-
-        /**
-        @version NIIEngine 3.0.0
-        */
-        static void clearComponentList(ComponentList & list);
-    protected:
         typedef std::pair<NCount, NCount> LineInfo;
         typedef vector<LineInfo>::type LineList;
     protected:
-        ComponentList d_components;
+        UnitList mUnitList;
         LineList mLineList;
     };
 
     class _EngineAPI TextView : public UIAlloc
     {
     public:
-        virtual PixelUnitGrid parse(const String & text, const Font * font, const ColourArea * colour) = 0;
+        virtual ~TextView();
+        /** 
+        @version NIIEngine 3.0.0
+        */
+        inline void setFont(FontID fid)                 {  mFont = fid; }
+
+        /**
+        @version NIIEngine 3.0.0
+        */
+        inline FontID getFont() const                   { return mFont; }
+        
+        /** 
+        @version NIIEngine 3.0.0
+        */
+        inline void setColour(const ColourArea & colour){  mColour = colour; }
+
+        /**
+        @version NIIEngine 3.0.0
+        */
+        inline const ColourArea & getColour() const     { return mColour; }
+        
+        virtual PixelUnitGrid parse(const String & text, const Font * font, const ColourArea * colour);
+    protected:
+        FontID mFont;    
+        ColourArea mColour;
+    };
+    
+    /**
+    @version NIIEngine 3.0.0
+    */
+    class _EngineAPI EffectTextView : public ScriptProperty, public TextView
+    {
+    public:
+        EffectTextView();
+        EffectTextView(FontID font, const ColourArea & colour);
+
+        ///@copydetails TextView::parse
+        PixelUnitGrid parse(const String & text, const Font * font, const ColourArea * colour);
+    protected:
+        VLayout mVLayout;
+        PlaneSizef mSize;
+        Rectf mPadding;
+        FontID mRenderFont;
+        ColourArea mRenderColour;
+        bool mAspect;
     };
 }
 }

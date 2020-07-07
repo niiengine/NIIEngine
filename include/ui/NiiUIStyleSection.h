@@ -168,7 +168,7 @@ namespace UI
         /**
         @version NIIEngine 3.0.0
         */
-        inline void setColour(const ColourArea & cols)      { mColour = colour; }
+        inline void setColour(const ColourArea & colour)      { mColour = colour; }
 
         /** 
         @version NIIEngine 3.0.0
@@ -178,7 +178,7 @@ namespace UI
         /** 
         @version NIIEngine 3.0.0
         */
-        inline void setColourFetch(PropertyID property)     { mColourID = pid; }
+        inline void setColourFetch(PropertyID pid)     { mColourID = pid; }
 
         /** 
         @version NIIEngine 3.0.0

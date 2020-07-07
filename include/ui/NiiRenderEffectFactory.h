@@ -24,26 +24,45 @@ Email: niiengine@gmail.com OR niiengine@163.com
 Licence: commerce(www.niiengine.com/license)(Three kinds)
 ------------------------------------------------------------------------------
 */
-
-#ifndef _NII_UILayout_PROPERTY_H_
-#define _NII_UILayout_PROPERTY_H_
+#ifndef _NII_UI_RenderEffectFactory_H_
+#define _NII_UI_RenderEffectFactory_H_
 
 #include "NiiUIPreInclude.h"
+#include "NiiRenderEffect.h"
 
 namespace NII
 {
-namespace UI
-{
-    class _EngineAPI UILayoutProperty
+    /** 
+    @version verison NIIEngine 4.0.0
+    */
+    class RenderEffectFactory : public ShaderAlloc
     {
     public:
-        static const PropertyID ImportUnitProperty;
-        static const PropertyID EventUnitProperty;
-        static const PropertyID LayoutImportResourceGroupAttribute;
-        static const PropertyID FuncProperty;     
-        static const PropertyID PropertyCount;
-    };
+        virtual ~RenderEffectFactory() {}
 
-}
+        /** 
+        @version verison NIIEngine 4.0.0
+        */
+        virtual RenderEffect * create(UI::Window * widget) = 0;
+
+        /** 
+        @version verison NIIEngine 4.0.0
+        */
+        virtual void destroy(RenderEffect * effect) = 0;
+    };
+    //------------------------------------------------------------------------
+    template <typename T> class TplRenderEffectFactory : public RenderEffectFactory
+    {
+    public:
+        RenderEffect * create(UI::Window * widget)
+        {
+            return N_new T(widget);
+        }
+        void destroy(RenderEffect * effect)
+        {
+            N_delete effect;
+        }
+    };
+    //------------------------------------------------------------------------
 }
 #endif

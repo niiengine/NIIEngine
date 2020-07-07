@@ -25,30 +25,42 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 ------------------------------------------------------------------------------
 */
 
-#ifndef _NII_HorizontalLayoutContainer_h_
-#define _NII_HorizontalLayoutContainer_h_
+#ifndef _NII_RENDEREFFECT_H_
+#define _NII_RENDEREFFECT_H_
 
 #include "NiiUIPreInclude.h"
-#include "NiiUIIndexLayoutContainer.h"
+#include "NiiUIInstance.h"
+#include "NiiGeometryPixel.h"
 
 namespace NII
 {
-namespace UI
-{
-    /**
+    /** 
     @version NIIEngine 3.0.0
     */
-    class _EngineAPI HorizontalLayoutContainer : public IndexLayoutContainer
+    class _EngineAPI RenderEffect : public UIAlloc
     {
     public:
-        HorizontalLayoutContainer(WidgetID wid, FactoryID fid, Container * own, const String & name = N_StrBlank,
-            LangID lid = N_PrimaryLang);
+        virtual ~RenderEffect() {}
 
-        virtual ~HorizontalLayoutContainer();
+        /** 
+        */
+        virtual void onRenderBegin(NCount pass) = 0;
 
-        /// @copydoc LayoutContainer::layoutImpl
-        virtual void layoutImpl();
+        /** 
+        */
+        virtual void onRenderEnd() = 0;
+        
+        /**
+        */
+        virtual bool onRefush(RenderSys * sys, GeometryPixel * geo) = 0;
+        
+        /**
+        */
+        virtual bool onUpdate(TimeDurMS cost, RenderSys * sys) = 0;
+        
+        /** 
+        */
+        virtual NCount getPassCount() const = 0;
     };
-}
 }
 #endif

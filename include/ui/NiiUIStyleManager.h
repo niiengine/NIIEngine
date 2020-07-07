@@ -32,8 +32,7 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 #include "NiiSingleton.h"
 #include "NiiUIException.h"
 #include "NiiUIStyle.h"
-#include "NiiUIEffectTextView.h"
-#include "NiiUINormalTextView.h"
+#include "NiiUIPixelUnitGrid.h"
 
 namespace NII
 {
@@ -96,18 +95,12 @@ namespace NII
         /** 
         @version NIIEngine 3.0.0
         */
-        static inline void setGroup(GroupID gid)
-        {
-            ResourceGroup = gid;
-        }
+        static inline void setGroup(GroupID gid)        { ResourceGroup = gid; }
 
         /** 
         @version NIIEngine 3.0.0
         */
-        static inline GroupID getGroup()
-        {
-            return ResourceGroup;
-        }
+        static inline GroupID getGroup()                { return ResourceGroup; }
         
         const StyleList & getWidgetList() const;
 
@@ -121,7 +114,7 @@ namespace NII
         static const Colour DefaultSelectionColour;
                 
         static EffectTextView gDefaultTextView;
-        static NormalTextView gNormalTextView;
+        static TextView gNormalTextView;
     private:
         static GroupID ResourceGroup;
         StyleList mStyleList;

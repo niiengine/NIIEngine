@@ -31,7 +31,6 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 #include "NiiUIPreInclude.h"
 #include "NiiUIWidgetManager.h"
 #include "NiiXmlAnalyze.h"
-#include "NiiUILayoutProperty.h"
 
 namespace NII
 {
@@ -45,7 +44,7 @@ namespace UI
     /**
     @version NIIEngine 3.0.0
     */
-    class _EngineAPI UILayoutXmlAnalyze : public UILayoutProperty, public XmlAnalyze
+    class _EngineAPI UILayoutXmlAnalyze : public XmlAnalyze
     {
     public:
         UILayoutXmlAnalyze(LangID lid = N_PrimaryLang, PropertyCallback * callback = 0, void * userdata = 0);
@@ -66,17 +65,14 @@ namespace UI
         /** 
         @version NIIEngine 3.0.0
         */
-        Widget * getRootWindow() const;
+        inline Widget * getRootWindow() const       {return mRootWindow; }
     private:
-        void operator=(const UILayoutXmlAnalyze &) {}
+        void operator=(const UILayoutXmlAnalyze &)  {}
 
+        /// @copydetails XmlAnalyze::onBegin
         void onBegin(XmlAnalyze * parent, PropertyID pid, const PropertyData * pdc);
 
-        /** 处理标签
-        @param[in] own 父标签
-        @param[in] pid 属性ID
-        @version NIIEngine 3.0.0
-        */
+        /// @copydetails XmlAnalyze::onEnd
         void onEnd(XmlAnalyze * parent, PropertyID pid, const PropertyData * pdc);
 
         /// @copydetails XmlAnalyze::PrcTagUnitCB
@@ -138,7 +134,7 @@ namespace UI
         void cleanBuild();
     private:
         typedef std::pair<Widget *, bool> WidgetObj;
-        typedef std::vector<WidgetObj> WidgetList;
+        typedef vector<WidgetObj>::type WidgetList;
     private:
         Widget * mRootWindow;
         void * mCustomData;

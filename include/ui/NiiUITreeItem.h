@@ -29,7 +29,7 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 #define _NII_UI_TREEITEM_H_
 
 #include "NiiUIPreInclude.h"
-#include "NiiUIEffectTextView.h"
+#include "NiiUIPixelUnitGrid.h"
 #include "NiiColourArea.h"
 
 namespace NII

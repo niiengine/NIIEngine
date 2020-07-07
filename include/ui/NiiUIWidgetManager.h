@@ -32,7 +32,7 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 #include "NiiSingleton.h"
 #include "NiiUIWidgetView.h"
 #include "NiiUIWidgetFactory.h"
-#include "NiiUIWidgetModelFactory.h"
+#include "NiiUIWidgetViewFactory.h"
 
 using namespace NII::UI;
 
@@ -56,7 +56,7 @@ namespace NII
             WidgetViewlID mWidgetModel;
         };
 
-        typedef map<FactoryID, WidgetModelFactory *>::type WidgetModelList;
+        typedef map<FactoryID, WidgetViewFactory *>::type WidgetModelList;
         typedef map<FactoryID, WidgetFactory *>::type WidgetFactoryList;
         typedef map<FactoryID, WidgetModelDefine>::type StyleDefineList;
     public:
@@ -131,7 +131,7 @@ namespace NII
         /** 添加UI模型工厂
         @version NIIEngine 3.0.0
         */
-        bool addModelFactory(WidgetModelFactory * obj);
+        bool addModelFactory(WidgetViewFactory * obj);
 
         /** 移去UI模型工厂
         @version NIIEngine 3.0.0
@@ -141,7 +141,7 @@ namespace NII
         /** 获取UI模型工厂
         @version NIIEngine 3.0.0
         */
-        WidgetModelFactory * getModelFactory(FactoryID fid) const;
+        WidgetViewFactory * getModelFactory(FactoryID fid) const;
 
         /** 是否存在UI模型工厂
         @version NIIEngine 3.0.0

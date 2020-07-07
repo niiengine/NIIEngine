@@ -31,7 +31,7 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 #include "NiiUIPreInclude.h"
 #include "NiiStrConv.h"
 #include "NiiUICommon.h"
-#include "NiiUIStyleSectionFrameUnit.h"
+#include "NiiUIStyleSection.h"
 #include "NiiUIListHeaderItem.h"
 #include "NiiUIMultiColumnList.h"
 #include "NiiUITabControl.h"

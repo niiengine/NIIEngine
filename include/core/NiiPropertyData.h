@@ -96,7 +96,7 @@ namespace NII
         @param[in] idx 属性ID
         @version NIIEngine 3.0.0
         */
-        const String & getStr(Nidx idx) const;
+        //const String & getStr(Nidx idx) const;
 
 		/** 获取值
 		@param[in] idx 属性ID
@@ -109,7 +109,14 @@ namespace NII
         @param init 属性默认值
         @version NIIEngine 3.0.0
         */
-        const String & get(PropertyID pid, const String & init = _T("")) const;
+        const String & get(PropertyID pid) const;
+
+        /** 获取值
+        @param pid 属性ID
+        @param init 属性默认值
+        @version NIIEngine 3.0.0
+        */
+        String getDefault(PropertyID pid, const String & init = _T("")) const;
 
         /** 获取值
         @param[in] pid 属性ID

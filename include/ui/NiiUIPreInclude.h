@@ -47,7 +47,7 @@ namespace UI
     class Event;
     class Exception;
     class EffectTextView;
-    class NormalTextView;
+    class TextView;
     class PixelLayout;
     class UISheet;
     class StyleSection;

@@ -159,7 +159,7 @@ namespace NII
         /** 获取投影矩阵
         @version NIIEngine 3.0.0
         */
-        const Matrix4f & getProjMatrix() const;
+        inline const Matrix4f & getProjMatrix() const { return mProjMatrix; }
 
         /** 设置视图矩阵
         @version NIIEngine 3.0.0 高级api
@@ -169,7 +169,7 @@ namespace NII
         /** 获取视图矩阵
         @version NIIEngine 3.0.0
         */
-        const Matrix4f & getViewMatrix() const;
+        inline const Matrix4f & getViewMatrix() const { return mViewMatrix; }
 
         /** 获取模型矩阵
         @version NIIEngine 3.0.0 高级api
@@ -179,7 +179,7 @@ namespace NII
         /** 获取模型矩阵
         @version NIIEngine 3.0.0
         */
-        const Matrix4f & getModelMatrix() const;
+        inline const Matrix4f & getModelMatrix() const { return mModelMatrix; }
 
         /** 获取空间矩阵
         @version NIIEngine 3.0.0
@@ -194,7 +194,7 @@ namespace NII
         /** 获取文本视图
         @version NIIEngine 3.0.0
         */
-        TextView * getView() const;
+        inline TextView * getView() const           { return mTextView; }
 
         /// @copydetails Singleton::getOnly
         static UIManager & getOnly();
@@ -235,7 +235,7 @@ namespace NII
         */
         static const EventID EventCount;
 
-        NormalTextView * TextView0;        
+        TextView * TextView0;        
 
         EffectTextView * TextView1;
     protected:

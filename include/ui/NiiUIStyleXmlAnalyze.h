@@ -195,7 +195,7 @@ namespace UI
     protected:
         SizeBase * mLeft;
         SizeBase * mRight;
-        SizeOpType d_op;
+        SizeOpType mOp;
     };
 
     /**
