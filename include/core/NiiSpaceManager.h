@@ -891,7 +891,7 @@ namespace NII
         /** 创建香交查询
         @version NIIEngine 3.0.0
         */
-        virtual IntersectSpaceQuery * createIntersectQuery(Nmark query = 0xFFFFFFFF);
+        virtual AreaSpaceQuery * createIntersectQuery(Nmark query = 0xFFFFFFFF);
 
         /** 删除查询
         @version NIIEngine 3.0.0

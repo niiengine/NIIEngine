@@ -28,7 +28,7 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 #ifndef _NII_Config_H_
 #define _NII_Config_H_
 
-#include "NiiBuildSettings.h"
+#include "NiiCustomConfig.h"
 
 #ifndef NII_PROFILING
     #define NII_PROFILING           0
@@ -52,7 +52,7 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 #define NII_NedPoolAllocType        4
 
 #ifndef NII_MemAllocType
-    #define NII_MemAllocType NII_NedAllocType
+    #define NII_MemAllocType        NII_NedAllocType
 #endif
 
 #ifndef NII_STLCustomAlloc
