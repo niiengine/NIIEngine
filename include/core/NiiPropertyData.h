@@ -96,7 +96,7 @@ namespace NII
         @param[in] idx 属性ID
         @version NIIEngine 3.0.0
         */
-        //const String & getStr(Nidx idx) const;
+        const String & getStr(Nidx idx) const;
 
 		/** 获取值
 		@param[in] idx 属性ID
@@ -125,6 +125,13 @@ namespace NII
         @version NIIEngine 3.0.0
         */
         bool get(PropertyID pid, String & out, const String & init = _T("")) const;
+        
+        /** 获取值
+        @param[in] pid 属性ID
+        @param[out] out 输出
+        @version NIIEngine 3.0.0
+        */
+        bool get(PropertyID pid, StringList & out) const;
 
         /** 获取值
         @param[in] pid 属性ID
@@ -149,6 +156,13 @@ namespace NII
         @version NIIEngine 3.0.0
         */
         bool get(PropertyID pid, Ni32 * out, NCount cnt) const;
+        
+        /** 获取值
+        @param[in] pid 属性ID
+        @param[out] out 输出
+        @version NIIEngine 3.0.0
+        */
+        bool get(PropertyID pid, IntArray & out) const;
 
         /** 获取值
         @param[in] pid 属性ID
@@ -157,7 +171,7 @@ namespace NII
         @version NIIEngine 3.0.0
         */
         bool get(PropertyID pid, Nui32 & out, Nui32 init = 0) const;
-
+        
         /** 获取值
         @param[in] pid 属性ID
         @param[out] out 输出
@@ -165,6 +179,13 @@ namespace NII
         @version NIIEngine 3.0.0
         */
         bool get(PropertyID pid, Nui32 * out, NCount cnt) const;
+
+        /** 获取值
+        @param[in] pid 属性ID
+        @param[out] out 输出
+        @version NIIEngine 3.0.0
+        */
+        bool get(PropertyID pid, UIntArray & out) const;
 
         /** 获取值
         @param[in] pid 属性ID
@@ -181,6 +202,36 @@ namespace NII
         @version NIIEngine 3.0.0
         */
         bool get(PropertyID pid, NIIf * out, NCount cnt) const;
+        
+        /** 获取值
+        @param[in] pid 属性ID
+        @param[out] out 输出
+        @version NIIEngine 3.0.0
+        */
+        bool get(PropertyID pid, FloatArray & out) const;
+        
+        /** 获取值
+        @param[in] pid 属性ID
+        @param[out] out 输出
+        @param[in] init 属性默认值
+        @version NIIEngine 3.0.0
+        */
+        bool get(PropertyID pid, NIId & out, NIId init = 0.0) const;
+
+        /** 获取值
+        @param[in] pid 属性ID
+        @param[out] out 输出
+        @param[in] cnt 输出个数
+        @version NIIEngine 3.0.0
+        */
+        bool get(PropertyID pid, NIId * out, NCount cnt) const;
+        
+        /** 获取值
+        @param[in] pid 属性ID
+        @param[out] out 输出
+        @version NIIEngine 3.0.0
+        */
+        bool get(PropertyID pid, DoubleArray & out) const;
 
         /** 获取值(补充)
         @param[in] pid 属性ID
@@ -207,6 +258,11 @@ namespace NII
         @version NIIEngine 3.0.0 adv api
         */
         const PropertyList & getList() const;
+        
+        /** 获取属性值列表
+        @version NIIEngine 3.0.0 adv api
+        */
+        const PropertyList & getExtList() const;
 
 		/** 复制对象
 		@note 返回的使用完后使用 N_delete 删除

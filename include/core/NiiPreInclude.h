@@ -183,13 +183,8 @@ namespace NII
     class LoadScheme;
     class IndexData;
     class InstanceBatch;
-    class InstanceBatchHW;
-    class InstanceBatchHW_VTF;
-    class InstanceBatchShader;
-    class InstanceBatchVTF;
     class InstanceMesh;
     class InstanceGeo;
-    class IntersectSpaceQuery;
     class Image;
     class KeyFrame;
     class Light;
@@ -232,6 +227,7 @@ namespace NII
     class Sky;
     class InstanceSpace;
     class PlaneSpaceQuery;
+    class AreaSpaceQuery;
     class Overlay;
     class OverlayView;
     class OverlayGeo;
@@ -455,6 +451,7 @@ namespace NII
 
     typedef HashedVector<Light *> LightList;
 
+    typedef vector<Nui32>::type UIntArray;
     typedef vector<Ni32>::type IntArray;
     typedef vector<NIIf>::type FloatArray;
     typedef vector<NIId>::type DoubleArray;
