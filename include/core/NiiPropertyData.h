@@ -39,6 +39,7 @@ namespace NII
     class _EngineAPI PropertyData : public DataAlloc
     {
     public:
+        typedef map<PropertyID, PropertyData>::type SubPropertyList;
         typedef map<PropertyID, void *>::type ExtPropertyList;
         typedef map<PropertyID, String>::type PropertyList;
     public:
@@ -67,6 +68,14 @@ namespace NII
         @version NIIEngine 3.0.0 adv api
         */
         void addVoid(PropertyID pid, void * value);
+
+        /** 添加属性(补充)
+        @param pid 属性ID
+        @param value 值(数据指针)
+        @note 不管理(数据指针)的有效性,没有副本产生
+        @version NIIEngine 3.0.0 adv api
+        */
+        void addSub(PropertyID pid, const PropertyData & value);
 
         /** 添加属性
         @param[in] o 另一个对象
@@ -102,7 +111,10 @@ namespace NII
 		@param[in] idx 属性ID
 		@version NIIEngine 3.0.0 adv api
 		*/
-		const void * getVoid(Nidx idx) const;
+		const void * getData(Nidx idx) const;
+
+        /**
+        */
 
         /** 获取值
         @param pid 属性ID
@@ -239,7 +251,7 @@ namespace NII
         @param[in] init 属性默认值
         @version NIIEngine 3.0.0 adv
         */
-        bool getVoid(PropertyID pid, void *& out, void * init = 0) const;
+        bool getData(PropertyID pid, void *& out, void * init = 0) const;
 
         /** 获取值
         @param[in] pid 属性ID
@@ -252,17 +264,17 @@ namespace NII
         /** 属性数量
         @version NIIEngine 3.0.0
         */
-        NCount getCount() const;
+        inline NCount getCount() const                          { return mPropertys.size() + mExtPropertys.size(); }
 
         /** 获取属性值列表
         @version NIIEngine 3.0.0 adv api
         */
-        const PropertyList & getList() const;
+        inline const PropertyList & getList() const             { return mPropertys; }
         
         /** 获取属性值列表
         @version NIIEngine 3.0.0 adv api
         */
-        const PropertyList & getExtList() const;
+        inline const ExtPropertyList & getExtList() const       {return mExtPropertys;}
 
 		/** 复制对象
 		@note 返回的使用完后使用 N_delete 删除
@@ -272,6 +284,7 @@ namespace NII
     protected:
         PropertyList mPropertys;
         ExtPropertyList mExtPropertys;
+        SubPropertyList mSubPropertys;
     };
 }
 #endif

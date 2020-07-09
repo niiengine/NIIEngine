@@ -41,7 +41,7 @@ namespace NII
     public:
         struct Info
         {
-            String mResourceID;
+            ReourceID mResourceID;
             Nui32 mMark;
         };
         typedef vector<Info>::type InfoList;
@@ -53,7 +53,7 @@ namespace NII
         void setProperty(PropertyData * param);
 
         /// @copydetails Sound::getSoundType
-        Type getSoundType() const { return T_Bg; }
+        Type getSoundType() const               { return T_Bg; }
 
         /// @copydetails Sound::getDuration
         virtual TimeDurMS getDuration() const;
@@ -73,7 +73,7 @@ namespace NII
         /**
         @version NIIEngine 4.0.0
         */
-        const InfoList & getSounds() const { return mSoundList; }
+        const InfoList & getSounds() const      { return mSoundList; }
     protected:
         /// @copydetails Resource::loadImpl
         virtual void loadImpl();
