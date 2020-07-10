@@ -113,8 +113,11 @@ namespace NII
 		*/
 		const void * getData(Nidx idx) const;
 
-        /**
+        /** 获取值
+		@param[in] idx 属性ID
+		@version NIIEngine 3.0.0 adv api
         */
+        const PropertyData * getSub(Nidx idx) const;
 
         /** 获取值
         @param pid 属性ID
@@ -134,6 +137,13 @@ namespace NII
         @param[in] pid 属性ID
         @param[out] out 输出
         @param[in] init 属性默认值
+        @version NIIEngine 3.0.0
+        */
+        bool get(PropertyID pid, PropertyData & out) const;
+
+        /** 获取值
+        @param pid 属性ID
+        @param init 属性默认值
         @version NIIEngine 3.0.0
         */
         bool get(PropertyID pid, String & out, const String & init = _T("")) const;

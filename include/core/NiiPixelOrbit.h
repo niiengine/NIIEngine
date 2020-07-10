@@ -31,6 +31,7 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 #include "NiiPreInclude.h"
 #include "NiiPixelChain.h"
 #include "NiiPosListener.h"
+#include "NiiSpaceObjFactory.h"
 
 namespace NII
 {
@@ -83,7 +84,7 @@ namespace NII
         /** 获取轨迹长度
         @version NIIEngine 3.0.0
         */
-        NIIf getOrbitLength() const;
+        inline NIIf getOrbitLength() const                      { return mOrbitLength; }
 
         /** 设置原色
         @version NIIEngine 3.0.0
@@ -93,7 +94,7 @@ namespace NII
         /** 获取原色
         @version NIIEngine 3.0.0
         */
-        const Colour & getColour(Nidx index) const;
+        inline const Colour & getColour(Nidx index) const       { N_assert(index < mChainCount, "error index"); return mColour[index]; }
 
         /** 设置退色
         @version NIIEngine 3.0.0
@@ -103,17 +104,17 @@ namespace NII
         /** 获取退色
         @version NIIEngine 3.0.0
         */
-        const Colour & getColourFade(Nidx index) const;
+        inline const Colour & getColourFade(Nidx index) const   { N_assert(index < mChainCount, "error index"); return mColourFade[index]; }
 
         /** 设置尺寸
         @version NIIEngine 3.0.0
         */
-        void setDim(Nidx index, NIIf width);
+        inline void setDim(Nidx index, NIIf width)              { N_assert(index < mChainCount, "error index"); mDim[index] = width; }
 
         /** 获取尺寸
         @version NIIEngine 3.0.0
         */
-        NIIf getDim(Nidx index) const;
+        inline NIIf getDim(Nidx index) const                    { N_assert(index < mChainCount, "error index"); return mDim[index]; }
 
         /** 设置尺寸销减
         @version NIIEngine 3.0.0
@@ -123,7 +124,7 @@ namespace NII
         /** 获取尺寸销减
         @version NIIEngine
         */
-        NIIf getDimReduce(Nidx index) const;
+        inline NIIf getDimReduce(Nidx index) const              { N_assert(index < mChainCount, "error index"); return mDimReduce[index]; }
 
         /// @copydetails PixelChain::setChainCount
         void setChainCount(NCount count);
@@ -169,5 +170,23 @@ namespace NII
         DataEquation<TimeDurMS, TimeDurMS> * mFadeFunctor;
     };
 
+    /** PixelOrbit专用工厂类
+    @version NIIEngine 3.0.0
+    */
+    class _EngineAPI PixelOrbitFactory : public SpaceObjFactory
+    {
+    public:
+        PixelOrbitFactory();
+        ~PixelOrbitFactory();
+
+        ///@copydetails SpaceObjFactory::getID
+        FactoryID getID() const;
+
+        ///@copydetails SpaceObjFactory::create
+        SpaceObj * create(SpaceID sid, SpaceManager * mag, const PropertyData * params = 0);
+
+        ///@copydetails SpaceObjFactory::destroy
+        void destroy(void * obj);
+    };
 }
 #endif

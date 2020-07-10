@@ -683,18 +683,25 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 #define N_PropertySound_Type
 #define N_PropertySound_Gain                                200601
 #define N_PropertySound_Pitch                               200602
-#define N_PropertySound_Param                               202603
-#define N_PropertySound_
-#define N_PropertySound_
-#define N_PropertySound_
-#define N_PropertySound_
-#define N_PropertySound_
-#define N_PropertySound_
-#define N_PropertySound_
-#define N_PropertySound_
-#define N_PropertySound_
-#define N_PropertySound_
-#define N_PropertySound_
-#define N_PropertySound_
+#define N_PropertySound_Param                               200603
+#define N_PropertySound_File                                200604
+#define N_PropertySound_Fade                                200605
+#define N_PropertySound_FadeIn                              200606
+#define N_PropertySound_FadeOut                             200607
+#define N_PropertySound_FadeInEnable                        200608
+#define N_PropertySound_FadeOutEnable                       200609
+#define N_PropertySound_ReplayDelay                         200610
+#define N_PropertySound_MaxDistance                         200611
+#define N_PropertySound_MinDistance                         200612
+#define N_PropertySound_Alpha                               200613
+#define N_PropertySound_Sub                                 200614
+#define N_PropertySound_SubMark                             200615
+#define N_PropertySound_TimeFactor                          200616
+#define N_PropertySound_FusionType                          200617
+#define N_PropertySound_SubIndex                            200618
+#define N_PropertySound_TimeIndex                           200619
+#define N_PropertyValueSound_Order                          200620
+#define N_PropertyValueSound_TimeOrder                      200621
+#define N_PropertyValueSound_Fusion                         200622
 
 #endif

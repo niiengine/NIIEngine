@@ -50,22 +50,22 @@ namespace NII
         /** 设置颜色
         @version NIIEngine 3.0.0
         */
-        void setColour(const Colour & c);
+        inline void setColour(const Colour & colour)        { mColour = colour; }
 
         /** 获取颜色
         @version NIIEngine 3.0.0
         */
-        const Colour & getColour() const;
+        inline const Colour & getColour() const             { return mColour; }
 
         /** 使用控制器的尺寸
         @version NIIEngine 3.0.0
         */
-        void inheritSize();
+        inline void inheritSize()                           { mSizeValid = false;  }
 
         /** 是否使用控制器的尺寸
         @version NIIEngine 3.0.0
         */
-        bool isInheritSize() const;
+        inline bool isInheritSize() const                   { return !mSizeValid; }
 
         /** 设置尺寸
         @version NIIEngine 3.0.0
@@ -75,22 +75,22 @@ namespace NII
         /** 获取宽
         @version NIIEngine 3.0.0
         */
-        NIIf getWidth() const;
+        inline NIIf getWidth() const                        { return mWidth; }
 
         /** 获取高
         @version NIIEngine 3.0.0
         */
-        NIIf getHeight() const;
+        inline NIIf getHeight() const                       { return mHeight; }
 
         /** 设置位置
         @version NIIEngine 3.0.0
         */
-        void setPos(const Vector3f & pos);
+        inline void setPos(const Vector3f & pos)            { mPosition = pos; }
 
         /** 获取位置
         @version NIIEngine 3.0.0
         */
-        const Vector3f & getPos() const;
+        inline const Vector3f & getPos() const              { return mPosition; }
 
         /** 设置旋转
         @version NIIEngine 3.0.0
@@ -100,32 +100,32 @@ namespace NII
         /** 获取旋转
         @version NIIEngine 3.0.0
         */
-        const Radian & getRotation() const;
+        inline const Radian & getRotation() const           { return mRotation; }
 
         /** 是否使用控制器设定好的纹理坐标
         @version NIIEngine 3.0.0
         */
-        bool isInheritTexCoord() const;
+        inline bool isInheritTexCoord() const               { return !mTexCoordValid; }
         
         /** 设置纹理坐标
         @version NIIEngine 3.0.0
         */
-        void setTexCoordRect(const Rectf & rect);
+        inline void setTexCoordRect(const Rectf & rect)     { mTexCoord = rect; mTexCoordValid = true; }
 
         /** 获取纹理坐标
         @version NIIEngine 3.0.0
         */
-        const Rectf & getTexCoordRect() const;
+        inline const Rectf & getTexCoordRect() const        { return mTexCoord;  }
 
         /** 使用控制器设定好的纹理坐标
         @version NIIEngine 3.0.0
         */
-        void setCtrlTexCoord(Nidx index);
+        inline void setCtrlTexCoord(Nidx idx)             { mCtrlTexCoord = idx; mTexCoordValid = false; }
 
         /** 获取控制器设定好的纹理坐标
         @version NIIEngine 3.0.0
         */
-        Nidx getCtrlTexCoord() const;
+        inline Nidx getCtrlTexCoord() const                 { return mCtrlTexCoord; }
     protected:
         ParticleCtrl * mCtrl;
         NIIf mWidth;

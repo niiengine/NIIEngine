@@ -31,6 +31,7 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 #include "NiiPreInclude.h"
 #include "NiiSpaceObj.h"
 #include "NiiGeometryObj.h"
+#include "NiiSpaceObjFactory.h"
 
 namespace NII
 {
@@ -102,7 +103,7 @@ namespace NII
         /** 获取原点类型
         @version NIIEngine 3.0.0
         */
-        virtual OriginType getOriginType() const;
+        inline OriginType getOriginType() const         { return mOriginType; }
 
         /** 设置旋转模式
         @version NIIEngine 3.0.0
@@ -112,7 +113,7 @@ namespace NII
         /** 获取旋转模式
         @version NIIEngine 3.0.0
         */
-        virtual RotationMode getRotationMode() const;
+        inline RotationMode getRotationMode() const     { return mRotationType; }
 
         /** 设置方向模式
         @version NIIEngine 3.0.0
@@ -122,7 +123,7 @@ namespace NII
         /** 获取方向模式
         @version NIIEngine 3.0.0
         */
-        virtual CtrlMode getCtrlMode() const;
+        inline CtrlMode getCtrlMode() const             { return mCtrlMode; }
 
         /** 设置粒子宽
         @version NIIEngine 3.0.0
@@ -132,7 +133,7 @@ namespace NII
         /** 获取粒子宽
         @version NIIEngine 3.0.0
         */
-        virtual NIIf getParticleWidth() const;
+        inline NIIf getParticleWidth() const            { return mParticleWidth; }
 
         /** 设置粒子高
         @version NIIEngine 3.0.0
@@ -142,7 +143,7 @@ namespace NII
         /** 获取粒子高
         @version NIIEngine 3.0.0
         */
-        virtual NIIf getParticleHeight() const;
+        inline NIIf getParticleHeight() const           { return mParticleHeight; }
 
         /** 设置纹理
         @version NIIEngine 3.0.0
@@ -157,17 +158,17 @@ namespace NII
         /** 获取纹理资源ID
         @version NIIEngine 3.0.0
         */
-        virtual ResourceID getMaterialID() const;
+        inline ResourceID getMaterialID() const         { return mMaterialID; }
 
         /** 是否每帧都更新
         @version NIIEngine 3.0.0
         */
-        void setUpdatePerFrame(bool b);
+        virtual void setUpdatePerFrame(bool b);
 
         /** 是否每帧都更新
         @version NIIEngine 3.0.0
         */
-        bool isUpdatePerFrame() const;
+        inline bool isUpdatePerFrame() const            { return mUpdatePerFrame; }
 
         /** 独立拣选每个粒子
         @note 会增加计算量
@@ -179,27 +180,27 @@ namespace NII
         @note 会增加计算量
         @version NIIEngine 3.0.0
         */
-        virtual bool isCullItself() const;
+        inline bool isCullItself() const                { return mCullItself; }
 
         /** 设置控制器方向
         @version NIIEngine 3.0.0
         */
-        void setCtrlDirection(const Vector3f & vec);
+        inline void setCtrlDirection(const Vector3f & vec)  { mCtrlDir = vec; }
 
         /** 获取控制器方向
         @version NIIEngine 3.0.0
         */
-        const Vector3f & getCtrlDirection() const;
+        inline const Vector3f & getCtrlDirection() const    { return mCtrlDir; }
 
         /** 设置控制器垂直方向
         @version NIIEngine 3.0.0
         */
-        void setCtrlUp(const Vector3f & vec);
+        inline void setCtrlUp(const Vector3f & vec)         { mCtrlUp = vec; }
 
         /** 获取控制器垂直方向
         @version NIIEngine 3.0.0
         */
-        const Vector3f & getCtrlUp() const;
+        inline const Vector3f & getCtrlUp() const           { return mCtrlUp; }
 
         /** 设置是否平行于视口
         @version NIIEngine 3.0.0
@@ -209,7 +210,7 @@ namespace NII
         /** 获取是否平行于视口
         @version NIIEngine 3.0.0
         */
-        virtual bool isParallelView() const;
+        inline bool isParallelView() const                  { return mParallelView; }
 
         /** 使用点渲染模式
         @note 指的是硬件像素点模式,需要硬件支持,由 ShaderCh::setPoint 控制
@@ -221,7 +222,7 @@ namespace NII
         @note 指的是硬件像素点模式,需要硬件支持,由 ShaderCh::setPoint 控制
         @version NIIEngine 3.0.0
         */
-        virtual bool isPointSprites() const;
+        inline bool isPointSprites() const                  { return mPointSprites; }
 
         /** 创建同步粒子
         @version NIIEngine 3.0.0
@@ -261,24 +262,24 @@ namespace NII
         /** 设置是否扩展粒子
         @version NIIEngine 3.0.0
         */
-        void setExpandParticle(bool b);
+        inline void setExpandParticle(bool b)               { mAutoExtendPool = b; }
 
         /** 获取是否扩展粒子
         @version NIIEngine 3.0.0
         */
-        bool isExpandParticle() const;
+        inline bool isExpandParticle() const                { return mAutoExtendPool; }
 
         /** 设置粒子与摄象机是否距离排序
         @remark 如果是透明粒子是需要排序的
         @version NIIEngine 3.0.0
         */
-        void setSortEnable(bool b);
+        inline void setSortEnable(bool b)                   { mSortEnable = b; }
 
         /** 获取粒子与摄象机是否距离排序
         @remark 如果是透明粒子是需要排序的
         @version NIIEngine 3.0.0
         */
-        bool isSortEnable() const;
+        inline bool isSortEnable() const                    { return mSortEnable; }
 
         /** 获取排序模式
         @version NIIEngine 3.0.0
@@ -293,17 +294,17 @@ namespace NII
         /** 获取容器大小
         @version NIIEngine 3.0.0
         */
-        NCount getPoolSize() const;
+        inline NCount getPoolSize() const                   { return mParticlePool.size(); }
 
         /** 设置是否本地空间
         @version NIIEngine 3.0.0
         */
-        void setLocalSpace(bool b);
+        inline void setLocalSpace(bool b)                   { mLocalSpace = b; }
 
         /** 获取是否本地空间
         @version NIIEngine 3.0.0
         */
-        bool isLocalSpace() const;
+        inline bool isLocalSpace() const                    { return mLocalSpace; }
 
         /** 定义纹理坐标
         @param[in] coords 纹理坐标数组
@@ -329,19 +330,19 @@ namespace NII
         /** 获取纹理坐标数量
         @version NIIEngine 3.0.0
         */
-        NCount getTexCoordCount();
+        inline NCount getTexCoordCount()                        { return mTexCoordList.size(); }
 
         /** 设置空间边界(总)
         @note 一般粒子是有自己的位置边界,这个概念意义所有粒子的总空间边界
         @version NIIEngine 3.0.0 高级api
         */
-        void setBounds(const AABox & box, NIIf radius);
+        inline void setBounds(const AABox & box, NIIf radius)   { mAABB = box; mBoundRange = radius; }
 
         /** 更新空间边界(总)
         @note 一般粒子是有自己的位置边界,这个概念意义所有粒子的总空间边界
         @version NIIEngine 3.0.0 高级api
         */
-        void updateBounds();
+        virtual void updateBounds();
 
         /// @copydetails SpaceObj::_notify
         virtual void _notify(Camera * cam);
@@ -464,6 +465,25 @@ namespace NII
         bool mExternalData;
         bool mUpdatePerFrame;
         bool mParticleChange;
+    };
+    
+    /** 创建粒子控制工厂类
+    @version NIIEngine 3.0.0
+    */
+    class _EngineAPI ParticleCtrlFactory : public SpaceObjFactory
+    {
+    public:
+        ParticleCtrlFactory();
+        ~ParticleCtrlFactory();
+
+        /// @copydetails SpaceObjFactory::getID
+        FactoryID getID() const;
+
+        /// @copydetails SpaceObjFactory::create
+        SpaceObj * create(SpaceID sid, SpaceManager * mag, const PropertyData * params);
+
+        /// @copydetails SpaceObjFactory::destroy
+        void destroy(void * obj);
     };
 }
 #endif

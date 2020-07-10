@@ -32,6 +32,7 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 #include "NiiGeometryObj.h"
 #include "NiiSpaceObj.h"
 #include "NiiVertex.h"
+#include "NiiSpaceObjFactory.h"
 
 namespace NII
 {
@@ -111,12 +112,12 @@ namespace NII
         /** 设置是否平行与视图
         @version NIIEngine 3.0.0
         */
-        void setParallelView(bool b);
+        inline void setParallelView(bool b)         { mFaceCamera = b; }
 
         /** 获取是否平行与视图
         @version NIIEngine 3.0.0
         */
-        bool isParallelView() const;
+        inline bool isParallelView() const          { return mFaceCamera; }
 
         /** 设置是否使用顶点颜色
         @version NIIEngine 3.0.0
@@ -126,7 +127,7 @@ namespace NII
         /** 获取是否使用顶点颜色
         @version NIIEngine 3.0.0
         */
-        bool isVertexColour() const;
+        inline bool isVertexColour() const          { return mTexColour; }
 
         /** 设置是否使用纹理坐标
         @version NIIEngine 3.0.0
@@ -136,37 +137,37 @@ namespace NII
         /** 获取是否使用纹理坐标
         @version NIIEngine 3.0.0
         */
-        bool isTextureCoord() const;
+        inline bool isTextureCoord() const          { return mTexCoord; }
 
         /** 纹理坐标最小值
         @version NIIEngine 3.0.0
         */
-        NIIf getTextureCoordMin() const;
+        inline NIIf getTextureCoordMin() const      { return mTexCoordMin; }
 
         /** 纹理坐标最大值
         @version NIIEngine 3.0.0
         */
-        NIIf getTextureCoordMax() const;
+        inline NIIf getTextureCoordMax() const      { return mTexCoordMax; }
 
         /** 设置是否纹理x方向寻址
         @version NIIEngine 3.0.0
         */
-        void setTexCoordU(bool b);
+        inline void setTexCoordU(bool b)            { mTexCoordU = b; }
 
         /** 获取是否纹理x方向寻址
         @version NIIEngine 3.0.0
         */
-        bool getTexCoordU();
+        inline bool getTexCoordU()                  { return mTexCoordU; }
 
         /** 视图面基础
         @version NIIEngine 3.0.0
         */
-        void setViewBase(const Vector3f & v);
+        inline void setViewBase(const Vector3f & v) { v.normalise(mOriBase); }
 
         /** 视图面基础
         @version NIIEngine 3.0.0
         */
-        const Vector3f & getViewBase() const;
+        inline const Vector3f & getViewBase() const { return mOriBase; }
 
         using SpaceObj::query;
 
@@ -236,6 +237,25 @@ namespace NII
         bool mUnitChange;
         bool mIndexValid;
         bool mFaceCamera;
+    };
+    
+    /** 创建PixelChain实例的工厂类
+    @version NIIEngine 3.0.0
+    */
+    class _EngineAPI PixelChainFactory : public SpaceObjFactory
+    {
+    public:
+        PixelChainFactory() {}
+        ~PixelChainFactory() {}
+
+        /// @copydetails SpaceObjFactory::getID
+        FactoryID getID() const;
+
+        /// @copydetails SpaceObjFactory::create
+        SpaceObj * create(SpaceID sid, SpaceManager * mag, const PropertyData * params = 0);
+
+        /// @copydetails SpaceObjFactory::destroy
+        void destroy(void * obj);
     };
 }
 #endif
