@@ -299,7 +299,7 @@ namespace NII
         @param[in] m Buffer::Mode 选项
         @version NIIEngine 3.0.0
         */
-        virtual Buffer * clone(Nmark m = Buffer::M_WRITE | Buffer::M_WHOLE | Buffer::M_CPU) const = 0;
+        virtual Buffer * clone(Nmark m = M_WRITE | M_WHOLE | M_CPU) const = 0;
 
         /** 正式引用
         @remark 引用数量为0,这个缓存将被销毁
@@ -351,8 +351,8 @@ namespace NII
         BufferManager * mMag;
         Buffer * mShadow;
         NCount mSize;
-        NCount mMuteOft;        ///< 当前上锁位处
-        NCount mMuteSize;       ///< 当前上锁大小(单位:字节)
+        NCount mMuteOft;
+        NCount mMuteSize;
         NCount mRefCount;
         Nmark mMark;
     };

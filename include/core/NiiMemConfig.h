@@ -306,7 +306,7 @@ namespace NII
     typedef SceneObjAllocObj        OverlayAlloc;
     typedef RenderSysAllocObj       GpuParamsAlloc;
     typedef ResourceAllocObj        PassAlloc;
-    typedef GeometryAllocObj        PatchAlloc;
+    typedef GeometryAllocObj        GeoAlloc;
     typedef CommonAllocObj          PluginAlloc;
     typedef CommonAllocObj          ProfilerAlloc;
     typedef GeometryAllocObj        ProgMeshAlloc;

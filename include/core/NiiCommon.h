@@ -136,6 +136,16 @@ namespace NII
         CBT_BACK_LEFT,
         CBT_BACK_RIGHT
     };
+    
+    /** 面向类型
+    @version NIIEngine 3.0.0
+    */
+    enum FaceSideType
+    {
+        FST_Front,
+        FST_Back,
+        FST_Both
+    };
 
     /** 处理优先级
     @version NIIEngine 4.0.0
