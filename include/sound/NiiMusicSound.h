@@ -48,7 +48,7 @@ namespace NII_MEDIA
         @version NIIEngine 4.0.0
         */
         inline TimeDurMS getReplayDelay() const {return mReplayDelay; }
-        
+
         /// @copydetails Sound::setProperty
         void setProperty(PropertyData * param);
 
@@ -66,7 +66,7 @@ namespace NII_MEDIA
 
         /// @copydetails Resource::read
         virtual void read(Serializer * out) const;
-        
+
         /// @copydetails Resource::write
         virtual void write(const Serializer * in);
     protected:

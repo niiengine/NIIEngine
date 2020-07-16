@@ -86,6 +86,41 @@ namespace NII
             bool mComplete;
             bool mAsyncComplete;
         };
+        
+        struct SampleGroup
+        {
+            SampleGroup()
+            {
+                mVersion = 7;
+            }
+
+            void addSample(const String & name, uint32 frequency, uint32 nbSample, uint32 size)
+            {
+                mName.push_back(name);
+                mRate.push_back(frequency);
+                mSampleCount.push_back(nbSample);
+                uint32 oft = std::accumulate(mSize.begin(), mSize.end(), 0);
+                mOffset.push_back(oft);
+                mSize.push_back(size);
+            }
+
+            void serial(NLMISC::IStream & s)
+            {
+                s.serialCheck(mVersion);
+                s.serialCont(mName);
+                s.serialCont(mRate);
+                s.serialCont(mSampleCount);
+                s.serialCont(mOffset);
+                s.serialCont(mSize);
+            }
+            
+            uint32 mVersion;
+            vector<String>::type mName;
+            vector<NCount>::type mSampleCount;
+            vector<NCount>::type mRate;
+            vector<uint32>::type mOffset;
+            vector<NCount>::type mSize;
+        };
     public:
         AudioBufferManager();
         ~AudioBufferManager();

@@ -50,7 +50,7 @@ namespace NII
     public:
         FusionSound();
         virtual ~FusionSound();
-        
+
         /// @copydetails Sound::setProperty
         void setProperty(PropertyData * param);
 
@@ -73,7 +73,7 @@ namespace NII
         @version NIIEngine 4.0.0
         */
         inline Nui32 getSoundIndex(Nidx idx) const{ return mIndexList[idx]; }
-        
+
         /**
         @version NIIEngine 4.0.0
         */
@@ -133,9 +133,9 @@ namespace NII
         virtual void loadImpl();
     private:
         Mode mMode;
-        std::vector<String> mSoundList;
-        std::vector<Nidx>	mIndexList;
-        std::vector<Nidx>	mTimeList;
+        vector<ResourceID>::type mSoundList;
+        vector<Nidx>::type mIndexList;
+        vector<Nidx>::type mTimeList;
         TimeDurMS mFadeTime;
         NIIf mTimeFactor;
     };
@@ -200,7 +200,7 @@ namespace NII
         TimeDurMS mUnitTime;
         TimeDurMS mSwapTime;
 
-        uint32 mFadeTime;
+        TimeDurMS mFadeTime;
         NIIf mTimeFactor;
         NIIf mFadeFactor;
         Nidx mCurrentIndex;

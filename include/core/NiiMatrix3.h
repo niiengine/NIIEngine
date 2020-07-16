@@ -1,32 +1,5 @@
 ﻿/*
------------------------------------------------------------------------------
-A
-     __      _   _   _   ______
-    |   \   | | | | | | |  ____)                    _
-    | |\ \  | | | | | | | |         ___      ___   (_)   ___
-    | | \ \ | | | | | | | |____    / _ \   / ___ \  _   / _ \   ___
-    | |  \ \| | | | | | |  ____)  | / \ | | |  | | | | | / \ | / _ )
-    | |   \ | | | | | | | |_____  | | | | | |__| | | | | | | | | __/
-    |_|    \ _| |_| |_| |_______) |_| |_|  \___| | |_| |_| |_| |___|
-                                             __/ |                 
-                                            \___/   
-                                                
-                                                
-                                                                 F i l e
-
-
-Copyright: NIIEngine Team Group
-
-Home page: www.niiengine.com 
-
-Email: niiengine@gmail.com OR niiengine@163.com
-
-Licence: commerce(www.niiengine.com/license)(Three kinds)
-------------------------------------------------------------------------------
-*/
-/*
-Copyright (c) "2018-2019", Shenzhen Mindeng Technology Co., Ltd(www.niiengine.com),
-        Mindeng Base Communication Application Framework
+Copyright (c) "2018-2019", NIIEngine Team Group
 All rights reserved.
     Redistribution and use in source and binary forms, with or without modification,
 are permitted provided that the following conditions are met:
@@ -71,9 +44,7 @@ namespace NII
         |[1][0] [1][1] [1][2]|*{y}
         {[2][0] [2][1] [2][2]} {z}
         </pre>
-    @note 使用 行优先存储 和 列乘行 和 右手坐标系 方式, 仿射变换也就是变换中的一个
-        特殊优化效率的例子,如果使用普通的变换结果是相同的,但就是慢点点.除非应用在特
-        效凹凸镜面或初始化视口等需要用到投影级距阵,视图级后的距阵基本是仿射距阵
+    @note 使用 行优先存储 和 列乘行 和 右手坐标系 方式.
     @note 如果是用于投影设置的距阵,opengl 深度范围是[-1, 1] 而 d3d 则是 [-1, 0]
     @version NIIEngine 3.0.0
     */

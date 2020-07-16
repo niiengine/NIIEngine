@@ -38,7 +38,7 @@ namespace NII
     */
     class AudioBuffer : public Buffer
     {
-        friend class 
+        friend class SoundSys;
     public:
         enum ExtMode
         {
@@ -49,23 +49,30 @@ namespace NII
             EM_8BIT         = M_EXT5,
             EM_16BIT        = M_EXT6
         };
+        
+        enum ExtMuteMode
+        {
+            EMM_ADPCM,
+            EMM_Mono16
+        };
+        
         AudioBuffer(BufferManager * mag, Nmark mode);
         virtual ~AudioBuffer() {}
 
         /** 
         @version NIIEngine 4.0.0 adv
         */
-        inline void setID(BufferID bid){ mID = bid; }
+        inline void setID(BufferID bid)             { mID = bid; }
         
         /** 
         @version NIIEngine 4.0.0
         */
-        inline BufferID getID() const{ return mID; }
+        inline BufferID getID() const               { return mID; }
         
         /**
         @version NIIEngine 4.0.0
         */
-        inline bool isStreamMode() const{ return mMode & EM_STREAM; }
+        inline bool isStreamMode() const            { return mMode & EM_STREAM; }
 
         /** 
         @version NIIEngine 4.0.0
@@ -75,22 +82,27 @@ namespace NII
         /** 
         @version NIIEngine 4.0.0
         */
-        virtual void setFormat(SampleFormat format) = 0;
+        virtual void setFormat(SampleFormat format);
 
-        /**
-        @version NIIEngine 4.0.0
-        */
-        virtual void setRate(NCount rate) = 0;
-        
         /** 
         @version NIIEngine 4.0.0
         */
-        virtual SampleFormat getFormat() const = 0;
+        inline SampleFormat getFormat() const       { return mFormat; }
+        
+        /**
+        @version NIIEngine 4.0.0
+        */
+        NCount getConvertSample(ExtMuteMode mode, NCount size) const;
+        
+        /**
+        @version NIIEngine 4.0.0
+        */
+        virtual void setRate(NCount rate);
 
         /**
         @version NIIEngine 4.0.0
         */
-        virtual NCount getRate() const = 0;
+        inline NCount getRate() const               { return mRate; }
         
         /**
         @version NIIEngine 4.0.0
@@ -119,6 +131,8 @@ namespace NII
     private:
         BufferID mID;
         Nmark mOpMark;
+        NCount mRate;
+        SampleFormat mFormat;
     };
 }
 #endif

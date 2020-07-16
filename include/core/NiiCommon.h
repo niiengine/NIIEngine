@@ -99,12 +99,12 @@ namespace NII
     */
     enum ScaleMode
     {
-        SM_Unknow,                            ///<
-        SM_Y,                                ///<
-        SM_X,                                ///<
-        SM_Min,                                ///<
-        SM_Max,                                ///<
-        SM_ALL                                ///<
+        SM_Unknow,                          ///<
+        SM_Y,                               ///<
+        SM_X,                               ///<
+        SM_Min,                             ///<
+        SM_Max,                             ///<
+        SM_ALL                              ///<
     };
 
     /** 伸缩模式
@@ -152,11 +152,12 @@ namespace NII
     */
     enum PrcLevel
     {
-        PL_High,
-        PL_Mid_High,
-        PL_Mid,
-        PL_Mid_Low,
-        PL_Low
+        PL_High         = 0,
+        PL_Mid_High     = 1,
+        PL_Mid          = 2,
+        PL_Mid_Low      = 3,
+        PL_Low          = 4,
+        PL_Count        = 5
     };
     
     /** 文件路径结构
@@ -221,9 +222,9 @@ namespace NII
             return mNext;
         }
     protected:
-        String mPrefix;        ///< 命名前缀
-        Nui32 mNext;        ///< 下一个记数
-        N_mutex1            ///< 锁
+        String mPrefix;
+        Nui32 mNext;
+        N_mutex1
     };
 
     /** 描述一个简单的事物池的模板类

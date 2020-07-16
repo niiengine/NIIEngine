@@ -202,11 +202,22 @@ namespace NII
         */
         enum MuteMode
         {
-            MM_COMPUTE  = 0x0,
+            MM_COMPUTE  = 0x0,          ///< 内部执行运算,不读不写
             MM_READ     = 0x01,
             MM_WRITE    = 0x02,
-            MM_BLOCK    = 0x04,
-            MM_EVENT    = 0x08
+            MM_BLOCK    = 0x04,         ///< 整块操作
+            MM_UINT     = 0x08,         ///< 单元操作,而不是字节
+            MM_EVENT    = 0x10,
+            MM_EXT1     = 0x100,
+            MM_EXT2     = 0x200,
+            MM_EXT3     = 0x400,
+            MM_EXT4     = 0x800,
+            MM_EXT5     = 0x1000,
+            MM_EXT6     = 0x2000,
+            MM_EXT7     = 0x4000,
+            MM_EXT8     = 0x8000,
+            MM_EXT9     = 0x10000,
+            MM_EXT10    = 0x20000
         };
     public:
         /** 构造函数

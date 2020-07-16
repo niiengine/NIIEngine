@@ -94,12 +94,12 @@ namespace NII
         /**
         @version NIIEngine 4.0.0
         */
-        inline void setPriority(PriorityLevel pl) { mPriority = pl; }
+        inline void setPriority(PrcLevel pl) { mPriority = pl; }
         
         /**
         @version NIIEngine 4.0.0
         */
-        inline PriorityLevel getPriority() const { return mPriority; }
+        inline PrcLevel getPriority() const { return mPriority; }
         
         /**
         @version NIIEngine 4.0.0
@@ -193,7 +193,7 @@ namespace NII
         virtual void loadImpl();
     protected:
         Type mType;
-        PriorityLevel mPriority;
+        PrcLevel mPriority;
         Vector3f mDirection;
         NIIf mInnerAngle;
         NIIf mOuterAngle;
@@ -211,18 +211,6 @@ namespace NII
         bool mLoop;
     };
     typedef vector<Sound *>::type SoundList;
-
-    /**
-    @version NIIEngine 4.0.0
-    */
-    enum PriorityLevel
-    {
-        HighestPri          = 0,
-        HighPri             = 1,
-        MidPri              = 2,
-        LowPri              = 3,
-        NbSoundPriorities   = 4
-    };
 
     /**
     @version NIIEngine 4.0.0
@@ -302,12 +290,12 @@ namespace NII
         /**
         @version NIIEngine 4.0.0
         */
-        inline void setPriority(PriorityLevel pr)   {  mPriority = pr; }
+        inline void setPriority(PrcLevel pr)        {  mPriority = pr; }
 
         /**
         @version NIIEngine 4.0.0
         */
-        inline PriorityLevel getPriority() const    { return mPriority; }
+        inline PrcLevel getPriority() const         { return mPriority; }
 
         /**
         @version NIIEngine 4.0.0
@@ -342,7 +330,7 @@ namespace NII
         /**
         @version NIIEngine 4.0.0
         */
-        inline const Vector3f & getVelocity() const { return mVelocity; }
+        inline const Vector3f & getVelocity() const     { return mVelocity; }
 
         /**
         @version NIIEngine 4.0.0
@@ -352,7 +340,7 @@ namespace NII
         /**
         @version NIIEngine 4.0.0
         */
-        inline const Vector3f & getDirection() const { return mDirection; }
+        inline const Vector3f & getDirection() const    { return mDirection; }
 
         /**
         @version NIIEngine 4.0.0
@@ -362,7 +350,7 @@ namespace NII
         /**
         @version NIIEngine 4.0.0
         */
-        inline NIIf getPitch() const                { return mPitch; }
+        inline NIIf getPitch() const                    { return mPitch; }
 
         /**
         @version NIIEngine 4.0.0
@@ -372,7 +360,7 @@ namespace NII
         /**
         @version NIIEngine 4.0.0
         */
-        virtual NIIf getGain() const                { return mGain; }
+        virtual NIIf getGain() const                    { return mGain; }
 
         /**
         @version NIIEngine 4.0.0
@@ -382,7 +370,7 @@ namespace NII
         /**
         @version NIIEngine 4.0.0
         */
-        virtual bool getRelativeMode() const        { return mRelMode; }
+        virtual bool getRelativeMode() const            { return mRelMode; }
         
         /**
         @version NIIEngine 4.0.0
@@ -392,12 +380,12 @@ namespace NII
         /**
         @version NIIEngine 4.0.0
         */
-        inline NIIf getRelativeGain() const         { return mSrcGain == 0.0f ? 0.0f : mGain / mSrcGain; }
+        inline NIIf getRelativeGain() const             { return mSrcGain == 0.0f ? 0.0f : mGain / mSrcGain; }
 
         /**
         @version NIIEngine 4.0.0
         */
-        inline SpaceNode * getNode() const          { return mNode; }
+        inline SpaceNode * getNode() const              { return mNode; }
         
         /**
         @version NIIEngine 4.0.0
@@ -425,7 +413,7 @@ namespace NII
         Vector3f mVelocity;
         Vector3f mDirection;
         Vector3f * mRefPosition;
-        PriorityLevel mPriority;
+        PrcLevel mPriority;
         NIIf mGain;
         NIIf mPitch;
         NIIf mSrcGain;
