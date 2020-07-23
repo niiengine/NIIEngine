@@ -30,6 +30,7 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 
 #include "NiiMemoryTracker.h"
 #if NII_MemAllocType == NII_NedAllocType
+
 #include "nedmalloc.h"
 #include<cassert>
 namespace NII

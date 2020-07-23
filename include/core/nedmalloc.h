@@ -48,9 +48,9 @@ ACQUIRE_LOCK, RELEASE_LOCK, TRY_LOCK, IS_LOCKED and NULL_LOCK_INITIALIZER.
 */
 
 #include <stddef.h>   /* for size_t */
-
+#include "NiiPlat.h"
 #ifndef EXTSPEC
- #define EXTSPEC extern
+ #define EXTSPEC _EngineAPI
 #endif
 #define ABORT_ON_ASSERT_FAILURE 0
 #if defined(_MSC_VER) && _MSC_VER>=1400

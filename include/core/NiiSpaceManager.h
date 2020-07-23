@@ -406,7 +406,7 @@ namespace NII
         /** 获取空间节点
         @version NIIEngine 3.0.0
         */
-        SpaceNode * getSceneNode(SpaceID id) const;
+        SpaceNode * getSpaceNode(SpaceID id) const;
 
         /** 空间节点是否存在
         @version NIIEngine 3.0.0

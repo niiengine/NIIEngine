@@ -84,7 +84,7 @@ namespace NII
         /** 是否初始化
         @version NIIEngine 3.0.0
         */
-        bool isInit() const;
+        inline bool isInit() const              { return mInit; }
 
         /** 渲染帧
         @version NIIEngine 3.0.0
@@ -125,12 +125,12 @@ namespace NII
         /** 获取当前渲染系统
         @version NIIEngine 3.0.0
         */
-        RenderSys * getRender() const;
+        inline RenderSys * getRender() const            { return mRenderSys; }
 
         /** 获取可用的渲染系统
         @version NIIEngine 3.0.0
         */
-        const RenderSysList & getRenderList();
+        inline const RenderSysList & getRenderList()    { return mRenderList; }
 
         /** 获取错误代码描述的实用函数
         @version NIIEngine 3.0.0
@@ -145,12 +145,12 @@ namespace NII
         /** 时间标准
         @version NIIEngine 3.0.0
         */
-        Timer * getTimer();
+        inline Timer * getTimer()                       { return mTimer; }
 
         /** 获取剪切板
         @version NIIEngine 3.0.0
         */
-        Clipboard * getClipboard() const;
+        inline Clipboard * getClipboard() const         { return mClipboard; }
 
         /** 关闭系统.
         @version NIIEngine 3.0.0
@@ -160,38 +160,38 @@ namespace NII
         /** 添加场景类型工厂类
         @version NIIEngine 3.0.0
         */
-        void add(SpaceTypeFactory * fact);
+        inline void add(SpaceTypeFactory * fact)       { mSpaceTypeManager->add(fact); }
 
         /** 移去场景类型工厂类
         @version NIIEngine 3.0.0
         */
-        void remove(SpaceTypeFactory * fact);
+        inline void remove(SpaceTypeFactory * fact)    { mSpaceTypeManager->remove(fact->getID()); }
 
         /** 创建空间管理
         @version NIIEngine 3.0.0
         */
-        SpaceManager * createSpaceManager(FactoryID tid, const String & name = StrUtil::WBLANK);
+        inline SpaceManager * createSpaceManager(FactoryID tid, const String & name = StrUtil::WBLANK)  { return mSpaceTypeManager->createSpace(tid, name); }
 
         /** 创建空间管理
         @param[in] tmark 尝试从类型结构匹配类型
         @version NIIEngine 3.0.0
         */
-        SpaceManager * createSpaceManager(Nmark tmark, const String & name = StrUtil::WBLANK);
+        inline SpaceManager * createSpaceManager(Nmark mark, const String & name = StrUtil::WBLANK)    { return mSpaceTypeManager->createSpace(mark, name); }
 
         /** 删除空间管理
         @version NIIEngine 3.0.0
         */
-        void destroySpaceManager(SpaceManager * sm);
+        inline void destroySpaceManager(SpaceManager * sm)                  { mSpaceTypeManager->destroy(sm); }
 
         /** 获取空间管理
         @version NIIEngine 3.0.0
         */
-        SpaceManager * getSpaceManager(const String & name) const;
+        inline SpaceManager * getSpaceManager(const String & name) const    { return mSpaceTypeManager->getSpace(name);}
 
         /** 空间管理是否存在
         @param[in] name 检索的实例名字
         */
-        bool isSpaceManagerExist(const String & name) const;
+        inline bool isSpaceManagerExist(const String & name) const          { return mSpaceTypeManager->isSpaceExist(name); }
 
         /** 创建复用网格
         @version NIIEngine 3.0.0
@@ -253,17 +253,17 @@ namespace NII
         /** 空间管理信息
         @version NIIEngine 3.0.0
         */
-        const SpaceTypeVerbose * getSpaceVerbose(TypeID tid) const;
+        inline const SpaceTypeVerbose * getSpaceVerbose(TypeID tid) const       { return mSpaceTypeManager->getVerbose(tid); }
 
         /** 获取空间类型列表
         @version NIIEngine 3.0.0 高级api
         */
-        SpaceTypeManager::SpaceList & getSpaceList();
+        inline SpaceTypeManager::SpaceList & getSpaceList()                     { return mSpaceTypeManager->getSpaceList(); }
 
         /** 获取空间类型列表
         @version NIIEngine 3.0.0
         */
-        const SpaceTypeManager::SpaceList & getSpaceList() const;
+        const SpaceTypeManager::SpaceList & getSpaceList() const                { return mSpaceTypeManager->getSpaceList(); }
 
         /** 添加空间对象工厂类
         @version NIIEngine 3.0.0
@@ -288,7 +288,7 @@ namespace NII
         /** 获取工厂类型列表
         @version NIIEngine 3.0.0
         */
-        const SpaceObjFactoryList & getSpaceObjFactoryList() const;
+        inline const SpaceObjFactoryList & getSpaceObjFactoryList() const   { return mSpaceObjFactoryList; }
 
         /** 设置线程管理器
         @version NIIEngine 3.0.0
@@ -298,17 +298,17 @@ namespace NII
         /** 获取线程管理器
         @version NIIEngine 3.0.0
         */
-        ThreadManager * getThread() const;
+        inline ThreadManager * getThread() const                    { return mThreadManager; }
 
         /** 设置输入控制管理器
         @version NIIEngine 3.0.0
         */
-        void setInput(ControlPatternManager * obj);
+        inline void setInput(ControlPatternManager * obj)           { mControlPatternManager = obj; }
 
         /** 获取输入控制管理器
         @version NIIEngine 3.0.0
         */
-        ControlPatternManager * getInput() const;
+        inline ControlPatternManager * getInput() const             { return mControlPatternManager; }
 
         /** 获取输入控制项管理器
         @version NIIEngine 3.0.0
@@ -425,7 +425,7 @@ namespace NII
         /** 获取当前安装插件
         @version NIIEngine 3.0.0
         */
-        const PluginList & getPluginList() const;
+        inline const PluginList & getPluginList() const         { return mPluginList; }
 
         /** 添加一个处理器
         @remark
@@ -469,25 +469,20 @@ namespace NII
         */
         void executeScriptStr(ScriptModuleID smid, const String & str) const;
 
-        /** 设置Xml处理器名字
-        @version NIIEngine 3.0.0
-        */
-        void setXmlPattern(const String & name);
-
         /** 设置Xml处理器
         @version NIIEngine 3.0.0
         */
-        void setXmlPattern(XmlPattern * pattern);
+        inline void setXmlPattern(XmlPattern * pattern)     { mXmlPrc = pattern; }
 
         /** 获取Xml处理器
         @version NIIEngine 3.0.0
         */
-        XmlPattern * getXmlPattern() const;
+        inline XmlPattern * getXmlPattern() const           { return mXmlPrc; }
 
         /** 获取当前使用帧
         @version NIIEngine 3.0.0
         */
-        Nmark getCurrentFrame() const;
+        inline Nmark getCurrentFrame() const                { return mNextFrame; }
 
         /** 清理帧时间
         @version NIIEngine 3.0.0
@@ -497,27 +492,27 @@ namespace NII
         /** 设置时间平滑
         @version NIIEngine 3.0.0
         */
-        void setTimeSmooth(TimeDurMS smooth);
+        inline void setTimeSmooth(TimeDurMS smooth)         { mTimeSmooth = smooth; }
 
         /** 获取时间平滑
         @version NIIEngine 3.0.0
         */
-        TimeDurMS getTimeSmooth() const;
+        inline TimeDurMS getTimeSmooth() const              { return mTimeSmooth; }
 
         /** 设置最小像素大小
         @version NIIEngine 3.0.0
         */
-        void setMinPixelSize(NIIf size);
+        inline void setMinPixelSize(NIIf size)              { mMinPixelSize = size; }
 
         /** 获取最小像素大小
         @version NIIEngine 3.0.0
         */
-        NIIf getMinPixelSize();
+        inline NIIf getMinPixelSize()                       { return mMinPixelSize; }
 
         /** 获取显示器数量.
         @version NIIEngine 3.0.0
         */
-        NCount getDisplayMonitorCount() const;
+        inline NCount getDisplayMonitorCount() const        { N_assert(mRenderSys, "error"); return mRenderSys->getDisplayMonitorCount(); }
 
         /** 添加更新位置节点
         @version NIIEngine 3.0.0
@@ -648,7 +643,6 @@ namespace NII
         Profiler * mProfiler;
         Clipboard * mClipboard;
         XmlPattern * mXmlPrc;
-        String mXmlModuleName;
         TimeDurMS mTimeSmooth;
         Nmark mSpaceObjMark;
         Nmark mNextFrame;

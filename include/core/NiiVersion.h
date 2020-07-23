@@ -30,8 +30,8 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 namespace NII
 {
     #define NII_VERSION_MAJOR 5
-    #define NII_VERSION_MINOR 1
-    #define NII_VERSION_PATCH 9
+    #define NII_VERSION_MINOR 9
+    #define NII_VERSION_PATCH 5
     #define NII_VERSION_NAME _T("GuangShanGuShi")
 
     #define NII_VERBOSE_VERSION ((NII_VERSION_MAJOR << 32) | (NII_VERSION_MINOR << 16) | NII_VERSION_PATCH)

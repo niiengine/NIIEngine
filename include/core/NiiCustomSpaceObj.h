@@ -29,7 +29,7 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 #define _NII_CustomSpaceObj_H_
 
 #include "NiiPreInclude.h"
-#include "NiiShadowVolumeObj.h"
+#include "NiiShadowObj.h"
 #include "NiiGeometryObj.h"
 #include "NiiVertex.h"
 
@@ -39,7 +39,7 @@ namespace NII
     /** 自定义几何空间
     @version NIIEngine 3.0.0
     */
-    class _EngineAPI CustomSpaceObj : public ShadowVolumeObj
+    class _EngineAPI CustomSpaceObj : public ShadowObj
     {
     public:
         enum CustomVertexType
@@ -277,20 +277,20 @@ namespace NII
         /// @copydetails SpaceObj::queue.
         void queue(RenderQueue * queue);
 
-        /// @copydetails ShadowVolumeObj::getEdgeList
+        /// @copydetails ShadowObj::getEdgeList
         GeoEdget * getEdgeList();
 
-        /// @copydetails ShadowVolumeObj::isEdgeExist
+        /// @copydetails ShadowObj::isEdgeExist
         bool isEdgeExist();
 
-        /// @copydetails ShadowVolumeObj::getFrontCapAABB
+        /// @copydetails ShadowObj::getFrontCapAABB
         const AABox & getFrontCapAABB() const;
 
-        /// @copydetails ShadowVolumeObj::getVolumeList
+        /// @copydetails ShadowObj::getVolumeList
         const ShadowVolumeList & getVolumeList(const Light * light, NIIf extent,
             Nmark mark, IndexBuffer * index);
 
-        /// @copydetails ShadowVolumeObj::getExtrudeDistance
+        /// @copydetails ShadowObj::getExtrudeDistance
         NIIf getExtrudeDistance(const Light * l) const;
 
         /// @copydetails SpaceObj::query

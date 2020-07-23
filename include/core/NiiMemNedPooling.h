@@ -28,7 +28,6 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 #ifndef _NII_MemoryNedPooling_H_
 #define _NII_MemoryNedPooling_H_
 
-#include "NiiPlat.h"
 #include "NiiMemoryTracker.h"
 #if NII_MemAllocType == NII_NedPoolAllocType
 #include "nedmalloc.h"

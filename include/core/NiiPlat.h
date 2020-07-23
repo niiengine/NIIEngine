@@ -238,9 +238,9 @@ namespace NII
             #define N_MEMTRACK_INVO                     , _N_FILE__, __LINE__, _N_FUNCTION__
             #define N_MEMTRACK_NewINVO                  (_N_FILE__, __LINE__, _N_FUNCTION__)
             #define N_MEMTRACK_Param                    , file, line, func
-            #define N_MemTrack_alloc(p, size)           MemoryTracker::get().allocT(p, s, 0 N_MEMTRACK_Param);
-            #define N_MemTrack_realloc(p, np, nsize)    MemoryTracker::get().reallocT(p, np, ns, 0 N_MEMTRACK_Param);
-            #define N_MemTrack_free(p)                  MemoryTracker::get().freeT(p);
+            #define N_MemTrack_alloc(p, size)           MemoryTracker::getOnly().allocT(p, s, 0 N_MEMTRACK_Param);
+            #define N_MemTrack_realloc(p, np, nsize)    MemoryTracker::getOnly().reallocT(p, np, ns, 0 N_MEMTRACK_Param);
+            #define N_MemTrack_free(p)                  MemoryTracker::getOnly().freeT(p);
         #else
             #define N_MEMTRACK 0
             #define N_MEMTRACK_Decl 
@@ -258,9 +258,9 @@ namespace NII
             #define N_MEMTRACK_INVO                     , _N_FILE__, __LINE__, _N_FUNCTION__
             #define N_MEMTRACK_NewINVO                  (_N_FILE__, __LINE__, _N_FUNCTION__)
             #define N_MEMTRACK_Param                    , file, line, func
-            #define N_MemTrack_alloc(p, size)           MemoryTracker::get().allocT(p, s, 0 N_MEMTRACK_Param);
-            #define N_MemTrack_realloc(p, np, nsize)    MemoryTracker::get().reallocT(p, np, ns, 0 N_MEMTRACK_Param);
-            #define N_MemTrack_free(p)                  MemoryTracker::get().freeT(p);
+            #define N_MemTrack_alloc(p, size)           MemoryTracker::getOnly().allocT(p, s, 0 N_MEMTRACK_Param);
+            #define N_MemTrack_realloc(p, np, nsize)    MemoryTracker::getOnly().reallocT(p, np, ns, 0 N_MEMTRACK_Param);
+            #define N_MemTrack_free(p)                  MemoryTracker::getOnly().freeT(p);
         #else
             #define N_MEMTRACK 0
             #define N_MEMTRACK_Decl 

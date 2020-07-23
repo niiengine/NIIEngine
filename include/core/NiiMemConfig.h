@@ -112,7 +112,6 @@ namespace NII
 
         template <typename U, typename P> inline StlAlloc(StlAlloc<U, P> const &) {}
 
-        /// 内存分配
         N_FORCEINLINE pointer allocate(size_type count, typename std::allocator<void>::const_pointer ptr = 0)
         {
             (void)ptr;
@@ -121,7 +120,6 @@ namespace NII
             return p;
         }
 
-        /// 内存释放
         N_FORCEINLINE void deallocate(pointer ptr, size_type)
         {
             AllocClass::dealloc(ptr);

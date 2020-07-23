@@ -29,7 +29,8 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 #define _NII_GeometrySpace_H_
 
 #include "NiiPreInclude.h"
-#include "NiiShadowVolumeObj.h"
+#include "NiiShadowObj.h"
+#include "NiiAnimationFusionObj.h"
 #include "NiiQuaternion.h"
 #include "NiiAnimation.h"
 
@@ -45,7 +46,7 @@ namespace NII
         这不是资源级/序列级对象,也就是说它可以拥有/存在当前状态的概念
     @version NIIEngine 3.0.0
     */
-    class _EngineAPI GeometrySpace : public ShadowVolumeObj, public ResourceListener
+    class _EngineAPI GeometrySpace : public ShadowObj, public ResourceListener
     {
         friend class VertexUnitFusion;
         friend class VertexOffsetFusion;
@@ -88,17 +89,17 @@ namespace NII
         /** 获取附加空间对象列表
         @version NIIEngine 3.0.0
         */
-        const Childs & getAttachList();
+        inline const Childs & getAttachList()           { return mChilds; }
 
         /** 获取子部分
         @version NIIEngine 3.0.0
         */
-        GeometryCom * getCom(Nidx index) const;
+        inline GeometryCom * getCom(Nidx index) const   { N_assert(index < mComs.size(), "超出下标"); return mComs[index]; }
 
         /** 获取子部分数量
         @version NIIEngine 3.0.0
         */
-        NCount getUnitCount() const;
+        inline NCount getUnitCount() const              { return mComs.size(); }
 
         /** 获取子部分
         @version NIIEngine 3.0.0
@@ -130,22 +131,22 @@ namespace NII
         /** 设置是否自动更新骨骼
         @version NIIEngine 3.0.0
         */
-        void setAutoSkeleton(bool b);
+        inline void setAutoSkeleton(bool b)             { mAutoSkeleton = b; }
 
         /** 获取是否自动更新骨骼
         @version NIIEngine 3.0.0
         */
-        bool isAutoSkeleton() const;
+        inline bool isAutoSkeleton() const              { return mAutoSkeleton; }
 
         /** 获取是否Lod状态也自动更新骨骼
         @version NIIEngine 3.0.0
         */
-        void setLODAutoSkeleton(bool b);
+        inline void setLODAutoSkeleton(bool b)          { mLODAutoSkeleton = b; }
 
         /** 获取是否Lod状态也自动更新骨骼
         @version NIIEngine 3.0.0
         */
-        bool isLODAutoSkeleton() const;
+        inline bool isLODAutoSkeleton() const           { return mLODAutoSkeleton; }
 
         /** 获取是否存在有效动画
         @version NIIEngine 3.0.0
@@ -155,7 +156,7 @@ namespace NII
         /** 动画是否也混合法线
         @version NIIEngine 3.0.0
         */
-        bool isNromalsFusion() const;
+        inline bool isNromalsFusion() const             { return mNromalsFusion; }
 
         /** 获取是否存在骨骼动画
         @version NIIEngine 3.0.0
@@ -182,12 +183,12 @@ namespace NII
         /** 设置是否显示骨骼
         @version NIIEngine 3.0.0
         */
-        void setBoneView(bool b);
+        inline void setBoneView(bool set)               { mBoneView = set; }
 
         /** 获取是否显示骨骼
         @version NIIEngine 3.0.0
         */
-        bool getBoneView() const;
+        inline bool getBoneView() const                 { return mBoneView; }
 
         /** 设置材质
         @version NIIEngine 3.0.0
@@ -207,12 +208,12 @@ namespace NII
         /** 是否启用动画
         @version NIIEngine 3.0.0
         */
-        bool isAnimation() const;
+        inline bool isAnimation() const                         { return mAnimationEnable; }
 
         /** 获取动画混合实例
         @version NIIEngine 3.0.0
         */
-        AnimationFusion * getFusion(AnimationID id) const;
+        inline AnimationFusion * getFusion(AnimationID id) const{ N_assert(mAnimationCtrl, "error"); return mAnimationCtrl->getFusion(id); }
 
         /** 是否存在动画混合实例
         @version NIIEngine 3.0.0
@@ -222,22 +223,22 @@ namespace NII
         /** 获取动画混合
         @version NIIEngine 3.0.0
         */
-        AnimationFusionObj * getAnimationCtrl() const;
+        inline AnimationFusionObj * getAnimationCtrl() const    { return mAnimationCtrl; }
 
         /** 获取骨骼实例
         @version NIIEngine 3.0.0
         */
-        SkeletonFusion * getSkeleton() const;
+        inline SkeletonFusion * getSkeleton() const             { return mSkeleton; }
 
         /** 获取网格.
         @version NIIEngine 3.0.0
         */
-        const Mesh * getMesh() const;
+        inline const Mesh * getMesh() const                     { return mMesh; }
 
         /** 获取当前渲染的LOD
         @version NIIEngine 3.0.0
         */
-        Nui16 getEvnLOD();
+        inline Nui16 getEvnLOD()                                { return mMeshLod; }
 
         /** 设置网格LOD偏量控制
         @remark 小索引高细节,高索引低细节
@@ -257,25 +258,25 @@ namespace NII
         @param[in] index 0是原体
         @version NIIEngine 3.0.0
         */
-        GeometrySpace * getLOD(Nidx index) const;
+        inline GeometrySpace * getLOD(Nidx index) const     { N_assert(index < mLods.size(), "error"); return mLods[index]; }
 
         /** 获取LOD空间对象
         @remark 包含原体的数量
         @version NIIEngine 3.0.0
         */
-        NCount getLODCount() const;
+        inline NCount getLODCount() const                   { return mLods.size();}
 
         /** 获取软件混合顶点
         @note 用于动画混合
         @version NIIEngine 3.0.0
         */
-        VertexData * getSwFusionVertex() const;
+        inline VertexData * getSwFusionVertex() const       { return mAniData[0]; }
 
         /** 获取硬件混合顶点
         @note 用于动画混合
         @version NIIEngine 3.0.0
         */
-        VertexData * getHwFusionVertex() const;
+        inline VertexData * getHwFusionVertex() const       { return mAniData[1]; }
 
         /** 获取用于渲染的顶点
         @version NIIEngine 3.0.0
@@ -299,19 +300,19 @@ namespace NII
         */
         GeometrySpace * clone(SpaceID nid) const;
 
-        /// @copydetails ShadowVolumeObj::getEdgeList
+        /// @copydetails ShadowObj::getEdgeList
         GeoEdget * getEdgeList();
 
-        /// @copydetails ShadowVolumeObj::isEdgeExist
+        /// @copydetails ShadowObj::isEdgeExist
         bool isEdgeExist();
 
-        /// @copydetails ShadowVolumeObj::getFrontCapAABB
+        /// @copydetails ShadowObj::getFrontCapAABB
         const AABox & getFrontCapAABB() const;
 
-        /// @copydetails ShadowVolumeObj::getExtrudeDistance
+        /// @copydetails ShadowObj::getExtrudeDistance
         NIIf getExtrudeDistance(const Light * l) const;
 
-        /// @copydetails ShadowVolumeObj::getVolumeList
+        /// @copydetails ShadowObj::getVolumeList
         const ShadowVolumeList & getVolumeList(const Light * src, NIIf extent,
              Nmark flags, IndexBuffer * index);
 

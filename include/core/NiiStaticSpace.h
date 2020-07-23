@@ -29,7 +29,7 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 #define _NII_StaticSpace_H_
 
 #include "NiiPreInclude.h"
-#include "NiiShadowVolumeObj.h"
+#include "NiiShadowObj.h"
 #include "NiiMesh.h"
 #include "NiiLodScheme.h"
 
@@ -203,7 +203,7 @@ namespace NII
         /** 批次对象
         @version NIIEngine 3.0.0
         */
-        class _EngineAPI BatchObj : public ShadowVolumeObj
+        class _EngineAPI BatchObj : public ShadowObj
         {
             friend class MaterialBatch;
             friend class GeometryBatch;
@@ -257,20 +257,20 @@ namespace NII
             /// @copydetails SpaceObj::getTypeMark
             Nui32 getTypeMark() const;
 
-            /// @copydetails ShadowVolumeObj::getEdgeList
+            /// @copydetails ShadowObj::getEdgeList
             GeoEdget * getEdgeList();
 
-            /// @copydetails ShadowVolumeObj::isEdgeExist
+            /// @copydetails ShadowObj::isEdgeExist
             bool isEdgeExist(void);
 
-            /// @copydetails ShadowVolumeObj::getFrontCapAABB
+            /// @copydetails ShadowObj::getFrontCapAABB
             const AABox & getFrontCapAABB() const;
             
-            /// @copydetails ShadowVolumeObj::getVolumeList
+            /// @copydetails ShadowObj::getVolumeList
             const ShadowVolumeList & getVolumeList(const Light * srclight, NIIf extent, 
                  Nmark flags, IndexBuffer * destindex);
                 
-            /// @copydetails ShadowVolumeObj::getExtrudeDistance
+            /// @copydetails ShadowObj::getExtrudeDistance
             NIIf getExtrudeDistance(const Light * l) const;
         protected:
             Nui32 mRegionID;

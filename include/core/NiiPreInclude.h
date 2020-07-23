@@ -32,9 +32,8 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 #include "NiiVersion.h"
 #include "NiiBasicTypes.h"
 #include "NiiThreadInclude.h"
-#include "NiiMemConfig.h"
 #include "NiiStdInclude.h"
-#include "NiiStringBase.h"
+#include "NIIStringBase.h"
 #include "NiiHash.h"
 #include "NiiI18NLib.h"
 #include "NiiErrorList.h"
@@ -306,7 +305,7 @@ namespace NII
     class Serializer;
     class FileSerializer;
     class MeshSerializer;
-    class ShadowVolumeObj;
+    class ShadowObj;
     class ShadowVolume;
     class ShadowTextureManager;
     class RenderObj;
@@ -467,7 +466,7 @@ namespace NII
     typedef vector<SubMesh *>::type SubMeshList;
     typedef vector<Bone *>::type BoneList;
     typedef vector<VertexOffset *>::type VertexOffsetList;
-    typedef vector<ShadowVolumeObj *>::type ShadowVolumeGenList;
+    typedef vector<ShadowObj *>::type ShadowVolumeGenList;
     typedef vector<PixelBuffer *>::type PixelBufferList;
 
     typedef Nui32 RGBA;

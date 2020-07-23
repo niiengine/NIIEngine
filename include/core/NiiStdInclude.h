@@ -88,6 +88,58 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 #include <iomanip>
 #include <sstream>
 
+#if N_COMPILER == N_CPP_GNUC && N_COMPILER_VER >= 310 && !defined(STLPORT)
+#if N_COMPILER_VER >= 430
+#define HashMap ::std::tr1::unordered_map
+#define HashSet ::std::tr1::unordered_set
+#else
+#define HashMap ::__gnu_cxx::hash_map
+#define HashSet ::__gnu_cxx::hash_set
+#endif
+#elif N_COMPILER == N_CPP_GCCE
+#if defined(_LIBCPP_VERSION)
+#define HashMap ::std::unordered_map
+#define HashSet ::std::unordered_set
+#else
+#define HashMap ::std::tr1::unordered_map
+#define HashSet ::std::tr1::unordered_set
+#endif
+#else
+#if N_COMPILER == N_CPP_MSVC
+#if N_COMPILER_VER >= 1600 // VC++ 10.0
+#define HashMap ::std::tr1::unordered_map
+#define HashSet ::std::tr1::unordered_set
+#elif N_COMPILER_VER > 1300 && !defined(_STLP_MSVC)
+#define HashMap ::stdext::hash_map
+#define HashSet ::stdext::hash_set
+#else
+#define HashMap ::std::hash_map
+#define HashSet ::std::hash_set
+#endif
+#else
+#define HashMap ::std::hash_map
+#define HashSet ::std::hash_set
+#endif
+#endif
+#if N_COMPILER == N_CPP_GNUC && NII_COMP_VER >= 310 && !defined(STLPORT)
+// For gcc 4.3 see http://gcc.gnu.org/gcc-4.3/changes.html
+#if NII_COMP_VER >= 430
+#include <tr1/unordered_map>
+#else
+#include <ext/hash_map>
+namespace __gnu_cxx
+{
+    template <> struct hash<void *>
+    {
+        size_t operator()(void * const & ptr) const
+        {
+            return (size_t)ptr;
+        }
+    };
+}
+#endif
+#endif
+
 #ifdef __BORLANDC__
 namespace NII
 {
@@ -107,30 +159,19 @@ extern "C"
     #if defined(__MINGW32__)
         #include <unistd.h>
     #endif
-#endif
-
-#if N_PLAT == N_PLAT_LINUX || N_PLAT == N_PLAT_ANDROID
+#elif N_PLAT == N_PLAT_LINUX || N_PLAT == N_PLAT_ANDROID
 extern "C"
 {
     #include <unistd.h>
     #include <dlfcn.h>
 }
-#endif
-
-#if N_PLAT == N_PLAT_OSX || N_PLAT == N_PLAT_IOS
+#elif N_PLAT == N_PLAT_OSX || N_PLAT == N_PLAT_IOS
 extern "C"
 {
     #include <unistd.h>
     #include <sys/param.h>
     #include <CoreFoundation/CoreFoundation.h>
 }
-#endif
-
-#if NII_THREAD_SUPPORT
-    #if !defined(NOMINMAX) && defined(_MSC_VER)
-        #define NOMINMAX
-    #endif
-    #include "NiiThreadInclude.h"
 #endif
 
 #if defined (NII_GCC_VISIBILITY)
@@ -140,6 +181,8 @@ extern "C"
 #if NII_USE_BOOST
     #include <boost/range.hpp>
 #endif
+
+#include "NiiMemConfig.h"
 
 #if N_COMPILER == N_CPP_MSVC
 #pragma warning (disable : 4251)
@@ -379,91 +422,37 @@ namespace NII
         typedef typename std::multimap<K, V, P, A>::const_iterator const_iterator;
     };
 
-#if N_COMPILER == N_CPP_GNUC && N_COMPILER_VER >= 310 && !defined(STLPORT)
-#if N_COMPILER_VER >= 430
-#define HashMap ::std::tr1::unordered_map
-#define HashSet ::std::tr1::unordered_set
-#else
-#define HashMap ::__gnu_cxx::hash_map
-#define HashSet ::__gnu_cxx::hash_set
-#endif
-#elif N_COMPILER == N_CPP_GCCE
-#if defined(_LIBCPP_VERSION)
-#define HashMap ::std::unordered_map
-#define HashSet ::std::unordered_set
-#else
-#define HashMap ::std::tr1::unordered_map
-#define HashSet ::std::tr1::unordered_set
-#endif
-#else
-#if N_COMPILER == N_CPP_MSVC
-#if N_COMPILER_VER >= 1600 // VC++ 10.0
-#define HashMap ::std::tr1::unordered_map
-#define HashSet ::std::tr1::unordered_set
-#elif N_COMPILER_VER > 1300 && !defined(_STLP_MSVC)
-#define HashMap ::stdext::hash_map
-#define HashSet ::stdext::hash_set
-#else
-#define HashMap ::std::hash_map
-#define HashSet ::std::hash_set
-#endif
-#else
-#define HashMap ::std::hash_map
-#define HashSet ::std::hash_set
-#endif
-#endif
-#if N_COMPILER == N_CPP_GNUC && NII_COMP_VER >= 310 && !defined(STLPORT)
-    // For gcc 4.3 see http://gcc.gnu.org/gcc-4.3/changes.html
-#if NII_COMP_VER >= 430
-#include <tr1/unordered_map>
-#else
-#include <ext/hash_map>
-    namespace __gnu_cxx
-    {
-        template <> struct hash<void *>
-        {
-            size_t operator()(void * const & ptr) const
-            {
-                return (size_t)ptr;
-            }
-        };
-    }
-#endif
-#endif
     // normal
-#define Ndeque(value, name)         typedef deque<value>::type name
-#define Nvector(value, name)        typedef vector<value>::type name
-#define Nlist(value, name)          typedef list<value>::type name
-#define Nset(value, name)           typedef set<value>::type name
-#define Nmap(key, value, name)      typedef map<key, value>::type name
-#define Nmultimap(key, value, name) typedef multimap<key, value>::type name
+    #define Ndeque(value, name)         typedef deque<value>::type name
+    #define Nvector(value, name)        typedef vector<value>::type name
+    #define Nlist(value, name)          typedef list<value>::type name
+    #define Nset(value, name)           typedef set<value>::type name
+    #define Nmap(key, value, name)      typedef map<key, value>::type name
+    #define Nmultimap(key, value, name) typedef multimap<key, value>::type name
 
-#define NSdeque(value, name)        typedef Sdeque<value>::type name
-#define NSvector(value, name)       typedef Svector<value>::type name
-#define NSlist(value, name)         typedef Slist<value>::type name
-#define NSset(value, name)          typedef Sset<value>::type name
-#define NSmap(key, value, name)     typedef Smap<key, value>::type name
-#define NSmultimap(key, value, name)typedef Smultimap<key, value>::type name
+    #define NSdeque(value, name)        typedef Sdeque<value>::type name
+    #define NSvector(value, name)       typedef Svector<value>::type name
+    #define NSlist(value, name)         typedef Slist<value>::type name
+    #define NSset(value, name)          typedef Sset<value>::type name
+    #define NSmap(key, value, name)     typedef Smap<key, value>::type name
+    #define NSmultimap(key, value, name)typedef Smultimap<key, value>::type name
 
-#define Npair(f, s)                 std::make_pair(f, s)
-// simd
-#define NdequeType(value)           typedef deque<value>::type
-#define NvectorType(value)          typedef vector<value>::type
-#define NlistType(value)            typedef list<value>::type
-#define NsetType(value)             typedef set<value>::type
-#define NmapType(key,value)         typedef map<key, value>::type
-#define NmultimapType(key, value)   typedef multimap<key, value>::type
+    #define Npair(f, s)                 std::make_pair(f, s)
+    // simd
+    #define NdequeType(value)           typedef deque<value>::type
+    #define NvectorType(value)          typedef vector<value>::type
+    #define NlistType(value)            typedef list<value>::type
+    #define NsetType(value)             typedef set<value>::type
+    #define NmapType(key,value)         typedef map<key, value>::type
+    #define NmultimapType(key, value)   typedef multimap<key, value>::type
 
-#define NSdequeType(value)          typedef Sdeque<value>::type
-#define NSvectorType(value)         typedef Svector<value>::type
-#define NSlistType(value)           typedef Slist<value>::type
-#define NSsetType(value)            typedef Sset<value>::type
-#define NSmapType(key,value)        typedef Smap<key, value>::type
-#define NSmulTypeimapT(key, value)  typedef Smultimap<key, value>::type
+    #define NSdequeType(value)          typedef Sdeque<value>::type
+    #define NSvectorType(value)         typedef Svector<value>::type
+    #define NSlistType(value)           typedef Slist<value>::type
+    #define NSsetType(value)            typedef Sset<value>::type
+    #define NSmapType(key,value)        typedef Smap<key, value>::type
+    #define NSmulTypeimapT(key, value)  typedef Smultimap<key, value>::type
 
-/** 迭代
-@version NIIEngine 3.0.0
-*/
     template <typename type, typename itype, typename vtype> class Iterator
     {
     public:

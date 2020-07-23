@@ -25,8 +25,8 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 ------------------------------------------------------------------------------
 */
 
-#ifndef _NII_SceneNode_H_
-#define _NII_SceneNode_H_
+#ifndef _NII_SpaceNode_H_
+#define _NII_SpaceNode_H_
 
 #include "NiiPreInclude.h"
 #include "NiiPosNode.h"
@@ -252,5 +252,7 @@ namespace NII
         bool mNodeView;
         bool mAABBView;
     };
+    
+    typedef vector<SpaceNode *>::type SpaceNodeList;
 }
 #endif

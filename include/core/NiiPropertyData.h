@@ -67,7 +67,7 @@ namespace NII
         @note 不管理(数据指针)的有效性,没有副本产生
         @version NIIEngine 3.0.0 adv api
         */
-        void addVoid(PropertyID pid, void * value);
+        void addData(PropertyID pid, void * value);
 
         /** 添加属性(补充)
         @param pid 属性ID

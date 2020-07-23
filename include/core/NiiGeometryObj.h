@@ -163,7 +163,6 @@ namespace NII
         */
         virtual ShaderFusion * getShaderFusion() const;
     protected:
-        ShadowObj * mShadow;    ///< 阴影辅助对象
         Nmark mGeometryMark;    ///< 扩展数据
         Nui8 mLodIndex;         ///< 辅助渲染系统处理
         Nui8 mLightBegin;       ///< 开始灯光

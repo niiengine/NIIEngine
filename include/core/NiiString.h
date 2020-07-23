@@ -141,7 +141,7 @@ namespace NII
         /** 分割所有由定界符参数的字符串
         @param in 输入字符串
         @param delims 定界符
-        @param cnt 分割次数， 默认不限次数
+        @param cnt 分割次数, 默认0不限次数
         @param keepDelims 保留定界符
         @return 字符串列表
         @version NIIEngine 3.0.0

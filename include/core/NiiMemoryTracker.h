@@ -27,8 +27,13 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 
 #ifndef _NII_MemoryTracker_H_
 #define _NII_MemoryTracker_H_
-
 #if N_MEMTRACK
+
+#if NII_STRING
+    typedef std::wstring    MemString;
+#else
+    typedef std::string     MemString;
+#endif
 
 namespace NII
 {
@@ -77,12 +82,12 @@ namespace NII
         /** 设置报告文件名字
         @version NIIEngine 3.0
         */
-        inline void setFile(const String & name) { mOutFile = name;  }
+        inline void setFile(const MemString & name) { mOutFile = name;  }
 
         /** 获取报告的文件名字
         @version NIIEngine 3.0
         */
-        inline const String & getFile() const { return mOutFile;  }
+        inline const MemString & getFile() const { return mOutFile;  }
 
         /** 设置是否输出到 std::out
         @version NIIEngine 3.0.0
@@ -111,7 +116,7 @@ namespace NII
         typedef std::vector<size_t> PoolCountList;
     protected:
         N_mutex1
-        String mOutFile;
+        MemString mOutFile;
         AllocList mAllocList;
         PoolCountList mPoolList;
         size_t mAllocCount;

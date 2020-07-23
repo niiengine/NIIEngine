@@ -50,7 +50,7 @@ namespace NII
         /** 获取父对象
         @version NIIEngine 3.0.0
         */
-        GeometrySpace * getParent() const;
+        inline GeometrySpace * getParent() const            { return mParent; }
 
         /** 设置使用的材质
         @version NIIEngine 3.0.0
@@ -65,17 +65,17 @@ namespace NII
         /** 获取使用的材质资源ID
         @version NIIEngine 3.0.0
         */
-        ResourceID getMaterialID() const;
+        inline ResourceID getMaterialID() const             { return mMaterialID; }
 
         /** 是否可见
         @version NIIEngine 3.0.0
         */
-        void setVisible(bool b);
+        inline void setVisible(bool b)                      { mVisible = b; }
 
         /** 是否可见
         @version NIIEngine 3.0.0
         */
-        bool isVisible() const;
+        inline bool isVisible() const                       { return mVisible; }
 
         /** 设置渲染组
         @version NIIEngine 3.0.0
@@ -85,27 +85,27 @@ namespace NII
         /** 获取渲染组
         @version NIIEngine 3.0.0
         */
-        GroupID getRenderGroup() const;
+        inline GroupID getRenderGroup() const               { return mRenderGroup; }
 
         /** 获取渲染等级
         @version NIIEngine 3.0.0
         */
-        Nui16 getRenderLevel() const;
+        inline Nui16 getRenderLevel() const                 { return mRenderLevel; }
 
         /** 获取相应的几何对象
         @version NIIEngine 3.0.0
         */
-        SubMesh * getMesh() const;
+        inline SubMesh * getMesh() const                    { return mMesh; }
 
         /** 设置是否启用动画
         @version NIIEngine 3.0.0
         */
-        void setAnimation(bool b);
+        inline void setAnimation(bool b)                    { mAnimationEnable = b; }
 
         /** 获取是否启用动画
         @version NIIEngine 3.0.0
         */
-        bool getAnimation() const;
+        inline bool getAnimation() const                    { return mAnimationEnable; }
 
         /** 获取动画混合类型
         @version NIIEngine 3.0.0
@@ -115,19 +115,19 @@ namespace NII
         /** 动画是否包含法线混合
         @version NIIEngine 3.0.0
         */
-        bool isNromalsFusion() const;
+        inline bool isNromalsFusion() const                 { return mNromalsFusion; }
 
         /** 获取软件混合顶点
         @note 用于动画混合
         @version NIIEngine 3.0.0
         */
-        VertexData * getSwFusionVertex() const;
+        inline VertexData * getSwFusionVertex() const       { return mAniData[0]; }
         
         /** 获取硬件混合顶点
         @note 用于动画混合
         @version NIIEngine 3.0.0
         */
-        VertexData * getHwFusionVertex() const;
+        inline VertexData * getHwFusionVertex() const       { return mAniData[1]; }
         
         /** 获取用于数据混合的顶点
         @version NIIEngine 3.0.0
