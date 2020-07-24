@@ -33,14 +33,14 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 
 namespace NII
 {
-    N_EXCEPT_DEF();
-    N_EXCEPT_DEF();
-    N_EXCEPT_DEF();
-    N_EXCEPT_DEF();
-    N_EXCEPT_DEF();
-    N_EXCEPT_DEF();
-    N_EXCEPT_DEF();
-    N_EXCEPT_DEF();
+    N_EXCEPT_DEF(PG1);
+    N_EXCEPT_DEF(PG2);
+    N_EXCEPT_DEF(PG3);
+    N_EXCEPT_DEF(PG4);
+    N_EXCEPT_DEF(PG5);
+    N_EXCEPT_DEF(PG6);
+    N_EXCEPT_DEF(PG7);
+    N_EXCEPT_DEF(PG8);
 }
 
 #endif

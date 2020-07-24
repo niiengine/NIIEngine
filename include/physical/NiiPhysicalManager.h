@@ -39,8 +39,24 @@ namespace NII
     class _EngineAPI PhysicalManager : public Singleton<UIManager>, public PhysicalAlloc
     {
     public:
+        enum Type
+        {
+            T_Scope,
+            T_Axis
+        };
+    public:
         PhysicalManager();
         ~PhysicalManager();
+        
+        /**
+        @version NIIEngine 4.0.0
+        */
+        void update(TimeDurMS cost);
+        
+        /**
+        @version NIIEngine 4.0.0
+        */
+        PhysicalGroup * create(Type type, const PropertyData * param);
     };
 }
 

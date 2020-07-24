@@ -46,6 +46,21 @@ namespace NII
         */
         void update(TimeDurMS cost);
         
+        /**
+        @version NIIEngine 4.0.0
+        */
+        void add(PhysicalObj * obj);
+        
+        /**
+        @version NIIEngine 4.0.0
+        */
+        void remove(PhysicalObj * obj);
+        
+        /**
+        @version NIIEngine 4.0.0
+        */
+        inline const PhysicalObjList & getList() const      { return mPhysicalObjList; }
+        
         /** 更新子步数量
         @version NIIEngine 4.0.0
         */
@@ -66,7 +81,8 @@ namespace NII
         */
         inline const Vector3f & getGravity() const          { return mGravity; }
     private:
-        SpaceManager mSpaceManager;
+        SpaceManager * mSpaceManager;
+        PhysicalObjList mPhysicalObjList;
         Vector3f mGravity;
         NCount mStep;
     };

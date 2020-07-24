@@ -63,47 +63,63 @@ namespace NII
     public:
         PhysicalObj();
         virtual ~PhysicalObj();
+        
+        /**
+        @version NIIEngine 4.0.0
+        */
+        void add(PhysicalCom * obj);
+        
+        /**
+        @version NIIEngine 4.0.0
+        */
+        void remove(PhysicalCom * obj);
+        
+        /**
+        @version NIIEngine 4.0.0
+        */
+        inline const PhysicalComList & getList() const  { return mPhysicalComList; }
 
         /** 摩擦系数
         @version NIIEngine 4.0.0
         */
-        inline void setFriction(NIIf factor)    { mFriction = factor; }
+        inline void setFriction(NIIf factor)            { mFriction = factor; }
 
         /** 摩擦系数
         @version NIIEngine 4.0.0
         */
-        inline NIIf getFriction() const         { return mFriction; }
+        inline NIIf getFriction() const                 { return mFriction; }
 
         /** 密度
         @version NIIEngine 4.0.0
         */
-        inline void setDensity(Ni32 mass)       { mDensity = mass; }
+        inline void setDensity(Ni32 mass)               { mDensity = mass; }
 
         /** 密度
         @version NIIEngine 4.0.0
         */
-        inline Ni32 getDensity() const          { return mDensity; }
+        inline Ni32 getDensity() const                  { return mDensity; }
         
         /** 主体
         @version NIIEngine 4.0.0
         */
-        inline void setPrimary(SpaceObj * obj)  { mSpaceObj = obj; }
+        inline void setPrimary(SpaceObj * obj)          { mSpaceObj = obj; }
         
         /** 主体
         @version NIIEngine 4.0.0
         */
-        inline SpaceObj * getPrimary() const    { return mSpaceObj; }
+        inline SpaceObj * getPrimary() const            { return mSpaceObj; }
         
         /** 辅体(预示体)
         @version NIIEngine 4.0.0
         */
-        inline void setSecond(SpaceObj * obj)   { mSecondObj = obj; }
+        inline void setSecond(SpaceObj * obj)           { mSecondObj = obj; }
         
         /** 辅体(预示体)
         @version NIIEngine 4.0.0
         */
-        inline SpaceObj * getSecond() const     { return mSecondObj; }
+        inline SpaceObj * getSecond() const             { return mSecondObj; }
     private:
+        PhysicalComList mPhysicalComList;
         NIIf mFriction;
         Ni32 mDensity;
         SpaceObj * mSpaceObj;

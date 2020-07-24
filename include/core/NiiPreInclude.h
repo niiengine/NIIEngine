@@ -448,6 +448,7 @@ namespace NII
     typedef vector<ShaderCh *>::type ShaderChList;
 	typedef vector<Thread *>::type ThreadList;
     typedef vector<PhysicalObj *>::type PhysicalObjList;
+    typedef vector<PhysicalCom *>::type PhysicalComList;
 	typedef set<Thread *>::type ThreadSet;
     typedef vector<ThreadEvent *>::type ThreadEventList;
     typedef vector<ThreadEventGroup *>::type ThreadEventGroupList;

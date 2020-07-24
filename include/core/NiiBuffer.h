@@ -103,23 +103,29 @@ namespace NII
             */
             M_AttachRef_Destroy = 0x400,
 
-            /** 被动标记,不使用
+            /** 被动标记,不使用(后台缓存需同步)
             @version NIIEngine 3.0.0
             */
             M_SHADOW_ASYN = 0x800,
 
-            /** 被动标记,不使用
+            /** 被动标记,不使用(后台缓存被刷新)
             @version NIIEngine 3.0.0
             */
             M_SHADOW_Refresh = 0x1000,
 
-            M_Reserve1 =  0x2000,
+            /** 每帧后数据被重写
+            @version NIIEngine 3.0.0
+            */
+            M_FrameFlushRecover =  0x2000,
             
-            M_Reserve2 = 0x4000,
+            /** 每次drawcall类函数后数据被重写
+            @version NIIEngine 3.0.0
+            */
+            M_DrawCallRecover = 0x4000,
             
-            M_Reserve3 = 0x8000,
+            M_Reserve1 = 0x8000,
             
-            M_Reserve4 = 0x10000,
+            M_Reserve2 = 0x10000,
 
             /** 扩展标记
             @version NIIEngine 3.0.0
@@ -361,6 +367,7 @@ namespace NII
     protected:
         BufferManager * mMag;
         Buffer * mShadow;
+        Buffer * mSecond;
         NCount mSize;
         NCount mMuteOft;
         NCount mMuteSize;
