@@ -87,12 +87,6 @@ namespace NII
         @version NIIEngine 3.0.0
         */
         void destroy(FileSerializer * obj);
-
-        /// @copydetails Singleton::getOnly
-        static FileSerializerManager & getOnly();
-
-        /// @copydetails Singleton::getOnlyPtr
-        static FileSerializerManager * getOnlyPtr();
     protected:
         typedef map<FactoryID, FileSerializerFactory *>::type FileSerializerFactoryList;
         FileSerializerFactoryList mFileSerializers;

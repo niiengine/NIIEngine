@@ -56,7 +56,7 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 
 namespace NII
 {
-    /// 模板类用于创建全局范围内的惟独实例.
+    /// 应用范围内的唯一实例.
     template <typename T> class Singleton
     {
     public:
@@ -76,15 +76,15 @@ namespace NII
         /** 管理级别类专用
         @remark 一个应用进程中只有一个的类实例
         */
-        static T & getOnly()
+        inline static T & getOnly()
         {
             N_assert(mOnly, "error");
-            return (*mOnly);
+            return *mOnly;
         }
         /** 管理级别类专用
         @remark 一个应用进程中只有一个的类实例
         */
-        static T * getOnlyPtr()
+        inline static T * getOnlyPtr()
         {
             return mOnly;
         }

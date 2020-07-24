@@ -159,12 +159,6 @@ namespace NII
 
         /// @copydetails ScriptParserSys::getScriptLevel
         NIIf getScriptLevel() const;
-
-        /// @copydetails Singleton::getOnly
-        static OverlayManager & getOnly();
-
-        /// @copydetails Singleton::getOnlyPtr
-        static OverlayManager * getOnlyPtr();
     protected:
         /** 创建层
         @version NIIEngine 3.0.0

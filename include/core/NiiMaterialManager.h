@@ -277,12 +277,6 @@ namespace NII
         /// @see ScriptParserSys::parse
         void parse(DataStream * stream, GroupID gid, PtrList & out);
 
-        /// @copydetails Singleton::getOnly
-        static MaterialManager & getOnly();
-
-        /// @copydetails Singleton::getOnlyPtr
-        static MaterialManager * getOnlyPtr();
-
         static const ShaderChColour * InvalidColour;
         static const ShaderChBlend  * InvalidBlend;
         static const ShaderChAlpha  * InvalidAlpha;

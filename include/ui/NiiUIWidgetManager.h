@@ -218,12 +218,6 @@ namespace NII
         @version NIIEngine 3.0.0 高级api
         */
         WidgetID genValidID();
-
-        /// @copydetails Singleton::getOnly
-        static UIWidgetManager & getOnly();
-
-        /// @copydetails Singleton::getOnlyPtr
-        static UIWidgetManager * getOnlyPtr();
     public:
         /** 公共Tooltip
         @version NIIEngine 3.0.0

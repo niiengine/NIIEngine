@@ -325,6 +325,9 @@ namespace NII
     class TagBone;
     class ShaderFusion;
     class ExtTexture;
+    class PhysicalObj;
+    class PhysicalScope;
+    class PhysicalCom;
     class TextureSample;
     class ShaderChTextureUnit;
     class ShaderChFog;
@@ -444,6 +447,7 @@ namespace NII
     typedef vector<IndexData *>::type IndexDataList;
     typedef vector<ShaderCh *>::type ShaderChList;
 	typedef vector<Thread *>::type ThreadList;
+    typedef vector<PhysicalObj *>::type PhysicalObjList;
 	typedef set<Thread *>::type ThreadSet;
     typedef vector<ThreadEvent *>::type ThreadEventList;
     typedef vector<ThreadEventGroup *>::type ThreadEventGroupList;

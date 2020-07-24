@@ -68,12 +68,6 @@ namespace NII
         @version NIIEngine 3.0.0
         */
         HighLevelGpuProgram * create(ResourceID rid, GroupID gid, ShaderLanguage lang, GpuProgram::ShaderType type);
-
-        /// @copydetails Singleton::getOnly
-        static HighLevelGpuProgramManager & getOnly();
-
-        /// @copydetails Singleton::getOnlyPtr
-        static HighLevelGpuProgramManager * getOnlyPtr();
     protected:
         /// @copydetails ResourceManager::init
         void init();

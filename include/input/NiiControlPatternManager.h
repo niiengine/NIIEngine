@@ -108,12 +108,6 @@ namespace NII
         @version NIIEngine 3.0.0
         */
         virtual void init() = 0;
-
-        /// @copydetails Singleton::getOnly
-        static ControlPatternManager & getOnly();
-
-        /// @copydetails Singleton::getOnlyPtr
-        static ControlPatternManager * getOnlyPtr();
     public:
         ControlPatternManager * DummyPatternManager;
     protected:

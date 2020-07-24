@@ -126,12 +126,6 @@ namespace NII
         @version NIIEngine 3.0.0
         */
         void setLogDetail(LogDetail ll);
-
-        /// @copydetails Singleton::getOnly
-        static LogManager & getOnly();
-
-        /// @copydetails Singleton::getOnlyPtr
-        static LogManager * getOnlyPtr();
     protected:
         N_mutex1
         typedef map<String, Log *>::type LogList;

@@ -144,12 +144,6 @@ namespace NII
         @version NIIEngine 3.0.0
         */
         static GroupID getGroup();
-
-        /// @copydetails Singleton::getOnly
-        static PixelBufferManager & getOnly();
-
-        /// @copydetails Singleton::getOnlyPtr
-        static PixelBufferManager * getOnlyPtr();
     protected:
         GroupID genValidID() const;
     private:

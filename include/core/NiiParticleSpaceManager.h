@@ -190,12 +190,6 @@ namespace NII
 
         /// @copydetails ScriptParserSys::getScriptLevel
         NIIf getScriptLevel() const;
-
-        /// @copydetails Singleton::getOnly
-        static ParticleSpaceManager & getOnly();
-        
-        /// @copydetails Singleton::getOnlyPtr
-        static ParticleSpaceManager * getOnlyPtr();
         
         static TimeDurMS mTimeInterval;
         static TimeDurMS mTimeThreshold;

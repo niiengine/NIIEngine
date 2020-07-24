@@ -25,47 +25,55 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 ------------------------------------------------------------------------------
 */
 
-#ifndef _NII_SKELETON_MANAGER_H_
-#define _NII_SKELETON_MANAGER_H_
+#ifndef _NII_RenderSysManager_H_
+#define _NII_RenderSysManager_H_
 
 #include "NiiPreInclude.h"
-#include "NiiResourceManager.h"
-#include "NiiSkeletonFusion.h"
+#include "NiiSingleton.h"
+#include "NiiString.h"
+#include "NiiRenderFeature.h"
 
 namespace NII
 {
-    /** 骨骼管理器
+    /** 渲染系统管理器
     @version NIIEngine 3.0.0
     */
-    class _EngineAPI SkeletonManager: public ResourceManager, public Singleton<SkeletonManager>
+    class _EngineAPI RenderSysManager : public Singleton<RenderSysManager>, public ManagerAlloc
     {
     public:
-        SkeletonManager();
-        ~SkeletonManager();
+        typedef map<String, RenderFeature *>::type FeatureList;
+    public:
+        RenderSysManager();
+        virtual ~RenderSysManager();
 
-        /** 优化骨骼顶点
-        @param[in] svl 骨骼顶点分配列表
-        @param[in] count 顶点数量
-        @return 每顶点被多少个骨头影响
+        /** 添加特性
+        @note 参数2内存交由本类管理
         @version NIIEngine 3.0.0
         */
-        static NCount opt(SkeletonVertexList & svl, NCount count);
+        void add(const String & name, RenderFeature * spec);
 
-        /** 混合骨骼数据到顶点数据中
-        @param[out] dest 顶点数据
-        @param[in] svl 骨骼顶点分配列表
-        @param[out] mat 实际的距阵映射
+        /** 移去特性
         @version NIIEngine 3.0.0
         */
-        static void combine(VertexData * dest, const SkeletonVertexList & svl,
-            BoneIndexList & matmap);
+        void remove(const String & name);
+
+        /** 从文件协议种加载
+        @version NIIEngine 3.0.0
+        */
+        void load(const String & vfs, VFSType type = VFST_Local, bool r = true);
+        
+        /** 从文件种加载特性
+        @version NIIEngine 3.0.0
+        */
+        RenderFeature * getFeature(const String & name);
+
+        /** 获取特性列表 
+        @version NIIEngine 3.0.0
+        */
+        const FeatureList & getFeatureList() const;
     protected:
-        /// @copydetails ResourceManager::init
-        void init();
-
-        /// @copydetails ResourceManager::createImpl
-        Resource * createImpl(ResourceID rid, GroupID gid, ResLoadScheme * ls, 
-            ResResultScheme * rs, const PropertyData * params);
+        RenderFeatureSerializer * mSerializer;
+        FeatureList mFeatureList;
     };
 }
 #endif

@@ -103,12 +103,6 @@ namespace NII
         static inline GroupID getGroup()                { return ResourceGroup; }
         
         const StyleList & getWidgetList() const;
-
-           /// @copydetails Singleton::geOnly
-        static UIStyleManager & getOnly();
-
-        /// @copydetails Singleton::getOnlyPtr
-        static UIStyleManager * getOnlyPtr();
     public:
         static const Colour DefaultTextColour;
         static const Colour DefaultSelectionColour;

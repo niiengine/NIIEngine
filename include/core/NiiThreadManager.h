@@ -275,12 +275,6 @@ namespace NII
         @version NIIEngine 4.0.0
         */
         NCount getWorkingCount(Nui32 type) const;
-
-        /// @copydetails Singleton::getOnly
-        static ThreadManager & getOnly();
-
-        /// @copydetails Singleton::getOnlyPtr
-        static ThreadManager * getOnlyPtr();
     protected:
         typedef map<Nui32, TaskGroup *>::type GroupList;
 

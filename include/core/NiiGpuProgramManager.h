@@ -182,12 +182,6 @@ namespace NII
         @version NIIEngine 3.0.0
         */
         static const GpuSParamDefine * getGpuSyncParam(Nidx idx);
-
-        /// @copydetails Singleton::getOnly
-        static GpuProgramManager & getOnly();
-
-        /// @copydetails Singleton::getOnlyPtr
-        static GpuProgramManager * getOnlyPtr();
     protected:
         /// @copydetails ResourceManager::createImpl
         Resource * createImpl(ResourceID rid, GroupID gid, ResLoadScheme * ls, ResResultScheme * rs,

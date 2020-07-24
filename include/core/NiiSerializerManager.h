@@ -67,12 +67,6 @@ namespace NII
         @version NIIEngine 3.0.0
         */
         void removeAll();
-
-        /// @copydetails Singleton::getOnly
-        static SerializerManager & getOnly();
-        
-        /// @copydetails Singleton::getOnlyPtr
-        static SerializerManager * getOnlyPtr();
     private:
         typedef map<FactoryID, SerializerFactoryObj *>::type SerializerList;
         SerializerList mSerializers;

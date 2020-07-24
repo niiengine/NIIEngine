@@ -64,12 +64,6 @@ namespace NII
         /** 
         */
         void destroy(RenderEffect * obg);
-
-        /// @copydetails Singleton::getOnly
-        static RenderEffectManager & getOnly();
-
-        /// @copydetails Singleton::getOnlyPtr
-        static RenderEffectManager * getOnlyPtr();
     private:
         typedef map<EffectID, RenderEffectFactory *>::type RenderEffectRegistry;
         typedef map<RenderEffect *, RenderEffectFactory *, std::less<RenderEffect *>>::type EffectCreatorMap;

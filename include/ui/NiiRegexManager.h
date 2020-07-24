@@ -79,12 +79,6 @@ namespace NII
         @version NIIEngine 3.0.0
         */
         void destroy(RegexMatcher * obj) const;
-
-        /// @copydetails Singleton::getOnly
-        static RegexManager & getOnly();
-
-        /// @copydetails Singleton::getOnlyPtr
-        static RegexManager * getOnlyPtr();
     };
 }
 #endif

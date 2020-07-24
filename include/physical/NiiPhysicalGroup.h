@@ -1,4 +1,4 @@
-﻿/*
+/*
 -----------------------------------------------------------------------------
 A
      __      _   _   _   ______
@@ -25,53 +25,51 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 ------------------------------------------------------------------------------
 */
 
-#ifndef _NII_EquationManager_H_
-#define _NII_EquationManager_H_
+#ifndef _NII_PHYSICAL_GROUP_H_
+#define _NII_PHYSICAL_GROUP_H_
 
 #include "NiiPreInclude.h"
-#include "NiiCommon.h"
-#include "NiiSingleton.h"
-#include "NiiDataEquation.h"
 
 namespace NII
 {
-    /** 等式管理器类
-    @version NIIEngine 3.0.0
+    /** 物理效应组
+    @version NIIEngine 4.0.0
     */
-    class _EngineAPI EquationManager : public Singleton<EquationManager>, public ControlAlloc
+    class _EngineAPI PhysicalGroup
     {
     public:
-        EquationManager();
-        ~EquationManager();
-
-        /** 更新所有等式
-        @version NIIEngine 3.0.0
+        PhysicalGroup(SpaceManager * space);
+        ~PhysicalGroup();
+        
+        /** 更新
+        @version NIIEngine 4.0.0
         */
-        void update();
-
-        /** 创建等式
-        @version NIIEngine 3.0.0
+        void update(TimeDurMS cost);
+        
+        /** 更新子步数量
+        @version NIIEngine 4.0.0
         */
-        template <typename in, typename out> DataEquation<in, out> * create(const DataValue<in> * src,
-            DataValue<out> * dest, DataFunc<in, out> * func)
-        {
-            DataEquation<in, out> * c = N_new DataEquation<in, out>(src, dest, func);
-            mEquationList.insert(c);
-            return c;
-        }
-
-        /** 删除指定等式
-        @version NIIEngine 3.0.0
+        inline void setStep(NCount step)                    { mStep = step;}
+        
+        /** 更新子步数量
+        @version NIIEngine 4.0.0
         */
-        void destroy(DataEquationBase * base);
+        inline NCount getStep() const                       { return mStep;}
 
-        /** 删除所有等式
-        @version NIIEngine 3.0.0
+        /** 重力
+        @version NIIEngine 4.0.0
         */
-        void destroyAll();
-    protected:
-        typedef set<DataEquationBase *>::type EquationList;
-        EquationList mEquationList;
+        inline void setGravity(const Vector3f & dir)        { mGravity = dir; }
+
+        /** 重力
+        @version NIIEngine 4.0.0
+        */
+        inline const Vector3f & getGravity() const          { return mGravity; }
+    private:
+        SpaceManager mSpaceManager;
+        Vector3f mGravity;
+        NCount mStep;
     };
 }
+
 #endif

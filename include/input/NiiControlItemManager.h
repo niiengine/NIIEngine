@@ -62,12 +62,6 @@ namespace NII
 
         /// »ñÈ¡ÐéÄâ´¥ÆÁ¿ØÖÆµ¥Ôª
         NII_MEDIA::TouchControlItem * getDummyTouch() { return mTouch; }
-
-        /// @copydetails Singleton::getOnly
-        static ControlItemManager & getOnly();
-
-        /// @copydetails Singleton::getOnlyPtr
-        static ControlItemManager * getOnlyPtr();
     protected:
         NII_MEDIA::MouseControlItem * mMouse;                    ///< ÐéÄâÊó±ê
         NII_MEDIA::KeyboardControlItem * mKeyboard;                ///< ÐéÄâ¼üÅÌ

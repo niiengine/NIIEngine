@@ -95,12 +95,6 @@ namespace NII
         @version NIIEngine 3.0.0
         */
         const SchemeList * getList(ClassID cid);
-
-        /// @copydetails Singleton::getOnly
-        static LodSchemeManager & getOnly();
-
-        /// @copydetails Singleton::getOnlyPtr
-        static LodSchemeManager * getOnlyPtr();
     private:
         DefaultList mDefaultList;
         ClassSchemeList mSchemeList;

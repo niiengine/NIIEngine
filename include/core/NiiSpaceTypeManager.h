@@ -164,12 +164,6 @@ namespace NII
         @version NIIEngine 3.0.0 高级api
         */
         const SpaceList & getSpaceList() const;
-
-        /// @copydetails Singleton::getOnly
-        static SpaceTypeManager & getOnly();
-
-        /// @copydetails Singleton::getOnlyPtr
-        static SpaceTypeManager * getOnlyPtr();
     private:
         typedef vector<SpaceTypeFactory *>::type FactoryList;
     private:

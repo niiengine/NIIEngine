@@ -176,12 +176,6 @@ namespace NII
         @version NIIEngien 4.0.0
         */
         VString resolveDomain(const VString & name);
-        
-        /// @copydetails Singleton::getOnly
-        static SocketManager & getOnly();
-
-        /// @copydetails Singleton::getOnlyPtr
-        static SocketManager * getOnlyPtr();
     protected:
         SocketManager();
     protected:

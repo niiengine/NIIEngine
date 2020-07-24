@@ -154,12 +154,6 @@ namespace NII
         @version NIIEngine 3.0.0
         */
         void destroyAll();
-
-        /// @copydetails Singleton::getOnly
-        static GBufferManager & getOnly();
-
-        /// @copydetails Singleton::getOnlyPtr
-        static GBufferManager * getOnlyPtr();
     public:
         /** 对象已经被删除
         @version NIIEngine 3.0.0

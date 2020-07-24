@@ -195,12 +195,6 @@ namespace NII
         @version NIIEngine 3.0.0
         */
         inline TextView * getView() const           { return mTextView; }
-
-        /// @copydetails Singleton::getOnly
-        static UIManager & getOnly();
-
-        /// @copydetails Singleton::getOnlyPtr
-        static UIManager * getOnlyPtr();
     public:
         /** 当视图尺寸改变时
         @version NIIEngine 3.0.0

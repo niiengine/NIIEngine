@@ -1,4 +1,4 @@
-ï»¿/*
+/*
 -----------------------------------------------------------------------------
 A
      __      _   _   _   ______
@@ -25,53 +25,61 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 ------------------------------------------------------------------------------
 */
 
-#ifndef _NII_EquationManager_H_
-#define _NII_EquationManager_H_
+#ifndef _NII_SCRIPT_COMPILER_MANAGER_H_
+#define _NII_SCRIPT_COMPILER_MANAGER_H_
 
 #include "NiiPreInclude.h"
-#include "NiiCommon.h"
-#include "NiiSingleton.h"
-#include "NiiDataEquation.h"
+#include "NiiScriptCompiler.h"
+#include "NiiScriptParserSys.h"
 
 namespace NII
 {
-    /** ç­‰å¼ç®¡ç†å™¨ç±»
+    /** ½Å±¾±àÒë¹ÜÀíÆ÷
     @version NIIEngine 3.0.0
     */
-    class _EngineAPI EquationManager : public Singleton<EquationManager>, public ControlAlloc
+    class _EngineAPI ScriptCompilerManager : public Singleton<ScriptCompilerManager>,
+        public ScriptParserSys, public ScriptAlloc
     {
     public:
-        EquationManager();
-        ~EquationManager();
+        ScriptCompilerManager();
+        virtual ~ScriptCompilerManager();
 
-        /** æ›´æ–°æ‰€æœ‰ç­‰å¼
+        /** Ìí¼Ó¹¤³§Àà
         @version NIIEngine 3.0.0
         */
-        void update();
+        bool addFactory(ScriptAnalyzeFactory * obj);
 
-        /** åˆ›å»ºç­‰å¼
+        /** ÒÆÈ¥¹¤³§Àà
         @version NIIEngine 3.0.0
         */
-        template <typename in, typename out> DataEquation<in, out> * create(const DataValue<in> * src,
-            DataValue<out> * dest, DataFunc<in, out> * func)
-        {
-            DataEquation<in, out> * c = N_new DataEquation<in, out>(src, dest, func);
-            mEquationList.insert(c);
-            return c;
-        }
+        void removeFactory(ScriptAnalyzeFactory * obj);
 
-        /** åˆ é™¤æŒ‡å®šç­‰å¼
+        /** »ñÈ¡¹¤³§Àà
         @version NIIEngine 3.0.0
         */
-        void destroy(DataEquationBase * base);
+        ScriptAnalyzeFactory * getFactory(FactoryID fid) const;
 
-        /** åˆ é™¤æ‰€æœ‰ç­‰å¼
+        /** ´´½¨·ÖÎöÆ÷
         @version NIIEngine 3.0.0
         */
-        void destroyAll();
+        ScriptAnalyze * create(ScriptCompiler * cpl, FactoryID fid, LangID lid) const;
+
+        /** É¾³ı·ÖÎöÆ÷
+        @version NIIEngine 3.0.0
+        */
+        void destroy(ScriptAnalyze * obj);
+
+        /// @copydetails ScriptParserSys::parse
+        void parse(DataStream * stream, GroupID gid, PtrList & out);
+
+        /// @copydetails ScriptParserSys::getScriptLevel
+        NIIf getScriptLevel() const;
     protected:
-        typedef set<DataEquationBase *>::type EquationList;
-        EquationList mEquationList;
+        typedef map<FactoryID, ScriptAnalyzeFactory *>::type FactoryList;
+    protected:
+        FactoryList mFactory;
+        ScriptCompiler * mScriptCompiler;
     };
 }
+
 #endif

@@ -124,12 +124,6 @@ namespace NII
 
         /// @copydetails ScriptParserSys::parse
         void parse(DataStream * stream, GroupID gid, PtrList & out);
-
-        /// @copydetails Singleton::getOnly
-        static FontManager & getOnly();
-
-        /// @copydetails Singleton::getOnlyPtr
-        static FontManager * getOnlyPtr();
     protected:
         /// @copydetails ResourceManager::init
         void init();

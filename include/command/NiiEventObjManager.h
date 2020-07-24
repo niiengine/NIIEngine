@@ -58,12 +58,6 @@ namespace NII
         void add(NII_COMMAND::EventObj * obj);
         void remove(NII_COMMAND::EventObj * obj);
         const EventObjectMap & getList() const;
-
-        /// @copydetails Singleton::getOnly
-        static EventObjectManager & getOnly();
-
-        /// @copydetails Singleton::getOnlyPtr
-        static EventObjectManager * getOnlyPtr();
     private:
         EventObjectMap mEventObjects;
     };

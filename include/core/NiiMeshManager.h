@@ -150,12 +150,6 @@ namespace NII
         */
         bool buildPrefab(Mesh * mesh, GeometryPrefab type);
 
-        /// @copydetails Singleton::getOnly
-        static MeshManager & getOnly();
-
-        /// @copydetails Singleton::getOnlyPtr
-        static MeshManager * getOnlyPtr();
-
         /// @copydetails ResLoadScheme::load
         void load(Resource * res);
     protected:

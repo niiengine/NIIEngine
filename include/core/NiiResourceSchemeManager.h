@@ -409,12 +409,6 @@ namespace NII
         @version NIIEngine 3.0.0 高级api
         */
         PrcID genValidID();
-
-        /// @copydetails Singleton::getOnly
-        static ResourceSchemeManager & getOnly();
-
-        /// @copydetails Singleton::getOnlyPtr
-        static ResourceSchemeManager * getOnlyPtr();
     public:
         /** 资源创建后
         @version NIIEngine 3.0.0 高级api
