@@ -99,6 +99,16 @@ namespace NII
         */
         inline Ni32 getDensity() const                  { return mDensity; }
         
+        /**
+        @version NIIEngine 4.0.0
+        */
+        inline setOuterAABox(const AABox & aab)         { mOuterAABox = aab;} 
+        
+        /**
+        @version NIIEngine 4.0.0
+        */
+        inline const AABox & getOuterAABB() const       { return mOuterAABox; }
+        
         /** 主体
         @version NIIEngine 4.0.0
         */
@@ -122,6 +132,7 @@ namespace NII
         PhysicalComList mPhysicalComList;
         NIIf mFriction;
         Ni32 mDensity;
+        AABox mOuterAABox;
         SpaceObj * mSpaceObj;
         SpaceObj * mSecondObj;
     };

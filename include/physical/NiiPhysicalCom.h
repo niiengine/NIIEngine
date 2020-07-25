@@ -40,12 +40,57 @@ namespace NII
     public:
         PhysicalCom();
         ~PhysicalCom();
+        
+        /** 摩擦系数
+        @version NIIEngine 4.0.0
+        */
+        inline void setFriction(NIIf factor)            { mFriction = factor; }
+
+        /** 摩擦系数
+        @version NIIEngine 4.0.0
+        */
+        inline NIIf getFriction() const                 { return mFriction; }
+
+        /** 密度
+        @version NIIEngine 4.0.0
+        */
+        inline void setDensity(Ni32 mass)               { mDensity = mass; }
+
+        /** 密度
+        @version NIIEngine 4.0.0
+        */
+        inline Ni32 getDensity() const                  { return mDensity; }
+        
+        /**
+        @version NIIEngine 4.0.0
+        */
+        inline setAttach(SpaceObj * obj)                { mAttach = obj; }
+        
+        /**
+        @version NIIEngine 4.0.0
+        */
+        inline SpaceObj * getAttach() const             { return mAttach; }
+    private:
+        NIIf mFriction;
+        Ni32 mDensity;
+        
+        SpaceObj * mAttach;
     };
-    
+
     /**
     @version NIIEngine 4.0.0
     */
-    class _EngineAPI Physical2DCom
+    class _EngineAPI Physical2DCom : public PhysicalCom
+    {
+    public:
+        Physical2DCom();
+        ~Physical2DCom();
+    };
+
+    /**
+    @version NIIEngine 4.0.0
+    */
+    class _EngineAPI Physical3DCom : public PhysicalCom
     {
     public:
         Physical2DCom();
