@@ -78,6 +78,16 @@ namespace NII
         @version NIIEngine 4.0.0
         */
         inline const PhysicalComList & getList() const  { return mPhysicalComList; }
+        
+        /** 设置是否启动
+        @version NIIEngine 4.0.0
+        */
+        inline void setEnable(bool set)                 { mEnable = set;}
+        
+        /** 获取是否启动
+        @version NIIEngine 4.0.0
+        */
+        inline bool isEnable() const                    { return mEnable;}
 
         /** 摩擦系数
         @version NIIEngine 4.0.0
@@ -128,6 +138,16 @@ namespace NII
         @version NIIEngine 4.0.0
         */
         inline SpaceObj * getSecond() const             { return mSecondObj; }
+    protected:
+        /**
+        @version NIIEngine 4.0.0
+        */
+        virtual void onOuterAABoxEnter(const EventArg * arg);
+        
+        /**
+        @version NIIEngine 4.0.0
+        */
+        virtual void onOuterAABoxLeave(const EventArg * arg);
     private:
         PhysicalComList mPhysicalComList;
         NIIf mFriction;
@@ -135,6 +155,7 @@ namespace NII
         AABox mOuterAABox;
         SpaceObj * mSpaceObj;
         SpaceObj * mSecondObj;
+        bool mEnable;
     };
 }
 

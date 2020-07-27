@@ -41,6 +41,16 @@ namespace NII
         PhysicalCom();
         ~PhysicalCom();
         
+        /** 设置是否启动
+        @version NIIEngine 4.0.0
+        */
+        inline void setEnable(bool set)                 { mEnable = set;}
+        
+        /** 获取是否启动
+        @version NIIEngine 4.0.0
+        */
+        inline bool isEnable() const                    { return mEnable;}
+        
         /** 摩擦系数
         @version NIIEngine 4.0.0
         */
@@ -71,10 +81,10 @@ namespace NII
         */
         inline SpaceObj * getAttach() const             { return mAttach; }
     private:
+        SpaceObj * mAttach;
         NIIf mFriction;
         Ni32 mDensity;
-        
-        SpaceObj * mAttach;
+        bool mEnable;
     };
 
     /**
