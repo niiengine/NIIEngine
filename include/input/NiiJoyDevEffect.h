@@ -264,13 +264,11 @@ namespace NII_MEDIA
         @remarks
         @version NIIEngine 3.0.0
         */
-        bool supportsEffect(JoyStickEffect::ForceEffectType force,
-            JoyStickEffect::ForceEffectFactorType type) const;
+        bool supportsEffect(JoyStickEffect::ForceEffectType force, JoyStickEffect::ForceEffectFactorType type) const;
 
-        void _addEffectTypes(JoyStickEffect::ForceEffectType force,
-            JoyStickEffect::ForceEffectFactorType type);
+        void _addEffectTypes(JoyStickEffect::ForceEffectType force, JoyStickEffect::ForceEffectFactorType type);
     protected:
-        SupportedEffectList mSupportedEffects;
+        SupportedEffectList mSupportList;
         bool mSetGainSupport;
         bool mSetAutoCenterSupport;
     };

@@ -29,7 +29,7 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 #define _NII_JOYHAND_CONTROL_PATTERN_H_
 
 #include "NiiPreInclude.h"
-#include "NiiJoyStickControlPattern.h"
+#include "NiiJoyPadControlPattern.h"
 
 namespace NII
 {
@@ -42,7 +42,7 @@ namespace NII_MEDIA
         再使用队列缓存模式
     @version NIIEngine 3.0.0 高级api
     */
-    class _EngineAPI JoyHandleControlPattern : public JoyStickControlPattern
+    class _EngineAPI JoyHandleControlPattern : public JoyPadControlPattern
     {
     public:
         virtual ~JoyHandleControlPattern();

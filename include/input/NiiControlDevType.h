@@ -37,13 +37,12 @@ namespace NII
     */
     enum ControlDevType
     {
-        CDT_Keyboard = 1,
-        CDT_Mouse = 2,
-        CDT_JoyStick = 3,
-        CDT_JoyPad = 4,
-        CDT_JoyHandle = 5,
-        CDT_JoyWheel = 6,
-        CDT_Touch = 7
+        CDT_Keyboard        = 1,
+        CDT_Mouse           = 2,
+        CDT_JoyPad          = 3,
+        CDT_JoyHandle       = 4,
+        CDT_JoyWheel        = 5,
+        CDT_Touch           = 6
     };
 }
 #endif

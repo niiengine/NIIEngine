@@ -71,6 +71,18 @@ namespace NII_MEDIA
         @version NIIEngine 3.0.0
         */
         virtual void onTwistAxis(const JoyPadControlAxisArgs * args) {}
+        
+        /** 当摇杆中的滑块推动时触发
+        @param[in] args 摇杆按键事件参数
+        @version NIIEngine 3.0.0
+        */
+        virtual void onSlipSlider(const JoyStickControlSliderArgs * args) {}
+
+        /** 当摇杆中的方向键按下时触发
+        @param[in] args 摇杆杆上按键事件参数
+        @version NIIEngine 3.0.0
+        */
+        virtual void onPushPOV(const JoyStickControlPovArgs * args) {}
     };
 
     class _EngineAPI DummyJoyPadControlItem : public JoyPadControlItem, public ControlAlloc
@@ -98,9 +110,27 @@ namespace NII_MEDIA
         SignalJoyPadControlItem();
         virtual ~SignalJoyPadControlItem();
     public:
+        /**
+        @version NIIEngine 3.0.0
+        */
         static const EventID PressButtonEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
         static const EventID ReleaseButtonEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
         static const EventID TwistAxisEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID SlipSliderEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID PushPOVEvent;
+        
         static const EventID EventCount;
     public:
         /// @copydetails JoyControlItem::onPressButton
@@ -111,78 +141,7 @@ namespace NII_MEDIA
 
         /// @copydetails JoyControlItem::onTwistAxis
         virtual void onTwistAxis(const JoyPadControlAxisArgs * args);
-    };
-    
-    /** 摇杆控制单元
-    @remark
-        游戏对象可以灵活的转换控制单元从而不同的效果,把部分事件写出来获得更多的处理
-        性能提升.如果需要使用它,需要继承它并重写部分或全部方法
-    @version NIIEngine 3.0.0
-    */
-    class _EngineAPI JoyStickControlItem : public JoyPadControlItem
-    {
-    public:
-        JoyStickControlItem() {}
-        virtual ~JoyStickControlItem() {}
-
-        ///@copydetails ControlItem::getType
-        ControlDevType getType() const
-        {
-            return CDT_JoyStick;
-        }
-    public:
-        /** 当摇杆中的滑块推动时触发
-        @param[in] args 摇杆按键事件参数
-        @version NIIEngine 3.0.0
-        */
-        virtual void onSlipSlider(const JoyStickControlSliderArgs * args) {}
-
-        /** 当摇杆中的方向键按下时触发
-        @param[in] args 摇杆杆上按键事件参数
-        @version NIIEngine 3.0.0
-        */
-        virtual void onPushPOV(const JoyStickControlPovArgs * args) {}
-    };
-
-    class _EngineAPI DummyJoyStickControlItem : public JoyStickControlItem, public ControlAlloc
-    {
-    public:
-        DummyJoyStickControlItem() {}
-    };
-
-    class _EngineAPI ListenerJoyStickControlItem : public JoyStickControlItem, public ControlAlloc
-    {
-    public:
-        ListenerJoyStickControlItem() {}
-        virtual ~ListenerJoyStickControlItem() {}
-    };
-
-    /** 事件级 JoyStickControlItem
-    @remark
-        游戏对象可以灵活的转换控制单元从而不同的效果,把部分事件写出来获得更多的处理
-        性能提升.如果需要使用它,需要继承它并重写部分或全部方法
-    @version NIIEngine 3.0.0
-    */
-    class _EngineAPI SignalJoyStickControlItem : public JoyStickControlItem,
-        public SignalJoyPadControlItem
-    {
-    public:
-        SignalJoyStickControlItem();
-        virtual ~SignalJoyStickControlItem();
-    public:
-        /**
-        @version NIIEngine 3.0.0
-        */
-        static const EventID SlipSliderEvent;
-        /**
-        @version NIIEngine 3.0.0
-        */
-        static const EventID PushPOVEvent;
-        /**
-        @version NIIEngine 3.0.0
-        */
-        static const EventID EventCount;
-    public:
+        
         /// @copydetails SignalJoyPadControlItem::onSlipSlider
         virtual void onSlipSlider(const JoyStickControlSliderArgs * args);
 
@@ -193,7 +152,7 @@ namespace NII_MEDIA
     /** 游戏手把类型控制器
     @version NIIEngine 3.0.0
     */
-    class _EngineAPI JoyHandleControlItem : public JoyStickControlItem
+    class _EngineAPI JoyHandleControlItem : public JoyPadControlItem
     {
     public:
         JoyHandleControlItem() {}

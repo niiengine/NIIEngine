@@ -31,13 +31,14 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 #include "NiiPreInclude.h"
 #include "NiiControlPattern.h"
 #include "NiiJoyDevEffect.h"
+#include "NiiPovDirection.h"
 
 namespace NII
 {
 namespace NII_MEDIA
 {
     /** 游戏手柄类控制器
-    @remark 这也仅仅是描述手柄,不包含飞机遥杆概念
+    @remark 这也仅仅是描述标准手柄,不包含飞机遥杆概念
     @note 
         由于大多系统内核读取手柄记录是以队列缓存的,所以为了更好的设计编程模块不应该
         再使用队列缓存模式
@@ -48,6 +49,8 @@ namespace NII_MEDIA
     public:
         typedef vector<Nui32>::type Buttons;
         typedef vector<Ni32>::type Axes;
+        typedef vector<PovType>::type Povs;
+        typedef vector<Vector2<NIIi> >::type Sliders;
     public:
         /** 应用控制效果
         @remark 同步设置
@@ -113,6 +116,33 @@ namespace NII_MEDIA
         @version NIIEngine 3.0.0
         */
         void twist(Nui8 axis);
+        
+        /** 滑动划块
+        @remark 这个方法引发划块事件
+        @param[in] slider 划块索引
+        @param[in] x 横轴方向数值
+        @param[in] y 纵轴方向数值
+        */
+        void slip(Nui8 slider, NIIi x, NIIi y);
+
+        /** 滑动划块
+        @remark 这个方法引发划块事件,使用最近一次设置的数据缓存
+        @param[in] slider 划块索引
+        */
+        void slip(Nui8 slider);
+
+        /** 推动摇杆键
+        @remark 这个方法引发摇杆键事件
+        @param[in] pov 摇杆键索引
+        @param[in] dir 方向类型
+        */
+        void push(Nui8 pov, PovType dir);
+
+        /** 推动摇杆键
+        @remark 这个方法引发摇杆键事件,使用最近一次设置的数据缓存
+        @param[in] pov 摇杆键索引
+        */
+        void push(Nui32 pov);
 
         /** 设置按键数量
         @remark 这个方法内部使用
@@ -124,7 +154,7 @@ namespace NII_MEDIA
         /** 获取按键数量
         @version NIIEngine 3.0.0
         */
-        NCount getButtonCount() const;
+        inline NCount getButtonCount() const            { return mButtonCount; }
 
         /** 设置方向摇杆数量
         @remark 这个方法内部使用
@@ -136,7 +166,27 @@ namespace NII_MEDIA
         /** 获取方向摇杆数量
         @version NIIEngine 3.0.0
         */
-        NCount getAxisCount() const;
+        inline NCount getAxisCount() const              { return mAxisBuffer.size(); }
+
+        /** 设置按纽摇杆数量
+        @version NIIEngine 3.0.0
+        */
+        void setPovCount(NCount num);
+
+        /** 获取按纽摇帽数量
+        @version NIIEngine 3.0.0
+        */
+        inline NCount getPovCount() const               { return mPovBuffer.size(); }
+
+        /** 设置划块数量
+        @version NIIEngine 3.0.0
+        */
+        void setSliderCount(NCount num);
+
+        /** 获取划块数量
+        @version NIIEngine 3.0.0
+        */
+        inline NCount getSliderCount() const            { return mSliderBuffer.size(); }
 
         /// @copydetails ControlPattern::apply
         void apply(ControlItem * item);
@@ -150,9 +200,11 @@ namespace NII_MEDIA
         static const NIIi MIN_AXIS;
         static const NIIi MAX_AXIS;
     protected:
-        Buttons mButtonBuffer;            ///< 按件缓存
+        Buttons mButtonBuffer;          ///< 按件缓存
         NCount mButtonCount;            ///< 按件数量
-        Axes mAxisBuffer;                ///< 摇杆缓存
+        Axes mAxisBuffer;               ///< 摇杆缓存
+        Povs mPovBuffer;                ///< 摇杆键缓存
+        Sliders mSliderBuffer;          ///< 划块缓存
         JoyPadControlItem * mTarget;    ///< 当前对焦的控制单元
     };
 
