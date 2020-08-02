@@ -40,12 +40,12 @@ namespace NII
     public:
         PhysicalScope();
         virtual ~PhysicalScope();
-        
+
         /**
         @version NIIEngine 4.0.0
         */
         void add(PhysicalObj * obj, bool exclude = false);
-        
+
         /**
         @version NIIEngine 4.0.0
         */
@@ -63,11 +63,21 @@ namespace NII
     public:
         PhysicalObj();
         virtual ~PhysicalObj();
-        
+
         /**
         @version NIIEngine 4.0.0
         */
-        void add(PhysicalCom * obj);
+        inline void setGroupMark(Ni32 mark) const       { mGroupMark = mark;}
+
+        /**
+        @version NIIEngine 4.0.0
+        */
+        inline Ni32 getGroupMark() const                { return mGroupMark;}
+
+        /**
+        @version NIIEngine 4.0.0
+        */
+        void add(PhysicalCom * obj, Ni32 groupmark = 0xFFFFFFFF);
         
         /**
         @version NIIEngine 4.0.0
@@ -108,32 +118,32 @@ namespace NII
         @version NIIEngine 4.0.0
         */
         inline Ni32 getDensity() const                  { return mDensity; }
-        
-        /**
+
+        /** 
         @version NIIEngine 4.0.0
         */
         inline setOuterAABox(const AABox & aab)         { mOuterAABox = aab;} 
-        
+
         /**
         @version NIIEngine 4.0.0
         */
         inline const AABox & getOuterAABB() const       { return mOuterAABox; }
-        
+
         /** 主体
         @version NIIEngine 4.0.0
         */
         inline void setPrimary(SpaceObj * obj)          { mSpaceObj = obj; }
-        
+
         /** 主体
         @version NIIEngine 4.0.0
         */
         inline SpaceObj * getPrimary() const            { return mSpaceObj; }
-        
+
         /** 辅体(预示体)
         @version NIIEngine 4.0.0
         */
         inline void setSecond(SpaceObj * obj)           { mSecondObj = obj; }
-        
+
         /** 辅体(预示体)
         @version NIIEngine 4.0.0
         */
@@ -143,15 +153,21 @@ namespace NII
         @version NIIEngine 4.0.0
         */
         virtual void onOuterAABoxEnter(const EventArg * arg);
-        
+
         /**
         @version NIIEngine 4.0.0
         */
         virtual void onOuterAABoxLeave(const EventArg * arg);
+
+        /**
+        @version NIIEngine 4.0.0
+        */
+        virtual void onCollision(const EventArg * arg);
     private:
         PhysicalComList mPhysicalComList;
         NIIf mFriction;
         Ni32 mDensity;
+        Ni32 mGroupMark;
         AABox mOuterAABox;
         SpaceObj * mSpaceObj;
         SpaceObj * mSecondObj;

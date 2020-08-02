@@ -37,13 +37,13 @@ namespace NII
     /** 转换着色程序
     @version NIIEngine 3.0.0
     */
-    class _EngineAPI AlterGpuProgram : public HighLevelGpuProgram
+    class _EngineAPI ProxyGpuProgram : public HighLevelGpuProgram
     {
     public:
-        AlterGpuProgram(ResourceID rid, GroupID gid,
+        ProxyGpuProgram(ResourceID rid, GroupID gid,
             ResLoadScheme * ls = 0, ResResultScheme * rs = 0, LangID lid = N_PrimaryLang);
 
-        ~AlterGpuProgram();
+        ~ProxyGpuProgram();
 
         /** 添加备用着色程序
         @version NIIEngine 3.0.0

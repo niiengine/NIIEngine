@@ -92,6 +92,7 @@ namespace NII
     typedef Nid KeyFrameTrackID;
     typedef Nid SkeletonID;
     typedef Nid GpuProgramID;
+    typedef Nid ApuProgramID;
     typedef Nid EventID;
     typedef Nid ResourceID;
     typedef Nid PatternID;

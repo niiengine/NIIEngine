@@ -41,6 +41,16 @@ namespace NII
         PhysicalGroup(SpaceManager * space);
         ~PhysicalGroup();
         
+        /**
+        @version NIIEngine 4.0.0
+        */
+        inline void setGroup(GroupID gid)                   { mGroup = gid;}
+        
+        /**
+        @version NIIEngine 4.0.0
+        */
+        inline GroupID getGroupID() const                   { return mGroup;}
+        
         /** 更新
         @version NIIEngine 4.0.0
         */
@@ -85,6 +95,7 @@ namespace NII
         PhysicalObjList mPhysicalObjList;
         Vector3f mGravity;
         NCount mStep;
+        GroupID mGroup;
     };
 }
 
