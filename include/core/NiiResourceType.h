@@ -53,6 +53,7 @@ namespace NII
         RT_GpuProgram = 12,
         RT_HighLevelGpuProgram = 13,
         RT_FrameFilter = 14,
+        RT_ApuProgram = 15,
         RT_Mesh_Ext_3ds,
         RT_Mesh_Ext_ac,
         RT_Mesh_Ext_ase,

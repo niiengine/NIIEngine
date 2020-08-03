@@ -25,8 +25,8 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 ------------------------------------------------------------------------------
 */
 
-#ifndef _NII_GPU_PARAM_BIND_H_
-#define _NII_GPU_PARAM_BIND_H_
+#ifndef _NII_GPU_PARAMMAP_H_
+#define _NII_GPU_PARAMMAP_H_
 
 #include "NiiPreInclude.h"
 #include "NiiGpuParamDefine.h"

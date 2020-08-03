@@ -103,11 +103,13 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 #define N_CmdObj_FrameWindow                       74
 #define N_CmdObj_DefaultWindow                     75
 #define N_CmdObj_Container                         76
-
+#define N_CmdObj_GpuProgram                        55
 #define N_CmdObj_GLGpuProgram                      77
 #define N_CmdObj_GLSLProgram                       78
 
 #define N_CmdObj_AlterGpuProgram                   100
+
+#define N_CmdObj_ApuProgram                        200
 
 #define N_CmdObj_UIPixelGrid                       201
 

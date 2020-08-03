@@ -45,6 +45,30 @@ namespace NII
     };
     typedef NIIi ApuLanguageMark;
 
+    /** 执行监听器
+    @version NIIEngine 4.0.0
+    */
+    class _EngineAPI ApuProgramListener
+    {
+    public:
+        virtual ~ApuProgramListener();
+
+        /** 当处理开始时触发
+        @version NIIEngine 4.0.0
+        */
+        virtual void onProcessBengin() {}
+
+        /** 当处理完成时触发
+        @version NIIEngine 4.0.0
+        */
+        virtual void onProcessInterrupt() {}
+
+        /** 当处理完成时触发
+        @version NIIEngine 4.0.0
+        */
+        virtual void onProcessEnd() {}
+    };
+
     /** 加速程序
     @version NIIEngine 4.0.0
     */
@@ -56,7 +80,7 @@ namespace NII
         */
         ApuProgram(ResourceID rid, GroupID gid,
             ResLoadScheme * ls = 0, ResResultScheme * rs = 0, 
-            ScriptTypeID stid = N_CmdObj_GpuProgram, LangID lid = N_PrimaryLang);
+            ScriptTypeID stid = N_CmdObj_ApuProgram, LangID lid = N_PrimaryLang);
 
         virtual ~ApuProgram();
 
@@ -69,24 +93,24 @@ namespace NII
         /** 获取错误代码
         @version NIIEngine 4.0.0
         */
-        inline Nui32 getErrorCode() const{ return mErrorCode; }
+        inline Nui32 getErrorCode() const               { return mErrorCode; }
 
         /** 设置语法类型
         @version NIIEngine 4.0.0
         */
-        inline void setSyntaxType(ApuLanguage sl){ mSyntax = sl; }
+        inline void setSyntaxType(ApuLanguage sl)       { mSyntax = sl; }
 
         /** 获取语法类型
         @version NIIEngine 4.0.0
         */
-        inline ApuLanguage getSyntaxType() const{ return mSyntax; }
+        inline ApuLanguage getSyntaxType() const        { return mSyntax; }
 
         /** 为这个着色程序,设置资源汇编的来源文件
         @remark 设置这个没有效果直到(重新)加载这个程序
         @version NIIEngine 4.0.0
         */
         void setProgramSrc(const String & file);
-        
+
         /** 设置代码串
         @version NIIEngine 4.0.0
         */
@@ -111,41 +135,6 @@ namespace NII
         @version NIIEngine 4.0.0
         */
         inline const VString & getKernel() const        { return mKernel; }
-
-        /** 设置自定义程序参数
-        @version NIIEngine 4.0.0
-        */
-        virtual void setParamDef(const ApuParamDefine & o);
-
-        /** 获取自定义程序参数
-        @version NIIEngine 4.0.0
-        */
-        virtual const ApuParamDefine & getParamDef() const;
-
-        /** 设置自定义程序参数导入文件
-        @version NIIEngine 4.0.0
-        */
-        virtual void setParamDefSrc(const String & file);
-
-        /** 获取自定义程序参数导入文件
-        @version NIIEngine 4.0.0
-        */
-        virtual const String & getParamDefSrc() const;
-
-        /** 创建兼容的程序参数
-        @version NIIEngine 4.0.0
-        */
-        virtual ApuProgramParam * createParam();
-
-        /** 创建内部兼容的程序参数
-        @version NIIEngine 4.0.0
-        */
-        virtual ApuProgramParam * createDefaultParam();
-
-        /** 获取内部兼容的程序参数
-        @version NIIEngine 4.0.0
-        */
-        virtual ApuProgramParam * getDefaultParam() const;
     protected:
         /// @copydoc Resource::loadImpl
         void loadImpl();
@@ -161,26 +150,17 @@ namespace NII
         */
         virtual void loadCodeImpl(const VString & code) = 0;
 
-        /** 创建参数值
-        @version NIIEngine 4.0.0
-        */
-        void createParamMap();
-
         /** 系统是否支持
         @version NIIEngine 4.0.0
         */
         bool isSysSupport() const;
     protected:
-        ShaderType mType;
         ApuProgramID mID;
-        ShaderLanguage mSyntax;
+        ApuLanguage mSyntax;
         String mFile;
-        String mParamDefFile;
         VString mKernel;
         VString mSource;
         Nui32 mErrorCode;
-        ApuParamDefine * mDefines;
-        GpuParamMap * mBindMap;
         ApuProgramParam * mParams;
         bool mParamValid;
         bool mProgramSrcValid;
