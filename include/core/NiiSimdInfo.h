@@ -68,22 +68,38 @@ namespace NII
 #endif
             CS_NONE        = 0
         };
-        
+    public:
         SimdInfo();
-        virtual ~SimdInfo();
 
         /** 获取CPU的标识
         @remark CPU的型号,性能描述
         */
-        const String & getIdentifier(void);
+        inline const String & getIdentifier() const { return mCpuName; }
 
         /** 检测CPU是否支持指定并行算术
         @return 如果支持则返回true.
         */
         bool isSupport(CpuSimd type);
     protected:
-        String mCpuName;    ///< cpu名字
-        Nui32 mCpuMark;     ///< 内部支持的掩码
+        String mCpuName;
+        Nui32 mCpuMark;
     };
+
+    /**
+    @version NIIEngine 4.0.0
+    */
+    class _EngineInner ApuInfo : public CPUAlloc
+    {
+        friend class SimdManager;
+    public:
+        ApuInfo();
+
+        inline const String & getIdentifier() const { return mPlatformName; }
+    protected:
+        String mPlatformName;
+        Nui32 mDeviceCount;
+    };
+
+    typedef vector<ApuInfo *>::type ApuInfoList;
 }
 #endif

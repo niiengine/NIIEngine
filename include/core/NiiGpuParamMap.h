@@ -55,7 +55,7 @@ namespace NII
     struct _EngineAPI GpuSParamIndex
     {
     public:
-        GpuSParamIndex(GpuSyncParam type, Nidx memidx, NIIi input, Nmark mark, NCount count = 4):
+        GpuSParamIndex(GpuSyncParam type, Nidx memidx, Ni32 input, Nmark mark, NCount count = 4):
             mSyncParam(type), mMemIndex(memidx), mTypeMark(mark), mInputInt(input), mUnitCount(count){}
 
         GpuSParamIndex(GpuSyncParam type, Nidx memidx, NIIf input, Nmark mark, NCount count = 4):
@@ -67,7 +67,7 @@ namespace NII
         NCount mUnitCount;
         union
         {
-            NIIi mInputInt;
+            Ni32 mInputInt;
             NIIf mInputFloat;
         };
     };

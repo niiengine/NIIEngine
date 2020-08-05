@@ -90,7 +90,7 @@ namespace NII
         @param[in] index 定义索引
         @version NIIEngine 3.0.0
         */
-        void set(Nui32 index, NIIi in, NIIi in2 = 0, NIIi in3 = 0, NIIi in4 = 0);
+        void set(Nui32 index, Ni32 in, Ni32 in2 = 0, Ni32 in3 = 0, Ni32 in4 = 0);
 
         /** 设置参数值
         @param[in] index 定义索引
@@ -126,7 +126,7 @@ namespace NII
         @param[in] index 定义索引
         @version NIIEngine 3.0.0
         */
-        void set(Nui32 index, const NIIi * in, NCount cnt4x);
+        void set(Nui32 index, const Ni32 * in, NCount cnt4x);
 
         /** 设置参数值
         @param[in] index 定义索引
@@ -149,12 +149,12 @@ namespace NII
         /** 设置扩展数据
         @version NIIEngien 5.0.0
         */
-        void setExtData(Nui32 index, NIIi ext);
+        void setExtData(Nui32 index, Ni32 ext);
 
         /** 获取扩展数据
         @version NIIEngine 5.0.0
         */
-        bool getExtData(Nui32 index, NIIi & ext) const;
+        bool getExtData(Nui32 index, Ni32 & ext) const;
 
         /** 设置参数值
         @param[in] name 命名参数
@@ -166,7 +166,7 @@ namespace NII
         @param[in] name 命名参数
         @version NIIEngine 3.0.0
         */
-        void set(const VString & name, NIIi in);
+        void set(const VString & name, Ni32 in);
 
         /** 设置参数值
         @param[in] name 命名参数
@@ -213,7 +213,7 @@ namespace NII
         /** 设置参数值
         @version NIIEngine 3.0.0
         */
-        void set(const VString & name, const NIIi * in, NCount count, NCount size = 4);
+        void set(const VString & name, const Ni32 * in, NCount count, NCount size = 4);
 
         /** 写入缓存数据
         @param[in] memidx 缓存存储索引
@@ -225,7 +225,7 @@ namespace NII
         @param[in] memidx 缓存存储索引
         @version NIIEngine 3.0.0 高级api
         */
-        inline void _write(Nidx memidx, NIIi in){ _write(memidx, &in, 1); }
+        inline void _write(Nidx memidx, Ni32 in){ _write(memidx, &in, 1); }
 
         /** 写入缓存数据
         @param[in] memidx 缓存存储索引
@@ -299,21 +299,21 @@ namespace NII
         @param[in] memidx 缓存存储索引
         @version NIIEngine 3.0.0 高级api
         */
-        inline void _write(Nidx memidx, const NIIi * in, NCount count){
-            N_assert(memidx + count <= mIntData.size(), "error"); memcpy(&mIntData[memidx], in, sizeof(NIIi) * count); }
+        inline void _write(Nidx memidx, const Ni32 * in, NCount count){
+            N_assert(memidx + count <= mIntData.size(), "error"); memcpy(&mIntData[memidx], in, sizeof(Ni32) * count); }
 
         /** 读取缓存数据
         @param[in] memidx 缓存存储索引
         @version NIIEngine 3.0.0 高级api
         */
-        inline void _read(Nidx memidx, NCount count, NIIi * out){
-            N_assert(memidx + count <= mIntData.size(), "error"); memcpy(out, &mIntData[memidx], sizeof(NIIi) * count); }
+        inline void _read(Nidx memidx, NCount count, Ni32 * out){
+            N_assert(memidx + count <= mIntData.size(), "error"); memcpy(out, &mIntData[memidx], sizeof(Ni32) * count); }
 
         /** 设置同步参数
         @param[in] index
         @version NIIEngine 3.0.0
         */
-        void set(Nui32 index, GpuSyncParam type, NIIi ext = 0);
+        void set(Nui32 index, GpuSyncParam type, Ni32 ext = 0);
 
         /** 设置同步参数
         @version NIIEngine 3.0.0
@@ -324,7 +324,7 @@ namespace NII
         @param[in] name 参数的名字
         @version NIIEngine 3.0.0
         */
-        void set(const VString & name, GpuSyncParam type, NIIi ext = 0);
+        void set(const VString & name, GpuSyncParam type, Ni32 ext = 0);
 
         /** 设置同步参数
         @param[in] name 参数的名字
@@ -335,7 +335,7 @@ namespace NII
         /** 设置同步参数
         @version NIIEngine 3.0.0 高级api
         */
-        void _set(Nidx memidx, GpuSyncParam type, NIIi input, Nmark mark, NCount size = 4);
+        void _set(Nidx memidx, GpuSyncParam type, Ni32 input, Nmark mark, NCount size = 4);
 
         /** 设置同步参数
         @version NIIEngine 3.0.0 高级api
@@ -528,7 +528,7 @@ namespace NII
         */
         inline const DoubleArray & getDoubleData() const{ return mDoubleData; }
 
-        /** 获取NIIi常量列表的引用
+        /** 获取Ni32常量列表的引用
         @version NIIEngine 3.0.0 高级api
         */
         inline const IntArray & getIntData() const { return mIntData; }
@@ -546,7 +546,7 @@ namespace NII
         /** 获取整数缓存
         @version NIIEngine 3.0.0 高级api
         */
-        inline NIIi * getIntData(Nidx pos) const{ return &mIntData[pos]; }
+        inline Ni32 * getIntData(Nidx pos) const{ return &mIntData[pos]; }
 
         /** 获取Gpu数据类型大小
         @version NIIEngine 3.0.0
@@ -574,7 +574,7 @@ namespace NII
         Nmark getParamTypeMark(GpuSyncParam sparam);
     protected:
         typedef vector<ShareParamSync *>::type ShareSyncList;
-        typedef map<Nui32, NIIi>::type ExtDataList;
+        typedef map<Nui32, Ni32>::type ExtDataList;
     protected:
         GpuParamDefine * mParamDefine;
         GpuParamMap * mParamMap;
@@ -591,5 +591,25 @@ namespace NII
         bool mTransposeMatrix;
         bool mAllowParamLost;
     };
+
+    inline void GpuProgramParam::set(Nui32 index, NIIf in, NIIf in2, NIIf in3, NIIf in4)
+    {
+        NIIf temp[4] = { in, in2, in3, in4 }; set(index, temp, 1);
+    }
+
+    inline void GpuProgramParam::set(Nui32 index, NIId in, NIId in2, NIId in3, NIId in4)
+    {
+        NIId temp[4] = { in, in2, in3, in4 }; set(index, temp, 1);
+    }
+
+    inline void GpuProgramParam::set(Nui32 index, Ni32 in, Ni32 in2, Ni32 in3, Ni32 in4)
+    {
+        Ni32 temp[4] = { in, in2, in3, in4 }; set(index, temp, 1);
+    }
+
+    inline void GpuProgramParam::set(Nui32 index, const Vector3f & in)
+    {
+        NIIf temp[4] = { in.x, in.y, in.z, 1.0f }; set(index, temp, 1);
+    }
 }
 #endif

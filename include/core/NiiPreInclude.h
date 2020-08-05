@@ -168,6 +168,9 @@ namespace NII
     class ColourArea;
     class GpuProgram;
     class GpuProgramManager;
+    class ApuProgram;
+    class ApuParamMap;
+    class ApuProgramParam;
     class ControlItemManager;
     class IndexBuffer;
     class UniformBuffer;

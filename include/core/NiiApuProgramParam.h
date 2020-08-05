@@ -1,4 +1,4 @@
-/*
+ï»¿/*
 -----------------------------------------------------------------------------
 A
      __      _   _   _   ______
@@ -25,86 +25,68 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 ------------------------------------------------------------------------------
 */
 
-#ifndef _NII_APU_PARAMMap_H_
-#define _NII_APU_PARAMMap_H_
+#ifndef _NII_APU_PROGRAMPARAM_H_
+#define _NII_APU_PROGRAMPARAM_H_
 
 #include "NiiPreInclude.h"
+#include "NiiApuParamMap.h"
 
 namespace NII
 {
-    /** ¼ÓËÙ²ÎÊıÄÚ´æ°ó¶¨
+    /** ç€è‰²ç¨‹åºå‚æ•°
     @version NIIEngine 4.0.0
     */
-    class _EngineAPI ApuParamMap : public GpuParamsAlloc
+    class _EngineAPI ApuProgramParam : public GpuParamsAlloc
     {
     public:
-        /**
+        ApuProgramParam();
+        ApuProgramParam(const ApuProgramParam & o);
+        ~ApuProgramParam();
+
+        ApuProgramParam & operator=(const ApuProgramParam & o);
+
+        /** å½“å‰å‚æ•°æ˜¯å¦æœ‰æ•ˆ
         @version NIIEngine 4.0.0
         */
-        enum Type
-        {
-            T_Read,
-            T_Write,
-            T_Copy,
-            T_Ref,
-            T_Host
-        };
+        bool isValid() const;
 
-        /**
+        /** è®¾ç½®å‚æ•°ç»‘å®š
+        @version NIIEngine 4.0.0 é«˜çº§api
+        */
+        inline void setMap(ApuParamMap * map)       { mParamMap = map; }
+
+        /** è·å–å‚æ•°ç»‘å®š
+        @version NIIEngine 4.0.0 é«˜çº§api
+        */
+        inline const ApuParamMap * getMap() const   { return mParamMap; }
+
+        /** é»˜è®¤å‚æ•°æ˜¯å¦å­˜åœ¨
         @version NIIEngine 4.0.0
         */
-        enum OPType
-        {
-            OT_Read,
-            OT_Write,
-            OT_Whole
-        };
+        bool addDefault(Nidx idx, Nmark tmark, void * src, NCount size) const;
 
-        typedef struct Unit
-        {
-            void * mSrc;
-            Type mType;
-            OPType mMutex;
-            NCount mSize;
-        } Unit;
-        typedef map<Nidx, Unit>::type UnitList;
-    public:
-        ApuParamMap();
-        ~ApuParamMap();
-
-        /** °ó¶¨»º´æ
-        @param[in] idx ²ÎÊıÕ»Ë÷Òı
+        /** é»˜è®¤å‚æ•°æ˜¯å¦å­˜åœ¨
         @version NIIEngine 4.0.0
         */
-        bool bind(Nidx idx, Nmark tmark, void * src, NCount size);
+        bool isDefaultExist(Nidx idx) const;
 
-        /** Ó³Éä»º´æ
-        @note ¿ÉÄÜµ±bindº¯Êıº¬ÓĞT_Ref·ÇT_Copy,²¢ÇÒÊôÓÚÍ¬Ò»²Ù×÷ÌåÏµÆ½Ì¨,Ôò¿ÉÄÜÓëÔ´Ö¸ÕëÏàÍ¬
+        /** ç§»å»é»˜è®¤å‚æ•°
         @version NIIEngine 4.0.0
         */
-        void * lock(Nidx idx, NCount oft, NCount size);
+        void removeDefault(Nidx idx);
 
-        /** ½â³ıÓ³Éä
+        /** ç§»å»æ‰€æœ‰é»˜è®¤å‚æ•°
         @version NIIEngine 4.0.0
         */
-        void unlock(Nidx idx);
+        void removeAllDefault();
 
-        /** ¶ÁÈ¡
+        /** å¤åˆ¶æ‰€æœ‰é»˜è®¤å‚æ•°
         @version NIIEngine 4.0.0
         */
-        void read(Nidx idx, NCount oft, NCount size, void * out) const;
-
-        /** Ğ´Èë
-        @version NIIEngine 4.0.0
-        */
-        void write(Nidx idx, NCount oft, NCount size, const void * in);
-
-        /** Ğ´Èë
-        @version NIIEngine 4.0.0
-        */
-        inline const UnitList & getUnitList() const { return mUnitList; }
+        void copyDefault(const ApuProgramParam & src);
     protected:
-        UnitList mUnitList;
+        ApuParamMap * mParamMap;
+        ApuParamMap::UnitList mShareSyncList;
     };
 }
 #endif

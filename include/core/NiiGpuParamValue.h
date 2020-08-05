@@ -45,7 +45,7 @@ namespace NII
         /** 集合名字
         @version NIIEngine 3.0.0
         */
-        inline const String & getName(){ return mName; }
+        inline const String & getName()             { return mName; }
 
         /** 添加变量
         @version NIIEngine 3.0.0
@@ -70,7 +70,7 @@ namespace NII
         /** 设置数据
         @version NIIEngine 3.0.0
         */
-        inline void set(const VString & name, NIIi in){ set(name, &in, 1); }
+        inline void set(const VString & name, Ni32 in){ set(name, &in, 1); }
 
         /** 设置数据
         @version NIIEngine 3.0.0
@@ -100,47 +100,47 @@ namespace NII
         /** 设置数据
         @version NIIEngine 3.0.0
         */
-        void set(const VString & name, const NIIi * in, NCount count);
+        void set(const VString & name, const Ni32 * in, NCount cnt);
 
         /** 设置数据
         @version NIIEngine 3.0.0
         */
-        void set(const VString & name, const NIIf * in, NCount count);
+        void set(const VString & name, const NIIf * in, NCount cnt);
 
         /** 设置数据
         @version NIIEngine 3.0.0
         */
-        void set(const VString & name, const NIId * in, NCount count);
+        void set(const VString & name, const NIId * in, NCount cnt);
 
         /** 设置数据
         @version NIIEngine 3.0.0
         */
-        void set(const VString & name, const Matrix4f * in, NCount count);
+        inline void set(const VString & name, const Matrix4f * in, NCount cnt){ set(name, in[0][0], 16 * cnt); }
 
         /** 获取定义列表
         @version NIIEngine 3.0.0 高级api
         */
-        inline const GpuParamUnitList & getDefList() const{ return mDefines; }
+        inline const GpuParamUnitList & getDefList() const          { return mDefines; }
 
         /** 获取状态掩码
         @version NIIEngine 3.0.0
         */
-        inline Nul getStateMark() const{ return mDirtyMark; }
+        inline Nul getStateMark() const                             { return mDirtyMark; }
 
         /** 获取浮点部分数据
         @version NIIEngine 3.0.0
         */
-        inline NIIf * getFloatData(NCount pos) const{ return &mFloatData[pos];}
+        inline NIIf * getFloatData(NCount pos) const                { return &mFloatData[pos];}
 
         /** 获取整形部分数据
         @version NIIEngine 3.0.0
         */
-        inline NIId * getDoubleData(NCount pos) const{ return &mDoubleData[pos]; }
+        inline NIId * getDoubleData(NCount pos) const               { return &mDoubleData[pos]; }
 
         /** 获取整形部分数据
         @version NIIEngine 3.0.0
         */
-        inline NIIi * getIntData(NCount pos) const { return &mIntData[pos]; }
+        inline Ni32 * getIntData(NCount pos) const                  { return &mIntData[pos]; }
     protected:
         String mName;
         GpuParamUnitList mDefines;

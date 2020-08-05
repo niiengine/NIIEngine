@@ -90,6 +90,11 @@ namespace NII
         */
         virtual bool isValid() const;
 
+        /** 执行程序
+        @version NIIEngine 4.0.0
+        */
+        bool run();
+
         /** 获取错误代码
         @version NIIEngine 4.0.0
         */

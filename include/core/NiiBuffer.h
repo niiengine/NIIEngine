@@ -83,7 +83,7 @@ namespace NII
             */
             M_THREAD = 0x40,
 
-            /** 同步CPU->GPU缓存
+            /** 同步CPU->GPU(APU)缓存
             @version NIIEngine 3.0.0
             */
             M_SYN = 0x80,
@@ -251,12 +251,12 @@ namespace NII
         @param[in] mode Buffer::Mode选项
         @version NIIEngine 3.0.0
         */
-        bool isSupport(Mode m);
+        inline bool isSupport(Mode m)   { return mMark & m; }
 
         /** 缓存是否处于锁定状态
         @version NIIEngine 3.0.0
         */
-        bool isMute() const;
+        inline bool isMute() const      { return (mMark & M_LOCK) || (mShadow && mShadow->isMute()); }
 
         /** 锁定整个缓冲区(可)读/写
         @param[in] mm MuteMode/复合选项
