@@ -40,8 +40,7 @@ namespace NII
     /** 并行处理管理器
     @version NIIEngine 4.0.0
     */
-    class _EngineAPI SimdManager : public Singleton<SimdManager>, public ResourceManager, public BufferManager,
-        public CPUAlloc
+    class _EngineAPI SimdManager : public Singleton<SimdManager>, public ResourceManager, public BufferManager
     {
     public:
         enum Type
@@ -59,7 +58,7 @@ namespace NII
         /** 是否支持指定语法
         @version NIIEngine 4.0.0
         */
-        virtual bool isSupport(ApuLanguage sl) const;
+        virtual bool isSupport(ApuLanguage al) const;
 
         /** 是否支持指定语法码
         @version NIIEngine 4.0.0
@@ -72,7 +71,7 @@ namespace NII
         @param[in] mode 一般情况使用 Buffer::M_GPU | M_WRITE, 如果写入则应包含 M_WRITE 或 M_CPU
         @version NIIEngine 3.0.0
         */
-        virtual void create(ApuBuffer *& out, NCount size, NCount count, Nmark mode);
+        virtual void create(ApuBuffer *& out, ApuLanguage al, NCount size, NCount count, Nmark mode);
 
         /** 删除加速缓存
         @version NIIEngine 3.0.0

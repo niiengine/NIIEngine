@@ -30,10 +30,20 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 
 #include "NiiPreInclude.h"
 #include "NiiBuffer.h"
-#include "NiiApuProgram.h"
 
 namespace NII
 {
+    /** 加速程序语法标准
+    @version NIIEngine 4.0.0
+    */
+    enum ApuLanguage
+    {
+        ApuL_Unknow = 0,
+        ApuL_OPENCL = 0x1,
+        ApuL_CUDA = 0x2
+    };
+    typedef NIIi ApuLanguageMark;
+
     /** Apu缓存
     @version NIIEngine 3.0.0
     */
@@ -58,6 +68,7 @@ namespace NII
     protected:
         NCount mUnitCount;
         NCount mUnitSize;
+        ApuLanguage mType;
     };
 }
 #endif

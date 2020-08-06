@@ -99,7 +99,7 @@ namespace NII
         */
         void write(Nidx idx, NCount oft, NCount size, const void * in);
 
-        /** 写入
+        /** 获取列表
         @version NIIEngine 4.0.0
         */
         inline const UnitList & getUnitList() const { return mUnitList; }
