@@ -65,7 +65,7 @@ namespace NII
         inline NCount getUnitSize() const{ return mUnitSize; }
 
         /// @copydetails Buffer::clone()
-        Buffer * clone(Nmark m = Buffer::M_WRITE | Buffer::M_WHOLE | Buffer::M_CPU) const;
+        Buffer * clone(Nmark m = M_WRITE | M_WHOLE | M_CPU) const;
     protected:
         NCount mUnitCount;
         NCount mUnitSize;
@@ -116,7 +116,7 @@ namespace NII
         inline NCount getInstancingOffset() const{ return mInstancingOffset; }
         
         /// @copydetails Buffer::clone
-        Buffer * clone(Nmark m = Buffer::M_WRITE | Buffer::M_WHOLE | Buffer::M_CPU) const;
+        Buffer * clone(Nmark m = M_WRITE | M_WHOLE | M_CPU) const;
     protected:
         NCount mUnitCount;
         NCount mUnitSize;
@@ -135,7 +135,7 @@ namespace NII
         ~CounterBuffer();
         
         /// @copydetails Buffer::clone()
-        Buffer * clone(Nmark m = Buffer::M_WRITE | Buffer::M_WHOLE | Buffer::M_CPU) const;
+        Buffer * clone(Nmark m = M_WRITE | M_WHOLE | M_CPU) const;
     };
     
     /** 片块缓存
@@ -148,7 +148,7 @@ namespace NII
         ~UniformBuffer();
 
         /// @copydetails Buffer::clone
-        Buffer * clone(Nmark m = Buffer::M_WRITE | Buffer::M_WHOLE | Buffer::M_CPU) const;
+        Buffer * clone(Nmark m = M_WRITE | M_WHOLE | M_CPU) const;
     };
     
     /** 帧缓存
@@ -261,13 +261,6 @@ namespace NII
     class _EngineAPI GpuBuffer : public Buffer
     {
     public:
-        enum UnitType
-        {
-            UT_Pre,
-            UT_Next,
-            UT_Current
-        };
-
         enum LockType
         {
             LT_Unlock,
@@ -285,12 +278,12 @@ namespace NII
         /**
         @version NIIEngine 5.0.0
         */
-        void * lock(Nidx unitBegin, NCount unitCnt, UnitType type);
+        void * lock(NCount oft, NCount size);
 
         /**
         @version NIIEngine 5.0.0
         */
-        void unlock(UnlockType type, Nidx unitBegin, NCount unitCnt);
+        void unlock(UnlockType type, NCount oft, NCount size);
 
         /**
         @version NIIEngine 5.0.0

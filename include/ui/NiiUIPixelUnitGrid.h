@@ -145,6 +145,9 @@ namespace UI
         */
         inline const ColourArea & getColour() const     { return mColour; }
         
+        /**
+        @version NIIEngine 3.0.0
+        */
         virtual PixelUnitGrid parse(const String & text, const Font * font, const ColourArea * colour);
     protected:
         FontID mFont;    

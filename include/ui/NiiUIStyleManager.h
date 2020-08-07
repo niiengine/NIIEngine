@@ -107,8 +107,8 @@ namespace NII
         static const Colour DefaultTextColour;
         static const Colour DefaultSelectionColour;
                 
-        static EffectTextView gDefaultTextView;
-        static TextView gNormalTextView;
+        static EffectTextView * gDefaultTextView;
+        static TextView * gNormalTextView;
     private:
         static GroupID ResourceGroup;
         StyleList mStyleList;

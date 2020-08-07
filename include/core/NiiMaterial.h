@@ -96,12 +96,12 @@ namespace NII
         /** 获取合成效果数量
         @version NIIEngine 3.0.0
         */
-        NCount getCount() const;
+        inline NCount getCount() const      { return mFusions.size();  }
 
         /** 检索支持混合数目
         @version NIIEngine 3.0.0
         */
-        NCount getValidCount() const;
+        inline NCount getValidCount() const { return mValidFusions.size();  }
 
         /** 获取LOD混合
         @param[in] obj
@@ -113,12 +113,12 @@ namespace NII
         /** 获取混合列表
         @version NIIEngine 3.0.0
         */
-        const ShaderFusionList & getList() const;
+        inline const ShaderFusionList & getList() const         { return mFusions;  }
 
         /** 获取有效的混合列表
         @version NIIEngine 3.0.0
         */
-        const ShaderFusionList & getValidList() const;
+        inline const ShaderFusionList & getValidList() const    { return mValidFusions;  }
 
         /** 设置这个材质的LOD策略
         @version NIIEngine 3.0.0
@@ -128,7 +128,7 @@ namespace NII
         /** 获取这个材质的LOD策略
         @version NIIEngine 3.0.0
         */
-        MaterialLodScheme * getLodScheme() const;
+        inline MaterialLodScheme * getLodScheme() const         { return mLodScheme;  }
 
         /** 获取指定方案的LOD数量
         @version NIIEngine 3.0.0
@@ -230,6 +230,24 @@ namespace NII
 
         /// @see Resource::calcSize
         NCount calcSize() const;
+
+        /** 关联对象
+        @note 如果 ShaderFusion 是单独存在的,不使用这个方式
+        @param[in] dst
+        @param[in] obj
+        @version NIIEngine 3.0.0
+        */
+        void attach(ShaderFusion * obj);
+
+        /** 回收对象自动删除内存
+        @note 如果 ShaderFusion 是单独存在的,不使用这个方式
+        @param[in] dst
+        @param[in] obj
+        @version NIIEngine 3.0.0
+        */
+        void detach(ShaderFusion * obj);
+    protected:
+        typedef map<ShaderFusion *, MaterialList>::type ShaderFusionLink;
     protected:
         ShaderFusionList mFusions;
         ShaderFusionList mValidFusions;
@@ -237,6 +255,7 @@ namespace NII
         MaterialLodScheme * mLodScheme;
         Nmark mMark;
         String mLastError;
+        static ShaderFusionLink mFusionLink;
     };
 }
 #endif

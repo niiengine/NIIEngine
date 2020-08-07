@@ -68,17 +68,17 @@ namespace NII
         /** 获取所属材质
         @version NIIEngine 3.0.0
         */
-        Material * getParent() const;
+        inline Material * getParent() const         { return mParent; }
 
         /** 设置辅助名字
         @version NIIEngine 3.0.0
         */
-        void setName(const String & name);
+        inline void setName(const String & name)    { mName = name;  }
 
         /** 获取辅助名字
         @version NIIEngine 3.0.0
         */
-        const String & getName() const;
+        inline const String & getName() const       { return mName; }
 
         /** 设置方案ID
         @version NIIEngine 3.0.0
@@ -88,7 +88,7 @@ namespace NII
         /** 获取方案ID
         @version NIIEngine 3.0.0
         */
-        SchemeID getSchemeID() const;
+        inline SchemeID getSchemeID() const         { return mSchemeID;  }
 
         /** 获取资源组
         @version NIIEngine 3.0.0
@@ -120,7 +120,7 @@ namespace NII
         /** 获取支持厂商列表
         @version NIIEngine 3.0.0
         */
-        const GpuVendorDetailList & getSupportVendor() const;
+        inline const GpuVendorDetailList & getSupportVendor() const { return mVendorList;  }
 
         /** 创建新通道
         @version NIIEngine 3.0.0
@@ -153,17 +153,17 @@ namespace NII
         /** 获取通道数量
         @version NIIEngine 3.0.0
         */
-        NCount getCount() const;
+        inline NCount getCount() const              { return mChList.size();  }
 
         /** 获取原始渲染
         @version NIIEngine 3.0.0 高级api
         */
-        ShaderChList & getShaderChList();
+        inline ShaderChList & getShaderChList()     { return mChList;  }
 
         /** 获取原始渲染
         @version NIIEngine 3.0.0
         */
-        const ShaderChList & getShaderChList() const;
+        inline const ShaderChList & getShaderChList() const { return mChList;  }
 
         /** 获取混合渲染
         @version NIIEngine 3.0.0 高级api
@@ -198,22 +198,22 @@ namespace NII
         /** 设置阴影投射材质
         @version NIIEngine 3.0.0 高级api
         */
-        void setShadowCaster(Material * obj);
+        inline void setShadowCaster(Material * obj)     { mShadowCaster = obj;  }
 
         /** 获取阴影投射材质
         @version NIIEngine 3.0.0 高级api
         */
-        Material * getShadowCaster() const;
+        inline Material * getShadowCaster() const       { return mShadowCaster;  }
 
         /** 设置阴影接收材质
         @version NIIEngine 3.0.0 高级api
         */
-        void setShadowReceiver(Material * obj);
+        inline void setShadowReceiver(Material * obj)   { mShadowReceiver = obj;  }
 
         /** 获取阴影接收材质
         @version NIIEngine 3.0.0 高级api
         */
-        Material * getShadowReceiver() const;
+        inline Material * getShadowReceiver() const     { return mShadowReceiver;  }
 
         /** 设置颜色属性
         @version NIIEngine 3.0.0
@@ -274,7 +274,7 @@ namespace NII
         /** 获取LOD索引
         @version NIIEngine 3.0.0 高级api
         */
-        Nidx getLodIndex() const;
+        inline Nidx getLodIndex() const             { return mLodIndex;  }
 
         /** 副本
         @param[in] o 副本的宿主
@@ -317,6 +317,29 @@ namespace NII
         @version NIIEngine 3.0.0 内部api
         */
         void fusion();
+
+        /** 关联对象
+        @note 如果 ShaderCh 是单独存在的,不使用这个方式
+        @param[in] dst
+        @param[in] obj
+        @version NIIEngine 3.0.0 内部api
+        */
+        void attach(ShaderCh * obj);
+
+        /** 回收对象自动删除内存
+        @note 如果 ShaderCh 是单独存在的,不使用这个方式
+        @param[in] dst
+        @param[in] obj
+        @version NIIEngine 3.0.0 内部api
+        */
+        void detach(ShaderCh * obj);
+
+        /** 执行回收机制
+        @version NIIEngine 3.0.0 内部api
+        */
+        static void recover();
+    protected:
+        typedef map<ShaderCh *, ShaderFusionList>::type ShaderChLink;
     protected:
         String mName;
         SchemeID mSchemeID;
@@ -328,6 +351,8 @@ namespace NII
         ShaderChList mChList;
         Nui16 mLodIndex;
         Nmark mMark;
+        static ShaderChLink mChLink;
+        static ShaderChList mDetachList;
     };
 }
 #endif
