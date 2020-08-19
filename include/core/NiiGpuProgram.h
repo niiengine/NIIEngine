@@ -109,10 +109,10 @@ namespace NII
         enum ShaderType
         {
             ST_VS = 0x01,       ///< 顶点
-            ST_FS = 0x02,       ///< 片段/pixel-shader
-            ST_GS = 0x04,       ///< 几何
-            ST_TS = 0x08,       ///< 细分面/hull-shader
-            ST_DS = 0x10,       ///< domain-shader
+            ST_TS = 0x02,       ///< 细分面/tess control shader/hull-shader
+            ST_DS = 0x04,       ///< domain-shader/tess tvaluation shader
+            ST_GS = 0x08,       ///< 几何
+            ST_FS = 0x10,       ///< 片段/pixel-shader
             ST_CS = 0x20        ///< compute-shader
         };
     public:

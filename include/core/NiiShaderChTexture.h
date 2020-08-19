@@ -29,13 +29,400 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 #define _NII_SHADERCH_TEXTURE_H_
 
 #include "NiiPreInclude.h"
-#include "NiiTextureBlend.h"
-#include "NiiTextureSample.h"
 #include "NiiTexture.h"
 #include "NiiMatrix4.h"
+#include "NiiColour.h"
 
 namespace NII
 {
+    /** 纹理寻址模式
+    @version NIIEngine 3.0.0
+    */
+    enum TextureAddressingMode
+    {
+        TAM_REPEAT = 0,                 ///< 超出1.0,则返回(1.0 - x)
+        TAM_MIRROR = 1,                 ///< 超出1.0,则镜面重复
+        TAM_CLAMP = 2,                  ///< 限制在[0.0-1.0]里
+        TAM_BORDER = 3,                 ///< 超出0.0-1.0范围,设置为边缘颜色
+        TAM_Count = 4                   ///< 尽量使用现有的,因为被底层API约束,否则只能从图片本身入手
+    };
+
+    /** 纹理地址模式,用于每个纹理坐标
+    @version NIIEngine 3.0.0
+    */
+    struct TextureAddressing
+    {
+        TextureAddressingMode mS_U;     ///< x方向
+        TextureAddressingMode mT_V;     ///< y方向
+        TextureAddressingMode mR_W;     ///< w方向
+    };
+
+    /** 纹理过滤类型
+    @version NIIEngine 3.0.0
+    */
+    enum TextureFilterType
+    {
+        TFT_MIN = 0,                    ///< 收缩时
+        TFT_MAG = 1,                    ///< 放大时
+        TFT_MIP = 2,                    ///< mipmap时
+        TFT_Count = 3                   ///< 尽量使用现有的,因为被渲染系统约束,否则只能从图片本身入手
+    };
+
+    /** 纹理过滤操作
+    @version NIIEngine 3.0.0
+    */
+    enum TextureFilterOP
+    {
+        TFOP_NONE = 0,                  ///< 不过滤
+        TFOP_POINT = 1,                 ///< 位置最接近像素
+        TFOP_LINEAR = 2,                ///< 线形取值
+        TFOP_ANISOTROPIC = 3,           ///< 线形取值 + 补偿角度
+        TFOP_Count = 4                  ///< 尽量使用现有的,因为被渲染系统约束,否则只能从图片本身入手
+    };
+
+    /** 纹理过滤模式
+    @remark 纹理过滤预组合
+    @version NIIEngine 3.0.0
+    */
+    enum TextureFilterMode
+    {
+        TFM_BILINEAR = 0,               ///< LINEAR, LINEAR, POINT
+        TFM_TRILINEAR = 1,              ///< LINEAR, LINEAR, LINEAR
+        TFM_ANISOTROPIC = 2,            ///< ANISOTROPIC, ANISOTROPIC, LINEAR
+        TFM_NONE = 3,                   ///< POINT, POINT, NONE (小型游戏机用)
+        TFM_Count = 4                   ///< 尽量使用现有的,因为被底层API约束,否则只能从图片本身入手
+    };
+
+    /** 纹理混合操作数类型
+    @version NIIEngine 3.0.0
+    */
+    enum TextureColourType
+    {
+        TCT_RGB,        ///< (Rs，Gs, Bs)
+        TCT_AAA         ///< (As, As, As)
+    };
+
+    /** 纹理基本混合
+    @remark
+    @version NIIEngine 3.0.0
+    */
+    enum TextureBlendMode
+    {
+        TBM_Src_Replace_Dst,    ///< 后纹理代替
+        TBM_Src_Add_Dst,        ///< 后纹理和前结果相加
+        TBM_Src_Sub_Dst,        ///< 后纹理和前结果相减
+        TBM_Src_Modulate_Dst,   ///< 后纹理和前结果相乘
+        TBM_Src_Alpha_Dst,      ///< 后纹理和前结果的透明度加权
+        TBM_Count               ///< 尽量使用现有的,因为被渲染系统约束,否则可以使用片段着色程序
+    };
+
+    /** 纹理第一/第二操作数类型
+    @version NIIEngine 3.0.0
+    */
+    enum TextureBlendSource
+    {
+        TBS_PRE_TEXTURE,        ///< 前一个纹理层/阶段输出颜色.如当前是首层操作,则为顶点漫反射颜色.
+        TBS_TEXTURE,            ///< 当前操作的纹理颜色
+        TBS_DIFFUSE,            ///< 顶点漫反射插值(GOURAUD),渲染系统描述为对外反射的颜色
+        TBS_SPECULAR,           ///< 顶点镜面反射插值(GOURAUD),渲染系统描述为对外反射的颜色
+        TBS_CONSTANT,           ///< 自定义常量
+        TBS_Count               ///< 尽量使用现有的,因为被渲染系统约束,否则可以使用片段着色程序
+    };
+
+    /** 纹理第一/第二操作数操作类型
+    @note 第三操作属于内部类型
+    @version NIIEngine 3.0.0
+    */
+    enum TextureBlendOp
+    {
+        TBO_OPERAND1,       ///< 返回一参,fn(src1, src2) = src1
+        TBO_OPERAND2,       ///< 返回二参,fn(src1, src2) = src2
+        TBO_OPERAND3,       ///< 返回三参,fn(src1, src2, src3) = src3
+        TBO_MODULATE,       ///< 两参相乘后输出,fn(src1, src2) = src1 * src2
+        TBO_MODULATE_2X,    ///< 两参相乘后再乘以2,fn(src1, src2) = src1 * src2 * 2
+        TBO_MODULATE_4X,    ///< 两参相乘后再乘以4,fn(src1, src2) = src1 * src2 * 4
+        TBO_SUB,            ///< 两参相减,fn(src1, src2) = src1 - src2
+        TBO_ADD,            ///< 两参相加,fn(src1, src2) = src1 + src2
+        TBO_ADD_SPECULAR,   ///< 像TBO_ADD, fn(src1, src2, TBS_PRE_TEXTURE) = (src1 * TBS_PRE_TEXTURE) + (src2 * (1-TBS_PRE_TEXTURE))
+        TBO_ADD_DIFFUSE,    ///< 像TBO_ADD, fn(src1, src2, TBS_DIFFUSE) = (src1 * TBS_DIFFUSE) + (src2 * (1-TBS_DIFFUSE))
+        TBO_ADD_TEXTURE,    ///< 像TBO_ADD, fn(src1, src2, GL_TEXTURE) = (src1 * GL_TEXTURE) + (src2 * (1-GL_TEXTURE))
+        TBO_ADD_PRE_TEXTURE,///< 像TBO_ADD, fn(src1, src2, TBS_PRE_TEXTURE) = (src1 * TBS_PRE_TEXTURE) + (src2 * (1-TBS_PRE_TEXTURE))
+        /** 两参相加后减去0.5输出.(其范围限制在[-0.5, 0.5]中.这样相加后,比较暗的部分,
+            即负数部分,将对原来的纹理产生衰减,而较亮部分则对原来的纹理增强.可用作细节
+            纹理.如果有的显卡不支持 D3DTOP_ADDSIGNED方式,可考虑采用 TBO_MODULATE_2X
+            来模拟这种效果). fn(src1, src2) = src1 + src2 – 0.5
+        */
+        TBO_ADD_SIGNED,
+        TBO_ADD_SIGNED_2X,  ///< 同上,结果再乘以2,fn(src1, src2) = (src1 + src2 – 0.5) * 2
+        TBO_ADD_SMOOTH,     ///< 两参和减去两参的积,fn(src1, src2, src3) = (src1 * src3) + (src2 * (1-src3))
+        TBO_DOT_PRODUCT,    ///< 像LBX_MODULATE, fn(src1, src2) = dot(src1, src2)
+        TBO_CONSTANT_FACTOR,///< fn(src1) = (Rs * src1, Gs * src1, Bs * src1, As * src1)
+        TBO_Count           ///< 尽量使用现有的,因为被渲染系统约束,否则可以使用片段着色程序
+    };
+    
+    /** 多纹理状态的纹理混合
+    @note 可编程管线中无效
+    @version NIIEngine 3.0.0
+    */
+    class _EngineAPI TextureBlend : public ShaderAlloc
+    {
+    public:
+        TextureBlend();
+        TextureBlend(TextureColourType type);
+        TextureBlend(TextureColourType type, TextureBlendOp op, TextureBlendSource op1, TextureBlendSource op2);
+        ~TextureBlend();
+
+        void operator =(const TextureBlend & o);
+        
+        bool operator==(const TextureBlend & o) const;
+
+        bool operator!=(const TextureBlend & o) const;
+
+        /** 纹理颜色混合模式
+        @note 可编程管线中无效
+        @param[in] op 模式
+        @version NIIEngine 3.0.0
+        */
+        void setColourBlend(TextureBlendMode mode);
+
+        /** 纹理透明度混合模式
+        @note 可编程管线中无效
+        @param[in] op 模式
+        @version NIIEngine 3.0.0
+        */
+        void setAlphaBlend(TextureBlendMode mode);
+
+        /** 混合组
+        @version NIIEngine 3.0.0
+        */
+        void setBlend(TextureBlendOp op, TextureBlendSource op1, TextureBlendSource op2);
+
+        /** 混合组
+        @version NIIEngine 3.0.0
+        */
+        void setBlend(TextureBlendSource op1, TextureBlendSource op2, NIIf factor);
+
+        /** 混合组
+        @version NIIEngine 3.0.0
+        */
+        void setBlend(TextureBlendOp op, const Colour & c1, TextureBlendSource op2);
+
+        /** 混合组
+        @version NIIEngine 3.0.0
+        */
+        void setBlend(TextureBlendOp op, TextureBlendSource op1, const Colour & c2);
+
+        /** 混合组
+        @version NIIEngine 3.0.0
+        */
+        void setBlend(TextureBlendOp op, NIIf f1, TextureBlendSource op2);
+
+        /** 混合组
+        @version NIIEngine 3.0.0
+        */
+        void setBlend(TextureBlendOp op, TextureBlendSource op1, NIIf f2);
+
+        /** 设置混合操作
+        @version NIIEngine 3.0.0
+        */
+        void setBlendOp(TextureBlendOp op);
+
+        /** 设置颜色类型
+        @version NIIEngine 3.0.0
+        */
+        void setBlendType(TextureColourType type);
+
+        /** 设置第一操作数
+        @param[in] tbs 操作数
+        @version NIIEngine 3.0.0
+        */
+        void setBlendSource1(TextureBlendSource tbs);
+
+        /** 设置第二操作数
+        @param[in] tbs 操作数
+        @version NIIEngine 3.0.0
+        */
+        void setBlendSource2(TextureBlendSource tbs);
+
+        /** 设置常量第一操作数
+        @note TextureBlendSource 为 TBS_CONSTANT 和 TextureColourType 为 TCT_RGB 时使用
+        @version NIIEngine 3.0.0
+        */
+        void setConstant1(const Colour & c1);
+
+        /** 设置常量第二操作数
+        @note TextureBlendSource 为 TBS_CONSTANT 和 TextureColourType 为 TCT_RGB 时使用
+        @version NIIEngine 3.0.0
+        */
+        void setConstant2(const Colour & c2);
+
+        /** 设置常量第一操作数
+        @note TextureBlendSource 为 TBS_CONSTANT 和 TextureColourType 为 TCT_RGB 时使用
+        @version NIIEngine 3.0.0
+        */
+        void setConstant1(NIIf f1);
+
+        /** 设置常量第一操作数
+        @note TextureBlendSource 为 TBS_CONSTANT 和 TextureColourType 为 TCT_RGB 时使用
+        @version NIIEngine 3.0.0
+        */
+        void setConstant2(NIIf f2);
+
+        /** 设置常量混合因子
+        @note TextureBlendOp 为 TBO_CONSTANT_FACTOR 时使用
+        @version NIIEngine 3.0.0
+        */
+        void setConstantFactor(NIIf f);
+    public:
+        TextureBlendOp mOP;
+        TextureColourType mColourType;
+        TextureBlendSource mColourSrc1;
+        TextureBlendSource mColourSrc2;
+        NIIf mConstantFactor;
+        Colour mConstant1;
+        Colour mConstant2;
+    };
+    
+    /** 纹理样本模式
+    @version NIIEngine 3.0.0
+    */
+    class _EngineAPI TextureSample : public ShaderAlloc
+    {
+        friend ShaderChTextureUnit;
+    public:
+        TextureSample();
+        TextureSample(TextureFilterOP min, TextureFilterOP mag, TextureFilterOP mip,
+            TextureAddressingMode u, TextureAddressingMode v, TextureAddressingMode w);
+        virtual ~TextureSample();
+
+        TextureSample & operator =(const TextureSample & o);
+
+        /** 设置寻址模式
+        @note 默认是 TAM_REPEAT,在可编程管线或固定管线中有效
+        @version NIIEngine 3.0.0
+        */
+        inline void setMode(const TextureAddressing & uvw) { mAddressMode = uvw; }
+
+        /** 设置寻址模式
+        @note 默认是 TAM_REPEAT,在可编程管线或固定管线中有效
+        @version NIIEngine 3.0.0
+        */
+        void setMode(TextureAddressingMode u, TextureAddressingMode v, TextureAddressingMode w);
+
+        /** 获取寻址模式
+        @note 默认是 TAM_REPEAT,在可编程管线或固定管线中有效
+        @version NIIEngine 3.0.0
+        */
+        inline const TextureAddressing & getMode() const { return mAddressMode; }
+
+        /** 设置过滤模式
+        @version NIIEngine 3.0.0
+        */
+        void setFiltering(TextureFilterMode type);
+
+        /** 设置过滤模式
+        @version NIIEngine 3.0.0
+        */
+        void setFiltering(TextureFilterType type, TextureFilterOP op);
+
+        /** 设置过滤模式
+        @version NIIEngine 3.0.0
+        */
+        void setFiltering(TextureFilterOP minop, TextureFilterOP magop, TextureFilterOP mipop);
+
+        /** 获取过滤模式
+        @version NIIEngine 3.0.0
+        */
+        TextureFilterOP getFiltering(TextureFilterType type) const;
+
+        /** 获取过滤模式
+        @version NIIEngine 3.0.0
+        */
+        inline TextureFilterOP getMinFiltering() const { return mMinOP; }
+
+        /** 获取过滤模式
+        @version NIIEngine 3.0.0
+        */
+        inline TextureFilterOP getMagFiltering() const { return mMagOP; }
+
+        /** 获取过滤模式
+        @version NIIEngine 3.0.0
+        */
+        inline TextureFilterOP getMipFiltering() const { return mMipOP; }
+
+        /** 设置抗锯齿等级
+        @param[in] max 默认为1
+        @note 这个渲染可以应用在固定管线和可编程管线中
+        @version NIIEngine 3.0.0
+        */
+        inline void setAnisotropy(Nui32 aniso)      { mMaxAniso = aniso; }
+
+        /** 设置抗锯齿等级
+        @param[in] max 默认为1
+        @note 这个渲染可以应用在固定管线和可编程管线中
+        @version NIIEngine 3.0.0
+        */
+        inline Nui32 getAnisotropy() const          { return mMaxAniso; }
+
+        /** 设置应用到mipmap计算的偏量值
+        @remark Mipmap 就是纹理的LOD概念
+        @param[in] bias fn(x) = mip-; fn(-x) = mip+;
+        @version NIIEngine 
+        */
+        inline void setMipmapBias(NIIf bias)        { mMipmapBias = bias; }
+
+        /** 获取应用到mipmap计算的偏量值
+        @remark Mipmap 就是纹理的LOD概念
+        @param[in] bias fn(x) = mip-; fn(-x) = mip+;
+        @version NIIEngien 3.0.0
+        */
+        inline NIIf getMipmapBias() const           { return mMipmapBias; }
+
+        /** 设置边缘颜色
+        @remark TAM_BORDER模式特有
+        @version NIIEngien 3.0.0
+        */
+        inline void setBorder(const Colour& colour) { mBorder = colour; }
+
+        /** 获取边缘颜色
+        @remark TAM_BORDER模式特有
+        @version NIIEngien 3.0.0
+        */
+        inline const Colour& getBorder() const      { return mBorder; }
+
+        /** 设置比较模式
+        @version NIIEngien 3.0.0
+         */
+        inline void setCompare(bool enabled)        { mCompare = enabled; }
+
+        /** 是否比较模式
+        @version NIIEngien 3.0.0
+        */
+        inline bool isCompare() const               { return mCompare; }
+
+        /** 设置比较函数
+        @version NIIEngine 3.0.0
+        */
+        inline void setCompareFunc(CmpMode function) { mCompareFunc = function; }
+
+        /** 获取比较函数
+        @version NIIEngien 3.0.0
+        */
+        inline CmpMode getCompareFunc() const       { return mCompareFunc; }
+    protected:
+        TextureFilterOP mMinOP;
+        TextureFilterOP mMagOP;
+        TextureFilterOP mMipOP;
+        TextureAddressing mAddressMode;
+        CmpMode mCompareFunc;
+        Colour mBorder;
+        Nui32 mMaxAniso;
+        NIIf mMipmapBias;
+        NIIf mMinLod;
+        NIIf mMaxLod;
+        bool mCompare;
+    };
+    
     /** 纹理数据检索类型
     @remark 如果纹理保存的并非像素,而是其他顶点使用的信息
     @version NIIEngine 3.0.0 高级api
