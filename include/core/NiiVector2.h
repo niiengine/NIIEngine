@@ -264,7 +264,14 @@ namespace NII
         typedef const value_type *  const_pointer;
         typedef Nidx              index_type;
     public:
-        T x, y;
+        union
+        {
+            T m[2];
+            struct
+            {
+                T x, y;
+            };
+        };
     };
     //------------------------------------------------------------------------
     template <typename T>const Vector2<T> Vector2<T>::ZERO = Vector2<T>(0, 0);

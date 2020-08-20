@@ -163,7 +163,14 @@ namespace NII
         typedef const value_type *  const_pointer;
         typedef Nidx              index_type;
     public:
-        T x, y, z, w;
+        union
+        {
+            T m[4];
+            struct
+            {
+                T x, y, z, w;
+            };
+        };
     };
 
     // 内联

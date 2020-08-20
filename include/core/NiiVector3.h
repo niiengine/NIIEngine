@@ -301,7 +301,14 @@ namespace NII
         typedef const value_type *  const_pointer;
         typedef Nidx              index_type;
     public:
-        T x, y, z;
+        union
+        {
+            T m[3];
+            struct
+            {
+                T x, y, z;
+            };
+        };
     };
     //impl
     //------------------------------------------------------------------------
@@ -660,7 +667,7 @@ namespace NII
     {
         Vector3<T> first = this->crossProduct(Vector3<T>::X);
 
-        if (first.lengthSquared() < 0.000000000001)
+        if (first.lengthSquared() < 0.000001)
         {
             first = this->crossProduct(Vector3<T>::Y);
         }
