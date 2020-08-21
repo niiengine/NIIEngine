@@ -72,7 +72,12 @@ namespace NII
         /** 获取ID
         @version NIIEngine 3.0.0
         */
-        Nid getID() const;
+        inline Nid getID() const                    { return mID;  }
+
+        /** 获取辅助名字
+        @version NIIEngine 3.0.0
+        */
+        inline const String & getName() const       { return mName; }
 
         /** 冲刷缓存
         @param[in] swap 交换帧缓存
@@ -125,12 +130,12 @@ namespace NII
         /** 设置冲刷优先级
         @version NIIEngine 3.0.0
         */
-        void setFlushLevel(Nui16 fl);
+        inline void setFlushLevel(Nui16 level)          { mFlushLevel = level;  }
 
         /** 获取冲刷优先级
         @version NIIEngine 3.0.0
         */
-        Nui16 getFlushLevel() const;
+        inline Nui16 getFlushLevel() const              { return mFlushLevel; }
 
         /** 设置光栅组
         @version NIIEngine 3.0.0
@@ -140,7 +145,7 @@ namespace NII
         /** 获取光栅组
         @version NIIEngine 3.0.0
         */
-        GroupID getRasterGroup() const;
+        inline GroupID getRasterGroup() const           { return mRasterGroup; }
 
         /** 用于设置渲染目标活动状态
         @version NIIEngine 3.0.0
@@ -207,7 +212,7 @@ namespace NII
         /** 获取当前使用的帧缓存
         @version NIIEngine 3.0.0
         */
-        ExtFrameBuffer * getExtBuffer() const;
+        inline ExtFrameBuffer * getExtBuffer() const    { return mExtBuffer;  }
 
         /** 创建视口
         @param[in] cam 视口使用的摄象机
@@ -243,22 +248,22 @@ namespace NII
         /** 返回视口总数
         @version NIIEngine 3.0.0
         */
-        NCount getViewportCount() const;
+        inline NCount getViewportCount() const          { return mViews.size(); }
 
         /** 获取秒帧数
         @version NIIEngine 3.0.0
         */
-        const FramesPerSecond & getFPS() const;
+        inline const FramesPerSecond & getFPS() const   { return *mStats; }
 
         /** 获取三角形数量
         @version NIIEngine 3.0.0
         */
-        NCount getTriangleCount() const;
+        inline NCount getTriangleCount() const          { return mTriCount;  }
 
         /** 获取渲染的批次数量
         @version NIIEngine 3.0.0
         */
-        NCount getBatchCount() const;
+        inline NCount getBatchCount() const             { return mBatchCount; }
 
         /** 获取多重采样设置
         @version NIIEngine 3.0.0
@@ -268,12 +273,7 @@ namespace NII
         /** 获取多重采样设置
         @version NIIEngine 3.0.0
         */
-        const String & getFSAAExt() const;
-
-        /** 获取辅助名字
-        @version NIIEngine 3.0.0
-        */
-        const String & getName() const;
+        inline const String & getFSAAExt() const        { return mFSAAExt; }
     public:
         /** 通知对象已经不存在了
         @version NIIEngine 3.0.0 高级api

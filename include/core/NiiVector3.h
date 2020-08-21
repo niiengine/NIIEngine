@@ -207,6 +207,11 @@ namespace NII
         */
         void normalise(Vector3<T> & out) const;
 
+        /** normalise 副本返回
+        @version NIIEngine 3.0.0
+        */
+        void normaliseFast(Vector3<T> & out) const;
+
         /** 返回两顶点距离的中位数
         @version NIIEngine 3.0.0
         */
@@ -507,8 +512,7 @@ namespace NII
     //-------------------------------------------------------------------------
     template <typename T> inline T Vector3<T>::lengthFast()
     {
-        NIIf lenS;
-        lenS = x * x + y * y + z * z;
+        NIIf lenS = x * x + y * y + z * z;
         return lenS * Math::RInvSqrt(lenS);
     }
     //-------------------------------------------------------------------------
@@ -581,9 +585,8 @@ namespace NII
     //-------------------------------------------------------------------------
     template <typename T> T Vector3<T>::normalise()
     {
-        NIIf lenS, lenInv;
-        lenS = x * x + y * y + z * z;
-        lenInv = Math::invSqrt(lenS);
+        T lenS = x * x + y * y + z * z;
+        T lenInv = Math::invSqrt(lenS);
         x *= lenInv;
         y *= lenInv;
         z *= lenInv;
@@ -592,9 +595,8 @@ namespace NII
     //-------------------------------------------------------------------------
     template <typename T> T Vector3<T>::normaliseFast()
     {
-        T lenS, lenInv;
-        lenS = x * x + y * y + z * z;
-        lenInv = Math::RInvSqrt(lenS);
+        T lenS = x * x + y * y + z * z;
+        T lenInv = Math::RInvSqrt(lenS);
         x *= lenInv;
         y *= lenInv;
         z *= lenInv;
@@ -605,6 +607,12 @@ namespace NII
     {
         out = *this;
         out.normalise();
+    }
+    //-------------------------------------------------------------------------
+    template <typename T> inline void Vector3<T>::normaliseFast(Vector3<T> & out) const
+    {
+        out = *this;
+        out.normaliseFast();
     }
     //-------------------------------------------------------------------------
     template <typename T> inline Vector3<T> Vector3<T>::middle(const Vector3<T> & vec) const

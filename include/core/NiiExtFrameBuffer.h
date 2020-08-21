@@ -46,27 +46,27 @@ namespace NII
         /** 获取宽度
         @version NIIEngine 3.0.0
         */
-        inline NCount getWidth() const { return mWidth; }
+        inline NCount getWidth() const              { return mWidth; }
 
         /** 获取宽度
         @version NIIEngine 3.0.0
         */
-        inline NCount getHeight() const { return mHeight; }
+        inline NCount getHeight() const             { return mHeight; }
 
         /** 获取宽度
         @version NIIEngine 3.0.0
         */
-        virtual NCount getBitDepth() const { return mBitDepth; }
+        virtual NCount getBitDepth() const          { return mBitDepth; }
 
         /** 获取各异向因子
         @version NIIEngine 3.0.0
         */
-        inline NCount getFsaa() const { return mFsaa; }
+        inline NCount getFsaa() const               { return mFsaa; }
 
         /** 获取各异向因子提示
         @version NIIEngine 3.0.0
         */
-        inline const String & getFsaaHint() const { return mFsaaHint; }
+        inline const String & getFsaaHint() const   { return mFsaaHint; }
 
         /** 是否合适这个帧缓存对象
         @version NIIEngine 3.0.0
@@ -91,17 +91,17 @@ namespace NII
         /** 获取组
         @version NIIEngine 3.0.0 高级api
         */
-        inline GroupID getGroup() const { return mPoolId; }
+        inline GroupID getGroup() const             { return mPoolId; }
 
         /** 设置属于
         @version NIIEngine 3.0.0 高级api
         */
-        inline void setManual(bool b) { mManual = b; }
+        inline void setManual(bool b)               { mManual = b; }
         
         /** 设置属于
         @version NIIEngine 3.0.0 高级api
         */
-        inline bool isManual() const { return mManual; }
+        inline bool isManual() const                { return mManual; }
     protected:
         typedef set<FrameObj *>::type UserList;
     protected:

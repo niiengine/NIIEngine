@@ -41,7 +41,7 @@ namespace NII
     public:
         ViewWindow(FrameObjID id, const String & name = N_StrBlank);
 
-        /** 创建和显示一个新视窗
+        /** 建立
         @param[in] name 窗体名称
         @param[in] w 窗体宽度(单位:像素)
         @param[in] h 窗体高度(单位:像素)
@@ -128,22 +128,22 @@ namespace NII
         @param[in] b
         @version NIIEngine 3.0.0
         */
-        void setAutoFocusActive(bool b);
+        inline void setAutoFocusActive(bool set)        { mAutoFocusActive = set;  }
 
         /** 返回是否对焦自动渲染
         @version NIIEngine 3.0.0
         */
-        bool isAutoFocusActive() const;
+        inline bool isAutoFocusActive() const           { return mAutoFocusActive; }
 
         /** 设置是否第一窗体
         @version NIIEngine 高级 api
         */
-        void setFirstWindow(bool b);
+        inline void setFirstWindow(bool b)              { mFirstDev = b; }
 
         /** 获取颜色成分
         @version NIIEngine 3.0.0
         */
-        PixelFormat getFormat() const;
+        virtual PixelFormat getFormat() const;
 
         /** 截屏
         @version NIIEngine 3.0.0
@@ -168,6 +168,16 @@ namespace NII
 
         /// @copydetails FrameObj::isFirstWindow
         virtual bool isFirstWindow() const;
+    public:
+        /** 通知对象已经被创建
+        @version NIIEngine 4.0.0 高级api
+        */
+        void _notifyCreate(RenderSys * sys);
+
+        /** 通知对象已经被初始化
+        @version NIIEngine 4.0.0 高级api
+        */
+        void _notifyInit(RenderSys * sys);
     protected:
         NIIi mLeft;             ///< 窗体左边横坐标
         NIIi mTop;              ///< 窗体顶边纵坐标
