@@ -122,6 +122,10 @@ namespace NII
 
         const T & operator[](Nidx l)const;
 
+        explicit operator T *();
+
+        explicit operator const T *() const;
+
         /** 获取数据指针
         @version NIIEngine 3.0.0
         */
@@ -297,8 +301,8 @@ namespace NII
         typedef Vector3<T>          value_type;
         typedef value_type &        ref;
         typedef const value_type &  const_ref;
-        typedef value_type *        pointer;
-        typedef const value_type *  const_pointer;
+        typedef value_type *        ptr;
+        typedef const value_type *  const_ptr;
         typedef Nidx              index_type;
     public:
         union
@@ -471,14 +475,24 @@ namespace NII
         return *this;
     }
     //-------------------------------------------------------------------------
-    template <typename T> T & Vector3<T>::operator[](Nidx l)
+    template <typename T> inline T & Vector3<T>::operator[](Nidx l)
     {
         return *(&x + l);
     }
     //-------------------------------------------------------------------------
-    template <typename T> const T & Vector3<T>::operator[](Nidx l) const
+    template <typename T> inline const T & Vector3<T>::operator[](Nidx l) const
     {
         return *(&x + l);
+    }
+    //-------------------------------------------------------------------------
+    template <typename T> inline Vector3<T>::operator T *()
+    {
+        return &m[0];
+    }
+    //------------------------------------------------------------------------
+    template <typename T> inline Vector3<T>::operator const T *() const
+    {
+        return &m[0];
     }
     //-------------------------------------------------------------------------
     template <typename T> inline T * Vector3<T>::data() const

@@ -116,6 +116,10 @@ namespace NII
 
         const T & operator[](Nidx l)const;
 
+        explicit operator T *();
+
+        explicit operator const T *() const;
+
         /** 获取数据指针
         @version NIIEngine 3.0.0
         */
@@ -159,9 +163,9 @@ namespace NII
         typedef Vector4<T>          value_type;
         typedef value_type &        reference;
         typedef const value_type &  const_reference;
-        typedef value_type *        pointer;
-        typedef const value_type *  const_pointer;
-        typedef Nidx              index_type;
+        typedef value_type *        ptr;
+        typedef const value_type *  const_ptr;
+        typedef Nidx                index_type;
     public:
         union
         {
@@ -401,14 +405,24 @@ namespace NII
         return *this;
     }
     //-------------------------------------------------------------------------
-    template <typename T> T & Vector4<T>::operator[](Nidx l)
+    template <typename T> inline T & Vector4<T>::operator[](Nidx l)
     {
         return *(&x + l);
     }
     //-------------------------------------------------------------------------
-    template <typename T> const T & Vector4<T>::operator[](Nidx l) const
+    template <typename T> inline const T & Vector4<T>::operator[](Nidx l) const
     {
         return *(&x + l);
+    }
+    //------------------------------------------------------------------------
+    template <typename T> inline Vector4<T>::operator T *()
+    {
+        return &m[0];
+    }
+    //------------------------------------------------------------------------
+    template <typename T> inline Vector4<T>::operator const T *() const
+    {
+        return &m[0];
     }
     //------------------------------------------------------------------------
     template <typename T> inline const T * Vector4<T>::data() const
