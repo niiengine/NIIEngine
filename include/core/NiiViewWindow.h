@@ -172,12 +172,12 @@ namespace NII
         /** 通知对象已经被创建
         @version NIIEngine 4.0.0 高级api
         */
-        void _notifyCreate(RenderSys * sys);
+        virtual void _notifyCreate(RenderSys * sys);
 
         /** 通知对象已经被初始化
         @version NIIEngine 4.0.0 高级api
         */
-        void _notifyInit(RenderSys * sys);
+        virtual void _notifyInit(RenderSys * sys);
     protected:
         NIIi mLeft;             ///< 窗体左边横坐标
         NIIi mTop;              ///< 窗体顶边纵坐标
