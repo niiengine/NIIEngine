@@ -139,7 +139,29 @@ namespace NII
         @remark 下次再用的时候会快点
         @version NIIEngine 3.0.0
         */
-        bool isCacheBinary();
+        bool isCacheBinary() const;
+
+        /** 设置是否自动缓存着色程序的二进制到文件中
+        @remark 下次再用的时候会快点
+        @version NIIEngine 4.0.0
+        */
+        void setCacheBinaryFile(bool b);
+
+        /** 获取是否自动缓存着色程序的二进制到文件中
+        @remark 下次再用的时候会快点
+        @version NIIEngine 4.0.0
+        */
+        bool isCacheBinaryFile() const;
+
+        /** 设置是否自动缓存着色程序的二进制的文件目录
+        @version NIIEngine 4.0.0
+        */
+        inline void setCachePath(const String & path)   { mCachePath = path; }
+
+        /** 获取是否自动缓存着色程序的二进制的文件目录
+        @version NIIEngine 3.0.0
+        */
+        inline const String & getCachePath() const      { return mCachePath; }
 
         /** 导出到流
         @version NIIEngine 3.0.0
@@ -194,6 +216,7 @@ namespace NII
         static GpuSParamDefine mGpuSyncParamList[];
         ShareCustomList mShareCustomList;
         CacheList mCacheList;
+        String mCachePath;
         Nmark mCacheMark;
     };
 }

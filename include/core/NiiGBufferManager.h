@@ -59,7 +59,7 @@ namespace NII
         /** 创建顶点缓存
         @param[in] size 每顶点在缓存中的大小(单位:字节),一个顶点含概位置,法线,辅法线等
         @param[in] count 顶点数量.
-        @param[in] mode 一般情况使用 Buffer::M_GPU | M_WRITE, 如果写入则应包含 M_WRITE 或 M_CPU
+        @param[in] mode 一般情况使用 Buffer::M_DEV | M_WRITE, 如果写入则应包含 M_WRITE 或 M_HOST
         @version NIIEngine 3.0.0
         */
         virtual void create(VertexBuffer *& out, NCount size, NCount count, Nmark mode) = 0;
@@ -72,7 +72,7 @@ namespace NII
         /** 创建索引缓存
         @param[in] size 索引大小,(16)16位/(32)32位
         @param[in] count 在缓存中索引的数量.
-        @param[in] mode 一般情况使用 Buffer::M_GPU | M_WRITE, 如果写入则应包含 M_WRITE 或 M_CPU
+        @param[in] mode 一般情况使用 Buffer::M_DEV | M_WRITE, 如果写入则应包含 M_WRITE 或 M_HOST
         @version NIIEngine 3.0.0
         */
         virtual void create(IndexBuffer *& out, NCount size, NCount count, Nmark mode) = 0;
@@ -84,7 +84,7 @@ namespace NII
         
         /** 创建计数缓存
         @param[in] size 大小
-        @param[in] mode 一般情况使用 Buffer::M_GPU | M_WRITE, 如果写入则应包含 M_WRITE 或 M_CPU
+        @param[in] mode 一般情况使用 Buffer::M_DEV | M_WRITE, 如果写入则应包含 M_WRITE 或 M_HOST
         @version NIIEngine 3.0.0
         */
         virtual void create(CounterBuffer *& out, NCount size, Nmark mode) = 0;
@@ -96,7 +96,7 @@ namespace NII
 
         /** 创建索引缓存
         @param[in] size 大小
-        @param[in] mode 一般情况使用 Buffer::M_GPU | M_WRITE, 如果写入则应包含 M_WRITE 或 M_CPU
+        @param[in] mode 一般情况使用 Buffer::M_DEV | M_WRITE, 如果写入则应包含 M_WRITE 或 M_HOST
         @version NIIEngine 3.0.0
         */
         virtual void create(UniformBuffer *& out, NCount size, Nmark mode) = 0;

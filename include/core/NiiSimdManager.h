@@ -37,6 +37,21 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 
 namespace NII
 {
+    class _EngineAPI ApuContext
+    {
+        friend class SimdManager;
+    public:
+        ApuContext() : mPlatformIndex(-1), mDeviceIndex(-1), mApuLanguage(ApuL_Unknow) {}
+        virtual ~ApuContext() {}
+
+        inline ApuLanguage getLang() const { return mApuLanguage; }
+    protected:
+        Nidx mPlatformIndex;
+        Nidx mDeviceIndex;
+        ApuLanguage mApuLanguage;
+    };
+    typedef vector<ApuContext *>::type ApuContextList;
+
     /** 并行处理管理器
     @version NIIEngine 4.0.0
     */
@@ -55,6 +70,11 @@ namespace NII
         SimdManager();
         ~SimdManager();
 
+        /** 启动
+        @version NIIEngine 4.0.0
+        */
+        bool setup();
+
         /** 是否支持指定语法
         @version NIIEngine 4.0.0
         */
@@ -65,13 +85,28 @@ namespace NII
         */
         ApuLanguageMark getSupportMark() const;
 
+        /** 创建加速应用场景
+        @version NIIEngine 3.0.0
+        */
+        virtual void create(ApuContext *& out, ApuLanguage al, Type type, Nidx platidx, Nidx devidx);
+
+        /** 获取加速应用场景
+        @version NIIEngine 3.0.0
+        */
+        inline ApuContext * getContext(Nidx idx)    { return mApuContextList[idx]; }
+
+        /** 删除加速应用场景
+        @version NIIEngine 3.0.0
+        */
+        virtual void destroy(ApuContext * obj);
+
         /** 创建加速缓存
         @param[in] size 
         @param[in] count 数量.
-        @param[in] mode 一般情况使用 Buffer::M_GPU | M_WRITE, 如果写入则应包含 M_WRITE 或 M_CPU
+        @param[in] mode 一般情况使用 Buffer::M_DEV | M_WRITE, 如果写入则应包含 M_WRITE 或 M_HOST
         @version NIIEngine 3.0.0
         */
-        virtual void create(ApuBuffer *& out, ApuLanguage al, NCount size, NCount count, Nmark mode);
+        virtual void create(ApuBuffer *& out, const ApuContext * ctx, void * src, NCount unitSize, NCount unitCnt, Nmark mode);
 
         /** 删除加速缓存
         @version NIIEngine 3.0.0
@@ -86,8 +121,7 @@ namespace NII
         @param[in] type 程序类型
         @param[in] sl 语法名字
         */
-        virtual ApuProgram * create(ResourceID rid, GroupID gid, const String & file, const VString & kernel,
-            ApuLanguage sl, Nidx platidx, Type type);
+        virtual ApuProgram * create(ResourceID rid, GroupID gid, const String & file, const VString & kernel, const ApuContext * ctx);
 
         /** 创建加速程序
         @note 不自动加载
@@ -97,15 +131,14 @@ namespace NII
         @param[in] sl 语法名字
         @param[in] code 加速程序编码
         */
-        virtual ApuProgram * create(ResourceID rid, GroupID gid, const VString & kernel, ApuLanguage sl,
-            Nidx platidx, Type type, const VString & code);
+        virtual ApuProgram * create(ResourceID rid, GroupID gid, const VString & kernel, const ApuContext * ctx, const VString & code);
 
         /** 创建加速程序
         @note 不自动加载
         @version NIIEngine 4.0.0
         */
-        virtual ApuProgram * create(ResourceID rid, GroupID gid, const VString & kernel, ApuLanguage sl,
-            Nidx platidx, Type type, ResLoadScheme * ls = 0, ResResultScheme * rs = 0);
+        virtual ApuProgram * create(ResourceID rid, GroupID gid, const VString & kernel, const ApuContext * ctx, 
+            ResLoadScheme * ls = 0, ResResultScheme * rs = 0);
 
         /** 加载加速程序
         @param[in] rid 资源ID
@@ -114,15 +147,13 @@ namespace NII
         @param[in] type 程序类型
         @param[in] sl 语法名字
         */
-        virtual ApuProgram * load(ResourceID rid, GroupID gid, const String & file, const VString & kernel,
-            ApuLanguage sl, Nidx platidx, Type type);
+        virtual ApuProgram * load(ResourceID rid, GroupID gid, const String & file, const VString & kernel, const ApuContext * ctx);
 
         /** 加载加速程序
         @param[in] sl 语法名字
         @param[in] code 加速程序编码
         */
-        virtual ApuProgram * load(ResourceID rid, GroupID gid, const VString & kernel, ApuLanguage sl, 
-            Nidx platidx, Type type, const VString & code);
+        virtual ApuProgram * load(ResourceID rid, GroupID gid, const VString & kernel, const ApuContext * ctx, const VString & code);
 
         ///@copydetails ResourceManager::get
         virtual Resource * get(ResourceID rid, GroupID gid = GroupUnknow);
@@ -137,7 +168,29 @@ namespace NII
         @remark 下次再用的时候会快点
         @version NIIEngine 4.0.0
         */
-        bool isCacheBinary();
+        bool isCacheBinary() const;
+
+        /** 设置是否自动缓存加速程序的二进制到文件中
+        @remark 下次再用的时候会快点
+        @version NIIEngine 4.0.0
+        */
+        void setCacheBinaryFile(bool b);
+
+        /** 获取是否自动缓存加速程序的二进制到文件中
+        @remark 下次再用的时候会快点
+        @version NIIEngine 4.0.0
+        */
+        bool isCacheBinaryFile() const;
+
+        /** 设置是否自动缓存加速程序的二进制的文件目录
+        @version NIIEngine 4.0.0
+        */
+        inline void setCachePath(const String & path)       { mCachePath = path; }
+
+        /** 获取是否自动缓存加速程序的二进制的文件目录
+        @version NIIEngine 3.0.0
+        */
+        inline const String & getCachePath() const          { return mCachePath; }
 
         /** 导出到流
         @version NIIEngine 4.0.0
@@ -184,10 +237,12 @@ namespace NII
             const PropertyData * params);
 
         virtual Resource * createImpl(ResourceID rid, GroupID gid, ResLoadScheme * ls, ResResultScheme * rs, 
-            const VString & kernel, ApuLanguage sl, Nidx platidx, Type type);
+            const VString & kernel, const ApuContext * ctx);
     protected:
+        ApuContextList mApuContextList;
         ApuInfoList mApuInfoList;
         CacheList mCacheList;
+        String mCachePath;
         Nmark mCacheMark;
     };
 }

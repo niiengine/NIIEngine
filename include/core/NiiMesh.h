@@ -455,7 +455,7 @@ namespace NII
     {
     public:
         PatchMesh(ResourceID rid, GroupID gid, VertexData * vd,
-            Nmark vbmode = Buffer::M_GPU | Buffer::M_WRITE, Nmark ibmode = Buffer::M_WRITE, 
+            Nmark vbmode = Buffer::M_DEV | Buffer::M_WRITE, Nmark ibmode = Buffer::M_WRITE, 
             LangID lid = N_PrimaryLang);
             
         ~PatchMesh();

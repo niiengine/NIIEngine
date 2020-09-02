@@ -48,7 +48,7 @@ namespace NII
         */
         virtual void onProcessBengin() {}
 
-        /** 当处理完成时触发
+        /** 当处理被中断时触发
         @version NIIEngine 4.0.0
         */
         virtual void onProcessInterrupt() {}
@@ -68,22 +68,36 @@ namespace NII
         /** 构造函数
         @version NIIEngine 4.0.0 高级api
         */
-        ApuProgram(ResourceID rid, GroupID gid,
-            ResLoadScheme * ls = 0, ResResultScheme * rs = 0, 
+        ApuProgram(ResourceID rid, GroupID gid, ResLoadScheme * ls = 0, ResResultScheme * rs = 0, 
             ScriptTypeID stid = N_CmdObj_ApuProgram, LangID lid = N_PrimaryLang);
 
         virtual ~ApuProgram();
 
         /** 是否有效
-        @remark 一般着色程序都涉及渲染系统和硬件支持
+        @remark 一般加速程序需要硬件支持
         @version NIIEngine 4.0.0
         */
         virtual bool isValid() const;
 
+        /** 设置活动的计算元
+        @version NIIEngine 3.0.0
+        */
+        inline void setActiveKernel(Nidx idx)           { mActiveKernel = idx; }
+
+        /** 获取活动的计算元
+        @version NIIEngine 3.0.0
+        */
+        inline Nidx getActiveKernel() const             { return mActiveKernel; }
+
         /** 执行程序
         @version NIIEngine 4.0.0
         */
-        bool run();
+        inline bool run(NCount workerCnt, NCount localCnt)  {  return run(workerCnt, 1, localCnt, 1); }
+
+        /** 执行程序
+        @version NIIEngine 4.0.0
+        */
+        virtual bool run(NCount workerXCnt, NCount workerYCnt, NCount localXCnt, NCount localYCnt);
 
         /** 获取错误代码
         @version NIIEngine 4.0.0
@@ -100,7 +114,17 @@ namespace NII
         */
         inline ApuLanguage getSyntaxType() const        { return mSyntax; }
 
-        /** 为这个着色程序,设置资源汇编的来源文件
+        /** 设置参数
+        @version NIIEngine 4.0.0
+        */
+        virtual void setParam(ApuProgramParam * param);
+
+        /** 获取参数
+        @version NIIEngine 4.0.0
+        */
+        inline ApuProgramParam * getParam() const       { return mParams; }
+
+        /** 为这个加速程序,设置资源汇编的来源文件
         @remark 设置这个没有效果直到(重新)加载这个程序
         @version NIIEngine 4.0.0
         */
@@ -121,15 +145,27 @@ namespace NII
         */
         inline const String & getProgramSrc() const     { return mFile; }
 
-        /** 程序入口
+        /** 设置程序入口
+        @note 如果存在多个使用;分割
         @version NIIEngine 4.0.0
         */
         inline void setKernel(const VString & kernel)   { mKernel = kernel; }
 
-        /** 程序入口
+        /** 获取程序入口
+        @note 如果存在多个使用;分割
         @version NIIEngine 4.0.0
         */
         inline const VString & getKernel() const        { return mKernel; }
+
+        /** 设置额外宏
+        @version NIIEngine 4.0.0
+        */
+        inline void setExtMacros(const VString & ext)   { mExtMacros = ext; }
+
+        /** 获取额外宏
+        @version NIIEngine 4.0.0
+        */
+        inline const VString & getExtMacros() const     { return mExtMacros; }
     protected:
         /// @copydoc Resource::loadImpl
         void loadImpl();
@@ -155,7 +191,9 @@ namespace NII
         String mFile;
         VString mKernel;
         VString mSource;
+        VString mExtMacros;
         Nui32 mErrorCode;
+        Nidx mActiveKernel;
         ApuProgramParam * mParams;
         bool mParamValid;
         bool mProgramSrcValid;

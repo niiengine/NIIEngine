@@ -40,7 +40,7 @@ namespace NII
     {
         ApuL_Unknow = 0,
         ApuL_OPENCL = 0x1,
-        ApuL_CUDA = 0x2
+        ApuL_CUDA   = 0x2
     };
     typedef NIIi ApuLanguageMark;
 
@@ -50,24 +50,19 @@ namespace NII
     class _EngineAPI ApuBuffer : public Buffer
     {
     public:
-        ApuBuffer(BufferManager * mag, NCount size, NCount count, Nmark mode);
-        ~ApuBuffer();
-
-        /** 获取单元数量
-        @version NIIEngine 3.0.0
+        /** 缓存存储应用类型
+        @version NIIEngine 4.0.0
         */
-        inline NCount getUnitCount() const      { return mUnitCount; }
-
-        /** 获取单元大小
-        @version NIIEngine 3.0.0
-        */
-        inline NCount getUnitSize() const       { return mUnitSize; }
-
-        /// @copydetails Buffer::clone()
-        Buffer * clone(Nmark m = M_WRITE | M_WHOLE | M_CPU) const;
+        enum ExtMode
+        {
+            EM_AllocHost    = Buffer::M_EXT1,
+            EM_CopyHost     = Buffer::M_EXT2,
+            EM_RefHost      = Buffer::M_EXT3
+        };
+    public:
+        ApuBuffer(BufferManager * mag, NCount unitSize, NCount unitCnt, Nmark mode, ApuLanguage type);
+        virtual ~ApuBuffer();
     protected:
-        NCount mUnitCount;
-        NCount mUnitSize;
         ApuLanguage mType;
     };
 }

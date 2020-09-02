@@ -105,7 +105,7 @@ namespace NII
         typedef vector<ResourceListener *>::type Listeners;
     public:
         /** 基本构造函数.
-        @param[in] rid 对象的唯一ID
+        @param[in] rid 资源ID
         @param[in] gid 群组
         @param[in] ls 加载处理策略
         @param[in] rs 结果处理策略
@@ -115,6 +115,11 @@ namespace NII
             ResLoadScheme * ls = 0, ResResultScheme * rs = 0, LangID lid = N_PrimaryLang);
 
         virtual ~Resource();
+
+        /** 辅助名字
+        @version NIIEngine 4.0.0
+        */
+        inline void setName(const String & name)    { mName = name; }
 
         /** 辅助名字
         @version NIIEngine 4.0.0
@@ -137,7 +142,7 @@ namespace NII
 		@version NIIEngine 3.0.0
 		*/
 		inline LoadingState getState() const        { return mState; }
-        
+
         /** 设置属性
         @version NIIEngine 3.0.0
         */

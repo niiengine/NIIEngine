@@ -471,7 +471,8 @@ namespace NII
     }
     //------------------------------------------------------------------------
 
-    typedef Vector4<NIIi>   Vector4i;
+    typedef Vector4<Ni32>   Vector4i;
+    typedef Vector4<Nui32>  Vector4ui;
     typedef Vector4<NIIf>   Vector4f;
     typedef Vector4<NIId>   Vector4d;
     typedef Vector4f        vector4;

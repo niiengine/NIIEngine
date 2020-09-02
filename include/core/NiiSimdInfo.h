@@ -97,6 +97,8 @@ namespace NII
         inline const String & getIdentifier() const { return mPlatformName; }
     protected:
         String mPlatformName;
+        String mPlatformVendor;
+        String mPlatformVersion;
         Nui32 mDeviceCount;
     };
 

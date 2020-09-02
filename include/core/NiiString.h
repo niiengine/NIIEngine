@@ -189,14 +189,14 @@ namespace NII
         */
         static const VString & format(VString & out, Nchar * in, ...);
 
-        /** 检测字符串是否以指定匹配结尾
+        /** 检测字符串是否以指定匹配开始
         @param[in] match 匹配
         @param[in] lowerCase 把字符串转换成小写字母去匹配
         @version NIIEngine 3.0.0
         */
         static bool beginsWith(const WString & str, const WString & match, bool lowerCase = true);
 
-        /** 检测字符串是否以指定匹配结尾
+        /** 检测字符串是否以指定匹配开始
         @param[in] match 匹配
         @param[in] lowerCase 把字符串转换成小写字母去匹配
         @version NIIEngine 3.0.0

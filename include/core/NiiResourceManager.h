@@ -67,8 +67,7 @@ namespace NII
         @version NIIEngine 3.0.0
         */
         virtual Resource * create(ResourceID rid, GroupID gid,
-            ResLoadScheme * ls = 0, ResResultScheme * rs = 0,
-                const PropertyData * params = 0);
+            ResLoadScheme * ls = 0, ResResultScheme * rs = 0, const PropertyData * params = 0);
 
         /** 获取资源
         @version NIIEngine 3.0.0
@@ -100,8 +99,7 @@ namespace NII
         @version NIIEngine 3.0.0
         */
         virtual TouchResult touch(ResourceID rid, GroupID gid = GroupUnknow,
-            ResLoadScheme * ls = 0, ResResultScheme * rs = 0,
-                const PropertyData * params = 0);
+            ResLoadScheme * ls = 0, ResResultScheme * rs = 0, const PropertyData * params = 0);
 
         /** 解除资源
         @note 一般对公共资源使用这个函数(引用值减一)
@@ -121,8 +119,7 @@ namespace NII
         @version NIIEngine 3.0.0
         */
         virtual Resource * plan(ResourceID rid, GroupID gid,
-            ResLoadScheme * ls = 0, ResResultScheme * rs = 0,
-                const PropertyData * params = 0);
+            ResLoadScheme * ls = 0, ResResultScheme * rs = 0, const PropertyData * params = 0);
 
         /** 加载资源
         @param[in] ls 加载策略
@@ -131,8 +128,7 @@ namespace NII
         @version NIIEngine 3.0.0
         */
         virtual Resource * load(ResourceID rid, GroupID gid,
-            ResLoadScheme * ls = 0, ResResultScheme * rs = 0,
-                const PropertyData * params = 0);
+            ResLoadScheme * ls = 0, ResResultScheme * rs = 0, const PropertyData * params = 0);
 
         /** 卸载资源
         @version NIIEngine 3.0.0
@@ -296,8 +292,7 @@ namespace NII
         @version NIIEngine 3.0.0 高级api
         */
         virtual Resource * createImpl(ResourceID rid, GroupID gid,
-            ResLoadScheme * ls, ResResultScheme * rs,
-                const PropertyData * params) = 0;
+            ResLoadScheme * ls, ResResultScheme * rs, const PropertyData * params) = 0;
 
         /** 添加对象到管理器中
         @version NIIEngine 3.0.0 高级api

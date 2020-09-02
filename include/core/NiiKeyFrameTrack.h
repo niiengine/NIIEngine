@@ -46,8 +46,8 @@ namespace NII
         */
         enum CalcMode
         {
-            M_CPU,  ///< cpu完成计算
-            M_GPU,  ///< gpu完成计算
+            M_HOST,  ///< cpu完成计算
+            M_DEV,  ///< gpu完成计算
             M_SIMD, ///< cpu的并行计算
             M_CL    ///< 第三方公共计算opencl    
         };

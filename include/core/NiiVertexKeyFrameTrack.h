@@ -41,7 +41,7 @@ namespace NII
     public:
         VertexKeyFrameTrack(const Animation * o, KeyFrameTrackID id);
         VertexKeyFrameTrack(const Animation * o, KeyFrameTrackID id,
-            VertexData * target, CalcMode mode = KeyFrameTrack::M_CPU);
+            VertexData * target, CalcMode mode = KeyFrameTrack::M_HOST);
             
         virtual ~VertexKeyFrameTrack();
     

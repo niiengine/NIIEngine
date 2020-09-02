@@ -370,6 +370,11 @@ namespace NII
     class IDManager;
     class Pattern;
     class RenderPattern;
+    class ApuContext;
+    class ApuProgram;
+    class ApuProgramParam;
+    class ApuParamMap;
+    class SimdManager;
 
     class UIManager;
     class UIWidgetManager;
@@ -463,6 +468,7 @@ namespace NII
     typedef vector<NIIf>::type FloatArray;
     typedef vector<NIId>::type DoubleArray;
     typedef vector<Nid>::type IDList;
+    typedef vector<Nidx>::type IdxList;
     typedef vector<ResourceID>::type ResourceIDList;
     typedef vector<GroupID>::type GroupIDList;
     typedef vector<ObjID>::type ObjIDList;
@@ -490,7 +496,7 @@ namespace NII
     #define N_TYPE_INFINITY(type)       std::numeric_limits<type>::infinity()
     #define N_MIN(type, a, b)           std::min<type>((a), (b))
     #define N_MAX(type, a, b)           std::max<type>((a), (b))
-    #define N_StrBlank                  StrUtil::WBLANK
+    #define N_StrBlank                  StrUtil::BLANK
     #define N_ToPixel(x)                NIIf((int)((x)+((x) > 0.0f ? 0.5f : -0.5f)))
 
     #define N_OBJ(p, c, f, v)           const StateID c::f = v + p::ObjCount

@@ -97,7 +97,7 @@ namespace NII
         @version NIIEngine 3.0.0 高级api
         */
         Texture * createTexture(ResourceID rid, GroupID gid, Texture::Type type, PixelFormat pf, NCount w, NCount h, 
-            NCount d = 1, NIIi mipmaps = -1, Nmark usage = Texture::MM_MIPMAP_AUTO | Buffer::M_GPU | Buffer::M_WRITE,
+            NCount d = 1, NIIi mipmaps = -1, Nmark usage = Texture::MM_MIPMAP_AUTO | Buffer::M_DEV | Buffer::M_WRITE,
             ResLoadScheme * ls = 0, ResResultScheme * rs = 0, bool HWsRGB = false, 
             NCount fsaa = 0, const String & fsaaHint = StrUtil::WBLANK);
 

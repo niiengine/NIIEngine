@@ -637,7 +637,9 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 #define N_PropertyApuProgram_Kernel                         11004
 #define N_PropertyApuProgram_Src                            11005
 #define N_PropertyApuProgram_PlatformIndex                  11006
-#define N_PropertyApuProgram_ASM                            11007
+#define N_PropertyApuProgram_DeviceIndex                    11007
+#define N_PropertyApuProgram_ContextIndex                   11008
+#define N_PropertyApuProgram_ASM                            11009
 
 #define N_PropertyPixelBuffer_Pixel                         100101
 #define N_PropertyPixelBuffer_TextureSrc                    100102

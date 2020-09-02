@@ -60,7 +60,6 @@ namespace NII
     public:
         typedef map<ResourceType, ResourceManager *>::type ResMagList;
     public:
-    
         /** 设置处理类型
         @note 在产生线程ThreadMain前调用
         @version NIIEngine 3.0.0
@@ -170,8 +169,11 @@ namespace NII
         @param[in] file 文件名字,包含格式扩展包含路径,对应 Reousrce::mSrc
         @version NIIEngine 3.0.0
         */
-        void create(ResourceID rid, ResourceType type, const String & file,
-            GroupID gid = GroupDefault, const PropertyData & params = PropertyData());
+        inline void create(ResourceID rid, ResourceType type, const String & file,
+            GroupID gid = GroupDefault, const PropertyData & params = PropertyData())
+        {
+            create(rid, type, file, gid, 0, 0, params);
+        }
 
         /** 创建一个资源
         @param[in] file 文件名字,包含格式扩展包含路径,对应 Reousrce::mSrc
@@ -193,8 +195,7 @@ namespace NII
         @param[in] r 是否把(子目录文件)也全部加到群组里
         @version NIIEngine 3.0.0
         */
-        void add(const String & protocol, VFSType type, GroupID gid = GroupDefault,
-            bool r = false);
+        void add(const String & protocol, VFSType type, GroupID gid = GroupDefault, bool r = false);
 
         /** 移去虚拟文件系统
         @version NIIEngine 3.0.0
@@ -326,12 +327,12 @@ namespace NII
         /** 打开文件
         @param[in] file 文件
         @param[in] allgroup 所有组中寻找
-        @param[out] obj 输出
+        @param[out] obj 对应的资源，可选
         @note 数据流使用完后要调用 N_delete 释放
         @version NIIEngine 3.0.0
         */
-        DataStream * open(const String & file, GroupID gid = GroupDefault,
-            bool allgroup = true, Resource * obj = 0);
+        DataStream * open(const String & file, GroupID gid = GroupDefault, bool allgroup = true, 
+            Resource * obj = 0);
 
         /** 打开多个文件
         @param[in] pattern 扩展符号/通配符字符'*'

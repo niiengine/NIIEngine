@@ -703,10 +703,10 @@ namespace NII
     }
     //------------------------------------------------------------------------
 
-    typedef Vector2<NIIi> Vector2i;
-    typedef Vector2<Nui>  Vector2ui;
-    typedef Vector2<NIIf> Vector2f;
-    typedef Vector2f      vector2;
+    typedef Vector2<Ni32>   Vector2i;
+    typedef Vector2<Nui32>  Vector2ui;
+    typedef Vector2<NIIf>   Vector2f;
+    typedef Vector2f        vector2;
 
     template<typename T> Nostream & operator << (Nostream & o, const Vector2<T> & v)
     {

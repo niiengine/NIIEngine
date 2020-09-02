@@ -55,22 +55,22 @@ namespace NII
         TouchResult touch(ResourceID rid, GroupID gid,
             ResLoadScheme * ls = 0, ResResultScheme * rs = 0,
             const PropertyData * params = 0, GeometryPrefab type = GSP_None,
-            Nmark vbmode = Buffer::M_CPU | Buffer::M_GPU | Buffer::M_WRITE,
-            Nmark ibmode = Buffer::M_CPU | Buffer::M_GPU | Buffer::M_WRITE);
+            Nmark vbmode = Buffer::M_HOST | Buffer::M_DEV | Buffer::M_WRITE,
+            Nmark ibmode = Buffer::M_HOST | Buffer::M_DEV | Buffer::M_WRITE);
 
         /** 计划资源加载网格
         @version NIIEngine 3.0.0
         */
         Mesh * plan(ResourceID rid, GroupID gid, GeometryPrefab type = GSP_None,
-            Nmark vbmode = Buffer::M_CPU | Buffer::M_GPU | Buffer::M_WRITE,
-            Nmark ibmode = Buffer::M_CPU | Buffer::M_GPU | Buffer::M_WRITE);
+            Nmark vbmode = Buffer::M_HOST | Buffer::M_DEV | Buffer::M_WRITE,
+            Nmark ibmode = Buffer::M_HOST | Buffer::M_DEV | Buffer::M_WRITE);
 
         /** 加载资源网格
         @version NIIEngine 3.0.0
         */
         Mesh * load(ResourceID rid, GroupID gid, GeometryPrefab type = GSP_None,
-            Nmark vbmode = Buffer::M_CPU | Buffer::M_GPU | Buffer::M_WRITE,
-            Nmark ibmode = Buffer::M_CPU | Buffer::M_GPU | Buffer::M_WRITE);
+            Nmark vbmode = Buffer::M_HOST | Buffer::M_DEV | Buffer::M_WRITE,
+            Nmark ibmode = Buffer::M_HOST | Buffer::M_DEV | Buffer::M_WRITE);
 
         /** 创建自定义网格
         @version NIIEngine 3.0.0
@@ -86,8 +86,8 @@ namespace NII
         */
         Mesh * createBezierPatch(ResourceID rid, GroupID gid, NCount width, NCount height,
             VertexData * vd, NCount uMaxSubLevel = -1, NCount vMaxSubLevel = -1, FaceSideType type = FST_Front,
-            Nmark vbmode = Buffer::M_CPU | Buffer::M_GPU | Buffer::M_WRITE,
-            Nmark ibmode = Buffer::M_WRITE | Buffer::M_CPU);
+            Nmark vbmode = Buffer::M_HOST | Buffer::M_DEV | Buffer::M_WRITE,
+            Nmark ibmode = Buffer::M_WRITE | Buffer::M_HOST);
 
         /** 创建一个基本面,默认主要在 x/y 轴 面向位置 Z
         @param plane 面的基本定义
@@ -103,8 +103,8 @@ namespace NII
             NIIf width, NIIf height, NIIi xdetails = 1, NIIi ydetails = 1,
             bool normals = true, Nui16 texcoordCnt = 1, NIIf utile = 1.0f, NIIf vtile = 1.0f,
             const Vector3f & up = Vector3f::Y,
-            Nmark vbmode = Buffer::M_CPU | Buffer::M_GPU | Buffer::M_WRITE,
-            Nmark ibmode = Buffer::M_CPU | Buffer::M_GPU | Buffer::M_WRITE);
+            Nmark vbmode = Buffer::M_HOST | Buffer::M_DEV | Buffer::M_WRITE,
+            Nmark ibmode = Buffer::M_HOST | Buffer::M_DEV | Buffer::M_WRITE);
 
         /** 创建弯曲面
         @param plane 面的基本定义
@@ -121,8 +121,8 @@ namespace NII
             NIIf width, NIIf height, NIIf curvature = 0.5f, NIIi xdetails = 1, NIIi ydetails = 1,
             bool normals = false, Nui16 texcoordCount = 1, NIIf xtile = 1.0f, NIIf ytile = 1.0f,
             const Vector3f & up = Vector3f::Y,
-            Nmark vbmode = Buffer::M_CPU | Buffer::M_GPU | Buffer::M_WRITE,
-            Nmark ibmode = Buffer::M_CPU | Buffer::M_GPU | Buffer::M_WRITE);
+            Nmark vbmode = Buffer::M_HOST | Buffer::M_DEV | Buffer::M_WRITE,
+            Nmark ibmode = Buffer::M_HOST | Buffer::M_DEV | Buffer::M_WRITE);
             
         /** 创建纹理坐标弯曲的面
         @param plane 面的基本定义
@@ -142,8 +142,8 @@ namespace NII
             NIIi ykeep = 0, bool normals = true, Nui16 texcoordCount = 1,
             NIIf utile = 1.0f, NIIf vtile = 1.0f, const Vector3f & up = Vector3f::Y,
             const Quaternion & orientation = Quaternion::IDENTITY,
-            Nmark vbmode = Buffer::M_CPU | Buffer::M_GPU | Buffer::M_WRITE,
-            Nmark ibmode = Buffer::M_CPU | Buffer::M_GPU | Buffer::M_WRITE);
+            Nmark vbmode = Buffer::M_HOST | Buffer::M_DEV | Buffer::M_WRITE,
+            Nmark ibmode = Buffer::M_HOST | Buffer::M_DEV | Buffer::M_WRITE);
 
         /** 构建预定几何
         @version NIIEngine 3.0.0

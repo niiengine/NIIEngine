@@ -59,6 +59,9 @@ namespace NII
 
         /// @copydetails Buffer::unlockImpl
         void unlockImpl();
+
+        /// @copydetails Buffer::reserveImpl
+        bool reserveImpl(NCount size, Nmark newMode = -1, bool oldData = true);
     protected:
         Nui8 * mData;
     };
@@ -88,6 +91,9 @@ namespace NII
 
         /// @copydetails Buffer::unlockImpl
         void unlockImpl();
+
+        /// @copydetails Buffer::reserveImpl
+        bool reserveImpl(NCount size, Nmark newMode = -1, bool oldData = true);
     protected:
         Nui8 * mData;
     };
@@ -116,6 +122,9 @@ namespace NII
         
         /// @copydetails Buffer::unlockImpl
         void unlockImpl();
+
+        /// @copydetails Buffer::reserveImpl
+        bool reserveImpl(NCount size, Nmark newMode = -1, bool oldData = true);
     protected:
         Nui8 * mData;
     };
@@ -144,6 +153,9 @@ namespace NII
 
         /// @copydetails Buffer::unlockImpl
         void unlockImpl();
+
+        /// @copydetails Buffer::reserveImpl
+        bool reserveImpl(NCount size, Nmark newMode = -1, bool oldData = true);
     protected:
         Nui8 * mData;
     };

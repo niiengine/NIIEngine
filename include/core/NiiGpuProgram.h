@@ -202,6 +202,18 @@ namespace NII
         */
         virtual const String & getParamDefSrc() const;
 
+        /** 设置程序入口
+        @note 如果存在多个使用;分割.一般着色程序只有一个入口main.而这个函数用于高级合成着色程序MultiGpuProgram
+        @version NIIEngine 6.0.0
+        */
+        inline void setKernel(const VString & kernel)   { mKernel = kernel; }
+
+        /** 获取程序入口
+        @note 如果存在多个使用;分割.一般着色程序只有一个入口main.而这个函数用于高级合成着色程序MultiGpuProgram
+        @version NIIEngine 6.0.0
+        */
+        inline const VString & getKernel() const        { return mKernel; }
+
         /** 获取实际着色程序
         @remark 一般是存在自动代替方案的时候使用
         @version NIIEngine 3.0.0
@@ -342,6 +354,7 @@ namespace NII
         String mFile;
         String mParamDefFile;
         VString mSource;
+        VString mKernel;
         Nui32 mErrorCode;
         NCount mFusionCount;
         GpuParamDefine * mDefines;

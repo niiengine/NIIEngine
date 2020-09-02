@@ -51,12 +51,13 @@ namespace NII
             /** cpu读取快,cpu写入快,gpu读取中,gpu写入慢
             @version NIIEngine 3.0.0
             */
-            M_CPU = 0x01,
+            M_HOST = 0x01,
 
-            /** gpu读取快,gpu写入快,如果没有M_CPU标识,cpu不能操作
+            /** gpu读取快,gpu写入快,如果没有M_HOST标识,cpu不能直接读写操作,
+                但可通过其他指令操作,如使用(着色程序，加速程序，或内部复制内存API)
             @version NIIEngine 3.0.0
             */
-            M_GPU = 0x02,
+            M_DEV = 0x02,
 
             /** 拥有读取功能
             @version NIIEngine 3.0.0
@@ -68,7 +69,7 @@ namespace NII
             */
             M_WRITE = 0x08,
 
-            /** 拥有首次写入功能，之后不能再写入
+            /** 拥有首次写入功能，之后不能再写入/变化
             @version NIIEngine 3.0.0
             */
             M_CONST = 0x10,
@@ -113,12 +114,12 @@ namespace NII
             */
             M_SHADOW_Refresh = 0x1000,
 
-            /** 每帧后数据被重写
+            /** 每帧冲刷后数据被重写
             @version NIIEngine 3.0.0
             */
             M_FrameFlushRecover =  0x2000,
             
-            /** 每次drawcall类函数后数据被重写
+            /** 每次类drawcall函数调用后数据被重写
             @version NIIEngine 3.0.0
             */
             M_DrawCallRecover = 0x4000,
@@ -208,41 +209,53 @@ namespace NII
         */
         enum MuteMode
         {
-            MM_COMPUTE  = 0x0,          ///< 内部执行运算,不读不写
-            MM_READ     = 0x01,
-            MM_WRITE    = 0x02,
-            MM_BLOCK    = 0x04,         ///< 整块操作
-            MM_UINT     = 0x08,         ///< 单元操作,而不是字节
-            MM_EVENT    = 0x10,
-            MM_EXT1     = 0x100,
-            MM_EXT2     = 0x200,
-            MM_EXT3     = 0x400,
-            MM_EXT4     = 0x800,
-            MM_EXT5     = 0x1000,
-            MM_EXT6     = 0x2000,
-            MM_EXT7     = 0x4000,
-            MM_EXT8     = 0x8000,
-            MM_EXT9     = 0x10000,
-            MM_EXT10    = 0x20000
+            MM_OP       = 0x01,         ///< 内部机制(device)级别执行运算/赋值,不通过CPU(Host)级别
+            MM_READ     = 0x02,         ///< CPU(Host)级别的操作
+            MM_WRITE    = 0x04,         ///< CPU(Host)级别的操作
+            MM_WHOLE    = 0x08,         ///< 整块操作,将会把旧数据无效化
+            MM_EVENT    = 0x100,
+            MM_EXT1     = 0x200,
+            MM_EXT2     = 0x400,
+            MM_EXT3     = 0x800,
+            MM_EXT4     = 0x1000,
+            MM_EXT5     = 0x2000,
+            MM_EXT6     = 0x4000,
+            MM_EXT7     = 0x8000,
+            MM_EXT8     = 0x10000,
+            MM_EXT9     = 0x20000,
+            MM_EXT10    = 0x40000
         };
     public:
         /** 构造函数
         @param[in] mode Buffer::Mode 选项
         @version NIIEngine 3.0.0
         */
-        Buffer(BufferManager * mag, Nmark mode);
+        Buffer(BufferManager * mag, NCount unitsize, NCount unitcnt, Nmark mode);
 
         virtual ~Buffer();
 
+        /** 获取单元数量
+        @version NIIEngine 3.0.0
+        */
+        inline NCount getUnitCount() const          { return mUnitCount; }
+
+        /** 获取单元大小
+        @version NIIEngine 3.0.0
+        */
+        inline NCount getUnitSize() const           { return mUnitSize; }
+
+        /** 获取总分配(预留)的单元数量
+        @version NIIEngine 3.0.0
+        */
+        inline NCount getUnitReserveCount() const   { return mUnitReserveCount; }
+
         /** 设置是否同步缓存
         @remark 如果缓存本身并没有副本,这个设置没有效果
-        @param[in] set 是否
         @version NIIEngine 3.0.0
         */
         void setSync(bool set);
 
         /** 设置是否绑定计数自动删除
-        @param[in] set 是否
         @version NIIEngine 3.0.0
         */
         void setRefDestroy(bool set);
@@ -251,12 +264,12 @@ namespace NII
         @param[in] mode Buffer::Mode选项
         @version NIIEngine 3.0.0
         */
-        inline bool isSupport(Mode m)   { return mMark & m; }
+        inline bool isSupport(Mode m)       { return mMark & m; }
 
         /** 缓存是否处于锁定状态
         @version NIIEngine 3.0.0
         */
-        inline bool isMute() const      { return (mMark & M_LOCK) || (mShadow && mShadow->isMute()); }
+        inline bool isMute() const          { return (mMark & M_LOCK) || (mShadow && mShadow->isMute()); }
 
         /** 锁定整个缓冲区(可)读/写
         @param[in] mm MuteMode/复合选项
@@ -281,42 +294,83 @@ namespace NII
 
         /** 从缓冲中读取数据
         @param[in] out 内存区域
-        @param[in] oft 从缓存开始到开始读取的字节偏移量
+        @param[in] oft 从这个缓存开始到读取位置的字节偏移量
         @param[in] size 读取的区域大小 单位字节
         @version NIIEngine 3.0.0
         */
         virtual void read(void * out, NCount oft, NCount size) = 0;
 
+        /** 从缓冲中读取数据
+        @param[in] out 内存区域
+        @param[in] unitoft 从这个缓存开始到读取位置的单元偏移量
+        @param[in] unitCnt 读取的区域大小 单位单元
+        @version NIIEngine 3.0.0
+        */
+        void readUnit(void * out, NCount unitOft, NCount unitCnt);
+
         /** 把系统内存写入到缓冲区
         @param[in] in 写入的数据资源
-        @param[in] oft 从缓存开始到开始写入的字节偏移量
+        @param[in] oft 从这个缓存开始到写入位置的单元偏移量
         @param[in] size 写入数据的大小,单位字节
         @version NIIEngine 3.0.0
         */
         virtual void write(const void * in, NCount oft, NCount size) = 0;
 
-        /** 从指定缓冲区复制数据
-        @remark 来源缓存要有 M_WRITE 功能, 目标缓存要有 M_READ 功能
-        @param[in] src 需要读取的数据源缓存
-        @param[in] srcoft 数据源读取的位置
-        @param[in] oft 这个缓存写入的位置
-        @param[in] size 复制的数据长度,单位:字节
+        /** 把系统内存写入到缓冲区
+        @param[in] in 写入的数据资源
+        @param[in] unitoft 从这个缓存开始到写入位置的字节偏移量
+        @param[in] unitCnt 写入数据的大小,单位单元
         @version NIIEngine 3.0.0
         */
-        virtual void write(Buffer * src, NCount srcoft, NCount oft, NCount size);
+        void writeUnit(const void * in, NCount unitOft, NCount unitCnt);
+
+        /** 从指定缓冲区复制数据
+        @remark (this)要有 M_WRITE 功能, 来源缓存(src)要有 M_READ 功能
+        @param[in] src 需要读取的数据源缓存
+        @param[in] srcoft 数据源到读取的位置的字节偏移量
+        @param[in] oft 从这个缓存开始到写入位置的字节偏移量
+        @param[in] size 复制的数据长度,单位:字节
+        @note 如果这个缓存和src属于同个内存控制器产物，直接使用内部函数API,达到优化效果，则不需要有 M_WRITE M_READ功能约束
+        @version NIIEngine 3.0.0
+        */
+        virtual void write(Buffer * src, NCount srcOft, NCount oft, NCount size);
+
+        /** 从指定缓冲区复制数据
+        @remark (this)要有 M_WRITE 功能, 来源缓存(src)要有 M_READ 功能
+        @param[in] src 需要读取的数据源缓存
+        @param[in] srcUnitOft 数据源到读取的位置的单元偏移量
+        @param[in] unitOft 从这个缓存开始到写入位置的单元偏移量
+        @param[in] unitCnt 复制的数据长度,单位:单元
+        @note 如果这个缓存和src属于同个内存控制器产物，直接使用内部函数API,达到优化效果，则不需要有 M_WRITE M_READ功能约束,
+            如果两个缓存非CPU缓存且跨度(stride == unitSize)不同，可以考虑使用着色程序或加速程序去复制
+        @version NIIEngine 3.0.0
+        */
+        void writeUnit(Buffer * src, NCount srcUnitOft, NCount unitOft, NCount unitCnt);
 
         /** 从另一个缓冲区复制所有数据
-        @remark 来源缓存要有 M_WRITE 功能, 目标缓存要有 M_READ 功能
+        @remark (this)缓存要有 M_WRITE 功能, 来源缓存(src)要有 M_READ 功能
         @note 注意缓存大小
+        @note 如果这个缓存和src属于同个内存控制器产物，直接使用内部函数API,达到优化效果，则不需要有 M_WRITE M_READ功能约束，
+            如果两个缓存非CPU缓存且跨度(stride == unitSize)不同，可以考虑使用着色程序或加速程序去复制
         @version NIIEngine 3.0.0
         */
         virtual void write(Buffer * src);
+
+        /** 分配缓冲区大小(预留)
+        @version NIIEngine 4.0.0
+        */
+        bool resize(NCount newSize, Nmark newMode = -1, bool oldData = true);
+
+        /** 分配缓冲区大小(预留)
+        @version NIIEngine 4.0.0
+        */
+        bool resizeUnit(NCount newUnitSize, Nmark newMode = -1, bool oldData = true);
 
         /** 副本对象
         @param[in] m Buffer::Mode 选项
         @version NIIEngine 3.0.0
         */
-        virtual Buffer * clone(Nmark m = M_WRITE | M_WHOLE | M_CPU) const = 0;
+        virtual Buffer * clone(Nmark m = M_WRITE | M_WHOLE | M_HOST) const = 0;
 
         /** 正式引用
         @remark 引用数量为0,这个缓存将被销毁
@@ -335,7 +389,7 @@ namespace NII
         */
         inline NCount getRefCount() { return mRefCount;  }
 
-        /** 返回此缓冲区字节的大小
+        /** 返回缓冲区字节的大小(非预留)
         @version NIIEngine 3.0.0
         */
         inline NCount getSize() const { return mSize;  }
@@ -364,10 +418,20 @@ namespace NII
         @version NIIEngine 3.0.0 高级api
         */
         virtual void unlockImpl() = 0;
+
+        /** 预留空间实现
+        @remark 新数据块和旧数据块大概率同机制，最好使用机制API复制函数而不使用lock/write/unlock.
+        @param[in] oldData 是否复制原来的数据
+        @version NIIEngine 4.0.0 高级api
+        */
+        virtual bool reserveImpl(NCount size, Nmark newMode = -1, bool oldData = true) = 0;
     protected:
         BufferManager * mMag;
         Buffer * mShadow;
         Buffer * mSecond;
+        NCount mUnitCount;
+        NCount mUnitSize;
+        NCount mUnitReserveCount;
         NCount mSize;
         NCount mMuteOft;
         NCount mMuteSize;
@@ -375,5 +439,25 @@ namespace NII
         Nmark mMark;
     };
     typedef vector<Buffer *>::type BufferList;
+
+    inline void Buffer::readUnit(void * out, NCount unitOft, NCount unitCnt)
+    {
+        read(out, unitOft * mUnitSize, unitCnt * mUnitSize);
+    }
+
+    inline void Buffer::writeUnit(const void * in, NCount unitOft, NCount unitCnt)
+    {
+        write(in, unitOft * mUnitSize, unitCnt * mUnitSize);
+    }
+
+    inline void Buffer::writeUnit(Buffer * src, NCount srcUnitOft, NCount unitOft, NCount unitCnt)
+    {
+        write(src, srcUnitOft * mUnitSize, unitOft * mUnitSize, unitCnt * mUnitSize);
+    }
+
+    inline bool Buffer::resizeUnit(NCount newUnitSize, Nmark newMode, bool oldData)
+    { 
+        return resize(newUnitSize * mUnitSize, newMode, oldData); 
+    }
 }
 #endif

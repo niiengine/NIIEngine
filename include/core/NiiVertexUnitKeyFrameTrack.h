@@ -41,7 +41,7 @@ namespace NII
     public:
         VertexUnitKeyFrameTrack(const Animation * own, KeyFrameTrackID id);
         VertexUnitKeyFrameTrack(const Animation * own, KeyFrameTrackID id,
-            VertexData * target, CalcMode mode = KeyFrameTrack::M_CPU);
+            VertexData * target, CalcMode mode = KeyFrameTrack::M_HOST);
 
         /** 顶点插值
         @param[in] kf1 开始位置

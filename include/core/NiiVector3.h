@@ -860,10 +860,10 @@ namespace NII
     }
     //-------------------------------------------------------------------------
 
-    typedef Vector3<NIIi> Vector3i;
-    typedef Vector3<Nui>  Vector3ui;
-    typedef Vector3<NIIf> Vector3f;
-    typedef Vector3<NIIf> vector3;
+    typedef Vector3<Ni32>   Vector3i;
+    typedef Vector3<Nui32>  Vector3ui;
+    typedef Vector3<NIIf>   Vector3f;
+    typedef Vector3<NIIf>   vector3;
     typedef vector<Vector3f>::type Vector3List;
 
     template<typename T> Nostream & operator << (Nostream & o, const Vector3<T> & v)

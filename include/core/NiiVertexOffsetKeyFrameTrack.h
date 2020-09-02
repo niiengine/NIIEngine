@@ -43,7 +43,7 @@ namespace NII
         VertexOffsetKeyFrameTrack(const Animation * own, KeyFrameTrackID id);
 
         VertexOffsetKeyFrameTrack(const Animation * own, KeyFrameTrackID id,
-            VertexData * target, CalcMode mode = KeyFrameTrack::M_CPU);
+            VertexData * target, CalcMode mode = KeyFrameTrack::M_HOST);
 
         /// @copydetails VertexKeyFrameTrack::apply
         void apply(AnimationFusion * dst, VertexData * target, TrackTime * tt, NIIf weight = 1.0) const;

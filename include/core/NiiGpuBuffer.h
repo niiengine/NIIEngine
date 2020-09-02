@@ -36,10 +36,42 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 
 namespace NII
 {
+    /**
+    @version NIIEngine 5.0.0
+    */
+    class _EngineAPI GpuBuffer : public Buffer
+    {
+    public:
+        enum LockType
+        {
+            LT_Unlock,
+            UT_Lock
+        };
+
+        enum UnlockType
+        {
+            LT_UnlockAll,
+            UT_KeepMap
+        };
+    public:
+        GpuBuffer(BufferManager * mag, NCount unitsize, NCount unitcount, Nmark mode);
+
+        using Buffer::unlock;
+        /**
+        @version NIIEngine 5.0.0
+        */
+        void unlock(UnlockType type, NCount oft, NCount size);
+
+        /**
+        @version NIIEngine 5.0.0
+        */
+        void bindProgram(Nui16 slot, GpuProgram::ShaderType type);
+    };
+
     /** GPU AGP / SYS 三角形顶点索引缓存
     @version NIIEngine 3.0.0
     */
-    class _EngineAPI IndexBuffer : public Buffer
+    class _EngineAPI IndexBuffer : public GpuBuffer
     {
     public:
         enum IndexRenderType
@@ -51,45 +83,22 @@ namespace NII
             IRT_Plane = 5           ///< 单一平行面
         };
     public:
-        IndexBuffer(BufferManager * mag, NCount size, NCount count, Nmark mode);
+        IndexBuffer(BufferManager * mag, NCount unitsize, NCount unitcount, Nmark mode);
         ~IndexBuffer();
 
-        /** 获取这个缓存缓存类型
-        @version NIIEngine 3.0.0
-        */
-        inline NCount getUnitCount() const{ return mUnitCount; }
-
-        /** 获取每个索引的字节大小
-        @version NIIEngine 3.0.0
-        */
-        inline NCount getUnitSize() const{ return mUnitSize; }
-
         /// @copydetails Buffer::clone()
-        Buffer * clone(Nmark m = M_WRITE | M_WHOLE | M_CPU) const;
-    protected:
-        NCount mUnitCount;
-        NCount mUnitSize;
+        Buffer * clone(Nmark m = M_WRITE | M_WHOLE | M_HOST) const;
     };
 
     /** AGP/GPU/Sys 三角形顶点缓存
     @version NIIEngine 3.0.0
     */
-    class _EngineAPI VertexBuffer : public Buffer
+    class _EngineAPI VertexBuffer : public GpuBuffer
     {
     public:
-        VertexBuffer(BufferManager * mag, NCount size, NCount count, Nmark mode);
+        VertexBuffer(BufferManager * mag, NCount unitsize, NCount unitcount, Nmark mode);
 
         ~VertexBuffer();
-
-        /** 获取这个缓存的单元大小
-        @version NIIEngine 3.0.0
-        */
-        inline NCount getUnitSize() const{ return mUnitSize; }
-
-        /** 获取这个缓存的单元数量
-        @version NIIEngine 3.0.0
-        */
-        inline NCount getUnitCount() const { return mUnitCount;}
 
         /** 同一渲染通路中多次应用绘制
         @remark 可以优化APG缓存应用,并非所有的渲染器都支持,d3d9+,openl3.0+才支持
@@ -116,10 +125,8 @@ namespace NII
         inline NCount getInstancingOffset() const{ return mInstancingOffset; }
         
         /// @copydetails Buffer::clone
-        Buffer * clone(Nmark m = M_WRITE | M_WHOLE | M_CPU) const;
+        Buffer * clone(Nmark m = M_WRITE | M_WHOLE | M_HOST) const;
     protected:
-        NCount mUnitCount;
-        NCount mUnitSize;
         NCount mInstancingOffset;
         
     };
@@ -135,7 +142,7 @@ namespace NII
         ~CounterBuffer();
         
         /// @copydetails Buffer::clone()
-        Buffer * clone(Nmark m = M_WRITE | M_WHOLE | M_CPU) const;
+        Buffer * clone(Nmark m = M_WRITE | M_WHOLE | M_HOST) const;
     };
     
     /** 片块缓存
@@ -148,7 +155,7 @@ namespace NII
         ~UniformBuffer();
 
         /// @copydetails Buffer::clone
-        Buffer * clone(Nmark m = M_WRITE | M_WHOLE | M_CPU) const;
+        Buffer * clone(Nmark m = M_WRITE | M_WHOLE | M_HOST) const;
     };
     
     /** 帧缓存
@@ -258,64 +265,10 @@ namespace NII
     /**
     @version NIIEngine 5.0.0
     */
-    class _EngineAPI GpuBuffer : public Buffer
-    {
-    public:
-        enum LockType
-        {
-            LT_Unlock,
-            UT_Lock
-        };
-
-        enum UnlockType
-        {
-            LT_UnlockAll,
-            UT_KeepMap
-        };
-    public:
-        GpuBuffer(BufferManager * mag, Nmark mode);
-
-        /**
-        @version NIIEngine 5.0.0
-        */
-        void * lock(NCount oft, NCount size);
-
-        /**
-        @version NIIEngine 5.0.0
-        */
-        void unlock(UnlockType type, NCount oft, NCount size);
-
-        /**
-        @version NIIEngine 5.0.0
-        */
-        void bindProgram(Nui16 slot, GpuProgram::ShaderType type);
-    };
-
-    /**
-    @version NIIEngine 5.0.0
-    */
-    class _EngineAPI VertexGpuBuffer : public GpuBuffer
-    {
-    public:
-        VertexGpuBuffer(BufferManager * mag, Nmark mode);
-    };
-
-    /**
-    @version NIIEngine 5.0.0
-    */
-    class _EngineAPI IndexGpuBuffer : public GpuBuffer
-    {
-    public:
-        IndexGpuBuffer(BufferManager * mag, Nmark mode);
-    };
-
-    /**
-    @version NIIEngine 5.0.0
-    */
     class _EngineAPI ConstGpuBuffer : public GpuBuffer
     {
     public:
-        ConstGpuBuffer(BufferManager * mag, Nmark mode);
+        ConstGpuBuffer(BufferManager * mag, NCount size, Nmark mode);
     };
 
     /**
@@ -324,7 +277,7 @@ namespace NII
     class _EngineAPI IndirectGpuBuffer : public GpuBuffer
     {
     public:
-        IndirectGpuBuffer(BufferManager * mag, Nmark mode);
+        IndirectGpuBuffer(BufferManager * mag, NCount size, Nmark mode);
     };
 
     /**
@@ -333,7 +286,7 @@ namespace NII
     class _EngineAPI TextureGpuBuffer : public GpuBuffer
     {
     public:
-        TextureGpuBuffer(BufferManager * mag, Nmark mode);
+        TextureGpuBuffer(BufferManager * mag, NCount size, Nmark mode);
     };
 
     /**
@@ -342,7 +295,7 @@ namespace NII
     class _EngineAPI UavGpuBuffer : public GpuBuffer
     {
     public:
-        UavGpuBuffer(BufferManager * mag, Nmark mode);
+        UavGpuBuffer(BufferManager * mag, NCount size, Nmark mode);
     };
 }
 #endif
