@@ -330,10 +330,9 @@ namespace NII
         @param[in] srcoft 数据源到读取的位置的字节偏移量
         @param[in] oft 从这个缓存开始到写入位置的字节偏移量
         @param[in] size 复制的数据长度,单位:字节
-        @note 如果这个缓存和src属于同个内存控制器产物，直接使用内部函数API,达到优化效果，则不需要有 M_WRITE M_READ功能约束
         @version NIIEngine 3.0.0
         */
-        virtual void write(Buffer * src, NCount srcOft, NCount oft, NCount size);
+        void write(Buffer * src, NCount srcOft, NCount oft, NCount size);
 
         /** 从指定缓冲区复制数据
         @remark (this)要有 M_WRITE 功能, 来源缓存(src)要有 M_READ 功能
@@ -341,20 +340,37 @@ namespace NII
         @param[in] srcUnitOft 数据源到读取的位置的单元偏移量
         @param[in] unitOft 从这个缓存开始到写入位置的单元偏移量
         @param[in] unitCnt 复制的数据长度,单位:单元
-        @note 如果这个缓存和src属于同个内存控制器产物，直接使用内部函数API,达到优化效果，则不需要有 M_WRITE M_READ功能约束,
-            如果两个缓存非CPU缓存且跨度(stride == unitSize)不同，可以考虑使用着色程序或加速程序去复制
         @version NIIEngine 3.0.0
         */
         void writeUnit(Buffer * src, NCount srcUnitOft, NCount unitOft, NCount unitCnt);
 
-        /** 从另一个缓冲区复制所有数据
+        /** 从指定缓冲区复制所有数据
         @remark (this)缓存要有 M_WRITE 功能, 来源缓存(src)要有 M_READ 功能
         @note 注意缓存大小
-        @note 如果这个缓存和src属于同个内存控制器产物，直接使用内部函数API,达到优化效果，则不需要有 M_WRITE M_READ功能约束，
-            如果两个缓存非CPU缓存且跨度(stride == unitSize)不同，可以考虑使用着色程序或加速程序去复制
         @version NIIEngine 3.0.0
         */
-        virtual void write(Buffer * src);
+        inline void write(Buffer * src) { write(src, 0, 0, std::min(mSize, src->mSize)); }
+
+        /**从指定缓冲区读取数据
+        @remark (this)缓存要有 M_READ 功能, 来源缓存(src)要有 M_WRITE功能
+        @note 注意缓存大小
+        @version NIIEngine 3.0.0
+        */
+        void read(Buffer * dst, NCount dstOft, NCount oft, NCount size);
+
+        /**从指定缓冲区区读取数据
+        @remark (this)缓存要有 M_READ 功能, 来源缓存(src)要有 M_WRITE功能
+        @note 注意缓存大小
+        @version NIIEngine 3.0.0
+        */
+        void readUnit(Buffer * dst, NCount dstUnitOft, NCount unitOft, NCount unitCnt);
+
+        /** 从指定缓冲区读取所有数据
+        @remark (this)缓存要有 M_READ 功能, 来源缓存(src)要有 M_WRITE功能
+        @note 注意缓存大小
+        @version NIIEngine 3.0.0
+        */
+        inline void read(Buffer * dst) { dst->memcpyImpl(this, 0, 0, std::min(mSize, dst->mSize)); }
 
         /** 分配缓冲区大小(预留)
         @version NIIEngine 4.0.0
@@ -364,7 +380,7 @@ namespace NII
         /** 分配缓冲区大小(预留)
         @version NIIEngine 4.0.0
         */
-        bool resizeUnit(NCount newUnitSize, Nmark newMode = -1, bool oldData = true);
+        bool resizeUnit(NCount newUnitCnt, Nmark newMode = -1, bool oldData = true);
 
         /** 副本对象
         @param[in] m Buffer::Mode 选项
@@ -425,6 +441,22 @@ namespace NII
         @version NIIEngine 4.0.0 高级api
         */
         virtual bool reserveImpl(NCount size, Nmark newMode = -1, bool oldData = true) = 0;
+
+        /** 复制实现
+        @remark 最好使用机制API复制函数而不使用lock/write,read/unlock.
+        @note 如果这个缓存和src属于同个内存控制器产物，直接使用内部函数API,达到优化效果，则不需要有 M_WRITE M_READ功能约束，
+            如果两个缓存非CPU缓存且跨度(stride == unitSize)不同，可以考虑使用着色程序或加速程序去复制
+        @version NIIEngine 4.0.0 高级api
+        */
+        virtual void memcpyImpl(Buffer * src, NCount srcOft, NCount oft, NCount size);
+
+        /** 复制实现
+        @remark 最好使用机制API复制函数而不使用lock/write/unlock.
+        @note 如果这个缓存和src属于同个内存控制器产物，直接使用内部函数API,达到优化效果，则不需要有 M_WRITE M_READ功能约束，
+            如果两个缓存非CPU缓存且跨度(stride == unitSize)不同，可以考虑使用着色程序或加速程序去复制
+        @version NIIEngine 4.0.0 高级api
+        */
+        virtual void memcpyImpl(Buffer * src, NCount srcOft, NCount srcstride, NCount oft, NCount stride, NCount size) {}
     protected:
         BufferManager * mMag;
         Buffer * mShadow;
@@ -450,14 +482,29 @@ namespace NII
         write(in, unitOft * mUnitSize, unitCnt * mUnitSize);
     }
 
-    inline void Buffer::writeUnit(Buffer * src, NCount srcUnitOft, NCount unitOft, NCount unitCnt)
-    {
-        write(src, srcUnitOft * mUnitSize, unitOft * mUnitSize, unitCnt * mUnitSize);
-    }
-
     inline bool Buffer::resizeUnit(NCount newUnitSize, Nmark newMode, bool oldData)
     { 
         return resize(newUnitSize * mUnitSize, newMode, oldData); 
+    }
+
+    inline void Buffer::write(Buffer * src, NCount srcOft, NCount oft, NCount size)
+    {
+        memcpyImpl(src, srcOft, oft, size);
+    }
+
+    inline void Buffer::writeUnit(Buffer * src, NCount srcUnitOft, NCount unitOft, NCount unitCnt)
+    {
+        memcpyImpl(src, srcUnitOft * mUnitSize, unitOft * mUnitSize, unitCnt * mUnitSize);
+    }
+
+    inline void Buffer::read(Buffer * dst, NCount dstOft, NCount oft, NCount size)
+    {
+        dst->memcpyImpl(this, oft, dstOft, size);
+    }
+
+    inline void Buffer::readUnit(Buffer * dst, NCount dstUnitOft, NCount unitOft, NCount unitCnt)
+    {
+        dst->memcpyImpl(this, unitOft * mUnitSize, dstUnitOft * mUnitSize, unitCnt * mUnitSize);
     }
 }
 #endif
