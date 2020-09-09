@@ -451,7 +451,7 @@ namespace NII
         virtual void memcpyImpl(Buffer * src, NCount srcOft, NCount oft, NCount size);
 
         /** 复制实现
-        @remark 最好使用机制API复制函数而不使用lock/write/unlock.
+        @remark 最好使用机制API复制函数而不使用lock/write,read/unlock.
         @note 如果这个缓存和src属于同个内存控制器产物，直接使用内部函数API,达到优化效果，则不需要有 M_WRITE M_READ功能约束，
             如果两个缓存非CPU缓存且跨度(stride == unitSize)不同，可以考虑使用着色程序或加速程序去复制
         @version NIIEngine 4.0.0 高级api

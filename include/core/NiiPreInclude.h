@@ -178,7 +178,6 @@ namespace NII
     class DataStream;
     class VertexBuffer;
     class FrameBuffer;
-    class FrameBuffer;
     class HighLevelGpuProgram;
     class HighLevelGpuProgramManager;
     class HighLevelGpuProgramFactory;

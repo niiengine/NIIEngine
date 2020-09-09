@@ -78,11 +78,13 @@ namespace NII
         enum Type
         {
             T_1D        = 1,    ///< 1D纹理
-            T_2D        = 2,    ///< 2D纹理
-            T_3D        = 3,    ///< 3D纹理
-            T_2DArray   = 4,   ///< 2D纹理数组
-            T_CUBE      = 5,    ///< 3D方体映射使用3D纹理坐标
-            T_CUBE_6    = 6     ///< 6面元的方体映射
+            T_1DArray   = 2,    ///< 1D纹理数组
+            T_2D        = 3,    ///< 2D纹理
+            T_2DArray   = 4,    ///< 2D纹理数组
+            T_3D        = 5,    ///< 3D纹理
+            T_CUBE      = 6,    ///< 3D方体映射使用3D纹理坐标
+            T_CUBEArray = 7,    ///< 3D纹理数组
+            T_CUBE_6    = 8     ///< 6面元的方体映射
         };
 
         /// 正方映射面类型
@@ -180,105 +182,105 @@ namespace NII
         @remark 期望宽度,需在加载前设置
         @version NIIEngine 3.0.0
         */
-        void setWidth(NCount w);
+        inline void setWidth(NCount w)          { mWidth = mSrcWidth = w; }
 
         /** 获取纹理宽度
         @remark 期望宽度，需在加载前设置
         @version NIIEngine 3.0.0
         */
-        NCount getWidth() const;
+        inline NCount getWidth() const          { return mWidth; }
 
         /** 返回原输入像素的宽度
         @remark 来源像素的宽度
         @version NIIEngine 3.0.0
         */
-        NCount getOriginWidth() const;
+        inline NCount getOriginWidth() const    { return mSrcWidth; }
 
         /** 设置纹理高度
         @remark 期望高度，需在加载前设置
         @version NIIEngine 3.0.0
         */
-        void setHeight(NCount h);
+        inline void setHeight(NCount h)         { mHeight = mSrcHeight = h; }
 
         /** 获取纹理高度
         @remark 期望高度，需在加载前设置
         @version NIIEngine 3.0.0
         */
-        NCount getHeight() const;
+        inline NCount getHeight() const         { return mHeight; }
 
         /** 返回原输入像素的宽度
         @remark 来源像素的宽度
         @version NIIEngine 3.0.0
         */
-        NCount getOriginHeight() const;
+        inline NCount getOriginHeight() const   { return mSrcHeight;  }
 
         /** 设置纹理深度
         @remark 期望深度，需在加载前设置
         @par 3D纹理特性
         @version NIIEngine 3.0.0
         */
-        void setDepth(NCount d);
+        inline void setDepth(NCount d)          { mDepth = mSrcDepth = d; }
 
         /** 返回纹理深度
         @remark 期望深度，需在加载前设置
         @par 3D纹理特性
         @version NIIEngine 3.0.0
         */
-        NCount getDepth() const;
+        inline NCount getDepth() const          { return mDepth;  }
 
         /** 返回原输入纹理的深度.
         @remark 来源像素的深度
         @par 3D纹理特性
         @version NIIEngine 3.0.0
         */
-        NCount getOriginDepth() const;
+        inline NCount getOriginDepth() const    { return mSrcDepth;  }
 
         /** 为纹理面设置像素格式
         @remark 需在加载前设置
         @version NIIEngine 3.0.0
         */
-        void setFormat(PixelFormat pf);
+        inline void setFormat(PixelFormat pf)   { mFormat = pf;  }
 
         /** 获取纹理需要像素格式
         @remark 需在加载前设置
         @version NIIEngine 3.0.0
         */
-        PixelFormat getFormat() const;
+        inline PixelFormat getFormat() const    { return mFormat;  }
 
         /** 获取原输入纹理的像素格式
         @version NIIEngine 3.0.0
         */
-        PixelFormat getSrcFormat() const;
+        inline PixelFormat getSrcFormat() const { return mSrcFormat; }
 
         /** 设置使用的mipmaps数量
         @remark 需在加载前设置, mipmap 就是纹理的LOD概念
         @version NIIEngine 3.0.0
         */
-        void setMipmapCount(NCount num);
+        inline void setMipmapCount(NCount num)  { mMipmapCount = num; }
 
         /** 获取使用的mipmaps数量
         @remark 需在加载前设置, mipmap 就是纹理的LOD概念
         @version NIIEngine 3.0.0
         */
-        NCount getMipmapCount() const;
+        inline NCount getMipmapCount() const    { return mMipmapCount;  }
 
         /** 获取原输入纹理的映射层数量
         @remark mipmap 就是纹理的LOD概念
         @version NIIEngine 3.0.0
         */
-        NCount getSrcMipmapCount() const;
+        inline NCount getSrcMipmapCount() const { return mSrcMipmapCount;  }
         
         /** 设置纹理类型
         @remark 需在加载前设置
         @version NIIEngine 3.0.0
         */
-        void setType(Type type);
+        inline void setType(Type type)          { mTextureType = type;  }
 
         /** 获取纹理类型
         @remark 需在加载前设置
         @version NIIEngine 3.0.0
         */
-        Type getType() const;
+        inline Type getType() const             { return mTextureType;  }
 
         /** 返回这个纹理的面数量,
         @remark 正方映射纹理为6
@@ -309,68 +311,68 @@ namespace NII
         @note 将会覆盖所有原来的属性
         @version NIIEngine 3.0.0 顶级api
         */
-        void setModeMark(Nmark m);
+        inline void setModeMark(Nmark m)        { mMark = m;  }
 
         /** 获取 MemMode 标识符
         @remark 需在加载前设置
         @version NIIEngine 3.0.0 顶级api
         I*/
-        Nmark getModeMark() const;
+        inline Nmark getModeMark() const        { return mMark; }
 
         /** 添加 MemMode 标识符
         @param[in] m 单个
         @version NIIEngine 3.0.0 高级api
         */
-        void addModMark(Nmark m);
+        inline void addModMark(Nmark m)         { mMark |= m; }
 
         /** 移去 MemMode 标识符
         @param[in] m 单个
         @version NIIEngine 3.0.0 高级api
         */
-        void removeModMark(Nmark m);
+        inline void removeModMark(Nmark m)      { mMark &= ~m;  }
 
         /** 是否存在 MemMode 标识符
         @version NIIEngine 3.0.0
         */
-        bool isModMark(Nmark m) const;
+        inline bool isModMark(Nmark m) const    { return mMark & m; }
 
         /** 设置伽玛调整因子
         @remark 需在加载前设置
         @note setHardwareGamma
         @version NIIEngine 3.0.0
         */
-        void setGamma(NIIf g);
+        inline void setGamma(NIIf g)            { mGamma = g;  }
 
         /** 返回伽玛调整系数
         @remark 需在加载前设置
         @version NIIEngine 3.0.0
         */
-        NIIf getGamma() const;
+        inline NIIf getGamma() const            { return mGamma; }
 
         /** 设置全屏抗锯齿,当纹理是AGP缓存对象时
         @remark 如果不存在 MM_AGP_XXXXX 成分或硬件不支持,忽略这个选项
         @param[in] fsaa 样本数量
         @version NIIEngine 3.0.0
         */
-        void setFSAA(Nui32 fsaa);
+        inline void setFSAA(Nui32 fsaa)         { mFSAA = fsaa;  }
 
         /** 获取多重采样
         @remark 如果不存在 MM_AGP_XXXXX 成分或硬件不支持,忽略这个选项
         @version NIIEngine 3.0.0
         */
-        Nui32 getFSAA() const;
+        inline Nui32 getFSAA() const            { return mFSAA;  }
 
         /** 设置多重采样扩展
         @remark 如果不存在 MM_AGP_XXXXX 成分或硬件不支持,忽略这个选项
         @version NIIEngine 3.0.0
         */
-        void setFSAAExt(const String & ext);
+        inline void setFSAAExt(const String & ext)  { mFSAAExt = ext;  }
 
         /** 获取多重采样扩展
         @remark 如果不存在 MM_AGP_XXXXX 成分或硬件不支持,忽略这个选项
         @version NIIEngine 3.0.0
         */
-        const String & getFSAAExt() const;
+        inline const String & getFSAAExt() const    { return mFSAAExt; }
 
         /** 返回硬件像素缓存
         @remark 这个函数很可能会访问 AGP 内存,很有可能会阻塞当前调用线程

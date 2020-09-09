@@ -53,19 +53,19 @@ namespace NII
         /** 获取默认纹理位深
         @version NIIEngine 3.0.0
         */
-        NCount getBitDepth() const;
+        inline NCount getBitDepth() const       { return mBitDepth;  }
 
         /** 设置默认纹理LOD数量
         @note 默认为 0.
         @param[in] c LOD数量
         @version NIIEngine 3.0.0
         */
-        void setMipMapCount(NCount c);
+        inline void setMipMapCount(NCount c)    { mMipMapCount = c;  }
 
         /** 获取默认纹理LOD数量
         @version NIIEngine 3.0.0
         */
-        NCount getMipMapCount() const;
+        inline NCount getMipMapCount() const    { return mMipMapCount; }
 
         /** 创建纹理
         @param rid 资源句柄,这个句柄很可能是无定义的
