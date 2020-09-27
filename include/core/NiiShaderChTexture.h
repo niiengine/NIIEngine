@@ -195,84 +195,119 @@ namespace NII
         /** 混合组
         @version NIIEngine 3.0.0
         */
-        void setBlend(TextureBlendOp op, TextureBlendSource op1, TextureBlendSource op2);
+        void setBlend(TextureBlendOp op, TextureBlendSource op1, TextureBlendSource op2)
+        {
+            mOP = op;
+            mColourSrc1 = op1;
+            mColourSrc2 = op2;
+        }
 
         /** 混合组
         @version NIIEngine 3.0.0
         */
-        void setBlend(TextureBlendSource op1, TextureBlendSource op2, NIIf factor);
+        void setBlend(TextureBlendSource op1, TextureBlendSource op2, NIIf factor)
+        {
+            mOP = TBO_CONSTANT_FACTOR;
+            mColourSrc1 = op1;
+            mColourSrc2 = op2;
+            mConstantFactor = factor;
+        }
 
         /** 混合组
         @version NIIEngine 3.0.0
         */
-        void setBlend(TextureBlendOp op, const Colour & c1, TextureBlendSource op2);
+        void setBlend(TextureBlendOp op, const Colour & c1, TextureBlendSource op2)
+        {
+            mOP = op;
+            mColourSrc1 = TBS_CONSTANT;
+            mColourSrc2 = op2;
+            mConstant1 = c1;
+        }
 
         /** 混合组
         @version NIIEngine 3.0.0
         */
-        void setBlend(TextureBlendOp op, TextureBlendSource op1, const Colour & c2);
+        void setBlend(TextureBlendOp op, TextureBlendSource op1, const Colour & c2)
+        {
+            mOP = op;
+            mColourSrc1 = op1;
+            mColourSrc2 = TBS_CONSTANT;
+            mConstant2 = c2;
+        }
 
         /** 混合组
         @version NIIEngine 3.0.0
         */
-        void setBlend(TextureBlendOp op, NIIf f1, TextureBlendSource op2);
+        void setBlend(TextureBlendOp op, NIIf f1, TextureBlendSource op2)
+        {
+            mOP = op;
+            mColourSrc1 = TBS_CONSTANT;
+            mColourSrc2 = op2;
+            mConstant1.a = f1;
+        }
 
         /** 混合组
         @version NIIEngine 3.0.0
         */
-        void setBlend(TextureBlendOp op, TextureBlendSource op1, NIIf f2);
+        void setBlend(TextureBlendOp op, TextureBlendSource op1, NIIf f2)
+        {
+            mOP = op;
+            mColourSrc1 = op1;
+            mColourSrc2 = TBS_CONSTANT;
+            mConstant2.a = f2;
+        }
 
         /** 设置混合操作
         @version NIIEngine 3.0.0
         */
-        void setBlendOp(TextureBlendOp op);
+        void setBlendOp(TextureBlendOp op)              { mOP = op; }
 
         /** 设置颜色类型
         @version NIIEngine 3.0.0
         */
-        void setBlendType(TextureColourType type);
+        void setBlendType(TextureColourType type)       { mColourType = type; }
 
         /** 设置第一操作数
         @param[in] tbs 操作数
         @version NIIEngine 3.0.0
         */
-        void setBlendSource1(TextureBlendSource tbs);
+        void setBlendSource1(TextureBlendSource tbs)    { mColourSrc1 = tbs; }
 
         /** 设置第二操作数
         @param[in] tbs 操作数
         @version NIIEngine 3.0.0
         */
-        void setBlendSource2(TextureBlendSource tbs);
+        void setBlendSource2(TextureBlendSource tbs)    { mColourSrc2 = tbs; }
 
         /** 设置常量第一操作数
         @note TextureBlendSource 为 TBS_CONSTANT 和 TextureColourType 为 TCT_RGB 时使用
         @version NIIEngine 3.0.0
         */
-        void setConstant1(const Colour & c1);
+        void setConstant1(const Colour & c1)            { mConstant1 = c1; }
 
         /** 设置常量第二操作数
         @note TextureBlendSource 为 TBS_CONSTANT 和 TextureColourType 为 TCT_RGB 时使用
         @version NIIEngine 3.0.0
         */
-        void setConstant2(const Colour & c2);
+        void setConstant2(const Colour & c2)            { mConstant2 = c2; }
 
         /** 设置常量第一操作数
         @note TextureBlendSource 为 TBS_CONSTANT 和 TextureColourType 为 TCT_RGB 时使用
         @version NIIEngine 3.0.0
         */
-        void setConstant1(NIIf f1);
+        void setConstant1(NIIf f1)                      { mConstant1.a = f1; }
 
         /** 设置常量第一操作数
         @note TextureBlendSource 为 TBS_CONSTANT 和 TextureColourType 为 TCT_RGB 时使用
         @version NIIEngine 3.0.0
         */
-        void setConstant2(NIIf f2);
+        void setConstant2(NIIf f2)                      { mConstant2.a = f2; }
 
         /** 设置常量混合因子
         @note TextureBlendOp 为 TBO_CONSTANT_FACTOR 时使用
         @version NIIEngine 3.0.0
         */
-        void setConstantFactor(NIIf f);
+        void setConstantFactor(NIIf f)                  { mConstantFactor = f; }
     public:
         TextureBlendOp mOP;
         TextureColourType mColourType;

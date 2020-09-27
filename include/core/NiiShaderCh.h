@@ -568,7 +568,7 @@ namespace NII
         /** 设置是否双面模板测试
         @version NIIEngine 3.0.0
         */
-        inline void setBothSide(bool s)             { mBothSide = false; }
+        inline void setBothSide(bool s)             { mBothSide = s; }
 
         /** 获取是否双面模板测试
         @version NIIEngine 3.0.0
@@ -578,62 +578,122 @@ namespace NII
         /** 设置模板测试掩码
         @version NIIEngine 3.0.0
         */
-        inline void setTestMask(Nui32 mask)         { mTestMark = mask; }
+        inline void setTestMask(Nui32 mask)                 { mFrontTestMark = mBackTestMark = mask; }
+        
+        /** 设置模板测试掩码
+        @version NIIEngine 3.0.0
+        */
+        inline void setFrontTestMask(Nui32 mask)            { mFrontTestMark = mask; }
+        
+        /** 设置模板测试掩码
+        @version NIIEngine 3.0.0
+        */
+        inline void setBackTestMask(Nui32 mask)             { mBackTestMark = mask; }
 
         /** 获取模板测试掩码
         @version NIIEngine 3.0.0
         */
-        inline Nui32 getTestMask() const            { return mTestMark; }
+        inline Nui32 getTestMask() const                    { return mFrontTestMark; }
 
         /** 设置模板比较掩码
         @version NIIEngine 3.0.0
         */
-        inline void setCompressMask(Nui32 mask)     { mCmpMark = mask; }
+        inline void setCompressMask(Nui32 mask)             { mFrontCmpMark = mBackCmpMark = mask; }
+        
+        /** 设置模板比较掩码
+        @version NIIEngine 3.0.0
+        */
+        inline void setFrontCompressMask(Nui32 mask)        { mFrontCmpMark =  mask; }
+        
+        /** 设置模板比较掩码
+        @version NIIEngine 3.0.0
+        */
+        inline void setBackCompressMask(Nui32 mask)         { mBackCmpMark = mask; }
 
         /** 获取模板比较掩码
         @version NIIEngine 3.0.0
         */
-        inline Nui32 getCompressMask() const         { return mCmpMark; }
+        inline Nui32 getCompressMask() const                { return mFrontCmpMark; }
 
         /** 设置模板比较值
         @version NIIEngine 3.0.0
         */
-        inline void setCompressValue(Nui32 value)   { mCmpValue = value; }
+        inline void setCompressValue(Nui32 value)           { mFrontCmpValue = mBackCmpValue = value; }
+        
+        /** 设置模板比较值
+        @version NIIEngine 3.0.0
+        */
+        inline void setFrontCompressValue(Nui32 value)      { mFrontCmpValue = value; }
+        
+        /** 设置模板比较值
+        @version NIIEngine 3.0.0
+        */
+        inline void setBackCompressValue(Nui32 value)       { mBackCmpValue = value; }
 
         /** 设置模板比较值
         @version NIIEngine 3.0.0
         */
-        inline Nui32 getCompressValue() const       { return mCmpValue; }
+        inline Nui32 getCompressValue() const               { return mFrontCmpValue; }
 
         /** 设置模板比较失败操作
         @version NIIEngien 3.0.0
         */
-        inline void setStencilFailOp(StencilOpType op)  { mStencilFailOp = op; }
+        inline void setStencilFailOp(StencilOpType op)      { mFrontStencilFailOp = mBackStencilFailOp = op; }
+
+        /** 设置模板比较失败操作
+        @version NIIEngien 3.0.0
+        */
+        inline void setFrontStencilFailOp(StencilOpType op) { mFrontStencilFailOp =  op; }
+        
+        /** 设置模板比较失败操作
+        @version NIIEngien 3.0.0
+        */
+        inline void setBackStencilFailOp(StencilOpType op)  { mBackStencilFailOp = op; }
 
         /** 获取模板比较失败操作
         @version NIIEngien 3.0.0
         */
-        inline StencilOpType getStencilFailOp() const   { return mStencilFailOp; }
+        inline StencilOpType getStencilFailOp() const       { return mFrontStencilFailOp; }
 
         /** 设置深度比较失败操作
         @version NIIEngien 3.0.0
         */
-        inline void setDepthFailOp(StencilOpType op)    { mDepthFailOp = op; }
+        inline void setDepthFailOp(StencilOpType op)        { mFrontDepthFailOp = mBackDepthFailOp = op; }
+        
+        /** 设置深度比较失败操作
+        @version NIIEngien 3.0.0
+        */
+        inline void setFrontDepthFailOp(StencilOpType op)   { mFrontDepthFailOp =  op; }
+        
+        /** 设置深度比较失败操作
+        @version NIIEngien 3.0.0
+        */
+        inline void setBackDepthFailOp(StencilOpType op)    { mBackDepthFailOp = op; }
 
         /** 获取深度比较失败操作
         @version NIIEngien 3.0.0
         */
-        inline StencilOpType getDepthFailOp() const     { return mDepthFailOp; }
+        inline StencilOpType getDepthFailOp() const         { return mFrontDepthFailOp; }
 
         /** 设置模板比较通过操作
         @version NIIEngien 3.0.0
         */
-        inline void setTestPassOp(StencilOpType op)     { mTestPassOp = op; }
+        inline void setTestPassOp(StencilOpType op)         { mFrontTestPassOp = mBackTestPassOp = op; }
+        
+        /** 设置模板比较通过操作
+        @version NIIEngien 3.0.0
+        */
+        inline void setFrontTestPassOp(StencilOpType op)    { mFrontTestPassOp =  op; }
+        
+        /** 设置模板比较通过操作
+        @version NIIEngien 3.0.0
+        */
+        inline void setBackTestPassOp(StencilOpType op)     { mBackTestPassOp = op; }
 
         /** 获取模板比较通过操作
         @version NIIEngien 3.0.0
         */
-        inline StencilOpType getTestPassOp() const      { return mTestPassOp; }
+        inline StencilOpType getTestPassOp() const          { return mFrontTestPassOp; }
 
         /** 上传到着色程序参数中
         @version NIIEngine 5.0.0
@@ -646,13 +706,20 @@ namespace NII
         void download(const GpuProgramParam * param);
     public:
         bool mBothSide;
-        Nui32 mTestMark;
-        Nui32 mCmpMark;
-        CmpMode mFunc;
-        Nui32 mCmpValue;
-        StencilOpType mStencilFailOp;
-        StencilOpType mDepthFailOp;
-        StencilOpType mTestPassOp;
+        Nui32 mFrontTestMark;
+        Nui32 mBackTestMark;
+        Nui32 mFrontCmpMark;
+        Nui32 mBackCmpMark;
+        Nui32 mFrontCmpValue;
+        Nui32 mBackCmpValue;
+        CmpMode mFrontFunc;
+        CmpMode mBackFunc;
+        StencilOpType mFrontStencilFailOp;
+        StencilOpType mFrontDepthFailOp;
+        StencilOpType mFrontTestPassOp;
+        StencilOpType mBackStencilFailOp;
+        StencilOpType mBackDepthFailOp;
+        StencilOpType mBackTestPassOp;
     };
     
     /** 雾状着色模式.
