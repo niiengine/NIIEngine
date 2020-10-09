@@ -116,18 +116,18 @@ namespace NII
         @remark 可以优化APG缓存应用,并非所有的渲染器都支持,d3d9+,openl3.0+才支持
         @version NIIEngine 3.0.0
         */ 
-        inline void setInstancingOffset(NCount val){ mInstancingOffset = val; }
+        inline void setInstancingDivisor(NCount val){ mInstancingDivisor = val; }
         
         /** 同一渲染通路中多次应用绘制数据偏移
         @remark 可以优化APG缓存应用,并非所有的渲染器都支持,d3d9+,openl3.0+才支持
         @version NIIEngine 3.0.0
         */
-        inline NCount getInstancingOffset() const{ return mInstancingOffset; }
+        inline NCount getInstancingDivisor() const{ return mInstancingDivisor; }
         
         /// @copydetails Buffer::clone
         Buffer * clone(Nmark m = M_WRITE | M_WHOLE | M_HOST) const;
     protected:
-        NCount mInstancingOffset;
+        NCount mInstancingDivisor;
         
     };
     
