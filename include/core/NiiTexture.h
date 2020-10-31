@@ -77,14 +77,16 @@ namespace NII
         */
         enum Type
         {
-            T_1D        = 1,    ///< 1D纹理
-            T_1DArray   = 2,    ///< 1D纹理数组
-            T_2D        = 3,    ///< 2D纹理
-            T_2DArray   = 4,    ///< 2D纹理数组
-            T_3D        = 5,    ///< 3D纹理
-            T_CUBE      = 6,    ///< 3D方体映射使用3D纹理坐标
-            T_CUBEArray = 7,    ///< 3D纹理数组
-            T_CUBE_6    = 8     ///< 6面元的方体映射
+            T_Buffer        = 1,
+            T_ShaderBuffer  = 2,
+            T_1D            = 3,    ///< 1D纹理
+            T_1DArray       = 4,    ///< 1D纹理数组
+            T_2D            = 5,    ///< 2D纹理
+            T_2DArray       = 6,    ///< 2D纹理数组
+            T_3D            = 7,    ///< 3D纹理
+            T_CUBE          = 8,    ///< 3D方体映射使用3D纹理坐标
+            T_CUBEArray     = 9,    ///< 3D纹理数组
+            T_CUBE_6        = 10     ///< 6面元的方体映射
         };
 
         /// 正方映射面类型
