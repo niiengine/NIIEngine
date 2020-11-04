@@ -34,6 +34,32 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 
 namespace NII
 {
+    /** 虚拟文件系统工厂类
+    @note VFS 类是实例对象,所以需要这个类辅助
+    @version NIIEngine 3.0.0
+    */
+    class _EngineAPI VFSFactory : public VFSAlloc
+    {
+    public:
+        VFSFactory() {}
+        virtual ~VFSFactory() {}
+        
+        /** 类型
+        @version NIIEngine 3.0.0
+        */
+        virtual VFSType getType() const = 0;
+
+        /** 创建实例
+        @version NIIEngine 3.0.0
+        */
+        virtual VFS * create(const String & prl) = 0;
+
+        /** 删除实例
+        @version NIIEngine 3.0.0
+        */
+        virtual void destroy(VFS * obj) = 0;
+    };
+    
     /** 虚拟文件系统管理器
     @version NIIEngine 3.0.0
     */
@@ -68,12 +94,6 @@ namespace NII
         @version NIIEngine 3.0.0
         */
         void unload(const String & protocol);
-
-        /// @copydetails Singleton::getOnly
-        static VFSManager & getOnly();
-
-        /// @copydetails Singleton::getOnlyPtr
-        static VFSManager * getOnlyPtr();
     protected:
         typedef map<String, VFS *>::type VFSInsList;
 

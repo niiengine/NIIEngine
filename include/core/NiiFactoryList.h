@@ -43,7 +43,7 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 #define N_FACTORY_HLSLProgram           11
 #define N_FACTORY_GLSLProgram           12
 #define N_FACTORY_CGProgram             13
-#define N_FACTORY_AlterProgram          14
+#define N_FACTORY_ProxyProgram          14
 #define N_FACTORY_GLSLESProgram         15
 #define N_FACTORY_DummyProgram          16
 #define N_FACTORY_InstanceSpace         17

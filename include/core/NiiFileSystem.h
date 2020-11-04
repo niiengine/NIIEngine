@@ -29,7 +29,7 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 #define _NII_FileSystem_H_
 
 #include "NiiPreInclude.h"
-#include "NiiVFSFactory.h"
+#include "NiiVFSManager.h"
 
 namespace NII
 {

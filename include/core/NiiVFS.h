@@ -68,7 +68,7 @@ namespace NII
 
     /** 虚拟文件系统
     @remark
-        这可能是一文件系统文件夹,它可能是一个压缩归档,甚至可能远程位置共享在网络上
+        这可能是文件/文件夹,压缩归档,还可能远程位置共享在网络上
     @version NIIEngine 3.0.0
     */
     class _EngineAPI VFS : public VFSAlloc
@@ -80,13 +80,13 @@ namespace NII
         /** 返回这个档案代码类型
         @version NIIEngine 3.0.0
         */
-        VFSType getType() const;
+        VFSType getType() const             {return mType;}
 
         /** 获取协议名字
         @remark 很可能就是个普通的文件名字/路径,也可能是个复杂的 niiengine:// 协议
         @version NIIEngine 3.0.0
         */
-        const String & getName() const;
+        const String & getName() const      {return mName;}
 
         /** 是否存在
         @param[in] 文件完全名
@@ -190,12 +190,12 @@ namespace NII
         /** 设置群组
         @version NIIEngine 3.0.0
         */
-        void setGroup(GroupID gid);
+        void setGroup(GroupID gid)              { mGroup = gid; }
 
         /** 获取群组
         @version NIIEngine 3.0.0
         */
-        GroupID getGroup() const;
+        GroupID getGroup() const                { return mGroup; }
     protected:
         String mName;       ///< 
         VFSType mType;      ///< 文件系统类型

@@ -56,7 +56,7 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 
 namespace NII
 {
-    /// 应用范围内的唯一实例.
+    /// 单例设计模式.
     template <typename T> class Singleton
     {
     public:
