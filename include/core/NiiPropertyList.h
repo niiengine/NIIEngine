@@ -691,6 +691,8 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 
 #define N_PropertyWindow_GTKContainer                       200536 
 #define N_PropertyWindow_wxWidgetPanel                      200537 
+#define N_PropertyWindow_wxWidgetMoveX                      200538
+#define N_PropertyWindow_wxWidgetMoveY                      200539
 
 #define N_PropertySound_Type
 #define N_PropertySound_Gain                                200601

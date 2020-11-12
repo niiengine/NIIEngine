@@ -96,6 +96,13 @@ namespace NII
         */
         virtual void setConfig(const String & name, const String & value);
 
+        /** 设置自定义属性
+        @param[in] name 名字
+        @param[in] value 值
+        @version NIIEngine 3.0.0
+        */
+        void addConfig(PropertyID pid, const String & name, const String & value);
+
         /** 获取自定义属性集
         @version NIIEngine 3.0.0
         */
