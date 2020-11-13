@@ -30,7 +30,7 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 
 #include "NiiPreInclude.h"
 #include "NiiFrameObjListener.h"
-#include "NiiRenderListener.h"
+#include "NiiRenderQueue.h"
 #include "NiiFrameFusion.h"
 #include "NiiFusion.h"
 #include "NiiViewport.h"

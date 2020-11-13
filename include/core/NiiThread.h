@@ -116,20 +116,38 @@ namespace NII
 		friend class GroupThreadMain;
     public:
         virtual ~ThreadMain();
-        virtual void cancel() {}
-        virtual bool isLoop() const { return false; }
+        virtual void cancel()           {}
+        virtual bool isLoop() const     { return false; }
     protected:
         virtual void run(void * arg) = 0;
     
         /** 主函数运行前触发
         @version NIIEngine 3.0.0
         */
-        virtual void onPrcBegin(void *){}
+        virtual void onPrcBegin(void *) {}
+        
+        /** 主函数运行被中断后触发
+        @remark Begin-> Interrupt -> End
+        @version NIIEngine 3.0.0
+        */
+        virtual void onPrcInterrupt(void *) {}
+        
+        /** 主函数运行被暂停后触发
+        @remark Begin-> Suspend -> (Go on) or (Stop -> End)
+        @version NIIEngine 3.0.0
+        */
+        virtual void onPrcSuspend(void *) {}
+        
+        /** 主函数运行被中后触发
+        @remark Begin-> Stop -> End
+        @version NIIEngine 3.0.0
+        */
+        virtual void onPrcStop(void *) {}
         
         /** 主函数结束后触发
         @version NIIEngine 3.0.0
         */
-        virtual void onPrcEnd(void *){}
+        virtual void onPrcEnd(void *)   {}
     };
 
     /** 线程
@@ -169,7 +187,7 @@ namespace NII
         /** 自动删除
         @version NIIEngine 3.0.0
         */
-        bool isAutoDestroy() const;
+        bool isAutoDestroy() const      {return mAutoDestroy;}
 
         /** 获取是否正在运行
         @version NIIEngine 3.0.0
