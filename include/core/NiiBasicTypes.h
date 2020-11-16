@@ -55,9 +55,9 @@ namespace NII
     typedef short               Ni16;       
     typedef char                Ni8;   
     /////////////////////////////////
-    typedef Ni32                Nid;
+    typedef int                 Nid;
     typedef size_t              Nidx;
-    typedef Nui32               Nmark;
+    typedef unsigned int        Nmark;
     /////////////////////////////////
     typedef char                Nutf8;
     typedef void *              Nvoid;
@@ -120,6 +120,7 @@ namespace NII
     typedef Nid VersionID;
     typedef Nid ViewportID;
     typedef Nid EffectID;
+    typedef Nid DrawCallGroupID;
 
     typedef Nui16 SerialVer;
     typedef Nui16 SerialFormat;

@@ -35,6 +35,28 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 #include "NiiShaderChTexture.h"
 #include "NiiExtData.h"
 
+//#define ShaderChAlpha_Value                     0xFF
+#define ShaderChAlpha_AlphaCoverage             0x200
+#define ShaderChAlpha_OneAlphaCoverage          0x400
+
+#define ShaderChBlendSeparate                   0x01
+#define ShaderChBlendSeparateMode               0x02
+#define ShaderChBlendColour                     0x04
+#define ShaderChBlendAplha                      0x08
+#define ShaderChBlendSrcOne                     0x100
+#define ShaderChBlendDstZERO                    0x200
+#define ShaderChBlendSrcOneDstZERO              0x300
+#define ShaderChBlendSrcAlphaOne                0x400
+#define ShaderChBlendDstAlphaZERO               0x800
+#define ShaderChBlendSrcAlphaOneAlphaZERO       0xC00
+#define ShaderChBlendPartSrcOneZERO             0xF00
+
+#define ShaderChDepth_Check                     0x01
+#define ShaderChDepth_mWrite                    0x02
+
+#define ShaderChPoint_Sprites                   0x01
+#define ShaderChPoint_Attenuat                  0x02
+
 namespace NII
 {
     enum ColourTraceMark
@@ -193,7 +215,7 @@ namespace NII
         @note 值会被最后一次设置代替
         @version NIIEngine 3.0.0
         */
-        void setAlphaCoverage(bool b);
+        void setAlphaCoverage(bool b)               { b ?  mMark |= ShaderChAlpha_AlphaCoverage : mMark &= ~ShaderChAlpha_AlphaCoverage;}
 
         /** 返回是否使用将绘制的片元的alpha来计算最终的覆盖比率
         @remark
@@ -202,7 +224,7 @@ namespace NII
         @note 值会被最后一次设置代替
         @version NIIEngine 3.0.0
         */
-        bool isAlphaCoverage() const;
+        bool isAlphaCoverage() const                { return mMark & ShaderChAlpha_AlphaCoverage; }
 
         /** 设置是否使用将绘制的片元的alpha值设置为最大值(1)来计算覆盖比率
         @remark
@@ -211,7 +233,7 @@ namespace NII
         @note 值会被最后一次设置代替
         @version NIIEngine 3.0.0
         */
-        void setOneAlphaCoverage(bool b);
+        void setOneAlphaCoverage(bool b)            {b? mMark |= ShaderChAlpha_OneAlphaCoverage : mMark &= ~ShaderChAlpha_OneAlphaCoverage;}
 
         /** 返回是否使用将绘制的片元的alpha值设置为最大值(1)来计算覆盖比率
         @remark
@@ -220,7 +242,7 @@ namespace NII
         @note 值将会被最后一次设置代替
         @version NIIEngine 3.0.0
         */
-        bool isOneAlphaCoverage() const;
+        bool isOneAlphaCoverage() const             {return mMark & ShaderChAlpha_OneAlphaCoverage; }
 
         /** 设置透明度拒绝模式.
         @version NIIEngine 3.0.0
@@ -382,32 +404,32 @@ namespace NII
         /** 获取这个材质来源混合因子
         @version NIIEngine 3.0.0
         */
-        inline ColourFactor getSrcFactor() const { return mSrcFactor; }
+        inline ColourFactor getSrcFactor() const        { return mSrcFactor; }
 
         /** 获取这个材质目标混合因子
         @version NIIEngine 3.0.0
         */
-        inline ColourFactor getDstFactor() const { return mDstFactor; }
+        inline ColourFactor getDstFactor() const        { return mDstFactor; }
 
         /** 获取这个材质透明来源混合因子
         @version NIIEngine 3.0.0
         */
-        inline ColourFactor getSrcAlphaFactor() const { return mSrcAlphaFactor; }
+        inline ColourFactor getSrcAlphaFactor() const   { return mSrcAlphaFactor; }
 
         /** 获取这个材质透明目标混合因子
         @version NIIEngine 3.0.0
         */
-        inline ColourFactor getDstAlphaFactor() const { return mDstAlphaFactor; }
+        inline ColourFactor getDstAlphaFactor() const   { return mDstAlphaFactor; }
 
         /** 是否产生覆盖效应
         @version NIIEngine 3.0.0
         */
-        bool isReplace() const;
+        bool isReplace() const                          { return (mMark & ShaderChBlendSrcOneDstZERO) == ShaderChBlendSrcOneDstZERO; }
 
         /** 是否产生覆盖效应(分离透明通道设置)
         @version NIIEngine 3.0.0
         */
-        bool isPartReplace() const;
+        bool isPartReplace() const                      { return (mMark & ShaderChBlendPartSrcOneZERO) == ShaderChBlendPartSrcOneZERO; }
 
         /** 是否产生透明度效应
         @version NIIEngine3.0.0
@@ -417,12 +439,12 @@ namespace NII
         /** 是否分离透明通道设置
         @version NIIEngine 3.0.0
         */
-        bool isPartAlpha() const;
+        bool isPartAlpha() const                        { return mMark & ShaderChBlendSeparate; }
 
         /** 是否分离透明通道混合设置
         @version NIIEngine 3.0.0
         */
-        bool isPartAlphaBlendMode() const;
+        bool isPartAlphaBlendMode() const               { return mMark & ShaderChBlendSeparateMode;}
 
         /** 上传到着色程序参数中
         @version NIIEngine 5.0.0
@@ -460,43 +482,43 @@ namespace NII
         /** 设置测试的比较深度.
         @version NIIEngine 3.0.0
         */
-        void setCmp(CmpMode mode) { mCmpMode = mode; }
+        void setCmp(CmpMode mode)               { mCmpMode = mode; }
 
         /** 获取测试的比较深度
         @version NIIEngine 3.0.0
         */
-        CmpMode getCmp() const { return mCmpMode; }
+        CmpMode getCmp() const                  { return mCmpMode; }
 
         /** 设置缓存测试
         @version NIIEngine 3.0.0
         */
-        void setCheck(bool b);
+        void setCheck(bool b)                   { b ? mMark |= ShaderChDepth_Check : mMark &= ~ShaderChDepth_Check; }
 
         /** 是否缓存测试
         @version NIIEngine 3.0.0
         */
-        bool isCheck() const;
+        bool isCheck() const                    { return mMark & ShaderChDepth_Check; }
 
         /** 设置缓存写入
         @version NIIEngine 3.0.0
         */
-        void setWrite(bool b);
+        void setWrite(bool b)                   { b ? mMark |= ShaderChDepth_mWrite : mMark &= ~ShaderChDepth_mWrite; }
 
         /** 是否缓存写入
         @version NIIEngine 3.0.0
         */
-        bool isWrite() const;
+        bool isWrite() const                    { return mMark & ShaderChDepth_mWrite; }
 
         /** 设置偏量常数
         @version NIIEngine 3.0.0
         */
-        inline void setBiasConstant(NIIf f) { mBias = f; }
+        inline void setBiasConstant(NIIf f)     { mBias = f; }
 
         /** 获取偏量常数
         @remark 基本渲染系统中存在
         @version NIIEngine 3.0.0
         */
-        inline NIIf getBiasConstant() const { return mBias; }
+        inline NIIf getBiasConstant() const     { return mBias; }
 
         /** 设置偏量常数因子
         @version NIIEngine 3.0.0
@@ -513,13 +535,13 @@ namespace NII
         @note 旧硬件可能不支持
         @version NIIEngine 3.0.0
         */
-        inline void setBiasSlopeScale(NIIf f) { mSlopeScaleBias = f; }
+        inline void setBiasSlopeScale(NIIf f)   { mSlopeScaleBias = f; }
 
         /** 获取斜率补偿
         @remark 基本渲染系统中存在
         @version NIIEngine 3.0.0
         */
-        inline NIIf getBiasSlopeScale() const { return mSlopeScaleBias; }
+        inline NIIf getBiasSlopeScale() const   { return mSlopeScaleBias; }
 
         /** 上传到着色程序参数中
         @version NIIEngine 5.0.0
@@ -844,98 +866,98 @@ namespace NII
         @param[in] ps
         @version NIIEngine 3.0.0
         */
-        inline void setSize(NIIf ps) { mSize = ps; }
+        inline void setSize(NIIf ps)            { mSize = ps; }
 
         /** 获取点大小
         @remark 这个属性确定在渲染点列表时使用的点大小
         @version NIIEngine 3.0.0
         */
-        inline NIIf getSize() const { return mSize; }
+        inline NIIf getSize() const             { return mSize; }
 
         /** 设置点最小大小
         @version NIIEngine 3.0.0
         */
-        inline void setMinSize(NIIf min) { mMinSize = min; }
+        inline void setMinSize(NIIf min)        { mMinSize = min; }
 
         /** 获取点最小大小
         @version NIIEngine 3.0.0
         */
-        inline NIIf getMinSize() const { return mMinSize; }
+        inline NIIf getMinSize() const          { return mMinSize; }
 
         /** 设置线宽
         @version NIIEngine 3.0.0
         */
-        inline void setLineWidth(NIIf w) { mLineWidth = w; }
+        inline void setLineWidth(NIIf w)        { mLineWidth = w; }
 
         /** 获取线宽
         @version NIIEngine 3.0.0
         */
-        inline NIIf getLineWidth() const { return mLineWidth; }
+        inline NIIf getLineWidth() const        { return mLineWidth; }
 
         /** 设置点最大大小
         @param[in] max 渲染系统支持的最大设置为 0
         @version NIIEngine 3.0.0
         */
-        inline void setMaxSize(NIIf max) { mMaxSize = max; }
+        inline void setMaxSize(NIIf max)        { mMaxSize = max; }
 
         /** 获取点最大大小
         @remark 渲染系统支持的最大设置为 0
         @version NIIEngine 3.0.0
         */
-        inline NIIf getMaxSize() const { return mMaxSize; }
+        inline NIIf getMaxSize() const          { return mMaxSize; }
 
         /** 设置点列表渲染模式
         @remark 基本渲染中可能包含的特性,使用 POINTLIST / POINTS 模式绘制点,粒子系统可能能用上
         @version NIIEngine 3.0.0
         */
-        void setSpritesEnable(bool b);
+        void setSpritesEnable(bool b)           { b ? mMark |= ShaderChPoint_Sprites : mMark &= ~ShaderChPoint_Sprites;}
 
         /** 是否是点列表渲染模式
         @return 基本渲染中可能包含的特性,使用 POINTLIST / POINTS 模式绘制点,粒子系统可能能用上
         @version NIIEngine 3.0.0
         */
-        bool isSpritesEnable() const;
+        bool isSpritesEnable() const            { return mMark & ShaderChPoint_Sprites;}
 
         /** 设置是否启用距离衰减
         @return attenuate = 1 / (constant + linear * dist + quadratic * d^2).
         @version NIIEngine 3.0.0
         */
-        void setAttenuateEnable(bool b);
+        void setAttenuateEnable(bool b)         { b ? mMark |= ShaderChPoint_Attenuat: mMark &= ~ShaderChPoint_Attenuat; }
 
         /** 返回点是否距启用距离衰减
         @version NIIEngine 3.0.0
         */
-        bool isAttenuateEnable() const;
+        bool isAttenuateEnable() const          { return mMark & ShaderChPoint_Attenuat; }
 
         /** 设置点距离衰减常数系数
         @version NIIEngine 3.0.0
         */
-        inline void setConstant(NIIf f) { mConstant = f; }
+        inline void setConstant(NIIf f)         { mConstant = f; }
 
         /** 获取点距离衰减常数系数
         @version NIIEngine 3.0.0
         */
-        inline NIIf getConstant() const { return mConstant; }
+        inline NIIf getConstant() const         { return mConstant; }
 
         /** 设置点距离衰减线性系数.
         @version NIIEngine 3.0.0
         */
-        inline void setLinear(NIIf f) { mLinear = f; }
+        inline void setLinear(NIIf f)           { mLinear = f; }
 
         /** 获取点距离衰减线性系数.
         @version NIIEngine 3.0.0
         */
-        inline NIIf getLinear() const { return mLinear; }
+        inline NIIf getLinear() const           { return mLinear; }
 
         /** 设置点距离衰减二次系数
         @version NIIEngine 3.0.0
         */
-        inline void setQuadratic(NIIf f) { mQuadratic = f; }
+        inline void setQuadratic(NIIf f)        { mQuadratic = f; }
 
         /** 返回点距离衰减二次系数.
         @version NIIEngine 3.0.0
         */
-        inline NIIf getQuadratic() const { return mQuadratic; }
+        inline NIIf getQuadratic() const        { return mQuadratic; }
 
         /** 上传到着色程序参数中
         @version NIIEngine 5.0.0
@@ -1153,22 +1175,22 @@ namespace NII
         /** 所属渲染集
         @version NIIEngine 3.0.0
         */
-        ShaderFusion * getParent() const;
+        ShaderFusion * getParent() const                { return mParent; }
 
         /** 局部索引
         @version NIIEngine 3.0.0
         */
-        Nidx getIndex() const;
+        Nidx getIndex() const                           { return mIndex; }
 
         /** 设置的名字
         @verison NIIEngine 3.0.0
         */
-        void setName(const String & name);
+        void setName(const String & name)               { mName = name; }
 
         /** 获取的名字
         @version NIIEngine 3.0.0
         */
-        const String & getName() const;
+        const String & getName() const                  { return mName; }
 
         /** 获取资源群组
         @version NIIEngine 3.0.0
@@ -1183,7 +1205,7 @@ namespace NII
         /** 是否混合出来的通道
         @version NIIEngine 3.0.0
         */
-        bool isFusion() const;
+        bool isFusion() const                           { return mMark & SB_Fusion; }
 
         /** 启用基础设置
         @version NIIEngine 3.0.0
@@ -1218,7 +1240,7 @@ namespace NII
         @note 不能设置返回值内容
         @version NIIEngine 3.0.0
         */
-        inline const ShaderChPoint & getPoint() const { return *mPoint; }
+        inline const ShaderChPoint & getPoint() const   { return *mPoint; }
 
         /** 设置雾应用
         @remark 扩展事物
@@ -1231,7 +1253,7 @@ namespace NII
         @note 不能设置返回值内容
         @version NIIEngine 3.0.0
         */
-        inline const ShaderChFog & getFog() const { return *mFog; }
+        inline const ShaderChFog & getFog() const       { return *mFog; }
 
         /** 设置像素混合应用
         @remark 基础事物
@@ -1244,7 +1266,7 @@ namespace NII
         @note 不能设置返回值内容
         @version NIIEngine 3.0.0
         */
-        inline const ShaderChBlend & getBlend() const { return *mBlend; }
+        inline const ShaderChBlend & getBlend() const   { return *mBlend; }
 
         /** 设置深度测试应用
         @remark 基础事物
@@ -1257,7 +1279,7 @@ namespace NII
         @note 不能设置返回值内容
         @version NIIEngine 3.0.0
         */
-        inline const ShaderChDepth & getDepth() const { return *mDepth; }
+        inline const ShaderChDepth & getDepth() const   { return *mDepth; }
 
         /** 获取Alpha测试应用
         @remark 基础事物
@@ -1270,7 +1292,7 @@ namespace NII
         @note 不能设置返回值内容
         @version NIIEngine 3.0.0
         */
-        inline const ShaderChAlpha & getAlpha() const { return *mAlpha; }
+        inline const ShaderChAlpha & getAlpha() const   { return *mAlpha; }
 
         /** 获取纹理应用
         @remark 基础事物
@@ -1303,76 +1325,76 @@ namespace NII
         @param[in] mark ColourMark 的一个或多个组合
         @version NIIEngine 3.0.0
         */
-        void setColourWrite(Nmark mark);
+        void setColourWrite(Nmark mark)                 { mMark |= (mark & SB_Colour_RGBA);}
 
         /** 获取颜色写入
         @remark 基础事物
         @version NIIEngine 3.0.0
         */
-        Nmark getColourWrite() const;
+        Nmark getColourWrite() const                    { return mMark & SB_Colour_RGBA; }
 
         /** 设置是否启用深度排序.
         @remark
         @version NIIEngine 3.0.0
         */
-        inline void setDepthSort(bool b){ mDepthSort = b;}
+        inline void setDepthSort(bool b)                { mDepthSort = b;}
 
         /** 返回是否启用深度排序
         @version NIIEngine 3.0.0
         */
-        inline bool isDepthSort() const{ return mDepthSort;}
+        inline bool isDepthSort() const                 { return mDepthSort;}
 
         /** 设置是否强制深度排序
         @param[in] enabled
         @version NIIEngine 3.0.0
         */
-        inline void setForceDepthSort(bool b){ mForceDepthSort = b;}
+        inline void setForceDepthSort(bool b)           { mForceDepthSort = b;}
 
         /** 返回是否强制深度排序
         @version nIIEngine 3.0.0
         */
-        inline bool isForceDepthSort() const{ return mForceDepthSort;}
+        inline bool isForceDepthSort() const            { return mForceDepthSort;}
 
         /** 设置是否自动退化
         @param[in] b
         @version NIIEngine 3.0.0
         */
-        inline void setAutoReduce(bool b){ mAutoReduce = b;}
+        inline void setAutoReduce(bool b)               { mAutoReduce = b;}
 
         /** 获取是否自动退化
         @version NIIEngine 3.0.0
         */
-        inline bool getAutoReduce() const{ return mAutoReduce;}
+        inline bool getAutoReduce() const               { return mAutoReduce;}
 
         /** 设置光体模式
         @version NIIEngine 3.0.0
         */
-        inline void setShadeMode(ShadeMode m){ mShaderMode = m; }
+        inline void setShadeMode(ShadeMode m)           { mShaderMode = m; }
 
         /** 获取光体模式
         @version NIIEngine 3.0.0
         */
-        inline ShadeMode getShaderMode() const{ return mShaderMode;}
+        inline ShadeMode getShaderMode() const          { return mShaderMode;}
 
         /** 设置多边形模式
         @version NIIEngine 3.0.0
         */
-        inline void setPolygonMode(PolygonMode m){ mPolygonMode = m; }
+        inline void setPolygonMode(PolygonMode m)       { mPolygonMode = m; }
 
         /** 获取多边形模式
         @version NIIEngine 3.0.0
         */
-        inline PolygonMode getPolygonMode() const{ return mPolygonMode;}
+        inline PolygonMode getPolygonMode() const       { return mPolygonMode;}
 
         /** 设置渲染通道基于三角形面序.
         @version NIIEngine 3.0.0
         */
-        inline void setCullingMode(CullingMode mode){ mCullMode = mode; }
+        inline void setCullingMode(CullingMode mode)    { mCullMode = mode; }
 
         /** 获取渲染通道基于三角形面序.
         @version NIIEngine 3.0.0
         */
-        inline CullingMode getCullingMode() const{ return mCullMode; }
+        inline CullingMode getCullingMode() const       { return mCullMode; }
 
         /** 设置系统拣选模式
         @version NIIEngine 3.0.0
@@ -1382,148 +1404,148 @@ namespace NII
         /** 获取系统拣选模式
         @version NIIEngine 3.0.0
         */
-        inline SysCullingMode getSysCullingMode() const{ return mSysCullMode;}
+        inline SysCullingMode getSysCullingMode() const { return mSysCullMode;}
 
         /** 设置是否动态单位化法线
         @version NIIEngine 3.0.0
         */
-        void setUnitNormals(bool b);
+        void setUnitNormals(bool b)                     { b ? mMark = mMark | SB_UnitNormals : mMark = mMark & ~SB_UnitNormals; }
 
         /** 获取是否动态单位化法线
         @version NIIEngine 3.0.0
         */
-        bool isUnitNormals() const;
+        bool isUnitNormals() const                      { return mMark & SB_UnitNormals; }
 
         /** 设置是否启用动态照明
         @param[in] b
         @version NIIEngine 3.0.0
         */
-        void setLight(bool b);
+        void setLight(bool b)                           { b? mMark |= SB_Light : mMark &= ~SB_Light; }
 
         /** 是否启用动态照明
         @version NIIEngine 3.0.0
         */
-        bool isLight() const;
+        bool isLight() const                            { return mMark & SB_Light; }
 
         /** 设置是否启用雾设置
         @version NIIEngine 3.0.0
         */
-        void setFogValid(bool b);
+        void setFogValid(bool b)                        { b ? mMark |= SB_FogValid : mMark &= ~SB_FogValid; }
 
         /** 是否启用雾设置
         @version NIIEngine 3.0.0
         */
-        bool isFogValid() const;
+        bool isFogValid() const                         { return mMark & SB_FogValid; }
 
         /** 设置渲染通道使用的最大灯光数量
         @version NIIEngine 3.0.0
         */
-        inline void setLightMax(Nui16 count) { mMaxLightCount = count; }
+        inline void setLightMax(Nui16 count)            { mMaxLightCount = count; }
 
         /** 获取这条通道使用的最大灯光数量
         @version NIIEngine 3.0.0
         */
-        inline Nui16 getLightMax() const { return mMaxLightCount; }
+        inline Nui16 getLightMax() const                { return mMaxLightCount; }
 
         /** 设置渲染通道开始的灯光列表的索引
         @version NIIEngine 3.0.0
         */
-        inline void setLightBegin(Nui16 i) { mLightBegin = i; }
+        inline void setLightBegin(Nui16 i)              { mLightBegin = i; }
 
         /** 获取这条通道开始的灯光列表的索引.
         @version NIIEngine 3.0.0
         */
-        inline Nui16 getLightBegin() const { return mLightBegin; }
+        inline Nui16 getLightBegin() const              { return mLightBegin; }
 
         /** 设置灯光掩码
         @param[in] mark 匹配码
         @version NIIEngine 3.0.0
         */
-        inline void setLightMark(Nmark mark) { mLightMask = mark; }
+        inline void setLightMark(Nmark mark)            { mLightMask = mark; }
 
         /** 获取灯光掩码
         @version NIIEngine 3.0.0
         */
-        inline Nmark getLightMark() const { return mLightMask; }
+        inline Nmark getLightMark() const               { return mLightMask; }
 
         /** 设置多通道渲染次数
         @remark 用于着色程序控制通路时用
         @version NIIEngine 3.0.0
         */
-        inline void setRenderCount(Nui16 c) { mRenderCount = c; }
+        inline void setRenderCount(Nui16 c)             { mRenderCount = c; }
 
         /** 获取多通道渲染次数
         @remark 用于着色程序控制通路时用
         @version NIIEngine 3.0.0
         */
-        inline Nui16 getRenderCount() const { return mRenderCount; }
+        inline Nui16 getRenderCount() const             { return mRenderCount; }
 
         /** 设置是否每个灯光渲染执行一次渲染
         @remark 用于渲染阴影到模板缓存或纹理时使用
         @version NIIEngine 3.0.0
         */
-        inline void setEachLight(bool b) { mEachLight = b; }
+        inline void setEachLight(bool b)                { mEachLight = b; }
 
         /** 获取是否每个灯光渲染执行一次渲染
         @remark 用于渲染阴影到模板缓存或纹理时使用
         @version NIIEngine 3.0.0
         */
-        inline bool isEachLight() const { return mEachLight; }
+        inline bool isEachLight() const                 { return mEachLight; }
 
         /** 设置灯光类型限制
         @version NIIEngine 3.0.0
         */
-        inline void setLightTypeLimit(LightType type) { mOnlyLightType = type; }
+        inline void setLightTypeLimit(LightType type)   { mOnlyLightType = type; }
 
         /** 获取灯光类型限制
         @version NIIEngine 3.0.0
         */
-        inline LightType getLightTypeLimit() const { return mOnlyLightType; }
+        inline LightType getLightTypeLimit() const      { return mOnlyLightType; }
 
         /** 灯光数量限制
         @version NIIEngine 3.0.0
         */
-        inline void setLightRenderLimit(Nui16 c) { mLightCountLimit = c; }
+        inline void setLightRenderLimit(Nui16 c)        { mLightCountLimit = c; }
 
         /** 如果启用灯光迭代,每个迭代的灯光数量
         @version NIIEngine 3.0.0
         */
-        inline Nui16 getLightRenderLimit() const { return mLightCountLimit; }
+        inline Nui16 getLightRenderLimit() const        { return mLightCountLimit; }
 
         /** 设置灯光是否矩形剪切
         @version NIIEngine 3.0.0
         */
-        void setLightClip(bool b);
+        void setLightClip(bool b)                       { b ? mMark = mMark | SB_LightClip : mMark = mMark & ~SB_LightClip; }
 
         /** 获取灯光是否矩形剪切
         @version NIIEngine 3.0.0
         */
-        bool isLightClip() const;
+        bool isLightClip() const                        { return mMark & SB_LightClip; }
 
         /** 设置灯光是否应用面裁剪
         @version NIIEngine 3.0.0
         */
-        void setLightClipPlane(bool b);
+        void setLightClipPlane(bool b)                  { b ? mMark = mMark | SB_LightClipPlane : mMark = mMark & ~SB_LightClipPlane; }
 
         /** 获取灯光是否应用面裁剪
         @version NIIEngine 3.0.0
         */
-        bool isLightClipPlane() const;
+        bool isLightClipPlane() const                   { return mMark & SB_LightClipPlane;}
 
         /** 设置渲染阶段
         @version NIIEngine 3.0.0
         */
-        inline void setShaderStep(ShaderStep ss) { mShaderStep = ss; }
+        inline void setShaderStep(ShaderStep ss)        { mShaderStep = ss; }
 
         /** 获取渲染阶段
         @version NIIEngine 3.0.0
         */
-        inline ShaderStep getShaderStep() const { return mShaderStep; }
+        inline ShaderStep getShaderStep() const         { return mShaderStep; }
 
         /** 状态掩码
         @version NIIEngine 3.0.0 高级api
         */
-        Nmark getMark() const;
+        Nmark getMark() const                           { return mMark; }
     public:
         /** 状态/性质变化了
         @version NIIEngine 3.0.0 高级api

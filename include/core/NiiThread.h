@@ -138,7 +138,7 @@ namespace NII
         */
         virtual void onPrcSuspend(void *) {}
         
-        /** 主函数运行被中后触发
+        /** 主函数运行被停止后触发
         @remark Begin-> Stop -> End
         @version NIIEngine 3.0.0
         */
@@ -217,7 +217,7 @@ namespace NII
         /** 获取线程主函数
         @version NIIEngine 3.0.0
         */
-        ThreadMain * getThreadMain() const;
+        ThreadMain * getThreadMain() const      {return mMain;}
 
         /** 获取优先级(最小)
         @version NIIEngine 3.0.0

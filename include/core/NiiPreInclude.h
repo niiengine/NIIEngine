@@ -124,6 +124,8 @@ namespace NII
     class SysSyncParam;
     class AABox;
     class AABSpaceQuery;
+    class DrawCallGroup;
+    class DrawCallManager;
     class Node;
     class Audio;
     class SyncParticle;
@@ -261,7 +263,7 @@ namespace NII
     class RenderQueue;
     class RenderGroup;
     class CustomQueue;
-    class CustomRender;
+    class CustomRenderQueue;
 
     class RenderListener;
     class RenderSys;
