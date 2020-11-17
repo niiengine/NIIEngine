@@ -549,6 +549,12 @@ namespace NII
     class _EngineAPI GpuProgramParam : public GpuParamsAlloc
     {
     public:
+        enum ParamType
+        {
+            PT_Const,           ///< 一次性
+            PT_Texture          ///< 纹理缓存,uav数据模型,uniform缓存
+        };
+    public:
         GpuProgramParam();
         GpuProgramParam(const GpuProgramParam & o);
         ~GpuProgramParam();
