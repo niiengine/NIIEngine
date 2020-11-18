@@ -103,6 +103,11 @@ namespace NII
         @version NIIEngine 3.0.0
         */
         inline Type getType() const { return mType; }
+        
+        /** 运行调用绘制单元
+        @version NIIEngine 3.0.0
+        */
+        virtual void run(DrawCallGroup * group) = 0;
     public:
         Type mType;
             
