@@ -34,7 +34,6 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 #include "NiiCamera.h"
 #include "NiiColour.h"
 #include "NiiSpaceQuery.h"
-#include "NiiRenderSort.h"
 #include "NiiLodListener.h"
 
 namespace NII
@@ -901,12 +900,12 @@ namespace NII
         /** 设置自定义渲染队列
         @version NIIEngine 3.0.0
         */
-        static CustomRender * createCustomRender(Nid id);
+        static CustomRenderQueue * createCustomRender(Nid id);
 
         /** 自定义渲染队列
         @version NIIEngine 3.0.0
         */
-        static CustomRender * getCustomRender(Nid id);
+        static CustomRenderQueue * getCustomRender(Nid id);
 
         /** 删除自定义渲染队列
         @version NIIEngine 3.0.0
@@ -961,7 +960,7 @@ namespace NII
         /** 渲染队列
         @version NIIEngine 3.0.0
         */
-        virtual void renderQueue(CustomRender * s);
+        virtual void renderQueue(CustomRenderQueue * s);
 
         /** 渲染队列前
         @version NIIEngine 3.0.0
@@ -1004,7 +1003,7 @@ namespace NII
         typedef map<SpaceID, SpaceNode *>::type SceneNodeList;
         typedef map<SpaceID, StaticSpace *>::type StaticSpaceList;
         typedef map<SpaceID, InstanceSpace *>::type InstanceSpaceList;
-        typedef map<Nid, CustomRender *>::type CustomRenderList;
+        typedef map<Nid, CustomRenderQueue *>::type CustomRenderList;
         typedef map<Light *, Rectf>::type LightClipList;
         typedef map<Light *, PlaneList>::type LightPlaneClipList;
         typedef set<SpaceNode *>::type AutoFocusList;

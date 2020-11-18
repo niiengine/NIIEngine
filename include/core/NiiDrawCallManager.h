@@ -57,7 +57,7 @@ namespace NII
             T_TextureBuffer,
             T_TextureList,
             T_TextureSampleList,
-            T_Array,                ///< Array
+            T_Array,                ///< Arrays
             T_Index,                ///< Elements
             T_IndirectArray,
             T_IndirectIndex,
@@ -65,8 +65,44 @@ namespace NII
             T_MultiIndex,
             T_MultiIndirectArray,
             T_MultiIndirectIndex,
-            T_Ext
+            T_Ext1,
+            T_Ext2,
+            T_Ext3,
+            T_Ext4,
+            T_Ext5,
+            T_Ext6,
+            T_Ext7,
+            T_Ext8,
+            T_Ext9,
+            T_Ext10,
+            T_Ext11,
+            T_Ext12,
+            T_Ext13,
+            T_Ext14,
+            T_Ext15,
+            T_Ext16,
+            T_Ext17,
+            T_Ext18,
+            T_Ext19,
+            T_Ext20,
+            T_Ext21,
+            T_Ext22,
+            T_Ext23,
+            T_Ext24,
+            T_Ext25,
+            T_Ext26,
+            T_Ext27,
+            T_Ext28,
+            T_Ext29,
+            T_Ext30,
+            T_Ext31,
+            T_Ext32
         };
+        
+        /** 获取类型
+        @version NIIEngine 3.0.0
+        */
+        inline Type getType() const { return mType; }
     public:
         Type mType;
             
@@ -84,48 +120,59 @@ namespace NII
         DrawCallGroup();
         ~DrawCallGroup();
         
+        /** 设置操作的渲染系统
+        @version NIIEngine 3.0.0
+        */
+        void setOpSys(RenderSys * sys)              {mOpSys = sys;}
+        
+        /** 获取操作的渲染系统
+        @version NIIEngine 3.0.0
+        */
+        RenderSys * getOpSys() const                { return mOpSys;}
+        
+        /** 执行调用
+        @version NIIEngine 3.0.0
+        */
+        void run();
+        
         /** 组id
         @version NIIEngine 3.0.0
         */
         DrawCallGroupID getID() const               { return mID; }
         
-        /**
+        /** 创建调用绘制单元
         @version NIIEngine 3.0.0
         */
-        void add(DrawCallUnit * unit);
+        DrawCallUnit * create(DrawCallUnit::Type type);
         
-        /**
+        /** 获取索引下标调用绘制单元
         @version NIIEngine 3.0.0
         */
-        DrawCallUnit * create(DrawCallUnit::Type type) const;
-        
-        /**
-        @version NIIEngine 3.0.0
-        */
-        DrawCallUnit * get(Nidx idx) const  { N_assert(idx < mUnitList.size(), "");  return mUnitList[idx]; }
+        DrawCallUnit * get(Nidx idx) const          { N_assert(idx < mUnitList.size(), "");  return mUnitList[idx]; }
 
-        /**
+        /** 获取最后一个调用绘制单元
         @version NIIEngine 3.0.0
         */
-        DrawCallUnit * getLast() const      { return mUnitList.back();}
+        DrawCallUnit * getLast() const              { return mUnitList.back();}
         
-        /**
+        /** 移去调用绘制单元
         @version NIIEngine 3.0.0
         */
-        void remove(Nidx idx) const;
+        void remove(Nidx idx);
         
-        /**
+        /** 获取调用绘制单元数量
         @version NIIEngine 3.0.0
         */
-        NCount getCount() const                 { return mUnitList.size();}
+        NCount getCount() const                     { return mUnitList.size();}
     private:
+        RenderSys * mOpSys;
         DrawCallGroupID mID;
         UnitList mUnitList;
     };
     typedef vector<DrawCallGroup *>::type DrawCallGroupList;
     
-    /** 编码生成器工厂类
-    @note CodeGen 类是实例对象,所以需要这个类辅助
+    /** 调用绘制单元工厂类
+    @note DrawCallUnit 类是实例对象,所以需要这个类辅助
     @version NIIEngine 3.0.0
     */
     class _EngineAPI DrawCallUnitFactory : public VFSAlloc
@@ -172,35 +219,37 @@ namespace NII
         @version NIIEngine 3.0.0
         */
         void remove(DrawCallUnitFactory * factory);
-        
-        /**
+
+        /** 创建调用绘制群组
         @version NIIEngine 3.0.0
         */
         DrawCallGroup * create(DrawCallGroupID id);
-        
-        /**
+
+        /** 获取调用绘制群组
         @version NIIEngine 3.0.0
         */
         DrawCallGroup * get(DrawCallGroupID id) const;
-        
-        /**
+
+        /** 移去调用绘制群组
         @version NIIEngine 3.0.0
         */
-        void remove(DrawCallGroupID id);
+        void destroy(DrawCallGroupID id);
 
         /// @copydetails ThreadMain::run
         void run(void * arg);
     protected:
-        /**
+        /** 创建调用绘制单元
         @version NIIEngine 3.0.0
         */
-        DrawCallUnit * create(DrawCallUnit::Type type) const;
+        DrawCallUnit * createUnit(DrawCallUnit::Type type) const;
         
-        /**
+        /** 删除调用绘制单元
         @version NIIEngine 3.0.0
         */
-        void destroy(DrawCallUnit * unit) const;
+        void destroyUnit(DrawCallUnit * unit) const;
     private:
+        ThreadMutex mInputMutex;
+        ThreadMutex mOpMutex;
         FactoryList mFactoryList;
         GroupList mGroupList;
     };

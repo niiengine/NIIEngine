@@ -29,7 +29,7 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 #define _NII_GPU_CUSTOM_PARAM_H_
 
 #include "NiiPreInclude.h"
-#include "NiiGpuParamMap.h"
+#include "NiiGpuProgramParam.h"
 
 namespace NII
 {

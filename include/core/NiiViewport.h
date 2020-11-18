@@ -347,7 +347,7 @@ namespace NII
         /** 获取渲染形式
         @version NIIEngine 3.0.0
         */
-        inline CustomRender * getCustomRender() { return mCustomRender; }
+        inline CustomRenderQueue * getCustomRender() { return mCustomRender; }
 
         /** 设置默认定向
         @version NIIEngine 3.0.0
@@ -372,7 +372,7 @@ namespace NII
         ViewportID mID;
         Camera * mCamera;
         FrameObj * mTarget;
-        CustomRender * mCustomRender;
+        CustomRenderQueue * mCustomRender;
         ViewportListenerList mListeners;
         SchemeID mMaterial;
         Colour mBgColour;
