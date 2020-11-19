@@ -46,7 +46,7 @@ namespace NII
     public:
         enum ComType
         {
-            CT_NormalMap        = 0x01,
+            CT_NormalsMap       = 0x01,
             CT_Halo             = 0x02,
             CT_TextureShadow    = 0x04,
             CT_StencilShadow    = 0x08

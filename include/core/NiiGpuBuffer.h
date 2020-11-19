@@ -261,6 +261,7 @@ namespace NII
         Box mMutexArea;
         PixelBlock mMutexData;
     };
+    typedef vector<FrameBuffer *>::type FrameBufferList;
 
     /**
     @version NIIEngine 5.0.0

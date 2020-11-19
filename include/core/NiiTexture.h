@@ -77,8 +77,8 @@ namespace NII
         */
         enum Type
         {
-            T_Buffer        = 1,
-            T_ShaderBuffer  = 2,
+            T_Buffer        = 1,    ///< 
+            T_ShaderBuffer  = 2,    ///< 
             T_1D            = 3,    ///< 1D纹理
             T_1DArray       = 4,    ///< 1D纹理数组
             T_2D            = 5,    ///< 2D纹理
@@ -86,7 +86,7 @@ namespace NII
             T_3D            = 7,    ///< 3D纹理
             T_CUBE          = 8,    ///< 3D方体映射使用3D纹理坐标
             T_CUBEArray     = 9,    ///< 3D纹理数组
-            T_CUBE_6        = 10     ///< 6面元的方体映射
+            T_CUBE_6        = 10    ///< 6面元的方体映射
         };
 
         /// 正方映射面类型
@@ -391,6 +391,12 @@ namespace NII
         @version NIIEngine 3.0.0
         */
         virtual FrameBuffer * getCubeBuffer(CubeFace face = CF_RIGHT, Nidx mipmap = 0);
+        
+        /** 获取实际存储缓存
+        @note 仅在调用 createInternal 后才有效
+        @version NIIEngine 3.0.0
+        */
+        GpuBuffer * getGpuBuffer() const    { return mMainGpuBuffer; }
 
         /** 获取纹理原数据类型
         @verison NIIEngine 3.0.0
@@ -404,7 +410,7 @@ namespace NII
         void createInternal();
 
         /** 释放纹理内部资源
-        @remark 一般是指预先创建GPU/AGP内存,实际内容以后添加或者添加后改变
+        @remark 操作和 createInternal 相对应
         @version NIIEngine 3.0.0
         */
         void freeInternal();
@@ -434,11 +440,10 @@ namespace NII
         /// @copydoc Resource::loadImpl
         void loadImpl();
     protected:
-        typedef vector<FrameBuffer *>::type SurfaceList;
-    protected:
         ImageList mLoadedImages;
-        SurfaceList	mSurfaceList;
+        FrameBufferList	mSurfaceList;
         StringList mOriginList;
+        GpuBuffer * mMainGpuBuffer;
         NCount mWidth;                  ///< 纹理的宽(实际显示)
         NCount mHeight;                 ///< 纹理的高(实际显示)
         NCount mDepth;                  ///< 纹理的深(实际显示)

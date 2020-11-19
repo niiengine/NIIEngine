@@ -176,7 +176,7 @@ namespace NII
         
         bool operator==(const TextureBlend & o) const;
 
-        bool operator!=(const TextureBlend & o) const;
+        inline bool operator!=(const TextureBlend & o) const   { return !(*this == o); }
 
         /** 纹理颜色混合模式
         @note 可编程管线中无效
@@ -458,15 +458,33 @@ namespace NII
         bool mCompare;
     };
     
+    inline void TextureSample::setMode(TextureAddressingMode u, TextureAddressingMode v, TextureAddressingMode w)
+    {
+        mAddressMode.mS_U = u;
+        mAddressMode.mT_V = v;
+        mAddressMode.mR_W = w;
+    }
+
+    inline void TextureSample::setFiltering(TextureFilterOP minop, TextureFilterOP magop, TextureFilterOP mipop)
+    {
+        mMinOP = minop;
+        mMagOP = magop;
+        mMipOP = mipop;
+    }
+    
     /** 纹理数据检索类型
     @remark 如果纹理保存的并非像素,而是其他顶点使用的信息
     @version NIIEngine 3.0.0 高级api
     */
     enum TextureDataFetch
     {
-        TDF_FS = 0,             ///< 常规片段处理单元 - 默认.
-        TDF_VS = 1,             ///< 顶点处理单元
-        TDF_Count = 2           ///< 属于着色程序范畴,并没有很多选择
+        TDF_FS      = 0,            ///< 常规片段处理单元 - 默认.
+        TDF_TS      = 1,            ///< 细分面
+        TDF_DS      = 2,            ///< 细分面评估
+        TDF_VS      = 3,            ///< 顶点处理单元
+        TDF_GS      = 4,            ///< 几何处理
+        TDF_CS      = 5,            ///< 计算处理
+        TDF_Count   = 6             ///< 属于着色程序范畴,并没有很多选择
     };
 
     /** 纹理坐标处理
@@ -502,10 +520,10 @@ namespace NII
             T_NORMAL = 0,       ///< 普通定义纹理(自动)
             T_PHOTO = 1,        ///< 物体相片,类speedtree的远处树/广告牌(远处的东西本来就是模糊的)
             T_SHADOW = 2,       ///< 阴影纹理(纹理阴影技术用)
-            T_INV_PHOTO = 3,    ///< 镜子/水倒影相片
+            T_INV_PHOTO = 3,    ///< 镜子/水倒影相片(renderFrameObject)
             T_FUSION = 4,       ///< 帧合成
             T_HALO = 5,         ///< 光晕
-            T_NORMALMAP = 6,    ///< 法线纹理
+            T_NORMALSMAP = 6,   ///< 法线纹理
             T_HIGHLIGHT = 7,    ///< 高光相片(放射性光体除了用片段着色程序,也可以用图片模拟)
             T_Count = 8         ///< 类型总数
         };
@@ -644,19 +662,19 @@ namespace NII
         /** 指定类型纹理数量
         @version NIIEngine 3.0.0
         */
-        NCount getCount(Type type) const;
+        NCount getCount(Type type) const            { return mMark[type]; }
 
         /** 应用纹理数量
         @remark 含概所有类型
         @version NIIEngine 3.0.0
         */
-        NCount getCount() const;
+        NCount getCount() const                     { return mTextures.size(); }
 
         /** 获取应用纹理列表
         @remark 这个函数会直接影响整个应用纹理,注意操作限制
         @version NIIEngien 3.0.0 高级api
         */
-        const Textures & getTextures() const;
+        const Textures & getTextures() const        { return mTextures; }
     protected:
         ShaderChTexture();
     private:
@@ -724,19 +742,19 @@ namespace NII
         /** 获取通道
         @version NIIEngine 3.0.0
         */
-        ShaderCh * getParent() const;
+        ShaderCh * getParent() const                    {return mParent; }
 
         /** 设置纹理单元的名字
         @remark 辅助设置
         @version NIIEngine 3.0.0
         */
-        void setName(const String & name);
+        void setName(const String & name)               {mName = name; }
 
         /** 获取单元名字
         @remark 辅助设置
         @version NIIEngine 3.0.0
         */
-        const String & getName() const;
+        const String & getName() const                  { return mName; }
 
         /** 设置来源
         @note T_CUBE 纹理需要设置 setEnvMap(true) 和 setEnvMapType(ENM_Sphere).
@@ -774,7 +792,7 @@ namespace NII
         /** 获取当前纹理
         @version NIIEngine 3.0.0
         */
-        const Texture * getTexture() const;
+        const Texture * getTexture() const              { return getTexture(mCurrentFrame); }
 
         /** 获取帧纹理
         @version NIIEngine 3.0.0
@@ -784,7 +802,7 @@ namespace NII
         /** 设置当前帧的纹理指针
         @version NIIEngine 3.0.0
         */
-        void setTexture(const Texture * tex);
+        void setTexture(const Texture * tex)            { setTexture(tex, mCurrentFrame); }
 
         /** 给定一个帧,设置纹理指针
         @version NIIEngine 3.0.0
@@ -799,12 +817,12 @@ namespace NII
         /** 获取合成器
         @version NIIEngine 3.0.0
         */
-        ResourceID getFrameFusion() const;
+        ResourceID getFrameFusion() const               { return mFrameFusion; }
 
         /** 获取合成纹理
         @version NIIEngine 3.0.0
         */
-        const String & getFusionTexture() const;
+        const String & getFusionTexture() const         { return mFusionTex; }
 
         /** 滚动动画.
         @remark
@@ -849,13 +867,13 @@ namespace NII
         /** 获取在一个复合映射配对的纹理效果数组
         @version NIIEngine 3.0.0
         */
-        const EffectMap & getEffects() const;
+        const EffectMap & getEffects() const                { return mEffects; }
 
         /** 动画时长
         @remark 动画纹理专用
         @version NIIEngine 3.0.0
         */
-        TimeDurMS getAniTime() const;
+        TimeDurMS getAniTime() const                        { return mAnimDuration; }
 
         /** 设置环境映射
         @note 在可编程管线中没有效果
@@ -873,13 +891,13 @@ namespace NII
         @note 在可编程管线中没有效果
         @version NIIEngine 3.0.0
         */
-        void setEnvMapType(EnvMapMode type);
+        void setEnvMapType(EnvMapMode type)                 { mEnvMapType = type; }
 
         /** 获取环境映射类型
         @note 在可编程管线中没有效果
         @version NIIEngine 3.0.0
         */
-        EnvMapMode getEnvMapType() const;
+        EnvMapMode getEnvMapType() const                    { return mEnvMapType; }
 
         /** 设置是否投影纹理
         @note 在可编程管线中没有效果
@@ -899,13 +917,13 @@ namespace NII
         @param[in] proj 投影空间
         @version NIIEngine 3.0.0
         */
-        void setProjFrustum(Frustum * proj);
+        void setProjFrustum(Frustum * proj)                 { mProjFrustum = proj; }
 
         /** 获取投影纹理的投影空间
         @note 在可编程管线中没有效果
         @version NIIEngine 3.0.0
         */
-        const Frustum * getProjFrustum() const;
+        const Frustum * getProjFrustum() const              { return mProjFrustum; }
 
         /** 添加一个纹理名字到帧容器的末尾
         @param[in] name 纹理名字
@@ -929,52 +947,54 @@ namespace NII
         @version NIIEngine 3.0.0
         */
         void setFrame(ResourceID rid, NCount frame);
-
+        
         /** 获取关联一个帧数量的纹理名字. 抛出一个异常,如果frameNumber超过了存储帧的数量.
         @note 固定管线和可编程管线中有效果
         @version NIIEngine 3.0.0
         */
-        ResourceID getFrame(NCount frame) const;
+        ResourceID getFrame(NCount frame) const     { N_assert (frame >= mTexIDList.size(), ""); return mTexIDList[frame]; }
 
         /** 为一纹理获取帧数量.
         @note 固定管线和可编程管线中有效果
         */
-        NCount getFrameCount() const;
+        NCount getFrameCount() const                { return mTexIDList.size(); }
 
         /** 设置活动帧
         @remark 设置活动帧
         @note 固定管线和可编程管线中有效果
         */
-        void setCurrentFrame(NCount frame);
+        void setCurrentFrame(NCount frame)          { N_assert (frame < mTexIDList.size(), ""); mCurrentFrame = frame; }
 
         /** 获取活动帧
         @note 固定管线和可编程管线中有效果
         @version NIIEngine 3.0.0
         */
-        NCount getCurrentFrame() const;
+        NCount getCurrentFrame() const              { return mCurrentFrame; }
 
         /** 设置这个层使用纹理坐标集的索引
         @note 默认0,除非使用多纹理多纹理坐标
         @note 固定管线和可编程管线中有效果
         @version NIIEngine 3.0.0
         */
-        void setCoordSet(Nidx index);
+        void setCoordSet(Nidx index)                { mCoordSet = index; }
 
         /** 获取这个层使用纹理坐标集的索引
         @note 固定管线和可编程管线中有效果
         @version NIIEngine 3.0.0
         */
-        Nidx getCoordSet() const;
+        Nidx getCoordSet() const                    { return mCoordSet; }
 
-        /** 设置纹理数据检索类型
+        /** 设置着色程序应用类型
+        @note 着色程序专用设置
         @version NIIEngine 3.0.0 高级api
         */
-        void setFetchType(TextureDataFetch bt);
+        void setFetchType(TextureDataFetch bt)      { mFetchType = bt; }
 
-        /** 获取纹理数据检索类型
+        /** 获取着色程序应用类型
+        @note 着色程序专用设置
         @verison NIIEngien 3.0.0 高级api
         */
-        TextureDataFetch getFetchType() const;
+        TextureDataFetch getFetchType() const       { return mFetchType; }
 
         /** 设置内容的类型
         @remark
@@ -985,7 +1005,7 @@ namespace NII
         /** 获取内容的类型
         @version NIIEngine 3.0.0
         */
-        ShaderChTexture::Type getContentType() const;
+        ShaderChTexture::Type getContentType() const{ return mContentType; }
 
         /** 获取是否由6个面元组成
         @note 固定管线和可编程管线中都有效
@@ -996,31 +1016,31 @@ namespace NII
         @note 应用到固定管线和可编程管线
         @version NIIEngine 3.0.0
         */
-        Texture::Type getType() const;
+        Texture::Type getType() const               { return mTextureType; }
 
         /** 设置像素格式
         @remark 期望
         @version NIIEngine 3.0.0
         */
-        void setFormat(PixelFormat pf);
+        void setFormat(PixelFormat pf)              { mFormat = pf; }
 
         /** 获取像素格式
         @remark 期望
         @version NIIEngine 3.0.0
         */
-        PixelFormat getFormat() const;
+        PixelFormat getFormat() const               { return mFormat; }
 
         /** 设置
         @remark 期望
         @version NIIEngine 3.0.0
         */
-        void setMipmapCount(NIIi count);
+        void setMipmapCount(NIIi count)             { mMipmapCount = count; }
 
         /** 获取
         @remark 期望
         @version NIIEngine 3.0.0
         */
-        NIIi getMipmapCount() const;
+        NIIi getMipmapCount() const                 { return mMipmapCount; }
 
         /** 设置是否纯Alpha通道
         @version NIIEngine 3.0.0
@@ -1041,22 +1061,22 @@ namespace NII
         /** 设置(纹理集)中的索引
         @version NIIEngine 3.0.0 高级api
         */
-        void setLocalIndex(Nidx index);
+        void setLocalIndex(Nidx index)              { mLocalIndex = index; }
 
         /** 获取(纹理集)中的索引
         @version NIIEngine 3.0.0 高级api
         */
-        Nidx getLocalIndex() const;
+        Nidx getLocalIndex() const                  { return mLocalIndex; }
 
         /** 设置复合中的索引
         @version NIIEngine 3.0.0 高级api
         */
-        void setMultiIndex(Nidx index);
+        void setMultiIndex(Nidx index)              { mMultiIndex = index; }
 
         /** 获取复合中的索引
         @version NIIEngine 3.0.0 高级api
         */
-        Nidx getMultiIndex() const;
+        Nidx getMultiIndex() const                  { return mMultiIndex; }
 
         /** 设置U方向滚动值
         @param[in] value
@@ -1069,7 +1089,7 @@ namespace NII
         @note 在可编程管线中没有效果
         @version NIIEngien 3.0.0
         */
-        NIIf getUOft() const;
+        NIIf getUOft() const                        { return mUOft; }
 
         /** 设置V方向滚动值
         @param[in] value
@@ -1082,7 +1102,7 @@ namespace NII
         @note 在可编程管线中没有效果
         @version NIIEngien 3.0.0
         */
-        NIIf getVOft() const;
+        NIIf getVOft() const                        { return mVOft; }
 
         /** 设置U方向缩放
         @note 在可编程管线中没有效果
@@ -1093,7 +1113,7 @@ namespace NII
         /** 获取U方向缩放
         @version NIIEngine 3.0.0
         */
-        NIIf getUScale() const;
+        NIIf getUScale() const                      { return mUScale; }
 
         /** 设置V方向缩放
         @note 在可编程管线中没有效果
@@ -1104,7 +1124,7 @@ namespace NII
         /** 获取V方向缩放
         @version NIIEngine 3.0.0
         */
-        NIIf getVScale() const;
+        NIIf getVScale() const                      {return mVScale;}
 
         /** 设置应用在纹理坐标的逆时针旋转因子
         @note 在可编程管线中没有效果
@@ -1115,7 +1135,7 @@ namespace NII
         /** 获取纹理旋转效果angle值
         @version NIIEngine 3.0.0
         */
-        const Radian & getRotate() const;
+        const Radian & getRotate() const            {return mRotate;}
 
         /** 获取最终混算
         @note 在可编程管线中没有效果
@@ -1132,17 +1152,17 @@ namespace NII
         /** 获取多纹理颜色混合
         @version NIIEngine 3.0.0 高级api
         */
-        inline TextureBlend * getColourBlend() const { return const_cast<TextureBlend *>(&mColourBlend); }
+        inline TextureBlend * getColourBlend() const    { return const_cast<TextureBlend *>(&mColourBlend); }
 
         /** 获取多纹理透明度混合
         @version NIIEngine 3.0.0 高级api
         */
-        inline TextureBlend * getAlphaBlend() const { return const_cast<TextureBlend *>(&mAlphaBlend); }
+        inline TextureBlend * getAlphaBlend() const     { return const_cast<TextureBlend *>(&mAlphaBlend); }
 
         /** 获取纹理样本模式
         @version NIIEngien 3.0.0 高级api
         */
-        inline TextureSample * getSample() const { return const_cast<TextureSample *>(&mSample); }
+        inline TextureSample * getSample() const        { return const_cast<TextureSample *>(&mSample); }
 
         /** 状态/性质变化了
         @version NIIEngine 3.0.0
