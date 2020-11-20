@@ -225,6 +225,12 @@ namespace NII
             MM_EXT9     = 0x20000,
             MM_EXT10    = 0x40000
         };
+        
+        enum UnlockType
+        {
+            UT_UnlockAll,
+            UT_KeepMap
+        };
     public:
         /** 构造函数
         @param[in] mode Buffer::Mode 选项
@@ -291,6 +297,11 @@ namespace NII
         @version NIIEngine 3.0.0
         */
         virtual void unlock();
+        
+        /** 释放这个缓冲区的锁
+        @version NIIEngine 5.0.0
+        */
+        void unlock(UnlockType type, NCount oft, NCount size);
 
         /** 从缓冲中读取数据
         @param[in] out 内存区域

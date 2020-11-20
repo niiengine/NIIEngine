@@ -41,25 +41,7 @@ namespace NII
     class _EngineAPI GpuBuffer : public Buffer
     {
     public:
-        enum LockType
-        {
-            LT_Unlock,
-            UT_Lock
-        };
-
-        enum UnlockType
-        {
-            LT_UnlockAll,
-            UT_KeepMap
-        };
-    public:
         GpuBuffer(BufferManager * mag, NCount unitsize, NCount unitcount, Nmark mode);
-
-        using Buffer::unlock;
-        /**
-        @version NIIEngine 5.0.0
-        */
-        void unlock(UnlockType type, NCount oft, NCount size);
 
         /**
         @version NIIEngine 5.0.0
@@ -282,10 +264,10 @@ namespace NII
     /**
     @version NIIEngine 5.0.0
     */
-    class _EngineAPI TextureGpuBuffer : public GpuBuffer
+    class _EngineAPI TextureBuffer : public GpuBuffer
     {
     public:
-        TextureGpuBuffer(BufferManager * mag, NCount size, Nmark mode);
+        TextureBuffer(BufferManager * mag, NCount size, Nmark mode);
     };
 
     /**

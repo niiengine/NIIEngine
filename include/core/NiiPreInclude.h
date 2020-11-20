@@ -181,6 +181,7 @@ namespace NII
     class VertexBuffer;
     class GpuBuffer;
     class FrameBuffer;
+    class TextureBuffer;
     class HighLevelGpuProgram;
     class HighLevelGpuProgramManager;
     class HighLevelGpuProgramFactory;
@@ -486,6 +487,7 @@ namespace NII
     typedef vector<PixelBuffer *>::type PixelBufferList;
     typedef vector<GpuBuffer *>::type GpuBufferList;
     typedef vector<FrameBuffer *>::type FrameBufferList;
+    typedef vector<TextureBuffer *>::type TextureBufferList;
 
     typedef Nui32 RGBA;
     typedef Nui32 ARGB;

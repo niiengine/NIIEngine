@@ -395,12 +395,12 @@ namespace NII
         /** 创建访问视图
         @version NIIEngine 3.0.0
         */
-        GpuBuffer * createView(PixelFormat pf, Type type);
+        TextureBuffer * createView(PixelFormat pf);
         
         /** 删除访问视图
         @version NIIEngine 3.0.0
         */
-        void destroyView(PixelFormat pf, Type type);
+        void destroyView(PixelFormat pf);
         
         /** 删除所有访问视图
         @version NIIEngine 3.0.0
@@ -449,7 +449,7 @@ namespace NII
         /** 创建访问视图的实现
         @version NIIEngine 3.0.0
         */
-        virtual GpuBuffer * createViewImpl(PixelFormat pf, Type type) = 0;
+        virtual TextureBuffer * createViewImpl(PixelFormat pf) = 0;
 
         /// @copydoc Resource::planImpl
         void planImpl();
@@ -463,7 +463,7 @@ namespace NII
         ImageList mLoadedImages;
         FrameBufferList	mSurfaceList;
         StringList mOriginList;
-        GpuBufferList mViewList;
+        TextureBufferList mViewList;
         GpuBuffer * mMainGpuBuffer;
         NCount mWidth;                  ///< 纹理的宽(实际显示)
         NCount mHeight;                 ///< 纹理的高(实际显示)
