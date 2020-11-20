@@ -246,19 +246,19 @@ namespace NII
     /**
     @version NIIEngine 5.0.0
     */
-    class _EngineAPI ConstGpuBuffer : public GpuBuffer
+    class _EngineAPI ConstBuffer : public GpuBuffer
     {
     public:
-        ConstGpuBuffer(BufferManager * mag, NCount size, Nmark mode);
+        ConstBuffer(BufferManager * mag, NCount size, Nmark mode);
     };
 
     /**
     @version NIIEngine 5.0.0
     */
-    class _EngineAPI IndirectGpuBuffer : public GpuBuffer
+    class _EngineAPI IndirectBuffer : public GpuBuffer
     {
     public:
-        IndirectGpuBuffer(BufferManager * mag, NCount size, Nmark mode);
+        IndirectBuffer(BufferManager * mag, NCount size, Nmark mode);
     };
 
     /**
@@ -267,16 +267,20 @@ namespace NII
     class _EngineAPI TextureBuffer : public GpuBuffer
     {
     public:
-        TextureBuffer(BufferManager * mag, NCount size, Nmark mode);
+        TextureBuffer(BufferManager * mag, NCount size, Nmark mode, PixelFormat pf);
+        
+        PixelFormat getPixelFormat() const   { return mPixelFormat; }
+    protected:
+        PixelFormat mPixelFormat;
     };
 
     /**
     @version NIIEngine 5.0.0
     */
-    class _EngineAPI UavGpuBuffer : public GpuBuffer
+    class _EngineAPI ShaderBuffer : public GpuBuffer
     {
     public:
-        UavGpuBuffer(BufferManager * mag, NCount size, Nmark mode);
+        ShaderBuffer(BufferManager * mag, NCount size, Nmark mode);
     };
 }
 #endif
