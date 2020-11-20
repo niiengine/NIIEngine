@@ -31,7 +31,6 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 #include "NiiPreInclude.h"
 #include "NiiBuffer.h"
 #include "NiiPixelFormat.h"
-#include "NiiPixelBlock.h"
 #include "NiiGpuProgram.h"
 
 namespace NII
@@ -261,7 +260,6 @@ namespace NII
         Box mMutexArea;
         PixelBlock mMutexData;
     };
-    typedef vector<FrameBuffer *>::type FrameBufferList;
 
     /**
     @version NIIEngine 5.0.0

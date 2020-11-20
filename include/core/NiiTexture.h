@@ -284,7 +284,7 @@ namespace NII
         */
         inline Type getType() const             { return mTextureType;  }
 
-        /** 返回这个纹理的面数量,
+        /** 返回这个纹理的来源,
         @remark 正方映射纹理为6
         @version NIIEngine 3.0.0
         */
@@ -313,56 +313,56 @@ namespace NII
         @note 将会覆盖所有原来的属性
         @version NIIEngine 3.0.0 顶级api
         */
-        inline void setModeMark(Nmark m)        { mMark = m;  }
+        inline void setModeMark(Nmark m)            { mMark = m;  }
 
         /** 获取 MemMode 标识符
         @remark 需在加载前设置
         @version NIIEngine 3.0.0 顶级api
         I*/
-        inline Nmark getModeMark() const        { return mMark; }
+        inline Nmark getModeMark() const            { return mMark; }
 
         /** 添加 MemMode 标识符
         @param[in] m 单个
         @version NIIEngine 3.0.0 高级api
         */
-        inline void addModMark(Nmark m)         { mMark |= m; }
+        inline void addModMark(Nmark m)             { mMark |= m; }
 
         /** 移去 MemMode 标识符
         @param[in] m 单个
         @version NIIEngine 3.0.0 高级api
         */
-        inline void removeModMark(Nmark m)      { mMark &= ~m;  }
+        inline void removeModMark(Nmark m)          { mMark &= ~m;  }
 
         /** 是否存在 MemMode 标识符
         @version NIIEngine 3.0.0
         */
-        inline bool isModMark(Nmark m) const    { return mMark & m; }
+        inline bool isModMark(Nmark m) const        { return mMark & m; }
 
         /** 设置伽玛调整因子
         @remark 需在加载前设置
         @note setHardwareGamma
         @version NIIEngine 3.0.0
         */
-        inline void setGamma(NIIf g)            { mGamma = g;  }
+        inline void setGamma(NIIf g)                { mGamma = g;  }
 
         /** 返回伽玛调整系数
         @remark 需在加载前设置
         @version NIIEngine 3.0.0
         */
-        inline NIIf getGamma() const            { return mGamma; }
+        inline NIIf getGamma() const                { return mGamma; }
 
         /** 设置全屏抗锯齿,当纹理是AGP缓存对象时
         @remark 如果不存在 MM_AGP_XXXXX 成分或硬件不支持,忽略这个选项
         @param[in] fsaa 样本数量
         @version NIIEngine 3.0.0
         */
-        inline void setFSAA(Nui32 fsaa)         { mFSAA = fsaa;  }
+        inline void setFSAA(Nui32 fsaa)             { mFSAA = fsaa;  }
 
         /** 获取多重采样
         @remark 如果不存在 MM_AGP_XXXXX 成分或硬件不支持,忽略这个选项
         @version NIIEngine 3.0.0
         */
-        inline Nui32 getFSAA() const            { return mFSAA;  }
+        inline Nui32 getFSAA() const                { return mFSAA;  }
 
         /** 设置多重采样扩展
         @remark 如果不存在 MM_AGP_XXXXX 成分或硬件不支持,忽略这个选项
@@ -392,11 +392,26 @@ namespace NII
         */
         virtual FrameBuffer * getCubeBuffer(CubeFace face = CF_RIGHT, Nidx mipmap = 0);
         
+        /** 创建访问视图
+        @version NIIEngine 3.0.0
+        */
+        GpuBuffer * createView(PixelFormat pf, Type type);
+        
+        /** 删除访问视图
+        @version NIIEngine 3.0.0
+        */
+        void destroyView(PixelFormat pf, Type type);
+        
+        /** 删除所有访问视图
+        @version NIIEngine 3.0.0
+        */
+        void destroyAllView();
+        
         /** 获取实际存储缓存
         @note 仅在调用 createInternal 后才有效
         @version NIIEngine 3.0.0
         */
-        GpuBuffer * getGpuBuffer() const    { return mMainGpuBuffer; }
+        GpuBuffer * getGpuBuffer() const            { return mMainGpuBuffer; }
 
         /** 获取纹理原数据类型
         @verison NIIEngine 3.0.0
@@ -430,6 +445,11 @@ namespace NII
         @version NIIEngine 3.0.0
         */
         virtual void freeInternalImpl() = 0;
+        
+        /** 创建访问视图的实现
+        @version NIIEngine 3.0.0
+        */
+        virtual GpuBuffer * createViewImpl(PixelFormat pf, Type type) = 0;
 
         /// @copydoc Resource::planImpl
         void planImpl();
@@ -443,6 +463,7 @@ namespace NII
         ImageList mLoadedImages;
         FrameBufferList	mSurfaceList;
         StringList mOriginList;
+        GpuBufferList mViewList;
         GpuBuffer * mMainGpuBuffer;
         NCount mWidth;                  ///< 纹理的宽(实际显示)
         NCount mHeight;                 ///< 纹理的高(实际显示)

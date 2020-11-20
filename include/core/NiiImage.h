@@ -31,7 +31,6 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 #include "NiiPreInclude.h"
 #include "NiiDataStream.h"
 #include "NiiPixelFormat.h"
-#include "NiiPixelBlock.h"
 #include "NiiCodecList.h"
 
 namespace NII

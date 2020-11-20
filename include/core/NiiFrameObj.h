@@ -33,7 +33,6 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 #include "NiiFrameObjListener.h"
 #include "NiiRenderSysData.h"
 #include "NiiPixelFormat.h"
-#include "NiiPixelBlock.h"
 
 namespace NII
 {

@@ -179,6 +179,7 @@ namespace NII
     class PixelCountQuery;
     class DataStream;
     class VertexBuffer;
+    class GpuBuffer;
     class FrameBuffer;
     class HighLevelGpuProgram;
     class HighLevelGpuProgramManager;
@@ -483,6 +484,8 @@ namespace NII
     typedef vector<VertexOffset *>::type VertexOffsetList;
     typedef vector<ShadowObj *>::type ShadowVolumeGenList;
     typedef vector<PixelBuffer *>::type PixelBufferList;
+    typedef vector<GpuBuffer *>::type GpuBufferList;
+    typedef vector<FrameBuffer *>::type FrameBufferList;
 
     typedef Nui32 RGBA;
     typedef Nui32 ARGB;
