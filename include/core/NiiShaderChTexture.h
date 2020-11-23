@@ -425,16 +425,6 @@ namespace NII
         */
         inline const Colour& getBorder() const      { return mBorder; }
 
-        /** 设置比较模式
-        @version NIIEngien 3.0.0
-         */
-        inline void setCompare(bool enabled)        { mCompare = enabled; }
-
-        /** 是否比较模式
-        @version NIIEngien 3.0.0
-        */
-        inline bool isCompare() const               { return mCompare; }
-
         /** 设置比较函数
         @version NIIEngine 3.0.0
         */
@@ -455,7 +445,6 @@ namespace NII
         NIIf mMipmapBias;
         NIIf mMinLod;
         NIIf mMaxLod;
-        bool mCompare;
     };
     
     inline void TextureSample::setMode(TextureAddressingMode u, TextureAddressingMode v, TextureAddressingMode w)

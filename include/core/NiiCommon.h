@@ -83,6 +83,7 @@ namespace NII
     */
     enum CmpMode
     {
+        CPM_NONE = 0,                       ///< 不启动
         CPM_EQUAL = 1,                      ///< 当等于时通过
         CPM_NOT_EQUAL = 2,                  ///< 当不等于时通过
         CPM_ALWAYS_FAIL = 3,                ///< 总是不通过
@@ -90,8 +91,7 @@ namespace NII
         CPM_GREATER_EQUAL = 5,              ///< 当不小于时通过
         CPM_GREATER = 6,                    ///< 当大于时通过
         CPM_LESS = 7,                       ///< 当小于时通过
-        CPM_LESS_EQUAL = 8,                 ///< 当不大于时通过
-        CPM_NONE = 9                        ///< 任何情况都通过
+        CPM_LESS_EQUAL = 8                  ///< 当不大于时通过
     };
 
     /** 缩放形式
