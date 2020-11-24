@@ -321,16 +321,16 @@ namespace NII
     /** 纹理样本模式
     @version NIIEngine 3.0.0
     */
-    class _EngineAPI TextureSample : public ShaderAlloc
+    class _EngineAPI TextureSampleUnit : public ShaderAlloc
     {
         friend ShaderChTextureUnit;
     public:
-        TextureSample();
-        TextureSample(TextureFilterOP min, TextureFilterOP mag, TextureFilterOP mip,
+        TextureSampleUnit();
+        TextureSampleUnit(TextureFilterOP min, TextureFilterOP mag, TextureFilterOP mip,
             TextureAddressingMode u, TextureAddressingMode v, TextureAddressingMode w);
-        virtual ~TextureSample();
+        virtual ~TextureSampleUnit();
 
-        TextureSample & operator =(const TextureSample & o);
+        TextureSampleUnit & operator =(const TextureSampleUnit & o);
 
         /** 设置寻址模式
         @note 默认是 TAM_REPEAT,在可编程管线或固定管线中有效
@@ -447,19 +447,61 @@ namespace NII
         NIIf mMaxLod;
     };
     
-    inline void TextureSample::setMode(TextureAddressingMode u, TextureAddressingMode v, TextureAddressingMode w)
+    inline void TextureSampleUnit::setMode(TextureAddressingMode u, TextureAddressingMode v, TextureAddressingMode w)
     {
         mAddressMode.mS_U = u;
         mAddressMode.mT_V = v;
         mAddressMode.mR_W = w;
     }
 
-    inline void TextureSample::setFiltering(TextureFilterOP minop, TextureFilterOP magop, TextureFilterOP mipop)
+    inline void TextureSampleUnit::setFiltering(TextureFilterOP minop, TextureFilterOP magop, TextureFilterOP mipop)
     {
         mMinOP = minop;
         mMagOP = magop;
         mMipOP = mipop;
     }
+    
+    /** 纹理样本模式设置
+    @version NIIEngine 3.0.0
+    */
+    class _EngineAPI TextureSample : public ShaderAlloc
+    {
+        friend ShaderChTextureUnit;
+    public:
+        TextureSample();
+        virtual ~TextureSample();
+        
+        /**
+        @version NIIEngine 3.0.0
+        */
+        void add(const VString & name, TextureSampleUnit * unit);
+        
+        /**
+        @version NIIEngine 3.0.0
+        */
+        void remove(const VString & name);
+        
+        /**
+        @version NIIEngine 3.0.0
+        */
+        void set(Nidx slot, const VString & name);
+        
+        /**
+        @version NIIEngine 3.0.0
+        */
+        TextureSampleUnit * get(VString name) const;
+        
+        /**
+        @version NIIEngine 3.0.0
+        */
+        TextureSampleUnit * get(Nidx slot) const;
+    protected:
+        typedef map<VString, TextureSampleUnit *>::type UnitList;
+        typedef map<Nidx, TextureSampleUnit *>::type SetList;
+
+        UnitList mUnitList;
+        SetList mSetList;
+    };
     
     /** 纹理数据检索类型
     @remark 如果纹理保存的并非像素,而是其他顶点使用的信息
@@ -1151,7 +1193,7 @@ namespace NII
         /** 获取纹理样本模式
         @version NIIEngien 3.0.0 高级api
         */
-        inline TextureSample * getSample() const        { return const_cast<TextureSample *>(&mSample); }
+        inline TextureSampleUnit * getSample() const        { return const_cast<TextureSampleUnit *>(&mSample); }
 
         /** 状态/性质变化了
         @version NIIEngine 3.0.0
@@ -1224,7 +1266,7 @@ namespace NII
         Nui16 mCoordSet;
         Nui16 mLocalIndex;
         Nui16 mMultiIndex;
-        TextureSample mSample;
+        TextureSampleUnit mSample;
         TextureBlend mColourBlend;
         TextureBlend mAlphaBlend;
 

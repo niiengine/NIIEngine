@@ -335,6 +335,7 @@ namespace NII
     class PhysicalScope;
     class PhysicalCom;
     class TextureSample;
+    class TextureSampleUnit;
     class ShaderChTextureUnit;
     class ShaderChFog;
     class ShaderChColour;

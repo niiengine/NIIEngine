@@ -375,12 +375,12 @@ namespace NII
         /** 获取纹理样本
         @version NIIEngine 3.0.0
         */
-        virtual TextureSample * createTexSample(const String & name = Independent, bool Bindtosys = false) const;
+        virtual TextureSampleUnit * createTexSample(const String & name = Independent, bool Bindtosys = false) const;
 
         /** 获取纹理样本
         @version NIIEngine 3.0.0
         */
-        virtual TextureSample * getTexSample(const String & name) const;
+        virtual TextureSampleUnit * getTexSample(const String & name) const;
 
         /** 设置当前颜色属性
         @version NIIEngine 3.0.0
@@ -593,7 +593,7 @@ namespace NII
         @note 原始概念
         @version NIIEngine 3.0.0
         */
-        virtual void _setTextureSample(Nidx indx, const TextureSample & ts) = 0;
+        virtual void _setTextureSample(Nidx indx, const TextureSampleUnit & ts) = 0;
 
         /** 设置纹理寻址计算
         @param[in] rel 投影(环境)纹理用
@@ -862,7 +862,7 @@ namespace NII
         typedef map<String, ShaderChDepth *>::type DepthList;
         typedef map<String, ShaderChStencil *>::type StencilList;
         typedef map<String, TextureBlend *>::type TexBlendList;
-        typedef map<String, TextureSample *>::type TexSampleList;
+        typedef map<String, TextureSampleUnit *>::type TexSampleList;
     protected:
         String mName;
         DriverVersion mVersion;
