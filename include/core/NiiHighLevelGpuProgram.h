@@ -48,7 +48,7 @@ namespace NII
         /**
         @version NIIEngine 3.0.0
         */
-        inline void setPreprocessorDefines(const VString& defines) { mPreprocessorDefines = defines; }
+        inline void setPreprocessorDefines(const VString & defines) { mPreprocessorDefines = defines; }
 
         /** 
         @version NIIEngine 3.0.0

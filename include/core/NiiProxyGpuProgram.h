@@ -30,7 +30,7 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 
 #include "NiiPreInclude.h"
 #include "NiiHighLevelGpuProgram.h"
-#include "NiiHighLevelGpuProgramFactory.h"
+#include "NiiHighLevelGpuProgramManager.h"
 
 namespace NII
 {

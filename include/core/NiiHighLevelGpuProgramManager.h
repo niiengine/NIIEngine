@@ -31,9 +31,36 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 #include "NiiPreInclude.h"
 #include "NiiResourceManager.h"
 #include "NiiHighLevelGpuProgram.h"
+#include "NiiFactoryObj.h"
 
 namespace NII
 {
+    /** 高层着色程序工厂类
+    @version NIIEngine 3.0.0
+    */
+    class _EngineAPI HighLevelGpuProgramFactory : public FactoryObj
+    {
+        friend class HighLevelGpuProgramManager;
+    public:
+        HighLevelGpuProgramFactory(HighLevelGpuProgramManager * mag);
+        virtual ~HighLevelGpuProgramFactory();
+
+        /// @copydetails FactoryObj::getVFSType
+        virtual Nmark getVFSType() const;
+
+        /** 语言类型
+        @version NIIEngine 3.0.0
+        */
+        virtual ShaderLanguage getLanguage() const = 0;
+
+        /** 创建着色程序
+        @version NIIEngine 3.0.0
+        */
+        virtual HighLevelGpuProgram * create(ResourceID rid, GroupID gid) = 0;
+    protected:
+        HighLevelGpuProgramManager * mManager;
+    };
+
     /** 高层着色程序管理器
     @version NIIEngine 3.0.0
     */
