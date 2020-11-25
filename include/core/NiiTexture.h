@@ -72,21 +72,21 @@ namespace NII
             MM_DEPTH_BIT_32     = Buffer::M_EXT14,  ///< MM_DEPTH_BIT_X MM_DEPTH_FLOAT 只能其一
             MM_DEPTH_FLOAT      = Buffer::M_EXT15,  ///< MM_DEPTH_BIT_X MM_DEPTH_FLOAT 只能其一
         };
-        /** 枚举确定纹理类型
+        /** 纹理类型
         @version NIIEngine 3.0.0
         */
         enum Type
         {
-            T_Buffer        = 1,    ///< 
-            T_ShaderBuffer  = 2,    ///< 
+            T_Buffer        = 1,    ///< 基础缓存
+            T_ShaderBuffer  = 2,    ///< 着色程序缓存
             T_1D            = 3,    ///< 1D纹理
             T_1DArray       = 4,    ///< 1D纹理数组
             T_2D            = 5,    ///< 2D纹理
             T_2DArray       = 6,    ///< 2D纹理数组
             T_3D            = 7,    ///< 3D纹理
-            T_CUBE          = 8,    ///< 3D方体映射使用3D纹理坐标
-            T_CUBEArray     = 9,    ///< 3D纹理数组
-            T_CUBE_6        = 10    ///< 6面元的方体映射
+            T_CUBE          = 8,    ///< 方体映射使用3D纹理坐标
+            T_CUBEArray     = 9,    ///< 方体映射数组
+            T_CUBE_2D       = 10    ///< 方体映射形态的2D纹理
         };
 
         /// 正方映射面类型

@@ -336,8 +336,8 @@ namespace NII
             const Nui16 level = 4, bool useMainBuffer = true);
         void writeGpuProgramParameter(
             const String & commandName, const String & identifier,
-            const GpuSParamIndex * autoEntry,
-            const GpuSParamIndex * defaultAutoEntry,
+            const GpuSyncParamIndex * autoEntry,
+            const GpuSyncParamIndex * defaultAutoEntry,
             bool isFloat, NCount mindex, NCount physicalSize,
             const GpuProgramParam *  params, GpuProgramParam * defaultParams,
             const Nui16 level, const bool useMainBuffer);

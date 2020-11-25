@@ -196,13 +196,13 @@ namespace NII
         @param[in] name 同步参数名字
         @version NIIEngine 3.0.0
         */
-        static const GpuSParamDefine * getGpuSyncParam(const String & name);
+        static const GpuSyncParamUnit * getGpuSyncParam(const String & name);
 
         /** 获取自动同步参数
         @param[in] idx 同步参数下标
         @version NIIEngine 3.0.0
         */
-        static const GpuSParamDefine * getGpuSyncParam(Nidx idx);
+        static const GpuSyncParamUnit * getGpuSyncParam(Nidx idx);
     protected:
         /// @copydetails ResourceManager::createImpl
         Resource * createImpl(ResourceID rid, GroupID gid, ResLoadScheme * ls, ResResultScheme * rs,
@@ -212,7 +212,7 @@ namespace NII
         virtual Resource * createImpl(ResourceID rid, GroupID gid, ResLoadScheme * ls, ResResultScheme * rs,
             GpuProgram::ShaderType type, ShaderLanguage sl);
     protected:
-        static GpuSParamDefine mGpuSyncParamList[];
+        static GpuSyncParamUnit mGpuSyncParamList[];
         ShareCustomList mShareCustomList;
         CacheList mCacheList;
         String mCachePath;

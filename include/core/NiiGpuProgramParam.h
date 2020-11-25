@@ -29,9 +29,9 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 #define _NII_GPU_PROGRAMPARAM_H_
 
 #include "NiiPreInclude.h"
-#include "NiiVector4.h"
 #include "NiiMatrix4.h"
 #include "NiiColour.h"
+#include "NiiTexture.h"
 
 namespace NII
 {
@@ -249,20 +249,20 @@ namespace NII
         SPI_Double  = 3
     };
 
-    inline bool isFloat(GpuDataType c) { return c > GDT_Unknow && c < GDT_Int; }
-    inline bool isDouble(GpuDataType c) { return c > GDT_SamplerOES && c < GDT_Interface; }
-    inline bool isSampler(GpuDataType c) { return c > GDT_Bool4X && c < GDT_Double; }
-    inline bool isInt(GpuDataType c) { return c > GDT_Matrix4X4 && c < GDT_UInt; }
-    inline bool isUInt(GpuDataType c) { return c > GDT_Int4X && c < GDT_Bool; }
-    inline bool isBool(GpuDataType c) { return c > GDT_UInt4X && c < GDT_Sampler1D; }
-    inline bool isInterface(GpuDataType c) { return c == GDT_Interface; }
+    inline bool isFloat(GpuDataType c)      { return c > GDT_Unknow && c < GDT_Int; }
+    inline bool isDouble(GpuDataType c)     { return c > GDT_SamplerOES && c < GDT_Interface; }
+    inline bool isSampler(GpuDataType c)    { return c > GDT_Bool4X && c < GDT_Double; }
+    inline bool isInt(GpuDataType c)        { return c > GDT_Matrix4X4 && c < GDT_UInt; }
+    inline bool isUInt(GpuDataType c)       { return c > GDT_Int4X && c < GDT_Bool; }
+    inline bool isBool(GpuDataType c)       { return c > GDT_UInt4X && c < GDT_Sampler1D; }
+    inline bool isInterface(GpuDataType c)  { return c == GDT_Interface; }
 
     /** 定义同步常量,适用于在参数对象中使用
     @version NIIEngine 3.0.0
     */
-    struct _EngineAPI GpuSParamDefine
+    struct _EngineAPI GpuSyncParamUnit
     {
-        GpuSParamDefine(const String & name, GpuSyncParam sync, NCount cnt, Nui16 exttype, Nui16 datatype);
+        GpuSyncParamUnit(const String & name, GpuSyncParam sync, NCount cnt, Nui16 exttype, Nui16 datatype);
 
         String mName;
         GpuSyncParam mSyncParam;
@@ -278,19 +278,19 @@ namespace NII
     {
         GpuParamUnit();
 
-        inline bool isFloat() const { return mDataType > GDT_Unknow && mDataType < GDT_Int; }
+        inline bool isFloat() const         { return mDataType > GDT_Unknow && mDataType < GDT_Int; }
 
-        inline bool isDouble() const { return mDataType > GDT_SamplerOES && mDataType < GDT_Interface; }
+        inline bool isDouble() const        { return mDataType > GDT_SamplerOES && mDataType < GDT_Interface; }
 
-        inline bool isSampler() const { return mDataType > GDT_Bool4X && mDataType < GDT_Double; }
+        inline bool isSampler() const       { return mDataType > GDT_Bool4X && mDataType < GDT_Double; }
 
-        inline bool isInt() const { return mDataType > GDT_Matrix4X4 && mDataType < GDT_UInt; }
+        inline bool isInt() const           { return mDataType > GDT_Matrix4X4 && mDataType < GDT_UInt; }
 
-        inline bool isUInt() const { return mDataType > GDT_Int4X && mDataType < GDT_Bool; }
+        inline bool isUInt() const          { return mDataType > GDT_Int4X && mDataType < GDT_Bool; }
 
-        inline bool isBool() const { return mDataType > GDT_UInt4X && mDataType < GDT_Sampler1D; }
+        inline bool isBool() const          { return mDataType > GDT_UInt4X && mDataType < GDT_Sampler1D; }
 
-        inline bool isInterface() const { return mDataType == GDT_Interface; }
+        inline bool isInterface() const     { return mDataType == GDT_Interface; }
 
         GpuDataType mDataType;
         Nidx mIndex;
@@ -316,13 +316,13 @@ namespace NII
         @remark 结构数据会变大
         @version NIIEngine 3.0.0
         */
-        inline void setArrayMode(bool b){ mArrayMode = b; }
+        inline void setArrayMode(bool b)    { mArrayMode = b; }
 
         /** 获取是否启用数组模式
         @remark 结构数据会变大
         @version NIIEngine 3.0.0
         */
-        inline bool isArrayMode() const{return mArrayMode;}
+        inline bool isArrayMode() const     {return mArrayMode;}
 
         /** 添加定义
         @version NIIEngine 3.0.0
@@ -342,7 +342,7 @@ namespace NII
         /** 移去所有定义
         @version NIIEnginee 3.0.0
         */
-        void removeAll(const String & name);
+        void removeAll();
 
         /** 保存到文件
         @version NIIEngine 3.0.0
@@ -385,13 +385,13 @@ namespace NII
     /** 同步参数内存绑定
     @version NIIEngine 3.0.0
     */
-    struct _EngineAPI GpuSParamIndex
+    struct _EngineAPI GpuSyncParamIndex
     {
     public:
-        GpuSParamIndex(GpuSyncParam type, Nidx memidx, Ni32 input, Nmark mark, NCount count = 4):
+        GpuSyncParamIndex(GpuSyncParam type, Nidx memidx, Ni32 input, Nmark mark, NCount count = 4):
             mSyncParam(type), mMemIndex(memidx), mTypeMark(mark), mInputInt(input), mUnitCount(count){}
 
-        GpuSParamIndex(GpuSyncParam type, Nidx memidx, NIIf input, Nmark mark, NCount count = 4):
+        GpuSyncParamIndex(GpuSyncParam type, Nidx memidx, NIIf input, Nmark mark, NCount count = 4):
             mSyncParam(type), mMemIndex(memidx), mTypeMark(mark), mInputFloat(input), mUnitCount(count){}
 
         Nidx mMemIndex;
@@ -404,7 +404,49 @@ namespace NII
             NIIf mInputFloat;
         };
     };
-    typedef vector<GpuSParamIndex>::type GpuSParamIndexList;
+    typedef vector<GpuSyncParamIndex>::type GpuSParamIndexList;
+    
+    /** 着色参数缓存单元
+    @version NIIEngine 3.0.0
+    */
+    struct _EngineAPI GpuParamBufferUnit
+    {
+    public:
+        enum OpType
+        {
+            OT_Unknow   = 0,
+            OT_READ     = 0x01,
+            OT_WRITE    = 0x02,
+            OT_RW       = OT_READ|OT_WRITE
+        };
+        GpuParamBufferUnit() {}
+        
+        Texture * mBuffer;
+        Texture::Type mType;
+        PixelFormat mPixelFormat;
+        OpType mMuteMode;
+        NCount mOffset;
+        NCount mSize;
+        NCount mMipmapLevel;
+        NCount mMipmapCount;
+        NCount mLayer;
+        NCount mLayerCount;
+    };
+    typedef vector<GpuParamBufferUnit>::type GpuParamBufferList;
+    
+    
+    /** 着色参数缓存
+    @version NIIEngine 3.0.0
+    */
+    class _EngineAPI GpuParamBuffer : public GpuParamsAlloc
+    {
+    public:
+        GpuParamBuffer();
+        virtual ~GpuParamBuffer();
+        
+    protected:
+        GpuParamBufferList mGpuParamBufferList;
+    };
 
     /** 着色参数内存绑定
     @version NIIEngine 3.0.0
@@ -459,32 +501,32 @@ namespace NII
         /** 设置数据
         @version NIIEngine 3.0.0
         */
-        inline void set(const VString & name, Ni32 in){ set(name, &in, 1); }
+        inline void set(const VString & name, Ni32 in)              { set(name, &in, 1); }
 
         /** 设置数据
         @version NIIEngine 3.0.0
         */
-        inline void set(const VString & name, NIIf in){ set(name, &in, 1); }
+        inline void set(const VString & name, NIIf in)              { set(name, &in, 1); }
 
         /** 设置数据
         @version NIIEngine 3.0.0
         */
-        inline void set(const VString & name, const Colour & in){ set(name, &in.r, 4); }
+        inline void set(const VString & name, const Colour & in)    { set(name, &in.r, 4); }
 
         /** 设置数据
         @version NIIEngine 3.0.0
         */
-        inline void set(const VString & name, const Vector4f & in){ set(name, &in.x, 4); }
+        inline void set(const VString & name, const Vector4f & in)  { set(name, &in.x, 4); }
 
         /** 设置数据
         @version NIIEngine 3.0.0
         */
-        inline void set(const VString & name, const Vector3f & in){ set(name, &in.x, 3); }
+        inline void set(const VString & name, const Vector3f & in)  { set(name, &in.x, 3); }
         
         /** 设置数据
         @version NIIEngine 3.0.0
         */
-        inline void set(const VString & name, const Matrix4f & in){ set(name, in[0], 16); }
+        inline void set(const VString & name, const Matrix4f & in)  { set(name, in[0], 16); }
 
         /** 设置数据
         @version NIIEngine 3.0.0
@@ -551,8 +593,8 @@ namespace NII
     public:
         enum ParamType
         {
-            PT_Const,           ///< 一次性
-            PT_Texture          ///< 纹理缓存,uav数据模型,uniform缓存
+            PT_Const,           ///< 一次性(uniform,non uniform block)
+            PT_Texture          ///< 纹理缓存,uav数据模型,block uniform block缓存
         };
     public:
         GpuProgramParam();
@@ -569,7 +611,7 @@ namespace NII
         /** 获取参数定义
         @note 仅适用于命名参数对象 高级api
         */
-        inline const GpuParamDefine * getDefine() const{ return mParamDefine; }
+        inline const GpuParamDefine * getDefine() const     { return mParamDefine; }
 
         /** 设置参数绑定
         @version NIIEngine 3.0.0 高级api
@@ -579,7 +621,7 @@ namespace NII
         /** 获取参数绑定
         @version NIIEngine 3.0.0 高级api
         */
-        inline const GpuParamMap * getMap() const{ return mParamMap; }
+        inline const GpuParamMap * getMap() const           { return mParamMap; }
 
         /** 获取参数定义
         @version NIIEngine 3.0.0
@@ -857,43 +899,43 @@ namespace NII
         /** 获取同步参数绑定
         @version NIIEngine 3.0.0
         */
-        const GpuSParamIndex * getSParamIndex(const VString & name) const;
+        const GpuSyncParamIndex * getSParamIndex(const VString & name) const;
 
         /** 获取同步参数绑定
         @param[in] index 参数索引
         @version NIIEngine 3.0.0 高级api
         */
-        const GpuSParamIndex * getFloatSParamIndex(Nidx index) const;
+        const GpuSyncParamIndex * getFloatSParamIndex(Nidx index) const;
 
         /** 获取同步参数绑定
         @param[in] index 参数索引
         @version NIIEngine 3.0.0 高级api
         */
-        const GpuSParamIndex * getDoubleSParamIndex(Nidx index) const;
+        const GpuSyncParamIndex * getDoubleSParamIndex(Nidx index) const;
 
         /** 获取同步参数绑定
         @param[in] index 参数索引
         @version NIIEngine 3.0.0 高级api
         */
-        const GpuSParamIndex * getIntSParamIndex(Nidx index) const;
+        const GpuSyncParamIndex * getIntSParamIndex(Nidx index) const;
 
         /** 获取同步参数绑定
         @param[in] index 缓存索引
         @version NIIEngine 3.0.0
         */
-        const GpuSParamIndex * _getFloatSParamIndex(Nidx memidx) const;
+        const GpuSyncParamIndex * _getFloatSParamIndex(Nidx memidx) const;
 
         /** 获取同步参数绑定
         @param[in] index 缓存索引
         @version NIIEngine 3.0.0
         */
-        const GpuSParamIndex * _getDoubleSParamIndex(Nidx memidx) const;
+        const GpuSyncParamIndex * _getDoubleSParamIndex(Nidx memidx) const;
 
         /** 获取同步参数绑定
         @param[in] index 缓存索引
         @version NIIEngine 3.0.0
         */
-        const GpuSParamIndex * _getIntSyncParamBind(Nidx memidx) const;
+        const GpuSyncParamIndex * _getIntSyncParamBind(Nidx memidx) const;
 
         /** 移去同步参数
         @version NIIEngine 3.0.0
@@ -1086,6 +1128,7 @@ namespace NII
         Nmark getParamTypeMark(GpuSyncParam sparam);
     protected:
         typedef vector<ShareParamSync *>::type ShareSyncList;
+        typedef vector<ParamType>::type ParamTypeList;
         typedef map<Nui32, Ni32>::type ExtDataList;
     protected:
         GpuParamDefine * mParamDefine;
@@ -1093,6 +1136,7 @@ namespace NII
         GpuSParamIndexList mSyncParamList;
         ShareSyncList mShareSyncList;
         ExtDataList mExtDataList;
+        ParamTypeList mParamTypeList;
         mutable IntArray mIntData;
         mutable FloatArray mFloatData;
         mutable DoubleArray mDoubleData;

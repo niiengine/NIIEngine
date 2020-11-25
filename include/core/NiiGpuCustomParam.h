@@ -74,7 +74,7 @@ namespace NII
         @param[in] bind 需要更新着色程序参数
         @version NIIEngine 3.0.0
         */
-        virtual void updateCustom(GpuProgramParam * dst, const GpuSParamIndex & bind) const;
+        virtual void updateCustom(GpuProgramParam * dst, const GpuSyncParamIndex & bind) const;
         
         /** 更新自定义参数到实际的着色程序参数中
         @param[in] dst 需要更新的着色程序参数集
@@ -82,7 +82,7 @@ namespace NII
         @param[in] bind 需要更新着色程序参数
         @version NIIEngine 3.0.0
         */
-        virtual void updateCustom(GpuProgramParam * dst, Nidx index, const GpuSParamIndex & entry) const;
+        virtual void updateCustom(GpuProgramParam * dst, Nidx index, const GpuSyncParamIndex & entry) const;
     protected:
         typedef map<Nidx, Vector4f>::type CustomParameterMap;
     protected:
