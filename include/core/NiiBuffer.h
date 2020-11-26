@@ -384,14 +384,16 @@ namespace NII
         inline void read(Buffer * dst) { dst->memcpyImpl(this, 0, 0, std::min(mSize, dst->mSize)); }
 
         /** 分配缓冲区大小(预留)
+        @param[in] newMode 如果保留原来的设置则值为 -1.
         @version NIIEngine 4.0.0
         */
-        bool resize(NCount newSize, Nmark newMode = -1, bool oldData = true);
+        bool resize(NCount newSize, Nmark newMode = -1, bool keeyOldData = true);
 
         /** 分配缓冲区大小(预留)
+        @param[in] newMode 如果保留原来的设置则值为 -1.
         @version NIIEngine 4.0.0
         */
-        bool resizeUnit(NCount newUnitCnt, Nmark newMode = -1, bool oldData = true);
+        bool resizeUnit(NCount newUnitCnt, Nmark newMode = -1, bool keeyOldData = true);
 
         /** 副本对象
         @param[in] m Buffer::Mode 选项

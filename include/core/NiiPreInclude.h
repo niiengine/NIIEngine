@@ -471,6 +471,7 @@ namespace NII
     typedef vector<Ni32>::type IntArray;
     typedef vector<NIIf>::type FloatArray;
     typedef vector<NIId>::type DoubleArray;
+    typedef vector<NIIf>::type BufferArray;
     typedef vector<Nid>::type IDList;
     typedef vector<Nidx>::type IdxList;
     typedef vector<ResourceID>::type ResourceIDList;

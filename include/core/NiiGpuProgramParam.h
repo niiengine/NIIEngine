@@ -360,9 +360,7 @@ namespace NII
         void load(DataStream * stream);
     public:
         GpuParamUnitList mDefines;
-        NCount mFloatSize;
-        NCount mDoubleSize;
-        NCount mIntSize;
+        NCount mDataSize;
         bool mArrayMode;
     };
     
@@ -427,13 +425,12 @@ namespace NII
         OpType mMuteMode;
         NCount mOffset;
         NCount mSize;
-        NCount mMipmapLevel;
+        NCount mMipmap;
         NCount mMipmapCount;
         NCount mLayer;
         NCount mLayerCount;
     };
     typedef vector<GpuParamBufferUnit>::type GpuParamBufferList;
-    
     
     /** 着色参数缓存
     @version NIIEngine 3.0.0
@@ -441,10 +438,15 @@ namespace NII
     class _EngineAPI GpuParamBuffer : public GpuParamsAlloc
     {
     public:
-        GpuParamBuffer();
-        virtual ~GpuParamBuffer();
-        
+        GpuParamBuffer() {}
+        virtual ~GpuParamBuffer() {}
+
     protected:
+        typedef map<VString, Nidx>::type NamedSlotList;
+        typedef map<Nidx, Nidx>::type SlotList;
+    protected:
+        NamedSlotList mNamedSlotList;
+        SlotList mSlotList;
         GpuParamBufferList mGpuParamBufferList;
     };
 
@@ -454,14 +456,10 @@ namespace NII
     class _EngineAPI GpuParamMap : public GpuParamsAlloc
     {
     public:
-        GpuParamMap(): mIntSize(0), mFloatSize(0), mDoubleSize(0){}
+        GpuParamMap(): mDataSize(0){}
 
-        GpuParamIndexList mIntList;
-        GpuParamIndexList mFloatList;
-        GpuParamIndexList mDoubleList;
-        NCount mIntSize;
-        NCount mFloatSize;
-        NCount mDoubleSize;
+        GpuParamIndexList mDataList;
+        NCount mDataSize;
     };
     
     /** 预定义着色程序值
@@ -499,54 +497,64 @@ namespace NII
         void removeAll();
 
         /** 设置数据
+        @param[in] oft 偏移(单位:字节)
         @version NIIEngine 3.0.0
         */
-        inline void set(const VString & name, Ni32 in)              { set(name, &in, 1); }
+        inline void set(const VString & name, NCount oft, Ni32 in)              { set(name, oft, &in, 1); }
 
         /** 设置数据
+        @param[in] oft 偏移(单位:字节)
         @version NIIEngine 3.0.0
         */
-        inline void set(const VString & name, NIIf in)              { set(name, &in, 1); }
+        inline void set(const VString & name, NCount oft, NIIf in)              { set(name, oft, &in, 1); }
 
         /** 设置数据
+        @param[in] oft 偏移(单位:字节)
         @version NIIEngine 3.0.0
         */
-        inline void set(const VString & name, const Colour & in)    { set(name, &in.r, 4); }
+        inline void set(const VString & name, NCount oft, const Colour & in)    { set(name, oft, &in.r, 4); }
 
         /** 设置数据
+        @param[in] oft 偏移(单位:字节)
         @version NIIEngine 3.0.0
         */
-        inline void set(const VString & name, const Vector4f & in)  { set(name, &in.x, 4); }
+        inline void set(const VString & name, NCount oft, const Vector4f & in)  { set(name, oft, &in.x, 4); }
 
         /** 设置数据
+        @param[in] oft 偏移(单位:字节)
         @version NIIEngine 3.0.0
         */
-        inline void set(const VString & name, const Vector3f & in)  { set(name, &in.x, 3); }
+        inline void set(const VString & name, NCount oft, const Vector3f & in)  { set(name, oft, &in.x, 3); }
         
         /** 设置数据
+        @param[in] oft 偏移(单位:字节)
         @version NIIEngine 3.0.0
         */
-        inline void set(const VString & name, const Matrix4f & in)  { set(name, in[0], 16); }
+        inline void set(const VString & name, NCount oft, const Matrix4f & in)  { set(name, oft, in[0], 16); }
 
         /** 设置数据
+        @param[in] oft 偏移(单位:字节)
         @version NIIEngine 3.0.0
         */
-        void set(const VString & name, const Ni32 * in, NCount cnt);
+        void set(const VString & name, NCount oft, const Ni32 * in, NCount cnt);
 
         /** 设置数据
+        @param[in] oft 偏移(单位:字节)
         @version NIIEngine 3.0.0
         */
-        void set(const VString & name, const NIIf * in, NCount cnt);
+        void set(const VString & name, NCount oft, const NIIf * in, NCount cnt);
 
         /** 设置数据
+        @param[in] oft 偏移(单位:字节)
         @version NIIEngine 3.0.0
         */
-        void set(const VString & name, const NIId * in, NCount cnt);
+        void set(const VString & name, NCount oft, const NIId * in, NCount cnt);
 
         /** 设置数据
+        @param[in] oft 偏移(单位:字节)
         @version NIIEngine 3.0.0
         */
-        inline void set(const VString & name, const Matrix4f * in, NCount cnt){ set(name, in[0][0], 16 * cnt); }
+        inline void set(const VString & name, NCount oft, const Matrix4f * in, NCount cnt){ set(name, oft, in[0][0], 16 * cnt); }
 
         /** 获取定义列表
         @version NIIEngine 3.0.0 高级api
@@ -561,26 +569,12 @@ namespace NII
         /** 获取浮点部分数据
         @version NIIEngine 3.0.0
         */
-        inline NIIf * getFloatData(NCount pos) const                { return &mFloatData[pos];}
-
-        /** 获取整形部分数据
-        @version NIIEngine 3.0.0
-        */
-        inline NIId * getDoubleData(NCount pos) const               { return &mDoubleData[pos]; }
-
-        /** 获取整形部分数据
-        @version NIIEngine 3.0.0
-        */
-        inline Ni32 * getIntData(NCount pos) const                  { return &mIntData[pos]; }
+        inline NIIf * getBufferData(NCount pos) const               { return &mBufferData[pos];}
     protected:
         String mName;
         GpuParamUnitList mDefines;
-        mutable IntArray mIntData;
-        mutable FloatArray mFloatData; 
-        mutable DoubleArray mDoubleData;
-        NCount mIntSize;
-        NCount mFloatSize;
-        NCount mDoubleSize;
+        mutable BufferArray mBufferData; 
+        NCount mDataSize;
         Nmark mDirtyMark;
     };
 
@@ -630,75 +624,87 @@ namespace NII
 
         /** 设置参数值
         @param[in] index 定义索引
+        @param[in] oft 偏移(单位:字节)
         @version NIIEngine 3.0.0
         */
-        void set(Nui32 index, NIIf in, NIIf in2 = 0.0f, NIIf in3 = 0.0f, NIIf in4 = 0.0f);
+        void set(Nui32 index, NCount oft, NIIf in, NIIf in2 = 0.0f, NIIf in3 = 0.0f, NIIf in4 = 0.0f);
 
         /** 设置参数值
         @param[in] index 定义索引
+        @param[in] oft 偏移(单位:字节)
         @version NIIEngine 3.0.0
         */
-        void set(Nui32 index, NIId in, NIId in2 = 0.0f, NIId in3 = 0.0f, NIId in4 = 0.0f);
+        void set(Nui32 index, NCount oft, NIId in, NIId in2 = 0.0f, NIId in3 = 0.0f, NIId in4 = 0.0f);
 
         /** 设置参数值
         @param[in] index 定义索引
+        @param[in] oft 偏移(单位:字节)
         @version NIIEngine 3.0.0
         */
-        void set(Nui32 index, Ni32 in, Ni32 in2 = 0, Ni32 in3 = 0, Ni32 in4 = 0);
+        void set(Nui32 index, NCount oft, Ni32 in, Ni32 in2 = 0, Ni32 in3 = 0, Ni32 in4 = 0);
 
         /** 设置参数值
         @param[in] index 定义索引
+        @param[in] oft 偏移(单位:字节)
         @version NIIEngine 3.0.0
         */
-        void set(Nui32 index, const Vector3f & in);
+        void set(Nui32 index, NCount oft, const Vector3f & in);
 
         /** 设置参数值.
         @param[in] index 定义索引
+        @param[in] oft 偏移(单位:字节)
         @version NIIEngine 3.0.0
         */
-        inline void set(Nui32 index, const Vector4f & in) { set(index, &in.x, 1); }
+        inline void set(Nui32 index, NCount oft, const Vector4f & in) { set(index, oft, &in.x, 1); }
 
         /** 设置参数值.
         @param[in] index 定义索引
+        @param[in] oft 偏移(单位:字节)
         @version NIIEngine 3.0.0
         */
-        inline void set(Nui32 index, const Vector4i & in) { set(index, &in.x, 1); }
+        inline void set(Nui32 index, NCount oft, const Vector4i & in) { set(index, oft, &in.x, 1); }
 
         /** 设置参数值
         @param[in] index 定义索引
+        @param[in] oft 偏移(单位:字节)
         @version NIIEngine 3.0.0
         */
-        void set(Nui32 index, const Matrix4f & in);
+        void set(Nui32 index, NCount oft, const Matrix4f & in);
 
         /** 设置参数值
         @param[in] index 定义索引
+        @param[in] oft 偏移(单位:字节)
         @version NIIEngine 3.0.0
         */
-        void set(Nui32 index, const Matrix4f * in, NCount count);
+        void set(Nui32 index, NCount oft, const Matrix4f * in, NCount count);
 
         /** 设置参数值
         @param[in] index 定义索引
+        @param[in] oft 偏移(单位:字节)
         @version NIIEngine 3.0.0
         */
-        void set(Nui32 index, const Ni32 * in, NCount cnt4x);
+        void set(Nui32 index, NCount oft, const Ni32 * in, NCount cnt4x);
 
         /** 设置参数值
         @param[in] index 定义索引
+        @param[in] oft 偏移(单位:字节)
         @version NIIEngine 3.0.0
         */
-        void set(Nui32 index, const NIIf * in, NCount cnt4x);
+        void set(Nui32 index, NCount oft, const NIIf * in, NCount cnt4x);
 
         /** 设置参数值
         @param[in] index 定义索引
+        @param[in] oft 偏移(单位:字节级)
         @version NIIEngine 3.0.0
         */
-        void set(Nui32 index, const NIId * in, NCount cnt4x);
+        void set(Nui32 index, NCount oft, const NIId * in, NCount cnt4x);
 
         /** 设置参数值
         @param[in] index 定义索引
+        @param[in] oft 偏移(单位:字节级)
         @version NIIEngine 3.0.0
         */
-        inline void set(Nui32 index, const Colour & in) { set(index, &in.r, 1); }
+        inline void set(Nui32 index, NCount oft, const Colour & in) { set(index, oft, &in.r, 1); }
 
         /** 设置扩展数据
         @version NIIEngien 5.0.0
@@ -712,156 +718,180 @@ namespace NII
 
         /** 设置参数值
         @param[in] name 命名参数
+        @param[in] oft 偏移(单位:字节级)
         @version NIIEngine 3.0.0
         */
-        void set(const VString & name, NIIf in);
+        void set(const VString & name, NCount oft, NIIf in);
 
         /** 设置参数值
         @param[in] name 命名参数
+        @param[in] oft 偏移(单位:字节级)
         @version NIIEngine 3.0.0
         */
-        void set(const VString & name, Ni32 in);
+        void set(const VString & name, NCount oft, Ni32 in);
 
         /** 设置参数值
         @param[in] name 命名参数
+        @param[in] oft 偏移(单位:字节级)
         @version NIIEngine 3.0.0
         */
-        void set(const VString & name, const Vector4f & in);
+        void set(const VString & name, NCount oft, const Vector4f & in);
 
         /** 设置参数值
         @param[in] name 命名参数
+        @param[in] oft 偏移(单位:字节级)
         @version NIIEngine 3.0.0
         */
-        void set(const VString & name, const Vector3f & in);
+        void set(const VString & name, NCount oft, const Vector3f & in);
 
         /** 设置参数值
         @param[in] name 命名参数
+        @param[in] oft 偏移(单位:字节级)
         @version NIIEngine 3.0.0
         */
-        void set(const VString & name, const Matrix4f & in);
+        void set(const VString & name, NCount oft, const Matrix4f & in);
 
         /** 设置参数值
         @param[in] name 命名参数
+        @param[in] oft 偏移(单位:字节级)
         @version NIIEngine 3.0.0
         */
-        void set(const VString & name, const Matrix4f * in, NCount count);
+        void set(const VString & name, NCount oft, const Matrix4f * in, NCount count);
 
         /** 设置参数值
         @param[in] name 参数的名字
+        @param[in] oft 偏移(单位:字节级)
         @param[in] colour 设置为的值
         */
-        void set(const VString & name, const Colour & in);
+        void set(const VString & name, NCount oft, const Colour & in);
 
         /** 设置参数值
         @param[in] name 命名参数
+        @param[in] oft 偏移(单位:字节级)
         @version NIIEngine 3.0.0
         */
-        void set(const VString & name, const NIIf * in, NCount count, NCount size = 4);
+        void set(const VString & name, NCount oft, const NIIf * in, NCount count, NCount size = 4);
 
         /** 设置参数值
         @@param[in] name 命名参数
+        @param[in] oft 偏移(单位:字节级)
         @version NIIEngine 3.0.0
         */
-        void set(const VString & name, const NIId * in, NCount count, NCount size = 4);
+        void set(const VString & name, NCount oft, const NIId * in, NCount count, NCount size = 4);
 
         /** 设置参数值
+        @param[in] oft 偏移(单位:字节级)
         @version NIIEngine 3.0.0
         */
-        void set(const VString & name, const Ni32 * in, NCount count, NCount size = 4);
+        void set(const VString & name, NCount oft, const Ni32 * in, NCount count, NCount size = 4);
 
         /** 写入缓存数据
         @param[in] memidx 缓存存储索引
+        @param[in] oft 偏移(单位:字节级)
         @version NIIEngine 3.0.0 高级api
         */
-        inline void _write(Nidx memidx, NIIf in){ _write(memidx, &in, 1); }
+        inline void _write(Nidx memidx, NCount oft, NIIf in)                    { _write(memidx, oft, &in, 1); }
 
         /** 写入缓存数据
         @param[in] memidx 缓存存储索引
+        @param[in] oft 偏移(单位:字节级)
         @version NIIEngine 3.0.0 高级api
         */
-        inline void _write(Nidx memidx, Ni32 in){ _write(memidx, &in, 1); }
+        inline void _write(Nidx memidx, NCount oft, Ni32 in)                    { _write(memidx, oft, &in, 1); }
 
         /** 写入缓存数据
         @param[in] memidx 缓存存储索引
+        @param[in] oft 偏移(单位:字节级)
         @version NIIEngine 3.0.0 高级api
         */
-        inline void _write(Nidx memidx, const Vector3f & in){ _write(memidx, &in.x, 3); }
+        inline void _write(Nidx memidx, NCount oft, const Vector3f & in)        { _write(memidx, oft, &in.x, 3); }
 
         /** 写入缓存数据
         @param[in] memidx 缓存存储索引
+        @param[in] oft 偏移(单位:字节级)
         @param[in] size 实际写入字节
         @version NIIEngine 3.0.0 高级api
         */
-        inline void _write(Nidx memidx, const Vector4f & in, NCount size = 4){ _write(memidx, &in.x, size); }
+        inline void _write(Nidx memidx, NCount oft, const Vector4f & in, NCount size = 4){ _write(memidx, oft, &in.x, size); }
 
         /** 写入缓存数据
         @param[in] memidx 缓存存储索引
+        @param[in] oft 偏移(单位:字节级)
         @param[in] size 实际写入字节
         @version NIIEngine 3.0.0 高级api
         */
-        inline void _write(Nidx memidx, const Vector4i & in, NCount size = 4){ _write(memidx, &in.x, size); }
+        inline void _write(Nidx memidx, NCount oft, const Vector4i & in, NCount size = 4){ _write(memidx, oft, &in.x, size); }
 
         /** 写入缓存数据
         @param[in] memidx 缓存存储索引
+        @param[in] oft 偏移(单位:字节级)
         @param[in] size 实际写入字节
         @version NIIEngine 3.0.0 高级api
         */
-        void _write(Nidx memidx, const Matrix4f & in, NCount size);
+        void _write(Nidx memidx, NCount oft, const Matrix4f & in, NCount size);
 
         /** 写入缓存数据
         @param[in] memidx 缓存存储索引
+        @param[in] oft 偏移(单位:字节级)
         @param[in] numEntries Matrix4项的数量
         @version NIIEngine 3.0.0 高级api
         */
-        void _write(Nidx memidx, const Matrix4f * in, NCount count);
+        void _write(Nidx memidx, NCount oft, const Matrix4f * in, NCount count);
 
         /** 写入缓存数据
         @param[in] memidx 缓存存储索引
+        @param[in] oft 偏移(单位:字节级)
         @version NIIEngine 3.0.0 高级api
         */
-        inline void _write(Nidx memidx, const Colour & in, NCount size = 4){ _write(memidx, &in.r, size); }
+        inline void _write(Nidx memidx, NCount oft, const Colour & in, NCount size = 4){ _write(memidx, oft, &in.r, size); }
 
         /** 写入缓存数据
         @param[in] memidx 缓存存储索引
+        @param[in] oft 偏移(单位:字节级)
         @version NIIEngine 3.0.0 高级api
         */
-        inline void _write(Nidx memidx, const NIIf * in, NCount count){
-            N_assert(memidx + count <= mFloatData.size(), "error"); memcpy(&mFloatData[memidx], in, sizeof(NIIf) * count); }
+        inline void _write(Nidx memidx, NCount oft, const NIIf * in, NCount count){
+            N_assert(memidx + count <= mBufferData.size(), "error"); memcpy(&mBufferData[memidx] + oft, in, sizeof(NIIf) * count); }
 
         /** 读取缓存数据
         @param[in] memidx 缓存存储索引
+        @param[in] oft 偏移(单位:字节级)
         @version NIIEngine 3.0.0 高级api
         */
-        inline void _read(Nidx memidx, NCount count, NIIf * out){
-            N_assert(memidx + count <= mFloatData.size(), "error"); memcpy(out, &mFloatData[memidx], sizeof(NIIf) * count);}
+        inline void _read(Nidx memidx, NCount oft, NCount count, NIIf * out){
+            N_assert(memidx + count <= mBufferData.size(), "error"); memcpy(out, &mBufferData[memidx] + oft, sizeof(NIIf) * count);}
 
         /** 写入缓存数据
         @param[in] memidx 缓存存储索引
+        @param[in] oft 偏移(单位:字节级)
         @version NIIEngine 3.0.0 高级api
         */
-        inline void _write(Nidx memidx, const NIId * in, NCount count){
-            N_assert(memidx + count <= mDoubleData.size(), "error"); memcpy(&mDoubleData[memidx], in, sizeof(NIId) * count); }
+        inline void _write(Nidx memidx, NCount oft, const NIId * in, NCount count){
+            N_assert(memidx + count <= mDoubleData.size(), "error"); memcpy(&mDoubleData[memidx] + oft, in, sizeof(NIId) * count); }
             
         /** 读取缓存数据
         @param[in] memidx 缓存存储索引
+        @param[in] oft 偏移(单位:字节级)
         @version NIIEngine 3.0.0 高级api
         */
-        inline void _read(Nidx memidx, NCount count, NIId * out){
-            N_assert(memidx + count <= mDoubleData.size(), "error"); memcpy(out, &mDoubleData[memidx], sizeof(NIId) * count); }
+        inline void _read(Nidx memidx, NCount oft, NCount count, NIId * out){
+            N_assert(memidx + count <= mDoubleData.size(), "error"); memcpy(out, &mDoubleData[memidx] + oft, sizeof(NIId) * count); }
 
         /** 写入缓存数据
         @param[in] memidx 缓存存储索引
+        @param[in] oft 偏移(单位:字节级)
         @version NIIEngine 3.0.0 高级api
         */
-        inline void _write(Nidx memidx, const Ni32 * in, NCount count){
-            N_assert(memidx + count <= mIntData.size(), "error"); memcpy(&mIntData[memidx], in, sizeof(Ni32) * count); }
+        inline void _write(Nidx memidx, NCount oft, const Ni32 * in, NCount count){
+            N_assert(memidx + count <= mIntData.size(), "error"); memcpy(&mIntData[memidx] + oft, in, sizeof(Ni32) * count); }
 
         /** 读取缓存数据
         @param[in] memidx 缓存存储索引
+        @param[in] oft 偏移(单位:字节级)
         @version NIIEngine 3.0.0 高级api
         */
-        inline void _read(Nidx memidx, NCount count, Ni32 * out){
-            N_assert(memidx + count <= mIntData.size(), "error"); memcpy(out, &mIntData[memidx], sizeof(Ni32) * count); }
+        inline void _read(Nidx memidx, NCount oft, NCount count, Ni32 * out){
+            N_assert(memidx + count <= mIntData.size(), "error"); memcpy(out, &mIntData[memidx] + oft, sizeof(Ni32) * count); }
 
         /** 设置同步参数
         @param[in] index
@@ -905,37 +935,13 @@ namespace NII
         @param[in] index 参数索引
         @version NIIEngine 3.0.0 高级api
         */
-        const GpuSyncParamIndex * getFloatSParamIndex(Nidx index) const;
+        const GpuSyncParamIndex * getDataSyncParamIndex(Nidx index) const;
 
         /** 获取同步参数绑定
-        @param[in] index 参数索引
-        @version NIIEngine 3.0.0 高级api
-        */
-        const GpuSyncParamIndex * getDoubleSParamIndex(Nidx index) const;
-
-        /** 获取同步参数绑定
-        @param[in] index 参数索引
-        @version NIIEngine 3.0.0 高级api
-        */
-        const GpuSyncParamIndex * getIntSParamIndex(Nidx index) const;
-
-        /** 获取同步参数绑定
-        @param[in] index 缓存索引
+        @param[in] memidx 缓存索引
         @version NIIEngine 3.0.0
         */
-        const GpuSyncParamIndex * _getFloatSParamIndex(Nidx memidx) const;
-
-        /** 获取同步参数绑定
-        @param[in] index 缓存索引
-        @version NIIEngine 3.0.0
-        */
-        const GpuSyncParamIndex * _getDoubleSParamIndex(Nidx memidx) const;
-
-        /** 获取同步参数绑定
-        @param[in] index 缓存索引
-        @version NIIEngine 3.0.0
-        */
-        const GpuSyncParamIndex * _getIntSyncParamBind(Nidx memidx) const;
+        const GpuSyncParamIndex * _getDataSyncParamIndex(Nidx memidx) const;
 
         /** 移去同步参数
         @version NIIEngine 3.0.0
@@ -1055,17 +1061,7 @@ namespace NII
         /** 从缓存索引获取参数索引
         @version NIIEngine 3.0.0
         */
-        Nui32 getFloatIndex(Nidx memidx);
-
-        /** 从缓存索引获取参数索引
-        @version NIIEngine 3.0.0
-        */
-        Nui32 getDoubleIndex(Nidx memidx);
-
-        /** 从缓存索引获取参数索引
-        @version NIIEngine 3.0.0
-        */
-        Nui32 getIntIndex(Nidx memidx);
+        Nui32 getDataIndex(Nidx memidx);
 
         /** 获取命名参数定义
         @version NIIEngine 3.0.0
@@ -1075,32 +1071,12 @@ namespace NII
         /** 获取NIIf常量列表的引用
         @version NIIEngine 3.0.0 高级api
         */
-        inline const FloatArray & getFloatData() const{ return mFloatData; }
-
-        /** 获取NIId常量列表的引用
-        @version NIIEngine 3.0.0 高级api
-        */
-        inline const DoubleArray & getDoubleData() const{ return mDoubleData; }
-
-        /** 获取Ni32常量列表的引用
-        @version NIIEngine 3.0.0 高级api
-        */
-        inline const IntArray & getIntData() const { return mIntData; }
+        inline const BufferArray & getBufferData() const{ return mBufferData; }
 
         /** 获取浮点缓存
         @version NIIEngine 3.0.0 高级api
         */
-        inline NIIf * getFloatData(Nidx pos) const { return &mFloatData[pos]; }
-
-        /** 获取浮点缓存
-        @version NIIEngine 3.0.0 高级api
-        */
-        inline NIId * getDoubleData(Nidx pos) const{ return &mDoubleData[pos]; }
-
-        /** 获取整数缓存
-        @version NIIEngine 3.0.0 高级api
-        */
-        inline Ni32 * getIntData(Nidx pos) const{ return &mIntData[pos]; }
+        inline NIIf * getBufferData(Nidx pos) const { return &mBufferData[pos]; }
 
         /** 获取Gpu数据类型大小
         @version NIIEngine 3.0.0
@@ -1110,17 +1086,7 @@ namespace NII
         /** 获取浮点参数绑定
         @version NIIEngine 3.0.0
         */
-        GpuParamIndex * getFloatIndex(Nui32 index, NCount size, Nmark typemark);
-
-        /** 获取浮点参数绑定
-        @version NIIEngine 3.0.0
-        */
-        GpuParamIndex * getDoubleIndex(Nui32 index, NCount size, Nmark typemark);
-
-        /** 获取整形参数绑定
-        @version NIIEngine 3.0.0
-        */
-        GpuParamIndex * getIntIndex(Nui32 index, NCount size, Nmark typemark);
+        GpuParamIndex * getDataIndex(Nui32 index, NCount size, Nmark typemark);
 
         /** 获取参数种类
         @version NIIEngine 3.0.0
@@ -1137,9 +1103,7 @@ namespace NII
         ShareSyncList mShareSyncList;
         ExtDataList mExtDataList;
         ParamTypeList mParamTypeList;
-        mutable IntArray mIntData;
-        mutable FloatArray mFloatData;
-        mutable DoubleArray mDoubleData;
+        mutable BufferArray mBufferData;      // shared layout 预分配缓存为128byte(32*(float 4byte)) -> alter uav buffer uniform buffer
         NIIf * mRenderCountPtr;
         Nui32 mRenderCountIndex;
         Nidx mRenderCountMemIndex;
@@ -1148,24 +1112,24 @@ namespace NII
         bool mAllowParamLost;
     };
 
-    inline void GpuProgramParam::set(Nui32 index, NIIf in, NIIf in2, NIIf in3, NIIf in4)
+    inline void GpuProgramParam::set(Nui32 index, NCount oft, NIIf in, NIIf in2, NIIf in3, NIIf in4)
     {
-        NIIf temp[4] = { in, in2, in3, in4 }; set(index, temp, 1);
+        NIIf temp[4] = { in, in2, in3, in4 }; set(index, oft, temp, 1);
     }
 
-    inline void GpuProgramParam::set(Nui32 index, NIId in, NIId in2, NIId in3, NIId in4)
+    inline void GpuProgramParam::set(Nui32 index, NCount oft, NIId in, NIId in2, NIId in3, NIId in4)
     {
-        NIId temp[4] = { in, in2, in3, in4 }; set(index, temp, 1);
+        NIId temp[4] = { in, in2, in3, in4 }; set(index, oft, temp, 1);
     }
 
-    inline void GpuProgramParam::set(Nui32 index, Ni32 in, Ni32 in2, Ni32 in3, Ni32 in4)
+    inline void GpuProgramParam::set(Nui32 index, NCount oft, Ni32 in, Ni32 in2, Ni32 in3, Ni32 in4)
     {
-        Ni32 temp[4] = { in, in2, in3, in4 }; set(index, temp, 1);
+        Ni32 temp[4] = { in, in2, in3, in4 }; set(index, oft, temp, 1);
     }
 
-    inline void GpuProgramParam::set(Nui32 index, const Vector3f & in)
+    inline void GpuProgramParam::set(Nui32 index, NCount oft, const Vector3f & in)
     {
-        NIIf temp[4] = { in.x, in.y, in.z, 1.0f }; set(index, temp, 1);
+        NIIf temp[4] = { in.x, in.y, in.z, 1.0f }; set(index, oft, temp, 1);
     }
 }
 #endif
