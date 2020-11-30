@@ -33,32 +33,32 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 #if N_ARCH == N_ARCH_32
     #define IOTemp      Nui16
     #define IOMark      5
-    #define IOValid     31
+    #define IOValid     32
     #define IOByteCount 4
 #elif N_ARCH == N_ARCH_64
     #define IOTemp      Nui16
     #define IOMark      6
-    #define IOValid     63
+    #define IOValid     64
     #define IOByteCount 8
 #elif N_ARCH == N_ARCH_128
-    #define IOTemp      Nui16
+    #define IOTemp      Nui32
     #define IOMark      7
-    #define IOValid     127
+    #define IOValid     128
     #define IOByteCount 16
 #elif N_ARCH == N_ARCH_256
-    #define IOTemp      Nui16
+    #define IOTemp      Nui32
     #define IOMark      8
-    #define IOValid     255
+    #define IOValid     256
     #define IOByteCount 32
 #elif N_ARCH == N_ARCH_512
-    #define IOTemp      Nui16
+    #define IOTemp      Nui32
     #define IOMark      9
-    #define IOValid     511
+    #define IOValid     512
     #define IOByteCount 64
 #elif N_ARCH == N_ARCH_1024
-    #define IOTemp      Nui16
+    #define IOTemp      Nui32
     #define IOMark      10
-    #define IOValid     1023
+    #define IOValid     1024
     #define IOByteCount 128
 #else
     #error 出现错误了
@@ -73,11 +73,11 @@ namespace NII
     class _EngineInner BitSet : public StreamAlloc
     {
     public:
-        typedef struct _Com
+        typedef struct _IOCell
         {
             IOType data;
             IOTemp mark;
-        }Com;
+        }IOCell;
     public:
         BitSet();
         BitSet(NCount count);
@@ -85,42 +85,39 @@ namespace NII
 
         /** 分配大小
         @remark
-            每次大小改变的时候都必须调用这个方法,每次调用这个方法都将清空现有内容没,
+            每次大小改变的时候都必须调用这个方法,每次调用这个方法都将清空现有内容,
             这个对象不包含容量溢出检测,所以操作的时候必须确保操作范围在容量范围内
         @param[in] count IO个数
         */
         void resize(NCount count);
 
         /** 设置指定io位置的值为真
+        @param[in] io位置(0开始)
+        */
+        void setTrue(Nidx io);
+        
+        /** 设置指定io位置的值为真
         @param[in] r 位置码
         @param[in] sr 范围
         */
-        void add(NCount r, NCount sr);
+        void setTrue(Nidx r, Nidx sr);
 
+        /** 设置指定io位置的值为假
+        @param[in] io位置(0开始)
+        */
+        void setFalse(Nidx io);
+        
         /** 设置指定io位置的值为假
         @param[in] r 位置码
         @param[in] sr 范围
         */
-        void remove(NCount r, NCount sr);
-
-        /** 获取指定io位置所处的范围内的IO真值个数
-        @param[in] io位置
-        @return 此位置前的所有真值个数
-        */
-        NCount get(NCount io);
-
-        /** 获取指定范围内的IO真值个数
-        @param[in] r 位置码
-        @param[in] sr 范围
-        @return 此位置前的所有真值个数
-        */
-        NCount get(NCount r, NCount sr);
-
+        void setFalse(Nidx r, Nidx sr);
+        
         /** 检测指定io位置的值是否为真
-        @param[in] io位置
+        @param[in] io位置(0开始)
         @return 真值状态
         */
-        inline bool check(NCount io)
+        inline bool isTrue(Nidx io)
         {
             return (mData[io >> IOMark].data & NiiOrMark[io % IOValid]) != 0;
         }
@@ -130,28 +127,25 @@ namespace NII
         @param[in] sr 范围
         @return 真值状态
         */
-        inline bool check(NCount r, NCount sr)
+        inline bool isTrue(Nidx r, Nidx sr)
         {
             return (mData[r].data & NiiOrMark[sr]) != 0;
         }
 
-        /** 设置指定io位置的值为真
-        @param[in] io位置
+        /** 获取指定[0-io]位置所处的范围内的IO真值个数
+        @param[in] io位置(结束)
+        @return 此位置前的所有真值个数
         */
-        inline void setTrue(NCount io)
-        {
-            mData[io >> IOMark].data |= NiiOrMark[io % IOValid];
-        }
+        NCount getCount(Nidx io);
 
-        /** 设置指定io位置的值为假
-        @param[in] io位置
+        /** 获取指定范围内的IO真值个数
+        @param[in] r 位置码
+        @param[in] sr 范围
+        @return 此位置前的所有真值个数
         */
-        inline void setFalse(NCount io)
-        {
-            mData[io >> IOMark].data &= NiiNotMark[io % IOValid];
-        }
+        NCount getCount(Nidx r, Nidx sr);
     private:
-        Com * mData;                    ///< 主内存
+        IOCell * mData;                    ///< 主内存
         NCount mCount;
     };
 }

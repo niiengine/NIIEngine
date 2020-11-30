@@ -32,6 +32,7 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 #include "NiiMatrix4.h"
 #include "NiiColour.h"
 #include "NiiTexture.h"
+#include "NiiBitSet.h"
 
 namespace NII
 {
@@ -264,6 +265,20 @@ namespace NII
     {
         GpuSyncParamUnit(const String & name, GpuSyncParam sync, NCount cnt, Nui16 exttype, Nui16 datatype);
 
+        inline bool isFloat() const         { return mDataType > GDT_Unknow && mDataType < GDT_Int; }
+
+        inline bool isDouble() const        { return mDataType > GDT_SamplerOES && mDataType < GDT_Interface; }
+
+        inline bool isSampler() const       { return mDataType > GDT_Bool4X && mDataType < GDT_Double; }
+
+        inline bool isInt() const           { return mDataType > GDT_Matrix4X4 && mDataType < GDT_UInt; }
+
+        inline bool isUInt() const          { return mDataType > GDT_Int4X && mDataType < GDT_Bool; }
+
+        inline bool isBool() const          { return mDataType > GDT_UInt4X && mDataType < GDT_Sampler1D; }
+
+        inline bool isInterface() const     { return mDataType == GDT_Interface; }
+        
         String mName;
         GpuSyncParam mSyncParam;
         Nui16 mDataType;
@@ -370,11 +385,27 @@ namespace NII
     struct _EngineAPI GpuParamIndex
     {
     public:
-        GpuParamIndex(): mSize(0), mMemIndex(0), mTypeMark(GPT_Render){}
+        GpuParamIndex(): mSize(0), mMemIndex(0), mDataType(GDT_Unknow), mTypeMark(GPT_Render){}
         
-        GpuParamIndex(Nidx memidx, NCount size, Nmark mark) : mMemIndex(memidx), mSize(size), mTypeMark(mark) {}
+        GpuParamIndex(Nidx memidx, GpuDataType type, NCount size, Nmark mark) :
+            mMemIndex(memidx), mDataType(type), mSize(size), mTypeMark(mark) {}
+
+        inline bool isFloat() const { return mDataType > GDT_Unknow && mDataType < GDT_Int; }
+
+        inline bool isDouble() const { return mDataType > GDT_SamplerOES && mDataType < GDT_Interface; }
+
+        inline bool isSampler() const { return mDataType > GDT_Bool4X && mDataType < GDT_Double; }
+
+        inline bool isInt() const { return mDataType > GDT_Matrix4X4 && mDataType < GDT_UInt; }
+
+        inline bool isUInt() const { return mDataType > GDT_Int4X && mDataType < GDT_Bool; }
+
+        inline bool isBool() const { return mDataType > GDT_UInt4X && mDataType < GDT_Sampler1D; }
+
+        inline bool isInterface() const { return mDataType == GDT_Interface; }
     public:
         Nidx mMemIndex;
+        GpuDataType mDataType;
         NCount mSize;
         Nmark mTypeMark;
     };
@@ -448,6 +479,7 @@ namespace NII
         NamedSlotList mNamedSlotList;
         SlotList mSlotList;
         GpuParamBufferList mGpuParamBufferList;
+        BitSet mBitSet;
     };
 
     /** 着色参数内存绑定
@@ -569,7 +601,7 @@ namespace NII
         /** 获取浮点部分数据
         @version NIIEngine 3.0.0
         */
-        inline NIIf * getBufferData(NCount pos) const               { return &mBufferData[pos];}
+        inline void * getBufferData(NCount pos) const               { return &mBufferData[pos];}
     protected:
         String mName;
         GpuParamUnitList mDefines;
@@ -867,15 +899,15 @@ namespace NII
         @version NIIEngine 3.0.0 高级api
         */
         inline void _write(Nidx memidx, NCount oft, const NIId * in, NCount count){
-            N_assert(memidx + count <= mDoubleData.size(), "error"); memcpy(&mDoubleData[memidx] + oft, in, sizeof(NIId) * count); }
-            
+            N_assert(memidx + count * 2 <= mBufferData.size(), "error"); memcpy(&mBufferData[memidx] + oft, in, sizeof(NIId) * count); }
+
         /** 读取缓存数据
         @param[in] memidx 缓存存储索引
         @param[in] oft 偏移(单位:字节级)
         @version NIIEngine 3.0.0 高级api
         */
         inline void _read(Nidx memidx, NCount oft, NCount count, NIId * out){
-            N_assert(memidx + count <= mDoubleData.size(), "error"); memcpy(out, &mDoubleData[memidx] + oft, sizeof(NIId) * count); }
+            N_assert(memidx + count * 2 <= mBufferData.size(), "error"); memcpy(out, &mBufferData[memidx] + oft, sizeof(NIId) * count); }
 
         /** 写入缓存数据
         @param[in] memidx 缓存存储索引
@@ -883,7 +915,7 @@ namespace NII
         @version NIIEngine 3.0.0 高级api
         */
         inline void _write(Nidx memidx, NCount oft, const Ni32 * in, NCount count){
-            N_assert(memidx + count <= mIntData.size(), "error"); memcpy(&mIntData[memidx] + oft, in, sizeof(Ni32) * count); }
+            N_assert(memidx + count <= mBufferData.size(), "error"); memcpy(&mBufferData[memidx] + oft, in, sizeof(Ni32) * count); }
 
         /** 读取缓存数据
         @param[in] memidx 缓存存储索引
@@ -891,7 +923,7 @@ namespace NII
         @version NIIEngine 3.0.0 高级api
         */
         inline void _read(Nidx memidx, NCount oft, NCount count, Ni32 * out){
-            N_assert(memidx + count <= mIntData.size(), "error"); memcpy(out, &mIntData[memidx] + oft, sizeof(Ni32) * count); }
+            N_assert(memidx + count <= mBufferData.size(), "error"); memcpy(out, &mBufferData[memidx] + oft, sizeof(Ni32) * count); }
 
         /** 设置同步参数
         @param[in] index
@@ -929,19 +961,19 @@ namespace NII
         /** 获取同步参数绑定
         @version NIIEngine 3.0.0
         */
-        const GpuSyncParamIndex * getSParamIndex(const VString & name) const;
+        const GpuSyncParamIndex * getSyncParamIndex(const VString & name) const;
 
         /** 获取同步参数绑定
         @param[in] index 参数索引
         @version NIIEngine 3.0.0 高级api
         */
-        const GpuSyncParamIndex * getDataSyncParamIndex(Nidx index) const;
+        const GpuSyncParamIndex * getSyncParamIndex(Nidx index) const;
 
         /** 获取同步参数绑定
         @param[in] memidx 缓存索引
         @version NIIEngine 3.0.0
         */
-        const GpuSyncParamIndex * _getDataSyncParamIndex(Nidx memidx) const;
+        const GpuSyncParamIndex * _getSyncParamIndex(Nidx memidx) const;
 
         /** 移去同步参数
         @version NIIEngine 3.0.0
@@ -1004,24 +1036,24 @@ namespace NII
         /** 是否允许参数丢失
         @version NIIEngine 3.0.0  高级api
         */
-        inline void setAllowMissing(bool b){ mAllowParamLost = b;}
+        inline void setAllowMissing(bool b)                     { mAllowParamLost = b;}
         
         /** 是否允许参数丢失
         @version NIIEngine 3.0.0  高级api
         */
-        inline bool isAllowMissing() const { return mAllowParamLost;}
+        inline bool isAllowMissing() const                      { return mAllowParamLost;}
 
         /** 设置是否需要转换矩阵
         @note d3d gles 需要使用转置矩阵,或者设置前就已经转了
         @version NIIEngine 3.0.0 高级api
         */
-        inline void setTransposeMatrix(bool b) { mTransposeMatrix = b;}
+        inline void setTransposeMatrix(bool b)                  { mTransposeMatrix = b;}
 
         /** 获取是否需要转换矩阵
         @note d3d gles 需要使用转置矩阵,或者设置前就已经转了
         @version NIIEngine 3.0.0 高级api
         */
-        inline bool isTransposeMatrix() const{ return mTransposeMatrix; }
+        inline bool isTransposeMatrix() const                   { return mTransposeMatrix; }
 
         /** 复制所有参数值
         @version NIIEngine 3.0.0
@@ -1046,17 +1078,17 @@ namespace NII
         /** 获取多重绘制数量参数缓存
         @version NIIEngine 3.0.0
         */
-        inline NIIf * getRenderCountPtr() const { return mRenderCountPtr; }
+        inline NIIf * getRenderCountPtr() const                 { return mRenderCountPtr; }
 
         /** 获取多重绘制数量参数索引
         @version NIIEngine 3.0.0
         */
-        inline Nui32 getRenderCountIndex() const{ return mRenderCountIndex; }
+        inline Nui32 getRenderCountIndex() const                { return mRenderCountIndex; }
 
         /** 获取多重绘制数量参数内存索引
         @version NIIEngine 3.0.0
         */
-        inline Nidx getRenderCountMemIndex() const{ return mRenderCountMemIndex; }
+        inline Nidx getRenderCountMemIndex() const              { return mRenderCountMemIndex; }
 
         /** 从缓存索引获取参数索引
         @version NIIEngine 3.0.0
@@ -1066,17 +1098,17 @@ namespace NII
         /** 获取命名参数定义
         @version NIIEngine 3.0.0
         */
-        inline const GpuParamUnitList & getDefList() const{ N_assert(mParamDefine, "error"); return mParamDefine->mDefines; }
+        inline const GpuParamUnitList & getDefList() const      { N_assert(mParamDefine, "error"); return mParamDefine->mDefines; }
 
         /** 获取NIIf常量列表的引用
         @version NIIEngine 3.0.0 高级api
         */
-        inline const BufferArray & getBufferData() const{ return mBufferData; }
+        inline const BufferArray & getBufferData() const        { return mBufferData; }
 
         /** 获取浮点缓存
         @version NIIEngine 3.0.0 高级api
         */
-        inline NIIf * getBufferData(Nidx pos) const { return &mBufferData[pos]; }
+        inline void * getBufferData(Nidx pos) const             { return &mBufferData[pos]; }
 
         /** 获取Gpu数据类型大小
         @version NIIEngine 3.0.0
@@ -1086,7 +1118,7 @@ namespace NII
         /** 获取浮点参数绑定
         @version NIIEngine 3.0.0
         */
-        GpuParamIndex * getDataIndex(Nui32 index, NCount size, Nmark typemark);
+        GpuParamIndex * getDataIndex(Nui32 index, NCount size, Nmark typemark, GpuDataType dtype);
 
         /** 获取参数种类
         @version NIIEngine 3.0.0
@@ -1108,6 +1140,7 @@ namespace NII
         Nui32 mRenderCountIndex;
         Nidx mRenderCountMemIndex;
         Nmark mParamTypeMark;
+        BitSet mBitSet;
         bool mTransposeMatrix;
         bool mAllowParamLost;
     };
