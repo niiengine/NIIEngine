@@ -31,7 +31,6 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 #include "NiiPreInclude.h"
 #include "NiiGeometryRaw.h"
 #include "NiiGpuCustomParam.h"
-#include "NiiShadowObj.h"
 #include "NiiExtData.h"
 
 namespace NII
@@ -79,39 +78,39 @@ namespace NII
         /** 启用模式
         @version NIIEngine 3.0.0
         */
-        void on(Mode mode);
+        void on(Mode mode)                      { mGeometryMark |= mode;  }
 
         /** 启用模式
         @version NIIEngine 3.0.0
         */
-        void off(Mode mode);
+        void off(Mode mode)                     { mGeometryMark &= ~mode;  }
 
         /** 是否启用模式
         @version NIIEngine 3.0.0
         */
-        bool isOn(Mode mode) const;
+        bool isOn(Mode mode) const              { return mGeometryMark & mode; }
 
         /** 设置几何LOD
         @remark 如果等级足够高,离当前摄像机足够远,很可能直接变跳过,或者用个颜色像素代替
         @version NIIEngine 3.0.0
         */
-        void setGeometryLod(Nidx index);
+        void setGeometryLod(Nidx16 index)       { mLodIndex = index;  }
 
         /** 获取几何LOD
         @remark 如果等级足够高,离当前摄像机足够远,很可能直接变跳过,或者用个颜色像素代替
         @version NIIEngine 3.0.0
         */
-        Nidx getGeometryLod() const;
+        Nidx16 getGeometryLod() const           { return mLodIndex; }
 
         /** 设置灯光开始索引
         @version NIIEngine 3.0.0
         */
-        void setLightBegin(Nidx i);
+        void setLightBegin(Nidx16 i)            { mLightBegin = i; }
 
         /** 获取灯光开始索引
         @verison NIIEngine 3.0.0
         */
-        Nidx getLightBegin() const;
+        Nidx16 getLightBegin() const            { return mLightBegin; }
 
         /** 获取几何数据.
         @version NIIEngine 3.0.0
@@ -164,8 +163,8 @@ namespace NII
         virtual ShaderFusion * getShaderFusion() const;
     protected:
         Nmark mGeometryMark;    ///< 扩展数据
-        Nui8 mLodIndex;         ///< 辅助渲染系统处理
-        Nui8 mLightBegin;       ///< 开始灯光
+        Nidx16 mLodIndex;       ///< 辅助渲染系统处理
+        Nidx16 mLightBegin;     ///< 开始灯光
     };
 }
 #endif

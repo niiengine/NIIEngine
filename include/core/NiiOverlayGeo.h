@@ -54,12 +54,12 @@ namespace NII
         /** 获取父容器
         @version NIIEngine 3.0.0
         */
-        OverlayView * getParent();
+        OverlayView * getParent()               { return mParent;  }
 
         /** 获取ID
         @version NIIEngine 3.0.0
         */
-        OverlayGeoID getID() const;
+        OverlayGeoID getID() const              { return mID;  }
 
         /** 类型
         @version NIIEngine 3.0.0
@@ -84,7 +84,7 @@ namespace NII
         /** 是否显示
         @version NIIEngine 3.0.0
         */
-        bool isVisible() const;
+        bool isVisible() const                  { return mVisible;  }
 
         /** 设置是否启用
         @version NIIEngine 3.0.0
@@ -94,7 +94,7 @@ namespace NII
         /** 获取是否启用
         @version NIIEngine 3.0.0
         */
-        bool isEnabled() const;
+        bool isEnabled() const                  { return mEnabled;  }
 
         /** 设置标题
         @version NIIEngine 3.0.0
@@ -134,7 +134,7 @@ namespace NII
         /** 获取x对齐方式
         @version NIIEngine 3.0.0
         */
-        HAlign getXAlign() const;
+        HAlign getXAlign() const                { return mHorzAlign; }
 
         /** 设置y对齐方式
         @version NIIEngine 3.0.0
@@ -144,17 +144,17 @@ namespace NII
         /** 获取y对齐方式
         @version NIIEngine 3.0.0
         */
-        VAlign getYAlign() const;
+        VAlign getYAlign() const                { return mVertAlign;  }
 
         /** 设置层等级
         @version NIIEngine 3.0.0
         */
-        void setZOrder(Nui16 idx);
+        void setZOrder(Nui16 idx)               { mZOrder = idx;  }
 
         /** 获取层等级
         @version NIIEngine 3.0.0
         */
-        Nui16 getZOrder() const;
+        Nui16 getZOrder() const                 { return mZOrder; }
 
         /** 设置左上角位置
         @version NIIEngine 3.0.0
@@ -230,7 +230,7 @@ namespace NII
         @return [0,1.0]
         @version NIIEngine 3.0.0
         */
-        NIIf getUnitLeft() const;
+        NIIf getUnitLeft() const                { return mLeft; }
 
         /** 设置左上角y轴位置(单位化)
         @param[in] top [0,1.0]
@@ -242,7 +242,7 @@ namespace NII
         @return [0,1.0]
         @version NIIEngine 3.0.0
         */
-        NIIf getUnitTop() const;
+        NIIf getUnitTop() const                 { return mTop;  }
 
         /** 设置宽度(单位化)
         @param[in] width [0,1.0]
@@ -254,7 +254,7 @@ namespace NII
         @return [0,1.0]
         @version NIIEngine 3.0.0
         */
-        NIIf getUnitWidth() const;
+        NIIf getUnitWidth() const               { return mWidth; }
 
         /** 设置高度(单位化)
         @param[in] height [0,1.0]
@@ -266,7 +266,7 @@ namespace NII
         @return [0,1.0]
         @version NIIEngine 3.0.0
         */
-        NIIf getUnitHeight() const;
+        NIIf getUnitHeight() const              { return mHeight;  }
 
         /** 获取左上角x轴实际位置
         @version NIIEngine 3.0.0
@@ -281,12 +281,12 @@ namespace NII
         /** 获取实际宽度
         @version NIIEngine 3.0.0
         */
-        NIIf getEnvWidth();
+        NIIf getEnvWidth()                  { return mWidth; }
 
         /** 获取实际高度
         @version NIIEngine 3.0.0
         */
-        NIIf getEnvHeight();
+        NIIf getEnvHeight()                 { return mHeight;  }
 
         /** 获取裁减区域
         @version NIIEngine 3.0.0
@@ -301,7 +301,7 @@ namespace NII
         /** 获取纹理
         @version NIIEngine 3.0.0
         */
-        ResourceID getMaterialID() const;
+        ResourceID getMaterialID() const    { return mMaterialID;  }
 
         /** 更新
         @version NIIEngine 3.0.0
@@ -363,12 +363,12 @@ namespace NII
         /** 设置是否可模版化
         @version NIIEngine 3.0.0
         */
-        void setTemplate(bool c);
+        void setTemplate(bool c)                {  mTemplate = c;  }
 
         /** 获取是否可模版化
         @version NIIEngine 3.0.0
         */
-        bool isTemplate() const;
+        bool isTemplate() const                 {  return mTemplate;  }
 
         /** 复制模版
         @version NIIEngine 3.0.0
@@ -378,7 +378,7 @@ namespace NII
         /** 获取复制模版
         @version NIIEngine 3.0.0
         */
-        const OverlayGeo * getTemplate() const;
+        const OverlayGeo * getTemplate() const  { return mSrcTemplate; }
 
         /** 副本
         @version NIIEngine 3.0.0
@@ -413,7 +413,7 @@ namespace NII
         SizeMode mMetricsMode;
         HAlign mHorzAlign;
         VAlign mVertAlign;
-        NCount mZOrder;
+        Nui16 mZOrder;
         NIIf mLeft;
         NIIf mTop;
         NIIf mWidth;

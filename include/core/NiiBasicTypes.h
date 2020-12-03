@@ -40,8 +40,8 @@ namespace NII
     typedef float               NIIf;                            
     typedef double              NIId;                           
     typedef long                NIIl;                          
-    typedef unsigned char       NCountb;                     
-    typedef unsigned short      NCounts;   
+    typedef unsigned char       NCount8, NCountb;                     
+    typedef unsigned short      NCount16, NCounts;   
     typedef size_t              NCount;
     typedef unsigned int        Nui;
     typedef unsigned long       Nul;                                         
@@ -57,6 +57,7 @@ namespace NII
     /////////////////////////////////
     typedef int                 Nid;
     typedef size_t              Nidx;
+    typedef unsigned short      Nidx16;
     typedef unsigned int        Nmark;
     /////////////////////////////////
     typedef char                Nutf8;

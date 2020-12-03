@@ -29,6 +29,7 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 #define _NII_IO_VALUE_MAP_H_
 
 #include "NiiPreInclude.h"
+#include "NiiCommon.h"
 
 #if N_ARCH == N_ARCH_32
     #define IOTemp      Nui16
@@ -132,6 +133,17 @@ namespace NII
             return (mData[r].data & NiiOrMark[sr]) != 0;
         }
 
+        /** 获取指定[0-io]位置所处的范围内最高有效位(0开始)
+        @param[in] io位置(0开始)
+        */
+        NCount getMostSignificant(Nidx io);
+        
+        /** 获取指定范围内的IO最高有效位(0开始)
+        @param[in] r 位置码
+        @param[in] sr 范围
+        */
+        NCount getMostSignificant(Nidx r, Nidx sr);
+        
         /** 获取指定[0-io]位置所处的范围内的IO真值个数
         @param[in] io位置(结束)
         @return 此位置前的所有真值个数

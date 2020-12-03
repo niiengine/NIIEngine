@@ -1007,13 +1007,13 @@ namespace NII
         @note 固定管线和可编程管线中有效果
         @version NIIEngine 3.0.0
         */
-        void setCoordSet(Nidx index)                { mCoordSet = index; }
+        void setCoordSet(Nidx16 index)              { mCoordSet = index; }
 
         /** 获取这个层使用纹理坐标集的索引
         @note 固定管线和可编程管线中有效果
         @version NIIEngine 3.0.0
         */
-        Nidx getCoordSet() const                    { return mCoordSet; }
+        Nidx16 getCoordSet() const                  { return mCoordSet; }
 
         /** 设置着色程序应用类型
         @note 着色程序专用设置
@@ -1092,22 +1092,22 @@ namespace NII
         /** 设置(纹理集)中的索引
         @version NIIEngine 3.0.0 高级api
         */
-        void setLocalIndex(Nidx index)              { mLocalIndex = index; }
+        void setLocalIndex(Nidx16 index)            { mLocalIndex = index; }
 
         /** 获取(纹理集)中的索引
         @version NIIEngine 3.0.0 高级api
         */
-        Nidx getLocalIndex() const                  { return mLocalIndex; }
+        Nidx16 getLocalIndex() const                { return mLocalIndex; }
 
         /** 设置复合中的索引
         @version NIIEngine 3.0.0 高级api
         */
-        void setMultiIndex(Nidx index)              { mMultiIndex = index; }
+        void setMultiIndex(Nidx16 index)            { mMultiIndex = index; }
 
         /** 获取复合中的索引
         @version NIIEngine 3.0.0 高级api
         */
-        Nidx getMultiIndex() const                  { return mMultiIndex; }
+        Nidx16 getMultiIndex() const                { return mMultiIndex; }
 
         /** 设置U方向滚动值
         @param[in] value
@@ -1263,9 +1263,9 @@ namespace NII
         PixelFormat mFormat;                ///< 像素格式
         NIIi mMipmapCount;                  ///< 层次数量
         EffectMap mEffects;
-        Nui16 mCoordSet;
-        Nui16 mLocalIndex;
-        Nui16 mMultiIndex;
+        Nidx16 mCoordSet;
+        Nidx16 mLocalIndex;
+        Nidx16 mMultiIndex;
         TextureSampleUnit mSample;
         TextureBlend mColourBlend;
         TextureBlend mAlphaBlend;

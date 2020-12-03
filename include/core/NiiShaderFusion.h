@@ -269,12 +269,12 @@ namespace NII
         /** 设置LOD索引
         @version NIIEngine 3.0.0 高级api
         */
-        void setLodIndex(Nidx index);
+        void setLodIndex(Nidx16 index);
 
         /** 获取LOD索引
         @version NIIEngine 3.0.0 高级api
         */
-        inline Nidx getLodIndex() const             { return mLodIndex;  }
+        inline Nidx16 getLodIndex() const             { return mLodIndex;  }
 
         /** 副本
         @param[in] o 副本的宿主
@@ -349,7 +349,7 @@ namespace NII
         FusionShaderList mFusionChList;
         GpuVendorDetailList mVendorList;
         ShaderChList mChList;
-        Nui16 mLodIndex;
+        Nidx16 mLodIndex;
         Nmark mMark;
         static ShaderChLink mChLink;
         static ShaderChList mDetachList;

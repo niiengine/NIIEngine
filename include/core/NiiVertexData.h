@@ -334,7 +334,7 @@ namespace NII
         @param[in] vt
         @version NIIEngine 3.0.0
         */
-        NCount getCount(VertexType vt) const;
+        NCount16 getCount(VertexType vt) const;
 
         /** 获取元素列表
         @verison NIIEngine 3.0.0 高级api

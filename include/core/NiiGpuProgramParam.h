@@ -438,7 +438,7 @@ namespace NII
     /** 着色参数缓存单元
     @version NIIEngine 3.0.0
     */
-    struct _EngineAPI GpuParamBufferUnit
+    class _EngineAPI GpuParamBufferUnit : public GpuParamsAlloc
     {
     public:
         enum OpType
@@ -448,8 +448,10 @@ namespace NII
             OT_WRITE    = 0x02,
             OT_RW       = OT_READ|OT_WRITE
         };
-        GpuParamBufferUnit() {}
-        
+    public:
+        GpuParamBufferUnit();
+        ~GpuParamBufferUnit();
+    public:
         Texture * mBuffer;
         Texture::Type mType;
         PixelFormat mPixelFormat;
@@ -460,8 +462,10 @@ namespace NII
         NCount mMipmapCount;
         NCount mLayer;
         NCount mLayerCount;
+        NCount mRefCount;
+        bool mAutoDestroy;
     };
-    typedef vector<GpuParamBufferUnit>::type GpuParamBufferList;
+    typedef vector<GpuParamBufferUnit *>::type GpuParamBufferList;
     
     /** 着色参数缓存
     @version NIIEngine 3.0.0
@@ -471,15 +475,53 @@ namespace NII
     public:
         GpuParamBuffer() {}
         virtual ~GpuParamBuffer() {}
+        
+        /** 添加绑定点缓存
+        @version NIIEngine 3.0.0
+        */
+        void addBinding(Nidx slot, GpuParamBufferUnit * unit);
+        
+        /** 移去绑定点缓存
+        @version NIIEngine 3.0.0
+        */
+        void removeBinding(Nidx slot);
+        
+        /** 获取绑定点缓存
+        @version NIIEngine 3.0.0
+        */
+        GpuParamBufferUnit * getBinding(Nidx slot);
+        
+        /** 获取绑定点缓存数量
+        @version NIIEngine 3.0.0
+        */
+        NCount getBindingCount() const;
 
+        /** 添加绑定点
+        @version NIIEngine 3.0.0
+        */
+        void addBindingPoints(const VString & paramname, Nidx slot);
+        
+        /** 移去绑定点
+        @version NIIEngine 3.0.0
+        */
+        void removeBindingPoints(const VString & paramname);
+        
+        /** 获取绑定点
+        @version NIIEngine 3.0.0
+        */
+        Nidx getBindingPoints(const VString & paramname) const;
+        
+        /** 获取绑定点数量
+        @version NIIEngine 3.0.0
+        */
+        NCount getBindingPointsCount() const;
     protected:
         typedef map<VString, Nidx>::type NamedSlotList;
         typedef map<Nidx, Nidx>::type SlotList;
     protected:
+        GpuParamBufferList mGpuParamBufferList;
         NamedSlotList mNamedSlotList;
         SlotList mSlotList;
-        GpuParamBufferList mGpuParamBufferList;
-        BitSet mBitSet;
     };
 
     /** 着色参数内存绑定
@@ -1115,10 +1157,20 @@ namespace NII
         */
         static NCount getTypeCount(GpuDataType type, bool pad4x);
     protected:
-        /** 获取浮点参数绑定
+        /** 获取参数绑定
         @version NIIEngine 3.0.0
         */
         GpuParamIndex * getDataIndex(Nui32 index, NCount size, Nmark typemark, GpuDataType dtype);
+
+        /** 移去参数绑定
+        @version NIIEngine 3.0.0
+        */
+        void removeDataIndex(Nui32 index);
+        
+        /** 移去参数绑定
+        @version NIIEngine 3.0.0
+        */
+        void removeDataIndex(GpuSyncParamIndex * idx);
 
         /** 获取参数种类
         @version NIIEngine 3.0.0
@@ -1131,6 +1183,7 @@ namespace NII
     protected:
         GpuParamDefine * mParamDefine;
         GpuParamMap * mParamMap;
+        GpuParamBuffer * mParamBuffer;
         GpuSParamIndexList mSyncParamList;
         ShareSyncList mShareSyncList;
         ExtDataList mExtDataList;
