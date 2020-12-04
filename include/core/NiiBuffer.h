@@ -213,7 +213,7 @@ namespace NII
             MM_READ     = 0x02,         ///< CPU(Host)级别的操作
             MM_WRITE    = 0x04,         ///< CPU(Host)级别的操作
             MM_WHOLE    = 0x08,         ///< 整块操作,将会把旧数据无效化
-            MM_EVENT    = 0x100,
+            MM_EVENT    = 0x100,        ///< 非手动,而是内部线程机制上锁
             MM_EXT1     = 0x200,
             MM_EXT2     = 0x400,
             MM_EXT3     = 0x800,
@@ -270,22 +270,22 @@ namespace NII
         @param[in] mode Buffer::Mode选项
         @version NIIEngine 3.0.0
         */
-        inline bool isSupport(Mode m)       { return mMark & m; }
+        inline bool isSupport(Mode m)               { return mMark & m; }
 
         /** 缓存是否处于锁定状态
         @version NIIEngine 3.0.0
         */
-        inline bool isMute() const          { return (mMark & M_LOCK) || (mShadow && mShadow->isMute()); }
+        inline bool isMute() const                  { return (mMark & M_LOCK) || (mShadow && mShadow->isMute()); }
 
         /** 锁定整个缓冲区(可)读/写
-        @param[in] mm MuteMode/复合选项
+        @param[in] mm MuteMode单一/MuteMode复合选项
         @return 指向锁定内存
         @version NIIEngine 3.0.0
         */
-        void * lock(Nmark mm);
+        inline void * lock(Nmark mm)                { return lock(mm | M_WHOLE, 0, mSize); }
 
         /** 锁定的缓冲区(可)读/写.
-        @param[in] mm MuteMode/复合选项
+        @param[in] mm MuteMode单一/MuteMode复合选项
         @param[in] oft 从锁定缓存开始的字节偏移量
         @param[in] size 锁定面积大小(单位:字节)
         @return 指向锁定内存
