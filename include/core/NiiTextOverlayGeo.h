@@ -29,7 +29,7 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 #define _NII_TextOverlayGeo_H_
 
 #include "NiiPreInclude.h"
-#include "NiiOverlayGeo.h"
+#include "NiiOverlay.h"
 #include "NiiFont.h"
 
 namespace NII

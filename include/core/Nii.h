@@ -63,7 +63,6 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 #include "NiiCustomSpaceObj.h"
 #include "NiiMaterialSerializer.h"
 #include "NiiMeshSerializer.h"
-#include "NiiOverlayView.h"
 #include "NiiParticleEffect.h"
 #include "NiiProfiler.h"
 #include "NiiCustomRenderQueue.h"
