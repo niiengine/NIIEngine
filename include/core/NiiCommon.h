@@ -44,11 +44,11 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 
 namespace NII
 {
-    static const Nui32  NiiOrMark[32];
-    static const Nui32  NiiAndMark[32];
-    static const Nui32  NiiNotMark[32];
-    static const EventID EventCount;
-    static const PropertyID PropertyCount;
+    extern const Nui32  NiiOrMark[32];
+    extern const Nui32  NiiAndMark[32];
+    extern const Nui32  NiiNotMark[32];
+    extern const EventID EventCount;
+    extern const PropertyID PropertyCount;
 
     enum TextEncodeType
     {

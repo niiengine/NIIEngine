@@ -135,12 +135,14 @@ namespace NII
 
         /** 获取指定[0-io]位置所处的范围内最高有效位(0开始)
         @param[in] io位置(0开始)
+        @return 如果不存在，则返回 -1 值
         */
         NCount getMostSignificant(Nidx io);
         
         /** 获取指定范围内的IO最高有效位(0开始)
         @param[in] r 位置码
         @param[in] sr 范围
+        @return 如果不存在，则返回 -1 值
         */
         NCount getMostSignificant(Nidx r, Nidx sr);
         
