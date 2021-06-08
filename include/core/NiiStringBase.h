@@ -56,7 +56,6 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 #define Nfinddata   _wfinddata_t
 #define Nfindfirst  _wfindfirst
 #define Nfindnext   _wfindnext
-#define Nremove     ::_wremove
 #define Nstat       _wstat
 #define Nstruct_stat struct _stat64i32
 #define Nostream    std::wostream
@@ -67,6 +66,15 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 #define Ncerr       std::wcerr
 #define Nmemset     ::wmemset
 #define Nmemcpy     ::wmemcpy
+#define Ngetcwd     _wgetcwd
+#define Naccess     _waccess
+#define Nchmod      _wchmod
+#define Nremove     ::_wremove
+#ifdef _tgetenv
+#define Ngetenv     _wgetenv
+#else
+#define Ngetenv     getenv
+#endif
 #ifdef WIN32
 #define Nsntprintf  _snwprintf
 #define Nvsntprintf _vsntprintf
@@ -98,7 +106,6 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 #define Nfinddata   _finddata_t
 #define Nfindfirst  _findfirst
 #define Nfindnext   _findnext
-#define Nremove     ::remove
 #define Nstat       _stat
 #define Nstruct_stat struct _stat64i32
 #define Nostream    std::ostream
@@ -109,14 +116,20 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 #define Ncerr       std::cerr
 #define Nmemset     ::memset
 #define Nmemcpy     ::memcpy
+#define Ngetenv     getenv
+#define Naccess     access
+#define Nchmod      chmod
+#define Nremove     ::remove
 #ifdef WIN32
 #define Nsntprintf  _snprintf
 #define Nvsntprintf _vsnprintf
-#define Nmkdir(x)     _mkdir(x)
+#define Nmkdir(x)   _mkdir(x)
+#define Ngetcwd     _getcwd
 #else
 #define Nsntprintf  snprintf
 #define Nvsntprintf vsnprintf
-#define Nmkdir(x)     mkdir(x, 0744)
+#define Nmkdir(x)   mkdir(x, 0744)
+#define Ngetcwd     getcwd
 #endif
 
 #endif

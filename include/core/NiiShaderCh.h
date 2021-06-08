@@ -233,7 +233,7 @@ namespace NII
         @note 值会被最后一次设置代替
         @version NIIEngine 3.0.0
         */
-        void setOneAlphaCoverage(bool b)            {b? mMark |= ShaderChAlpha_OneAlphaCoverage : mMark &= ~ShaderChAlpha_OneAlphaCoverage;}
+        void setPercentAlphaCoverage(bool b)        {b? mMark |= ShaderChAlpha_OneAlphaCoverage : mMark &= ~ShaderChAlpha_OneAlphaCoverage;}
 
         /** 返回是否使用将绘制的片元的alpha值设置为最大值(1)来计算覆盖比率
         @remark
@@ -242,7 +242,7 @@ namespace NII
         @note 值将会被最后一次设置代替
         @version NIIEngine 3.0.0
         */
-        bool isOneAlphaCoverage() const             {return mMark & ShaderChAlpha_OneAlphaCoverage; }
+        bool isPercentAlphaCoverage() const         {return mMark & ShaderChAlpha_OneAlphaCoverage; }
 
         /** 设置透明度拒绝模式.
         @version NIIEngine 3.0.0
@@ -393,9 +393,9 @@ namespace NII
         inline ColourBlendMode getAlphaBlendMode() const { return mAlphaMode;}
 
         /** 设置混合因子
-        @param[in] src 将绘制的RGB
+        @param[in] src 将要绘制的RGB
         @param[in] dst 帧缓存的RGB
-        @param[in] asrc 将绘制的A
+        @param[in] asrc 将要绘制的A
         @param[in] adst 帧缓存的A
         @version NIIEngine 3.0.0 高级api
         */

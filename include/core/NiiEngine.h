@@ -70,7 +70,7 @@ namespace NII
         /** 构造函数
         @param[in] game 默认的引擎游戏文件
         */
-        Engine(const String & game = _T("niiengine"));
+        Engine(const String & game = _T("niiengine"), const String & appname = _T("Test"));
 
         ~Engine();
 
@@ -349,7 +349,7 @@ namespace NII
         /** 配置选项
         @version NIIEngine 3.0.0
         */
-        bool config();
+        bool config(bool useRestore = false);
 
         /** 创建可写入文件流.
         @param[in] overwrite 如果已经存在是否覆盖

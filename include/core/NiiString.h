@@ -268,6 +268,22 @@ namespace NII
         */
         static void splitFilename(const VString & file, VString & name, VString & path);
 
+        /** 分割路径文件名成分
+        @param[in] file 完整的文件路径名
+        @param[out] name 文件名(含扩展名)
+        @param[out] path 路径
+        @version NIIEngine 3.0.0
+        */
+        static void splitPath(const WString & file, WString & path);
+
+        /** 分割路径文件名成分
+        @param[in] file 完整的文件路径名
+        @param[out] name 文件名(含扩展名)
+        @param[out] path 路径
+        @version NIIEngine 3.0.0
+        */
+        static void splitPath(const VString & file, VString & path);
+
         /** 分割路径成分
         extension and path.
         @param[in] file 完整的文件路径名
@@ -276,7 +292,17 @@ namespace NII
         @param[out] path 路径
         @version NIIEngine 3.0.0
         */
-        static void splitFullFilename(const String & file, String & nameNoext, String & fileExt, String & path);
+        static void splitFilename(const WString & file, WString & nameNoext, WString & fileExt, WString & path);
+
+        /** 分割路径成分
+        extension and path.
+        @param[in] file 完整的文件路径名
+        @param[out] nameNoext 文件名(不含扩展名)
+        @param[out] fileExt 扩展名
+        @param[out] path 路径
+        @version NIIEngine 3.0.0
+        */
+        static void splitFilename(const VString & file, VString & nameNoext, VString & fileExt, VString & path);
 
         /** 分割文件名成分
         @param[in] name 文件名(含扩展名)
@@ -284,7 +310,15 @@ namespace NII
         @param[out] fileExt 扩展名
         @version NIIEngine 3.0.0
         */
-        static void splitBaseFilename(const String & name, String & nameNoext, String & fileExt);
+        static void splitBaseFilename(const WString & name, WString & nameNoext, WString & fileExt);
+
+        /** 分割文件名成分
+        @param[in] name 文件名(含扩展名)
+        @param[out] nameNoext 文件名(不含扩展名)
+        @param[out] fileExt 扩展名
+        @version NIIEngine 3.0.0
+        */
+        static void splitBaseFilename(const VString & name, VString & nameNoext, VString & fileExt);
 
         /** 获取utf8字符串长度(包含分割符\结束符)
         @param[in] strin 输入字符串(必须是utf8编码)
