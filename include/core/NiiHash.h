@@ -35,10 +35,15 @@ namespace NII
     /// 一般哈希快速算法
     Nui32 _EngineAPI FastHash(const Nui8 * data, NCount len, Nui32 ext = 0);
 
-    /// Combine hashes with same style as boost::hash_combine
-    template <typename T> Nui32 FastHash(Nui32 hashSoFar, const T & data)
+    /// 组合哈希
+    template <typename T> Nui32 FastHash(Nui32 ext, const T & data)
     {
-        return FastHash((const Nui8*)&data, sizeof(T), hashSoFar);
+        return FastHash((const Nui8*)&data, sizeof(T), ext);
+    }
+
+    inline Nui32 FastHash(const String & src) 
+    {
+        return FastHash((const Nui8*)src.c_str(), sizeof(Ntchar) * src.length());
     }
 
     Nui32 _EngineAPI FastHash(FILE * fp);

@@ -39,26 +39,49 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 #define ShaderChAlpha_AlphaCoverage             0x200
 #define ShaderChAlpha_OneAlphaCoverage          0x400
 
-#define ShaderChBlendSeparate                   0x01
-#define ShaderChBlendSeparateMode               0x02
-#define ShaderChBlendColour                     0x04
-#define ShaderChBlendAplha                      0x08
-#define ShaderChBlendSrcOne                     0x100
-#define ShaderChBlendDstZERO                    0x200
-#define ShaderChBlendSrcOneDstZERO              0x300
-#define ShaderChBlendSrcAlphaOne                0x400
-#define ShaderChBlendDstAlphaZERO               0x800
-#define ShaderChBlendSrcAlphaOneAlphaZERO       0xC00
-#define ShaderChBlendPartSrcOneZERO             0xF00
+#define ShaderChBlendSeparate                   0x0100
+#define ShaderChBlendSeparateMode               0x0200
+#define ShaderChBlendColour                     0x0400
+#define ShaderChBlendAplha                      0x0800
+#define ShaderChBlendSrcOne                     0x10000
+#define ShaderChBlendDstZERO                    0x20000
+#define ShaderChBlendSrcOneDstZERO              0x30000
+#define ShaderChBlendSrcAlphaOne                0x40000
+#define ShaderChBlendDstAlphaZERO               0x80000
+#define ShaderChBlendSrcAlphaOneAlphaZERO       0xC0000
+#define ShaderChBlendPartSrcOneZERO             0xF0000
 
-#define ShaderChDepth_Check                     0x01
-#define ShaderChDepth_mWrite                    0x02
+#define ShaderCh_DepthWrite                     0x01
+#define ShaderCh_DepthCheck                     0x02
+#define ShaderCh_DepthClip                      0x04
+#define ShaderCh_StencilCheck                   0x08
+#define ShaderCh_StencilBothSide                0x10
+
+#define ShaderCh_
+#define ShaderCh_
+#define ShaderCh_
 
 #define ShaderChPoint_Sprites                   0x01
 #define ShaderChPoint_Attenuat                  0x02
 
 namespace NII
 {
+    /** 颜色掩码
+    @version NIIEngine 3.0.0
+    */
+    enum ColourMark
+    {
+        CM_ZERO     = 0,
+        CM_RED      = 0x01,
+        CM_GREEN    = 0x02,
+        CM_BLUE     = 0x04,
+        CM_ALPHA    = 0x08,
+        CM_RGB      = 0x07,
+        CM_BGR      = CM_RGB,
+        CM_RGBA     = 0x0F,
+        CM_BGRA     = CM_RGBA
+    };
+
     enum ColourTraceMark
     {
         CTM_NONE         = 0x00,
@@ -78,6 +101,62 @@ namespace NII
         CTM_FrontBack    = 0x400,
         CTM_NORMAL       = 0x10 | 0x20 | 0x40 | 0x80 | 0x400
     };
+    
+    /** 着色成分
+    @version NIIEngine 3.0.0
+    */
+    enum ShaderBase
+    {
+        SB_Colour_R             = 0x01,
+        SB_Colour_G             = 0x02,
+        SB_Colour_B             = 0x04,
+        SB_Colour_A             = 0x08,
+        SB_Colour_RGB           = 0x0E,
+        SB_Colour_RGBA          = 0x0F,
+        SB_Fog                  = 0x10,
+        SB_Point                = 0x20,
+        SB_Colour               = 0x40,
+        SB_Blend                = 0x80,
+        SB_Depth                = 0x100,
+        SB_Alpha                = 0x200,
+        SB_Stencil              = 0x400,
+        SB_DepthStencil         = SB_Depth | SB_Stencil,
+        SB_ColourAlpha          = SB_Colour | SB_Alpha,
+        SB_Texture              = 0x800,
+        SB_Program              = 0x1000,
+        SB_FogRef               = 0x2000,                       ///< enable() 无效
+        SB_PointRef             = 0x4000,                       ///< enable() 无效
+        SB_ColourRef            = 0x8000,                       ///< enable() 无效
+        SB_BlendRef             = 0x10000,                      ///< enable() 无效
+        SB_DepthRef             = 0x20000,                      ///< enable() 无效
+        SB_AlphaRef             = 0x40000,                      ///< enable() 无效
+        SB_StencilRef           = 0x80000,                      ///< enable() 无效
+        SB_DepthStencilRef      = SB_DepthRef | SB_StencilRef,  ///< enable() 无效
+        SB_ColourAlphaRef       = SB_ColourRef | SB_AlphaRef,   ///< enable() 无效
+        SB_TextureRef           = 0x100000,                     ///< enable() 无效
+        SB_ProgramRef           = 0x200000,                     ///< enable() 无效
+        SB_FogSet               = SB_Fog | SB_FogRef,           ///< enable() 无效
+        SB_PointSet             = SB_Point | SB_PointRef,       ///< enable() 无效
+        SB_ColourSet            = SB_Colour | SB_ColourRef,     ///< enable() 无效
+        SB_BlendSet             = SB_Blend | SB_BlendRef,       ///< enable() 无效
+        SB_DepthSet             = SB_Depth | SB_DepthRef,       ///< enable() 无效
+        SB_AlphaSet             = SB_Alpha | SB_AlphaRef,       ///< enable() 无效
+        SB_StencilSet           = SB_Stencil | SB_StencilRef,   ///< enable() 无效
+        SB_DepthStencilSet      = SB_DepthSet | SB_StencilSet,  ///< enable() 无效
+        SB_ColourAlphaSet       = SB_ColourSet | SB_AlphaSet,   ///< enable() 无效
+        SB_TextureSet           = SB_Texture | SB_TextureRef,   ///< enable() 无效
+        SB_ProgramSet           = SB_Program | SB_ProgramRef,   ///< enable() 无效
+        SB_Frame_Depth          = 0x400000,
+        SB_Frame_Stencil        = 0x800000,
+        SB_Clip                 = 0x1000000,
+        SB_Light                = 0x2000000,
+        SB_FogValid             = 0x4000000,
+        SB_UnitNormals          = 0x8000000,
+        SB_LightClip            = 0x10000000,
+        SB_LightClipPlane       = 0x20000000,
+        // 扩展
+        SB_Fusion               = 0x80000000,                   ///< enable() disbale 无效
+    };
 
     /** 渲染通路中的基本颜色
     @remark 适合基本渲染系统
@@ -88,11 +167,13 @@ namespace NII
     public:
         ShaderChColour();
         ShaderChColour(const ShaderChColour & o);
+        ShaderChColour(CmpMode func, Nui8 value, bool alphaCoverage);
         ShaderChColour(const Colour & ambient, const Colour & diffuse, const Colour & specular, NIIf shinin);
         ShaderChColour(const Colour & ambient, const Colour & diffuse, const Colour & specular, const Colour & emissive, 
             NIIf shinin, Nmark mark);
 
-        bool operator ==(const ShaderChColour & o) const;
+        bool operator == (const ShaderChColour & o) const;
+        bool operator < (const ShaderChColour & o) const;
 
         /** 获取是否存在反射颜色
         @version NIIEngine 3.0.0
@@ -175,39 +256,7 @@ namespace NII
         @version NIIEngine 3.0.0
         */
         inline Nmark getColourTracking() const      { return mMark & CTM_T_NONE; }
-
-        /** 上传到着色程序参数中
-        @version NIIEngine 5.0.0
-        */
-        void upload(GpuProgramParam * param) const;
-
-        /** 从着色程序参数中设置
-        @version NIIEngine 5.0.0
-        */
-        void download(const GpuProgramParam * param);
-    public:
-        Colour mAmbient;
-        Colour mDiffuse;
-        Colour mSpecular;
-        Colour mEmissive;
-        NIIf mShininess;
-    private:
-        Nmark mMark;
-    };
-    
-    /** 渲染通路中的基本透明测试
-    @remark 适合基本渲染系统
-    @version NIIEngine 3.0.0
-    */
-    class _EngineAPI ShaderChAlpha : public ShaderAlloc
-    {
-    public:
-        ShaderChAlpha();
-        ShaderChAlpha(const ShaderChAlpha & o);
-        ShaderChAlpha(CmpMode func, Nui8 value, bool alphaCoverage);
-
-        bool operator == (const ShaderChAlpha & o) const;
-
+        
         /** 设置是否使用将绘制的片元的alpha来计算最终的覆盖比率
         @remark
             多重采样缓冲区在默认情况下使用片段的RGB值,并不包括颜色的alpha成分.
@@ -233,7 +282,7 @@ namespace NII
         @note 值会被最后一次设置代替
         @version NIIEngine 3.0.0
         */
-        void setPercentAlphaCoverage(bool b)        {b? mMark |= ShaderChAlpha_OneAlphaCoverage : mMark &= ~ShaderChAlpha_OneAlphaCoverage;}
+        void setPercentAlphaCoverage(bool b)        { b? mMark |= ShaderChAlpha_OneAlphaCoverage : mMark &= ~ShaderChAlpha_OneAlphaCoverage; }
 
         /** 返回是否使用将绘制的片元的alpha值设置为最大值(1)来计算覆盖比率
         @remark
@@ -242,7 +291,7 @@ namespace NII
         @note 值将会被最后一次设置代替
         @version NIIEngine 3.0.0
         */
-        bool isPercentAlphaCoverage() const         {return mMark & ShaderChAlpha_OneAlphaCoverage; }
+        bool isPercentAlphaCoverage() const         { return mMark & ShaderChAlpha_OneAlphaCoverage; }
 
         /** 设置透明度拒绝模式.
         @version NIIEngine 3.0.0
@@ -254,28 +303,38 @@ namespace NII
         */
         inline CmpMode getAlphaReject() const       { return mRejectMode; }
 
-        /** 获取透明度拒绝值.
-        @param[in] val 8位值
+        /** 获取透明度参考值
+        @param[in] val [0.f,1.f]
         @version NIIEngine 3.0.0
         */
-        inline void setValue(Nui8 val)              { mMark |= (Nmark)val; }
+        inline void setValue(NIIf val)              { mRefValue = val; }
 
-        /** 获取透明度拒绝值.
-        @return 8位值
+        /** 获取透明度参考值.
+        @return [0.f,1.f]
         @version NIIEngine 3.0.0
         */
-        inline Nui8 getValue() const                { return (Nui8)(mMark & 0xFF); }
+        inline NIIf getValue() const                { return mRefValue; }
 
         /** 上传到着色程序参数中
+        @note 5个vec4,{vec4(mAmbient), vec4(mDiffuse), vec4(mSpecular), vec4(mEmissive), float(mEmissive), float(mShininess), 
+            float(mRefValue), int(mRejectMode), int(mMark)}
         @version NIIEngine 5.0.0
         */
-        void upload(GpuProgramParam * param) const;
+        void read(GpuProgramParam * out, NCount memoft) const;
 
         /** 从着色程序参数中设置
+        @note 5个vec4,{vec4(mAmbient), vec4(mDiffuse), vec4(mSpecular), vec4(mEmissive), float(mEmissive), float(mShininess),
+            float(mRefValue), int(mRejectMode), int(mMark)}
         @version NIIEngine 5.0.0
         */
-        void download(const GpuProgramParam * param);
+        void write(const GpuProgramParam * in, NCount memoft);
     public:
+        Colour mAmbient;
+        Colour mDiffuse;
+        Colour mSpecular;
+        Colour mEmissive;
+        NIIf mShininess;
+        NIIf mRefValue;
         CmpMode mRejectMode;
     private:
         Nmark mMark;
@@ -343,13 +402,25 @@ namespace NII
         ShaderChBlend();
         ShaderChBlend(const ShaderChBlend & o);
         ShaderChBlend(ColourFactor src, ColourFactor dst, ColourBlendMode mode);
-        ShaderChBlend(ColourFactor src, ColourFactor dst, ColourFactor asrc,
-            ColourFactor adst, ColourBlendMode mode);
-        ShaderChBlend(ColourFactor src, ColourFactor dst, ColourFactor asrc,
-            ColourFactor adst, ColourBlendMode mode, ColourBlendMode amode);
+        ShaderChBlend(ColourFactor src, ColourFactor dst, ColourFactor asrc, ColourFactor adst, ColourBlendMode mode);
+        ShaderChBlend(ColourFactor src, ColourFactor dst, ColourFactor asrc, ColourFactor adst, ColourBlendMode mode, ColourBlendMode amode);
 
-        bool operator ==(const ShaderChBlend & o) const;
+        bool operator == (const ShaderChBlend & o) const;
+        bool operator < (const ShaderChBlend & o) const;
+        
+        /** 设置颜色写入
+        @remark 基础事物
+        @param[in] mark ColourMark 的一个或多个组合
+        @version NIIEngine 3.0.0
+        */
+        void setColourWrite(Nmark mark)                 { mMark |= (mark & CM_RGBA);}
 
+        /** 获取颜色写入
+        @remark 基础事物
+        @version NIIEngine 3.0.0
+        */
+        Nmark getColourWrite() const                    { return mMark & CM_RGBA; }
+        
         /** 设置渲染通道混合场景存在内容的混合类型
         @param[in] fbm 模式
         @version NIIEngine 3.0.0
@@ -385,12 +456,12 @@ namespace NII
         /** 获取当前的混合操作
         @version NIIEngine 3.0.0
         */
-        inline ColourBlendMode getBlendMode() const { return mMode; }
+        inline ColourBlendMode getBlendMode() const     { return mMode; }
 
         /** 获取当前的透明混合操作
         @version NIIEngine 3.0.0
         */
-        inline ColourBlendMode getAlphaBlendMode() const { return mAlphaMode;}
+        inline ColourBlendMode getAlphaBlendMode() const{ return mAlphaMode;}
 
         /** 设置混合因子
         @param[in] src 将要绘制的RGB
@@ -447,14 +518,18 @@ namespace NII
         bool isPartAlphaBlendMode() const               { return mMark & ShaderChBlendSeparateMode;}
 
         /** 上传到着色程序参数中
+        @note {int(mSrcFactor), int(mDstFactor), int(mSrcAlphaFactor), int(mDstAlphaFactor),
+        int(mMode), int(mAlphaMode), int(mMark)}
         @version NIIEngine 5.0.0
         */
-        void upload(GpuProgramParam * param) const;
+        void read(GpuProgramParam * param, NCount memoft) const;
 
         /** 从着色程序参数中设置
+        @note {int(mSrcFactor), int(mDstFactor), int(mSrcAlphaFactor), int(mDstAlphaFactor),
+        int(mMode), int(mAlphaMode), int(mMark)}
         @version NIIEngine 5.0.0
         */
-        void download(const GpuProgramParam * param);
+        void write(const GpuProgramParam * param, NCount memoft);
     public:
         ColourFactor mSrcFactor;        ///< 混合函子
         ColourFactor mDstFactor;        ///< 混合函子
@@ -466,101 +541,6 @@ namespace NII
         Nmark mMark;
     };
     
-    /** 渲染通路中的基本深度缓存
-    @remark 适合基本渲染系统
-    @version NIIEngine 3.0.0
-    */
-    class _EngineAPI ShaderChDepth : public ShaderAlloc
-    {
-    public:
-        ShaderChDepth();    
-        ShaderChDepth(const ShaderChDepth & o); 
-        ShaderChDepth(bool check, CmpMode mode, bool write, NIIf bias = 0.0f, NIIf scaleslopebias = 0.0f);
-
-        bool operator == (const ShaderChDepth & o) const;
-
-        /** 设置测试的比较深度.
-        @version NIIEngine 3.0.0
-        */
-        void setCmp(CmpMode mode)               { mCmpMode = mode; }
-
-        /** 获取测试的比较深度
-        @version NIIEngine 3.0.0
-        */
-        CmpMode getCmp() const                  { return mCmpMode; }
-
-        /** 设置缓存测试
-        @version NIIEngine 3.0.0
-        */
-        void setCheck(bool b)                   { b ? mMark |= ShaderChDepth_Check : mMark &= ~ShaderChDepth_Check; }
-
-        /** 是否缓存测试
-        @version NIIEngine 3.0.0
-        */
-        bool isCheck() const                    { return mMark & ShaderChDepth_Check; }
-
-        /** 设置缓存写入
-        @version NIIEngine 3.0.0
-        */
-        void setWrite(bool b)                   { b ? mMark |= ShaderChDepth_mWrite : mMark &= ~ShaderChDepth_mWrite; }
-
-        /** 是否缓存写入
-        @version NIIEngine 3.0.0
-        */
-        bool isWrite() const                    { return mMark & ShaderChDepth_mWrite; }
-
-        /** 设置偏量常数
-        @version NIIEngine 3.0.0
-        */
-        inline void setBiasConstant(NIIf f)     { mBias = f; }
-
-        /** 获取偏量常数
-        @remark 基本渲染系统中存在
-        @version NIIEngine 3.0.0
-        */
-        inline NIIf getBiasConstant() const     { return mBias; }
-
-        /** 设置偏量常数因子
-        @version NIIEngine 3.0.0
-        */
-        inline void setBiasConstantFactor(NIIf f) { mBiasFactor = f; }
-
-        /** 获取偏量常数因子
-        @version NIIEngine 3.0.0
-        */
-        inline NIIf getBiasConstantFactor() const { return mBiasFactor; }
-
-        /** 设置斜率补偿
-        @param[in] f
-        @note 旧硬件可能不支持
-        @version NIIEngine 3.0.0
-        */
-        inline void setBiasSlopeScale(NIIf f)   { mSlopeScaleBias = f; }
-
-        /** 获取斜率补偿
-        @remark 基本渲染系统中存在
-        @version NIIEngine 3.0.0
-        */
-        inline NIIf getBiasSlopeScale() const   { return mSlopeScaleBias; }
-
-        /** 上传到着色程序参数中
-        @version NIIEngine 5.0.0
-        */
-        void upload(GpuProgramParam * param) const;
-
-        /** 从着色程序参数中设置
-        @version NIIEngine 5.0.0
-        */
-        void download(const GpuProgramParam * param);
-    public:
-        CmpMode mCmpMode;           ///< 深度比较函数
-        NIIf mBias;                 ///< 深度缓存设置(多通道的基础值)
-        NIIf mBiasFactor;           ///< 深度缓存设置(多通道的基础值系数)
-        NIIf mSlopeScaleBias;       ///< 深度斜率补偿
-    private:
-        Nmark mMark;
-    };
-
     /** 模板缓冲操作类型
     @version NIIEngine 3.0.0
     */
@@ -572,30 +552,109 @@ namespace NII
         SOT_INCR,               ///< 用1增量增加模版值,范围在最大值下(包含最大值)
         SOT_DECR,               ///< 用1减量减少模版值,范围在0上(包含0)
         SOT_INVERT,             ///< 反转模板缓冲区的位
-        SOT_INCR_WRAP,          ///< 用1增量增加模版值,当值超出了最大范围调转到0
-        SOT_DECR_WRAP           ///< 用1减量减少模版值,超出范围跳转到0
+        SOT_INCR_WRAP,          ///< 用1增量增加模版值,超出最大范围后跳转到0
+        SOT_DECR_WRAP           ///< 用1减量减少模版值,超出范围保持0
     };
-
+    
+    /** 渲染通路中的基本深度缓存
+    @remark 适合基本渲染系统
+    @version NIIEngine 3.0.0
+    */
     class _EngineAPI ShaderChStencil : public ShaderAlloc
     {
     public:
-        ShaderChStencil();
-        ShaderChStencil(const ShaderChStencil & o);
-        ShaderChStencil(bool twoside, Nui32 mask = 0xFFFFFFFF, Nui32 cmpmask = 0xFFFFFFFF,
+        ShaderChStencil();    
+        ShaderChStencil(const ShaderChStencil & o); 
+        ShaderChStencil(bool depthCheck, CmpMode mode, bool write, NIIf bias = 0.0f, NIIf scaleslopebias = 0.0f);
+        ShaderChStencil(bool stencilTwoside, Nui32 mask = 0xFFFFFFFF, Nui32 cmpmask = 0xFFFFFFFF,
             CmpMode func = CPM_ALWAYS_PASS, Nui32 value = 0, StencilOpType stencilfail = SOT_KEEP,
             StencilOpType depthfail = SOT_KEEP, StencilOpType pass = SOT_KEEP);
-
         bool operator == (const ShaderChStencil & o) const;
+        bool operator < (const ShaderChStencil & o) const;
+        
+        /** 设置是否启动模板测试
+        @version NIIEngine 3.0.0
+        */
+        inline void setStencilEnable(bool s)                { b ? mMark |= ShaderCh_StencilCheck : mMark &= ~ShaderCh_StencilCheck; }
+
+        /** 获取是否启动模板测试
+        @version NIIEngine 3.0.0
+        */
+        inline bool isStencilEnable() const                 { return mMark & ShaderCh_StencilCheck; }
 
         /** 设置是否双面模板测试
         @version NIIEngine 3.0.0
         */
-        inline void setBothSide(bool s)             { mBothSide = s; }
+        inline void setBothSideStencil(bool s)              { b ? mMark |= ShaderCh_StencilBothSide : mMark &= ~ShaderCh_StencilBothSide; }
 
         /** 获取是否双面模板测试
         @version NIIEngine 3.0.0
         */
-        inline bool isBothSide() const              { return mBothSide; }
+        inline bool isBothSideStencil() const               { return mMark & ShaderCh_StencilBothSide; }
+        
+        /** 设置测试的比较深度.
+        @version NIIEngine 3.0.0
+        */
+        void setDepthCompareFunc(CmpMode mode)              { mDepthFunc = mode; }
+
+        /** 获取测试的比较深度
+        @version NIIEngine 3.0.0
+        */
+        CmpMode getDepthCompareFunc() const                 { return mDepthFunc; }
+
+        /** 设置缓存测试
+        @version NIIEngine 3.0.0
+        */
+        void setDepthEnable(bool b)                         { b ? mMark |= ShaderCh_DepthCheck : mMark &= ~ShaderCh_DepthCheck; }
+
+        /** 是否缓存测试
+        @version NIIEngine 3.0.0
+        */
+        bool isDepthEnable() const                          { return mMark & ShaderCh_DepthCheck; }
+
+        /** 设置缓存写入
+        @version NIIEngine 3.0.0
+        */
+        void setDepthWrite(bool b)                          { b ? mMark |= ShaderCh_DepthWrite : mMark &= ~ShaderCh_DepthWrite; }
+
+        /** 是否缓存写入
+        @version NIIEngine 3.0.0
+        */
+        bool isDepthWrite() const                           { return mMark & ShaderCh_DepthWrite; }
+
+        /** 设置偏量常数
+        @version NIIEngine 3.0.0
+        */
+        inline void setBiasConstant(NIIf f)                 { mBias = f; }
+
+        /** 获取偏量常数
+        @remark 基本渲染系统中存在
+        @version NIIEngine 3.0.0
+        */
+        inline NIIf getBiasConstant() const                 { return mBias; }
+
+        /** 设置偏量常数因子
+        @version NIIEngine 3.0.0
+        */
+        inline void setBiasConstantFactor(NIIf f)           { mBiasFactor = f; }
+
+        /** 获取偏量常数因子
+        @version NIIEngine 3.0.0
+        */
+        inline NIIf getBiasConstantFactor() const           { return mBiasFactor; }
+
+        /** 设置斜率补偿
+        @param[in] f
+        @note 旧硬件可能不支持
+        @version NIIEngine 3.0.0
+        */
+        inline void setBiasSlopeScale(NIIf f)               { mSlopeScaleBias = f; }
+
+        /** 获取斜率补偿
+        @remark 基本渲染系统中存在
+        @version NIIEngine 3.0.0
+        */
+        inline NIIf getBiasSlopeScale() const               { return mSlopeScaleBias; }
 
         /** 设置模板测试掩码
         @version NIIEngine 3.0.0
@@ -716,24 +775,41 @@ namespace NII
         @version NIIEngien 3.0.0
         */
         inline StencilOpType getTestPassOp() const          { return mFrontTestPassOp; }
-
-        /** 上传到着色程序参数中
+        
+        /** 翻转操作
         @version NIIEngine 5.0.0
         */
-        void upload(GpuProgramParam * param) const;
+        void flipStencil();
+        
+        /** 上传到着色程序参数中
+        @note {int(mFrontTestMark), int(mBackTestMark), int(mFrontCmpMark), int(mBackCmpMark), 
+            int(mFrontCmpValue), int(mBackCmpValue), int(mFrontFunc), int(mBackFunc),
+            int(mFrontStencilFailOp), int(mFrontDepthFailOp), int(mFrontTestPassOp), int(mBackStencilFailOp),
+            int(mBackDepthFailOp), int(mBackTestPassOp) float(mBias), float(mBiasFactor), float(mSlopeScaleBias), int(mDepthFunc), int(mMark)}
+        @version NIIEngine 5.0.0
+        */
+        void read(GpuProgramParam * param, NCount memoft) const;
 
         /** 从着色程序参数中设置
+        @note {int(mFrontTestMark), int(mBackTestMark), int(mFrontCmpMark), int(mBackCmpMark), 
+            int(mFrontCmpValue), int(mBackCmpValue), int(mFrontFunc), int(mBackFunc),
+            int(mFrontStencilFailOp), int(mFrontDepthFailOp), int(mFrontTestPassOp), int(mBackStencilFailOp),
+            int(mBackDepthFailOp), int(mBackTestPassOp) float(mBias), float(mBiasFactor), float(mSlopeScaleBias), int(mDepthFunc), int(mMark)}
         @version NIIEngine 5.0.0
         */
-        void download(const GpuProgramParam * param);
-    public:
-        bool mBothSide;
-        Nui32 mFrontTestMark;
-        Nui32 mBackTestMark;
-        Nui32 mFrontCmpMark;
-        Nui32 mBackCmpMark;
-        Nui32 mFrontCmpValue;
-        Nui32 mBackCmpValue;
+        void write(const GpuProgramParam * param, NCount memoft);
+    private:
+        Nmark mMark;
+        NIIf mBias;                 ///< 深度缓存设置(多通道的基础值)
+        NIIf mBiasFactor;           ///< 深度缓存设置(多通道的基础值系数)
+        NIIf mSlopeScaleBias;       ///< 深度斜率补偿
+        CmpMode mDepthFunc;         ///< 深度比较函数
+        Nui32 mFrontTestMark;       ///< write mark
+        Nui32 mBackTestMark;        ///< write mark
+        Nui32 mFrontCmpMark;        ///< read mark
+        Nui32 mBackCmpMark;         ///< read mark
+        Nui32 mFrontCmpValue;       ///< ref value
+        Nui32 mBackCmpValue;        ///< ref value
         CmpMode mFrontFunc;
         CmpMode mBackFunc;
         StencilOpType mFrontStencilFailOp;
@@ -753,9 +829,9 @@ namespace NII
     enum FogMode
     {
         FM_NONE = 0,///< 没有雾
-        FM_EXP,     ///< 普通渲染系统中存在
-        FM_EXP2,    ///< 普通渲染系统中存在
-        FM_LINEAR,  ///< 普通渲染系统中存在
+        FM_EXP,     ///< 通用普通渲染
+        FM_EXP2,    ///< 通用普通渲染
+        FM_LINEAR,  ///< 通用普通渲染
         FM_Count    ///< 尽量使用现有的,因为被渲染系统约束,否则只能用粒子系统或片段着色程序
     };
 
@@ -770,7 +846,8 @@ namespace NII
         ShaderChFog(const ShaderChFog & o);
         ShaderChFog(FogMode m, const Colour & c, NIIf density, NIIf start, NIIf end);
 
-        bool operator ==(const ShaderChFog & o) const;
+        bool operator == (const ShaderChFog & o) const;
+        bool operator < (const ShaderChFog & o) const;
         
         /** 设置这条通道的雾模式.
         @version NIIEngine 3.0.0
@@ -826,14 +903,16 @@ namespace NII
         inline NIIf getDensity() const          { return mDensity; }
 
         /** 上传到着色程序参数中
+        @note {vec4(mColour), int(mMode), float(mBegin), float(mEnd), float(mDensity)}
         @version NIIEngine 5.0.0
         */
-        void upload(GpuProgramParam * param) const;
+        void read(GpuProgramParam * param, NCount memoft) const;
 
         /** 从着色程序参数中设置
+        @note {vec4(mColour), int(mMode), float(mBegin), float(mEnd), float(mDensity)}
         @version NIIEngine 5.0.0
         */
-        void download(const GpuProgramParam * param);
+        void write(const GpuProgramParam * param, NCount memoft);
     public:
         static const ShaderChFog White;
         static const ShaderChFog Red;
@@ -842,8 +921,8 @@ namespace NII
         static const ShaderChFog Blue;
         static const ShaderChFog None;
     public:
-        FogMode mMode;      ///< 雾质量模式
         Colour mColour;     ///< 雾颜色
+        FogMode mMode;      ///< 雾质量模式
         NIIf mBegin;        ///< 雾开始处(与平截头相关)
         NIIf mEnd;          ///< 雾结束处(与平截头相关)
         NIIf mDensity;      ///< 雾质量
@@ -860,7 +939,8 @@ namespace NII
         ShaderChPoint(const ShaderChPoint & o);
         ShaderChPoint(NIIf size, NIIf minsize, NIIf maxsize);
 
-        bool operator ==(const ShaderChPoint & o) const;
+        bool operator == (const ShaderChPoint & o) const;
+        bool operator < (const ShaderChPoint & o) const;
 
         /** 设置点大小
         @param[in] ps
@@ -960,14 +1040,18 @@ namespace NII
         inline NIIf getQuadratic() const        { return mQuadratic; }
 
         /** 上传到着色程序参数中
+        @note {float(mSize), float(mMinSize), float(mMaxSize), float(mLineWidth), float(mConstant), float(mLinear),
+            float(mQuadratic), int(mMark)}
         @version NIIEngine 5.0.0
         */
-        void upload(GpuProgramParam * param) const;
+        void read(GpuProgramParam * param, NCount memoft) const;
 
         /** 从着色程序参数中设置
+        @note {float(mSize), float(mMinSize), float(mMaxSize), float(mLineWidth), float(mConstant), float(mLinear),
+            float(mQuadratic), int(mMark)}
         @version NIIEngine 5.0.0
         */
-        void download(const GpuProgramParam * param);
+        void write(const GpuProgramParam * param, NCount memoft);
 
         /// 渲染系统默认设置
         static const ShaderChPoint Default;
@@ -981,67 +1065,6 @@ namespace NII
         NIIf mQuadratic;
     private:
         Nmark mMark;
-    };
-    
-    /** 着色成分
-    @version NIIEngine 3.0.0
-    */
-    enum ShaderBase
-    {
-        SB_Colour_R             = 0x01,
-        SB_Colour_G             = 0x02,
-        SB_Colour_B             = 0x04,
-        SB_Colour_A             = 0x08,
-        SB_Colour_RGB           = 0x07,
-        SB_Colour_RGBA          = 0x0F,
-        SB_Fog                  = 0x10,
-        SB_Point                = 0x20,
-        SB_Colour               = 0x40,
-        SB_Blend                = 0x80,
-        SB_Depth                = 0x100,
-        SB_Alpha                = 0x200,
-        SB_Stencil              = 0x400,
-        SB_Texture              = 0x800,
-        SB_Program              = 0x1000,
-        SB_FogRef               = 0x2000,                       ///< enable() 无效
-        SB_PointRef             = 0x4000,                       ///< enable() 无效
-        SB_ColourRef            = 0x8000,                       ///< enable() 无效
-        SB_BlendRef             = 0x10000,                      ///< enable() 无效
-        SB_DepthRef             = 0x20000,                      ///< enable() 无效
-        SB_AlphaRef             = 0x40000,                      ///< enable() 无效
-        SB_StencilRef           = 0x80000,                      ///< enable() 无效
-        SB_TextureRef           = 0x100000,                     ///< enable() 无效
-        SB_ProgramRef           = 0x200000,                     ///< enable() 无效
-        SB_FogSet               = SB_Fog | SB_FogRef,           ///< enable() 无效
-        SB_PointSet             = SB_Point | SB_PointRef,       ///< enable() 无效
-        SB_ColourSet            = SB_Colour | SB_ColourRef,     ///< enable() 无效
-        SB_BlendSet             = SB_Blend | SB_BlendRef,       ///< enable() 无效
-        SB_DepthSet             = SB_Depth | SB_DepthRef,       ///< enable() 无效
-        SB_AlphaSet             = SB_Alpha | SB_AlphaRef,       ///< enable() 无效
-        SB_StencilSet           = SB_Stencil | SB_StencilRef,   ///< enable() 无效
-        SB_TextureSet           = SB_Texture | SB_TextureRef,   ///< enable() 无效
-        SB_ProgramSet           = SB_Program | SB_ProgramRef,   ///< enable() 无效
-        SB_Light                = 0x400000,
-        SB_FogValid             = 0x800000,
-        SB_UnitNormals          = 0x1000000,
-        SB_LightClip            = 0x2000000,
-        SB_LightClipPlane       = 0x4000000,
-        // 扩展
-        SB_Fusion               = 0x10000000,                   ///< enable() disbale 无效
-    };
-
-    /** 颜色掩码
-    @version NIIEngine 3.0.0
-    */
-    enum ColourMark
-    {
-        CM_ZERO             = 0,
-        CM_RED              = 0x01,
-        CM_GREEN            = 0x02,
-        CM_BLUE             = 0x04,
-        CM_ALPHA            = 0x08,
-        CM_RGBA             = 0x0F,
-        CM_BGRA             = CM_RGBA
     };
 
     /** 定义灯光类型
@@ -1119,7 +1142,7 @@ namespace NII
         SS_Global_Light,        ///< 渲染灯光阶段(主)
         SS_Detail_Light,        ///< 渲染灯光阶段(细)
         SS_Revise_Light,        ///< 修正灯光阶段(如法线纹理)
-        SS_Frame,               ///< 对象当前帧缓寸
+        SS_Frame,               ///< 对象当前帧缓存
         SS_Shadow,              ///< 渲染阴影阶段
         SS_Revise_Shadow,       ///<
         SS_Decal,               ///< 渲染贴花阶段
@@ -1170,7 +1193,18 @@ namespace NII
 
         virtual ~ShaderCh();
 
-        ShaderCh & operator=(const ShaderCh & o);
+        ShaderCh & operator= (const ShaderCh & o);
+        ShaderCh & operator< (const ShaderCh & o);
+        
+        /** 添加引用
+        @version NIIEngine 3.0.0
+        */
+        void addRef(ShaderFusion * fusion);
+        
+        /** 移去引用
+        @version NIIEngine 3.0.0
+        */
+        void removeRef(ShaderFusion * fusion);
 
         /** 所属渲染集
         @version NIIEngine 3.0.0
@@ -1273,26 +1307,13 @@ namespace NII
         @param[in] refIn
         @version NIIEngine 3.0.0
         */
-        ShaderChDepth * setDepth(SetOperatorType type, const ShaderChDepth * refIn = 0) ;
+        ShaderChStencil * setStencil(SetOperatorType type, const ShaderChStencil * refIn = 0) ;
 
         /** 获取深度测试应用
         @note 不能设置返回值内容
         @version NIIEngine 3.0.0
         */
-        inline const ShaderChDepth & getDepth() const   { return *mDepth; }
-
-        /** 获取Alpha测试应用
-        @remark 基础事物
-        @param[in] refIn
-        @version NIIEngine 3.0.0
-        */
-        ShaderChAlpha * setAlpha(SetOperatorType type, const ShaderChAlpha * refIn = 0);
-
-        /** 获取Alpha测试应用
-        @note 不能设置返回值内容
-        @version NIIEngine 3.0.0
-        */
-        inline const ShaderChAlpha & getAlpha() const   { return *mAlpha; }
+        inline const ShaderChStencil & getStencil() const   { return *mStencil; }
 
         /** 获取纹理应用
         @remark 基础事物
@@ -1322,7 +1343,7 @@ namespace NII
 
         /** 设置颜色写入
         @remark 基础事物
-        @param[in] mark ColourMark 的一个或多个组合
+        @param[in] mark SB_Colour_X 的一个或多个组合
         @version NIIEngine 3.0.0
         */
         void setColourWrite(Nmark mark)                 { mMark |= (mark & SB_Colour_RGBA);}
@@ -1580,8 +1601,7 @@ namespace NII
         ShaderChPoint * mPoint;         ///< 扩展点设置
         ShaderChFog * mFog;             ///< 扩展雾设置
         ShaderChBlend * mBlend;         ///< 基础混合
-        ShaderChDepth * mDepth;         ///< 基础深度测试
-        ShaderChAlpha * mAlpha;         ///< 基础透明测试
+        ShaderChStencil * mStencil;     ///< 基础深度测试
         ShaderChTexture * mTexture;     ///< 基础纹理
         ShaderChProgram * mProgram;     ///< 基础着色程序
 
@@ -1603,6 +1623,107 @@ namespace NII
         bool mForceDepthSort;
         bool mAutoReduce;
         bool mAuto;
+    };
+    
+    /**
+    @version NIIEngine 5.0.0
+    */
+    class _EngineAPI SampleTypeObject
+    {
+    public:
+        /*enum FeatureType
+        {
+            FT_StencilCheckDisable      = 1u << 0u,
+            FT_StencilTwoSide           = 1u << 1u,
+            FT_DepthCheckDisable        = 1u << 2u,
+            FT_DepthWriteDisable        = 1u << 3u,
+            FT_InvertVertexWinding      = 1u << 4u
+        };*/
+        
+        SampleTypeObject & operator = (const SampleTypeObject & o)
+        {
+            memcpy(this, &o, sizeof(SampleTypeObject));
+            return *this;
+        }
+
+        bool operator == (const SampleTypeObject & o) const
+        {
+            return !memcmp(this, &o, sizeof(SampleTypeObject));
+        }
+
+        bool operator != (const SampleTypeObject & o) const
+        {
+            return !(*this == o);
+        }
+
+        bool operator < (const SampleTypeObject & o) const
+        {
+            return memcmp(this, &o, sizeof(SampleTypeObject)) < 0;
+        }
+    public:
+        PixelFormat mColour[NII_MAX_RenderTarget];
+        PixelFormat mDepth;
+        SampleType mSampleType;
+        Nui32 mDevID;
+    };
+
+    /**
+    @version NIIEngine 5.0.0
+    */
+    class _EngineAPI RenderStateObject
+    {
+    public:
+        virtual ~RenderStateObject(){}
+        void initialize();
+
+        RenderStateObject & operator = (const RenderStateObject & o);
+
+        /**
+        @version NIIEngine 5.0.0
+        */
+        bool equalModel(const RenderStateObject & o) const;
+        
+        /**
+        @version NIIEngine 5.0.0
+        */
+        int lesslModel(const RenderStateObject & o) const;
+
+        /**
+        @version NIIEngine 5.0.0
+        */
+        bool equalRender(const RenderStateObject & o) const;
+        
+        /**
+        @version NIIEngine 5.0.0
+        */
+        bool lessRender(const RenderStateObject & o) const;
+    public:
+        SampleTypeObject pass;
+        VertexUnitListList mUnitsList;
+        GpuProgram * mVS;
+        GpuProgram * mGS;
+        GpuProgram * mTS;
+        GpuProgram * mDS;
+        GpuProgram * mFS;
+        OperationType mType;
+        ShaderChStencil * mStencil;
+        ShaderChBlend * mBlend;
+        Nmark mRenderMark;
+    };
+
+    /**
+    @version NIIEngine 5.0.0
+    */
+    class _EngineAPI ComputeStateObject
+    {
+    public:
+        virtual ~ComputeStateObject(){}
+        void initialize();
+    public:
+        GpuProgram * mCS;
+        GpuProgramParam * mParam;
+        NCount mCeilCount[3];
+        NCount mGroupCount[3];
     };
 }
 #endif

@@ -32,11 +32,255 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 #include "NiiControlPattern.h"
 #include "NiiJoyDevEffect.h"
 #include "NiiPovDirection.h"
+#include "NiiJoyDevControlArgs.h"
+#include "NiiCommandObj.h"
+
+using namespace NII::NII_COMMAND;
 
 namespace NII
 {
 namespace NII_MEDIA
 {
+    /** 手柄控制单元
+    @version NIIEngine 3.0.0
+    */
+    class _EngineAPI JoyPadControlItem : public ControlItem
+    {
+    public:
+        JoyPadControlItem() {}
+        virtual ~JoyPadControlItem() {}
+
+        ///@copydetails ControlItem::getType
+        virtual ControlDevType getType() const
+        {
+            return CDT_JoyPad;
+        };
+    public:
+        /** 当摇杆中的普通键按下时触发
+        @param[in] args 摇杆按键事件参数
+        @version NIIEngine 3.0.0
+        */
+        virtual void onPressButton(const JoyPadControlButtonArgs * args) {}
+
+        /** 当摇杆中的普通键按下后释放时触发
+        @param[in] args
+        @version NIIEngine 3.0.0
+        */
+        virtual void onReleaseButton(const JoyPadControlButtonArgs * args) {}
+
+        /** 当摇杆中的摇杆摇动时触发
+        @param[in] args 摇杆杆事件参数
+        @version NIIEngine 3.0.0
+        */
+        virtual void onTwistAxis(const JoyPadControlAxisArgs * args) {}
+
+        /** 当摇杆中的滑块推动时触发
+        @param[in] args 摇杆按键事件参数
+        @version NIIEngine 3.0.0
+        */
+        virtual void onSlipSlider(const JoyStickControlSliderArgs * args) {}
+
+        /** 当摇杆中的方向键按下时触发
+        @param[in] args 摇杆杆上按键事件参数
+        @version NIIEngine 3.0.0
+        */
+        virtual void onPushPOV(const JoyStickControlPovArgs * args) {}
+    };
+
+    class _EngineAPI DummyJoyPadControlItem : public JoyPadControlItem, public ControlAlloc
+    {
+    public:
+        DummyJoyPadControlItem() {}
+    };
+
+    class _EngineAPI ListenerJoyPadControlItem : public JoyPadControlItem, public ControlAlloc
+    {
+    public:
+        ListenerJoyPadControlItem() {}
+        virtual ~ListenerJoyPadControlItem() {}
+    };
+
+    /** 事件级 JoyPadControlItem
+    @remark
+        游戏对象可以灵活的转换控制单元从而不同的效果,把部分事件写出来获得更多的处理
+        性能提升.如果需要使用它,需要继承它并重写部分或全部方法
+    @version NIIEngine 3.0.0
+    */
+    class _EngineAPI SignalJoyPadControlItem : public JoyPadControlItem, public CommandObj
+    {
+    public:
+        SignalJoyPadControlItem();
+        virtual ~SignalJoyPadControlItem();
+    public:
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID PressButtonEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID ReleaseButtonEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID TwistAxisEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID SlipSliderEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID PushPOVEvent;
+
+        static const EventID EventCount;
+    public:
+        /// @copydetails JoyControlItem::onPressButton
+        virtual void onPressButton(const JoyPadControlButtonArgs * args);
+
+        /// @copydetails JoyControlItem::onReleaseButton
+        virtual void onReleaseButton(const JoyPadControlButtonArgs * args);
+
+        /// @copydetails JoyControlItem::onTwistAxis
+        virtual void onTwistAxis(const JoyPadControlAxisArgs * args);
+
+        /// @copydetails SignalJoyPadControlItem::onSlipSlider
+        virtual void onSlipSlider(const JoyStickControlSliderArgs * args);
+
+        /// @copydetails SignalJoyPadControlItem::onPushPOV
+        virtual void onPushPOV(const JoyStickControlPovArgs * args);
+    };
+
+    /** 游戏手把类型控制器
+    @version NIIEngine 3.0.0
+    */
+    class _EngineAPI JoyHandleControlItem : public JoyPadControlItem
+    {
+    public:
+        JoyHandleControlItem() {}
+        virtual ~JoyHandleControlItem() {}
+
+        ///@copydetails ControlItem::getType
+        ControlDevType getType() const
+        {
+            return CDT_JoyHandle;
+        }
+    public:
+        /** 当摇杆中的向量输出时触发
+        @param[in] args 摇杆向量输出事件参数
+        @version NIIEngine 3.0.0
+        */
+        virtual void onHandleVector(const JoyHandleControlVectorArgs * args) {}
+    };
+
+    class _EngineAPI DummyJoyHandleControlItem : public JoyHandleControlItem, public ControlAlloc
+    {
+    public:
+        DummyJoyHandleControlItem() {}
+    };
+
+    /**
+    @version NIIEngine 3.0.0
+    */
+    class _EngineAPI ListenerJoyHandleControlItem : public JoyHandleControlItem, public ControlAlloc
+    {
+    public:
+        ListenerJoyHandleControlItem() {};
+        virtual ~ListenerJoyHandleControlItem() {};
+    };
+
+    /** 游戏手把类型控制器
+    @remark
+        游戏对象可以灵活的转换控制单元从而不同的效果,把部分事件写出来获得更多的处理
+        性能提升.如果需要使用它,需要继承它并重写部分或全部方法
+    @version NIIEngine 3.0.0
+    */
+    class _EngineAPI SignalJoyHandleControlItem : public JoyHandleControlItem,
+        public SignalJoyPadControlItem
+    {
+    public:
+        SignalJoyHandleControlItem();
+        virtual ~SignalJoyHandleControlItem();
+    public:
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID HandleVectorEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID EventCount;
+    public:
+        /** 当摇杆中的向量输出时触发
+        @param[in] args 摇杆向量输出事件参数
+        */
+        virtual void onHandleVector(const JoyHandleControlVectorArgs * args);
+    };
+
+    /** 摇杆控制单元
+    @remark
+        游戏对象可以灵活的转换控制单元从而不同的效果,把部分事件写出来获得更多的处理
+        性能提升.如果需要使用它,需要继承它并重写部分或全部方法
+    @version NIIEngine 3.0.0
+    */
+    class _EngineAPI JoyWheelControlItem : public JoyPadControlItem
+    {
+    public:
+        JoyWheelControlItem() {}
+        virtual ~JoyWheelControlItem() {}
+
+        ///@copydetails ControlItem::getType
+        ControlDevType getType() const
+        {
+            return CDT_JoyWheel;
+        }
+    public:
+        /** 当摇杆中的滑块推动时触发
+        @param[in] args 摇杆按键事件参数
+        @version NIIEngine 3.0.0
+        */
+        virtual void onWheel(const JoyWheelControlArgs * args) {}
+    };
+
+    class _EngineAPI DummyJoyWheelControlItem : public JoyWheelControlItem, public ControlAlloc
+    {
+    public:
+        DummyJoyWheelControlItem() {}
+    };
+
+    class _EngineAPI ListenerJoyWheelControlItem : public JoyWheelControlItem, public ControlAlloc
+    {
+    public:
+        ListenerJoyWheelControlItem() {}
+        virtual ~ListenerJoyWheelControlItem() {}
+    };
+
+    /** 事件级 JoyWheelControlItem
+    @remark
+        游戏对象可以灵活的转换控制单元从而不同的效果,把部分事件写出来获得更多的处理
+        性能提升.如果需要使用它,需要继承它并重写部分或全部方法
+    @version NIIEngine 3.0.0
+    */
+    class _EngineAPI SignalJoyWheelControlItem : public JoyWheelControlItem,
+        public SignalJoyPadControlItem
+    {
+    public:
+        SignalJoyWheelControlItem();
+        virtual ~SignalJoyWheelControlItem();
+    public:
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID WheelEvent;
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID EventCount;
+    public:
+        /// @copydetails SignalJoyWheelControlItem::onSlipSlider
+        virtual void onWheel(const JoyWheelControlArgs * args);
+    };
+
     /** 游戏手柄类控制器
     @remark 这也仅仅是描述标准手柄,不包含飞机遥杆概念
     @note 
@@ -215,6 +459,135 @@ namespace NII_MEDIA
     {
     public:
         DummyJoyPadControlPattern() {}
+
+        ///@copydetails ControlPattern::_init
+        bool _init() { return true; }
+
+        ///@copydetails ControlPattern::_end
+        bool _end() { return true; }
+
+        ///@copydetails ControlPattern::_update
+        void _update() {}
+
+        ///@copydetails KeyboardControlPattern::_reset
+        void _reset() {}
+
+        ///@copydetails KeyboardControlPattern::_start
+        void _start() {}
+
+        ///@copydetails KeyboardControlPattern::_pause
+        void _pause() {}
+
+        ///@copydetails KeyboardControlPattern::_stop
+        void _stop() {}
+    };
+
+    /** 游戏手把类型控制器
+    @remark 包含手势类游戏把概念
+    @note
+        由于大多系统内核读取手把记录是以队列缓存的,所以为了更好的设计编程模块不应该
+        再使用队列缓存模式
+    @version NIIEngine 3.0.0 高级api
+    */
+    class _EngineAPI JoyHandleControlPattern : public JoyPadControlPattern
+    {
+    public:
+        virtual ~JoyHandleControlPattern();
+
+        /// @copydetails ControlPattern::apply
+        void apply(ControlItem * item);
+
+        /// @copydetails ControlPattern::detach
+        void detach();
+
+        ///@copydetails ControlItem::getType
+        ControlDevType getType() const;
+    protected:
+        JoyHandleControlPattern();
+
+        JoyHandleControlPattern(Nid id, const ViewWindow * own);
+
+        void handle(NIIi v, NIIf x, NIIf y, NIIf z);
+    };
+
+    /** 傀儡控制器
+    @version NIIEngine 3.0.0
+    */
+    class DummyJoyHandleControlPattern : public JoyHandleControlPattern
+    {
+    public:
+        DummyJoyHandleControlPattern() {}
+
+        ///@copydetails ControlPattern::_init
+        bool _init() { return true; }
+
+        ///@copydetails ControlPattern::_end
+        bool _end() { return true; }
+
+        ///@copydetails ControlPattern::_update
+        void _update() {}
+
+        ///@copydetails KeyboardControlPattern::_reset
+        void _reset() {}
+
+        ///@copydetails KeyboardControlPattern::_start
+        void _start() {}
+
+        ///@copydetails KeyboardControlPattern::_pause
+        void _pause() {}
+
+        ///@copydetails KeyboardControlPattern::_stop
+        void _stop() {}
+    };
+
+    /** 游戏摇杆类控制器
+    @remark 包含飞机摇杆概念
+    @note
+        由于大多系统内核读取摇杆记录是以队列缓存的,所以为了更好的设计编程模块不应该
+        再使用队列缓存模式
+    @version NIIEngine 3.0.0 高级api
+    */
+    class _EngineAPI JoyWheelControlPattern : public JoyPadControlPattern
+    {
+    protected:
+        JoyWheelControlPattern();
+
+        JoyWheelControlPattern(Nid id, const ViewWindow * own);
+
+        virtual ~JoyWheelControlPattern();
+
+        /** 滚动摇盘
+        @remark 这个方法引发划块事件
+        @param[in] num
+        */
+        void wheel(NIIf num);
+
+        /** 滚动摇盘
+        @remark 这个方法引滚动摇盘事件,使用最近一次设置的数据缓存
+        */
+        void wheel();
+
+        /// @copydetails ControlPattern::apply
+        void apply(ControlItem * item);
+
+        /// @copydetails ControlPattern::detach
+        void detach();
+
+        ///@copedetails ControlPattern::getType
+        ControlDevType getType() const;
+    protected:
+        NIIf mWheel;                    ///< 摇盘值
+        JoyWheelControlItem * mTarget;    ///< 当前对焦的控制单元
+    };
+
+    /** 傀儡控制器
+    @remark 用于对象完整性，或全局性
+    @version NIIEngine 3.0.0
+    */
+    class DummyJoyWheelControlPattern : public JoyWheelControlPattern
+    {
+    public:
+        DummyJoyWheelControlPattern() {}
 
         ///@copydetails ControlPattern::_init
         bool _init() { return true; }

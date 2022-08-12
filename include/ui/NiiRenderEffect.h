@@ -29,8 +29,7 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 #define _NII_RENDEREFFECT_H_
 
 #include "NiiUIPreInclude.h"
-#include "NiiUIInstance.h"
-#include "NiiGeometryPixel.h"
+#include "NiiUISheet.h"
 
 namespace NII
 {

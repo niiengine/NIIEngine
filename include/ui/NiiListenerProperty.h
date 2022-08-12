@@ -29,7 +29,7 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 #define _NII_LISTENER_PROPERTY_H_
 
 #include "NiiUIPreInclude.h"
-#include "NiiPropertyCmd.h"
+#include "NiiPropertyObj.h"
 #include "NiiUIContainer.h"
 
 namespace NII

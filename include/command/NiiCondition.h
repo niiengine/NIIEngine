@@ -29,6 +29,7 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 #define _NII_CONDITION_H_
 
 #include "NiiPreInclude.h"
+#include "NiiEvent.h"
 #include "NiiEventArgs.h"
 #include "NiiCommon.h"
 
@@ -36,6 +37,116 @@ namespace NII
 {
 namespace NII_COMMAND
 {
+    /** 命令
+    @remark
+        函子槽处理集,可以包含多个函子,处理函子可以用于传播执行命令后的影响,由于具
+        体命令是属于具体对象,如果想需要传播信息给非彼对象的其他对象可以通过添加处
+        理函子操作
+    @par 这个类像Event类
+    @vesion NIIEngine 3.0.0
+    */
+    class _EngineAPI Command : public EventAlloc
+    {
+    public:
+        typedef vector<EventFunctor *>::type Funcs;
+    public:
+        Command();
+        virtual ~Command();
+
+        /** 添加一个执行函子,不会检测重复添加问题
+        @remark 在命令执行的时候将会同时执行这些函子
+        @param[in] func 需要执行的函子槽
+        @version NIIEngine 3.0.0
+        */
+        void add(EventFunctor * func);
+
+        /** 移去一个执行函子,不会检测重复添加问题
+        @remark
+        @param[in] func 需要删除的函子槽
+        @version NIIEngine 3.0.0
+        */
+        void remove(EventFunctor * func);
+
+        /** 执行这个对象(命令)
+        @remark 在命令执行的时候将会同时执行这些函子
+        @version NIIEngine 3.0.0
+        */
+        void operator()(const EventArgs * args);
+
+        /** 命令的核心
+        @remark 需要执行的主要部件
+        @version NIIEngine 3.0.0
+        */
+        virtual void main();
+    protected:
+        /** 当命令执行后的同时触发这个函数
+        @version NIIEngine 3.0.0 高级api
+        */
+        virtual void onDone(const EventArgs * arg);
+    protected:
+        Funcs mExecutes;    ///< 需要执行的衍生函子列表
+    };
+
+    /** (可接受命令的对象)的创建命令
+    @version NIIEngine 3.0.0
+    */
+    class _EngineAPI CreateCommand : public Command
+    {
+    public:
+        CreateCommand();
+        ~CreateCommand();
+
+        ///@copydetails Command::main
+        void main();
+    protected:
+        /** 当创建命令执行后的同时触发这个函数
+        @version NIIEngine 3.0.0
+        */
+        void onCreated(const GenerateObjEventArgs & arg);
+    private:
+        GenerateObjEventArgs * mArg;
+    };
+
+    /** (可接受命令的对象)的删除命令
+    @version NIIEngine 3.0.0
+    */
+    class _EngineAPI DeleteCommand : public Command
+    {
+    public:
+        DeleteCommand();
+        ~DeleteCommand();
+
+        ///@copydetails Command::main
+        void main();
+    protected:
+        /** 当删除命令执行后的同时触发这个函数
+        @version NIIEngine 3.0.0
+        */
+        void onDeleted(const DeleteObjEventArgs & arg);
+    private:
+        DeleteObjEventArgs * mArg;
+    };
+
+    /** (可接受命令的对象)的调整参数的命令
+    @version NIIEngine 3.0.0
+    */
+    class _EngineAPI ModifyCommand : public Command
+    {
+    public:
+        ModifyCommand();
+        ~ModifyCommand();
+
+        ///@copydetails Command::main
+        void main();
+    protected:
+        /** 当调整参数命令执行后的同时触发这个函数
+        @version NIIEngine 3.0.0
+        */
+        void onSet(const AdjustObjEventArgs & arg);
+    protected:
+        AdjustObjEventArgs * mArg;
+    };
+
     class _EngineAPI ConditionReachArgs : public EventArgs
     {
     public:
@@ -181,6 +292,39 @@ namespace NII_COMMAND
         Command * mExec;            ///< 条件成立后执行的命令
         ConditionParams mParams;    ///< 条件的参子
         bool mAutoReset;            ///< 完成条件驱动后是否自动删除
+    };
+
+    /** 条件判断器的默认实现
+    @remark 默认的实现是,假设条件的所有参子都达成,则触发调用命令,为了实际产生的效率,
+        系统限制一个条件仅仅能有32组判断参子
+    @version NIIEngine 3.0.0 内部类
+    */
+    class _EngineAPI DefaultCondition : public Condition
+    {
+    public:
+        DefaultCondition();
+        DefaultCondition(Command * command);
+        ~DefaultCondition();
+
+        ///@copydetails Condition::reset
+        void compile();
+    protected:
+        ///@copydetails Condition::reach
+        void reach(const ConditionParam * cp);
+
+        ///@copydetails Condition::reach
+        void reach();
+
+        ///@copydetails Condition::fail
+        void fail(const ConditionParam * cp);
+
+        ///@copydetails Condition::fail
+        void fail();
+
+        ///@copydetails Condition::reached
+        bool reached();
+    private:
+        Nui32 mComparesMark;
     };
 }
 }

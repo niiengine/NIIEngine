@@ -29,10 +29,9 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 #define _NII_UI_PixelUnitGrid_H_
 
 #include "NiiUIPreInclude.h"
-#include "NiiPlaneSize.h"
 #include "NiiRect.h"
 #include "NiiUICommon.h"
-#include "NiiColourArea.h"
+#include "NiiColour.h"
 #include "NiiScriptProperty.h"
 
 namespace NII

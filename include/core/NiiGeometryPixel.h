@@ -33,7 +33,7 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 #include "NiiMatrix4.h"
 #include "NiiGeometryRaw.h"
 #include "NiiVertex.h"
-#include "NiiColourArea.h"
+#include "NiiColour.h"
 #include "NiiEventArgs.h"
 
 namespace NII
@@ -49,6 +49,17 @@ namespace NII
         GL_Tip = 3,         ///< NIIEngine UI机制扩展
         GL_Ext = 4,         ///< NIIEngine 扩展
         GL_Unknow = 5
+    };
+
+    /** 几何图层事件函数
+    @version NIIEngine 3.0.0
+    */
+    class _EngineAPI GeometryLevelEventArgs : public EventArgs
+    {
+    public:
+        GeometryLevelEventArgs(GeometryLevel gl);
+
+        GeometryLevel mGL;
     };
 
     /** 混合模式

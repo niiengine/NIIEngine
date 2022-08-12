@@ -32,10 +32,10 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 #include "NiiStrConv.h"
 #include "NiiUICommon.h"
 #include "NiiUIStyleSection.h"
-#include "NiiUIListHeaderItem.h"
+#include "NiiUIListHeader.h"
 #include "NiiUIMultiColumnList.h"
 #include "NiiUITabControl.h"
-#include "NiiColourArea.h"
+#include "NiiColour.h"
 #include "NiiPlaneSize.h"
 
 namespace NII
@@ -45,10 +45,10 @@ namespace UI
     /** 把单位数据 转为/换成 字符串类型的类(UI级)
     @version NIIEngine 3.0.0
     */
-    class _EngineAPI UIStrConv : public StrConv
+    class _EngineAPI StrConv : public NII::StrConv
     {
     public:
-        using StrConv::conv;
+        using NII::StrConv::conv;
 
         /** 从字符串中解析出 PlaneSizef
         @remark 格式"width hegiht", 2个NIIf
@@ -289,12 +289,11 @@ namespace UI
         */
         static const String & conv(const ColourArea & in, String & out);
     };
-
+}
     template<typename T> N_FORCEINLINE String NUI_conv(T in)
     {
         String temp;
-        return UIStrConv::conv(in, temp);
+        return UI::StrConv::conv(in, temp);
     }
-}
 }
 #endif

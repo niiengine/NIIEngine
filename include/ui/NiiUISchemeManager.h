@@ -31,35 +31,35 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 #include "NiiSingleton.h"
 #include "NiiUIScheme.h"
 
-using namespace NII::UI;
-
 namespace NII
+{
+namespace UI
 {
     /**
     @version NIIEngine 3.0.0
     */
-    class _EngineAPI UISchemeManager : public Singleton<UISchemeManager>, public UIAlloc
+    class _EngineAPI SchemeManager : public Singleton<SchemeManager>, public UIAlloc
     {
     public:
         typedef map<Nid, Scheme *>::type ObjectList;
     public:
-        UISchemeManager();
-        ~UISchemeManager();
+        SchemeManager();
+        ~SchemeManager();
 
         /**
         @version NIIEngine 3.0.0
         */
-        inline void setAutoLoad(bool set)       { mAutoLoad = set; }
+        inline void setAutoLoad(bool set)               { mAutoLoad = set; }
 
         /**
         @version NIIEngine 3.0.0
         */
-        inline bool isAutoLoad() const       { return mAutoLoad; }
+        inline bool isAutoLoad() const                  { return mAutoLoad; }
         
         /**
         @version NIIEngine 3.0.0
         */
-        void createAllDefine(const String & pattern, GroupID gid);
+        void createDefine(const String & pattern, GroupID gid);
 
         /**
         @version NIIEngine 3.0.0
@@ -89,21 +89,22 @@ namespace NII
         /**
         @version NIIEngine 3.0.0 ¸ß¼¶api
         */
-        const ObjectList & getList() const;
+        const ObjectList & getList() const              { return mObjectList; }
 
         /**
         @version NIIEngine 3.0.0
         */
-        static void setGroup(GroupID gid);
+        static void setGroup(GroupID gid)               { ResourceGroup = gid; }
 
         /**
         @version NIIEngine 3.0.0
         */
-        static GroupID getGroup();
+        static GroupID getGroup()                       { return ResourceGroup; }
     protected:
         ObjectList mObjectList;
         bool mAutoLoad;
         static GroupID ResourceGroup;
     };
+}
 }
 #endif

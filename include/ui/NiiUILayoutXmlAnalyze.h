@@ -30,7 +30,7 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 
 #include "NiiUIPreInclude.h"
 #include "NiiUIWidgetManager.h"
-#include "NiiXmlAnalyze.h"
+#include "NiiXmlAnalyzeManager.h"
 
 namespace NII
 {

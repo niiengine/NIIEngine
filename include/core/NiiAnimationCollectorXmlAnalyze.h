@@ -29,7 +29,7 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 #define _NII_ANIMATION_XmlAnalyze_H__
 
 #include "NiiUIPreInclude.h"
-#include "NiiXmlAnalyze.h"
+#include "NiiXmlAnalyzeManager.h"
 #include "NiiAnimation.h"
 #include "NiiFusionData.h"
 

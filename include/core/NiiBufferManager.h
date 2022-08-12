@@ -92,7 +92,6 @@ namespace NII
         virtual ~BufferManager();
 
         /** 分配临时缓存
-        @param[in] type 类型,对应的实际的 BufferType
         @param[in] src 源缓存指针
         @param[in] ctl 控制器
         @return 临时缓存

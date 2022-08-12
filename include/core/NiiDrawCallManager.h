@@ -50,21 +50,31 @@ namespace NII
             T_Fog,
             T_Point,
             T_Program,
-            T_FBO,                  ///< renderFrameObject
-            T_VBO,
-            T_Indirect,
-            T_UniformBuffer,
+            T_ShaderCh,
+            T_FBO,                  ///< Frame Buffer Object (RenderTarget)
+            T_PBO,                  ///< Pixel Buffer Object
+            T_VBO,                  ///< Vertex Buffer Object
+            T_EBO,                  ///< Elements Buffer Object
+            T_VAO,                  ///< Vertex Array Object
+            T_IBO,                  ///< Indirect Buffer Object
+            T_GEO,                  ///< GeometryRaw
+            T_StructBuffer,
             T_TextureBuffer,
             T_TextureList,
             T_TextureSampleList,
             T_Array,                ///< Arrays
             T_Index,                ///< Elements
-            T_IndirectArray,
-            T_IndirectIndex,
+            T_ArrayIndirect,
+            T_IndexIndirect,
             T_MultiArray,
             T_MultiIndex,
-            T_MultiIndirectArray,
-            T_MultiIndirectIndex,
+            T_MultiArrayIndirect,
+            T_MultiIndexIndirect,
+            T_FenceNotify,
+            T_FenceWait,            ///< CPU
+            T_FenceDevWait,         ///< GPU
+            T_ThreadWait,           ///< CPU
+            T_ThreadNotify,         ///< CPU
             T_Ext1,
             T_Ext2,
             T_Ext3,
@@ -102,7 +112,7 @@ namespace NII
         /** 获取类型
         @version NIIEngine 3.0.0
         */
-        inline Type getType() const { return mType; }
+        inline Type getType() const                 { return mType; }
         
         /** 运行调用绘制单元
         @version NIIEngine 3.0.0
@@ -114,7 +124,7 @@ namespace NII
     };
     /** 调用绘制群组
     @remark 分离(主线程)CPU 和(绘制线程/额外的扩展线程)(GPU/CPU) 线程，可以让GPU有更多的处理空间.
-        减少主线程和绘制线程的相互等待.主线程在处理繁琐运算的同时让GPU在这个时候处理FBO等命令.
+        减少主线程和绘制线程的相互等待.主线程在处理繁琐运算的同时让GPU在这个时候处理FBO, Staging / GLsync 等命令.
     @version NIIEngine 3.0.0
     */
     class _EngineAPI DrawCallGroup : public RenderAlloc
@@ -146,9 +156,10 @@ namespace NII
         DrawCallGroupID getID() const               { return mID; }
         
         /** 创建调用绘制单元
+        @param[in] fence 是否创建一个通知
         @version NIIEngine 3.0.0
         */
-        DrawCallUnit * create(DrawCallUnit::Type type);
+        DrawCallUnit * create(DrawCallUnit::Type type, bool fence = false);
         
         /** 获取索引下标调用绘制单元
         @version NIIEngine 3.0.0

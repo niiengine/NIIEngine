@@ -30,7 +30,7 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 
 #include "NiiPreInclude.h"
 #include "NiiSerialItem.h"
-#include "NiiKeyBoardControlItem.h"
+#include "NiiKeyBoardControlPattern.h"
 
 namespace NII
 {

@@ -44,7 +44,7 @@ namespace UI
     {
     public:
         ListContainerView(WidgetViewlID wmid):
-            WidgetView(wmid, N_MODEL_ListContainer){}
+            WidgetView(wmid, N_VIEW_ListContainer){}
 
         /**
         @version NIIEngine 3.0.0

@@ -29,8 +29,7 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 #define _NII_RESOURCE_H_
 
 #include "NiiPreInclude.h"
-#include "NiiPropertyCmdObj.h"
-#include "NiiPropertyData.h"
+#include "NiiPropertyObj.h"
 #include "NiiResourceType.h"
 #include "NiiSharedPtr.h"
 
@@ -270,6 +269,16 @@ namespace NII
         @version NIIEngine 3.0.0
         */
         inline NCount getRefCount() const           { return mRefCount; }
+
+        /** 返回资源当前是否加载中.
+        @version NIIEngine 3.0.0
+        */
+        inline bool isLoaded() const                { return mState == LS_LOADED; }
+        
+        /** 返回资源当前是否加载中.
+        @version NIIEngine 3.0.0
+        */
+        virtual bool isLoading() const;
 
         /** 返回资源当前是否加载中.
         @version NIIEngine 3.0.0

@@ -51,14 +51,14 @@ namespace NII
         virtual ~EncodeJob();
         
         /// 获取数据源
-        MemDataStream * getIn();
+        MemStream * getIn();
     protected:
         EncodeJob();
 
         /// @copydetails CodecJob::onRequest
         void onRequest(NCount count);
     protected:
-        MemDataStream * mIn;  ///< 输入流
+        MemStream * mIn;  ///< 输入流
     };
 }
 #endif

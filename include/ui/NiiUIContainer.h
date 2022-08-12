@@ -56,7 +56,7 @@ namespace UI
         @param[in] name 辅助名字
         @version NIIEngine 3.0.0
         */
-        Widget * create(WidgetID wid, FactoryID fid, const String & name = _T(""));
+        Widget * create(WidgetID wid, StyleViewID fid, const String & name = _T(""));
 
         /** 删除这个对象的子对象
         @param sub 子对象
@@ -160,7 +160,7 @@ namespace UI
         /** 游标是否在这个容器内部
         @version NIIEngine 3.0.0
         */
-        bool isCursorEnter() const;
+        bool isCursorEnter() const                  { return mCursorEnter; }
 
         /** 子对象的个数
         @version NIIEngine 3.0.0
@@ -215,12 +215,12 @@ namespace UI
         /** 设置所在的窗体
         @version NIIEngine 3.0.0 高级api
         */
-        void setWindow(Window * win);
+        void setWindow(Window * win)                { mWindow = win; }
 
         /** 获取所在的窗体
         @version NIIEngine 3.0.0 高级api
         */
-        Window * getWindow() const;
+        Window * getWindow() const                  { return mWindow; }
 
         /** 添加子UI元素
         @remark 添加子UI元素的具体实现

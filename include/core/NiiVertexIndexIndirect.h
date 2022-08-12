@@ -222,12 +222,13 @@ namespace NII
     public:
         DataType mType;         ///< 元素类型
         VertexType mVType;      ///< 元素的含义
-        NCount mOffset;         ///< 数据偏移
+        NCount mOffset;         ///< 数据偏移(单位:字节)
         NCount mDivisor;        ///< 每个缓存单元能绘制几次图元,0则表示绘制每个顶点单元时都更新数据
         Nui16 mSource;          ///< 所在的缓存
         Nui16 mIndex;           ///< 项的索引,仅适于复合元素,类纹理坐标元素
     };
     typedef vector<VertexUnit>::type VertexUnitList;
+    typedef vector<VertexUnitList>::type VertexUnitListList;
     
     /** 硬件动画
     @version NIIEngine 3.0.0
@@ -766,8 +767,8 @@ namespace NII
         IndirectData * clone(CopyType ct = CT_Clone, ModeMark mode = -1, GBufferManager * mag = 0) const;
     protected:
         IndirectData();
-        IndirectData(const IndexData & o) {}
-        IndirectData & operator=(const IndexData &) { return *this; }
+        IndirectData(const IndirectData & o) {}
+        IndirectData & operator=(const IndirectData &) { return *this; }
     public:
         IndirectBuffer * mBuffer;   ///< 缓存主体(targetBuf)
         IndirectBuffer::Type mType;

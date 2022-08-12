@@ -31,7 +31,7 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 #include "NiiPreInclude.h"
 #include "NiiVector3.h"
 #include "NiiString.h"
-#include "NiiPropertyCmdObj.h"
+#include "NiiPropertyObj.h"
 #include "NiiSpaceObj.h"
 #include "NiiDataEquation.h"
 #include "NiiParticle.h"

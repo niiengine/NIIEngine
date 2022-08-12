@@ -80,13 +80,7 @@ namespace NII
     class _EngineAPI Viewport : public FrameAlloc
     {
     public:
-        /** 常用的构造函数
-        @param[in] cam 所属设想机
-        @param[in] fb 使用的缓存
-        @version NIIEngine 3.0.0
-        */
-        Viewport(ViewportID id, Camera * camera, FrameObj * fb, NIIf left, NIIf top,
-            NIIf width, NIIf height, NIIi z);
+        Viewport(ViewportID id, Camera * cam, FrameObj * fb, const Vector4f & area, const Vector4f & clip, NIIi z, NCount mipLevel);
         virtual ~Viewport();
 
         /** 获取ID
@@ -121,68 +115,87 @@ namespace NII
         /** 获取是否自动清刷
         @version NIIEngine 3.0.0
         */
-        inline bool isAutoClear() const     { return mAutoClear; }
+        inline bool isAutoClear() const                 { return mAutoClear; }
 
         /** 是否已经同步
         @version NIIEngine 3.0.0
         */
-        inline bool isSyncRender() const    { return mSync; }
+        inline bool isSyncRender() const                { return mSync; }
 
         /** 是否同步宽高比
         @version NIIEngine 3.0.0
         */
-        inline bool isSyncAspect() const    { return mAspect; }
+        inline bool isSyncAspect() const                { return mAspect; }
 
         /** 设置清除的深度
         @version NIIEngine 3.0.0
         */
-        inline void setDepthClear(NIIf d)   { mDepthClearValue = d; }
+        inline void setDepthClear(NIIf d)               { mDepthClearValue = d; }
 
         /** 获取清除的深度
         @version NIIEngine 3.0.0
         */
-        inline NIIf getDepthClear() const   { return mDepthClearValue; }
+        inline NIIf getDepthClear() const               { return mDepthClearValue; }
 
         /** 设置是否自动更新
         @version NIIEngine 3.0.0
         */
-        inline void setAutoUpdate(bool b)   { mAutoUpdate = b; }
+        inline void setAutoUpdate(bool b)               { mAutoUpdate = b; }
 
         /** 获取是否自动更新
         @version NIIEngine 3.0.0
         */
-        inline bool isAutoUpdate() const    { return mAutoUpdate; }
+        inline bool isAutoUpdate() const                { return mAutoUpdate; }
 
         /** 设置背景颜色
         @version NIIEngine 3.0.0
         */
-        inline void setBgColour(const Colour & c)   { mBgColour = c; }
+        inline void setBgColour(const Colour & c)       { mBgColour = c; }
 
         /** 获取背景颜色
         @version NIIEngine 3.0.0
         */
-        inline const Colour & getBgColour() const   { return mBgColour; }
+        inline const Colour & getBgColour() const       { return mBgColour; }
 
         /** 设置使用的材质
         @version NIIEngine 3.0.0
         */
-        inline void setMaterial(SchemeID sid)       { mMaterial = sid; }
+        inline void setMaterial(SchemeID sid)           { mMaterial = sid; }
 
         /** 获取使用的材质
         @version NIIEngine 3.0.0
         */
-        inline SchemeID getMaterial() const         { return mMaterial; }
+        inline SchemeID getMaterial() const             { return mMaterial; }
 
-        /** 设置区域位置/大小
-        @param[in] left top width height [0 - 1.0]
+        /** 设置区域位置/裁剪大小
+        @param[in] area [0 - 1.0]
+        @param[in] clip [0 - 1.0]
+        @version NIIEngine 3.0.0
+        */
+        void setArea(const Vector4f & area, const Vector4f & clip, NCount mipLevel);
+        
+        /** 设置区域位置
+        @param[in] area [0 - 1.0]
+        @param[in] clip [0 - 1.0]
         @version NIIEngine 3.0.0
         */
         void setArea(NIIf left, NIIf top, NIIf width, NIIf height);
+        
+        /** 设置裁剪面 
+        @param[in] left top width height [0 - 1.0]
+        @version NIIEngine 5.0.0
+        */
+        void setClip(NIIf left, NIIf top, NIIf width, NIIf height);
 
         /** 获取像素位置/大小
         @version NIIEngine 3.0.0
         */
         void getPixelArea(NIIi & left, NIIi & top, NIIi & width, NIIi & height) const;
+        
+        /** 获取像素位置/大小
+        @version NIIEngine 3.0.0
+        */
+        void getPixelClip(NIIi & left, NIIi & top, NIIi & width, NIIi & height) const;
 
         /** 添加视口
         @version NIIEngine 3.0.0
@@ -202,76 +215,82 @@ namespace NII
         /** 获取所属的摄像机
         @version NIIEngine 3.0.0
         */
-        inline Camera * getCamera() const   { return mCamera; }
+        inline Camera * getCamera() const               { return mCamera; }
 
         /** 获取缓冲区
         @version NIIEngine 3.0.0
         */
-        inline FrameObj * getBuffer() const { return mTarget; }
-
-        /** 获取 x 位置
-        @remark 相对于设想机
+        inline FrameObj * getBuffer() const             { return mTarget; }
+        
+        /** 完整的缓存
         @version NIIEngine 3.0.0
         */
-        inline NIIf getLeft() const         { return mLeft; }
-
-        /** 获取 y 位置
-        @remark 相对于设想机
-        @version NIIEngine 3.0.0
-        */
-        inline NIIf getTop() const          { return mTop;}
-
-        /** 获取宽度
-        @remark 相对于设想机
-        @version NIIEngine 3.0.0
-        */
-        inline NIIf getWidth() const        { return mWidth;}
-
-        /** 获取高度
-        @remark 相对于视窗
-        @version NIIEngine 3.0.0
-        */
-        inline NIIf getHeight() const       { return mHeight; }
+        bool isFullBufer() const                        { return mFullBufer; }
 
         /** 获取像素 x 位置
         @remark 相对于视窗
         @version NIIEngine 3.0.0
         */
-        inline NIIi getPixelLeft() const    { return mPixelLeft; }
+        inline NIIf getPixelLeft() const                { return mPixelLeft; }
 
         /** 获取像素 y 位置
         @remark 相对于视窗
         @version NIIEngine 3.0.0
         */
-        inline NIIi getPixelTop() const     { return mPixelTop; }
+        inline NIIf getPixelTop() const                 { return mPixelTop; }
 
         /** 获取像素宽度
         @remark 相对于视窗
         @version NIIEngine 3.0.0
         */
-        inline NIIi getPixelWidth() const   { return mPixelWidth; }
+        inline NIIf getPixelWidth() const               { return mPixelWidth; }
 
         /** 获取像素高度
         @remark 相对于视窗
-        @version NIIEngine 3.0.
+        @version NIIEngine 3.0.0
         */
-        inline NIIi getPixelHeight() const  { return mPixelHeight; }
+        inline NIIf getPixelHeight() const              { return mPixelHeight; }
+        
+        /** 获取裁剪像素 x 位置
+        @version NIIEngine 3.0.0
+        */
+        inline NIIf getClipPixelLeft() const            { return mPixelClipLeft; }
+        
+        /** 获取裁剪像素 y 位置
+        @version NIIEngine 3.0.0
+        */
+        inline NIIf getClipPixelTop() const             { return mPixelClipTop; }
+        
+        /** 获取裁剪像素宽度
+        @version NIIEngine 3.0.0
+        */
+        inline NIIf getClipPixelWidth() const           { return mPixelClipWidth; }
+        
+        /** 获取裁剪像素高度
+        @version NIIEngine 3.0.0
+        */
+        inline NIIf getClipPixelHeight() const          { return mPixelCliplHeight; }
+        
+        /** 获取是否非裁剪模式
+        @version NIIEngine 3.0.0
+        */
+        bool isNonClip() const                          { return mNonClip; }
 
         /** 获取视图宽
         @version NIIEngine 3.0.0
         */
-        inline NIIi getViewWidth() const    { return mViewWidth; }
+        inline NIIi getViewWidth() const                { return mViewWidth; }
 
         /** 获取视图高
         @version NIIEngine 3.0.0
         */
-        inline NIIi getViewHeight() const   { return mViewHeight; }
+        inline NIIi getViewHeight() const               { return mViewHeight; }
 
         /** 获取深度次序
         @remark 值越小越越先被渲染
         @version NIIEngine 3.0.0
         */
-        inline NIIi getZOrder() const       { return mZOrder; }
+        inline NIIi getZOrder() const                   { return mZOrder; }
 
         /** 设置定向
         @version NIIEngine 3.0.0
@@ -281,23 +300,33 @@ namespace NII
         /** 获取定向
         @version NIIEngine 3.0.0
         */
-        inline NIIf getDirection() const        { return mDirection;}
+        inline NIIf getDirection() const                { return mDirection;}
 
         /** 设置可见掩码
         @version NIIEngine 3.0.0
         */
-        inline void setVisableMark(Nmark m)     { mVisableMark = m; }
+        inline void setVisableMark(Nmark m)             { mVisableMark = m; }
 
         /** 获取可见掩码
         @version NIIEngine 3.0.0
         */
-        inline Nmark getVisableMark() const     { return mVisableMark; }
+        inline Nmark getVisableMark() const             { return mVisableMark; }
+        
+        /** 获取灯光掩码
+        @version NIIEngine 3.0.0
+        */
+        inline void setLigthMark(Nmark m)               { mLightMark = m; }
+        
+        /** 获取灯光掩码
+        @version NIIEngine 3.0.0
+        */
+        inline Nmark getLigthMark() const               { return mLightMark; }
 
         /** 获取清除缓存类型码
         @return FrameBufferType 组合
         @version NIIEngine 3.0.0
         */
-        inline Nmark getClearMark() const       { return mClearMark; }
+        inline Nmark getClearMark() const               { return mClearMark; }
 
         /** 获取最后更新的渲染面数目
         @version NIIEngine 3.0.0
@@ -312,32 +341,32 @@ namespace NII
         /** 设置是否渲染UI
         @version NIIEngine 3.0.0
         */
-        inline void setUIEnable(bool b)     { mUIEnable = b; }
+        inline void setUIEnable(bool b)                 { mUIEnable = b; }
 
         /** 获取是否渲染UI
         @version NIIEngine 3.0.0
         */
-        inline bool isUIEnable() const      { return mUIEnable; }
+        inline bool isUIEnable() const                  { return mUIEnable; }
 
         /** 设置是否渲染天空成分
         @version NIIEngine 3.0.0
         */
-        inline void setSkyEnable(bool b)    { mSkyEnable = b; }
+        inline void setSkyEnable(bool b)                { mSkyEnable = b; }
 
         /** 获取是否渲染天空成分
         @version NIIEngine 3.0.0
         */
-        inline bool isSkyEnable() const     { return mSkyEnable; }
+        inline bool isSkyEnable() const                 { return mSkyEnable; }
 
         /** 设置是否渲染阴影
         @version NIIEngine 3.0.0
         */
-        inline void setShadowEnable(bool b) { mShadowEnable = b; }
+        inline void setShadowEnable(bool b)             { mShadowEnable = b; }
 
         /** 获取是否渲染阴影
         @version NIIEngine 3.0.0
         */
-        inline bool isShadowEnable() const  { return mShadowEnable; }
+        inline bool isShadowEnable() const              { return mShadowEnable; }
 
         /** 设置渲染形式
         @version NIIEngine 3.0.0
@@ -347,7 +376,17 @@ namespace NII
         /** 获取渲染形式
         @version NIIEngine 3.0.0
         */
-        inline CustomRenderQueue * getCustomRender() { return mCustomRender; }
+        inline CustomRenderQueue * getCustomRender()    { return mCustomRender; }
+        
+        /** 设置缓存类型
+        @version NIIEngine 5.0.0
+        */
+        void getBufferType(ViewportType type)           { mBufferType = type; }
+
+        /** 获取缓存类型
+        @version NIIEngine 5.0.0
+        */
+        ViewportType getBufferType() const              { return mBufferType; }
 
         /** 设置默认定向
         @version NIIEngine 3.0.0
@@ -374,23 +413,27 @@ namespace NII
         FrameObj * mTarget;
         CustomRenderQueue * mCustomRender;
         ViewportListenerList mListeners;
+        ViewportType mBufferType;
         SchemeID mMaterial;
         Colour mBgColour;
         NIIf mDirection;
-        NIIf mLeft;
-        NIIf mTop;
-        NIIf mWidth;
-        NIIf mHeight;
         NIIi mZOrder;
-        NIIi mPixelLeft;
-        NIIi mPixelTop;
-        NIIi mPixelWidth;
-        NIIi mPixelHeight;
+        NIIf mPixelLeft;
+        NIIf mPixelTop;
+        NIIf mPixelWidth;
+        NIIf mPixelHeight;
+        NIIf mPixelClipLeft, 
+        NIIf mPixelClipTop, 
+        NIIf mPixelClipWidth, 
+        NIIf mPixelCliplHeight;
+        NCount mMipMap;
+        
         mutable NIIi mViewWidth;
         mutable NIIi mViewHeight;
         NIIf mDepthClearValue;
         Nmark mClearMark;
         Nmark mVisableMark;
+        Nmark mLightMark;
 
         bool mSync;
         bool mAspect;
@@ -401,5 +444,6 @@ namespace NII
         bool mShadowEnable;
         static NIIf mDefaultDirection;
     };
+    typedef vector<Viewport *>::type ViewportList;
 }
 #endif

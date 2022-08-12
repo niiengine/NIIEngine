@@ -30,12 +30,55 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 
 #include "NiiPreInclude.h"
 #include "NiiControlPattern.h"
-#include "NiiTouchControlItem.h"
+#include "NiiTouchControlArgs.h"
 
 namespace NII
 {
 namespace NII_MEDIA
 {
+    /**
+    @version NIIEngine 3.0.0
+    */
+    class _EngineAPI TouchControlItem : public ControlItem
+    {
+    public:
+        TouchControlItem();
+
+        /** 当按下时候触发
+        @param[in] args 触屏事件参数
+        */
+        virtual void onPress(const TouchControlArgs * args);
+
+        /** 当按后释放时触发
+        @param[in] args 触屏事件参数
+        */
+        virtual void onRelease(const TouchControlArgs * args);
+
+        /** 当按下后移动时触发
+        @param[in] args 触屏事件参数
+        */
+        virtual void onMove(const TouchControlArgs * args);
+
+        /** 当取消时触发
+        @param[in] args 触屏事件参数
+        */
+        virtual void onCancel(const TouchControlArgs * args);
+
+        /// @copydetails ControlItem::getType
+        ControlDevType getType() const;
+    protected:
+        /// @copydetails ControlItem::raise
+        void raise(const EventArgs * arg);
+    };
+
+    /// 傀儡
+    class DummyMultiTouchControlItem : public TouchControlItem, public ControlAlloc
+    {
+    public:
+        DummyMultiTouchControlItem() {}
+        ~DummyMultiTouchControlItem() {}
+    };
+
     /** 触屏控制器
     @version NIIEngine 3.0.0
     */

@@ -32,8 +32,12 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 #include "NiiUICursor.h"
 #include "NiiGeometryPixel.h"
 #include "NiiCommandObj.h"
-#include "NiiKeyBoardControlItem.h"
+#include "NiiKeyboardControlPattern.h"
+#include "NiiMouseControlPattern.h"
+#include "NiiJoyPadControlPattern.h"
+#include "NiiTouchControlPattern.h"
 #include "NiiMatrix4.h"
+#include "NiiRect.h"
 
 using namespace NII::NII_COMMAND;
 
@@ -41,6 +45,297 @@ namespace NII
 {
 namespace UI
 {
+    class _EngineAPI SheetKeyboardControlItem : public NII_MEDIA::KeyboardControlItem
+    {
+    public:
+        SheetKeyboardControlItem();
+    };
+
+    class _EngineAPI SheetMouseControlItem : public NII_MEDIA::MouseControlItem
+    {
+    public:
+        SheetMouseControlItem();
+    };
+
+    class _EngineAPI SheetJoyPadControlItem : public NII_MEDIA::JoyPadControlItem
+    {
+    public:
+        SheetJoyPadControlItem();
+    };
+
+    /** 独立渲染画盘
+    @remark 独立渲染画盘,可以让UI元素产生独立效果
+    @version NIIEngine 3.0.0
+    */
+    class _EngineAPI UISubSheet : public NII_COMMAND::CommandObj, public UIAlloc
+    {
+        friend class UISheet;
+    public:
+        /** 构造函数
+        @param[in] rs 必要
+        @param[in] own 必要
+        @param[in] oft Sheet坐标中的偏移, 可以设置成 Vector2f::ZERO
+        @version NIIEngine 3.0.0 高级api
+        */
+        UISubSheet(RenderSys * rs, UISheet * own, const Vector2f & oft);
+
+        ~UISubSheet();
+
+        /** 创建子画盘
+        @param[out] obj 创建出来的子画盘
+        @version NIIEngine 3.0.0
+        */
+        void create(UISubSheet *& obj);
+
+        /** 删除子画盘
+        @param[in] obj 要删除的子画盘
+        @version NIIEngine 3.0.0
+        */
+        void destroy(UISubSheet * obj);
+
+        /** 附加子画盘
+        @note 内存外部管理
+        @param[in] obj 子画盘
+        @version NIIEngine 3.0.0
+        */
+        void attach(UISubSheet * obj);
+
+        /** 解除子画盘
+        @note 内存外部管理
+        @param[in] obj 子画盘
+        @version NIIEngine 3.0.0
+        */
+        void detach(UISubSheet * obj);
+
+        /** 添加几何对象
+        @param[in] gl 几何层
+        @param[in] obj 几何对象
+        @version NIIEngine 3.0.0
+        */
+        void add(GeometryLevel gl, GeometryPixel * obj);
+
+        /** 移去几何对象
+        @param[in] gl 几何层
+        @param[in] obj 几何对象
+        @version NIIEngine 3.0.0
+        */
+        void remove(GeometryLevel gl, GeometryPixel * obj);
+
+        /** 移去所有几何对象
+        @param[in] gl 几何层
+        @version NIIEngine 3.0.0
+        */
+        void clear(GeometryLevel gl);
+
+        /** 移去所有几何对象
+        @version NIIEngine 3.0.0
+        */
+        void clear();
+
+        /** 更新时间机制
+        @remark 时间机制总与当前状态有关
+        @param cost 上次与当前调用渡过的时间
+        @version NIIEngine 3.0.0
+        */
+        void update(TimeDurMS cost);
+
+        /** 执行渲染机制
+        @version NIIEngine 3.0.0
+        */
+        void flush();
+
+        /** 刷新渲染机制
+        @version NIIEngine 3.0.0
+        */
+        void refresh();
+
+        /** 重构渲染机制
+        @version NIIEngine 3.0.0
+        */
+        void rebuild();
+
+        /** 是否刷新渲染机制
+        @version NIIEngine 3.0.0
+        */
+        inline bool isRefresh() const { return mRefresh; }
+
+        /** 设置裁减区域
+        @param[in] area 区域
+        @version NIIEngine 3.0.0
+        */
+        void setClip(const Recti & area);
+
+        /** 设置显示区域
+        @param[in] area 区域
+        @version NIIEngine 3.0.0
+        */
+        void setArea(const Rectf & area);
+
+        /** 设置显示区域
+        @param[in] area 区域
+        @version NIIEngine 3.0.0
+        */
+        void setAreaSize(const PlaneSizef & size)   { setArea(Rectf(mArea.getPos(), size)); }
+
+        /** 获取显示区域
+        @version NIIEngine 3.0.0
+        */
+        inline const Rectf & getArea() const        { return mArea; }
+
+        /** 设置位置
+        @version NIIEngine 3.0.0
+        */
+        void setPos(const Vector2f & pos);
+
+        /** 获取位置
+        @version NIIEngine 3.0.0
+        */
+        const Vector2f & getPos() const { return mPos; }
+
+        /** 设置相对尺寸
+        @note 相对于界面画盘
+        @version NIIEngine 3.0.0
+        */
+        void setSize(const PlaneSizef & size);
+
+        /** 获取相对尺寸
+        @version NIIEngine 3.0.0
+        */
+        inline const PlaneSizef & getSize() const { return mSize; }
+
+        /** 设置原始尺寸
+        @version NIIEngine 3.0.0
+        */
+        void setNativeSize(const PlaneSizef & size);
+
+        /** 设置旋转原点
+        @version NIIEngine 3.0.0
+        */
+        void setOrigin(const Vector3f & org);
+
+        /** 获取旋转原点
+        @version NIIEngine 3.0.0
+        */
+        inline const Vector3f & getOrigin() const { return mOrigin; }
+
+        /** 旋转角度
+        @version NIIEngine 3.0.0
+        */
+        void setRotation(const Quaternion & rot);
+
+        /** 旋转角度
+        @version NIIEngine 3.0.0
+        */
+        inline const Quaternion & getRotation()const { return mRot; }
+
+        /** 应用渲染效果
+        @version NIIEngine 3.0.0
+        */
+        void setEffect(RenderEffect * obj) { mBuffer->setEffect(obj); }
+
+        /** 获取所应用的效果
+        @version NIIEngine 3.0.0
+        */
+        inline RenderEffect * getEffect() const { return mBuffer->getEffect(); }
+
+        /** 主UI盘
+        @version NIIEngine 3.0.0
+        */
+        UISheet * getSheet() const { return mParent; }
+
+        /** 主画盘
+        @note 如果不存在附属关系,可能是 NULL 对象
+        @version NIIEngine 3.0.0
+        */
+        UISubSheet * getRel() const { return mRel; }
+
+        /** 纹理目标
+        @version NIIEngine 3.0.0
+        */
+        Texture * getTexture() const { return mDst; }
+
+        /** 仿射位置
+        @param[in] in 原位置
+        @param[out] out 实际位置
+        @version NIIEngine 3.0.0
+        */
+        void affine(const Vector2f & in, Vector2f & out);
+    public:
+        /** 附加子画盘时触发
+        @version NIIEngine 3.0.0
+        */
+        static const EventID AttachEvent;
+
+        /** 移除子画盘时触发
+        @version NIIEngine 3.0.0
+        */
+        static const EventID DetachEvent;
+
+        /** 渲染队列前触发
+        @version NIIEngine 3.0.0
+        */
+        static const EventID PreRenderEvent;
+
+        /** 渲染队列后触发
+        @version NIIEngine 3.0.0
+        */
+        static const EventID EndRenderEvent;
+
+        static const EventID EventCount;
+    protected:
+        /** 附加事件
+        @version NIIEngine 3.0.0
+        */
+        void onAttach(const EventArgs * args);
+
+        /** 移除事件
+        @version NIIEngine 3.0.0
+        */
+        void onDetach(const EventArgs * args);
+
+        /** 更新矩阵
+        @version NIIEngine 内部api
+        */
+        void updateMatrix();
+
+        /** 更新视口
+        @version NIIEngine 内部api
+        */
+        void updateViewport();
+
+        /** 仿射空间
+        @param[in] m 实际空间位置
+        @param[in] in 原位置
+        @param[out] out 实际位置
+        @version NIIEngine 内部api
+        */
+        void affine(const Matrix4f * m, const Vector2f & in, Vector2f & out) const;
+    protected:
+        typedef map<GeometryLevel, GeometryQueue *>::type GeoQueues;
+        typedef vector<UISubSheet *>::type ChildList;
+    protected:
+        RenderSys * mSys;
+        Viewport * mView;
+        UISheet * mParent;
+        UISubSheet * mRel;
+        Texture * mDst;
+        GeometryPixel * mBuffer;
+        ChildList mChild;
+        GeoQueues mRenderQueue;
+        Matrix4f mProjectMatrix;
+        NIIf mViewExtent;
+        Rectf mArea;
+        Vector2f mPos;
+        Vector2f mOft;
+        Quaternion mRot;
+        PlaneSizef mSize;
+        Vector3f mOrigin;
+        bool mValidProjectMatrix;
+        bool mValidView;
+        bool mValidBuffer;
+        bool mRefresh;
+    };
+
     /** UI画盘上下文
     @version NIIEngine 3.0.0
     */
@@ -48,20 +343,9 @@ namespace UI
     {
         const Window * mRoot;   ///<     
         UISheet * mSheet;       ///< 
-        UIInstance * mFace;     ///< 
+        UISubSheet * mFace;     ///< 
         GeometryLevel mQueue;   ///<         
         Vector2f mPosOffset;    ///< 
-    };
-
-    /** 几何图层事件函数
-    @version NIIEngine 3.0.0
-    */
-    class _EngineAPI GeometryLevelEventArgs : public EventArgs
-    {
-    public:
-        GeometryLevelEventArgs(GeometryLevel gl);
-
-        GeometryLevel mGL;
     };
     
     /** UI窗体渲染界面盘
@@ -90,12 +374,12 @@ namespace UI
         /** 重新绘制
         @version NIIEngine 3.0.0
         */
-        void redraw();
+        void redraw()                   { mRedraw = true; }
 
         /** 是否重新绘制
         @version NIIEngine 3.0.0
         */
-        bool isRedraw() const;
+        bool isRedraw() const           { return mRedraw; }
 
         /** 更新状态
         @param[in] cost 上次调用与这次调用渡过的时间
@@ -106,29 +390,29 @@ namespace UI
         /** 获取监听到的掩码
         @version NIIEngine 3.0.0
         */
-        Nmark getWinComKey() const;
+        Nmark getWinComKey() const      { return mWinComKey; }
 
         /** 创建UI画盘
         @version NIIEngine 3.0.0
         */
-        void create(UIInstance *& out);
+        void create(UISubSheet *& out);
 
         /** 删除UI画盘
         @version NIIEngine 3.0.0
         */
-        void destroy(UIInstance * obj);
+        void destroy(UISubSheet * obj);
 
         /** 附加UI画盘
         @note 内存不属于这个对象管理
         @version NIIEngine 3.0.0
         */
-        void attach(UIInstance * obj);
+        void attach(UISubSheet * obj);
 
         /** 解除UI画盘
         @note 内存不属于这个对象管理
         @version NIIEngine 3.0.0
         */
-        void detach(UIInstance * obj);
+        void detach(UISubSheet * obj);
 
         /** 添加几何像素
         @param[in] gl 几何层
@@ -172,42 +456,48 @@ namespace UI
         */
         void setArea(const Recti & area);
 
+        /** 设置显示区域
+        @param[in] area 区域
+        @version NIIEngine 3.0.0
+        */
+        void setAreaSize(const PlaneSizei & size)   { setArea(Recti(mArea.getPos(), size)); }
+
         /** 获取显示区域
         @version NIIEngine 3.0.0
         */
-        const Recti & getArea() const;
+        const Recti & getArea() const               { return mArea; }
 
         /** 返回当前等待关闭窗体
         @version NIIEngine 3.0.0 高级api
         */
-        void setModal(Window * obj);
+        void setModal(Window * obj)                 { mModal = obj; }
 
         /** 返回当前等待关闭窗体
         @version NIIEngine 3.0.0
         */
-        Window * getModal() const;
+        Window * getModal() const                   { return mModal; }
 
         /** 设置当前活动的窗体
         @version NIIEngine 3.0.0 高级api
         */
-        void setActive(Window * obj);
+        void setActive(Window * obj)                { mActive = obj; }
 
         /** 获取当前活动的窗体
         @version NIIEngine 3.0.0
         */
-        Window * getActive() const;
+        Window * getActive() const                  { return mActive; }
 
         /** 设置当前对焦单元
         @note getActive 的一个子系
         @version NIIEngine 3.0.0 高级api
         */
-        void setFocus(Widget * obj);
+        void setFocus(Widget * obj)                 { mFocus = obj; }
 
         /** 获取当前对焦单元
         @note getActive 的一个子系
         @version NIIEngine 3.0.0
         */
-        Widget * getFocus() const;
+        Widget * getFocus() const                   { return mFocus; }
 
         /** 设置游标区域
         @version NIIEngine 3.0.0
@@ -217,17 +507,17 @@ namespace UI
         /** 获取游标区域
         @version NIIEngine 3.0.0
         */
-        const PlaneSizef & getCursorArea() const;
+        const PlaneSizef & getCursorArea() const    { return mCursorArea; }
 
         /** 是否启用游标多重点击
         @version NIIEngine 3.0.0
         */
-        void setCursorMultiClick(bool b);
+        void setCursorMultiClick(bool b)            { mGenCursorMultiClick = b; }
 
         /** 获取是否游标多重点击
         @version NIIEngine 3.0.0
         */
-        bool getCursorMultiClick() const;
+        bool getCursorMultiClick() const            { return mGenCursorMultiClick; }
 
         /** 游标移动系数
         @version NIIEngine 3.0.0
@@ -237,7 +527,7 @@ namespace UI
         /** 游标移动系数
         @version NIIEngine 3.0.0
         */
-        NIIf getCursorMoveFactor() const;
+        NIIf getCursorMoveFactor() const            { return mCursorMoveFactor; }
 
         /** 设置游标点击时间阀值
         @note 超过阀值则不会产生点击事件
@@ -249,7 +539,7 @@ namespace UI
         @note 超过阀值则不会产生点击事件
         @version NIIEngine 3.0.0
         */
-        TimeDurMS getCursorClickFactor() const;
+        TimeDurMS getCursorClickFactor() const      { return mCursorClickFactor; }
 
         /** 设置游标多重点击时间阀值
         @note 超过阀值则不会产生点击事件
@@ -261,7 +551,7 @@ namespace UI
         @note 超过阀值则不会产生点击事件
         @version NIIEngine 3.0.0
         */
-        TimeDurMS getCursorMultiClickFactor() const;
+        TimeDurMS getCursorMultiClickFactor() const { return mCursorMultiClickFactor; }
 
         /** 设置默认字体对象
         @remark
@@ -293,13 +583,13 @@ namespace UI
         @remark[out] obj 提示框对象
         @version NIIEngine 3.0.0 高级api
         */
-        Tooltip * getTooltip() const;
+        Tooltip * getTooltip() const                { return mTooltip; }
 
         /** 获取游标对象
         @note 触屏设备一般不存在这个概念
         @version NIIEngine 3.0.0
         */
-        Cursor * getCursor() const;
+        Cursor * getCursor() const                  { return mCursor; }
 
         /** 刷新覆盖
         @version NIIEngine 3.0.0
@@ -320,7 +610,7 @@ namespace UI
         /** 获取视图窗体
         @version NIIEngine 3.0.0 高级api
         */
-        ViewWindow * getWindow() const;
+        ViewWindow * getWindow() const              { return mTarget; }
 
         /** 获取两者共同的容器对象
         @version NIIEngine 3.0.0
@@ -503,7 +793,7 @@ namespace UI
         static const EventID EventCount;
     protected:
         typedef map<GeometryLevel, GeometryQueue>::type Queues;
-        typedef vector<UIInstance *>::type Childs;
+        typedef vector<UISubSheet *>::type Childs;
         typedef vector<Window *>::type WinList;
     protected:
         RenderSys * mSys;

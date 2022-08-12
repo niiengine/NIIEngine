@@ -29,7 +29,7 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 
 #include "NiiPreInclude.h"
 #include "NiiFontGlyph.h"
-#include "NiiColourArea.h"
+#include "NiiColour.h"
 #include "NiiEvent.h"
 
 namespace NII

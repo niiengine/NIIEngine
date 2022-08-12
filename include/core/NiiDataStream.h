@@ -62,12 +62,12 @@ namespace NII
         /** 名字(辅助)
         @version NIIEngine 3.0.0
         */
-        const String & getName() const;
+        const String & getName() const      { return mName; }
 
         /** 访问模式
         @version NIIEngine 3.0.0
         */
-        Nmark getAccessMode() const;
+        Nmark getAccessMode() const         { return mMark; }
 
         /** 跳转
         @version NIIEngine 3.0.0
@@ -92,7 +92,7 @@ namespace NII
         /** 数据的总大小(字节)
         @version NIIEngine 3.0.0
         */
-        NCount size() const;
+        NCount size() const             { return mSize; }
 
         /** 读取数据
         @param[in] count 字节数量

@@ -39,6 +39,7 @@ namespace UI
     */
     class _EngineAPI WidgetAide : public PropertyCmdObj
     {
+        friend class Widget;
     public:
         WidgetAide(Widget * dst, ScriptTypeID stid, LangID lid = N_PrimaryLang) :
             PropertyCmdObj(stid, lid),
@@ -91,7 +92,8 @@ namespace UI
         UISheet * mSheet;
         Widget * mCurrent;
     };
-    
+    typedef vector<WidgetAide *>::type WidgetAideList;
+
     /** 游标辅助对象
     @version NIIEngine 3.0.0
     */

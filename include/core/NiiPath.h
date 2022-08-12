@@ -117,6 +117,8 @@ namespace NII
 
         static void removeTempDir();
 
+        static void setPluginPath(const String & path)          { mPluginPath = path; }
+
         static const String & getPluginPath()                   { return mPluginPath; }
 
         /**
@@ -163,6 +165,8 @@ namespace NII
         static void deleteLocal(const String & name);
 
         static void getSpecialFolderPath(int code, String & name);
+
+        static void createPath(const String & path);
 
         static bool removePath(const String & path);
     private:

@@ -30,7 +30,7 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 
 #include "NiiPreInclude.h"
 #include "NiiEventArgs.h"
-#include "NiiEventObjManager.h"
+#include "NiiEventManager.h"
 #include "NiiCondition.h"
 
 namespace NII

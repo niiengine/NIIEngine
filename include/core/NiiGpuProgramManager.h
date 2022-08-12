@@ -43,7 +43,7 @@ namespace NII
         friend class Engine;
         friend class RenderSys;
     public:
-        typedef map<Nui32, MemDataStream *>::type CacheList;
+        typedef map<Nui32, MemStream *>::type CacheList;
         typedef map<String, GpuParamValue *>::type ShareCustomList;
     public:
         GpuProgramManager();
@@ -67,8 +67,7 @@ namespace NII
         @param[in] type 程序类型
         @param[in] sl 语法名字
         */
-        virtual GpuProgram * create(ResourceID rid, GroupID gid,
-            const String & file, GpuProgram::ShaderType type, ShaderLanguage sl);
+        virtual GpuProgram * create(ResourceID rid, GroupID gid, const String & file, GpuProgram::ShaderType type, ShaderLanguage sl);
 
         /** 创建着色程序
         @note 不自动加载
@@ -78,8 +77,7 @@ namespace NII
         @param[in] sl 语法名字
         @param[in] code 着色程序编码
         */
-        virtual GpuProgram * create(ResourceID rid, GroupID gid,
-            GpuProgram::ShaderType type, ShaderLanguage sl, const VString & code);
+        virtual GpuProgram * create(ResourceID rid, GroupID gid, GpuProgram::ShaderType type, ShaderLanguage sl, const VString & code);
 
         /** 创建着色程序
         @note 不自动加载
@@ -175,7 +173,7 @@ namespace NII
         /** 创建着色程序的二进制缓存
         @version NIIEngine 3.0.0
         */
-        MemDataStream * createCache(Nui32 cid, NCount size);
+        MemStream * createCache(Nui32 cid, NCount size);
 
         /** 删除着色程序的二进制缓存
         @version NIIEngine 3.0.0
@@ -190,19 +188,39 @@ namespace NII
         /** 获取着色程序的二进制缓存
         @version NIIEngine 3.0.0
         */
-        MemDataStream * getCache(Nui32 cid) const;
+        MemStream * getCache(Nui32 cid) const;
+        
+        /** 调试着色程序
+        @version NIIEngine 5.0.0
+        */
+        void setDebugShaders(bool set)                  { mDebug = set;}
+        
+        /** 调试着色程序
+        @version NIIEngine 5.0.0
+        */
+        bool getDebugShaders() const                    { return mDebug; }
+        
+        /** 获取语法标记
+        @version NIIEngine 6.0.0
+        */
+        virtual const char * getToken(PixelFormat pf) const;
+
+        /** 获取语法标记
+        @version NIIEngine 6.0.0
+        */
+        virtual const char * getToken(PixelFormat pf, Texture::Type type, bool msaa, Buffer::OpType access) const;
 
         /** 获取自动同步参数
         @param[in] name 同步参数名字
         @version NIIEngine 3.0.0
         */
-        static const GpuSyncParamUnit * getGpuSyncParam(const String & name);
+        static const GpuEnvParamUnit * getGpuSyncParam(const String & name);
 
         /** 获取自动同步参数
         @param[in] idx 同步参数下标
         @version NIIEngine 3.0.0
         */
-        static const GpuSyncParamUnit * getGpuSyncParam(Nidx idx);
+        static const GpuEnvParamUnit * getGpuSyncParam(Nidx idx);
     protected:
         /// @copydetails ResourceManager::createImpl
         Resource * createImpl(ResourceID rid, GroupID gid, ResLoadScheme * ls, ResResultScheme * rs,
@@ -212,11 +230,12 @@ namespace NII
         virtual Resource * createImpl(ResourceID rid, GroupID gid, ResLoadScheme * ls, ResResultScheme * rs,
             GpuProgram::ShaderType type, ShaderLanguage sl);
     protected:
-        static GpuSyncParamUnit mGpuSyncParamList[];
+        static GpuEnvParamUnit mGpuSyncParamList[];
         ShareCustomList mShareCustomList;
         CacheList mCacheList;
         String mCachePath;
         Nmark mCacheMark;
+        bool mDebug;
     };
 }
 #endif

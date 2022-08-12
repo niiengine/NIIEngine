@@ -70,7 +70,7 @@ namespace NII
         /** 构造函数
         @param[in] game 默认的引擎游戏文件
         */
-        Engine(const String & game = _T("niiengine"), const String & appname = _T("Test"));
+        Engine(const String & game = _T("niiengine"), const String & pluginPath = _T("plugins"), const String & appname = _T("Test"));
 
         ~Engine();
 
@@ -303,17 +303,17 @@ namespace NII
         /** 设置输入控制管理器
         @version NIIEngine 3.0.0
         */
-        inline void setInput(ControlPatternManager * obj)           { mControlPatternManager = obj; }
+        inline void setInput(InputManager * obj)           { mControlPatternManager = obj; }
 
         /** 获取输入控制管理器
         @version NIIEngine 3.0.0
         */
-        inline ControlPatternManager * getInput() const             { return mControlPatternManager; }
+        inline InputManager * getInput() const             { return mControlPatternManager; }
 
         /** 获取输入控制项管理器
         @version NIIEngine 3.0.0
         */
-        ControlItemManager * getInputItem() const;
+        InputManager * getInputItem() const;
 
         /** 获取文理管理器
         @version NIIEngine 3.0.0
@@ -382,13 +382,13 @@ namespace NII
         /** 创建窗体
         @version NIIEngine 3.0.0
         */
-        ViewWindow * createView(const String & name, NCount width, NCount height,
+        ViewWindow * createWindow(const String & name, NCount width, NCount height,
             bool fullwin, const PropertyData * custom = 0);
 
         /** 创建多个窗体
         @version NIIEngine 3.0.0
         */
-        bool createView(const WindowDefineList & dlist, WindowList & out);
+        bool createWindow(const WindowDefineList & dlist, WindowList & out);
 
         /** 获取窗体
         @version NIIEngine 3.0.0
@@ -611,7 +611,7 @@ namespace NII
         ScriptModuleList mScriptModuleList;
 
         SpaceTypeManager * mSpaceTypeManager;
-        ControlPatternManager * mControlPatternManager;
+        InputManager * mControlPatternManager;
         ScriptHelperManager * mScriptHelperManager;
         DynamicModuleManager * mDynamicModuleManager;
         EquationManager * mEquationManager;

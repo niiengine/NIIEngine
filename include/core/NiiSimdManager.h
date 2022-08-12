@@ -65,7 +65,7 @@ namespace NII
             T_APU,
             T_ALL
         };
-        typedef map<Nui32, MemDataStream *>::type CacheList;
+        typedef map<Nui32, MemStream *>::type CacheList;
     public:
         SimdManager();
         ~SimdManager();
@@ -205,7 +205,7 @@ namespace NII
         /** 创建加速程序的二进制缓存
         @version NIIEngine 4.0.0
         */
-        MemDataStream * createCache(Nui32 cid, NCount size);
+        MemStream * createCache(Nui32 cid, NCount size);
 
         /** 删除加速程序的二进制缓存
         @version NIIEngine 4.0.0
@@ -220,7 +220,7 @@ namespace NII
         /** 获取加速程序的二进制缓存
         @version NIIEngine 4.0.0
         */
-        MemDataStream * getCache(Nui32 cid) const;
+        MemStream * getCache(Nui32 cid) const;
 
         /** 获取平台列表
         @version NIIEngine 4.0.0

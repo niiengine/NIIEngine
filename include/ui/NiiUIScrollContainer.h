@@ -28,7 +28,8 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 #define _NII_UI_ScrollContainer_H_
 
 #include "NiiUIPreInclude.h"
-#include "NiiUIContainer.h"
+#include "NiiUIScrollbar.h"
+#include "NiiUISizeContainer.h"
 
 namespace NII
 {
@@ -47,22 +48,22 @@ namespace UI
         /** 设置内容区域自动大小
         @version NIIEngine 3.0.0
         */
-        void setContentAutoSize(bool b);
+        void setContentAutoSize(bool b)                 { mContentContainer->setAutoSize(b); }
 
         /** 获取内容区域自动大小
         @version NIIEngine 3.0.0
         */
-        bool isContentAutoSize() const;
+        bool isContentAutoSize() const                  { return mContentContainer->isAutoSize(); }
 
         /** 设置内容区域大小
         @version NIIEngine 3.0.0
         */
-        void setContentArea(const Rectf & area);
+        void setContentArea(const Rectf & area)         { mContentContainer->setContentArea(area); }
 
         /** 获取内容区域大小
         @version NIIEngine 3.0.0
         */
-        const Rectf & getContentArea() const;
+        const Rectf & getContentArea() const            { return mContentContainer->getContentArea(); }
 
         /** 设置是否始终显示y轴滚动条
         @version NIIEngine 3.0.0
@@ -72,7 +73,7 @@ namespace UI
         /** 获取是否始终显示y轴滚动条
         @version NIIEngine 3.0.0
         */
-        bool isForceVScrollbar() const;
+        bool isForceVScrollbar() const                  { return mForceVScroll; }
 
         /** 设置是否始终显示x轴滚动条
         @version NIIEngine 3.0.0
@@ -82,7 +83,7 @@ namespace UI
         /** 获取是否始终显示x轴滚动条
         @version NIIEngine 3.0.0
         */
-        bool isForceHScrollbar() const;
+        bool isForceHScrollbar() const                  { return mForceHScroll; }
 
         /** 设置x轴滚动条步进
         @version NIIEngine 3.0.0
@@ -92,7 +93,7 @@ namespace UI
         /** 获取x轴滚动条步进
         @version NIIEngine 3.0.0
         */
-        NIIf getHStepSize() const;
+        NIIf getHStepSize() const                       { return mHScrollStep; }
 
         /** 设置x轴滚动条页余
         @version NIIEngine 3.0.0
@@ -102,7 +103,7 @@ namespace UI
         /** 获取x轴滚动条页余
         @version NIIEngine 3.0.0
         */
-        NIIf getHPageRemain() const;
+        NIIf getHPageRemain() const                     { return mHScrollRemain; }
 
         /** 设置y轴滚动条步进
         @version NIIEngine 3.0.0
@@ -112,7 +113,7 @@ namespace UI
         /** 设置y轴滚动条步进
         @version NIIEngine 3.0.0
         */
-        NIIf getVStepSize() const;
+        NIIf getVStepSize() const                       { return mVScrollStep; }
 
         /** 设置y轴滚动条页余
         @version NIIEngine 3.0.0
@@ -122,46 +123,76 @@ namespace UI
         /** 设置y轴滚动条页余
         @version NIIEngine 3.0.0
         */
-        NIIf getVPageRemain() const;
+        NIIf getVPageRemain() const                     { return mVScrollRemain; }
 
         /** 设置x轴滚动条位置
         @note 百分级
         @version NIIEngine 3.0.0
         */
-        void setHScrollPos(NIIf pos);
+        void setHScrollPos(NIIf pos)                    { mHScrollbar->setCurrentUnit(pos); }
 
         /** 获取x轴滚动条位置
         @note 百分级
         @version NIIEngine 3.0.0
         */
-        NIIf getHScrollPos() const;
+        NIIf getHScrollPos() const                      { return mHScrollbar->getCurrentUnit(); }
 
         /** 设置y轴滚动条位置
         @note 百分级
         @version NIIEngine 3.0.0
         */
-        void setVScrollPos(NIIf pos);
+        void setVScrollPos(NIIf pos)                    { mVScrollbar->setCurrentUnit(pos); }
 
         /** 获取y轴滚动条位置
         @note 百分级
         @version NIIEngine 3.0.0
         */
-        NIIf getVScrollPos() const;
+        NIIf getVScrollPos() const                      { return mVScrollbar->getCurrentUnit(); }
+
+        /** 设置y轴滚动条
+        @version NIIEngine 3.0.0
+        */
+        void setVScrollbarView(StyleViewID id)          { mVScrollbarView = id; }
 
         /** 获取y轴滚动条
         @version NIIEngine 3.0.0
         */
-        Scrollbar * getVScrollbar() const;
+        StyleViewID getVScrollbarView() const           { return mVScrollbarView; }
+
+        /** 设置位置指标
+        @version NIIEngine 3.0.0
+        */
+        void setHScrollView(StyleViewID id)             { mHScrollbarView = id; }
+
+        /** 获取位置指标
+        @version NIIEngine 3.0.0
+        */
+        StyleViewID getHScrollView() const              { return mHScrollbarView; }
+
+        /** 设置位置指标
+        @version NIIEngine 3.0.0
+        */
+        void setContentContainerView(StyleViewID id)    { mContentContainerView = id; }
+
+        /** 获取位置指标
+        @version NIIEngine 3.0.0
+        */
+        StyleViewID getContentContainerView() const     { return mContentContainerView; }
+
+        /** 获取y轴滚动条
+        @version NIIEngine 3.0.0
+        */
+        Scrollbar * getVScrollbar() const               { return mVScrollbar; }
 
         /** 获取x轴滚动条
         @version NIIEngine 3.0.0
         */
-        Scrollbar * getHScrollbar() const;
+        Scrollbar * getHScrollbar() const               { return mHScrollbar; }
         
         /** 获取内容容器
         @version NIIEngine 3.0.0
         */
-        SizeContainer * getContentContainer() const;
+        SizeContainer * getContentContainer() const     { return mContentContainer; }
 
         /// @copydetails Widget::destroy
         void destroy();
@@ -264,8 +295,11 @@ namespace UI
         static const EventID EventCount;
     protected:
         SizeContainer * mContentContainer;
-        Scrollbar * mXScrollbar;
-        Scrollbar * mYScrollbar;
+        Scrollbar * mHScrollbar;
+        Scrollbar * mVScrollbar;
+        StyleViewID mContentContainerView;
+        StyleViewID mHScrollbarView;
+        StyleViewID mVScrollbarView;
         Rectf mContentRect;
         NIIf mVScrollStep;
         NIIf mHScrollStep;

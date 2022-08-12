@@ -31,7 +31,7 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 #include "NiiUIPreInclude.h"
 #include "NiiCommandObj.h"
 #include "NiiUICursorEventArgs.h"
-#include "NiiRelPos.h"
+#include "NiiPlaneSize.h"
 
 using namespace NII::NII_COMMAND;
 
@@ -62,22 +62,22 @@ namespace UI
         /** 隐藏
         @version NIIEngine 3.0.0
         */
-        void hide();
+        void hide()                         { mVisible = false; }
 
         /** 显示
         @version NIIEngine 3.0.0
         */
-        void show();
+        void show()                         { mVisible = true; }
 
         /** 设置是否可见
         @version NIIEngine 3.0.0
         */
-        void setVisible(bool b);
+        void setVisible(bool b)             { mVisible = b; }
 
         /** 获取是否可见
         @version NIIEngine 3.0.0
         */
-        bool isVisible() const;
+        bool isVisible() const              { return mVisible; }
 
         /** 设置大小
         @version NIIEngine 3.0.0
@@ -87,7 +87,7 @@ namespace UI
         /** 获取大小
         @version NIIEngine 3.0.0
         */
-        const PlaneSizef & getRenderSize() const;
+        const PlaneSizef & getRenderSize() const { return mSize; }
 
         /** 设置位置
         @version NIIEngine 3.0.0
@@ -97,7 +97,7 @@ namespace UI
         /** 获取位置
         @version NIIEngine 3.0.0
         */
-        const Vector2f & getPos() const;
+        const Vector2f & getPos() const         { return mPos; }
 
         /** 设置当前图案
         @version NIIEngine 3.0.0
@@ -107,7 +107,7 @@ namespace UI
         /** 获取当前图案
         @version NIIEngine 3.0.0
         */
-        PixelBuffer * getImage() const;
+        PixelBuffer * getImage() const          { return mView; }
 
         /** 设置基础图案
         @version NIIEngine 3.0.0
@@ -117,7 +117,7 @@ namespace UI
         /** 获取基础图案
         @version NIIEngine 3.0.0
         */
-        PixelBuffer * getDefaultImage() const;
+        PixelBuffer * getDefaultImage() const   { return mNormalView; }
 
         /** 设置移动区域
         @version NIIEngine 3.0.0
@@ -137,7 +137,7 @@ namespace UI
         /** 获取移动区域
         @version NIIEngine 3.0.0
         */
-        const RelRecti & getEvnMoveArea() const;
+        const RelRecti & getEvnMoveArea() const { return mMoveArea; }
 
         /** 通知画盘大小
         @version NIIEngine 3.0.0

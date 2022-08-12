@@ -53,4 +53,7 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 #define N_XML_TAG_UIScheme                (ScriptHelperManager::UnitPropertyStart + 16)    //"UIScheme"
 #define N_XML_TAG_UIStyle                (ScriptHelperManager::UnitPropertyStart + 17)    //"UIStyle"
 
+#define N_XML_TAG_Custom                (ScriptHelperManager::UnitPropertyStart + 100000)
+#define N_XML_TAG_CustomMax             (ScriptHelperManager::UnitPropertyStart + 900000)
+
 #endif

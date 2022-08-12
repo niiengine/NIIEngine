@@ -85,9 +85,6 @@ namespace NII_COMMAND
     class _EngineInner DummyFunctor : public Functor
     {
     public:
-        DummyFunctor();
-        ~DummyFunctor();
-        
 		///@copydetails Functor::operator ==
 		bool operator ==(const Functor & o) const;
 
@@ -136,31 +133,6 @@ namespace NII_COMMAND
         Functor * mReal;
     };
 
-    typedef void(Event::*EventMethod)(const EventArgs *);
-
-    /** 普通的函数
-    @remark
-        拥有 bool 返回和 const EventArgs * 作为参数的普通函数
-    @version NIIEngine 3.0.0
-    */
-    class _EngineAPI MethodFunctor : public Functor
-    {
-    public:
-        MethodFunctor(Event * event, EventMethod m);
-
-		///@copydetails Functor::operator ==
-		bool operator ==(const Functor & o) const;
-
-        /// @copydetails Functor::execute
-        bool execute(const EventArgs * args);
-
-        /// @copydetails Funcotr::clone
-        Functor * clone() const;
-    protected:
-		Event * mObj;
-		EventMethod mMethod;
-    };
-
     /** 副本型函数
     @remark
     @note Functor 中的 clone 是为这个类而生的
@@ -182,6 +154,31 @@ namespace NII_COMMAND
         Functor * clone() const;
     private:
         Functor * mReal;
+    };
+
+    typedef void(Event::*EventMethod)(const EventArgs *);
+
+    /** 普通的函数
+    @remark
+        拥有 bool 返回和 const EventArgs * 作为参数的普通函数
+    @version NIIEngine 3.0.0
+    */
+    class _EngineAPI MethodFunctor : public Functor
+    {
+    public:
+        MethodFunctor(Event * event, EventMethod m);
+
+        ///@copydetails Functor::operator ==
+        bool operator ==(const Functor & o) const;
+
+        /// @copydetails Functor::execute
+        bool execute(const EventArgs * args);
+
+        /// @copydetails Funcotr::clone
+        Functor * clone() const;
+    protected:
+        Event * mObj;
+        EventMethod mMethod;
     };
 
     typedef void(CommandObj::*COFunc)(const EventArgs *);
@@ -249,6 +246,61 @@ namespace NII_COMMAND
 		_class * mObj;
 		void (_class::*mMethod)(const _earg *);
 	};
+
+    /// 游戏对象事件的处理函子
+    class GameObjFunctor : public Functor
+    {
+    public:
+        GameObjFunctor();
+        virtual ~GameObjFunctor();
+    };
+
+    /// 生成对象事件的处理函子,生成的对象均是接收命令的对象的类型
+    class GenerateObjFunctor : public GameObjFunctor
+    {
+    public:
+        bool operator ==(const Functor & o) const;
+
+        /// @copydetails Functor::execute
+        bool execute(const EventArgs * args);
+
+        /// @copydetails Functor::clone
+        Functor * clone() const;
+    protected:
+        void Generate(EventObj * target);
+    };
+
+    /// 删除对象事件的处理函子,删除的对象均是接收命令的对象
+    class DeleteObjFunctor : public GameObjFunctor
+    {
+    public:
+        bool operator ==(const Functor & o) const;
+
+        /// @copydetails Functor::execute
+        bool execute(const EventArgs * args);
+
+        /// @copydetails Functor::clone
+        Functor * clone() const;
+    protected:
+        void Delete(EventObj * target);
+    };
+
+    /** 调整对象事件的处理函子,调整的对象均是接收命令的对象
+    @version NIIEngine 3.0.0
+    */
+    class AdjustObjFunctor : public GameObjFunctor
+    {
+    public:
+        bool operator ==(const Functor & o) const;
+
+        /// @copydetails Functor::execute
+        bool execute(const EventArgs * args);
+
+        /// @copydetails Functor::clone
+        Functor * clone() const;
+    protected:
+        void Adjust(EventObj * target);
+    };
 }
 }
 

@@ -27,7 +27,6 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include "NiiPreInclude.h"
 #include "NiiVector3.h"
-#include "NiiMath.h"
 
 namespace NII
 {

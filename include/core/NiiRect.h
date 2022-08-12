@@ -294,7 +294,7 @@ namespace NII
             return mBottom - mTop;
         }
 
-        inline TRect<T> & offset(const Vector2<NIIf> & o)
+        inline TRect<T> & offset(const Vector2<T> & o)
         {
             mLeft += o.x;
             mTop += o.y;
@@ -336,6 +336,14 @@ namespace NII
         inline bool intersects(T x, T y) const
         {
             return x >= mLeft && x <= mRight && y >= mTop && y <= mBottom;
+        }
+
+        /** 相交
+        @version NIIEngine 3.0.0
+        */
+        inline bool intersects(const Vector2<T> & o) const
+        {
+            return o.x >= mLeft && o.x <= mRight && o.y >= mTop && o.y <= mBottom;
         }
 
         /** 交集
@@ -401,5 +409,8 @@ namespace NII
     typedef TRect<NIIf>     Rectf;
     typedef TRect<Nui32>    Recti;
     typedef TRect<NIIl>     Rectl;
+
+    typedef TRect<RelPosi>  RelRecti;
+    typedef TRect<RelPosf>  RelRectf;
 }
 #endif

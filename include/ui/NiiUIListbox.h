@@ -30,12 +30,223 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 
 #include "NiiUIPreInclude.h"
 #include "NiiUIContainer.h"
-#include "NiiUIListboxItem.h"
+#include "NiiColour.h"
+#include "NiiUIPixelUnitGrid.h"
+#include "NiiRect.h"
+#include "NiiString.h"
 
 namespace NII
 {
 namespace UI
 {
+    /**
+    @version NIIEngine 3.0.0
+    */
+    class _EngineAPI ListboxItem : public UIAlloc
+    {
+    public:
+        ListboxItem(const String & text, Nui32 id = 0, void * data = 0,
+            bool disable = false, bool autoDestroy = true);
+        virtual ~ListboxItem();
+
+        virtual bool operator< (const ListboxItem & o) const;
+
+        virtual bool operator> (const ListboxItem & o) const;
+
+        /**
+        @version NIIEngine 3.0.0
+        */
+        void setID(Nui32 id)                { mID = id; }
+
+        /**
+        @version NIIEngine 3.0.0
+        */
+        inline Nui32 getID() const          { return mID; }
+
+        /**
+        @version NIIEngine 3.0.0
+        */
+        virtual void setText(const String & text);
+
+        /**
+        @version NIIEngine 3.0.0
+        */
+        const String & getText() const      { return mRawText; }
+
+        /**
+        @version NIIEngine 3.0.0
+        */
+        const String & getVisualText() const;
+
+        /**
+        @version NIIEngine 3.0.0
+        */
+        inline void select(bool set)        { mSelect = set; }
+
+        /**
+        @version NIIEngine 3.0.0
+        */
+        inline bool isSelect() const        { return mSelect; }
+
+        /**
+        @version NIIEngine 3.0.0
+        */
+        inline void setDisable(bool set)    { mDisable = set; }
+
+        /**
+        @version NIIEngine 3.0.0
+        */
+        inline bool isDisable() const       { return mDisable; }
+
+        /**
+        @version NIIEngine 3.0.0
+        */
+        inline void setAutoDestroy(bool set) { mAutoDestroy = set; }
+
+        /**
+        @version NIIEngine 3.0.0
+        */
+        inline bool isAutoDestroy() const   { return mAutoDestroy; }
+
+        /**
+        @version NIIEngine 3.0.0
+        */
+        void setOwnerWindow(const Container * owner)            { mParent = owner; }
+
+        /**
+        @version NIIEngine 3.0.0
+        */
+        inline const Container * getOwnerWindow() const         { return mParent; }
+
+        /**
+        @version NIIEngine 3.0.0
+        */
+        inline void setSelectColour(const ColourArea & colour)  { mSelectColour = colour; }
+
+        /**
+        @version NIIEngine 3.0.0
+        */
+        inline const ColourArea & getSelectColour() const       { return mSelectColour; }
+
+        /**
+        @version NIIEngine 3.0.0
+        */
+        inline void setSelectView(const PixelBuffer * pb)       { mSelectView = pb; }
+
+        /**
+        @version NIIEngine 3.0.0
+        */
+        inline const PixelBuffer * getSelectView() const        { return mSelectView; }
+
+        /**
+        @version NIIEngine 3.0.0
+        */
+        inline void setTooltipText(const String & text)         { mTipsText = text; }
+
+        /**
+        @version NIIEngine 3.0.0
+        */
+        inline const String & getTooltipText() const            { return mTipsText; }
+
+        /**
+        @version NIIEngine 3.0.0
+        */
+        inline void setCustomData(void * data)                  { mCustomData = data; }
+
+        /**
+        @version NIIEngine 3.0.0
+        */
+        inline void * getCustomData() const                     { return mCustomData; }
+
+        /**
+        @version NIIEngine 3.0.0
+        */
+        virtual bool notifyFont(const Font * font);
+
+        /**
+        @version NIIEngine 3.0.0
+        */
+        virtual PlaneSizef getPixelSize() const = 0;
+
+        /**
+        @version NIIEngine 3.0.0
+        */
+        virtual void draw(GeometryPixel & buffer, const Rectf & rect, NIIf alpha, const Rectf * clip) const = 0;
+    protected:
+        Nui32 mID;
+        const Container * mParent;
+        String mRawText;
+        String mTipsText;
+        ColourArea mSelectColour;
+        BidiText * mBidiText;
+        void * mCustomData;
+        bool mSelect;
+        bool mDisable;
+        bool mAutoDestroy;
+        mutable bool mValidBidi;
+        const PixelBuffer * mSelectView;
+    };
+    typedef vector<ListboxItem *>::type ListboxItemList;
+
+    /**
+    @version NIIEngine 3.0.0
+    */
+    class _EngineAPI ListboxTextItem : public ListboxItem
+    {
+    public:
+        ListboxTextItem(const String & text, Nui32 id = 0, void * data = 0,
+            bool disable = false, bool autoDestroy = true);
+        virtual ~ListboxTextItem() {}
+
+        /**
+        @version NIIEngine 3.0.0
+        */
+        void setFont(Font * font);
+
+        /**
+        @version NIIEngine 3.0.0
+        */
+        Font * getFont() const;
+
+        /**
+        @version NIIEngine 3.0.0
+        */
+        void setColour(const ColourArea & cols);
+
+        /**
+        @version NIIEngine 3.0.0
+        */
+        inline ColourArea getColour() const                     { return mColour; }
+
+        /**
+        @version NIIEngine 3.0.0
+        */
+        void setTextLayout(bool enable);
+
+        /**
+        @version NIIEngine 3.0.0
+        */
+        inline bool isTextLayout() const                        { return mTextLayout; }
+
+        /// @copydetails Widget::setText
+        void setText(const String & text);
+
+        /// @copydetails
+        bool notifyFont(const Font * font);
+
+        /// @copydetails
+        PlaneSizef getPixelSize(void) const;
+
+        /// @copydetails
+        void draw(GeometryPixel & buffer, const Rectf & rect, NIIf alpha, const Rectf * clip) const;
+    protected:
+        Font * mFont;
+        ColourArea mColour;
+        mutable PixelUnitGrid mPixelGrid;
+        mutable bool mGridValid;
+        bool mTextLayout;
+    };
+
     /**
     @version NIIEngine 3.0.0
     */
@@ -71,7 +282,7 @@ namespace UI
         /** 
         @version NIIEngine 3.0.0
         */
-        inline NCount getItemCount() const {return mItemList.size();}
+        inline NCount getItemCount() const                      {return mItemList.size();}
 
         /** 
         @version NIIEngine 3.0.0
@@ -375,6 +586,82 @@ namespace UI
         void fit(bool width, bool height) const;
     protected:
         Rectf getRenderArea(bool hscroll, bool vscroll) const;
+    };
+
+    /**
+    @version NIIEngine 3.0.0
+    */
+    class _EngineAPI ComboDropList : public Listbox
+    {
+    public:
+        ComboDropList(WidgetID wid, FactoryID fid, Container * own, const String & name = N_StrBlank,
+            LangID lid = N_PrimaryLang);
+
+        virtual ~ComboDropList();
+
+        /**
+        @version NIIEngine 3.0.0
+        */
+        inline void setAutoDropDown(bool b) { mAutoDropDown = b; }
+
+        /**
+        @version NIIEngine 3.0.0
+        */
+        inline bool isAutoDropDown() const { return mAutoDropDown; }
+
+        /**
+        @version NIIEngine 3.0.0
+        */
+        inline void setDropDown(bool b) { mDropDown = b; }
+
+        /**
+        @version NIIEngine 3.0.0
+        */
+        inline bool isDropDown() const { return mDropDown; }
+
+        /**
+        @version NIIEngine 3.0.0
+        */
+        void fit(bool width, bool height);
+    protected:
+        /// @copydetails ListBox::initChild
+        virtual void initChild();
+    public:
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID SelectAcceptEvent;
+
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static const EventID EventCount;
+    protected:
+        /// @copydetails Widget::onCursorMove
+        virtual void onCursorMove(const CursorEventArgs * arg);
+
+        /// @copydetails Widget::onButtonDown
+        virtual void onButtonDown(const CursorEventArgs * arg);
+
+        /// @copydetails Widget::onButtonUp
+        virtual void onButtonUp(const CursorEventArgs * arg);
+
+        /// @copydetails Widget::onLost
+        virtual void onLost(const WidgetEventArgs * arg);
+
+        /// @copydetails Widget::onActivate
+        virtual void onActivate(const ActivationEventArgs * arg);
+
+        /// @copydetails Listbox::onSelect
+        virtual void onSelect(const WidgetEventArgs * arg);
+
+        virtual void onItemList(const WidgetEventArgs * arg);
+
+        virtual void onSelectAccept(const WidgetEventArgs * arg);
+    protected:
+        ListboxItem * mSelectAccept;
+        bool mAutoDropDown;
+        bool mDropDown;
     };
 }
 }

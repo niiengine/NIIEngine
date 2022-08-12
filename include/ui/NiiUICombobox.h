@@ -29,7 +29,7 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 
 #include "NiiUIPreInclude.h"
 #include "NiiUIEditbox.h"
-#include "NiiUIComboDropList.h"
+#include "NiiUIListbox.h"
 #include "NiiRegexManager.h"
 
 namespace NII

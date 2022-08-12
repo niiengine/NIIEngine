@@ -29,7 +29,7 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 #define _NII_SHADERCH_TEXTURE_H_
 
 #include "NiiPreInclude.h"
-#include "NiiTexture.h"
+#include "NiiGpuProgram.h"
 #include "NiiMatrix4.h"
 #include "NiiColour.h"
 
@@ -176,7 +176,7 @@ namespace NII
         
         bool operator==(const TextureBlend & o) const;
 
-        inline bool operator!=(const TextureBlend & o) const   { return !(*this == o); }
+        bool operator!=(const TextureBlend & o) const;
 
         /** 纹理颜色混合模式
         @note 可编程管线中无效
@@ -292,13 +292,13 @@ namespace NII
         void setConstant2(const Colour & c2)            { mConstant2 = c2; }
 
         /** 设置常量第一操作数
-        @note TextureBlendSource 为 TBS_CONSTANT 和 TextureColourType 为 TCT_RGB 时使用
+        @note TextureBlendSource 为 TBS_CONSTANT 和 TextureColourType 为 TCT_AAA 时使用
         @version NIIEngine 3.0.0
         */
         void setConstant1(NIIf f1)                      { mConstant1.a = f1; }
 
         /** 设置常量第一操作数
-        @note TextureBlendSource 为 TBS_CONSTANT 和 TextureColourType 为 TCT_RGB 时使用
+        @note TextureBlendSource 为 TBS_CONSTANT 和 TextureColourType 为 TCT_AAA 时使用
         @version NIIEngine 3.0.0
         */
         void setConstant2(NIIf f2)                      { mConstant2.a = f2; }
@@ -331,12 +331,15 @@ namespace NII
         virtual ~TextureSampleUnit();
 
         TextureSampleUnit & operator =(const TextureSampleUnit & o);
+        bool operator !=(const TextureSampleUnit & o) const;
+        bool operator ==(const TextureSampleUnit & o) const;
+        bool operator <(const TextureSampleUnit & o) const;
 
         /** 设置寻址模式
         @note 默认是 TAM_REPEAT,在可编程管线或固定管线中有效
         @version NIIEngine 3.0.0
         */
-        inline void setMode(const TextureAddressing & uvw) { mAddressMode = uvw; }
+        inline void setMode(const TextureAddressing & uvw)  { mAddressMode = uvw; }
 
         /** 设置寻址模式
         @note 默认是 TAM_REPEAT,在可编程管线或固定管线中有效
@@ -468,43 +471,67 @@ namespace NII
     {
         friend ShaderChTextureUnit;
     public:
+        typedef vector<TextureSampleUnit *>::type SetList;
+        typedef map<VString, TextureSampleUnit>::type UnitList;
+    public:
         TextureSample();
         virtual ~TextureSample();
         
-        /**
+        TextureSample & operator = (const TextureSample & o) const;
+        
+        bool operator == (const TextureSample & o) const;
+        
+        bool operator != (const TextureSample & o) const;
+        
+        bool operator < (const TextureSample & o) const;
+        
+        /** 添加
         @version NIIEngine 3.0.0
         */
-        void add(const VString & name, TextureSampleUnit * unit);
+        void add(const VString & name, const TextureSampleUnit & unit);
         
-        /**
+        /** 移去
         @version NIIEngine 3.0.0
         */
         void remove(const VString & name);
         
-        /**
+        /** 设置
         @version NIIEngine 3.0.0
         */
         void set(Nidx slot, const VString & name);
         
-        /**
+        /** 获取
         @version NIIEngine 3.0.0
         */
-        TextureSampleUnit * get(VString name) const;
+        TextureSampleUnit * get(const VString & name) const;
         
-        /**
+        /** 获取
         @version NIIEngine 3.0.0
         */
         TextureSampleUnit * get(Nidx slot) const;
-    protected:
-        typedef map<VString, TextureSampleUnit *>::type UnitList;
-        typedef map<Nidx, TextureSampleUnit *>::type SetList;
+        
+        /** 获取列表
+        @version NIIEngine 3.0.0
+        */
+        const SetList & getList() const                                     { return mSetList; }
 
+        /** 设置使用数量
+        @version NIIEngine 3.0.0
+        */
+        void setUsedCount(GpuProgram::ShaderType type, NCountb cnt) const   { N_assert1(type < GpuProgram::ST_Cnt); return mUsed[type] = cnt; }
+        
+        /** 获取使用数量
+        @version NIIEngine 3.0.0
+        */
+        NCountb getUsedCount(GpuProgram::ShaderType type) const             { N_assert1(type < GpuProgram::ST_Cnt); return mUsed[type]; }
+    protected:
         UnitList mUnitList;
         SetList mSetList;
+        NCountb mUsed[GpuProgram::ST_Cnt];
     };
     
     /** 纹理数据检索类型
-    @remark 如果纹理保存的并非像素,而是其他顶点使用的信息
+    @remark 如果纹理保存的并非像素,而是其他着色程序使用的信息
     @version NIIEngine 3.0.0 高级api
     */
     enum TextureDataFetch
@@ -533,187 +560,9 @@ namespace NII
         TCP_Count               = 6,    ///< 尽量使用现有的,因为被底层API约束,内部其实还有个距阵系数
     };
 
-    /** 应用纹理
-    @remark
-        具体的使用和对象本身有关系,纹理的通用性并不强,和网格顶点/纹理坐标有直接有关
-    @note 每种类型支持255个纹理,不能超出. 性质特殊,不能在任意渲染通路中切换
-    @version NIIEngine 3.0.0
-    */
-    class _EngineAPI ShaderChTexture : public ShaderAlloc
-    {
-        friend class ShaderCh;
-    public:
-        /** 纹理单元内容类型
-        @version NIIEngine 3.0.0
-        */
-        enum Type
-        {
-            T_NORMAL = 0,       ///< 普通定义纹理(自动)
-            T_PHOTO = 1,        ///< 物体相片,类speedtree的远处树/广告牌(远处的东西本来就是模糊的)
-            T_SHADOW = 2,       ///< 阴影纹理(纹理阴影技术用)
-            T_INV_PHOTO = 3,    ///< 镜子/水倒影相片(renderFrameObject)
-            T_FUSION = 4,       ///< 帧合成
-            T_HALO = 5,         ///< 光晕
-            T_NORMALSMAP = 6,   ///< 法线纹理
-            T_HIGHLIGHT = 7,    ///< 高光相片(放射性光体除了用片段着色程序,也可以用图片模拟)
-            T_Count = 8         ///< 类型总数
-        };
-
-        typedef vector<ShaderChTextureUnit *>::type Textures;
-    public:
-        ShaderChTexture(ShaderCh * ch);
-        ShaderChTexture(ShaderCh * ch, const ShaderChTexture & o);
-        ~ShaderChTexture();
-
-        ShaderChTexture & operator =(const ShaderChTexture & o);
-
-        /** 局部化多线程
-        @see Resource::plan
-        @version NIIEngine 3.0.0
-        */
-        void plan();
-
-        /** 局部化多线程
-        @see Resource::unplan
-        @version NIIEngine 3.0.0
-        */
-        void unplan();
-
-        /** 局部化多线程
-        @see Resource::load
-        @version NIIEngine 3.0.0
-        */
-        void load();
-
-        /** 局部化多线程
-        @see Resource::unload
-        @version NIIEngine 3.0.0
-        */
-        void unload();
-
-        /** 设置每个纹理单元的纹理过滤
-        @param[in] mode 过滤组合模式
-        @version NIIEngine 3.0.0
-        */
-        void setFilterMode(TextureFilterMode mode);
-
-        /** 设置所有纹理使用的各向异性等级
-        @param[in] value 值
-        @version NIIEngine 3.0.0
-        */
-        void setAnisotropy(Nui32 value);
-
-        /** 创建一个应用纹理
-        @param[in] type 纹理类型
-        @version NIIEngine 3.0.0
-        */
-        ShaderChTextureUnit * create(Type type = T_NORMAL);
-
-        /** 创建一个应用纹理
-        @param[in] rid 资源ID(应用程序中唯一)
-        @param[in] slot
-            纹理套口,基本渲染系统一般支持同一时刻渲染多个纹理,默认只有一个,所以默认为0,
-            此处的纹理套口并不是直接能设置 Type 的所有类型, Type 的意义并不和纹理套口
-            相同
-        @param[in] type 纹理类型
-        @version NIIEngine 3.0.0
-        */
-        ShaderChTextureUnit * create(ResourceID rid, Nidx slot = 0, Type type = T_NORMAL);
-
-        /** 创建一个应用纹理
-        @param[in] tex 纹理对象
-        @param[in] slot
-            纹理套口,基本渲染系统一般支持同一时刻渲染多个纹理,默认只有一个,所以默认为0,
-            此处的纹理套口并不是直接能设置 Type 的所有类型, Type 的意义并不和纹理套口
-            相同
-        @param[in] type 纹理类型
-        @version NIIEngine 3.0.0
-        */
-        ShaderChTextureUnit * create(const Texture * tex, Nidx slot = 0, Type type = T_NORMAL);
-
-        /** 添加的应用纹理单元
-        @param[in] unit
-        @version NIIEngine 3.0.0
-        */
-        void add(ShaderChTextureUnit * unit);
-
-        /** 获取应用纹理单元
-        @param[in] index
-        @version NIIEngine 3.0.0
-        */
-        ShaderChTextureUnit * get(Nidx index) const;
-
-        /** 获取应用纹理
-        @param[in] name 纹理单元名字
-        @version NIIEngine 3.0.0
-        */
-        ShaderChTextureUnit * get(const String & name) const;
-
-        /** 获取类型第N个纹理.
-        @param[in] type 类型
-        @param[in] index 索引
-        @version NIIEngine 3.0.0
-        */
-        ShaderChTextureUnit * get(Type type, Nidx index) const;
-
-        /** 获取内容类型纹理迭代
-        @version NIIEngine 3.0.0 高级api
-        */
-        ShaderChTextureUnit * get(Type type, Textures::const_iterator & begin, Textures::const_iterator & end) const;
-
-        /** 移动应用纹理到另一个应用纹理中
-        @remark Type([begin, end])的纹理移动到参数o中
-        @param[in] type 类型
-        @param[in] begin 开始索引
-        @param[in] end 结束索引
-        @param[in] o 另一个应用纹理集
-        @note 这里指的是剪切粘贴,并非复制
-        @version NIIEngine 3.0.0 高级api
-        */
-        void move(Type type, Nidx begin, Nidx end, ShaderChTexture * o);
-
-        /** 移去应用纹理
-        @param[in] index
-        @version NIIEngine 3.0.0
-        */
-        void remove(Nidx index);
-
-        /** 移去应用纹理
-        @param[in] type
-        @param[in] index
-        @version NIIEngine 3.0.0
-        */
-        void remove(Type type, Nidx index);
-
-        /** 移去所有应用纹理
-        @version NIIEngine 3.0.0
-        */
-        void removeAll();
-
-        /** 指定类型纹理数量
-        @version NIIEngine 3.0.0
-        */
-        NCount getCount(Type type) const            { return mMark[type]; }
-
-        /** 应用纹理数量
-        @remark 含概所有类型
-        @version NIIEngine 3.0.0
-        */
-        NCount getCount() const                     { return mTextures.size(); }
-
-        /** 获取应用纹理列表
-        @remark 这个函数会直接影响整个应用纹理,注意操作限制
-        @version NIIEngien 3.0.0 高级api
-        */
-        const Textures & getTextures() const        { return mTextures; }
-    protected:
-        ShaderChTexture();
-    private:
-        ShaderCh * mParent;
-        Textures mTextures;
-        Nui8 mMark[T_Count];
-    };
-
+    class ShaderChTexture;
+    typedef vector<ShaderChTexture *>::type ShaderChTextureList;
+    
     /** 基本纹理单元
     @remark
         和Texture类不同,这个类有基础状态.涉及到纹理距阵/环境映射的在可编程管线中没有效果
@@ -723,6 +572,23 @@ namespace NII
     {
         friend class RenderSys;
     public:
+        /** 纹理单元应用类型
+        @remark 内置着色程序自动处理
+        @version NIIEngine 3.0.0
+        */
+        enum Type
+        {
+            T_NORMAL = 0,       ///< 普通定义纹理/缓存(默认)
+            T_PHOTO = 1,        ///< 物体相片,类speedtree的远处树/广告牌(远处的东西本来就是模糊的)
+            T_SHADOW = 2,       ///< 阴影纹理(纹理阴影技术用)
+            T_INV_PHOTO = 3,    ///< 镜子/水倒影相片(renderFrameObject)
+            T_FUSION = 4,       ///< 帧合成
+            T_HALO = 5,         ///< 光晕
+            T_NORMALSMAP = 6,   ///< 法线纹理
+            T_HIGHLIGHT = 7,    ///< 高光相片(放射性光体除了用片段着色程序,也可以用图片模拟)
+            T_Count = 8         ///< 类型总数
+        };
+    
         /** 环境映射模式
         @version NIIEngine 3.0.0
         */
@@ -762,18 +628,40 @@ namespace NII
             DataEquation<TimeDurMS, NIIf> * mTimer; ///< 帧控制器
         };
         typedef multimap<TextureTransformType, TextureEffect>::type EffectMap;
+        
+        struct TextureView
+        {
+            NCount mMipmap;
+            NCount mMipmapCount;
+            NCount mLayer;
+            NCount mLayerCount;
+            PixelFormat mPixelFormat;
+            bool mAs2DArray;
+        };
+        
+        struct BufferData
+        {
+            TextureBuffer * mBuffer;
+            NCount mOffet;
+            NCount mCount;
+        };
     public:
-        ShaderChTextureUnit(ShaderCh * ch);
-        ShaderChTextureUnit(ShaderCh * ch, ResourceID rid);
-        ShaderChTextureUnit(ShaderCh * ch, const ShaderChTextureUnit & o);
+        ShaderChTextureUnit();
+        ShaderChTextureUnit(ResourceID rid);
+        ShaderChTextureUnit(const ShaderChTextureUnit & o);
         virtual ~ShaderChTextureUnit();
 
         ShaderChTextureUnit & operator = (const ShaderChTextureUnit & o);
-
-        /** 获取通道
+        
+        /** 设置资源组
         @version NIIEngine 3.0.0
         */
-        ShaderCh * getParent() const                    {return mParent; }
+        void setResourceGroup(GroupID gid)              { mResGroupID = gid; }
+        
+        /** 获取资源组
+        @version NIIEngine 3.0.0
+        */
+        GroupID getResourceGroup() const                { return mResGroupID; }
 
         /** 设置纹理单元的名字
         @remark 辅助设置
@@ -791,19 +679,19 @@ namespace NII
         @note T_CUBE 纹理需要设置 setEnvMap(true) 和 setEnvMapType(ENM_Sphere).
         @version NIIEngine 3.0.0
         */
-        void setSrc(const ResourceIDList & rid, Texture::Type type, ShaderChTexture::Type ctype = ShaderChTexture::T_NORMAL);
+        void setSrc(const ResourceIDList & rid, Texture::Type type, Type ctype = T_NORMAL);
 
         /** 设置来源
         @note T_CUBE 纹理需要设置 setEnvMap(true) 和 setEnvMapType(ENM_Sphere).
         @version NIIEngine 3.0.0
         */
-        void setSrc(ResourceID rid, const StringList & src, Texture::Type type, ShaderChTexture::Type ctype = ShaderChTexture::T_NORMAL);
+        void setSrc(ResourceID rid, const StringList & src, Texture::Type type, Type ctype = T_NORMAL);
 
         /** 设置来源
         @note T_CUBE 纹理需要设置 setEnvMap(true) 和 setEnvMapType(ENM_Sphere).
         @version NIIEngine 3.0.0
         */
-        void setSrc(const Texture * tex, Texture::Type type, ShaderChTexture::Type ctype = ShaderChTexture::T_NORMAL);
+        void setSrc(const Texture * tex, Texture::Type type, Type ctype = T_NORMAL);
 
         /** 设置合成
         @param[in] framefusion 帧合成
@@ -905,6 +793,16 @@ namespace NII
         @version NIIEngine 3.0.0
         */
         TimeDurMS getAniTime() const                        { return mAnimDuration; }
+        
+        /** 设置是否自动加载
+        @version NIIEngine 3.0.0
+        */
+        void setAutoLoad(bool set);
+        
+        /** 设置是否自动加载
+        @version NIIEngine 3.0.0
+        */
+        bool isAutoLoad() const;
 
         /** 设置环境映射
         @note 在可编程管线中没有效果
@@ -973,7 +871,6 @@ namespace NII
 
         /** 设置关联一个帧的纹理名字
         @param[in] name 纹理名字
-        @param[in] frame The frame the texture name is to be placed in
         @note 固定管线和可编程管线中有效果
         @version NIIEngine 3.0.0
         */
@@ -1031,12 +928,12 @@ namespace NII
         @remark
         @version NIIEngine 3.0.0
         */
-        void setContentType(ShaderChTexture::Type type);
+        void setContentType(Type type);
 
         /** 获取内容的类型
         @version NIIEngine 3.0.0
         */
-        ShaderChTexture::Type getContentType() const{ return mContentType; }
+        Type getContentType() const                 { return mContentType; }
 
         /** 获取是否由6个面元组成
         @note 固定管线和可编程管线中都有效
@@ -1092,12 +989,12 @@ namespace NII
         /** 设置(纹理集)中的索引
         @version NIIEngine 3.0.0 高级api
         */
-        void setLocalIndex(Nidx16 index)            { mLocalIndex = index; }
+        void setLocalIndex(ShaderChTexture * sct, Nidx16 index);
 
         /** 获取(纹理集)中的索引
         @version NIIEngine 3.0.0 高级api
         */
-        Nidx16 getLocalIndex() const                { return mLocalIndex; }
+        Nidx16 getLocalIndex(ShaderChTexture * sct) const;
 
         /** 设置复合中的索引
         @version NIIEngine 3.0.0 高级api
@@ -1183,12 +1080,12 @@ namespace NII
         /** 获取多纹理颜色混合
         @version NIIEngine 3.0.0 高级api
         */
-        inline TextureBlend * getColourBlend() const    { return const_cast<TextureBlend *>(&mColourBlend); }
+        inline TextureBlend * getColourBlend() const        { return const_cast<TextureBlend *>(&mColourBlend); }
 
         /** 获取多纹理透明度混合
         @version NIIEngine 3.0.0 高级api
         */
-        inline TextureBlend * getAlphaBlend() const     { return const_cast<TextureBlend *>(&mAlphaBlend); }
+        inline TextureBlend * getAlphaBlend() const         { return const_cast<TextureBlend *>(&mAlphaBlend); }
 
         /** 获取纹理样本模式
         @version NIIEngien 3.0.0 高级api
@@ -1200,10 +1097,15 @@ namespace NII
         */
         void notify();
 
-        /** 主对象改变了
+        /** 添加引用
         @version NIIEngine 3.0.0
         */
-        void notify(ShaderCh * ch);
+        void addRef(const ShaderChTexture * sct);
+        
+        /** 移去引用
+        @version NIIEngine 3.0.0
+        */
+        void removeRef(const ShaderChTexture * sct);
 
         /** 进入加载策略
         @version NIIEngine 3.0.0 高级api
@@ -1224,6 +1126,23 @@ namespace NII
         @version NIIEngine 3.0.0 高级api
         */
         virtual void unload();
+        
+        /** 正式引用
+        @remark 引用数量为0,如果是设置为自动删除,这个缓存将被销毁
+        @version NIIEngine 3.0.0
+        */
+        NCount touch();
+
+        /** 解除引用
+        @remark 引用数量为0,如果是设置为自动删除,这个缓存将被销毁
+        @version NIIEngine 3.0.0
+        */
+        NCount untouch();
+
+        /** 获取引用数量
+        @version NIIEngine 3.0.0
+        */
+        inline NCount getRefCount()                 { return mRefCount;  }
 
         /** 是否已经加载
         @version NIIEngien 3.0.0
@@ -1247,15 +1166,19 @@ namespace NII
         /// 回收加载的资源
         void recover();
     protected:
-        ShaderCh * mParent;
-        DataEquation<TimeDurMS, NIIf> * mTimeFunc;
+        typedef map<ShaderChTexture *, Nidx16>::type LocalIndex;
+    protected:
         String mName;
+        ShaderChTextureList mApplyList;
+        LocalIndex mLocalIndexList;
+        DataEquation<TimeDurMS, NIIf> * mTimeFunc;
+        GroupID mResGroupID;
+        Texture::Type mTextureType;         ///< 纹理类型
+        Type mContentType;                  ///< 纹理内容类型
         ResourceID mFrameFusion;            ///< 帧合成
         String mFusionTex;                  ///< 合成纹理
         TimeDurMS mAnimDuration;            ///< 动画长度(单位:毫秒)
-        Texture::Type mTextureType;         ///< 纹理类型
         NCount mCurrentFrame;               ///< 当前动画帧
-        ShaderChTexture::Type mContentType; ///< 纹理内容类型
         TextureDataFetch mFetchType;        ///< 数据检索模式
         TextureAddressing mAddressMode;     ///< 纹理地址模式
         EnvMapMode mEnvMapType;             ///< 环境映射类型
@@ -1264,11 +1187,11 @@ namespace NII
         NIIi mMipmapCount;                  ///< 层次数量
         EffectMap mEffects;
         Nidx16 mCoordSet;
-        Nidx16 mLocalIndex;
         Nidx16 mMultiIndex;
         TextureSampleUnit mSample;
         TextureBlend mColourBlend;
         TextureBlend mAlphaBlend;
+        NCount mRefCount;
 
         NIIf mUOft, mVOft, mUScale, mVScale;
         Radian mRotate;
@@ -1276,6 +1199,482 @@ namespace NII
         ResourceIDList mTexIDList;
         mutable TextureList mTextures;
         mutable Nmark mMark;
+    };
+        
+    /** 应用纹理
+    @remark
+        具体的使用和对象本身有关系,纹理的通用性并不强,和网格顶点/纹理坐标有直接有关
+    @note 16个绑定口
+    @version NIIEngine 3.0.0
+    */
+    class _EngineAPI ShaderChTexture : public ShaderAlloc
+    {
+        friend class ShaderCh;
+    public:
+        /** 纹理单元内容类型
+        @version NIIEngine 5.0.0
+        */
+        enum SamplerType
+        {
+            ST_Buffer,
+            ST_Texture
+        };
+
+        /** 缓存槽
+        @version NIIEngine 5.0.0
+        */
+        struct BufferParam
+        {
+            BufferParam()            { memset(this, 0, sizeof(BufferParam)); }
+
+            BufferParam(TextureBuffer * buf, NCount oft, NCount size) : mBuffer(buf), mOffset(oft), mSize(size)
+            {
+                if(mBuffer)
+                    mBuffer->touch();
+            }
+            
+            ~BufferParam()
+            {
+                if(mBuffer)
+                {
+                    mBuffer->untouch();
+                    mBuffer = 0;
+                }
+            }
+            
+            void setBuffer(TextureBuffer * buf)         
+            {
+                if(mBuffer)
+                    mBuffer->untouch();
+                mBuffer = buf;
+                if(mBuffer)
+                    mBuffer->touch();
+            }
+            
+            TextureBuffer * getBuffer() const           { return mBuffer; }
+            
+            BufferParam & operator =(const BufferParam & o)
+            {
+                if(mBuffer)
+                    mBuffer->untouch();
+                mBuffer = o.mBuffer;
+                if(mBuffer)
+                    mBuffer->touch();
+                mOffset = o.mOffset;
+                mSize = o.mSize;
+                return *this;
+            }
+            
+            bool operator == (const BufferParam & o) const
+            {
+                return mBuffer == o.mBuffer && mOffset == o.mOffset && mSize == o.mSize;
+            }
+            
+            bool operator != (const BufferParam & o) const
+            {
+                return mBuffer != o.mBuffer || mOffset != o.mOffset || mSize != o.mSize;
+            }
+
+            bool operator < (const BufferParam & o) const
+            {
+                if(mBuffer != o.mBuffer)
+                    return mBuffer < o.mBuffer;
+                if(mOffset != o.mOffset)
+                    return mOffset < o.mOffset;
+                if(mSize != o.mSize)
+                    return mSize < o.mSize;
+
+                return false;
+            }
+        protected:
+            TextureBuffer * mBuffer;
+        public:
+            NCount mOffset;
+            NCount mSize;
+        };
+
+        /** 纹理槽
+        @version NIIEngine 5.0.0
+        */
+        struct TextureParam
+        {
+            TextureParam()           { memset(this, 0, sizeof(TextureParam)); }
+            
+            TextureParam(ShaderChTextureUnit * buf, PixelFormat pf, Nui16 mipmaps, Nui16 arrayidx, Nui16 mipmaps, bool force2d) :
+                mTexture(buf), mFormat(pf), mMipmapCount(mipmaps), mArrayIndex(arrayidx), mMipmap(mipmaps), mForce2DArray(force2d)
+            {
+                if(mTexture)
+                    mTexture->touch();
+            }
+            
+            ~TextureParam()
+            {
+                if(mTexture)
+                {
+                    mTexture->untouch();
+                    mTexture = 0;
+                }
+            }
+            
+            void setBuffer(ShaderChTextureUnit * buf)         
+            {
+                if(mTexture)
+                    mTexture->untouch();
+                mTexture = buf;
+                if(mTexture)
+                    mTexture->touch();
+            }
+            
+            ShaderChTextureUnit * getBuffer() const           { return mTexture; }
+            
+            TextureParam & operator =(const TextureParam & o)
+            {
+                if(mTexture)
+                    mTexture->untouch();
+                mTexture = o.mTexture;
+                if(mTexture)
+                    mTexture->touch();
+                mFormat = o.mFormat;
+                mMipmapCount = o.mMipmapCount;
+                mArrayIndex = o.mArrayIndex;
+                mForce2DArray = o.mForce2DArray;
+                mMipmap = o.mMipmap;
+                return *this;
+            }
+            
+            bool operator == (const TextureParam & o) const
+            {
+                return mTexture == o.mTexture && mMipmap == o.mMipmap && mMipmapCount == o.mMipmapCount &&
+                    mArrayIndex == o.mArrayIndex && mFormat == o.mFormat;
+            }
+
+            bool operator != (const TextureParam & o) const
+            {
+                return mTexture != o.mTexture || mMipmap != o.mMipmap || mMipmapCount != o.mMipmapCount || 
+                    mArrayIndex != o.mArrayIndex || mFormat != o.mFormat;
+            }
+
+            bool operator < (const TextureParam & o) const
+            {
+                if(mTexture != o.mTexture)
+                    return mTexture < o.mTexture;
+                if(mMipmap != o.mMipmap)
+                    return mMipmap < o.mMipmap;
+                if(mMipmapCount != o.mMipmapCount)
+                    return mMipmapCount < o.mMipmapCount;
+                if(mArrayIndex != o.mArrayIndex)
+                    return mArrayIndex < o.mArrayIndex;
+                if(mFormat != o.mFormat)
+                    return mFormat < o.mFormat;
+
+                return false;
+            }
+
+            bool isSuitableView() const
+            {
+                return mFormat == mTexture->getFormat() && mMipmap == 0 && mArrayIndex == 0 && mMipmapCount == 0 &&
+                    !(mForce2DArray && (mTexture->getType() == Texture::T_CUBE || mTexture->getType() == Texture::T_CUBEArray));
+            }
+            
+            ShaderChTextureUnit * mTexture;
+            PixelFormat mFormat;
+            Nui16 mMipmapCount;
+            Nui16 mArrayIndex;
+            Nui8 mMipmap;
+            Nui8 mForce2DArray;
+        };
+
+        struct Slot
+        {
+        public:
+            Slot() : mPType(ST_Buffer)
+            {
+                memset(this, 0, sizeof(Slot));
+            }
+
+            Slot(SamplerType type) : mPType(type)
+            {
+                memset(this, 0, sizeof(Slot));
+            }
+            
+            void operator =(const Slot & o)
+            {
+                mPType = o.mPType;
+                if(mPType == ST_Buffer)
+                {
+                    return mBuffer = o.mBuffer;
+                }
+                else
+                {
+                    return mTexture = o.mTexture;
+                }
+            }
+
+            bool empty() const
+            {
+                return mBuffer.mBuffer != 0 || mTexture.mTexture != 0;
+            }
+
+            bool isBuffer() const
+            {
+                return mPType == ST_Buffer;
+            }
+            
+            bool isTexture() const
+            {
+                return mPType == ST_Texture;
+            }
+
+            BufferParam & getBuffer()
+            {
+                N_assert1(mPType == ST_Buffer);
+                return mBuffer;
+            }
+
+            const BufferParam & getBuffer() const
+            {
+                N_assert1(mPType == ST_Buffer);
+                return mBuffer;
+            }
+
+            TextureParam & getTexture()
+            {
+                N_assert1(mPType == ST_Texture);
+                return mTexture;
+            }
+
+            const TextureParam & getTexture() const
+            {
+                N_assert1(mPType == ST_Texture);
+                return mTexture;
+            }
+
+            bool operator == (const Slot & o) const
+            {
+                if(mPType == o.mPType)
+                {
+                    if(mPType == ST_Buffer)
+                    {
+                        return mBuffer == o.mBuffer;
+                    }
+                    else
+                    {
+                        return mTexture == o.mTexture;
+                    }
+                }
+                return false;
+            }
+            
+            bool operator != (const Slot & o) const
+            {
+                if(mPType == o.mPType)
+                {
+                    if(mPType == ST_Buffer)
+                    {
+                        return mBuffer != o.mBuffer;
+                    }
+                    else
+                    {
+                        return mTexture != o.mTexture;
+                    }
+                }
+                return true;
+            }
+
+            bool operator < (const Slot & o) const
+            {
+                if(mPType != o.mPType)
+                    return mPType < o.mPType;
+
+                if(mPType == ST_Buffer)
+                {
+                    return mBuffer < o.mBuffer;
+                }
+                else
+                {
+                    return mTexture < o.mTexture;
+                }
+            }
+        protected:
+            SamplerType mPType;
+            union
+            {
+                BufferParam  mBuffer;
+                TextureParam mTexture;
+            };
+        };
+        
+        typedef vector<Slot>::type SlotList;
+    public:
+        ShaderChTexture();
+        ShaderChTexture(const ShaderChTexture & o);
+        ~ShaderChTexture();
+
+        ShaderChTexture & operator =(const ShaderChTexture & o);
+        
+        bool operator == (const ShaderChTexture & o) const;
+        
+        bool operator != (const ShaderChTexture & o) const;
+
+        bool operator < (const ShaderChTexture & o) const;
+        
+        /** 状态/性质变化了
+        @version NIIEngine 3.0.0
+        */
+        void notify();
+        
+        /** 添加引用
+        @version NIIEngine 3.0.0
+        */
+        void addRef(const ShaderCh * sch);
+        
+        /** 移去引用
+        @version NIIEngine 3.0.0
+        */
+        void removeRef(const ShaderCh * sch);
+
+        /** 局部化多线程
+        @see Resource::plan
+        @version NIIEngine 3.0.0
+        */
+        void plan();
+
+        /** 局部化多线程
+        @see Resource::unplan
+        @version NIIEngine 3.0.0
+        */
+        void unplan();
+
+        /** 局部化多线程
+        @see Resource::load
+        @version NIIEngine 3.0.0
+        */
+        void load();
+
+        /** 局部化多线程
+        @see Resource::unload
+        @version NIIEngine 3.0.0
+        */
+        void unload();
+        
+        /** 状态/性质变化了
+        @version NIIEngine 3.0.0
+        */
+        void notify();
+
+        /** 设置每个纹理单元的纹理过滤
+        @param[in] mode 过滤组合模式
+        @version NIIEngine 3.0.0
+        */
+        void setFilterMode(TextureFilterMode mode);
+
+        /** 设置所有纹理使用的各向异性等级
+        @param[in] value 值
+        @version NIIEngine 3.0.0
+        */
+        void setAnisotropy(Nui32 value);
+
+        /** 创建一个应用纹理
+        @param[in] type 纹理类型
+        @version NIIEngine 3.0.0
+        */
+        ShaderChTextureUnit * create(GpuProgram::ShaderType type, Type type = T_NORMAL);
+
+        /** 创建一个应用纹理
+        @param[in] rid 资源ID(应用程序中唯一)
+        @param[in] slot
+            纹理套口,基本渲染系统一般支持同一时刻渲染多个纹理,默认只有一个,所以默认为0,
+            此处的纹理套口并不是直接能设置 Type 的所有类型, Type 的意义并不和纹理套口
+            相同
+        @param[in] type 纹理类型
+        @version NIIEngine 3.0.0
+        */
+        ShaderChTextureUnit * create(ResourceID rid, GpuProgram::ShaderType type, Nidx slot = 0, GpuProgram::ShaderType type, Type type = T_NORMAL);
+
+        /** 创建一个应用纹理
+        @param[in] tex 纹理对象
+        @param[in] slot
+            纹理套口,基本渲染系统一般支持同一时刻渲染多个纹理,默认只有一个,所以默认为0,
+            此处的纹理套口并不是直接能设置 Type 的所有类型, Type 的意义并不和纹理套口
+            相同
+        @param[in] type 纹理类型
+        @version NIIEngine 3.0.0
+        */
+        ShaderChTextureUnit * create(const Texture * tex, GpuProgram::ShaderType type, Nidx slot = 0, Type type = T_NORMAL);
+
+        /** 添加的应用纹理单元
+        @param[in] unit
+        @version NIIEngine 3.0.0
+        */
+        void add(GpuProgram::ShaderType type, ShaderChTextureUnit * unit, Nidx idx = -1);
+
+        /** 获取应用纹理单元
+        @param[in] index
+        @version NIIEngine 3.0.0
+        */
+        Slot & get(Nidx index) const;
+
+        /** 获取应用纹理
+        @param[in] name 纹理单元名字
+        @version NIIEngine 3.0.0
+        */
+        Slot & get(const String & name) const;
+
+        /** 获取类型第N个纹理.
+        @param[in] type 类型
+        @param[in] index 索引
+        @version NIIEngine 3.0.0
+        */
+        Slot & get(GpuProgram::ShaderType type, Nidx index) const;
+
+        /** 获取内容类型纹理迭代
+        @version NIIEngine 3.0.0 高级api
+        */
+        Slot & get(GpuProgram::ShaderType type, SlotList::const_iterator & begin, SlotList::const_iterator & end) const;
+
+        /** 移动应用纹理到另一个应用纹理中
+        @remark Type([begin, end))的纹理移动到参数o中
+        @param[in] type 类型
+        @param[in] begin 开始索引
+        @param[in] end 结束索引
+        @param[in] o 另一个应用纹理集
+        @note 这里指的是剪切粘贴,并非复制
+        @version NIIEngine 3.0.0 高级api
+        */
+        void move(GpuProgram::ShaderType type, Nidx begin, Nidx end, ShaderChTexture * o);
+
+        /** 移去应用纹理
+        @param[in] type
+        @param[in] index
+        @version NIIEngine 3.0.0
+        */
+        void remove(GpuProgram::ShaderType type, Nidx index);
+
+        /** 移去所有应用纹理
+        @version NIIEngine 3.0.0
+        */
+        void removeAll();
+
+        /** 获取应用纹理列表
+        @remark 这个函数会直接影响整个应用纹理,注意操作限制mUsed[x]
+        @version NIIEngien 3.0.0 高级api
+        */
+        const SlotList & getSlots() const                                   { return mSlotList; }
+        
+        /** 设置使用数量
+        @version NIIEngine 3.0.0
+        */
+        void setUsedCount(GpuProgram::ShaderType type, NCountb cnt) const   { N_assert1(type < GpuProgram::ST_Cnt); return mUsed[type] = cnt; }
+        
+        /** 获取使用数量
+        @version NIIEngine 3.0.0
+        */
+        NCountb getUsedCount(GpuProgram::ShaderType type) const             { N_assert1(type < GpuProgram::ST_Cnt); return mUsed[type]; }
+    private:
+        ShaderChList mApplyList;
+        SlotList mSlotList;
+        NCountb mUsed[GpuProgram::ST_Cnt];
+        static Slot NullSlot;
     };
 }
 #endif

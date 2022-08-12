@@ -156,29 +156,30 @@ namespace NII
     {
         friend class PixelBufferManager;
     public:
+        typedef map<PixelBufferID, PixelBuffer *>::type PBList;
+    public:
         bool operator == (PixelBufferGroup & o);
 
         /** 添加像素单元
-        @note 本类不管理参数内存
         @version NIIEngine 3.0.0
         */
-        inline void add(PixelBuffer * pb) { mPBList.insert(Npair(pb->getID(), pb)); }
+        inline void add(PixelBuffer * pb)                   { mPBList.insert(Npair(pb->getID(), pb)); }
 
         /** 获取指定的像素单元
         @param[in] id 像素标识
         @version NIIEngine 3.0.0
         */
-        inline PixelBuffer * get(PixelBufferID pid) const { PBList::const_iterator i = mPBList.find(pid); return (i != mPBList.end()) ? i->second : 0; }
+        inline PixelBuffer * get(PixelBufferID pid) const   { PBList::const_iterator i = mPBList.find(pid); return (i != mPBList.end()) ? i->second : 0; }
 
         /** 是否存在定义的像素单元
         @param[in] pid 像素标识
         @version NIIEngine 3.0.0
         */
-        inline bool isExist(PixelBufferID pid) const { PBList::const_iterator i = mPBList.find(pid); return i != mPBList.end(); }
+        inline bool isExist(PixelBufferID pid) const        { return mPBList.find(pid) != mPBList.end(); }
 
         /** 移去像素单元
         @param[in] pid 像素标识
-        @note 本类不管理参数内存
+        @note 移去后,本类不管理参数内存
         @version NIIEngine 3.0.0
         */
         inline PixelBuffer * remove(PixelBufferID pid);
@@ -186,77 +187,79 @@ namespace NII
         /** 获取像素单元数量
         @version NIIEngine 3.0.0
         */
-        inline NCount getCount() const { return mPBList.size(); }
+        inline NCount getCount() const                      { return mPBList.size(); }
 
         /** 获取群组
         @version NIIEngine 3.0.0
         */
-        inline GroupID getGroupID() const { return mGroupID; }
+        inline GroupID getGroupID() const                   { return mGroupID; }
 
         /** 设置像素来源
         @param[in] obj 纹理
         @version NIIEngine 3.0.0
         */
-        inline void setTexture(Texture * obj) { mTexture = obj; }
+        inline void setTexture(Texture * obj)               { mTexture = obj; }
 
         /** 获取像素来源
         @param[in] obj 纹理
         @version NIIEngine 3.0.0
         */
-        inline Texture * getTexture() const { return mTexture; }
+        inline Texture * getTexture() const                 { return mTexture; }
 
         /** 设置缩放模式
         @param[in] mode 模式
         @version NIIEngine 3.0.0
         */
-        inline void setMode(ScaleMode mode) { mMode = mode; }
+        inline void setMode(ScaleMode mode)                 { mMode = mode; }
 
         /** 获取缩放模式
         @param[in] mode 模式
         @version NIIEngine 3.0.0
         */
-        inline ScaleMode getMode() const { return mMode; }
+        inline ScaleMode getMode() const                    { return mMode; }
 
         /** 设置资源原分辨率
         @note (像素级)
         @version NIIEngine 3.0.0
         */
-        inline void segtNativeRes(const PlaneSizef & area) { mNativeRes = area; }
+        inline void setNativeRes(const PlaneSizef & area)   { mNativeRes = area; }
 
         /** 获取资源原分辨率
         @note (像素级)
         @version NIIEngine 3.0.0
         */
-        inline const PlaneSizef & getNativeRes() const { return mNativeRes; }
+        inline const PlaneSizef & getNativeRes() const      { return mNativeRes; }
 
         /** 设置渲染偏移
         @param[in] oft 像素在纹理上的位置偏移(像素级)
         @version NIIEngine 3.0.0
         */
-        inline void setPixelOffset(const Vector2f & oft) { mPixelOffset = oft; }
+        inline void setPixelOffset(const Vector2f & oft)    { mPixelOffset = oft; }
 
         /** 获取渲染偏移
         @param[in] oft 像素在纹理上的位置偏移(像素级)
         @version NIIEngine 3.0.0
         */
-        inline const Vector2f & getPixelOffset() const { return mPixelOffset; }
+        inline const Vector2f & getPixelOffset() const      { return mPixelOffset; }
 
         /** 设置实际偏移
         @return 实际渲染到屏幕的位置偏移(屏幕级)
         @version NIIEngine 3.0.0
         */
-        inline void setOffset(const Vector2f & oft) { mOffset = oft; }
+        inline void setOffset(const Vector2f & oft)         { mOffset = oft; }
 
         /** 获取实际偏移
         @return 实际渲染到屏幕的位置偏移(屏幕级)
         @version NIIEngine 3.0.0
         */
-        inline const Vector2f & getOffset() const { return mOffset; }
+        inline const Vector2f & getOffset() const           { return mOffset; }
 
         /** 确定视图的实际大小
         @version NIIEngine 3.0.0
         */
         void notifyView(const PlaneSizei & size);
+
+        const PBList & getList() const                      { return mPBList; }
     protected:
         PixelBufferGroup();
         PixelBufferGroup(GroupID gid);
@@ -264,7 +267,6 @@ namespace NII
             const Vector2f & pixeloft = Vector2f::ZERO, const PlaneSizef & srcRes = PlaneSizef(640.0f, 480.0f));
         ~PixelBufferGroup();
     protected:
-        typedef map<PixelBufferID, PixelBuffer *>::type PBList;
         PBList mPBList;
         GroupID mGroupID;
         Texture * mTexture;
@@ -280,5 +282,7 @@ namespace NII
     inline const Vector2f & PixelBuffer::getOffset() const { return mGroup->getOffset(); }
     inline const Vector2f & PixelBuffer::getPixelOffset() const { return mGroup->getPixelOffset(); }
     inline const PlaneSizef & PixelBuffer::getNativeRes() const { return mGroup->getNativeRes(); }
+
+    typedef vector<PixelBufferGroup *>::type PixelBufferGroupList;
 }
 #endif

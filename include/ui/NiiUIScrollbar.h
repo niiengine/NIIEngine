@@ -29,7 +29,6 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 
 #include "NiiUIPreInclude.h"
 #include "NiiUIContainer.h"
-#include "NiiUIWidgetView.h"
 
 namespace NII
 {
@@ -53,7 +52,7 @@ namespace UI
         /** 获取总页大小
         @version NIIEngine 3.0.0
         */
-        inline NIIf getDocSize() const{ return mDocSize; }
+        inline NIIf getDocSize() const          { return mDocSize; }
 
         /** 设置按键步大小
         @version NIIEngine 3.0.0
@@ -63,7 +62,7 @@ namespace UI
         /** 获取按键步大小
         @version NIIEngine 3.0.0
         */
-        inline NIIf getStepSize() const{ return mStepSize; }
+        inline NIIf getStepSize() const         { return mStepSize; }
 
         /** 设置页大小
         @version NIIEngine 3.0.0
@@ -73,7 +72,7 @@ namespace UI
         /** 获取页大小
         @version NIIEngine 3.0.0
         */
-        inline NIIf getPageSize() const{ return mPageSize; }
+        inline NIIf getPageSize() const         { return mPageSize; }
         
         /** 设置页余大小
         @version NIIEngine 3.0.0
@@ -83,7 +82,7 @@ namespace UI
         /** 获取页余大小
         @version NIIEngine 3.0.0
         */
-        inline NIIf getOverlapSize() const { return mPageRemian; }
+        inline NIIf getOverlapSize() const      { return mPageRemian; }
 
         /** 设置当前位置
         @param[in] pos [0 <= pos <= doc - page]
@@ -95,7 +94,7 @@ namespace UI
         @param[in] pos [0 <= pos <= doc - page]
         @version NIIEngine 3.0.0
         */
-        inline NIIf getCurrent() const{ return mCurrentPos;}
+        inline NIIf getCurrent() const          { return mCurrentPos;}
 
         /** 设置单位化当前位置
         @param[in] upos [0, 1]
@@ -128,16 +127,46 @@ namespace UI
         @version NIIEngine 3.0.0
         */
         void posPage();
-        
+
+        /** 设置位置指标
+        @version NIIEngine 3.0.0
+        */
+        void setThumbView(StyleViewID id)       { mThumbView = id; }
+
         /** 获取位置指标
         @version NIIEngine 3.0.0
         */
-        inline PosButton * getThumb() const { return mThumb; }
+        StyleViewID getThumbView() const        { return mThumbView; }
+
+        /** 设置减向按纽
+        @version NIIEngine 3.0.0
+        */
+        void setNegativeView(StyleViewID id)    { mNegativeView = id; }
 
         /** 获取减向按纽
         @version NIIEngine 3.0.0
         */
-        inline PushButton * getNegative() const{ return mNegative; }
+        StyleViewID getNegativeView() const     { return mNegativeView; }
+
+        /** 设置加向按纽
+        @version NIIEngine 3.0.0
+        */
+        void setPositiveView(StyleViewID id)    { mPositiveView = id; }
+
+        /** 获取加向按纽
+        @version NIIEngine 3.0.0
+        */
+        StyleViewID getPositiveView() const     { return mPositiveView; }
+        
+        /** 获取位置指标
+        @version NIIEngine 3.0.0
+        */
+        inline PosButton * getThumb() const     { return mThumb; }
+
+        /** 获取减向按纽
+        @version NIIEngine 3.0.0
+        */
+        inline PushButton * getNegative() const { return mNegative; }
         
         /** 获取加向按纽
         @version NIIEngine 3.0.0
@@ -147,12 +176,12 @@ namespace UI
         /** 设置是否自动末尾
         @version NIIEngine 3.0.0
         */
-        inline void setAutoEndPos(bool b){ mAutoEnd = b;}
+        inline void setAutoEndPos(bool b)       { mAutoEnd = b;}
 
         /** 获取是否自动末尾
         @version NIIEngine 3.0.0
         */
-        inline bool isAutoEndPos() const{ return mAutoEnd; }
+        inline bool isAutoEndPos() const        { return mAutoEnd; }
         
         /** 综合设置
         @version NIIEngine 3.0.0
@@ -265,6 +294,9 @@ namespace UI
         PosButton * mThumb;
         PushButton * mNegative;
         PushButton * mPositive;
+        StyleViewID mThumbView;
+        StyleViewID mNegativeView;
+        StyleViewID mPositiveView;
         NIIf mDocSize;
         NIIf mPageSize;
         NIIf mStepSize;
@@ -282,9 +314,9 @@ namespace UI
     public:
         ScrollbarView(WidgetViewlID wsid);
 
-        bool isVertical() const;
+        void setVertical(bool b)            { mYDirection = b; }
 
-        void setVertical(bool b);
+        bool isVertical() const             { return mYDirection; }
 
         virtual NIIf getThumbValue() const;
 

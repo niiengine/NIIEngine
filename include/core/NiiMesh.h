@@ -30,9 +30,12 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 
 #include "NiiPreInclude.h"
 #include "NiiAnimationObj.h"
+#include "NiiMeshLodScheme.h"
 #include "NiiResource.h"
 #include "NiiDataStream.h"
-#include "NiiSubMesh.h"
+#include "NiiGeometryRaw.h"
+#include "NiiSkeleton.h"
+#include "NiiVertexIndexIndirect.h"
 #include "NiiAABox.h"
 #include "NiiGeoEdget.h"
 #include "NiiCurvedSurface.h"
@@ -41,6 +44,195 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 namespace NII
 {
     class MeshLodScheme;
+
+    /** 网格成分
+    @remark 主要是为了维持网格多样化设计的网格成分类
+    @version NIIEngine 3.0.0
+    */
+    class _EngineAPI SubMesh : public VertexDataAlloc
+    {
+        friend class Mesh;
+        friend class GeometryCom;
+    public:
+        SubMesh();
+        SubMesh(const Mesh * obj);
+        ~SubMesh();
+
+        /** 设置名字(辅助)
+        @version NIIEngine 3.0.0
+        */
+        inline void setName(const String & n)       { mName = n; }
+
+        /** 获取名字(辅助)
+        @version NIIEngine 3.0.0
+        */
+        inline const String & getName() const       { return mName; }
+
+        /** 获取子网格所属的网格
+        @version NIIEngine 3.0.0
+        */
+        inline Mesh * getMesh() const               { return mMesh; }
+
+        /** 渲染几何
+        @param[in] gr 几何数据
+        @param[in] lod 所使用的LOD索引.
+        @version NIIEngine 3.0.0
+        */
+        void getGeometry(GeometryRaw & raw, Nidx lod = 0) const;
+
+        /** 添加骨骼顶点
+        @version NIIEngine 3.0.0
+        */
+        void addSkeleton(const SkeletonVertex & sv);
+
+        /** 移去骨骼顶点
+        @param[in] vindex 顶点索引
+        @version NIIEngine 3.0.0
+        */
+        void removeSkeleton(Nidx vindex);
+
+        /** 移去所有骨骼顶点
+        @version NIIEngine 3.0.0
+        */
+        void clearSkeleton();
+
+        /** 骨骼矩阵
+        @version NIIEngine 3.0.0
+        */
+        inline const BoneIndexList & getMatrixList() const              { return mMatrixs; }
+
+        /** 获取骨骼顶点列表
+        @version NIIEngine 3.0.0
+        */
+        inline const SkeletonVertexList & getSkeletonList() const       { return mSkeletonVertexList; }
+
+        /** 设置是否使用独立的顶点数据
+        @param[in] b
+        @version NIIEngine 3.0.0
+        */
+        inline void setSelfVertex(bool b)                               { mSelfVertex = b; }
+
+        /** 获取使用独立的顶点数据
+        @version NIIEngine 3.0.0
+        */
+        inline bool isSelfVertex() const                                { return mSelfVertex; }
+
+        /** 设置几何类型
+        @version NIIEngine 3.0.0
+        */
+        inline void setGeometryType(GeometryRaw::OperationType type)    { mType = type; }
+
+        /** 获取几何类型
+        @version NIIEngine 3.0.0
+        */
+        inline GeometryRaw::OperationType getGeometryType() const       { return mType; }
+
+        /** 设置顶点数据
+        @remark 这是个复杂的体系,包含了法线,切线,骨骼混合等
+        @note 设置后内存将由这个网格控制
+        @version NIIEngine 3.0.0 顶级api
+        */
+        inline void setVertexData(VertexData * vd)                      { mVertex = vd; }
+
+        /** 获取顶点数据
+        @remark 这是个复杂的体系,包含了法线,切线,骨骼混合等
+        @version NIIEngine 3.0.0 高级api
+        */
+        inline VertexData * getVertexData() const                       { return mVertex; }
+
+        /** 设置LOD顶点索引数据
+        @param[in] lod LOD等级
+        @param[in] id 索引
+        @version NIIEngine 3.0.0 高级api
+        */
+        void setIndexData(Nidx lod, IndexData * id);
+
+        /** 获取LOD顶点索引数据
+        @param[in] lod LOD等级
+        @version NIIEngine 3.0.0 高级api
+        */
+        inline IndexData * getIndexData(Nidx lod = 0) const             { return mIndexList[lod]; }
+
+        /** 设置是否自动生成LOD
+        @version NIIEngine 3.0.0
+        */
+        void setAutoLod(bool b);
+
+        /** 获取是否自动生成LOD
+        @version NIIEngine 3.0.0
+        */
+        inline bool isAutoLod() const                   { return mAutoLod; }
+
+        /** 设置材质
+        @version NIIEngine 3.0.0
+        */
+        inline void setMaterial(ResourceID rid)         { mMaterialID = rid; }
+
+        /** 获取材质
+        @version NIIEngine 3.0.0
+        */
+        inline ResourceID getMaterial() const           { return mMaterialID; }
+
+        /** 添加LOD顶点索引数据
+        @param[in] id
+        @version NIIEngine 3.0.0
+        */
+        inline void addIndexData(IndexData * id)        { mIndexList.push_back(id); }
+
+        /** 设置LOD数量
+        @version NIIEngine 3.0.0
+        */
+        void setLodCount(NCount c);
+
+        /** 获取LOD数量
+        @version NIIEngine 3.0.0
+        */
+        NCount getLodCount() const;
+
+        /** 移去所有LOD
+        @version NIIEngine 3.0.0
+        */
+        void removeAllLod();
+
+        /** 构建骨骼结构到几何数据中
+        @version NIIEngine 3.0.0
+        */
+        void buildSkeleton();
+
+        /** 建立边缘点
+        @param[in] count 数量
+        @version NIIEngine 3.0.0
+        */
+        void buildEdge(NCount count);
+
+        /** 添加边缘点
+        @version NIIEngine 3.0.0
+        */
+        inline void addEdgePoint(const Vector3f & v)        { mEdgePoints.push_back(v); }
+
+        /** 移去所有边缘点
+        @version NIIEngine 3.0.0
+        */
+        inline void removeAllEdgePoint()                    { mEdgePoints.clear(); }
+
+        /** 获取边缘点
+        @version NIIEngine 3.0.0
+        */
+        inline const Vector3List & getEdgePoints() const    { return mEdgePoints; }
+    protected:
+        Mesh * mMesh;                               ///< 父对象
+        String mName;                               ///< 辅助名字
+        ResourceID mMaterialID;                     ///< 材质ID
+        GeometryRaw::OperationType mType;           ///< 渲染操作类型,用于渲染这个子网格
+        VertexData * mVertex;                       ///< 顶点数据
+        IndexDataList mIndexList;                   ///< 顶点索引
+        Vector3List mEdgePoints;                    ///< 边缘顶点
+        BoneIndexList mMatrixs;                     ///< 顶点骨骼矩阵
+        SkeletonVertexList mSkeletonVertexList;
+        bool mSkeletonVexrtexValid;
+        bool mSelfVertex;
+        bool mAutoLod;
+    };
 
     /** 网格
     @remark
@@ -94,50 +286,50 @@ namespace NII
         /** 是否存在网格扩展模式
         @version NIIEngine 3.0.0
         */
-        bool isExist(Mode mode);
+        bool isExist(Mode mode)                 { return mMark & mode; }
 
         /** 顶点内存模式
         @param[in] mode 模式
         @version NIIEngine 3.0.0
         */
-        void setVertexMode(Nmark mode);
+        void setVertexMode(Nmark mode)          { mVertexMode = mode; }
 
         /** 顶点内存模式
         @version NIIEngine 3.0.0
         */
-        Nmark getVertexMode() const;
+        Nmark getVertexMode() const             { return mVertexMode; }
 
         /** 顶点索引内存模式
         @param[in] mode 模式
         @version NIIEngine 3.0.0
         */
-        void setIndexMode(Nmark mode);
+        void setIndexMode(Nmark mode)           { mIndexMode = mode; }
 
         /** 顶点索引内存模式.
         @version NIIEngine 3.0.0
         */
-        Nmark getIndexMode() const;
+        Nmark getIndexMode() const              { return mIndexMode; }
 
         /** 手动设置这个网格的AABB.
         @version NIIEngine 3.0.0
         */
-        void setAABB(const AABox & aab);
+        void setAABB(const AABox & aab)         { mAABB = aab; mCenterRange = mAABB.calcRadius(); }
 
         /** 获取这个网格的AABB.
         @version NIIEngine 3.0.0
         */
-        const AABox & getAABB() const;
+        const AABox & getAABB() const           { return mAABB; }
 
         /** 手动设置边界半径.
         @param[in] f 半径
         @version NIIEngine 3.0.0
         */
-        void setCenterRange(NIIf r);
+        void setCenterRange(NIIf r)             { mCenterRange = r; }
 
         /** 获取围绕这个网格的边界球
         @version NIIEngine 3.0.0
         */
-        NIIf getCenterRange() const;
+        NIIf getCenterRange() const             { return mCenterRange; }
 
         /** 设置范围因子
         @param[in] f
@@ -148,19 +340,19 @@ namespace NII
         /** 获取范围因子
         @version NIIEngine 3.0.0
         */
-        NIIf getRangeFactor() const;
+        NIIf getRangeFactor() const             { return mRangeFactor; }
 
         /** 设置预制类型
         @note 仅在网格加载前有效
         @version NIIEngine 3.0.0
         */
-        void setPrefabType(GeometryPrefab type);
+        void setPrefabType(GeometryPrefab type) { mPrefabType = type; }
 
         /** 获取预制类型
         @note 仅在网格加载前有效
         @version NIIEngine 3.0.0
         */
-        GeometryPrefab getPrefabType() const;
+        GeometryPrefab getPrefabType() const    { return mPrefabType; }
 
         /** 设置是否自动构建Lod
         @version NIIEngine 3.0.0
@@ -190,7 +382,7 @@ namespace NII
         /** 获取骨骼资源ID
         @version NIIEngine 3.0.0
         */
-        SkeletonID getSkeletonID() const;
+        SkeletonID getSkeletonID() const        { return mSkeletonID; }
 
         /** 设置骨骼
         @version NIIEngine 3.0.0
@@ -200,7 +392,7 @@ namespace NII
         /** 获取骨骼
         @version NIIEngine 3.0.0
         */
-        Skeleton * getSkeleton() const;
+        Skeleton * getSkeleton() const          { return mSkeleton; }
 
         /** 设置顶点数据
         @remark 这是个复杂的体系,包含了法线,切线,骨骼混合等
@@ -213,7 +405,7 @@ namespace NII
         @remark 这是个复杂的体系,包含了法线,切线,骨骼混合等
         @version NIIEngine 3.0.0 高级api
         */
-        VertexData * getVertexData() const;
+        VertexData * getVertexData() const      { return mVertex; }
 
         /** 创建子网格
         @version NIIEngine 3.0.0
@@ -260,12 +452,12 @@ namespace NII
         /** 获取距阵映射
         @version NIIEngine 3.0.0
         */
-        const BoneIndexList & getMatrixList() const;
+        const BoneIndexList & getMatrixList() const             { return mMatrixs; }
 
         /** 获取到骨头分配列表
         @version NIIEngine 3.0.0 高级api
         */
-        const SkeletonVertexList & getSkeletonList() const;
+        const SkeletonVertexList & getSkeletonList() const      { return mSkeletonVertexList; }
 
         /** 创建顶点偏移集
         @param[in] id 偏移的ID
@@ -337,7 +529,7 @@ namespace NII
         /** 获取网格LOD
         @version NIIEngine 3.0.0
         */
-        MeshLodScheme * getLodScheme() const;
+        MeshLodScheme * getLodScheme() const            { return mLodScheme; }
 
         /** 设置LOD网格边缘
         @note 参数2内存将交由本类管理
@@ -382,12 +574,6 @@ namespace NII
 
         /// @copydetails AnimationObj::createAnimation
         virtual Animation * createAnimation(AnimationID id, TimeDurMS dur);
-
-        /// @copydetails AnimationObj::removeAnimation
-        virtual void removeAnimation(AnimationID id);
-
-        /// @copydetails AnimationObj::removeAllAnimations
-        virtual void removeAllAnimations();
 
         /// @copydetails AnimationObj::_init
         virtual void _init(AnimationFusionObj * obj);

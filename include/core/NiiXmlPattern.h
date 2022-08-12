@@ -56,6 +56,11 @@ namespace NII
         @version NIIEngine 3.0.0
         */
         virtual void parse(XmlAnalyze * prc, const DataStream * data) = 0;
+
+        /** 写入到流中
+        @version NIIEngine 3.0.0
+        */
+        virtual void read(XmlAnalyze * prc, const String & name, Nfstream * out) {}
     protected:
         /// @copydetails Pattern::_update
         void _update();

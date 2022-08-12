@@ -49,7 +49,7 @@ namespace NII
         @param[in] hint 如果这个编码组件含概多个编码,指定其一
         @version NIIEngine 3.0.0
         */
-        virtual CodecResult encode(const Image * in, const String & out, const String & hint) const;
+        virtual CodecResult encode(const Image * in, const String & out, const String & hint, NCount mipBegin = 0, NCount mipCount = -1) const;
 
         /** 用于输入码流中的数据解码,
         @param[in] in 图片对象
@@ -57,7 +57,7 @@ namespace NII
         @param[in] hint 如果这个编码组件含概多个编码,指定其一(否则不使用)
         @version NIIEngine 3.0.0
         */
-        virtual CodecResult encode(const Image * in, DataStream *& out, const String & hint) const;
+        virtual CodecResult encode(const Image * in, DataStream *& out, const String & hint, NCount mipBegin = 0, NCount mipCount = -1) const;
 
         /** 从编码文件解码数据到图片对象.
         @param[in] in 输入协议(可以直接是文件名/数据通道),查看niiengine://协议

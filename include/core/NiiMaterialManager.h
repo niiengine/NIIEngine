@@ -53,7 +53,7 @@ namespace NII
         /** 执行回收机制
         @version NIIEngine 3.0.0
         */
-        void recover();
+        inline void recover()   { ShaderFusion::recover(); }
 
         /** 设置当前使用的方案
         @version NIIEngine 3.0.0
@@ -75,38 +75,6 @@ namespace NII
         @version NIIEngine 3.0.0
         */
         ShaderFusion * match(const GeometryObj * geo, const Material * obj, Nidx lod);
-
-        /** 关联对象
-        @note 如果 ShaderFusion 是单独存在的,不使用这个方式
-        @param[in] dst
-        @param[in] obj
-        @version NIIEngine 3.0.0
-        */
-        void attach(Material * dst, ShaderFusion * obj);
-
-        /** 回收对象自动删除内存
-        @note 如果 ShaderFusion 是单独存在的,不使用这个方式
-        @param[in] dst
-        @param[in] obj
-        @version NIIEngine 3.0.0
-        */
-        void detach(Material * dst, ShaderFusion * obj);
-
-        /** 关联对象
-        @note 如果 ShaderCh 是单独存在的,不使用这个方式
-        @param[in] dst
-        @param[in] obj
-        @version NIIEngine 3.0.0
-        */
-        void attach(ShaderFusion * dst, ShaderCh * obj);
-
-        /** 回收对象自动删除内存
-        @note 如果 ShaderCh 是单独存在的,不使用这个方式
-        @param[in] dst
-        @param[in] obj
-        @version NIIEngine 3.0.0
-        */
-        void detach(ShaderFusion * dst, ShaderCh * obj);
 
         /** 通知对象改变
         @version NIIEngine 3.0.0
@@ -279,8 +247,7 @@ namespace NII
 
         static const ShaderChColour * InvalidColour;
         static const ShaderChBlend  * InvalidBlend;
-        static const ShaderChAlpha  * InvalidAlpha;
-        static const ShaderChDepth  * InvalidDepth;
+        static const ShaderChStencil * InvalidStencil;
         static const ShaderChTexture *InvalidTexture;
         static const ShaderChProgram *InvalidProgram;
         static const ShaderChPoint  * InvalidPoint;
@@ -288,6 +255,8 @@ namespace NII
         
         static const Material * WhiteLight;
         static const Material * WhiteColour;
+        
+        static SchemeID Default;
     protected:
         /// @copydetails ResourceManager::createImpl
         Resource * createImpl(ResourceID rid, GroupID gid, ResLoadScheme * ls, 
@@ -300,16 +269,11 @@ namespace NII
     protected:
         typedef list<MaterialMatchListener *>::type Listeners;
         typedef map<SchemeID, Listeners>::type ListenerMap;
-        typedef map<ShaderCh *, ShaderFusionList>::type ShaderChLink;
-        typedef map<ShaderFusion *, MaterialList>::type ShaderFusionLink;
         typedef map<Material *, NCount>::type MaterialLink;
     protected:
         Material * mNull;
         SchemeID mCurrent;
-        ShaderChLink mChLink;
-        ShaderFusionLink mFusionLink;
         MaterialLink mMaterialLink;
-        ShaderChList mDetachList;
         ListenerMap mListenerMap;
         TextureFilterOP mMin;
         TextureFilterOP mMag;

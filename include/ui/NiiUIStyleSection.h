@@ -30,7 +30,7 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 
 #include "NiiUIPreInclude.h"
 #include "NiiUIWidget.h"
-#include "NiiColourArea.h"
+#include "NiiColour.h"
 #include "NiiUIStyleArea.h"
 #include "NiiUIPixelLayout.h"
 #include "NiiPropertyType.h"

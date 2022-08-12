@@ -48,8 +48,10 @@ namespace NII
         GPT_Texture         = 0x10,
         GPT_Fog             = 0x20,
         GPT_Fps             = 0x40,
-        GPT_ChMulti         = 0x80,
+        GPT_ShaderCh        = 0x80,
         GPT_Other           = 0x100,
+        GPT_Queue           = 0x200,
+        GPT_Frame           = 0x400,
         GPT_Render          = GPT_View | GPT_Colour | GPT_Texture | GPT_Fog | GPT_Fps | GPT_Other,
         GPT_Unknow          = 0xFFFFFFFF
     };
@@ -93,21 +95,28 @@ namespace NII
         GDT_SamplerShadow1D = 31,
         GDT_SamplerShadow2D = 32,
         GDT_SamplerArray2D  = 33,
-        GDT_SamplerOES      = 34,
-        GDT_Double          = 35,
-        GDT_Double2         = 36,
-        GDT_Double3         = 37,
-        GDT_Double4         = 38,
-        GDT_Matrixd2X2      = 39,
-        GDT_Matrixd2X3      = 40,
-        GDT_Matrixd2X4      = 41,
-        GDT_Matrixd3X2      = 42,
-        GDT_Matrixd3X3      = 43,
-        GDT_Matrixd3X4      = 44,
-        GDT_Matrixd4X2      = 45,
-        GDT_Matrixd4X3      = 46,
-        GDT_Matrixd4X4      = 47,
-        GDT_Interface       = 48
+        GDT_64Int           = 34,
+        GDT_64Int2X         = 35,
+        GDT_64Int3X         = 36,
+        GDT_64Int4X         = 37,
+        GDT_64UInt          = 38,
+        GDT_64UInt2X        = 39,
+        GDT_64UInt3X        = 40,
+        GDT_64UInt4X        = 41,
+        GDT_Double          = 42,
+        GDT_Double2X        = 43,
+        GDT_Double3X        = 44,
+        GDT_Double4X        = 45,
+        GDT_Matrixd2X2      = 46,
+        GDT_Matrixd2X3      = 47,
+        GDT_Matrixd2X4      = 48,
+        GDT_Matrixd3X2      = 49,
+        GDT_Matrixd3X3      = 50,
+        GDT_Matrixd3X4      = 51,
+        GDT_Matrixd4X2      = 52,
+        GDT_Matrixd4X3      = 53,
+        GDT_Matrixd4X4      = 54,
+        GDT_Block           = 55
     };
     /** Gpu内部同步参数
     @version NIIEngine 3.0.0
@@ -251,25 +260,25 @@ namespace NII
     };
 
     inline bool isFloat(GpuDataType c)      { return c > GDT_Unknow && c < GDT_Int; }
-    inline bool isDouble(GpuDataType c)     { return c > GDT_SamplerOES && c < GDT_Interface; }
-    inline bool isSampler(GpuDataType c)    { return c > GDT_Bool4X && c < GDT_Double; }
+    inline bool isDouble(GpuDataType c)     { return c > GDT_SamplerArray2D && c < GDT_Block; }
+    inline bool isSampler(GpuDataType c)    { return c > GDT_Bool4X && c < GDT_64Int; }
     inline bool isInt(GpuDataType c)        { return c > GDT_Matrix4X4 && c < GDT_UInt; }
     inline bool isUInt(GpuDataType c)       { return c > GDT_Int4X && c < GDT_Bool; }
     inline bool isBool(GpuDataType c)       { return c > GDT_UInt4X && c < GDT_Sampler1D; }
-    inline bool isInterface(GpuDataType c)  { return c == GDT_Interface; }
+    inline bool isBlock(GpuDataType c)      { return c == GDT_Block; }
 
-    /** 定义同步常量,适用于在参数对象中使用
+    /** 环境参数
     @version NIIEngine 3.0.0
     */
-    struct _EngineAPI GpuSyncParamUnit
+    struct _EngineAPI GpuEnvParamUnit
     {
-        GpuSyncParamUnit(const String & name, GpuSyncParam sync, NCount cnt, Nui16 exttype, Nui16 datatype);
+        GpuEnvParamUnit(const String & name, GpuSyncParam sync, NCount cnt, Nui16 exttype, Nui16 datatype);
 
         inline bool isFloat() const         { return mDataType > GDT_Unknow && mDataType < GDT_Int; }
 
-        inline bool isDouble() const        { return mDataType > GDT_SamplerOES && mDataType < GDT_Interface; }
+        inline bool isDouble() const        { return mDataType > GDT_SamplerArray2D && mDataType < GDT_Block; }
 
-        inline bool isSampler() const       { return mDataType > GDT_Bool4X && mDataType < GDT_Double; }
+        inline bool isSampler() const       { return mDataType > GDT_Bool4X && mDataType < GDT_64Int; }
 
         inline bool isInt() const           { return mDataType > GDT_Matrix4X4 && mDataType < GDT_UInt; }
 
@@ -277,7 +286,7 @@ namespace NII
 
         inline bool isBool() const          { return mDataType > GDT_UInt4X && mDataType < GDT_Sampler1D; }
 
-        inline bool isInterface() const     { return mDataType == GDT_Interface; }
+        inline bool isBlock() const         { return mDataType == GDT_Block; }
         
         String mName;
         GpuSyncParam mSyncParam;
@@ -295,9 +304,9 @@ namespace NII
 
         inline bool isFloat() const         { return mDataType > GDT_Unknow && mDataType < GDT_Int; }
 
-        inline bool isDouble() const        { return mDataType > GDT_SamplerOES && mDataType < GDT_Interface; }
+        inline bool isDouble() const        { return mDataType > GDT_SamplerArray2D && mDataType < GDT_Block; }
 
-        inline bool isSampler() const       { return mDataType > GDT_Bool4X && mDataType < GDT_Double; }
+        inline bool isSampler() const       { return mDataType > GDT_Bool4X && mDataType < GDT_64Int; }
 
         inline bool isInt() const           { return mDataType > GDT_Matrix4X4 && mDataType < GDT_UInt; }
 
@@ -305,44 +314,91 @@ namespace NII
 
         inline bool isBool() const          { return mDataType > GDT_UInt4X && mDataType < GDT_Sampler1D; }
 
-        inline bool isInterface() const     { return mDataType == GDT_Interface; }
+        inline bool isBlock() const         { return mDataType == GDT_Block; }
 
         GpuDataType mDataType;
-        Nidx mIndex;
+        Nidx mIndex;                ///< hwbuf idx
         Nmark mTypeMark;
         Nidx mMemIndex;
-        NCount mUnitSize;
-        NCount mUnitCount;
+        NCount mUnit4XSize;         ///< 4XByte
+        NCount mUnitCount;          ///< Unit数量
+        Nidex mArrayIndex;          ///< 数组索引
+        bool mArrayMode;
     };
     typedef map<VString, GpuParamUnit>::type GpuParamUnitList;
+
+    /** 着色参数内存绑定
+    @version NIIEngine 3.0.0
+    */
+    struct _EngineAPI GpuParamBlock
+    {
+    public:
+        GpuParamBlock() : m4XSize(0), mMemIndex(0), mDataType(GDT_Unknow), mTypeMark(GPT_Render) {}
+
+        GpuParamBlock(Nidx memidx, GpuDataType type, NCount _4xsize, Nmark mark) :
+            mMemIndex(memidx), mDataType(type), m4XSize(_4xsize), mTypeMark(mark) {}
+
+        inline bool isFloat() const         { return mDataType > GDT_Unknow && mDataType < GDT_Int; }
+
+        inline bool isDouble() const        { return mDataType > GDT_SamplerArray2D && mDataType < GDT_Block; }
+
+        inline bool isSampler() const       { return mDataType > GDT_Bool4X && mDataType < GDT_64Int; }
+
+        inline bool isInt() const           { return mDataType > GDT_Matrix4X4 && mDataType < GDT_UInt; }
+
+        inline bool isUInt() const          { return mDataType > GDT_Int4X && mDataType < GDT_Bool; }
+
+        inline bool isBool() const          { return mDataType > GDT_UInt4X && mDataType < GDT_Sampler1D; }
+
+        inline bool isBlock() const         { return mDataType == GDT_Block; }
+    public:
+        Nidx mMemIndex;
+        GpuDataType mDataType;
+        NCount m4XSize;             ///< 4XByte
+        Nmark mTypeMark;
+    };
+    typedef map<Nui32, GpuParamBlock>::type GpuParamBlockList;
+
+    /** 同步参数内存绑定
+    @version NIIEngine 3.0.0
+    */
+    struct _EngineAPI GpuEnvParamBlock
+    {
+    public:
+        GpuEnvParamBlock(GpuSyncParam type, Nidx memidx, Ni32 input, Nmark mark, NCount count = 4) :
+            mSyncParam(type), mMemIndex(memidx), mTypeMark(mark), mInputInt(input), mUnitCount(count) {}
+
+        GpuEnvParamBlock(GpuSyncParam type, Nidx memidx, NIIf input, Nmark mark, NCount count = 4) :
+            mSyncParam(type), mMemIndex(memidx), mTypeMark(mark), mInputFloat(input), mUnitCount(count) {}
+
+        Nidx mMemIndex;
+        GpuSyncParam mSyncParam;
+        Nmark mTypeMark;
+        NCount mUnitCount;
+        union
+        {
+            Ni32 mInputInt;
+            NIIf mInputFloat;
+        };
+    };
+    typedef vector<GpuEnvParamBlock>::type GpuEnvParamBlockList;
 
     /** 着色程序自定义参数集
     @version NIIEngine 3.0.0
     */
     class _EngineAPI GpuParamDefine : public GpuParamsAlloc
     {
+        friend class GpuProgramParam;
     public:
         GpuParamDefine();
         GpuParamDefine(const GpuParamUnitList & defs);
 
         GpuParamDefine & operator = (const GpuParamDefine & o);
 
-        /** 设置是否启用数组模式
-        @remark 结构数据会变大
-        @version NIIEngine 3.0.0
-        */
-        inline void setArrayMode(bool b)    { mArrayMode = b; }
-
-        /** 获取是否启用数组模式
-        @remark 结构数据会变大
-        @version NIIEngine 3.0.0
-        */
-        inline bool isArrayMode() const     {return mArrayMode;}
-
         /** 添加定义
         @version NIIEngine 3.0.0
         */
-        void add(const VString & name, const GpuParamUnit & def);
+        void add(const VString & name, const GpuParamUnit & def, bool arrayMode = false);
 
         /** 获取定义
         @version NIIEngine 3.0.0
@@ -355,9 +411,19 @@ namespace NII
         void remove(const VString & name);
 
         /** 移去所有定义
-        @version NIIEnginee 3.0.0
+        @version NIIEngine 3.0.0
         */
         void removeAll();
+
+        /** 获取列表
+        @version NIIEngine 3.0.0
+        */
+        inline const GpuParamUnitList & getList() const    { return mDefineList; }
+
+        /** 获取大小
+        @version NIIEngine 3.0.0
+        */
+        inline NCount getSize()const                        { return mDefineDataSize; }
 
         /** 保存到文件
         @version NIIEngine 3.0.0
@@ -374,73 +440,23 @@ namespace NII
         */
         void load(DataStream * stream);
     public:
-        GpuParamUnitList mDefines;
-        NCount mDataSize;
-        bool mArrayMode;
+        GpuParamUnitList mDefineList;
+        NCount mDefineDataSize;         ///< 4XByte
     };
-    
-    /** 着色参数内存绑定
-    @version NIIEngine 3.0.0
-    */
-    struct _EngineAPI GpuParamIndex
-    {
-    public:
-        GpuParamIndex(): mSize(0), mMemIndex(0), mDataType(GDT_Unknow), mTypeMark(GPT_Render){}
-        
-        GpuParamIndex(Nidx memidx, GpuDataType type, NCount size, Nmark mark) :
-            mMemIndex(memidx), mDataType(type), mSize(size), mTypeMark(mark) {}
-
-        inline bool isFloat() const { return mDataType > GDT_Unknow && mDataType < GDT_Int; }
-
-        inline bool isDouble() const { return mDataType > GDT_SamplerOES && mDataType < GDT_Interface; }
-
-        inline bool isSampler() const { return mDataType > GDT_Bool4X && mDataType < GDT_Double; }
-
-        inline bool isInt() const { return mDataType > GDT_Matrix4X4 && mDataType < GDT_UInt; }
-
-        inline bool isUInt() const { return mDataType > GDT_Int4X && mDataType < GDT_Bool; }
-
-        inline bool isBool() const { return mDataType > GDT_UInt4X && mDataType < GDT_Sampler1D; }
-
-        inline bool isInterface() const { return mDataType == GDT_Interface; }
-    public:
-        Nidx mMemIndex;
-        GpuDataType mDataType;
-        NCount mSize;
-        Nmark mTypeMark;
-    };
-    typedef map<Nui32, GpuParamIndex>::type GpuParamIndexList;
-
-    /** 同步参数内存绑定
-    @version NIIEngine 3.0.0
-    */
-    struct _EngineAPI GpuSyncParamIndex
-    {
-    public:
-        GpuSyncParamIndex(GpuSyncParam type, Nidx memidx, Ni32 input, Nmark mark, NCount count = 4):
-            mSyncParam(type), mMemIndex(memidx), mTypeMark(mark), mInputInt(input), mUnitCount(count){}
-
-        GpuSyncParamIndex(GpuSyncParam type, Nidx memidx, NIIf input, Nmark mark, NCount count = 4):
-            mSyncParam(type), mMemIndex(memidx), mTypeMark(mark), mInputFloat(input), mUnitCount(count){}
-
-        Nidx mMemIndex;
-        GpuSyncParam mSyncParam;
-        Nmark mTypeMark;
-        NCount mUnitCount;
-        union
-        {
-            Ni32 mInputInt;
-            NIIf mInputFloat;
-        };
-    };
-    typedef vector<GpuSyncParamIndex>::type GpuSParamIndexList;
     
     /** 着色参数缓存单元
+    @note glsl和hlsl的常量结构缓存都是有字节对齐要求的,一般是128位操作.具体的着色程序有具体的打包对齐规定.
     @version NIIEngine 3.0.0
     */
     class _EngineAPI GpuParamBufferUnit : public GpuParamsAlloc
     {
     public:
+        enum ParamType
+        {
+            PT_Storage,         ///< (ShaderStorage, uav)
+            PT_Sampler          ///< 纹理缓存
+        };
+
         enum OpType
         {
             OT_Unknow   = 0,
@@ -448,9 +464,162 @@ namespace NII
             OT_WRITE    = 0x02,
             OT_RW       = OT_READ|OT_WRITE
         };
+
+        struct StorageBufferUnit
+        {
+            StorageBufferUnit()             { memset( this, 0, sizeof( StorageBufferUnit ) );}
+
+            bool operator != (const StorageBufferUnit & o) const
+            {
+                if (mBuffer != o.mBuffer || mOffset != o.mOffset || mSize != o.mSize)
+                    return true;
+                return false;
+            }
+
+            bool operator == (const StorageBufferUnit & o) const
+            {
+                if (mBuffer == o.mBuffer && mOffset == o.mOffset && mSize == o.mSize)
+                    return true;
+                return false;
+            }
+            bool operator < (const StorageBufferUnit & o) const
+            {
+                if (mBuffer < o.mBuffer || mOffset < o.mOffset || mSize < o.mSize)
+                    return true;
+                return false;
+            }
+            
+            StorageBuffer * mBuffer;
+            NCount mOffset;
+            NCount mSize;
+            PixelFormat mPadding;   ///< no using
+        };
+
+        struct SamplerBufferUnit
+        {
+            SamplerBufferUnit()             { memset( this, 0, sizeof( SamplerBufferUnit ) );}
+
+            bool operator != (const SamplerBufferUnit & o) const
+            {
+                if (mBuffer != o.mBuffer || mMipmap != o.mMipmap || mArrayIndex != o.mArrayIndex || mFormat != o.mFormat)
+                    return true;
+                return false;
+            }
+
+            bool operator == (const SamplerBufferUnit & o) const
+            {
+                if (mBuffer == o.mBuffer && mMipmap == o.mMipmap && mArrayIndex == o.mArrayIndex && mFormat == o.mFormat)
+                    return true;
+                return false;
+            }
+
+            bool operator < (const SamplerBufferUnit & o) const
+            {
+                if (mBuffer < o.mBuffer || mMipmap < o.mMipmap || mArrayIndex < o.mArrayIndex || mFormat < o.mFormat)
+                    return true;
+                return false;
+            }
+            
+            bool isSuitableView() const
+            {
+                return (NonSRGB(mFormat) == mBuffer->getFormat() && mMipmap == 0 && mArrayIndex == 0;
+            }
+            
+            Texture * mBuffer;
+            NCount mMipmap;
+            NCount mArrayIndex;
+            PixelFormat mFormat;   ///<default : mBuffer->getFormat()
+        };
     public:
         GpuParamBufferUnit();
         ~GpuParamBufferUnit();
+        
+        bool empty() const
+        {
+            return mStorage.mBuffer == 0 && mSampler.mBuffer == 0;
+        }
+
+        bool isStorage() const
+        {
+            return mParamType == PT_Storage;
+        }
+        
+        bool isTexture() const
+        {
+            return mParamType == PT_Sampler;
+        }
+
+        StorageBufferUnit & getBuffer()
+        {
+            N_assert( mParamType == PT_Storage );
+            return mStorage;
+        }
+
+        const StorageBufferUnit & getBuffer() const
+        {
+            N_assert( mParamType == PT_Storage );
+            return mStorage;
+        }
+
+        SamplerBufferUnit & getTexture()
+        {
+            N_assert( mParamType == PT_Sampler );
+            return mSampler;
+        }
+
+        const SamplerBufferUnit & getTexture() const
+        {
+            N_assert( mParamType == PT_Sampler );
+            return mSampler;
+        }
+
+        bool operator != (const GpuParamBufferUnit & o) const
+        {
+            if (mParamType == o.mParamType && mOpType == o.mOpType)
+            {
+                if (mParamType == PT_Storage)
+                {
+                    return mStorage != o.mStorage;
+                }
+                else
+                {
+                    return mSampler != o.mSampler;
+                }
+            }
+            return true;
+        }
+
+        bool operator == (const GpuParamBufferUnit & o) const
+        {
+            if (mParamType == o.mParamType && mOpType == o.mOpType)
+            {
+                if (mParamType == PT_Storage)
+                {
+                    return mStorage == o.mStorage;
+                }
+                else
+                {
+                    return mSampler == o.mSampler;
+                }
+            }
+            return false;
+        }
+
+        bool operator < (const GpuParamBufferUnit & o) const
+        {
+            if (mParamType < o.mParamType || mOpType < o.mOpType)
+            {
+                if (mParamType == PT_Storage)
+                {
+                    return mStorage < o.mStorage;
+                }
+                else
+                {
+                    return mSampler < o.mSampler;
+                }
+            }
+            return false;
+        }
         
         /** 设置参数值
         @param[in] oft 偏移(单位:字节)
@@ -474,70 +643,67 @@ namespace NII
         @param[in] oft 偏移(单位:字节)
         @version NIIEngine 3.0.0
         */
-        void set(NCount oft, const Vector3f & in);
+        inline void set(NCount oft, const Vector3f * in, NCount cnt = 1)        { set(oft, in[0].data(), 3 * cnt); }
 
         /** 设置参数值.
         @param[in] oft 偏移(单位:字节)
         @version NIIEngine 3.0.0
         */
-        inline void set(NCount oft, const Vector4f & in) { set(oft, &in.x, 1); }
+        inline void set(NCount oft, const Vector4f * in, NCount cnt = 1)        { set(oft, in[0].data(), 4 * cnt); }
 
         /** 设置参数值.
         @param[in] oft 偏移(单位:字节)
         @version NIIEngine 3.0.0
         */
-        inline void set(NCount oft, const Vector4i & in) { set(oft, &in.x, 1); }
+        inline void set(NCount oft, const Vector4i * in, NCount cnt = 1)        { set(oft, in[0].data(), 4 * cnt); }
+        
+        /** 设置参数值
+        @param[in] oft 偏移(单位:字节)
+        @version NIIEngine 3.0.0
+        */
+        inline void set(NCount oft, const Colour * in, NCount cnt = 1)          { set(oft, &in.r, 4 * cnt); }
 
         /** 设置参数值
         @param[in] oft 偏移(单位:字节)
         @version NIIEngine 3.0.0
         */
-        void set(NCount oft, const Matrix4f & in);
+        void set(NCount oft, const Matrix4f * in, NCount cnt = 1)               { set(oft, &in.data(), 16 * cnt); }
 
         /** 设置参数值
         @param[in] oft 偏移(单位:字节)
         @version NIIEngine 3.0.0
         */
-        void set(NCount oft, const Matrix4f * in, NCount cnt);
+        void set(NCount oft, const bool * in, NCount cnt = 1);
 
         /** 设置参数值
         @param[in] oft 偏移(单位:字节)
         @version NIIEngine 3.0.0
         */
-        void set(NCount oft, const Ni32 * in, NCount cnt);
+        void set(NCount oft, const Ni32 * in, NCount cnt = 1);
 
         /** 设置参数值
         @param[in] oft 偏移(单位:字节)
         @version NIIEngine 3.0.0
         */
-        void set(NCount oft, const NIIf * in, NCount cnt);
+        void set(NCount oft, const NIIf * in, NCount cnt = 1);
 
         /** 设置参数值
         @param[in] oft 偏移(单位:字节)
         @version NIIEngine 3.0.0
         */
-        void set(NCount oft, const NIId * in, NCount cnt);
-
-        /** 设置参数值
-        @param[in] oft 偏移(单位:字节)
-        @version NIIEngine 3.0.0
-        */
-        inline void set(NCount oft, const Colour & in) { set(oft, &in.r, 1); }
+        void set(NCount oft, const NIId * in, NCount cnt = 1);
     public:
-        Texture * mBuffer;
-        Texture::Type mType;
-        PixelFormat mPixelFormat;
-        OpType mMuteMode;
-        NCount mOffset;
-        NCount mSize;
-        NCount mMipmap;
-        NCount mMipmapCount;
-        NCount mLayer;
-        NCount mLayerCount;
+        OpType mOpType;
+        ParamType mParamType;
+        union
+        {
+            StorageBufferUnit mStorage;
+            SamplerBufferUnit mSampler;
+        };
         NCount mRefCount;
         bool mAutoDestroy;
     };
-    typedef vector<GpuParamBufferUnit *>::type GpuParamBufferList;
+    typedef vector<GpuParamBufferUnit>::type GpuParamBufferList;
     
     /** 着色参数缓存
     @version NIIEngine 3.0.0
@@ -547,11 +713,41 @@ namespace NII
     public:
         GpuParamBuffer() {}
         virtual ~GpuParamBuffer() {}
+
+        bool operator == (const GpuParamBuffer & o) const
+        {
+            if (mGpuParamBufferList.size() == o.mGpuParamBufferList.size())
+            {
+                NCount i, iend = mGpuParamBufferList.size();
+                for (i = 0; i < iend; ++i)
+                {
+                    if (mGpuParamBufferList[i] != o.mGpuParamBufferList[i])
+                        return false;
+                }
+                return true;
+            }
+            return false;
+        }
+
+        bool operator < (const GpuParamBuffer & o) const
+        {
+            if (mGpuParamBufferList.size() != o.mGpuParamBufferList.size())
+            {
+                return mGpuParamBufferList.size() < o.mGpuParamBufferList.size();
+            }
+            NCount i, iend = mGpuParamBufferList.size();
+            for (i = 0; i < iend; ++i)
+            {
+                if (mGpuParamBufferList[i] < o.mGpuParamBufferList[i])
+                    return false;
+            }
+            return true;
+        }
         
         /** 添加绑定点缓存
         @version NIIEngine 3.0.0
         */
-        void addBinding(Nidx slot, GpuParamBufferUnit * unit);
+        void addBinding(Nidx slot, const GpuParamBufferUnit & unit);
         
         /** 移去绑定点缓存
         @version NIIEngine 3.0.0
@@ -561,27 +757,27 @@ namespace NII
         /** 获取绑定点缓存
         @version NIIEngine 3.0.0
         */
-        GpuParamBufferUnit * getBinding(Nidx slot);
+        const GpuParamBufferUnit * getBinding(Nidx slot) const;
         
         /** 获取绑定点缓存数量
         @version NIIEngine 3.0.0
         */
-        NCount getBindingCount() const;
+        NCount getBindingCount() const          { return mSlotList.size(); }
 
         /** 添加绑定点
         @version NIIEngine 3.0.0
         */
-        void addBindingPoints(const VString & paramname, Nidx slot);
+        void addBindingPoint(const VString & name, Nidx slot);
         
         /** 移去绑定点
         @version NIIEngine 3.0.0
         */
-        void removeBindingPoints(const VString & paramname);
+        void removeBindingPoint(const VString & name);
         
         /** 获取绑定点
         @version NIIEngine 3.0.0
         */
-        Nidx getBindingPoints(const VString & paramname) const;
+        Nidx getBindingPoint(const VString & name) const;
         
         /** 获取绑定点数量
         @version NIIEngine 3.0.0
@@ -594,18 +790,6 @@ namespace NII
         GpuParamBufferList mGpuParamBufferList;
         NamedSlotList mNamedSlotList;
         SlotList mSlotList;
-    };
-
-    /** 着色参数内存绑定
-    @version NIIEngine 3.0.0
-    */
-    class _EngineAPI GpuParamMap : public GpuParamsAlloc
-    {
-    public:
-        GpuParamMap(): mDataSize(0){}
-
-        GpuParamIndexList mDataList;
-        NCount mDataSize;
     };
     
     /** 预定义着色程序值
@@ -620,7 +804,7 @@ namespace NII
         /** 集合名字
         @version NIIEngine 3.0.0
         */
-        inline const String & getName()             { return mName; }
+        inline const String & getName() const           { return mName; }
 
         /** 添加变量
         @version NIIEngine 3.0.0
@@ -643,65 +827,76 @@ namespace NII
         void removeAll();
 
         /** 设置数据
-        @param[in] oft 偏移(单位:字节)
+        @param[in] oft 偏移(单位:4字节)
         @version NIIEngine 3.0.0
         */
         inline void set(const VString & name, NCount oft, Ni32 in)              { set(name, oft, &in, 1); }
 
         /** 设置数据
-        @param[in] oft 偏移(单位:字节)
+        @param[in] oft 偏移(单位:4字节)
         @version NIIEngine 3.0.0
         */
         inline void set(const VString & name, NCount oft, NIIf in)              { set(name, oft, &in, 1); }
 
         /** 设置数据
-        @param[in] oft 偏移(单位:字节)
+        @param[in] oft 偏移(单位:4字节)
         @version NIIEngine 3.0.0
         */
         inline void set(const VString & name, NCount oft, const Colour & in)    { set(name, oft, &in.r, 4); }
 
         /** 设置数据
-        @param[in] oft 偏移(单位:字节)
+        @param[in] oft 偏移(单位:4字节)
         @version NIIEngine 3.0.0
         */
         inline void set(const VString & name, NCount oft, const Vector4f & in)  { set(name, oft, &in.x, 4); }
 
         /** 设置数据
-        @param[in] oft 偏移(单位:字节)
+        @param[in] oft 偏移(单位:4字节)
         @version NIIEngine 3.0.0
         */
         inline void set(const VString & name, NCount oft, const Vector3f & in)  { set(name, oft, &in.x, 3); }
         
         /** 设置数据
-        @param[in] oft 偏移(单位:字节)
+        @param[in] oft 偏移(单位:4字节)
         @version NIIEngine 3.0.0
         */
         inline void set(const VString & name, NCount oft, const Matrix4f & in)  { set(name, oft, in[0], 16); }
 
         /** 设置数据
-        @param[in] oft 偏移(单位:字节)
+        @param[in] oft 偏移(单位:4字节)
         @version NIIEngine 3.0.0
         */
-        void set(const VString & name, NCount oft, const Ni32 * in, NCount cnt);
+        void set(const VString & name, NCount oft, const Ni32 * in, NCount byte4x);
 
         /** 设置数据
-        @param[in] oft 偏移(单位:字节)
+        @param[in] oft 偏移(单位:4字节)
         @version NIIEngine 3.0.0
         */
-        void set(const VString & name, NCount oft, const NIIf * in, NCount cnt);
+        void set(const VString & name, NCount oft, const NIIf * in, NCount byte4x);
 
         /** 设置数据
-        @param[in] oft 偏移(单位:字节)
+        @param[in] oft 偏移(单位:4字节)
         @version NIIEngine 3.0.0
         */
-        void set(const VString & name, NCount oft, const NIId * in, NCount cnt);
+        void set(const VString & name, NCount oft, const NIId * in, NCount byte8x);
 
         /** 设置数据
-        @param[in] oft 偏移(单位:字节)
+        @param[in] oft 偏移(单位:4字节)
         @version NIIEngine 3.0.0
         */
-        inline void set(const VString & name, NCount oft, const Matrix4f * in, NCount cnt){ set(name, oft, in[0][0], 16 * cnt); }
+        inline void set(const VString & name, NCount oft, const Matrix4f * in, NCount byte4x){ set(name, oft, in[0][0], 16 * byte4x); }
 
+        /** 设置数据
+        @param[in] oft 偏移(单位:4字节)
+        @version NIIEngine 3.0.0
+        */
+        inline void set(const VString & name, NCount oft, const Matrix4d * in, NCount byte4x) { set(name, oft, in[0][0], 16 * byte4x); }
+
+        /** 获取定义列表
+        @version NIIEngine 3.0.0 高级api
+        */
+        inline GpuParamUnitList & getDefList()                      { return mDefines; }
+        
         /** 获取定义列表
         @version NIIEngine 3.0.0 高级api
         */
@@ -715,7 +910,19 @@ namespace NII
         /** 获取浮点部分数据
         @version NIIEngine 3.0.0
         */
-        inline void * getBufferData(NCount pos) const               { return &mBufferData[pos];}
+        inline void * getBufferData(NCount pos = 0) const           { return &mBufferData[pos];}
+
+        /** 读出数据到着色程序结构体缓存中
+        @note 注意结构体的成员对齐方式
+        @version NIIEngine 3.0.0
+        */
+        void read(StructBuffer * dst, NCount dstoft, NCount oft, NCount size);
+
+        /** 从着色程序结构体缓存中写入数据
+        @note 注意结构体的成员对齐方式
+        @version NIIEngine 3.0.0
+        */
+        void write(StructBuffer * src, NCount srcoft, NCount oft, NCount size);
     protected:
         String mName;
         GpuParamUnitList mDefines;
@@ -724,18 +931,14 @@ namespace NII
         Nmark mDirtyMark;
     };
 
-    class ShareParamSync;
+    class ParamValueSync;
     /** 着色程序参数
     @version NIIEngine 3.0.0
     */
     class _EngineAPI GpuProgramParam : public GpuParamsAlloc
     {
     public:
-        enum ParamType
-        {
-            PT_Const,           ///< 一次性(uniform,non uniform block)
-            PT_Texture          ///< 纹理缓存,uav数据模型,block uniform block缓存
-        };
+        typedef vector<ParamValueSync *>::type ShareSyncList;
     public:
         GpuProgramParam();
         GpuProgramParam(const GpuProgramParam & o);
@@ -753,80 +956,81 @@ namespace NII
         */
         inline const GpuParamDefine * getDefine() const     { return mParamDefine; }
 
-        /** 设置参数绑定
-        @version NIIEngine 3.0.0 高级api
-        */
-        void setMap(GpuParamMap * map);
-
-        /** 获取参数绑定
-        @version NIIEngine 3.0.0 高级api
-        */
-        inline const GpuParamMap * getMap() const           { return mParamMap; }
-
         /** 获取参数定义
         @version NIIEngine 3.0.0
         */
         const GpuParamUnit & getUnit(const VString & name) const;
 
+        /** 定义参数
+        @version NIIEngine 3.0.0
+        */
+        void define(Nui32 index, Nmark typemark, GpuDataType type, NCount cnt);
+
+        /** 取消定义
+        @version NIIEngine 3.0.0
+        */
+        void undefine(Nui32 index);
+
         /** 设置参数值
         @param[in] index 定义索引
-        @param[in] oft 偏移(单位:字节)
+        @param[in] oft 偏移(单位:4字节)
         @version NIIEngine 3.0.0
         */
         void set(Nui32 index, NCount oft, NIIf in, NIIf in2 = 0.0f, NIIf in3 = 0.0f, NIIf in4 = 0.0f);
 
         /** 设置参数值
         @param[in] index 定义索引
-        @param[in] oft 偏移(单位:字节)
+        @param[in] oft 偏移(单位:4字节)
         @version NIIEngine 3.0.0
         */
         void set(Nui32 index, NCount oft, NIId in, NIId in2 = 0.0f, NIId in3 = 0.0f, NIId in4 = 0.0f);
 
         /** 设置参数值
         @param[in] index 定义索引
-        @param[in] oft 偏移(单位:字节)
+        @param[in] oft 偏移(单位:4字节)
         @version NIIEngine 3.0.0
         */
         void set(Nui32 index, NCount oft, Ni32 in, Ni32 in2 = 0, Ni32 in3 = 0, Ni32 in4 = 0);
 
         /** 设置参数值
         @param[in] index 定义索引
-        @param[in] oft 偏移(单位:字节)
+        @param[in] oft 偏移(单位:4字节)
         @version NIIEngine 3.0.0
         */
         void set(Nui32 index, NCount oft, const Vector3f & in);
 
         /** 设置参数值.
         @param[in] index 定义索引
-        @param[in] oft 偏移(单位:字节)
+        @param[in] oft 偏移(单位:4字节)
         @version NIIEngine 3.0.0
         */
         inline void set(Nui32 index, NCount oft, const Vector4f & in) { set(index, oft, &in.x, 1); }
 
         /** 设置参数值.
         @param[in] index 定义索引
-        @param[in] oft 偏移(单位:字节)
+        @param[in] oft 偏移(单位:4字节)
         @version NIIEngine 3.0.0
         */
         inline void set(Nui32 index, NCount oft, const Vector4i & in) { set(index, oft, &in.x, 1); }
 
         /** 设置参数值
         @param[in] index 定义索引
-        @param[in] oft 偏移(单位:字节)
+        @param[in] oft 偏移(单位:4字节)
         @version NIIEngine 3.0.0
         */
         void set(Nui32 index, NCount oft, const Matrix4f & in);
 
         /** 设置参数值
         @param[in] index 定义索引
-        @param[in] oft 偏移(单位:字节)
+        @param[in] oft 偏移(单位:4字节)
+        @param[in] cnt 个数(单位:Matrix4f)
         @version NIIEngine 3.0.0
         */
-        void set(Nui32 index, NCount oft, const Matrix4f * in, NCount cnt);
+        void set(Nui32 index, NCount oft, const Matrix4f * in, NCount cntMat);
 
         /** 设置参数值
         @param[in] index 定义索引
-        @param[in] oft 偏移(单位:字节)
+        @param[in] oft 偏移(单位:4字节)
         @param[in] cnt4x 参数为1则写入4个Ni32，参数为2则写入8个Ni32. ...(单位: 4*cnt4x)
         @version NIIEngine 3.0.0
         */
@@ -834,7 +1038,7 @@ namespace NII
 
         /** 设置参数值
         @param[in] index 定义索引
-        @param[in] oft 偏移(单位:字节)
+        @param[in] oft 偏移(单位:4字节)
         @param[in] cnt4x 参数为1则写入4个NIIf，参数为2则写入8个NIIf. ...(单位: 4*cnt4x)
         @version NIIEngine 3.0.0
         */
@@ -842,7 +1046,7 @@ namespace NII
 
         /** 设置参数值
         @param[in] index 定义索引
-        @param[in] oft 偏移(单位:字节)
+        @param[in] oft 偏移(单位:4字节)
         @param[in] cnt4x 参数为1则写入4个NIId，参数为2则写入8个NIId. ...(单位: 4*cnt4x)
         @version NIIEngine 3.0.0
         */
@@ -850,7 +1054,7 @@ namespace NII
 
         /** 设置参数值
         @param[in] index 定义索引
-        @param[in] oft 偏移(单位:字节)
+        @param[in] oft 偏移(单位:4字节)
         @version NIIEngine 3.0.0
         */
         inline void set(Nui32 index, NCount oft, const Colour & in) { set(index, oft, &in.r, 1); }
@@ -867,180 +1071,151 @@ namespace NII
 
         /** 设置参数值
         @param[in] name 命名参数
-        @param[in] oft 偏移(单位:字节)
+        @param[in] oft 偏移(单位:4字节)
         @version NIIEngine 3.0.0
         */
         void set(const VString & name, NCount oft, NIIf in);
 
         /** 设置参数值
         @param[in] name 命名参数
-        @param[in] oft 偏移(单位:字节)
+        @param[in] oft 偏移(单位:4字节)
         @version NIIEngine 3.0.0
         */
         void set(const VString & name, NCount oft, Ni32 in);
 
         /** 设置参数值
         @param[in] name 命名参数
-        @param[in] oft 偏移(单位:字节)
+        @param[in] oft 偏移(单位:4字节)
         @version NIIEngine 3.0.0
         */
         void set(const VString & name, NCount oft, const Vector4f & in);
 
         /** 设置参数值
         @param[in] name 命名参数
-        @param[in] oft 偏移(单位:字节)
+        @param[in] oft 偏移(单位:4字节)
         @version NIIEngine 3.0.0
         */
         void set(const VString & name, NCount oft, const Vector3f & in);
 
         /** 设置参数值
         @param[in] name 命名参数
-        @param[in] oft 偏移(单位:字节)
+        @param[in] oft 偏移(单位:4字节)
         @version NIIEngine 3.0.0
         */
         void set(const VString & name, NCount oft, const Matrix4f & in);
 
         /** 设置参数值
         @param[in] name 命名参数
-        @param[in] oft 偏移(单位:字节)
+        @param[in] oft 偏移(单位:4字节)
         @version NIIEngine 3.0.0
         */
-        void set(const VString & name, NCount oft, const Matrix4f * in, NCount count);
+        void set(const VString & name, NCount oft, const Matrix4f * in, NCount cntMat);
 
         /** 设置参数值
         @param[in] name 参数的名字
-        @param[in] oft 偏移(单位:字节)
+        @param[in] oft 偏移(单位:4字节)
         @param[in] colour 设置为的值
         */
         void set(const VString & name, NCount oft, const Colour & in);
 
         /** 设置参数值
         @param[in] name 命名参数
-        @param[in] oft 偏移(单位:字节)
+        @param[in] oft 偏移(单位:4字节)
         @version NIIEngine 3.0.0
         */
-        void set(const VString & name, NCount oft, const NIIf * in, NCount count, NCount size = 4);
+        void set(const VString & name, NCount oft, const NIIf * in, NCount count, NCount byte4x = 4);
 
         /** 设置参数值
         @@param[in] name 命名参数
-        @param[in] oft 偏移(单位:字节)
+        @param[in] oft 偏移(单位:4字节)
         @version NIIEngine 3.0.0
         */
-        void set(const VString & name, NCount oft, const NIId * in, NCount count, NCount size = 4);
+        void set(const VString & name, NCount oft, const NIId * in, NCount count, NCount byte8x = 4);
 
         /** 设置参数值
-        @param[in] oft 偏移(单位:字节)
+        @param[in] oft 偏移(单位:4字节)
         @version NIIEngine 3.0.0
         */
-        void set(const VString & name, NCount oft, const Ni32 * in, NCount count, NCount size = 4);
+        void set(const VString & name, NCount oft, const Ni32 * in, NCount count, NCount byte4x = 4);
 
-        /** 写入缓存数据
+        /** 写入缓存数据(直接操作缓存,需要明确的oft)
         @param[in] memidx 缓存存储索引
-        @param[in] oft 偏移(单位:字节)
+        @param[in] oft 偏移(单位:4字节)
         @version NIIEngine 3.0.0 高级api
         */
-        inline void _write(Nidx memidx, NCount oft, NIIf in)                    { _write(memidx, oft, &in, 1); }
+        inline void _write(Nidx memidx, NCount oft, NIIf in)                    { _write(memidx + oft, &in, 1); }
 
-        /** 写入缓存数据
+        /** 写入缓存数据(直接操作缓存,需要明确的oft)
         @param[in] memidx 缓存存储索引
-        @param[in] oft 偏移(单位:字节)
+        @param[in] oft 偏移(单位:4字节)
         @version NIIEngine 3.0.0 高级api
         */
-        inline void _write(Nidx memidx, NCount oft, Ni32 in)                    { _write(memidx, oft, &in, 1); }
+        inline void _write(Nidx memidx, NCount oft, Ni32 in)                    { _write(memidx + oft, &in, 1); }
 
-        /** 写入缓存数据
+        /** 写入缓存数据(直接操作缓存,需要明确的oft)
         @param[in] memidx 缓存存储索引
-        @param[in] oft 偏移(单位:字节)
+        @param[in] oft 偏移(单位:4字节)
         @version NIIEngine 3.0.0 高级api
         */
-        inline void _write(Nidx memidx, NCount oft, const Vector3f & in)        { _write(memidx, oft, &in.x, 3); }
+        inline void _write(Nidx memidx, NCount oft, const Vector3f & in)        { _write(memidx + oft, &in.x, 3); }
 
-        /** 写入缓存数据
+        /** 写入缓存数据(直接操作缓存,需要明确的oft)
         @param[in] memidx 缓存存储索引
-        @param[in] oft 偏移(单位:字节)
-        @param[in] size 实际写入字节
+        @param[in] oft 偏移(单位:4字节)
+        @param[in] byte4x 实际写入(单位:4字节)
         @version NIIEngine 3.0.0 高级api
         */
-        inline void _write(Nidx memidx, NCount oft, const Vector4f & in, NCount size = 4){ _write(memidx, oft, &in.x, size); }
+        inline void _write(Nidx memidx, NCount oft, const Vector4f & in, NCount byte4x = 4){ _write(memidx + oft, &in.x, size); }
 
-        /** 写入缓存数据
+        /** 写入缓存数据(直接操作缓存,需要明确的oft)
         @param[in] memidx 缓存存储索引
-        @param[in] oft 偏移(单位:字节)
-        @param[in] size 实际写入字节
+        @param[in] oft 偏移(单位:4字节)
+        @param[in] byte4x 实际写入(单位:4字节)
         @version NIIEngine 3.0.0 高级api
         */
-        inline void _write(Nidx memidx, NCount oft, const Vector4i & in, NCount size = 4){ _write(memidx, oft, &in.x, size); }
+        inline void _write(Nidx memidx, NCount oft, const Vector4i & in, NCount byte4x = 4){ _write(memidx + oft, &in.x, size); }
 
-        /** 写入缓存数据
+        /** 写入缓存数据(直接操作缓存,需要明确的oft)
         @param[in] memidx 缓存存储索引
-        @param[in] oft 偏移(单位:字节)
-        @param[in] size 实际写入字节
+        @param[in] oft 偏移(单位:4字节)
+        @param[in] byte4x 实际写入(单位:4字节)
         @version NIIEngine 3.0.0 高级api
         */
-        void _write(Nidx memidx, NCount oft, const Matrix4f & in, NCount size);
+        void _write(Nidx memidx, NCount oft, const Matrix4f & in, NCount byte4x);
 
-        /** 写入缓存数据
+        /** 写入缓存数据(直接操作缓存,需要明确的oft)
         @param[in] memidx 缓存存储索引
-        @param[in] oft 偏移(单位:字节)
-        @param[in] numEntries Matrix4项的数量
+        @param[in] oft 偏移(单位:4字节)
         @version NIIEngine 3.0.0 高级api
         */
-        void _write(Nidx memidx, NCount oft, const Matrix4f * in, NCount count);
+        void _write(Nidx memidx, NCount oft, const Matrix4f * in, NCount cntMat);
 
-        /** 写入缓存数据
+        /** 写入缓存数据(直接操作缓存,需要明确的oft)
         @param[in] memidx 缓存存储索引
-        @param[in] oft 偏移(单位:字节)
+        @param[in] oft 偏移(单位:4字节)
         @version NIIEngine 3.0.0 高级api
         */
-        inline void _write(Nidx memidx, NCount oft, const Colour & in, NCount size = 4){ _write(memidx, oft, &in.r, size); }
+        inline void _write(Nidx memidx, NCount oft, const Colour & in, NCount byte4x = 4){ _write(memidx + oft, &in.r, size); }
 
-        /** 写入缓存数据
-        @param[in] memidx 缓存存储索引
-        @param[in] oft 偏移(单位:字节)
+        /** 写入缓存数据(直接操作缓存,需要明确的memidx)
+        @param[in] memidx 缓存存储索引(单位:4字节)
         @version NIIEngine 3.0.0 高级api
         */
-        inline void _write(Nidx memidx, NCount oft, const NIIf * in, NCount count){
-            N_assert(memidx + count <= mBufferData.size(), "error"); memcpy(&mBufferData[memidx] + oft, in, sizeof(NIIf) * count); }
+        inline void _write(Nidx memidx, const void * in, NCount byte4x = 1){
+            N_assert(memidx + byte4x <= mBufferData.size(), "error"); memcpy(&mBufferData[memidx], in, sizeof(NIIf) * byte4x); }
 
-        /** 读取缓存数据
-        @param[in] memidx 缓存存储索引
-        @param[in] oft 偏移(单位:字节)
+        /** 读取缓存数据(直接操作缓存,需要明确的memidx)
+        @param[in] memidx 缓存存储索引(单位:4字节)
         @version NIIEngine 3.0.0 高级api
         */
-        inline void _read(Nidx memidx, NCount oft, NCount count, NIIf * out){
-            N_assert(memidx + count <= mBufferData.size(), "error"); memcpy(out, &mBufferData[memidx] + oft, sizeof(NIIf) * count);}
+        inline void _read(Nidx memidx, void * out, NCount byte4x = 1) const{
+            N_assert(memidx + byte4x <= mBufferData.size(), "error"); memcpy(out, &mBufferData[memidx], sizeof(NIIf) * byte4x);}
 
-        /** 写入缓存数据
-        @param[in] memidx 缓存存储索引
-        @param[in] oft 偏移(单位:字节)
+        /** 设置缓存数据大小
         @version NIIEngine 3.0.0 高级api
         */
-        inline void _write(Nidx memidx, NCount oft, const NIId * in, NCount count){
-            N_assert(memidx + count * 2 <= mBufferData.size(), "error"); memcpy(&mBufferData[memidx] + oft, in, sizeof(NIId) * count); }
-
-        /** 读取缓存数据
-        @param[in] memidx 缓存存储索引
-        @param[in] oft 偏移(单位:字节)
-        @version NIIEngine 3.0.0 高级api
-        */
-        inline void _read(Nidx memidx, NCount oft, NCount count, NIId * out){
-            N_assert(memidx + count * 2 <= mBufferData.size(), "error"); memcpy(out, &mBufferData[memidx] + oft, sizeof(NIId) * count); }
-
-        /** 写入缓存数据
-        @param[in] memidx 缓存存储索引
-        @param[in] oft 偏移(单位:字节)
-        @version NIIEngine 3.0.0 高级api
-        */
-        inline void _write(Nidx memidx, NCount oft, const Ni32 * in, NCount count){
-            N_assert(memidx + count <= mBufferData.size(), "error"); memcpy(&mBufferData[memidx] + oft, in, sizeof(Ni32) * count); }
-
-        /** 读取缓存数据
-        @param[in] memidx 缓存存储索引
-        @param[in] oft 偏移(单位:字节)
-        @version NIIEngine 3.0.0 高级api
-        */
-        inline void _read(Nidx memidx, NCount oft, NCount count, Ni32 * out){
-            N_assert(memidx + count <= mBufferData.size(), "error"); memcpy(out, &mBufferData[memidx] + oft, sizeof(Ni32) * count); }
+        inline void _resize(NCount byte4x) { 
+            if (mBufferData.size() < byte4x) mBufferData.resize(byte4x, 0.0f); }
 
         /** 设置同步参数
         @param[in] index
@@ -1065,12 +1240,12 @@ namespace NII
         */
         void set(const VString & name, GpuSyncParam type, NIIf ext);
 
-        /** 设置同步参数
+        /** 设置同步参数(直接操作缓存,需要明确的memidx)
         @version NIIEngine 3.0.0 高级api
         */
         void _set(Nidx memidx, GpuSyncParam type, Ni32 input, Nmark mark, NCount size = 4);
 
-        /** 设置同步参数
+        /** 设置同步参数(直接操作缓存,需要明确的memidx)
         @version NIIEngine 3.0.0 高级api
         */
         void _set(Nidx memidx, GpuSyncParam type, NIIf input, Nmark mark, NCount size = 4);
@@ -1078,46 +1253,46 @@ namespace NII
         /** 获取同步参数绑定
         @version NIIEngine 3.0.0
         */
-        const GpuSyncParamIndex * getSyncParamIndex(const VString & name) const;
+        const GpuEnvParamBlock * getEnvParamBlock(const VString & name) const;
 
         /** 获取同步参数绑定
         @param[in] index 参数索引
         @version NIIEngine 3.0.0 高级api
         */
-        const GpuSyncParamIndex * getSyncParamIndex(Nidx index) const;
+        const GpuEnvParamBlock * getEnvParamBlock(Nidx index) const;
 
         /** 获取同步参数绑定
         @param[in] memidx 缓存索引
         @version NIIEngine 3.0.0
         */
-        const GpuSyncParamIndex * _getSyncParamIndex(Nidx memidx) const;
+        const GpuEnvParamBlock * _getEnvParamBlock(Nidx memidx) const;
 
         /** 移去同步参数
         @version NIIEngine 3.0.0
         */
-        void removeSyncParam(Nidx index);
+        void removeEnvParam(Nidx index);
 
         /** 移去同步参数
         @version NIIEngine 3.0.0
         */
-        void removeSyncParam(const VString & name);
+        void removeEnvParam(const VString & name);
 
         /** 移去所有同步参数
         @version NIIEngine 3.0.0
         */
-        void removeAllSyncParam();
+        void removeAllEnvParam();
 
         /** 获取同步参数列表
         @version NIIEngine 3.0.0 高级api
         */
-        inline const GpuSParamIndexList & getSyncParamList() const { return mSyncParamList; }
+        inline const GpuEnvParamBlockList & getEnvParamList() const { return mEnvParamList; }
 
         /** 更新同步参数
         @param[in] src 参数资源
         @param[in] mark GpuParamType
         @version NIIEngine 3.0.0 高级api
         */
-        void syncSys(const SysSyncParam * src, Nmark mark);
+        void sync(const SysSyncParam * src, Nmark mark);
 
         /** 添加公共参数
         @version NIIEngine 3.0.0
@@ -1130,7 +1305,7 @@ namespace NII
         */
         void addValue(const String & param);
 
-        /** 公共参数是否存在
+        /** 获取公共参数是否存在
         @version NIIEngine 3.0.0
         */
         bool isValueExist(const String & param) const;
@@ -1139,6 +1314,16 @@ namespace NII
         @version NIIEngine 3.0.0
         */
         void removeValue(const String & param);
+        
+        /** 获取公共参数
+        @version NIIEngine 4.0.0
+        */
+        GpuParamValue * getValue(Nidx idx) const;
+        
+        /** 获取公共参数总数
+        @version NIIEngine 4.0.0
+        */
+        inline NCount getValueCount() const                     { return mShareSyncList.size(); }
 
         /** 移去所有公共参数
         @version NIIEngine 3.0.0
@@ -1149,6 +1334,11 @@ namespace NII
         @version NIIEngine 3.0.0 高级api
         */
         void syncValue();
+        
+        /** 获取公共参数列表
+        @version NIIEngine 3.0.0 高级api
+        */
+        inline const ShareSyncList & getValueList() const       { return mShareSyncList; }
 
         /** 是否允许参数丢失
         @version NIIEngine 3.0.0  高级api
@@ -1160,13 +1350,13 @@ namespace NII
         */
         inline bool isAllowMissing() const                      { return mAllowParamLost;}
 
-        /** 设置是否需要转换矩阵
+        /** 设置是否需要转置矩阵
         @note d3d gles 需要使用转置矩阵,或者设置前就已经转了
         @version NIIEngine 3.0.0 高级api
         */
         inline void setTransposeMatrix(bool b)                  { mTransposeMatrix = b;}
 
-        /** 获取是否需要转换矩阵
+        /** 获取是否需要转置矩阵
         @note d3d gles 需要使用转置矩阵,或者设置前就已经转了
         @version NIIEngine 3.0.0 高级api
         */
@@ -1177,10 +1367,10 @@ namespace NII
         */
         void copyParamValue(const GpuProgramParam & src);
 
-        /** 复制命名参数值
+        /** 复制定义参数值
         @version NIIEngine 3.0.0
         */
-        void copyNamedParamValue(const GpuProgramParam & src);
+        void copyDefineValue(const GpuProgramParam & src);
 
         /** 设置多重绘制数量参数
         @version NIIEngine 3.0.0
@@ -1190,32 +1380,22 @@ namespace NII
         /** 获取多重绘制数量参数
         @version NIIEngine 3.0.0
         */
-        NIIf getRenderCount() const;
-
-        /** 获取多重绘制数量参数缓存
-        @version NIIEngine 3.0.0
-        */
-        inline NIIf * getRenderCountPtr() const                 { return mRenderCountPtr; }
-
-        /** 获取多重绘制数量参数索引
-        @version NIIEngine 3.0.0
-        */
-        inline Nui32 getRenderCountIndex() const                { return mRenderCountIndex; }
-
-        /** 获取多重绘制数量参数内存索引
-        @version NIIEngine 3.0.0
-        */
-        inline Nidx getRenderCountMemIndex() const              { return mRenderCountMemIndex; }
+        NIIf * getRenderCount() const;
 
         /** 从缓存索引获取参数索引
         @version NIIEngine 3.0.0
         */
-        Nui32 getDataIndex(Nidx memidx);
+        Nui32 getLocation(Nidx memidx) const;
 
         /** 获取命名参数定义
         @version NIIEngine 3.0.0
         */
-        inline const GpuParamUnitList & getDefList() const      { N_assert(mParamDefine, "error"); return mParamDefine->mDefines; }
+        inline const GpuParamUnitList & getDefineList() const   { N_assert(mParamDefine, "error"); return mParamDefine->mDefineList; }
+
+        /** 获取块参数定义
+        @version NIIEngine 3.0.0
+        */
+        inline const GpuParamBlockList & getBlockList() const   { return mBlockList; }
 
         /** 获取NIIf常量列表的引用
         @version NIIEngine 3.0.0 高级api
@@ -1231,42 +1411,54 @@ namespace NII
         @version NIIEngine 3.0.0
         */
         static NCount getTypeCount(GpuDataType type, bool pad4x);
+        
+        /** 获取Gpu数据类型大小
+        @version NIIEngine 3.0.0
+        */
+        static NCount get4ByteCount(GpuDataType type, bool pad4x);
+
+        /** 读出数据到着色程序结构体缓存中
+        @note 注意结构体的成员对齐方式
+        @version NIIEngine 3.0.0
+        */
+        void read(StructBuffer * dst, NCount dstoft, NCount oft, NCount size);
+
+        /** 从着色程序结构体缓存中写入数据
+        @note 注意结构体的成员对齐方式
+        @version NIIEngine 3.0.0
+        */
+        void write(StructBuffer * src, NCount srcoft, NCount oft, NCount size);
     protected:
         /** 获取参数绑定
         @version NIIEngine 3.0.0
         */
-        GpuParamIndex * getDataIndex(Nui32 index, NCount size, Nmark typemark, GpuDataType dtype);
+        GpuParamBlock * getBlock(Nui32 index, NCount reqCnt, Nmark typemark, GpuDataType dtype);
 
         /** 移去参数绑定
         @version NIIEngine 3.0.0
         */
-        void removeDataIndex(Nui32 index);
+        void removeBlock(Nui32 index);
         
         /** 移去参数绑定
         @version NIIEngine 3.0.0
         */
-        void removeDataIndex(GpuSyncParamIndex * idx);
+        void removeBlock(GpuEnvParamBlock * idx);
 
         /** 获取参数种类
         @version NIIEngine 3.0.0
         */
         Nmark getParamTypeMark(GpuSyncParam sparam);
     protected:
-        typedef vector<ShareParamSync *>::type ShareSyncList;
-        typedef vector<ParamType>::type ParamTypeList;
         typedef map<Nui32, Ni32>::type ExtDataList;
     protected:
         GpuParamDefine * mParamDefine;
-        GpuParamMap * mParamMap;
         GpuParamBuffer * mParamBuffer;
-        GpuSParamIndexList mSyncParamList;
+        GpuParamBlockList mBlockList;
+        GpuEnvParamBlockList mEnvParamList;
         ShareSyncList mShareSyncList;
         ExtDataList mExtDataList;
-        ParamTypeList mParamTypeList;
         mutable BufferArray mBufferData;      // shared layout 预分配缓存为128byte(32*(float 4byte)) -> alter uav buffer uniform buffer
         NIIf * mRenderCountPtr;
-        Nui32 mRenderCountIndex;
-        Nidx mRenderCountMemIndex;
         Nmark mParamTypeMark;
         BitSet mBitSet;
         bool mTransposeMatrix;

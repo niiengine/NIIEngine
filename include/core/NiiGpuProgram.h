@@ -68,6 +68,11 @@ namespace NII
         SL_GLSL_1_0 = 0x20000 | SL_OPENGL,  ///< (gl glsl1.0) language
         SL_GLSL_1_1 = 0x40000 | SL_OPENGL,  ///< (gl glsl1.1) language
         SL_GLSL_1_2 = 0x80000 | SL_OPENGL,  ///< (gl glsl1.2) language
+        SL_GLSL_1_3 = 0x100000 | SL_OPENGL,  ///< (gl glsl1.3) language
+        SL_GLSL_1_4 = 0x200000 | SL_OPENGL,  ///< (gl glsl1.4) language
+        SL_GLSL_1_5 = 0x400000 | SL_OPENGL,  ///< (gl glsl1.5) language
+        SL_GLSL_3_3 = 0x800000 | SL_OPENGL,  ///< (gl glsl3.3) language
+        SL_GLSL_4_2 = 0x1000000 | SL_OPENGL,  ///< (gl glsl4.2) language
 
         SL_VS_1_1 = 0x01 | SL_DX,           ///< dx8 vs_1_1
         SL_VS_2_0 = 0x02 | SL_DX,           ///< dx9 vs_2_0
@@ -108,19 +113,19 @@ namespace NII
         */
         enum ShaderType
         {
-            ST_VS = 0x01,       ///< 顶点
-            ST_TS = 0x02,       ///< 细分面/tess control shader/hull-shader
-            ST_DS = 0x04,       ///< domain-shader/tess tvaluation shader
-            ST_GS = 0x08,       ///< 几何
-            ST_FS = 0x10,       ///< 片段/pixel-shader
-            ST_CS = 0x20        ///< compute-shader
+            ST_VS = 0,       ///< 顶点
+            ST_TS = 1,       ///< 细分面/tess control shader/hull-shader
+            ST_DS = 2,       ///< domain-shader/tess tvaluation shader
+            ST_GS = 3,       ///< 几何
+            ST_FS = 4,       ///< 片段/pixel-shader
+            ST_CS = 5,       ///< compute-shader
+            ST_Cnt = 8
         };
     public:
         /** 构造函数
         @version NIIEngine 3.0.0 高级api
         */
-        GpuProgram(ResourceID rid, GroupID gid,
-            ResLoadScheme * ls = 0, ResResultScheme * rs = 0, 
+        GpuProgram(ResourceID rid, GroupID gid, ResLoadScheme * ls = 0, ResResultScheme * rs = 0, 
             ScriptTypeID stid = N_CmdObj_GpuProgram, LangID lid = N_PrimaryLang);
 
         virtual ~GpuProgram();
@@ -134,7 +139,7 @@ namespace NII
         /** 获取错误代码
         @version NIIEngine 3.0.0
         */
-        inline Nui32 getErrorCode() const{ return mErrorCode; }
+        inline Nui32 getErrorCode() const               { return mErrorCode; }
 
         /** 设置着色程序类型(只在加载前有效)
         @version NIIEngine 3.0.0
@@ -149,12 +154,12 @@ namespace NII
         /** 设置语法类型
         @version NIIEngine 3.0.0
         */
-        inline void setSyntaxType(ShaderLanguage sl){ mSyntax = sl; }
+        inline void setSyntaxType(ShaderLanguage sl)    { mSyntax = sl; }
 
         /** 获取语法类型
         @version NIIEngine 3.0.0
         */
-        inline ShaderLanguage getSyntaxType() const{ return mSyntax; }
+        inline ShaderLanguage getSyntaxType() const     { return mSyntax; }
 
         /** 获取语言种类
         @version NIIEngine 3.0.0
@@ -167,6 +172,11 @@ namespace NII
         */
         void setProgramSrc(const String & file);
         
+        /** 获取这个着色程序使用的资源文件名
+        @version NIIEngine 3.0.0
+        */
+        inline const String & getProgramSrc() const     { return mFile; }
+        
         /** 设置代码串
         @version NIIEngine 3.0.0
         */
@@ -175,13 +185,13 @@ namespace NII
         /** 获取代码串
         @version NIIEngine 3.0.0
         */
-        inline const VString & getProgramStr() const { return mSource; }
-        
-        /** 获取这个着色程序使用的资源文件名
+        inline const VString & getProgramStr() const    { return mSource; }
+
+        /** 获取代码串hash
         @version NIIEngine 3.0.0
         */
-        inline const String & getProgramSrc() const{ return mFile; }
-
+        Nui32 getHash(Nui32 in = 0) const;
+        
         /** 设置自定义程序参数
         @version NIIEngine 3.0.0
         */
@@ -200,7 +210,7 @@ namespace NII
         /** 获取自定义程序参数导入文件
         @version NIIEngine 3.0.0
         */
-        virtual const String & getParamDefSrc() const;
+        virtual const String & getParamDefSrc() const   { return mParamDefFile; }
 
         /** 设置程序入口
         @note 如果存在多个使用;分割.一般着色程序只有一个入口main.而这个函数用于高级合成着色程序MultiGpuProgram
@@ -311,18 +321,28 @@ namespace NII
         @version NIIEngine 3.0.0
         */
         DataEquation<TimeDurMS, NIIf> * createTimeParam(GpuProgramParam * param, NCount idx, NIIf factor = 1.0f);
+        
+        /** 设置计算着色程序分组
+        @version NIIEngine 5.0.0
+         */
+        inline void setComputeDim(const Vector3i & dim) { mComputeDim = dim; }
+        
+        /** 获取计算着色程序分组
+        @version NIIEngine 5.0.0
+        */
+        inline const Vector3i & getComputeDim() const   { return mComputeDim; }
 
         /** 设置需要顶点绘制的相临基元信息
         @remark 顶点着色程序/几何着色程序
         @version NIIEngine 3.0.0
         */
-        inline void setAdjacencyPrimitive(bool b){ mAdjacencyPrimitive = b;}
+        inline void setAdjacencyPrimitive(bool b)       { mAdjacencyPrimitive = b;}
 
         /** 是否需要顶点绘制的相临基元信息
         @remark 顶点着色程序/几何着色程序
         @version NIIEngine 3.0.0
         */
-        inline bool isAdjacencyPrimitive() const{ return mAdjacencyPrimitive; }
+        inline bool isAdjacencyPrimitive() const        { return mAdjacencyPrimitive; }
     protected:
         /// @copydoc Resource::loadImpl
         void loadImpl();
@@ -355,11 +375,12 @@ namespace NII
         String mParamDefFile;
         VString mSource;
         VString mKernel;
+        Nui32 mSourceHash;
         Nui32 mErrorCode;
         NCount mFusionCount;
         GpuParamDefine * mDefines;
-        GpuParamMap * mBindMap;
         GpuProgramParam * mParams;
+        Vector3i mComputeDim;
         bool mVertexMatrixValid;
         bool mVertexTextureFetch;
         bool mParamValid;

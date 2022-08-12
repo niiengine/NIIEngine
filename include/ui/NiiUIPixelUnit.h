@@ -32,7 +32,7 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 #include "NiiUICommon.h"
 #include "NiiVector2.h"
 #include "NiiRect.h"
-#include "NiiColourArea.h"
+#include "NiiColour.h"
 
 namespace NII
 {

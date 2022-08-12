@@ -38,10 +38,10 @@ namespace NII
     /** 系统内存数据流
     @version NIIEngine 3.0.0
     */
-    class _EngineAPI MemDataStream : public DataStream
+    class _EngineAPI MemStream : public DataStream
     {
     public:
-        MemDataStream();
+        MemStream();
 
         /** 新内存构建
         @remark 产生新数据块
@@ -49,7 +49,7 @@ namespace NII
         @param[in] name 流的名字
         @param[in] readonly 只读
         */
-        MemDataStream(NCount size, const String & name = N_StrBlank, bool readonly = false);
+        MemStream(NCount size, const String & name = N_StrBlank, bool readonly = false);
 
         /** 内存构建
         @remark 不产生数据副本
@@ -60,7 +60,7 @@ namespace NII
         @param[in] readonly 只读
         @version NIIEngine 3.0.0
         */
-        MemDataStream(Nui8 * data, NCount size, const String & name = N_StrBlank,
+        MemStream(Nui8 * data, NCount size, const String & name = N_StrBlank,
             bool autofree = false, bool readonly = false);
 
         /** 流构建
@@ -68,14 +68,14 @@ namespace NII
         @param[in] name 流的名字
         @param[in] r 只读
         */
-        MemDataStream(DataStream * src, const String & name = N_StrBlank, bool readonly = false);
+        MemStream(DataStream * src, const String & name = N_StrBlank, bool readonly = false);
 
-        ~MemDataStream();
+        ~MemStream();
 
         /** 当前内存位置
         @version NIIEngine 3.0.0
         */
-        Nui8 * getPos();
+        Nui8 * getPos()                             { return mPos; }
 
         /** 是否自动释放内存
         @version NIIEngine 3.0.0
@@ -85,7 +85,7 @@ namespace NII
         /** 获取缓存数据
         @version NIIEngine 3.0.0
         */
-        Nui8 * getData() const;
+        Nui8 * getData() const                      { return mData;}
 
         /// @copydetails DataStream::read
         NCount read(void * out, NCount count)const;
@@ -128,40 +128,38 @@ namespace NII
     /** 文件流
     @version NIIEngine 3.0.0
     */
-    class _EngineAPI FileStreamDataStream : public DataStream
+    class _EngineAPI FileDataStream : public DataStream
     {
     public:
+        FileDataStream(const String & filename, bool read = true, const String & name = N_StrBlank,
+            bool close = true);
         /** 只读流构建
         @param[in] s 只读流
         @param[in] close 自动释放s指针
         */
-        FileStreamDataStream(std::ifstream * s, const String & name = N_StrBlank,
-            bool close = true);
+        FileDataStream(std::ifstream * s, const String & name = N_StrBlank, bool close = true);
 
         /** 读写流构建
         @param[in] s 读写流
         @param[in] close 自动释放s指针
         */
-        FileStreamDataStream(std::fstream * s, const String & name= N_StrBlank,
-            bool close = true);
+        FileDataStream(std::fstream * s, const String & name= N_StrBlank, bool close = true);
 
         /** 只读流构建
         @param[in] s 只读流
         @param[in] size 流内容大小(单位字节)
         @param[in] close 自动释放s指针
         */
-        FileStreamDataStream(std::ifstream * s, NCount size, const String & name = N_StrBlank,
-            bool close = true);
+        FileDataStream(std::ifstream * s, NCount size, const String & name = N_StrBlank, bool close = true);
 
         /** 读写流
         @param[in] s 读写流
         @param[in] size 流内容大小(单位 字节)
         @param[in] close 自动释放s指针
         */
-        FileStreamDataStream(std::fstream * s, NCount size, const String & name = N_StrBlank,
-            bool close = true);
+        FileDataStream(std::fstream * s, NCount size, const String & name = N_StrBlank, bool close = true);
 
-        ~FileStreamDataStream();
+        ~FileDataStream();
 
         /// @copydetails DataStream::read
         NCount read(void * out, NCount count) const;
@@ -195,13 +193,12 @@ namespace NII
     @remark 最普通的文件数据流
     @version NIIEngine 3.0.0
     */
-    class _EngineAPI FileHandleDataStream : public DataStream
+    class _EngineAPI FileHandleStream : public DataStream
     {
     public:
-        FileHandleDataStream(FILE * file, const String & name = N_StrBlank,
-            Nmark mode = AM_READ);
+        FileHandleStream(FILE * file, const String & name = N_StrBlank, Nmark mode = AM_READ);
 
-        ~FileHandleDataStream();
+        ~FileHandleStream();
 
         /// @copydetails DataStream::read
         NCount read(void * out, NCount count) const;
@@ -231,13 +228,13 @@ namespace NII
     @note getData 函数会产生严重阻塞
     @version NIIEngine 3.0.0
     */
-    class _EngineAPI SocketDataStream : public DataStream
+    class _EngineAPI SocketStream : public DataStream
     {
     public:
         /// 从一个C文件句柄中创建命名流
-        SocketDataStream(Nsocket socket, const String & name = N_StrBlank, Nmark mode = AM_READ);
+        SocketStream(Nsocket socket, const String & name = N_StrBlank, Nmark mode = AM_READ);
 
-        ~SocketDataStream();
+        ~SocketStream();
 
         /// @copydetails DataStream::read
         NCount read(void * buf, NCount count) const;
@@ -245,7 +242,9 @@ namespace NII
         /// @copydetails DataStream::write
         NCount write(const void * buf, NCount count);
 
-        /// @copydetails DataStream::getData
+        /** 获取缓存数据
+        @version NIIEngine 3.0.0
+        */
         Nui8 * getData();
 
         /// @copydetails DataStream::skip
@@ -281,11 +280,11 @@ namespace NII
     5.文件格式说明
     6.(有效的数据)
     */
-    class EncryptDataStream
+    class EncryptStream
     {
     public:
-        EncryptDataStream();
-        ~EncryptDataStream();
+        EncryptStream();
+        ~EncryptStream();
     };
 }
 

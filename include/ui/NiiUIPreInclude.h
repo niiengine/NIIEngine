@@ -60,7 +60,7 @@ namespace UI
     class TextPixelUnit;
     class WidgetPixelUnit;
     struct SheetContext;
-    class UIInstance;
+    class UISubSheet;
     class RightLayout;
     class Scheme;
 
@@ -70,7 +70,6 @@ namespace UI
     class StringTranscoder;
     class TextUtils;
     class Style;
-    class Contaienr;
     class Window;
     class WidgetFactory;
     class WidgetView;

@@ -30,7 +30,7 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 
 #include "NiiPreInclude.h"
 #include "NiiGeometryObj.h"
-#include "NiiPropertyCmdObj.h"
+#include "NiiPropertyObj.h"
 #include "NiiSpaceNode.h"
 #include "NiiColour.h"
 #include "NiiRect.h"

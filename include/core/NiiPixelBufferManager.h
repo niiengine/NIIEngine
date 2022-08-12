@@ -47,7 +47,7 @@ namespace NII
         @param[in] file 脚本文件名字
         @version NIIEngine 3.0.0
         */
-        void load(const String & file, GroupID gid = GroupUnknow);
+        PixelBufferGroupList create(const String & file, GroupID gid = GroupUnknow);
 
         /** 加载创建像素缓存
         @param[in] id 像素标识
@@ -55,12 +55,12 @@ namespace NII
         @param[in] rgid 资源组标识
         @version NIIEngine 3.0.0
         */
-        void load(PixelBufferID id, const String & file, GroupID rgid = GroupUnknow);
+        PixelBufferGroup * create(PixelBufferID id, const String & file, GroupID rgid = GroupUnknow);
 
         /** 创建(或获取)像素组
         @version NIIEngine 3.0.0
         */
-        PixelBufferGroup * createGroup(Texture * obj, ScaleMode mode = SM_Unknow, const Vector2f & oft = Vector2f::ZERO,
+        PixelBufferGroup * create(Texture * obj, ScaleMode mode = SM_Unknow, const Vector2f & oft = Vector2f::ZERO,
             const Vector2f & pixeloft = Vector2f::ZERO, const PlaneSizef & srcRes = PlaneSizef(640.0f, 480.0f));
 
         /** 获取(或创建)像素组
@@ -68,10 +68,15 @@ namespace NII
         */
         PixelBufferGroup * getGroup(GroupID gid);
 
+        /** 获取(或创建)像素组
+        @version NIIEngine 3.0.0
+        */
+        bool isGroupExist(GroupID gid);
+
         /** 删除像素组
         @version NIIEngine 3.0.0
         */
-        void destroyGroup(PixelBufferGroup * obj);
+        void destroyGroup(GroupID gid);
 
         /** 创建像素缓存
         @param[in] id 像素标识
@@ -84,33 +89,33 @@ namespace NII
         @param[in] pid 像素标识
         @version NIIEngine 3.0.0
         */
-        PixelBuffer * get(PixelBufferID pid) const;
+        PixelBuffer * get(PixelBufferComID id) const;
 
         /** 获取指定的像素缓存
         @param[in] rid 像素纹理源
         @param[in] id 像素标识
         @version NIIEngine 3.0.0
         */
-        PixelBuffer * get(GroupID rid, PixelBufferID id) const;
+        PixelBuffer * get(GroupID rid, PixelBufferID pid) const;
 
         /** 是否存在定义的像素缓存
         @param[in] pid 像素标识
         @version NIIEngine 3.0.0
         */
-        bool isExist(PixelBufferID id) const;
+        bool isExist(PixelBufferComID id) const;
 
         /** 是否存在定义的像素缓存
         @param[in] id 像素标识
         @param[in] rid 像素纹理源
         @version NIIEngine 3.0.0
         */
-        bool isExist(GroupID rid, PixelBufferID id) const;
+        bool isExist(GroupID rid, PixelBufferID pid) const;
 
         /** 删除像素组
         @param[in] rid 像素纹理源
         @param[in] deltex 删除纹理
         */
-        void destroy(GroupID rid, PixelBufferID id, bool deltex = true);
+        void destroy(GroupID rid, PixelBufferID pid, bool deltex = true);
 
         /** 删除像素组
         @param[in] rid 像素纹理源
@@ -138,12 +143,12 @@ namespace NII
         /** 设置资源组
         @version NIIEngine 3.0.0
         */
-        static void setGroup(GroupID rgid);
+        static inline void setGroup(GroupID rgid)   { ResourceGroup = rgid;  }
 
         /** 获取资源组
         @version NIIEngine 3.0.0
         */
-        static GroupID getGroup();
+        static inline GroupID getGroup()            { return ResourceGroup; }
     protected:
         GroupID genValidID() const;
     private:

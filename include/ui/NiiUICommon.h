@@ -29,12 +29,11 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 #define _NII_UI_COMMON_H_
 
 #include "NiiUIPreInclude.h"
-#include "NiiColourArea.h"
+#include "NiiColour.h"
 #include "NiiRect.h"
 
 namespace NII
 {
-    static const StateID StateCount;
 namespace UI
 {
     /** 更新模式

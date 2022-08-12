@@ -35,6 +35,37 @@ namespace NII
 {
 namespace UI
 {
+    /** 排版格
+    @version NIIEngine 3.0.0
+    */
+    class _EngineAPI LayoutCell : public Container
+    {
+    public:
+        LayoutCell(WidgetID wid, FactoryID fid, Container * own, const String & name = N_StrBlank,
+            LangID lid = N_PrimaryLang);
+
+        virtual ~LayoutCell();
+
+        /// @copydetails Container::getChildInnerArea
+        virtual const CalcRect & getChildInnerArea() const;
+
+        /// @copydetails Container::notifyPosChange
+        virtual void notifyPosChange();
+
+        /// @copydetails Container::addImpl
+        virtual void addImpl(Widget * sub);
+    protected:
+        /// @copydoc Widget::getInnerAreaImpl
+        virtual Rectf getInnerAreaImpl(bool pixelAlign) const;
+
+        /** 获取子成员区域实现
+        @version NIIEngine 3.0.0
+        */
+        Rectf getChildAreaImpl(bool pixelAlign) const;
+    protected:
+        CalcRect mChildInnerArea;
+    };
+
     /** 排版容器
     @version NIIEngine 3.0.0
     */

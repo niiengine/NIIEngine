@@ -44,7 +44,7 @@ namespace UI
     public:
         typedef vector<AssignProperty>::type PropertyList;
     public:
-        StyleWidget(FactoryID sid, WidgetID wid, bool autowin);
+        StyleWidget(StyleViewID sid, WidgetID wid, bool autowin);
 
         /** 附加到单元中
         @version NIIEngine 3.0.0
@@ -84,12 +84,12 @@ namespace UI
         /** 设置单元工厂类
         @version NIIEngine 3.0.0
         */
-        inline void setFactoryID(FactoryID type)    { mFactoryID = type; }
+        inline void setViewID(StyleViewID id)       { mViewID = id; }
 
         /** 获取单元工厂类
         @version NIIEngine 3.0.0
         */
-        inline FactoryID getFactoryID() const       { return mFactoryID; }
+        inline StyleViewID getViewID() const        { return mViewID; }
 
         /** 设置x方向对齐
         @version NIIEngine 3.0.0
@@ -134,7 +134,7 @@ namespace UI
         /** 获取预赋值属性列表
         @version NIIEngine 3.0.0
         */
-        const PropertyList & getPropertyList() const;
+        const PropertyList & getPropertyList() const{ return mPropertyList; }
         
         /** 设置是否自动窗体
         @version NIIEngine 3.0.0
@@ -159,7 +159,7 @@ namespace UI
         StyleWidget();
     private:
         WidgetID mID;
-        FactoryID mFactoryID;
+        StyleViewID mViewID;
         VAlign mVAlign;
         HAlign mHAlign;
         StyleArea mArea;

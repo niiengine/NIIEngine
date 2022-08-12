@@ -30,13 +30,92 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 
 #include "NiiPreInclude.h"
 #include "NiiRenderQueue.h"
-#include "NiiSpaceObjFactory.h"
+#include "NiiFactoryObj.h"
 #include "NiiAABox.h"
 #include "NiiSphere.h"
 #include "NiiExtData.h"
 
 namespace NII
 {
+    /** 空间对象
+    @version NIIEngine 3.0.0
+    */
+    class _EngineAPI SpaceObjFactory : public FactoryObj
+    {
+    public:
+        SpaceObjFactory() : mTypeMark(0xFFFFFFFF) {}
+        virtual ~SpaceObjFactory() {}
+
+        /** 创建实例
+        @param[in] sid
+        @param[in] mag
+        @param[in] params
+        @version NIIEngine 3.0.0
+        */
+        virtual SpaceObj * create(SpaceID sid, SpaceManager * mag, const PropertyData * params = 0) = 0;
+
+        /** 设置工厂类的类型掩码
+        @version NIIEngine 3.0.0
+        */
+        void setTypeMark(Nmark mark) { mTypeMark = mark; }
+
+        /** 获取工厂类的类型掩码
+        @version NIIEngine 3.0.0
+        */
+        Nmark getTypeMark() const { return mTypeMark; }
+    protected:
+        Nmark mTypeMark;
+    };
+
+    /** 事件监听
+    @remark 可用于物理引擎/阴影渲染器控制
+    @version NIIEngine 3.0.0 高级api
+    */
+    class _EngineAPI SpaceObjListener
+    {
+    public:
+        SpaceObjListener();
+        virtual ~SpaceObjListener();
+
+        /** 创建后时
+        @version NIIEngine 3.0.0
+        */
+        virtual void create(SpaceObj * obj);
+
+        /** 删除时
+        @version NIIEngine 3.0.0
+        */
+        virtual void destroy(SpaceObj * obj);
+
+        /** 位置发生改变
+        @version NIIEngine 3.0.0
+        */
+        virtual void notify(SpaceObj * obj);
+
+        /** 附加到节点时
+        @note 仅在参数2非0时触发
+        @version NIIEngine 3.0.0
+        */
+        virtual void attach(SpaceObj * obj, const PosNode * np);
+
+        /** 从节点中分离时
+        @note 仅在参数2非0时触发
+        @version NIIEngine 3.0.0
+        */
+        virtual void detach(SpaceObj * obj, const PosNode * op);
+
+        /** 使用指定摄像机绘制空间
+        @return 是否有实际绘制效果,没有效果则过滤
+        @version NIIEngine 3.0.0
+        */
+        virtual bool render(SpaceObj * obj, const Camera * view);
+
+        /** 查询实际影响空间对象的灯光
+        @version NIIEngine 3.0.0
+        */
+        virtual void query(const SpaceObj * obj, LightList & out);
+    };
+
     /** 有场景位置概念的对象
     @version NIIEngine 3.0.0
     */
@@ -78,12 +157,12 @@ namespace NII
         /** 设置几何管理器
         @verison NIIEngine 3.0.0 高级api
         */
-        void setManager(SpaceManager * mag);
+        void setManager(SpaceManager * mag)     { mManager = mag; }
 
         /** 获取几何管理器
         @version NIIEngine 3.0.0
         */
-        SpaceManager * getManager() const;
+        SpaceManager * getManager() const       { return mManager;  }
 
         /** 设置拣选模式
         @param[in] t 拣选模式
@@ -110,18 +189,18 @@ namespace NII
         @remark
         @version NIIEngine 3.0.0
         */
-        void setCastShadow(bool b);
+        void setCastShadow(bool b)              { mCastShadows = b; }
 
         /** 获取是否投射阴影
         @version NIIEngine 3.0.0
         */
-        bool isCastShadow() const;
+        bool isCastShadow() const               { return mCastShadows; }
 
         /** 与上一帧比较是否移动
         @note 非线程安全
         @version NIIEngine 3.0.0
         */
-        bool isMove() const;
+        bool isMove() const                     { return mMove; }
 
         /** 空间位置改变时调用
         @version NIIEngine 3.0.0 高级api
@@ -163,12 +242,12 @@ namespace NII
         /** 设置相关对象
         @version NIIEngine 3.0.0
         */
-        void setRel(SpaceObj * o);
+        void setRel(SpaceObj * o)               { mRelation = o; }
 
         /** 获取相关对象
         @version NIIEngine 3.0.0
         */
-        SpaceObj * getRel() const;
+        SpaceObj * getRel() const               { return mRelation; }
 
         /** 获取对称盒(局部)
         @version NIIEngine 3.0.0
@@ -228,22 +307,22 @@ namespace NII
         /** 设置渲染像素限制
         @version NIIEngine 3.0.0
         */
-        void setVisibleDistanceLimit(NIIf f);
+        void setVisibleDistanceLimit(NIIf f)    { mDisLimit = f; }
 
         /** 获取渲染像素限制
         @version NIIEngine 3.0.0
         */
-        NIIf getVisibleDistanceLimit() const;
+        NIIf getVisibleDistanceLimit() const    { return mDisLimit; }
 
         /** 设置渲染像素限制
         @version NIIEngine 3.0.0
         */
-        void setVisiblePixelLimit(NIIf f);
+        void setVisiblePixelLimit(NIIf f)       { mPixelLimit = f; }
 
         /** 获取渲染像素限制
         @version NIIEngine 3.0.0
         */
-        NIIf getVisiblePixelLimit() const;
+        NIIf getVisiblePixelLimit() const       { return mPixelLimit; }
 
         /** 获取可见结果
         @remark 加上环境条件是否可见
@@ -254,12 +333,12 @@ namespace NII
         /** 设置是否调试模式
         @version NIIEngine 3.0.0
         */
-        void setDebugMode(bool b);
+        void setDebugMode(bool b)               { mDebugMode = b; }
 
         /** 获取是否调试模式
         @version NIIEngine 3.0.0
         */
-        bool isDebugMode() const;
+        bool isDebugMode() const                { return mDebugMode; }
 
         /** 设置渲染队列
         @param[in] rqid
@@ -280,37 +359,37 @@ namespace NII
         /** 获取这个对象当前的监听
         @version NIIEngine 3.0.0
         */
-        SpaceObjListener * getListener() const;
+        SpaceObjListener * getListener() const  { return mListener; }
 
         /** 设置可见掩码
         @version NIIEngine 3.0.0
         */
-        void setVisibleMark(Nmark m);
+        void setVisibleMark(Nmark m)            { mVisibleMark = m; }
 
         /** 返回可见掩码
         @version NIIEngine 3.0.0
         */
-        Nmark getVisibleMark() const;
+        Nmark getVisibleMark() const            { return mVisibleMark; }
 
         /** 设置灯光掩码
         @version NIIEngine 3.0.0
         */
-        void setLightMark(Nmark mark);
+        void setLightMark(Nmark mark)           { mLightMask = mark; mLightDirtyMark = 0;}
 
         /** 获取灯光掩码
         @version NIIEngine 3.0.0
         */
-        Nmark getLightMark()const;
+        Nmark getLightMark()const               { return mLightMask; }
 
         /** 设置场景物相交可见掩码
         @version NIIEngine 3.0.0
         */
-        void setIntersectMark(Nmark m);
+        void setIntersectMark(Nmark m)          { mIntersectMark = m; }
 
         /** 返回场景物相交可见掩码
         @version NIIEngine 3.0.0
         */
-        Nmark getIntersectMark() const;
+        Nmark getIntersectMark() const          { return mIntersectMark; }
 
         /** 类型掩码
         @version NIIEngine 3.0.0
@@ -345,12 +424,12 @@ namespace NII
         /** 设置工厂类
         @version NIIEngine 3.0.0
         */
-        void setFactory(SpaceObjFactory * f);
+        void setFactory(SpaceObjFactory * f)    { mFactory = f; }
 
         /** 获取工厂类
         @version NIIEngine 3.0.0
         */
-        SpaceObjFactory *  getFactory() const;
+        SpaceObjFactory *  getFactory() const   { return mFactory; }
     protected:
         N_static_mutex(mValidIDMutex)
         static SpaceID mValidID;

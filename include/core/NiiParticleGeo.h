@@ -29,7 +29,7 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 #define _NII_ParticleGeo_H_
 
 #include "NiiPreInclude.h"
-#include "NiiPropertyCmdObj.h"
+#include "NiiPropertyObj.h"
 #include "NiiParticleCtrl.h"
 #include "NiiParticle.h"
 #include "NiiFactoryObj.h"

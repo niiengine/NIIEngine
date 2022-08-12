@@ -226,7 +226,6 @@ namespace NII
         NCount mCount;              ///< 从开始到结束绘制数(顶点级数量)(mMark & GRT_OffsetCount)
         NCount mInstanceOffset;     ///< 实例开始((mMark & GRT_Instancing) && ~(mMark & GRT_Indirect))
         NCount mInstanceCount;      ///< 实例数量,着色程序才可控 ((mMark & GRT_Instancing) && ~(mMark & GRT_Indirect))
-        void * mGpuData;
     private:
         GeoRawTypeMark mMark;
     };

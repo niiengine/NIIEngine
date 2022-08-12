@@ -89,55 +89,92 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 #include <sstream>
 
 #if N_COMPILER == N_CPP_GNUC && N_COMPILER_VER >= 310 && !defined(STLPORT)
+
 #if N_COMPILER_VER >= 430
-#define HashMap ::std::tr1::unordered_map
-#define HashSet ::std::tr1::unordered_set
+    #if __cplusplus >= 201103L
+        #define HashMap         ::std::unordered_map
+        #define HashSet         ::std::unordered_set
+        #define HashMultiMap    ::std::unordered_multimap
+        #define HashMultiSet    ::std::unordered_multiset
+    #else
+        #define HashMap         ::std::tr1::unordered_map
+        #define HashSet         ::std::tr1::unordered_set
+        #define HashMultiMap    ::std::tr1::unordered_multimap
+        #define HashMultiSet    ::std::tr1::unordered_multiset
+    #endif
+    #define HashSpace           ::std
 #else
-#define HashMap ::__gnu_cxx::hash_map
-#define HashSet ::__gnu_cxx::hash_set
+    #define HashMap             ::__gnu_cxx::hash_map
+    #define HashSet             ::__gnu_cxx::hash_set
+    #define HashMultiMap        ::__gnu_cxx::hash_multimap
+    #define HashMultiSet        ::__gnu_cxx::hash_multiset
+    #define HashSpace           ::__gnu_cxx
 #endif
+
 #elif N_COMPILER == N_CPP_GCCE
-#if defined(_LIBCPP_VERSION)
-#define HashMap ::std::unordered_map
-#define HashSet ::std::unordered_set
+
+    #if defined(_LIBCPP_VERSION) || __cplusplus >= 201103L
+        #define HashMap         ::std::unordered_map
+        #define HashSet         ::std::unordered_set
+        #define HashMultiMap    ::std::unordered_multimap
+        #define HashMultiSet    ::std::unordered_multiset
+        #define HashSpace       ::std
+    #else
+        #define HashMap         ::std::tr1::unordered_map
+        #define HashSet         ::std::tr1::unordered_set
+        #define HashMultiMap    ::std::tr1::unordered_multimap
+        #define HashMultiSet    ::std::tr1::unordered_multiset
+        #define HashSpace       ::std::tr1
+    #endif
+
 #else
-#define HashMap ::std::tr1::unordered_map
-#define HashSet ::std::tr1::unordered_set
+    
+    #if N_COMPILER == N_CPP_MSVC && !defined(_STLP_MSVC)
+        #if N_COMPILER_VER >= 1900 // VC++ 10.0
+            #define HashMap         ::std::unordered_map
+            #define HashSet         ::std::unordered_set
+            #define HashMultiMap    ::std::unordered_multimap
+            #define HashMultiSet    ::std::unordered_multiset
+            #define HashSpace       ::std
+        #elif N_COMPILER_VER > 1600
+            #define HashMap         ::tr1::hash_map
+            #define HashSet         ::tr1::hash_set
+            #define HashMultiMap    ::tr1::hash_multimap
+            #define HashMultiSet    ::tr1::hash_multiset
+            #define HashSpace       ::tr1
+        #else
+            #define HashMap         ::std::hash_map
+            #define HashSet         ::std::hash_set
+            #define HashMultiMap    ::std::hash_multimap
+            #define HashMultiSet    ::std::hash_multiset
+            #define HashSpace       ::std
+        #endif
+    #else
+        #define HashMap             ::std::unordered_map
+        #define HashSet             ::std::unordered_set
+        #define HashMultiMap        ::std::unordered_multimap
+        #define HashMultiSet        ::std::unordered_multiset
+        #define HashSpace           ::std
+    #endif
 #endif
-#else
-#if N_COMPILER == N_CPP_MSVC
-#if N_COMPILER_VER >= 1600 // VC++ 10.0
-#define HashMap ::std::tr1::unordered_map
-#define HashSet ::std::tr1::unordered_set
-#elif N_COMPILER_VER > 1300 && !defined(_STLP_MSVC)
-#define HashMap ::stdext::hash_map
-#define HashSet ::stdext::hash_set
-#else
-#define HashMap ::std::hash_map
-#define HashSet ::std::hash_set
-#endif
-#else
-#define HashMap ::std::hash_map
-#define HashSet ::std::hash_set
-#endif
-#endif
+
 #if N_COMPILER == N_CPP_GNUC && NII_COMP_VER >= 310 && !defined(STLPORT)
-// For gcc 4.3 see http://gcc.gnu.org/gcc-4.3/changes.html
-#if NII_COMP_VER >= 430
-#include <tr1/unordered_map>
-#else
-#include <ext/hash_map>
-namespace __gnu_cxx
-{
-    template <> struct hash<void *>
-    {
-        size_t operator()(void * const & ptr) const
+    // For gcc 4.3 see http://gcc.gnu.org/gcc-4.3/changes.html
+    #if NII_COMP_VER >= 430
+        #include <tr1/unordered_map>
+    #else
+        #include <ext/hash_map>
+        namespace __gnu_cxx
         {
-            return (size_t)ptr;
+            template <> struct hash<void *>
+            {
+                size_t operator()(void * const & ptr) const
+                {
+                    return (size_t)ptr;
+                }
+            };
         }
-    };
-}
-#endif
+    #endif
 #endif
 
 #ifdef __BORLANDC__
@@ -206,7 +243,7 @@ namespace NII
 
             技巧: list.end() 和 list.rbegin() 永远都不会改变
         4.set
-            内部元素唯一,用一棵平衡树结构来存储,因此遍历的时候就排序了,查找也比较
+            内部元素唯一,用(红黑)一棵平衡树结构来存储,因此遍历的时候就排序了,查找也比较
             快的.
         5.map(常用)
             一对一的映射的结合,key不能重复.
@@ -257,13 +294,11 @@ namespace NII
     {
 #if NII_STLCustomAlloc
         typedef typename std::deque<T, A> type;
-        typedef typename std::deque<T, A>::iterator iterator;
-        typedef typename std::deque<T, A>::const_iterator const_iterator;
 #else
         typedef typename std::deque<T> type;
-        typedef typename std::deque<T>::iterator iterator;
-        typedef typename std::deque<T>::const_iterator const_iterator;
 #endif
+        typedef typename type::iterator iterator;
+        typedef typename type::const_iterator const_iterator;
     };
 
     template <typename T, typename A = StlAlloc<T, N_Alloc> >
@@ -271,13 +306,21 @@ namespace NII
     {
 #if NII_STLCustomAlloc
         typedef typename std::vector<T, A> type;
-        typedef typename std::vector<T, A>::iterator iterator;
-        typedef typename std::vector<T, A>::const_iterator const_iterator;
 #else
         typedef typename std::vector<T> type;
-        typedef typename std::vector<T>::iterator iterator;
-        typedef typename std::vector<T>::const_iterator const_iterator;
 #endif
+        typedef typename type::iterator iterator;
+        typedef typename type::const_iterator const_iterator;
+        
+        template<typename type>
+        typename type::iterator remove( type & container, typename type::iterator& iterator )
+        {
+            const size_t idx = iterator - container.begin();
+            *iterator = container.back();
+            container.pop_back();
+
+            return container.begin() + idx;
+        }
     };
 
     template <typename T, typename A = StlAlloc<T, N_Alloc> >
@@ -285,13 +328,11 @@ namespace NII
     {
 #if NII_STLCustomAlloc
         typedef typename std::list<T, A> type;
-        typedef typename std::list<T, A>::iterator iterator;
-        typedef typename std::list<T, A>::const_iterator const_iterator;
 #else
         typedef typename std::list<T> type;
-        typedef typename std::list<T>::iterator iterator;
-        typedef typename std::list<T>::const_iterator const_iterator;
 #endif
+        typedef typename type::iterator iterator;
+        typedef typename type::const_iterator const_iterator;
     };
 
     template <typename T, typename P = std::less<T>, typename A = StlAlloc<T, N_Alloc> >
@@ -299,13 +340,37 @@ namespace NII
     {
 #if NII_STLCustomAlloc
         typedef typename std::set<T, P, A> type;
-        typedef typename std::set<T, P, A>::iterator iterator;
-        typedef typename std::set<T, P, A>::const_iterator const_iterator;
 #else
         typedef typename std::set<T, P> type;
-        typedef typename std::set<T, P>::iterator iterator;
-        typedef typename std::set<T, P>::const_iterator const_iterator;
 #endif
+        typedef typename type::iterator iterator;
+        typedef typename type::const_iterator const_iterator;
+    };
+    
+    template <typename K, typename H = HashSpace::hash<K>, typename E = std::equal_to<K>,
+        typename A = StlAlloc<K, N_Alloc> >
+    struct unordered_set
+    {
+#if NII_STLCustomAlloc
+        typedef typename HashSet<K, H, E, A> type;
+#else
+        typedef typename HashSet<K, H, E> type;
+#endif
+        typedef typename type::iterator iterator;
+        typedef typename type::const_iterator const_iterator;
+    };
+
+    template <typename K, typename H = HashSpace::hash<K>, typename E = std::equal_to<K>,
+              typename A = StlAlloc<K, N_Alloc> >
+    struct unordered_multiset
+    {
+#if NII_STLCustomAlloc
+        typedef typename HashMultiSet<K, H, E, A> type;
+#else
+        typedef typename HashMultiSet<K, H, E> type;
+#endif
+        typedef typename type::iterator iterator;
+        typedef typename type::const_iterator const_iterator;
     };
 
     template <typename T, typename P = std::less<T>, typename A = StlAlloc<T, N_Alloc> >
@@ -313,13 +378,11 @@ namespace NII
     {
 #if NII_STLCustomAlloc
         typedef typename std::multiset<T, P, A> type;
-        typedef typename std::multiset<T, P, A>::iterator iterator;
-        typedef typename std::multiset<T, P, A>::const_iterator const_iterator;
 #else
         typedef typename std::multiset<T, P> type;
-        typedef typename std::multiset<T, P>::iterator iterator;
-        typedef typename std::multiset<T, P>::const_iterator const_iterator;
 #endif
+        typedef typename type::iterator iterator;
+        typedef typename type::const_iterator const_iterator;
     };
 
     template <typename K, typename V, typename P = std::less<K>, typename A = StlAlloc<std::pair<const K, V>, N_Alloc> >
@@ -327,15 +390,12 @@ namespace NII
     {
 #if NII_STLCustomAlloc
         typedef typename std::map<K, V, P, A> type;
-        typedef typename std::map<K, V, P, A>::value_type value;
-        typedef typename std::map<K, V, P, A>::iterator iterator;
-        typedef typename std::map<K, V, P, A>::const_iterator const_iterator;
 #else
         typedef typename std::map<K, V, P> type;
-        typedef typename std::map<K, V, P>::value_type value;
-        typedef typename std::map<K, V, P>::iterator iterator;
-        typedef typename std::map<K, V, P>::const_iterator const_iterator;
 #endif
+        typedef typename type::value_type value;
+        typedef typename type::iterator iterator;
+        typedef typename type::const_iterator const_iterator;
     };
 
     template <typename K, typename V, typename P = std::less<K>, typename A = StlAlloc<std::pair<const K, V>, N_Alloc> >
@@ -343,15 +403,40 @@ namespace NII
     {
 #if NII_STLCustomAlloc
         typedef typename std::multimap<K, V, P, A> type;
-        typedef typename std::multimap<K, V, P, A>::value_type value;
-        typedef typename std::multimap<K, V, P, A>::iterator iterator;
-        typedef typename std::multimap<K, V, P, A>::const_iterator const_iterator;
 #else
         typedef typename std::multimap<K, V, P> type;
-        typedef typename std::multimap<K, V, P>::value_type value;
-        typedef typename std::multimap<K, V, P>::iterator iterator;
-        typedef typename std::multimap<K, V, P>::const_iterator const_iterator;
 #endif
+        typedef typename type::value_type value;
+        typedef typename type::iterator iterator;
+        typedef typename type::const_iterator const_iterator;
+    };
+    
+    template <typename K, typename V, typename H = HashSpace::hash<K>,
+              typename E = std::equal_to<K>,
+              typename A = StlAlloc<std::pair<const K, V>, N_Alloc> >
+    struct unordered_map
+    {
+#if NII_STLCustomAlloc
+        typedef typename HashMap<K, V, H, E, A> type;
+#else
+        typedef typename HashMap<K, V, H, E> type;
+#endif
+        typedef typename type::iterator iterator;
+        typedef typename type::const_iterator const_iterator;
+    };
+
+    template <typename K, typename V, typename H = HashSpace::hash<K>,
+              typename E = std::equal_to<K>,
+              typename A = StlAlloc<std::pair<const K, V>, N_Alloc> >
+    struct unordered_multimap
+    {
+#if NII_STLCustomAlloc
+        typedef typename HashMultiMap<K, V, H, E, A> type;
+#else
+        typedef typename HashMultiMap<K, V, H, E> type;
+#endif
+        typedef typename type::iterator iterator;
+        typedef typename type::const_iterator const_iterator;
     };
 
     //-------------------------------------------------------------------------------
@@ -363,63 +448,101 @@ namespace NII
     struct Sdeque
     {
         typedef typename std::deque<T, A> type;
-        typedef typename std::deque<T, A>::value_type value;
-        typedef typename std::deque<T, A>::iterator iterator;
-        typedef typename std::deque<T, A>::const_iterator const_iterator;
+        typedef typename type::value_type value;
+        typedef typename type::iterator iterator;
+        typedef typename type::const_iterator const_iterator;
     };
 
     template <typename T, typename A = StlAlloc<T, N_AlignAlloc(16)> >
     struct Svector
     {
         typedef typename std::vector<T, A> type;
-        typedef typename std::vector<T, A>::value_type value;
-        typedef typename std::vector<T, A>::iterator iterator;
-        typedef typename std::vector<T, A>::const_iterator const_iterator;
+        typedef typename type::value_type value;
+        typedef typename type::iterator iterator;
+        typedef typename type::const_iterator const_iterator;
     };
 
     template <typename T, typename A = StlAlloc<T, N_AlignAlloc(16)> >
     struct Slist
     {
         typedef typename std::list<T, A> type;
-        typedef typename std::list<T, A>::value_type value;
-        typedef typename std::list<T, A>::iterator iterator;
-        typedef typename std::list<T, A>::const_iterator const_iterator;
+        typedef typename type::value_type value;
+        typedef typename type::iterator iterator;
+        typedef typename type::const_iterator const_iterator;
     };
 
     template <typename T, typename P = std::less<T>, typename A = StlAlloc<T, N_AlignAlloc(16)> >
     struct Sset
     {
         typedef typename std::set<T, P, A> type;
-        typedef typename std::set<T, P, A>::value_type value;
-        typedef typename std::set<T, P, A>::iterator iterator;
-        typedef typename std::set<T, P, A>::const_iterator const_iterator;
+        typedef typename type::value_type value;
+        typedef typename type::iterator iterator;
+        typedef typename type::const_iterator const_iterator;
     };
 
     template <typename T, typename P = std::less<T>, typename A = StlAlloc<T, N_AlignAlloc(16)> >
     struct Smultiset
     {
         typedef typename std::multiset<T, P, A> type;
-        typedef typename std::multiset<T, P, A>::value_type value;
-        typedef typename std::multiset<T, P, A>::iterator iterator;
-        typedef typename std::multiset<T, P, A>::const_iterator const_iterator;
+        typedef typename type::value_type value;
+        typedef typename type::iterator iterator;
+        typedef typename type::const_iterator const_iterator;
+    };
+    
+    template <typename K, typename H = HashSpace::hash<K>, typename E = std::equal_to<K>,
+              typename A = StlAlloc<T, N_AlignAlloc(16)> >
+    struct Sunordered_set
+    {
+        typedef typename HashSet<K, H, E, A> type;
+        typedef typename type::iterator iterator;
+        typedef typename type::const_iterator const_iterator;
+    };
+
+    template <typename K, typename H = HashSpace::hash<K>, typename E = std::equal_to<K>,
+              typename A = StlAlloc<T, N_AlignAlloc(16)> >
+    struct Sunordered_multiset
+    {
+        typedef typename HashMultiSet<K, H, E, A> type;
+        typedef typename type::iterator iterator;
+        typedef typename type::const_iterator const_iterator;
     };
 
     template <typename K, typename V, typename P = std::less<K>, typename A = StlAlloc<std::pair<const K, V>, N_AlignAlloc(16)> >
     struct Smap
     {
         typedef typename std::map<K, V, P, A> type;
-        typedef typename std::map<K, V, P, A>::value_type value;
-        typedef typename std::map<K, V, P, A>::iterator iterator;
-        typedef typename std::map<K, V, P, A>::const_iterator const_iterator;
+        typedef typename type::value_type value;
+        typedef typename type::iterator iterator;
+        typedef typename type::const_iterator const_iterator;
     };
 
     template <typename K, typename V, typename P = std::less<K>, typename A = StlAlloc<std::pair<const K, V>, N_AlignAlloc(16)> >
     struct Smultimap
     {
         typedef typename std::multimap<K, V, P, A> type;
-        typedef typename std::multimap<K, V, P, A>::value_type value;
-        typedef typename std::multimap<K, V, P, A>::iterator iterator;
-        typedef typename std::multimap<K, V, P, A>::const_iterator const_iterator;
+        typedef typename type::value_type value;
+        typedef typename type::iterator iterator;
+        typedef typename type::const_iterator const_iterator;
+    };
+    
+    template <typename K, typename V, typename H = HashSpace::hash<K>,
+              typename E = std::equal_to<K>,
+              typename A = StlAlloc<std::pair<const K, V>, N_AlignAlloc(16)> >
+    struct Sunordered_map
+    {
+        typedef typename HashMap<K, V, H, E, A> type;
+        typedef typename type::iterator iterator;
+        typedef typename type::const_iterator const_iterator;
+    };
+
+    template <typename K, typename V, typename H = HashSpace::hash<K>,
+              typename E = std::equal_to<K>,
+              typename A = StlAlloc<std::pair<const K, V>, N_AlignAlloc(16)> >
+    struct Sunordered_multimap
+    {
+        typedef typename HashMultiMap<K, V, H, E, A> type;
+        typedef typename type::iterator iterator;
+        typedef typename type::const_iterator const_iterator;
     };
 
     // normal

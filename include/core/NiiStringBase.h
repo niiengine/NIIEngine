@@ -60,6 +60,8 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 #define Nstruct_stat struct _stat64i32
 #define Nostream    std::wostream
 #define Nofstream   std::wofstream
+#define Nifstream   std::wifstream
+#define Nfstream    std::wfstream
 #define Nistringstream std::wistringstream
 #define Nostringstream std::wostringstream
 #define Ncout       std::wcout
@@ -110,6 +112,8 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 #define Nstruct_stat struct _stat64i32
 #define Nostream    std::ostream
 #define Nofstream   std::ofstream
+#define Nifstream   std::ifstream
+#define Nfstream    std::fstream
 #define Nistringstream std::istringstream
 #define Nostringstream std::ostringstream
 #define Ncout       std::cout
@@ -245,6 +249,11 @@ namespace NII
     typedef std::basic_stringstream<wchar_t, std::char_traits<wchar_t>, std::allocator<wchar_t> > _WStringStreamBase;
 #endif
 
+typedef std::basic_string_view<char, std::char_traits<char> > _VStringViewBase;
+typedef std::basic_string_view<wchar_t, std::char_traits<wchar_t> > _WStringViewBase;
+    
+typedef _VStringViewBase VStringView;
+typedef _WStringViewBase WStringView;
 typedef _VStringBase VString;
 typedef _WStringBase WString;
 
@@ -254,11 +263,13 @@ typedef _WStringStreamBase WStringStream;
 #if NII_STRING
     #define NIILW(T) L##T
     #define _NIILW(T) NIILW(T)
+    typedef _WStringViewBase    StringView;
     typedef _WStringBase        String;
     typedef _WStringStreamBase  StringStream;
 #else
     #define NIILW(T) T
     #define _NIILW(T) T
+    typedef _VStringViewBase    StringView;
     typedef _VStringBase        String;
     typedef _VStringStreamBase  StringStream;
 #endif

@@ -226,6 +226,8 @@ namespace NII
         #define _N_FILE__ __FILE__
         typedef char        Ntchar;
     #endif
+    
+    #define _N_LINE_ __LINE__
 
     #ifndef N_FLF
     #define N_FLF _N_FILE__, __LINE__, _N_FUNCTION__
@@ -275,9 +277,11 @@ namespace NII
     #ifdef _DEBUG
         #define N_printf(msg) printf(msg)
         #define N_assert(a, b) assert((a)&&(b))
+        #define N_assert1(a) assert(a)
     #else
         #define N_printf(msg)
         #define N_assert(a, b)
+        #define N_assert1(a)
     #endif
     #ifdef NII_BIG_ENDIAN
         #define N_ENDIAN N_ENDIAN_B
@@ -346,11 +350,14 @@ namespace NII
     #endif
 
     #if N_COMPILER == N_CPP_MSVC
-        #define N_ALIGNED_DECL(type, var, alignment)  __declspec(align(alignment)) type var
+        #define N_ALIGNED_DECL(type, var, alignment)    __declspec(align(alignment)) type var
+        #define N_ALIGNED_STRUCT(alignment) 
     #elif (N_COMPILER == N_CPP_GNUC) || (N_COMPILER == N_CPP_GCCE)
-        #define N_ALIGNED_DECL(type, var, alignment)  type var __attribute__((__aligned__(alignment)))
+        #define N_ALIGNED_DECL(type, var, alignment)    type var __attribute__((__aligned__(alignment)))
+        #define N_ALIGNED_STRUCT(alignment)             __attribute__((__aligned__(alignment)))
     #else
-        #define N_ALIGNED_DECL(type, var, alignment)  type var
+        #define N_ALIGNED_DECL(type, var, alignment)    type var
+        #define N_ALIGNED_STRUCT(alignment)
     #endif
 
     #define N_SIMD_ALIGNMENT 16

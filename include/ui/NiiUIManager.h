@@ -65,25 +65,30 @@ namespace NII
         */
         void apply(PixelBlendMode mode, bool force = false);
 
+        /** 当视图尺寸改变时
+        @version NIIEngine 3.0.0
+        */
+        void setViewSize(ViewWindow * dst, const PlaneSizei & size);
+
         /** 设置是否启动UI渲染
         @version NIIEngine 3.0.0
         */
-        void setEnable(bool b);
+        void setEnable(bool b)                          { mEnable = b; }
 
         /** 获取是否启动UI渲染
         @version NIIEngine 3.0.0
         */
-        bool isEnable() const;
+        bool isEnable() const                           { return mEnable; }
 
         /** 设置游标初始位置
         @version NIIEngine 3.0.0
         */
-        void setCursorInitPos(const Vector2f & pos);  
+        void setCursorInitPos(const Vector2f & pos)     { mCursorInitPos = pos; }
         
         /** 获取游标初始位置
         @version NIIEngine 3.0.0
         */
-        const Vector2f & getCursorInitPos() const;
+        const Vector2f & getCursorInitPos() const       { return mCursorInitPos; }
         
         /** 创建UI画盘
         @param[out] out 所创建出的
@@ -149,7 +154,7 @@ namespace NII
         /** 着色程序模式
         @version NIIEngine 3.0.0
         */
-        bool isShaderEnable() const;
+        bool isShaderEnable() const                     { return mShaderEnable; }
 
         /** 设置投影矩阵
         @version NIIEngine 3.0.0 高级api
@@ -159,7 +164,7 @@ namespace NII
         /** 获取投影矩阵
         @version NIIEngine 3.0.0
         */
-        inline const Matrix4f & getProjMatrix() const { return mProjMatrix; }
+        inline const Matrix4f & getProjMatrix() const   { return mProjMatrix; }
 
         /** 设置视图矩阵
         @version NIIEngine 3.0.0 高级api
@@ -169,7 +174,7 @@ namespace NII
         /** 获取视图矩阵
         @version NIIEngine 3.0.0
         */
-        inline const Matrix4f & getViewMatrix() const { return mViewMatrix; }
+        inline const Matrix4f & getViewMatrix() const   { return mViewMatrix; }
 
         /** 获取模型矩阵
         @version NIIEngine 3.0.0 高级api
@@ -195,11 +200,6 @@ namespace NII
         @version NIIEngine 3.0.0
         */
         inline TextView * getView() const           { return mTextView; }
-    public:
-        /** 当视图尺寸改变时
-        @version NIIEngine 3.0.0
-        */
-        void onViewSize(ViewWindow * dst, const PlaneSizei & size);
     protected:
         UIManager(RenderSys * sys, ViewWindow * primary);
         ~UIManager();

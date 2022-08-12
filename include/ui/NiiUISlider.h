@@ -29,7 +29,6 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 
 #include "NiiUIPreInclude.h"
 #include "NiiUIContainer.h"
-#include "NiiUIWidgetView.h"
 
 namespace NII
 {
@@ -54,7 +53,7 @@ namespace UI
         /** 获取当前值
         @version NIIEngine 3.0.0
         */
-        NIIf getCurrent() const;
+        NIIf getCurrent() const             { return mCurrentValue; }
 
         /** 设置最大值
         @version NIIEngine 3.0.0
@@ -64,22 +63,32 @@ namespace UI
         /** 获取最大值
         @version NIIEngine 3.0.0
         */
-        NIIf getMaxValue() const;
+        NIIf getMaxValue() const            { return mMaxValue; }
 
         /** 设置步进值
         @version NIIEngine 3.0.0
         */
-        void setStepValue(NIIf value);
+        void setStepValue(NIIf value)       { mStepValue = value; }
         
         /** 获取步进值
         @version NIIEngine 3.0.0
         */
-        NIIf getStepValue() const;
+        NIIf getStepValue() const           { return mStepValue; }
+
+        /** 设置y轴滚动条
+        @version NIIEngine 3.0.0
+        */
+        void setThumbView(StyleViewID id)   { mThumbView = id; }
+
+        /** 获取y轴滚动条
+        @version NIIEngine 3.0.0
+        */
+        StyleViewID getThumbView() const    { return mThumbView; }
 
         /** 获取位置指标
         @version NIIEngine 3.0.0
         */
-        PosButton * getThumb() const;
+        PosButton * getThumb() const        { return mThumb; }
     protected:
         /// @copydetails Container::initChild
         virtual void initChild();
@@ -147,6 +156,7 @@ namespace UI
         static const EventID EventCount;
     protected:
         PosButton * mThumb;
+        StyleViewID mThumbView;
         NIIf mCurrentValue;
         NIIf mMaxValue;
         NIIf mStepValue;

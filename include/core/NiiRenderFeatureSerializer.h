@@ -29,8 +29,7 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 #define _NII_RenderSysFeatureSerializer_H_
 
 #include "NiiPreInclude.h"
-#include "NiiRenderFeature.h"
-#include "NiiString.h"
+#include "NiiRenderSys.h"
 #include "NiiDataStream.h"
 
 namespace NII

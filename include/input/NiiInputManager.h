@@ -38,15 +38,15 @@ namespace NII
     @remark 所有的输入性设备控制器都应该由这个类所创建
     @version NIIEngine 3.0.0
     */
-    class _EngineAPI ControlPatternManager : public Singleton<ControlPatternManager>,
+    class _EngineAPI InputManager : public Singleton<InputManager>,
         public PatternAlloc
     {
     public:
         typedef vector<NII_MEDIA::ControlPattern *>::type ControlList;
         typedef map<const ViewWindow *, ControlList>::type WindowControlList;
     public:
-        ControlPatternManager();
-        virtual ~ControlPatternManager();
+        InputManager();
+        virtual ~InputManager();
 
         /** 创建一个控制处理器
         @param[in] main 这个控制器的主控窗集体
@@ -55,15 +55,15 @@ namespace NII
         */
         NII_MEDIA::ControlPattern * create(const ViewWindow * main, ControlDevType type);
 
-        /** 获取一个有效的键盘控制器
+        /** 获取有效的键盘控制器
         @param[in] main 哪个窗体
         @param[in] type 输入控制器类型
         @param[in] id 控制器的ID
         @version NIIEngine 3.0.0
         */
-        NII_MEDIA::ControlPattern * get(const ViewWindow * main, ControlDevType type, Nid id) const;
+        NII_MEDIA::ControlPattern * get(const ViewWindow * main, ControlDevType type, Nid id = 0) const;
 
-        /** 回收一个控制处理器
+        /** 回收控制处理器
         @param[in] main 哪个窗体
         @param[in] dest 回收的控制器
         @version NIIEngine 3.0.0
@@ -95,7 +95,7 @@ namespace NII
         @param[in] type 指定的设备类型
         @version NIIEngine 3.0.0
         */
-        NCount getCurrent(const ViewWindow * main, ControlDevType type) const;
+        NCount getCount(const ViewWindow * main, ControlDevType type) const;
 
         /** 获取设备的最大数量
         @param 相对于设备而言
@@ -108,8 +108,26 @@ namespace NII
         @version NIIEngine 3.0.0
         */
         virtual void init() = 0;
+
+        /// 获取虚拟鼠标控制单元
+        NII_MEDIA::MouseControlItem * getDummyMouse() const         { return mMouse; }
+
+        /// 获取虚拟键盘控制单元
+        NII_MEDIA::KeyboardControlItem * getDummyKeyboard() const   { return mKeyboard; }
+
+        /// 获取虚拟手柄控制单元
+        NII_MEDIA::JoyPadControlItem * getDummyJoyPad() const       { return mJoyPad; }
+
+        /// 获取虚拟手把控制单元
+        NII_MEDIA::JoyHandleControlItem * getDummyJoyHandle() const { return mJoyHandle; }
+
+        /// 获取虚拟手盘控制单元
+        NII_MEDIA::JoyWheelControlItem * getDummyJoyWheel() const   { return mJoyWheel; }
+
+        /// 获取虚拟触屏控制单元
+        NII_MEDIA::TouchControlItem * getDummyTouch() const         { return mTouch; }
     public:
-        ControlPatternManager * DummyPatternManager;
+        InputManager * DummyPatternManager;
     protected:
         /** 创建一个键盘控制处理器
         @param[in] main 这个控制器的主控窗集体
@@ -118,7 +136,13 @@ namespace NII
         */
         virtual NII_MEDIA::ControlPattern * createImpl(const ViewWindow * main, ControlDevType type) = 0;
     protected:
-        WindowControlList mControls;        ///< 窗体(1:N)相应的控制器
+        WindowControlList mControls;                    ///< 窗体(1:N)相应的控制器
+        NII_MEDIA::MouseControlItem * mMouse;           ///< 虚拟鼠标
+        NII_MEDIA::KeyboardControlItem * mKeyboard;     ///< 虚拟键盘
+        NII_MEDIA::JoyPadControlItem * mJoyPad;         ///< 虚拟手柄
+        NII_MEDIA::JoyHandleControlItem * mJoyHandle;   ///<
+        NII_MEDIA::JoyWheelControlItem * mJoyWheel;     ///<
+        NII_MEDIA::TouchControlItem * mTouch;           ///<
     };
 }
 #endif

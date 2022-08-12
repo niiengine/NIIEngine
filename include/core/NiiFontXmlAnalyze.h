@@ -29,7 +29,7 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 #define _NII_FONT_XMLAnalyze_H_
 
 #include "NiiPreInclude.h"
-#include "NiiXmlAnalyze.h"
+#include "NiiXmlAnalyzeManager.h"
 #include "NiiFont.h"
 #include "NiiString.h"
 

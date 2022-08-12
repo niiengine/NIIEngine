@@ -31,7 +31,7 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 #include "NiiPreInclude.h"
 #include "NiiPixelChain.h"
 #include "NiiPosListener.h"
-#include "NiiSpaceObjFactory.h"
+#include "NiiSpaceObj.h"
 
 namespace NII
 {

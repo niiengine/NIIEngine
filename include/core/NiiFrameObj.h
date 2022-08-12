@@ -267,7 +267,7 @@ namespace NII
         /** 获取多重采样设置
         @version NIIEngine 3.0.0
         */
-        virtual Nui32 getFSAA() const;
+        virtual Nui32 getFSAA() const                   { return mFSAA; }
 
         /** 获取多重采样设置
         @version NIIEngine 3.0.0
@@ -298,11 +298,6 @@ namespace NII
         @version NIIEngine 3.0.0 高级api
         */
         virtual void flushImpl(Viewport * obj);
-
-        /** 刷新所有自动视口
-        @version NIIEngine 3.0.0 高级api
-        */
-        virtual void flushAutoImpl();
 
         /** 冲刷视口后
         @version NIIEngine 3.0.0 高级api

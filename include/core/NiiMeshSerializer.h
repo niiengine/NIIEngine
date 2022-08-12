@@ -31,7 +31,7 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 #include "NiiPreInclude.h"
 #include "NiiFileSerializer.h"
 #include "NiiGeoEdget.h"
-#include "NiiBone.h"
+#include "NiiSkeleton.h"
 
 namespace NII
 {

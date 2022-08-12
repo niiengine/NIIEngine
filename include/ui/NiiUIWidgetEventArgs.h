@@ -32,7 +32,7 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 #include "NiiEventArgs.h"
 #include "NiiRegexManager.h"
 #include "NiiPlaneSize.h"
-#include "NiiKeyBoardControlItem.h"
+#include "NiiKeyBoardControlPattern.h"
 
 namespace NII
 {
@@ -56,13 +56,13 @@ namespace UI
     class _EngineAPI SheetEventArgs : public WidgetEventArgs
     {
     public:
-        SheetEventArgs(Widget * obj,  UISheet * sheet, UIInstance * face) :
+        SheetEventArgs(Widget * obj,  UISheet * sheet, UISubSheet * face) :
             WidgetEventArgs(obj),
             mSheet(sheet),
             mFace(face){}
     public:
         UISheet * mSheet;
-        UIInstance * mFace;
+        UISubSheet * mFace;
     };
 
     /** 视图窗体变化时的参数
@@ -71,7 +71,7 @@ namespace UI
     class _EngineAPI RenderSheetEventArgs : public SheetEventArgs
     {
     public:
-        RenderSheetEventArgs(Widget * obj, UISheet * sheet, UIInstance * face, ViewWindow * vwin) :
+        RenderSheetEventArgs(Widget * obj, UISheet * sheet, UISubSheet * face, ViewWindow * vwin) :
             SheetEventArgs(obj, sheet, face),
             mViewWindow(vwin){}
 

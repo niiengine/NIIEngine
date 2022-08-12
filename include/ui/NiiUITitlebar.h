@@ -29,7 +29,6 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 
 #include "NiiUIPreInclude.h"
 #include "NiiUIWidget.h"
-#include "NiiUIWidgetView.h"
 
 namespace NII
 {
@@ -53,17 +52,17 @@ namespace UI
         /** 获取是否可拖拽
         @version NIIEngine 3.0.0
         */
-        bool isDragEnable() const;
+        bool isDragEnable() const                   { return mDragEnable; }
 
         /** 是否拖拽中
         @version NIIEngine 3.0.0
         */
-        bool isDragging() const;
+        bool isDragging() const                     { return mDrag; }
 
         /** 获取拖拽开始处
         @version NIIEngine 3.0.0
         */
-        const Vector2f & getDragStartPos() const;
+        const Vector2f & getDragStartPos() const    { return mDragPos; }
     protected:
         /// @copydetails Titlebar::initCmd
         bool initCmd(PropertyCmdSet * dest);

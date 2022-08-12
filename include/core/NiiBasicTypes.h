@@ -58,7 +58,8 @@ namespace NII
     typedef int                 Nid;
     typedef size_t              Nidx;
     typedef unsigned short      Nidx16;
-    typedef unsigned int        Nmark;
+    typedef uint64_t            Nmark;
+    typedef uint64_t            Nmark64;
     /////////////////////////////////
     typedef char                Nutf8;
     typedef void *              Nvoid;
@@ -98,6 +99,7 @@ namespace NII
     typedef Nid ResourceID;
     typedef Nid PatternID;
     typedef Nid GroupID;
+    typedef Nid GpuGroupID;
     typedef Nid DataID;
     typedef Nid SchemeID;
     typedef Nid ObjID;
@@ -107,6 +109,8 @@ namespace NII
     typedef Nid GameObjID;
     typedef Nid SpaceID;
     typedef Nid FactoryID;
+    typedef Nid StyleViewID;
+    typedef Ni64 StyleViewComID;
     typedef Nid WarSceneID;
     typedef Nid LangID;
     typedef Nid ScriptTypeID;
@@ -114,6 +118,8 @@ namespace NII
     typedef Nid ScriptModuleID;
     typedef Nid InstanceMeshID;
     typedef Nid PixelBufferID;
+    typedef Ni64 PixelBufferComID;
+    typedef Nui64 FrameID;
     typedef Nid OverlayID;
     typedef Nid OverlayGeoID;
     typedef Nid FrameObjID;

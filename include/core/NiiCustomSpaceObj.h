@@ -31,11 +31,32 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 #include "NiiPreInclude.h"
 #include "NiiShadowObj.h"
 #include "NiiGeometryObj.h"
+#include "NiiSpaceObj.h"
 #include "NiiVertex.h"
 
 namespace NII
 {
     class CustomSpaceObjSection;
+
+    /** 创建CustomSpaceObj实例的工厂对象
+    @version NIIEngine 3.0.0
+    */
+    class _EngineAPI CustomSpaceObjFactory : public SpaceObjFactory
+    {
+    public:
+        CustomSpaceObjFactory();
+        ~CustomSpaceObjFactory();
+
+        /// @copydetails SpaceObjFactory::getID
+        FactoryID getID() const;
+
+        /// @copydetails SpaceObjFactory::create
+        SpaceObj * create(SpaceID sid, SpaceManager * mag, const PropertyData * params);
+
+        /// @copydetails SpaceObjFactory::destroy
+        void destroy(void * obj);
+    };
+
     /** 自定义几何空间
     @version NIIEngine 3.0.0
     */
@@ -76,19 +97,19 @@ namespace NII
         /** 是否使用最开始的视图空间
         @version NIIEngine 3.0.0
         */
-        bool isIdentityView() const;
+        bool isIdentityView() const             { return mIdentityView; }
 
         /** 只写入数据
         @remark 只从cpu上传到gpu,不从gpu下载到cpu
         @version NIIEngine 3.0.0
         */
-        void setOnlyWrite(bool b);
+        void setOnlyWrite(bool b)               { mOnlyWrite = b; }
 
         /** 只写入数据
         @remark 只从cpu上传到gpu,不从gpu下载到cpu
         @version NIIEngine 3.0.0
         */
-        bool isOnlyWrite() const;
+        bool isOnlyWrite() const                { return mOnlyWrite; }
 
         /** 开始定义几何
         @param[in] type 三角饶法
@@ -215,7 +236,7 @@ namespace NII
         @note 对应的是 beginModify 操作
         @version NIIEngine 3.0.0
         */
-        GeometryObj * endModify();
+        //GeometryObj * endModify();
 
         /** 获取顶点数量
         @version NIIEngine 3.0.0
@@ -261,7 +282,7 @@ namespace NII
         /** 设置边界盒
         @version NIIEngine 3.0.0 高级api
         */
-        void setAABB(const AABox & box);
+        void setAABB(const AABox & box)             { mAABB = box; }
 
         using SpaceObj::query;
 

@@ -36,8 +36,7 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 #include "NIIStringBase.h"
 #include "NiiHash.h"
 #include "NiiI18NLib.h"
-#include "NiiErrorList.h"
-#include "NiiPropertyList.h"
+#include "NiiDefine.h"
 
 namespace NII
 {
@@ -90,7 +89,7 @@ namespace NII
     class PixelBuffer;
     class PixelBufferGroup;
     class PixelBufferManager;
-    class MemDataStream;
+    class MemStream;
     class ScriptLanguage;
     class ScriptHelperManager;
     class HardwareAnimation;
@@ -101,9 +100,6 @@ namespace NII
     class NodeFusion;
     class VertexOffsetFusion;
     class UnitFusion;
-    class ShaderChFog;
-    class ShaderChColour;
-    class ShaderChPoint;
     class AnimationFusionObj;
     class VertexKeyFrameTrack;
     class ViewRectGeo;
@@ -175,13 +171,16 @@ namespace NII
     class ApuProgramParam;
     class ControlItemManager;
     class IndexBuffer;
-    class UniformBuffer;
+    class StructBuffer;
     class PixelCountQuery;
     class DataStream;
     class VertexBuffer;
     class GpuBuffer;
     class FrameBuffer;
     class TextureBuffer;
+    class IndirectBuffer;
+    class CounterBuffer;
+    class StorageBuffer;
     class HighLevelGpuProgram;
     class HighLevelGpuProgramManager;
     class HighLevelGpuProgramFactory;
@@ -256,7 +255,7 @@ namespace NII
     class ProgressiveMesh;
     class Profile;
     class Profiler;
-    class FileStreamDataStream;
+    class FileDataStream;
     class Quaternion;
     class Radian;
     class Ray;
@@ -301,6 +300,7 @@ namespace NII
     class ScriptCompilerManager;
     class ScriptAnalyzeFactory;
     class ScriptParserSys;
+    class TextureAsync;
     class ThreadCondition;
     class ThreadMutex;
     class Thread;
@@ -341,7 +341,7 @@ namespace NII
     class ShaderChColour;
     class ShaderChPoint;
     class ShaderChBlend;
-    class ShaderChDepth;
+    class ShaderChDepthStencil;
     class ShaderChProgram;
     class Texture;
     class TextureManager;
@@ -368,7 +368,7 @@ namespace NII
     class FrameShaderOp;
     class FrameShaderCh;
     class FrameFusionShader;
-    class ControlPatternManager;
+    class InputManager;
     class FrameFusionRender;
     class RenderEffectManager;
     class IDManager;
@@ -381,9 +381,7 @@ namespace NII
     class SimdManager;
 
     class UIManager;
-    class UIWidgetManager;
-    class UISchemeManager;
-    class UIStyleManager;
+    class WidgetManager;
 
     namespace NII_COMMAND
     {
@@ -427,10 +425,7 @@ namespace NII
         class JoyHandleControlItem;
         class JoyWheelControlItem;
         class TouchControlItem;
-        class MouseMoveArgs;
-        class MouseMoveBaseArgs;
-        class MousePressArgs;
-        class MousePressBaseArgs;
+        class MouseArgs;
 
         class SoundSys;
         class AudioLoader;
@@ -486,15 +481,28 @@ namespace NII
     typedef vector<Bone *>::type BoneList;
     typedef vector<VertexOffset *>::type VertexOffsetList;
     typedef vector<ShadowObj *>::type ShadowVolumeGenList;
-    typedef vector<PixelBuffer *>::type PixelBufferList;
+    
     typedef vector<GpuBuffer *>::type GpuBufferList;
+    typedef vector<IndexBuffer *>::type IndexBufferList;
+    typedef vector<VertexBuffer *>::type VertexBufferList;
+    typedef vector<CounterBuffer *>::type CounterBufferList;
+    typedef vector<StructBuffer *>::type StructBufferList;
+    typedef vector<IndirectBuffer *>::type IndirectBufferList;
+    typedef vector<StorageBuffer *>::type StorageBufferList;
+    typedef vector<PixelBuffer *>::type PixelBufferList;
+    typedef vector<MappedBuffer *>::type MappedBufferList;
     typedef vector<FrameBuffer *>::type FrameBufferList;
     typedef vector<TextureBuffer *>::type TextureBufferList;
+    typedef vector<TextureAsync *>::type TextureAsyncList;
+    typedef unordered_set<GeometryRaw *>::type VAOList;
 
     typedef Nui32 RGBA;
     typedef Nui32 ARGB;
     typedef Nui32 ABGR;
     typedef Nui32 BGRA;
+
+    #define multiCeil(num, alignment )  (((num + alignment - 1u) / alignment ) * alignment)
+    #define multiFloor(num, alignment ) NCount((num / alignment) * alignment)
 
     #define N_MAGIC3(c0, c1, c2)        (c0 | (c1 << 8) | (c2 << 16))
     #define N_MAGIC4(c0, c1, c2, c3)    (c0 | (c1 << 8) | (c2 << 16) | (c3 << 24))
@@ -581,6 +589,8 @@ namespace NII
     #define N_Max_Num_Value             0xFFFFFFFF
 
     #define N_Level_Bit_Escape          16				/// auto id = 前16位parent后16位child
+    #define N_Com_Escape                32				/// auto id = 前16位parent后16位child
+    #define N_Com_EscapeMark            0xFFFFFFFF                
     #define N_Max_Event_ID              0xffff
     #define N_Max_Property_ID           0xffff
     #define N_Inner_Property_ID         0x10000
@@ -598,6 +608,14 @@ namespace NII
     #define N_Engine()      NII::Engine::getOnly()
     #define N_EnginePtr()   NII::Engine::getOnlyPtr()
     #define N_Timer()       NII::Engine::getOnly().getTimer()
+    
+    #define N_MarkTrue(src, mark)                   ((src & mark) == mark)
+    #define N_MarkOnlyTrue(src, flmark, mark)       ((src & flmark) == mark)
+    #define N_MarkFalse(src, mark)                  ((src & mark) != mark)
+    #define N_MarkOnlyFalse(src, flmark, mark)      ((src & flmark) != mark)
+    
+    #define N_SetMark(src, mark)                    src |= mark
+    #define N_SetMarkOnly(src, flmark, mark)        src ~= flmark;src |= mark
 }
 
 #endif

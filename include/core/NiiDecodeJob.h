@@ -46,14 +46,14 @@ namespace NII
         virtual ~DecodeJob();
 
         /// 获取解码后的数据
-        MemDataStream * getOut() const;
+        MemStream * getOut() const;
     protected:
         DecodeJob();
 
         /// @copydetails CodecJob::onRequest
         void onRequest(NCount count);
     protected:
-        MemDataStream * mOut; ///< 输出流
+        MemStream * mOut; ///< 输出流
     };
 }
 

@@ -44,11 +44,12 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 
 namespace NII
 {
-    extern const Nui32  NiiOrMark[32];
-    extern const Nui32  NiiAndMark[32];
-    extern const Nui32  NiiNotMark[32];
-    extern const EventID EventCount;
-    extern const PropertyID PropertyCount;
+    _EngineAPI extern const Nui32  NiiOrMark[32];
+    _EngineAPI extern const Nui32  NiiAndMark[32];
+    _EngineAPI extern const Nui32  NiiNotMark[32];
+    _EngineAPI extern const EventID EventCount;
+    _EngineAPI extern const PropertyID PropertyCount;
+    _EngineAPI extern const StateID StateCount;
 
     enum TextEncodeType
     {
@@ -84,15 +85,17 @@ namespace NII
     enum CmpMode
     {
         CPM_NONE = 0,                       ///< 不启动
-        CPM_EQUAL = 1,                      ///< 当等于时通过
-        CPM_NOT_EQUAL = 2,                  ///< 当不等于时通过
-        CPM_ALWAYS_FAIL = 3,                ///< 总是不通过
-        CPM_ALWAYS_PASS = 4,                ///< 总是通过
-        CPM_GREATER_EQUAL = 5,              ///< 当不小于时通过
+        CPM_ALWAYS_FAIL = 1,                ///< 总是不通过
+        CPM_LESS = 2,                       ///< 当小于时通过
+        CPM_LESS_EQUAL = 3,                 ///< 当不大于时通过
+        CPM_EQUAL = 4,                      ///< 当等于时通过
+        CPM_NOT_EQUAL = 5,                  ///< 当不等于时通过
         CPM_GREATER = 6,                    ///< 当大于时通过
-        CPM_LESS = 7,                       ///< 当小于时通过
-        CPM_LESS_EQUAL = 8                  ///< 当不大于时通过
+        CPM_GREATER_EQUAL = 7,              ///< 当不小于时通过
+        CPM_ALWAYS_PASS = 8                 ///< 总是通过
     };
+    
+    _EngineAPI CmpMode reverse(CmpMode mode);
 
     /** 缩放形式
     @version NIIEngine 3.0.0
@@ -227,7 +230,7 @@ namespace NII
         N_mutex1
     };
 
-    /** 描述一个简单的事物池的模板类
+    /** 描述简单的事物池的模板类
     @version NIIEngine 3.0.0
     */
     template <typename T> class Pool

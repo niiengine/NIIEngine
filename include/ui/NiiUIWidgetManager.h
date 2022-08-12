@@ -30,9 +30,10 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 
 #include "NiiUIPreInclude.h"
 #include "NiiSingleton.h"
-#include "NiiUIWidgetView.h"
-#include "NiiUIWidgetFactory.h"
-#include "NiiUIWidgetViewFactory.h"
+#include "NiiUIWidget.h"
+#include "NiiUIException.h"
+#include "NiiUIStyle.h"
+#include "NiiUIPixelUnitGrid.h"
 
 using namespace NII::UI;
 
@@ -41,47 +42,71 @@ namespace NII
     /** UI单元管理器
     @version NIIEngine 3.0.0
     */
-    class _EngineAPI UIWidgetManager : public Singleton<UIWidgetManager>, public UIAlloc
+    class _EngineAPI WidgetManager : public Singleton<WidgetManager>, public UIAlloc
     {
         friend class UIManager;
     public:
         /** 风格定义
         @version NIIEngine 3.0.0
         */
-        struct _EngineAPI WidgetModelDefine
+        struct _EngineAPI StyleView
         {
+            String mName;
+            StyleViewID mID;
+            GroupID mGroup;
+            FactoryID mModel;
             StyleID mStyle;
+            WidgetViewlID mView;
             EffectID mEffect;
-            FactoryID mFactory;
-            WidgetViewlID mWidgetModel;
         };
 
-        typedef map<FactoryID, WidgetViewFactory *>::type WidgetModelList;
+        typedef map<FactoryID, WidgetViewFactory *>::type WidgetViewList;
         typedef map<FactoryID, WidgetFactory *>::type WidgetFactoryList;
-        typedef map<FactoryID, WidgetModelDefine>::type StyleDefineList;
+        typedef map<StyleViewID, StyleView>::type StyleViewList;
+        typedef map<StyleID, Style *>::type StyleList;
     public:
-        UIWidgetManager();
-        ~UIWidgetManager();
+        WidgetManager();
+        ~WidgetManager();
 
         /** 设置资源组
         @version NIIEngine 3.0.0
         */
-        static void setGroup(GroupID gid);
+        static inline void setGroup(GroupID gid)    { ResourceGroup = gid; }
 
         /** 获取资源组
         @version NIIEngine 3.0.0
         */
-        static GroupID getGroup();
+        static inline GroupID getGroup()            { return ResourceGroup; }
+
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static inline void setStyleGroup(GroupID gid) { StyleResourceGroup = gid; }
+
+        /**
+        @version NIIEngine 3.0.0
+        */
+        static inline GroupID getStyleGroup()       { return StyleResourceGroup; }
 
         /** 创建UI单元
         @version NIIEngine 3.0.0
         */
-        Widget * create(FactoryID sid, WidgetID wid = 0, Container * parent = 0);
+        Widget * create(StyleViewID id, WidgetID wid = 0, Container * parent = 0, FactoryID modelhint = 0);
+
+        /** 创建UI单元
+        @version NIIEngine 3.0.0
+        */
+        Widget * create(GroupID gid, FactoryID mid, WidgetViewlID vid, WidgetID wid = 0, Container * parent = 0);
         
         /** 是否存在UI单元
         @version NIIEngine 3.0.0
         */
         bool isExist(const Widget * obj) const;
+
+        /** 是否存在UI单元
+        @version NIIEngine 3.0.0
+        */
+        bool isExist(const String & name, bool path = false) const;
 
         /** 删除UI单元
         @version NIIEngine 3.0.0
@@ -121,67 +146,117 @@ namespace NII
         /** 获取工厂列表
         @version NIIEngine 3.0.0 高级 api
         */
-        const WidgetFactoryList & getWidgetFactoryList() const;
-
-        /** 获取风格列表
-        @version NIIEngine 3.0.0
-        */
-        const StyleDefineList & getStyleDefineList() const;
+        const WidgetFactoryList & getWidgetFactoryList() const  { return mWidgetFactoryList;  }
 
         /** 添加UI模型工厂
         @version NIIEngine 3.0.0
         */
-        bool addModelFactory(WidgetViewFactory * obj);
+        bool addViewFactory(WidgetViewFactory * obj);
 
         /** 移去UI模型工厂
         @version NIIEngine 3.0.0
         */
-        void removeModelFactory(FactoryID fid);
+        void removeViewFactory(FactoryID fid);
 
         /** 获取UI模型工厂
         @version NIIEngine 3.0.0
         */
-        WidgetViewFactory * getModelFactory(FactoryID fid) const;
+        WidgetViewFactory * getViewFactory(FactoryID fid) const;
 
         /** 是否存在UI模型工厂
         @version NIIEngine 3.0.0
         */
-        bool isModelFactoryExist(FactoryID fid) const;
+        bool isViewFactoryExist(FactoryID fid) const;
 
-        /** 创建UI模型
+        /** 加载文件
         @version NIIEngine 3.0.0
         */
-        WidgetView * createModel(FactoryID wid);
+        void loadStyle(const String & file, GroupID gid = GroupUnknow);
 
-        /** 删除UI模型
+        /** 加载内存流
         @version NIIEngine 3.0.0
         */
-        void destroyModel(WidgetView * obj);
+        void loadStyle(const MemStream * data);
+
+        /** 添加风格
+        @version NIIEngine 3.0.0
+        */
+        void addStyle(Style * style);
+
+        /** 移去风格
+        @version NIIEngine 3.0.0
+        */
+        void removeStyle(StyleID style);
+
+        /** 移去所有风格
+        @version NIIEngine 3.0.0
+        */
+        void removeAllStyle();
+
+        /** 是否存在风格
+        @version NIIEngine 3.0.0
+        */
+        bool isStyleExist(StyleID style) const;
+
+        /** 获取风格
+        @version NIIEngine 3.0.0
+        */
+        Style * getStyle(StyleID style) const;
+
+        /** 获取风格列表
+        @version NIIEngine 3.0.0
+        */
+        inline const StyleList & getStyleList() const           { return mStyleList; }
+
+        /** 创建UI视图
+        @version NIIEngine 3.0.0
+        */
+        WidgetView * createView(FactoryID wid);
+
+        /** 删除UI视图
+        @version NIIEngine 3.0.0
+        */
+        void destroyView(WidgetView * obj);
 
         /** 添加风格定义
         @version NIIEngine 3.0.0
         */
-        void addStyle(FactoryID fid, StyleID sid, WidgetViewlID wsid, EffectID eid);
+        void addStyleView(StyleViewID id, FactoryID mid, WidgetViewlID vid, StyleID sid, EffectID eid, const String & name = N_StrBlank);
 
         /** 风格定义是否存在
         @version NIIEngine 3.0.0
         */
-        bool isStyleExist(FactoryID fid) const;
+        bool isStyleViewExist(FactoryID mid, WidgetViewlID vid, StyleID sid) const;
+
+        /** 风格定义是否存在
+        @version NIIEngine 3.0.0
+        */
+        bool isStyleViewExist(StyleViewID fid) const;
 
         /** 获取风格定义
         @version NIIEngine 3.0.0
         */
-        const WidgetModelDefine & getStyle(FactoryID fid) const;
+        const StyleView * getStyleView(FactoryID mid, WidgetViewlID vid, StyleID sid) const;
+
+        /** 获取风格定义
+        @version NIIEngine 3.0.0
+        */
+        const StyleView * getStyleView(StyleViewID fid) const;
 
         /** 移去风格定义
         @version NIIEngine 3.0.0
         */
-        void removeStyle(FactoryID fid);
+        void removeStyleView(StyleViewID fid);
 
         /** 移去所有风格定义
         @version NIIEngine 3.0.0
         */
-        void removeAllStyle();
+        void removeAllStyleView();
+
+        /** 获取风格列表
+        @version NIIEngine 3.0.0
+        */
+        const StyleViewList & getStyleViewList() const          { return mStyleViewList; }
 
         /** 加载
         @note xml级
@@ -193,21 +268,38 @@ namespace NII
         @note xml级
         @version NIIEngine 3.0.0
         */
-        Widget * load(const MemDataStream * source);
+        Widget * load(const MemStream * source);
 
-        /** 保存
+        /** 获取列表
+        @version NIIEngine 3.0.0 高级api
+        */
+        const Widgets & getList() const                         { return mCreateWidgets; }
+
+        /** 写入UI单元
         @param[in] out 输出流
         @note xml级
         @version NIIEngine 3.0.0
         */
-        void save(const Widget & obj, Nostream & out) const;
+        void writeWidget(const Widget * obj, Nostream & out) const;
 
-        /** 保存
+        /** 写入UI单元
         @param[in] file 文件名
         @note xml级
         @version NIIEngine 3.0.0
         */
-        void save(const Widget & obj, const String & file) const;
+        void writeWidget(const Widget * obj, const String & file) const;
+
+        /** 写入UI风格
+        @param[out]
+        @version NIIEngine 3.0.0
+        */
+        void writeStyle(StyleID style, Nostream & out) const;
+
+        /** 写入UI风格
+        @param[out] out
+        @version NIIEngine 3.0.0
+        */
+        void writeStyleList(Nui16 Ser, Nostream & out) const;
 
         /** 回收
         @version NIIEngine 3.0.0
@@ -217,7 +309,12 @@ namespace NII
         /** 获取未使用的ID
         @version NIIEngine 3.0.0 高级api
         */
-        WidgetID genValidID();
+        WidgetID genValidWidgetID();
+
+        /** 获取未使用的ID
+        @version NIIEngine 3.0.0 高级api
+        */
+        StyleViewID genValidStyleViewID();
     public:
         /** 公共Tooltip
         @version NIIEngine 3.0.0
@@ -238,13 +335,22 @@ namespace NII
         @version NIIEngine 3.0.0 高级api
         */
         void onDestroy(const Widget * obj);
+    public:
+        static const Colour DefaultTextColour;
+        static const Colour DefaultSelectionColour;
+
+        static EffectTextView * gDefaultTextView;
+        static TextView * gNormalTextView;
     private:
+        static GroupID StyleResourceGroup;
+        StyleList mStyleList;
         Widgets mCreateWidgets;
         Widgets mDestroyWidgets;
         WidgetFactoryList mWidgetFactoryList;
-        StyleDefineList mStyleDefineList;
-        WidgetModelList mWidgetModelList;
+        StyleViewList mStyleViewList;
+        WidgetViewList mWidgetViewList;
         WidgetID mValidWidgetID;
+        WidgetID mValidStyleViewID;
         static GroupID ResourceGroup;
     };
 }

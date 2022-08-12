@@ -72,9 +72,13 @@ namespace NII
         */
         void swap(Matrix4<TN> & o);
 
-        TN * operator [](NCount row);
+        TN * operator[](NCount row);
 
-        const TN * operator [](NCount row) const;
+        const TN * operator[](NCount row) const;
+        
+        TN * data();
+        
+        const TN * data() const;
 
         /** 级联
         @version NIIEngine 3.0.0
@@ -154,11 +158,22 @@ namespace NII
         */
         Matrix4<TN> T() const;
 
+        /** 转置矩阵 (*this)^T
+        @version NIIEngine 3.0.0
+        */
+        void T(Matrix4<TN> & out) const;
+
         /** 伴随矩阵
         @remark 标准数学
         @version NIIEngine 3.0.0
         */
         Matrix4<TN> adjoint() const;
+
+        /** 伴随矩阵
+        @remark 标准数学
+        @version NIIEngine 3.0.0
+        */
+        void adjoint(Matrix4<TN> & out) const;
 
         /** 行列式
         @remark 标准数学
@@ -172,11 +187,23 @@ namespace NII
         */
         Matrix4<TN> inverse() const;
 
+        /** 逆矩阵
+        @remark 标准数学
+        @version NIIEngine 3.0.0
+        */
+        void inverse(Matrix4<TN> & out) const;
+
         /** 逆矩阵(仿射变换)
         @note 必须是仿射矩阵,结果和 inverse 相同,仅仅是比较快点
         @version NIIEngine 3.0.0
         */
         Matrix4<TN> inverseAffine() const;
+
+        /** 逆矩阵(仿射变换)
+        @note 必须是仿射矩阵,结果和 inverse 相同,仅仅是比较快点
+        @version NIIEngine 3.0.0
+        */
+        void inverseAffine(Matrix4<TN> & out) const;
 
         /** 优化算法
         @remark
@@ -261,8 +288,7 @@ namespace NII
         @param[in] o 旋转
         @version NIIEngine 3.0.0
         */
-        void makeInverseTransform(const Vector3<TN> & p, const Vector3<TN> & s,
-            const Quaternion & o);
+        void makeInverseTransform(const Vector3<TN> & p, const Vector3<TN> & s, const Quaternion & o);
 
         /** 构建
         @param[in] n 平面的单位法线
@@ -270,8 +296,7 @@ namespace NII
         @param[in] dir 方向
         @version NIIEngine 3.0.0
         */
-        void makeObliqueProjection(const Vector3f & n, const Vector3f & o,
-            const Vector3f & dir);
+        void makeObliqueProjection(const Vector3f & n, const Vector3f & o, const Vector3f & dir);
 
         /** 构建
         @param[in] n 平面的单位法线
@@ -279,8 +304,7 @@ namespace NII
         @param[in] eye 视点
         @version NIIEngine 3.0.0
         */
-        void makePerspectiveProjection(const Vector3f & n, const Vector3f & o,
-            const Vector3f & eye);
+        void makePerspectiveProjection(const Vector3f & n, const Vector3f & o, const Vector3f & eye);
 
         /** 构建
         @remark 平面反射矩阵
@@ -386,6 +410,16 @@ namespace NII
     {
         assert(row < 4);
         return m[row];
+    }
+    //----------------------------------------------------------------------------
+    template <typename TN> inline TN * Matrix4<TN>::data()
+    {
+        return _m;
+    }
+    //----------------------------------------------------------------------------
+    template <typename TN> inline const TN * Matrix4<TN>::data() const
+    {
+        return _m;
     }
     //----------------------------------------------------------------------------
     template <typename TN> Matrix4<TN> Matrix4<TN>::concatenate(const Matrix4<TN> & o) const
@@ -516,6 +550,14 @@ namespace NII
             m[0][1], m[1][1], m[2][1], m[3][1],
             m[0][2], m[1][2], m[2][2], m[3][2],
             m[0][3], m[1][3], m[2][3], m[3][3]);
+    }
+    //----------------------------------------------------------------------------
+    template <typename TN> inline void Matrix4<TN>::T(Matrix4<TN> & out) const
+    {
+        out.m[0] = m[0][0]; out.m[1] = m[1][0]; out.m[2] = m[2][0]; out.m[3] = m[3][0];
+        out.m[4] = m[0][1]; out.m[5] = m[1][1]; out.m[6] = m[2][1]; out.m[7] = m[3][1];
+        out.m[8] = m[0][2]; out.m[9] = m[1][2]; out.m[10] = m[2][2]; out.m[11] = m[3][2];
+        out.m[12] = m[0][3]; out.m[13] = m[1][3]; out.m[14] = m[2][3]; out.m[15] = m[3][3];
     }
     //----------------------------------------------------------------------------
     template <typename TN> void Matrix4<TN>::T(TN * d, const Matrix4<TN> & o2)
@@ -803,7 +845,7 @@ namespace NII
             v.w);
     }
     //----------------------------------------------------------------------------
-    template <typename TN> static NIIf MINOR(const Matrix4<TN>& m, NCount r0,
+    template <typename TN> NIIf minor(const Matrix4<TN>& m, NCount r0,
         NCount r1, NCount r2, NCount c0, NCount c1, NCount c2)
     {
         return m[r0][c0] * (m[r1][c1] * m[r2][c2] - m[r2][c1] * m[r1][c2]) -
@@ -814,26 +856,41 @@ namespace NII
     template <typename TN> Matrix4<TN> Matrix4<TN>::adjoint() const
     {
         return Matrix4<TN>(
-            MINOR(*this, 1, 2, 3, 1, 2, 3), -MINOR(*this, 0, 2, 3, 1, 2, 3),
-            MINOR(*this, 0, 1, 3, 1, 2, 3), -MINOR(*this, 0, 1, 2, 1, 2, 3),
+            minor(*this, 1, 2, 3, 1, 2, 3), -minor(*this, 0, 2, 3, 1, 2, 3),
+            minor(*this, 0, 1, 3, 1, 2, 3), -minor(*this, 0, 1, 2, 1, 2, 3),
 
-            -MINOR(*this, 1, 2, 3, 0, 2, 3), MINOR(*this, 0, 2, 3, 0, 2, 3),
-            -MINOR(*this, 0, 1, 3, 0, 2, 3), MINOR(*this, 0, 1, 2, 0, 2, 3),
+            -minor(*this, 1, 2, 3, 0, 2, 3), minor(*this, 0, 2, 3, 0, 2, 3),
+            -minor(*this, 0, 1, 3, 0, 2, 3), minor(*this, 0, 1, 2, 0, 2, 3),
 
-            MINOR(*this, 1, 2, 3, 0, 1, 3), -MINOR(*this, 0, 2, 3, 0, 1, 3),
-            MINOR(*this, 0, 1, 3, 0, 1, 3), -MINOR(*this, 0, 1, 2, 0, 1, 3),
+            minor(*this, 1, 2, 3, 0, 1, 3), -minor(*this, 0, 2, 3, 0, 1, 3),
+            minor(*this, 0, 1, 3, 0, 1, 3), -minor(*this, 0, 1, 2, 0, 1, 3),
 
-            -MINOR(*this, 1, 2, 3, 0, 1, 2), MINOR(*this, 0, 2, 3, 0, 1, 2),
-            -MINOR(*this, 0, 1, 3, 0, 1, 2), MINOR(*this, 0, 1, 2, 0, 1, 2) );
+            -minor(*this, 1, 2, 3, 0, 1, 2), minor(*this, 0, 2, 3, 0, 1, 2),
+            -minor(*this, 0, 1, 3, 0, 1, 2), minor(*this, 0, 1, 2, 0, 1, 2) );
+    }
+    //----------------------------------------------------------------------------
+    template <typename TN> void Matrix4<TN>::adjoint(Matrix4<TN> & out) const
+    {
+        out.m[0] = minor(*this, 1, 2, 3, 1, 2, 3); out.m[1] = -minor(*this, 0, 2, 3, 1, 2, 3);
+        out.m[2] = minor(*this, 0, 1, 3, 1, 2, 3); out.m[3] = -minor(*this, 0, 1, 2, 1, 2, 3);
+
+        out.m[4] = -minor(*this, 1, 2, 3, 0, 2, 3); out.m[5] = minor(*this, 0, 2, 3, 0, 2, 3);
+        out.m[6] = -minor(*this, 0, 1, 3, 0, 2, 3); out.m[7] = minor(*this, 0, 1, 2, 0, 2, 3);
+
+        out.m[8] = minor(*this, 1, 2, 3, 0, 1, 3); out.m[9] = -minor(*this, 0, 2, 3, 0, 1, 3);
+        out.m[10] = minor(*this, 0, 1, 3, 0, 1, 3); out.m[11] = -minor(*this, 0, 1, 2, 0, 1, 3);
+
+        out.m[12] = -minor(*this, 1, 2, 3, 0, 1, 2); out.m[13] = minor(*this, 0, 2, 3, 0, 1, 2);
+        out.m[14] = -minor(*this, 0, 1, 3, 0, 1, 2); out.m[15] = minor(*this, 0, 1, 2, 0, 1, 2);
     }
     //------------------------------------------------------------------------
     template <typename TN> TN Matrix4<TN>::det() const
     {
         return
-            m[0][0] * MINOR(*this, 1, 2, 3, 1, 2, 3) -
-            m[0][1] * MINOR(*this, 1, 2, 3, 0, 2, 3) +
-            m[0][2] * MINOR(*this, 1, 2, 3, 0, 1, 3) -
-            m[0][3] * MINOR(*this, 1, 2, 3, 0, 1, 2);
+            m[0][0] * minor(*this, 1, 2, 3, 1, 2, 3) -
+            m[0][1] * minor(*this, 1, 2, 3, 0, 2, 3) +
+            m[0][2] * minor(*this, 1, 2, 3, 0, 1, 3) -
+            m[0][3] * minor(*this, 1, 2, 3, 0, 1, 2);
     }
     //------------------------------------------------------------------------
     template <typename TN> Matrix4<TN> Matrix4<TN>::inverse() const
@@ -894,6 +951,62 @@ namespace NII
         return Matrix4<TN>(d00, d01, d02, d03, d10, d11, d12, d13,
             d20, d21, d22, d23, d30, d31, d32, d33);
     }
+    //------------------------------------------------------------------------
+    template <typename TN> void Matrix4<TN>::inverse(Matrix4<TN> & out) const
+    {
+        TN m00 = m[0][0], m01 = m[0][1], m02 = m[0][2], m03 = m[0][3];
+        TN m10 = m[1][0], m11 = m[1][1], m12 = m[1][2], m13 = m[1][3];
+        TN m20 = m[2][0], m21 = m[2][1], m22 = m[2][2], m23 = m[2][3];
+        TN m30 = m[3][0], m31 = m[3][1], m32 = m[3][2], m33 = m[3][3];
+
+        TN v0 = m20 * m31 - m21 * m30;
+        TN v1 = m20 * m32 - m22 * m30;
+        TN v2 = m20 * m33 - m23 * m30;
+        TN v3 = m21 * m32 - m22 * m31;
+        TN v4 = m21 * m33 - m23 * m31;
+        TN v5 = m22 * m33 - m23 * m32;
+
+        TN t00 = +(v5 * m11 - v4 * m12 + v3 * m13);
+        TN t10 = -(v5 * m10 - v2 * m12 + v1 * m13);
+        TN t20 = +(v4 * m10 - v2 * m11 + v0 * m13);
+        TN t30 = -(v3 * m10 - v1 * m11 + v0 * m12);
+
+        TN invDet = 1 / (t00 * m00 + t10 * m01 + t20 * m02 + t30 * m03);
+
+        out[0] = t00 * invDet;
+        out[4] = t10 * invDet;
+        out[8] = t20 * invDet;
+        out[12] = t30 * invDet;
+
+        out[1] = -(v5 * m01 - v4 * m02 + v3 * m03) * invDet;
+        out[5] = +(v5 * m00 - v2 * m02 + v1 * m03) * invDet;
+        out[9] = -(v4 * m00 - v2 * m01 + v0 * m03) * invDet;
+        out[13] = +(v3 * m00 - v1 * m01 + v0 * m02) * invDet;
+
+        v0 = m10 * m31 - m11 * m30;
+        v1 = m10 * m32 - m12 * m30;
+        v2 = m10 * m33 - m13 * m30;
+        v3 = m11 * m32 - m12 * m31;
+        v4 = m11 * m33 - m13 * m31;
+        v5 = m12 * m33 - m13 * m32;
+
+        out[2] = +(v5 * m01 - v4 * m02 + v3 * m03) * invDet;
+        out[6] = -(v5 * m00 - v2 * m02 + v1 * m03) * invDet;
+        out[10] = +(v4 * m00 - v2 * m01 + v0 * m03) * invDet;
+        out[14] = -(v3 * m00 - v1 * m01 + v0 * m02) * invDet;
+
+        v0 = m21 * m10 - m20 * m11;
+        v1 = m22 * m10 - m20 * m12;
+        v2 = m23 * m10 - m20 * m13;
+        v3 = m22 * m11 - m21 * m12;
+        v4 = m23 * m11 - m21 * m13;
+        v5 = m23 * m12 - m22 * m13;
+
+        out[3] = -(v5 * m01 - v4 * m02 + v3 * m03) * invDet;
+        out[7] = +(v5 * m00 - v2 * m02 + v1 * m03) * invDet;
+        out[11] = -(v4 * m00 - v2 * m01 + v0 * m03) * invDet;
+        out[15] = +(v3 * m00 - v1 * m01 + v0 * m02) * invDet;
+    }
     //----------------------------------------------------------------
     template <typename TN> Matrix4<TN> Matrix4<TN>::inverseAffine() const
     {
@@ -934,6 +1047,46 @@ namespace NII
 
         return Matrix4<TN>(r00, r01, r02, r03, r10, r11, r12, r13,
             r20, r21, r22, r23, 0, 0, 0, 1);
+    }
+    //----------------------------------------------------------------
+    template <typename TN> void Matrix4<TN>::inverseAffine(Matrix4<TN> & out) const
+    {
+        assert(isAffine());
+
+        TN m10 = m[1][0], m11 = m[1][1], m12 = m[1][2];
+        TN m20 = m[2][0], m21 = m[2][1], m22 = m[2][2];
+
+        TN t00 = m22 * m11 - m21 * m12;
+        TN t10 = m20 * m12 - m22 * m10;
+        TN t20 = m21 * m10 - m20 * m11;
+
+        TN m00 = m[0][0], m01 = m[0][1], m02 = m[0][2];
+
+        TN invDet = 1 / (m00 * t00 + m01 * t10 + m02 * t20);
+
+        t00 *= invDet; t10 *= invDet; t20 *= invDet;
+
+        m00 *= invDet; m01 *= invDet; m02 *= invDet;
+
+        out.m[0] = t00;
+        out.m[1] = m02 * m21 - m01 * m22;
+        out.m[2] = m01 * m12 - m02 * m11;
+
+        out.m[4] = t10;
+        out.m[5] = m00 * m22 - m02 * m20;
+        out.m[6] = m02 * m10 - m00 * m12;
+
+        out.m[8] = t20;
+        out.m[9] = m01 * m20 - m00 * m21;
+        out.m[10] = m00 * m11 - m01 * m10;
+
+        TN m03 = m[0][3], m13 = m[1][3], m23 = m[2][3];
+
+        out.m[3] = -(out.m[0] * m03 + out.m[1] * m13 + out.m[2] * m23);
+        out.m[7] = -(out.m[4] * m03 + out.m[5] * m13 + out.m[6] * m23);
+        out.m[11] = -(out.m[8] * m03 + out.m[9] * m13 + out.m[10] * m23);
+
+        out.m[12] = 0; out.m[13] = 0; out.m[14] = 0; out.m[15] = 1;
     }
     //-------------------------------------------------------------------------
     template <typename TN> void Matrix4<TN>::makeInverseTransform(const Vector3<TN> & p,

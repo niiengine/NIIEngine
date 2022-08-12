@@ -29,7 +29,7 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 #define _NII_UI_STYLE_XML_COM_H_
 
 #include "NiiUIPreInclude.h"
-#include "NiiXmlAnalyze.h"
+#include "NiiXmlAnalyzeManager.h"
 #include "NiiUIWidget.h"
 #include "NiiSizeDefine.h"
 #include "NiiUIStyleProperty.h"
@@ -126,7 +126,7 @@ namespace UI
     private:
         typedef vector<SizeBase *>::type SizeBaseList;
     private:
-        UIStyleManager * mStyleManager;
+        UIWidgetManager * mStyleManager;
         ListenerProperty * mListenerProperty;
         ListenerEvent * mListenerEvent;
         Style * mStyle;

@@ -31,9 +31,9 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 #include "NiiPreInclude.h"
 #include "NiiSingleton.h"
 #include "NiiResourceType.h"
-#include "NiiVFS.h"
 #include "NiiDataStream.h"
-#include "NiiCommon.h"
+#include "NiiPropertyObj.h"
+#include "NiiVFS.h"
 #include "NiiJob.h"
 #include "NiiThread.h"
 #include <ctime>
@@ -64,24 +64,25 @@ namespace NII
         @note 在产生线程ThreadMain前调用
         @version NIIEngine 3.0.0
         */
-        inline void setPrcType(Nui32 type){ mPrcType = type; }
+        inline void setPrcType(Nui32 type)              { mPrcType = type; }
         
         /** 获取处理类型
         @note 在产生线程ThreadMain前调用
         @version NIIEngine 3.0.0
         */
-        inline Nui32 getPrcType() const { return mPrcType; }
+        inline Nui32 getPrcType() const                 { return mPrcType; }
         
         /** 请求加载/卸载
         @param[in] gid 需要加载的组
         @param[in] count [0, 100]
             如果调用的是100在这个函数返回后,组里的资源已经完全加载,如果调用的是0在这
-            个函数返回后,组里的资源已经完全卸载(不删除)
+            个函数返回后,组里的资源已经完全卸载(不删除), 如果调用值为100,则阻塞调用线程
+            直到完成为止
         @version NIIEngine 3.0.0
         */
         void request(GroupID gid, NCount count);
 
-        /** 创建一个资源组
+        /** 创建资源组
         @remark
             资源组对于资源来说是非常重要的,资源组控制资源在什么时候加载,和什么时候释
             放,通过不同加载策略和结果策略来组织,让场景做到无缝连接
@@ -89,10 +90,12 @@ namespace NII
             虽然资源本身可以不属于任何一个组,但如果想更好的搭配加载过程,就要懂得如何
             使用资源组
         @param[in] gid 资源组ID,在同个应用程序中应该是唯一的
+        @param[in] relpath 相对路径
+        @param[in] name 资源组辅助名字
         @param[in] global 全局组
         @version NIIEngine 3.0.0
         */
-        void create(GroupID gid, bool global = true);
+        GroupID create(GroupID gid, const String & relpath, const String & name = N_StrBlank, bool global = true);
 
         /** 删除资源组
         @version NIIEngine 3.0.0
@@ -113,6 +116,16 @@ namespace NII
         @version NIIEngine 3.0.0
         */
         bool isGlobal(GroupID gid);
+
+        /** 获取资源组的相对路径
+        @version NIIEngine 3.0.0
+        */
+        const String & getName(GroupID gid);
+
+        /** 获取资源组的相对路径
+        @version NIIEngine 3.0.0
+        */
+        const String & getRelPath(GroupID gid);
 
         /** 添加资源类型管理器
         @param[in] type 资源类型
@@ -137,17 +150,17 @@ namespace NII
         /** 获取一个遍历注册资源管理的一个迭代
         @version NIIEngine 3.0.0 高级api
         */
-        ResMagList & getManagerList();
+        const ResMagList & getManagerList() const       { return mResMagList; }
 
         /** 设置引擎资源使用的资源组
         @version NIIEngine 3.0.0
         */
-        void setEngineGroup(GroupID gid);
+        void setEngineGroup(GroupID gid)                { mEngineGroup = gid; }
 
         /** 获取引擎资源使用的资源组
         @version NIIEngine 3.0.0
         */
-        GroupID getEngineGroup() const;
+        GroupID getEngineGroup() const                  { return mEngineGroup; }
 
         /** 添加脚本解析器
         @version NIIEngine 3.0.0
@@ -179,11 +192,10 @@ namespace NII
         @param[in] file 文件名字,包含格式扩展包含路径,对应 Reousrce::mSrc
         @version NIIEngine 3.0.0
         */
-        void create(ResourceID rid, ResourceType type, const String & file,
-            GroupID gid, ResLoadScheme * ls, ResResultScheme * rs,
-                const PropertyData & params = PropertyData());
+        void create(ResourceID rid, ResourceType type, const String & file, GroupID gid, 
+            ResLoadScheme * ls, ResResultScheme * rs, const PropertyData & params = PropertyData());
 
-        /** 删除一个资源
+        /** 删除资源
         @version NIIEngine 3.0.0
         */
         void destroy(ResourceID rid, GroupID gid);
@@ -213,6 +225,13 @@ namespace NII
         @version NIIEngine 3.0.0
         */
         VFS * getVFS(const String & protocol, GroupID gid = GroupDefault) const;
+        
+        /** 获取虚拟文件系统
+        @param[in] protocol
+        @param[in] gid
+        @version NIIEngine 3.0.0
+        */
+        VFS * getVFS(ResourceID rid, GroupID gid = GroupDefault) const;
 
         /** 是否存在一个文件
         @param[in] gid 资源组ID
@@ -351,14 +370,12 @@ namespace NII
         /** 删除资源文件
         @version NIIEngine 3.0.0 高级api
         */
-        void deleteSrc(const String & file, GroupID gid = GroupDefault,
-            const String & protocol = StrUtil::WBLANK);
+        void deleteSrc(const String & file, GroupID gid = GroupDefault, const String & protocol = StrUtil::WBLANK);
 
         /** 删除所有匹配的文件
         @version NIIEngine 3.0.0
         */
-        void deleteMatch(const String & pattern, GroupID gid = GroupDefault,
-            const String & protocol = StrUtil::WBLANK);
+        void deleteMatch(const String & pattern, GroupID gid = GroupDefault, const String & protocol = StrUtil::WBLANK);
 
         /** 列出资源组的所有文件或目录的名字
         @version NIIEngine 3.0.0
@@ -383,17 +400,17 @@ namespace NII
         /** 获取文件的创建时间
         @version NIIEngine 3.0.0
         */
-        time_t getCreateTime(GroupID gid, const String & file);
+        time_t getCreateTime(GroupID gid, const String & file) const;
 
         /** 获取文件的修改时间
         @version NIIEngine 3.0.0
         */
-        time_t getModifyTime(GroupID gid, const String & file);
+        time_t getModifyTime(GroupID gid, const String & file) const;
 
         /** 获取文件的访问时间
         @version NIIEngine 3.0.0
         */
-        time_t getAccessTime(GroupID gid, const String & file);
+        time_t getAccessTime(GroupID gid, const String & file) const;
 
         /** 获取所有组
         @version NIIEngine 3.0.0
@@ -409,7 +426,13 @@ namespace NII
         @remark 一般为连续的数值
         @version NIIEngine 3.0.0 高级api
         */
-        PrcID genValidID();
+        PrcID genValidPID();
+
+        /** 分配有效的处理ID
+        @remark 一般为连续的数值
+        @version NIIEngine 3.0.0 高级api
+        */
+        GroupID genValidGID();
     public:
         /** 资源创建后
         @version NIIEngine 3.0.0 高级api
@@ -472,26 +495,6 @@ namespace NII
         */
         BgPrcID addRequest(ResourceRequest * req);
     private:
-        /** 构建资源组
-        @version NIIEngine 3.0.0 内部函数
-        */
-        void setup(LoadGroup * grp);
-
-        /** 添加组资源
-        @version NIIEngine 3.0.0 内部函数
-        */
-        void add(LoadGroup * grp, Resource * res);
-
-        /** 清理组资源
-        @version NIIEngine 3.0.0 内部函数
-        */
-        void clear(LoadGroup * grp);
-
-        /** 删除组
-        @version NIIEngine 3.0.0 内部函数
-        */
-        void destroy(LoadGroup * grp);
-
         /** 解析脚本
         @version NIIEngine 3.0.0 内部函数
         */
@@ -501,26 +504,6 @@ namespace NII
         @version NIIEngine 3.0.0 内部函数
         */
         LoadGroup * get(GroupID gid) const;
-
-        /** 是否存在文件
-        @version NIIEngine 3.0.0 内部函数
-        */
-        bool isExist(LoadGroup * grp, const String & file);
-
-        /** 获取文件创建时间
-        @version NIIEngine 3.0.0 内部函数
-        */
-        time_t getCreateTime(LoadGroup * grp, const String & file);
-
-        /** 获取文件修改时间
-        @version NIIEngine 3.0.0 内部函数
-        */
-        time_t getModifyTime(LoadGroup * grp, const String & file);
-
-        /** 获取文件访问时间
-        @version NIIEngine 3.0.0 内部函数
-        */
-        time_t getAccessTime(LoadGroup * grp, const String & file);
 
         /** 找到文件所在的资源组
         @version NIIEngine 3.0.0 内部函数
@@ -541,7 +524,9 @@ namespace NII
         ResMagList mResMagList;
         ScriptSysList mScriptSysList;
         static PrcID mValidPID;
+        static GroupID mValidGID;
         N_static_mutex(mValidPIDMutex)
+        N_static_mutex(mValidGIDMutex)
     };
 }
 #endif

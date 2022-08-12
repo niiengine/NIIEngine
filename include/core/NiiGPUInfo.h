@@ -30,7 +30,6 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 
 #include "NiiPreInclude.h"
 #include "NiiDriverVersion.h"
-#include "NiiString.h"
 #include "NiiStrConv.h"
 
 namespace NII
@@ -93,17 +92,17 @@ namespace NII
         /** 设置设备名字
         @version NIIEngine 3.0.0
         */
-        void setName(const String & name);
+        void setName(const String & name)           { mName = name; }
 
         /** 获取设备名字
         @version NIIEngine 3.0.0
         */
-        const String & getName() const;
+        const String & getName() const              { return mName;  }
 
         /** 设置供应商
         @version NIIEngine 3.0.0
         */
-        void setVendor(GPUVendor v);
+        void setVendor(GPUVendor v)                 { mVendor = v; }
 
         /** 解析和设置供应商
         @version NIIEngine 3.0.0
@@ -113,7 +112,7 @@ namespace NII
         /** 获取供应商
         @version NIIEngine 3.0.0
         */
-        GPUVendor getVendor() const;
+        GPUVendor getVendor() const                 { return mVendor; }
 
         /** 获取供应商序号
         @version NIIEngine 3.0.0
@@ -128,7 +127,7 @@ namespace NII
         /** 设置驱动版本
         @version NIIEngine 3.0.0
         */
-        void setVersion(const DriverVersion & v);
+        void setVersion(const DriverVersion & v)    { mVersion = v;  }
 
         /** 设置驱动版本
         @version NIIEngine 3.0.0
@@ -138,7 +137,7 @@ namespace NII
         /** 获取驱动版本
         @version NIIEngine 3.0.0
         */
-        DriverVersion getVersion() const;
+        DriverVersion getVersion() const            { return mVersion; }
     protected:
         String mName;
         GPUVendor mVendor;

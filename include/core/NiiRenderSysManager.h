@@ -30,8 +30,7 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 
 #include "NiiPreInclude.h"
 #include "NiiSingleton.h"
-#include "NiiString.h"
-#include "NiiRenderFeature.h"
+#include "NiiRenderSys.h"
 
 namespace NII
 {

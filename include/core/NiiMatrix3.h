@@ -79,7 +79,13 @@ namespace NII
         /** 成员访问, 允许使用this[row][col]结构
         @remark 下标级别的操作,不能超过2
         */
-        TN * operator[](NCount row) const;
+        TN * operator[](NCount row);
+        
+        const TN * operator [](NCount row) const;
+        
+        TN * data();
+        
+        const TN * data() const;
 
         /** 同类操作
         @version NIIEngine 3.0.0
@@ -277,9 +283,24 @@ namespace NII
         set(2, z);
     }
     //------------------------------------------------------------------------
-    template <typename TN> inline TN * Matrix3<TN>::operator[] (NCount row) const
+    template <typename TN> inline TN * Matrix3<TN>::operator[] (NCount row)
     {
-        return (TN*)m[row];
+        return m[row];
+    }
+    //------------------------------------------------------------------------
+    template <typename TN> inline const TN * Matrix3<TN>::operator[] (NCount row) const
+    {
+        return m[row];
+    }
+    //----------------------------------------------------------------------------
+    template <typename TN> inline TN * Matrix3<TN>::data()
+    {
+        return _m;
+    }
+    //----------------------------------------------------------------------------
+    template <typename TN> inline const TN * Matrix3<TN>::data() const
+    {
+        return _m;
     }
     //------------------------------------------------------------------------
     template <typename TN> inline Matrix3<TN> & Matrix3<TN>::operator = (const Matrix3<TN> & o)

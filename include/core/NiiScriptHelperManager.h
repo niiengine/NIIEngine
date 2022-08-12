@@ -29,7 +29,7 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 #define _NII_SCRIPT_HELPER_MANAGER_H_
 
 #include "NiiPreInclude.h"
-#include "NiiScriptList.h"
+#include "NiiDefine.h"
 #include "NiiSingleton.h"
 
 namespace NII
@@ -159,7 +159,7 @@ namespace NII
         /** 获取语言类型
         @version NIIEngine 3.0.0
         */
-        LangID getLangID() const;
+        inline LangID getLangID() const                 { return mLangID;  }
     protected:
         ScriptLangMap();
     private:

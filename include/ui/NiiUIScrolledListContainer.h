@@ -45,6 +45,16 @@ namespace UI
 
         virtual ~ScrolledListContainer();
 
+        /** 设置y轴滚动条
+        @version NIIEngine 3.0.0
+        */
+        void setContainerAreaView(StyleViewID id)   { mContainerAreaView = id; }
+
+        /** 获取y轴滚动条
+        @version NIIEngine 3.0.0
+        */
+        StyleViewID getContainerAreaView() const    { return mContainerAreaView; }
+
         /**
         @version NIIEngine 3.0.0
         */
@@ -128,6 +138,7 @@ namespace UI
 
         static const EventID EventCount;
     protected:
+        StyleViewID mContainerAreaView;
         bool mAlwayVScroll;
         bool mAlwayHScroll;
     };

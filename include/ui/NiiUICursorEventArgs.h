@@ -30,7 +30,7 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 
 #include "NiiUIPreInclude.h"
 #include "NiiUIWidgetEventArgs.h"
-#include "NiiMouseControlItem.h"
+#include "NiiMouseControlPattern.h"
 
 using namespace NII::NII_MEDIA;
 
@@ -41,37 +41,25 @@ namespace UI
     /** UI专用游标事件参数
     @version NIIEngine 3.0.0
     */
-    class _EngineAPI CursorEventArgs : public MouseMoveBaseArgs, public MousePressBaseArgs,
-        public WidgetEventArgs
+    class _EngineAPI CursorEventArgs : public WidgetEventArgs
     {
     public:
         CursorEventArgs(Widget * w) :
             WidgetEventArgs(w),
             mCount(0){}
-        CursorEventArgs(const MouseMoveArgs * a, Widget * w) :
-            MouseMoveBaseArgs(a),
+        CursorEventArgs(const MouseArgs * a, Widget * w) :
+            mMouseArg(a),
             WidgetEventArgs(w){}
-        CursorEventArgs(const MousePressArgs * a, Widget * w) :
-            MousePressBaseArgs(a),
-            WidgetEventArgs(w){}
-        CursorEventArgs(const MouseMoveArgs * a1, const MousePressArgs * a2) :
-            MouseMoveBaseArgs(a1),
-            MousePressBaseArgs(a2),
-            mCount(0){}
-        CursorEventArgs(const MouseMoveArgs * a1, const MousePressArgs * a2, Widget * w) :
-            MouseMoveBaseArgs(a1),
-            MousePressBaseArgs(a2),
-            WidgetEventArgs(w),
-            mCount(0){}
+
         CursorEventArgs(MouseControlPattern * src, Widget * w, MouseButton b,
             Ni32 x, Ni32 y, Ni32 scroll, NIIf lx, NIIf ly) :
-            MouseMoveBaseArgs(src, x, y, scroll),
-            MousePressBaseArgs(src, b),
+            mMouseArg(src, x, y, scroll, b),
             WidgetEventArgs(w),
             mLocalX(lx),
             mLocalY(ly),
             mCount(0) {}
     public:
+        MouseArgs mMouseArg;///<
         NIIf mLocalX;       ///< 
         NIIf mLocalY;       ///<
         NCount mCount;      ///< 点击次数

@@ -89,12 +89,12 @@ namespace NII
         /** 获取附加对象的数量
         @version NIIEngine 3.0.0
         */
-        NCount getAttachCount() const;
+        NCount getAttachCount() const               { return mAttachList.size(); }
 
         /** 获取附加列表
         @version NIIEngine 3.0.0 高级api
         */
-        const AttachList & getAttachList() const;
+        const AttachList & getAttachList() const    { return mAttachList; }
 
         /** 设置节点是否有效
         @version NIIEngine 3.0.0 高级api

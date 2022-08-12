@@ -40,7 +40,10 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 
 #define NII_MAX_TextureLayer        16
 
-#define NII_MAX_MultiRender         8
+#define NII_MAX_RenderTarget        8
+#define NII_MAX_RenderTargetDS      10
+#define NII_DepthTargetIndex        8
+#define NII_StencilTargetIndex      9
 
 #define NII_MAX_LIGHT               8
 

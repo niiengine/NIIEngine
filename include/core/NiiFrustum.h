@@ -31,7 +31,7 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 #include "NiiPreInclude.h"
 #include "NiiSpaceObj.h"
 #include "NiiGeometryObj.h"
-#include "NiiVertexData.h"
+#include "NiiVertexIndexIndirect.h"
 #include "NiiVector2.h"
 #include "NiiPlane.h"
 #include "NiiRect.h"

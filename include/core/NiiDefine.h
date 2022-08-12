@@ -29,95 +29,186 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 #ifndef _NII_PROPERTYLIST_H_
 #define _NII_PROPERTYLIST_H_
 
-///////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////
-///////////////////////////////
-///////////////////
-////////
+
+/////////////////////////////////////////////////////
+// ScriptType
+/////////////////////////////////////////////////////
+
+#define N_Script_Font                   1
+#define N_Script_Material               2
+#define N_Script_GpuProgram             3
+#define N_Script_GpuProgramParam        4
+#define N_Script_ParticleSpace          5
+#define N_Script_SpreadParticle         6
+#define N_Script_ParticleEffect         7
+#define N_Script_FrameFusion            8
+#define N_Script_Widget                 9
+#define N_Script_PixelBuffer            10
+#define N_Script_AnimationCollector     11
+#define N_Script_Animation              12
+#define N_Script_UIConfig               13
+#define N_Script_UILayout               14
+#define N_Script_UIScheme               15
+#define N_Script_UIStyle                16
+
+#define N_Script_Custom                 1000000
+#define N_Script_CustomMax              9000000
+
+/////////////////////////////////////////////////////
+// Language
+/////////////////////////////////////////////////////
+
+#define N_Lang_English      0
+#define N_Lang_French       1
+#define N_Lang_Hebrew       2
+#define N_Lang_Japanese     3
+#define N_Lang_German       4
+#define N_Lang_China_TD     5
+#define N_Lang_Russian      6
+
+/////////////////////////////////////////////////////
+// Error Type
+/////////////////////////////////////////////////////
+
+#define N_OK                    0
+#define N_ERROR_IO              1
+#define N_ERROR_Internal        2
+#define N_ERROR_Runtime         3
+#define N_ERROR_UnImpl          4
+#define N_ERROR_InvalidFile     5
+#define N_ERROR_InvalidParam    6
+#define N_ERROR_InvalidState    7
+#define N_ERROR_UniqueRepeat    8
+#define N_ERROR_EXT10           9
+#define N_ERROR_EXT9            10
+#define N_ERROR_EXT8            11
+#define N_ERROR_EXT7            12
+#define N_ERROR_EXT6            13
+#define N_ERROR_EXT5            14
+#define N_ERROR_EXT4            15
+#define N_ERROR_EXT3            16
+#define N_ERROR_EXT2            17
+#define N_ERROR_EXT1            18
+#define N_ERROR_NET_1           19 
+
+/////////////////////////////////////////////////////
+// FACTORY
+/////////////////////////////////////////////////////
+
+#define N_FACTORY_Camera                0
+#define N_FACTORY_Light                 1
+#define N_FACTORY_GeoSpace              2
+#define N_FACTORY_CustomSpace           3
+#define N_FACTORY_PixelOrbit            4
+#define N_FACTORY_ParticleSpace         5
+#define N_FACTORY_PixelChain            6
+#define N_FACTORY_Frustum               7
+#define N_FACTORY_RenderObj             8
+#define N_FACTORY_MovablePlane          9
+#define N_FACTORY_SpaceObj              10
+#define N_FACTORY_HLSLProgram           11
+#define N_FACTORY_GLSLProgram           12
+#define N_FACTORY_CGProgram             13
+#define N_FACTORY_ProxyProgram          14
+#define N_FACTORY_GLSLESProgram         15
+#define N_FACTORY_DummyProgram          16
+#define N_FACTORY_InstanceSpace         17
+#define N_FACTORY_NormalSpaceType       18
+#define N_FACTORY_StaticSpace           19
+#define N_FACTORY_InstanceBatch         20
+#define N_FACTORY_InstanceGeo           21
+#define N_FACTORY_ParticleCtrl          22
+
+/////////////////////////////////////////////////////
 // PropertyObj
+/////////////////////////////////////////////////////
+#define N_CmdObj_Null                              0
 #define N_CmdObj_Texture                           1
 #define N_CmdObj_ItemListbox                       2
 #define N_CmdObj_FreeTypeFont                      3
-#define N_CmdObj_Font                              4
-#define N_CmdObj_Spinner                           5
-#define N_CmdObj_ScrollContainer                   6
-#define N_CmdObj_RadioButton                       7
-#define N_CmdObj_TextOverlayGeo                    8
-#define N_CmdObj_SpreadParticle                    9
-#define N_CmdObj_Editbox                           10
-#define N_CmdObj_Combobox                          11
-#define N_CmdObj_ProgressBar                       12
-#define N_CmdObj_Tooltip                           13
-#define N_CmdObj_PopupMenu                         14
-#define N_CmdObj_Widget                            15
-#define N_CmdObj_Listbox                           16
-#define N_CmdObj_GridLayoutContainer               17
-#define N_CmdObj_ListContainer                     18
-#define N_CmdObj_TabControl                        19
-#define N_CmdObj_Tree                              20
-#define N_CmdObj_ListHeader                        21
-#define N_CmdObj_DragContainer                     23
-#define N_CmdObj_ListHeaderSegment                 24
-#define N_CmdObj_FrameWindow_ID                    25
-#define N_CmdObj_FrameOverlayGeo                   27
-#define N_CmdObj_Pixmap                            28
-#define N_CmdObj_ParticleSpace                     29
-#define N_CmdObj_ParticleCtrlGeo                   30
-#define N_CmdObj_RectOverlayGeo                    31
-#define N_CmdObj_Skeleton                          32
-#define N_CmdObj_Sound                             33
-#define N_CmdObj_Material                          34
-#define N_CmdObj_ScrolledListContainer             35
-#define N_CmdObj_MultiColumnList                   36
-#define N_CmdObj_MultiLineEditbox                  37
-#define N_CmdObj_Scrollbar                         38
-#define N_CmdObj_Menubar                           39
-#define N_CmdObj_Titlebar                          40
-#define N_CmdObj_ExternalTexture                   41
-#define N_CmdObj_ParticleEffect                    42
-#define N_CmdObj_ParticleGeo                       43
-#define N_CmdObj_OverlayView                       49
-#define N_CmdObj_ContainerOverlayView              50
-#define N_CmdObj_FrameOverlayView                  51
-#define N_CmdObj_Compositor                        52
-#define N_CmdObj_Mesh                              53
-#define N_CmdObj_PatchMesh                         54
-#define N_CmdObj_GpuProgram                        55
-#define N_CmdObj_HighLevelGpuProgram               56
-#define N_CmdObj_Lable                             58
-#define N_CmdObj_DragDropWindow                    59
-#define N_CmdObj_LayoutCell                        60
-#define N_CmdObj_VerticalLayoutContainer           61
-#define N_CmdObj_HorizontalLayoutContainer         62
-#define N_CmdObj_TabButton                         63
-#define N_CmdObj_Button                            64
-#define N_CmdObj_ToggleButton                      65
-#define N_CmdObj_PushButton                        66
-#define N_CmdObj_PosButton                         67
-#define N_CmdObj_ComboDropList                     68
-#define N_CmdObj_Slider                            69
-#define N_CmdObj_SizeContainer                     70
-#define N_CmdObj_ListEntry                         71
-#define N_CmdObj_MenuItem                          72
-#define N_CmdObj_Window                            73
-#define N_CmdObj_FrameWindow                       74
-#define N_CmdObj_DefaultWindow                     75
-#define N_CmdObj_Container                         76
-#define N_CmdObj_GpuProgram                        55
-#define N_CmdObj_GLGpuProgram                      77
-#define N_CmdObj_GLSLProgram                       78
+#define N_CmdObj_PixmapFont                        4
+#define N_CmdObj_Font                              5
+#define N_CmdObj_Spinner                           6
+#define N_CmdObj_ScrollContainer                   7
+#define N_CmdObj_RadioButton                       8
+#define N_CmdObj_TextOverlayGeo                    9
+#define N_CmdObj_SpreadParticle                    10
+#define N_CmdObj_Editbox                           21
+#define N_CmdObj_Combobox                          22
+#define N_CmdObj_ProgressBar                       23
+#define N_CmdObj_Tooltip                           24
+#define N_CmdObj_PopupMenu                         25
+#define N_CmdObj_Widget                            26
+#define N_CmdObj_Listbox                           27
+#define N_CmdObj_GridLayoutContainer               28
+#define N_CmdObj_ListContainer                     29
+#define N_CmdObj_TabControl                        30
+#define N_CmdObj_Tree                              31
+#define N_CmdObj_ListHeader                        32
+#define N_CmdObj_DragContainer                     33
+#define N_CmdObj_ListHeaderSegment                 34
+#define N_CmdObj_FrameWindow_ID                    35
+#define N_CmdObj_FrameOverlayGeo                   36
+#define N_CmdObj_ParticleSpace                     37
+#define N_CmdObj_ParticleCtrlGeo                   38
+#define N_CmdObj_RectOverlayGeo                    39
+#define N_CmdObj_Skeleton                          40
+#define N_CmdObj_Sound                             41
+#define N_CmdObj_Material                          42
+#define N_CmdObj_ScrolledListContainer             43
+#define N_CmdObj_MultiColumnList                   44
+#define N_CmdObj_MultiLineEditbox                  45
+#define N_CmdObj_Scrollbar                         46
+#define N_CmdObj_Menubar                           47
+#define N_CmdObj_Titlebar                          48
+#define N_CmdObj_ExternalTexture                   49
+#define N_CmdObj_ParticleEffect                    50
+#define N_CmdObj_ParticleGeo                       51
+#define N_CmdObj_OverlayView                       52
+#define N_CmdObj_ContainerOverlayView              53
+#define N_CmdObj_FrameOverlayView                  54
+#define N_CmdObj_Compositor                        55
+#define N_CmdObj_Mesh                              56
+#define N_CmdObj_PatchMesh                         57
 
-#define N_CmdObj_AlterGpuProgram                   100
+#define N_CmdObj_Lable                             60
+#define N_CmdObj_DragDropWindow                    61
+#define N_CmdObj_LayoutCell                        62
+#define N_CmdObj_VerticalLayoutContainer           63
+#define N_CmdObj_HorizontalLayoutContainer         64
+#define N_CmdObj_TabButton                         65
+#define N_CmdObj_Button                            66
+#define N_CmdObj_ToggleButton                      67
+#define N_CmdObj_PushButton                        68
+#define N_CmdObj_PosButton                         69
+#define N_CmdObj_ComboDropList                     70
+#define N_CmdObj_Slider                            71
+#define N_CmdObj_SizeContainer                     72
+#define N_CmdObj_ListEntry                         73
+#define N_CmdObj_MenuItem                          74
+#define N_CmdObj_Window                            75
+#define N_CmdObj_FrameWindow                       76
+#define N_CmdObj_DefaultWindow                     77
+#define N_CmdObj_Container                         78
 
-#define N_CmdObj_ApuProgram                        200
+#define N_CmdObj_GpuProgram                        100
+#define N_CmdObj_GLGpuProgram                      101
+#define N_CmdObj_HighLevelGpuProgram               102
+#define N_CmdObj_GLSLProgram                       103
+#define N_CmdObj_ApuProgram                        104
+#define N_CmdObj_CLProgram                         106
+#define N_CmdObj_CudaProgram                       107
+#define N_CmdObj_ProxyGpuProgram                   108
 
+#define N_CmdObj_PixelBuffer                       200
 #define N_CmdObj_UIPixelGrid                       201
 
-#define N_CmdObj_UIMouseControlItem_ID             5000
 #define N_CmdObj_UIWidgetAide_ID                   5001
 #define N_CmdObj_UITooltipWidgetAide               5002
 #define N_CmdObj_UICursorWidgetAide                5003
 
+#define N_CmdObj_Custom                            1000000
+#define N_CmdObj_CustomMax                         9000000
 
 ///////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////
@@ -341,9 +432,6 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 
 #define N_PropertyUICursorWidgetAide_MouseCursor            2601
 
-#define N_PropertyUImage_PixelBuffer                        2701
-
-#define N_PropertyUIText_TextColours                        2801
 #define N_PropertyUIText_HLayout                            2802
 #define N_PropertyUIText_VLayout                            2803
 #define N_PropertyUIText_VScrollbarEnable                   2804
@@ -559,18 +647,20 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 #define N_PropertyUIWidget_Margin                           6320
 #define N_PropertyUIWidget_RestorePreFocus                  6321
 #define N_PropertyUIWidget_CursorMultiClick                 6322
-#define N_PropertyUIWidget_WidgetStyle                      6323
+#define N_PropertyUIWidget_View                             6323
 #define N_PropertyUIWidget_Style                            6324
 #define N_PropertyUIWidget_UpdateMode                       6325
 #define N_PropertyUIWidget_SubmitCursorEvent                6326
 #define N_PropertyUIWidget_AutoWindow                       6327
 #define N_PropertyUIWidget_TextLayout                       6328
 #define N_PropertyUIWidget_Text                             6329
-#define N_PropertyUIWidget_Font                             6330
-#define N_PropertyUIWidget_ZOrderClick                      6331
-#define N_PropertyUIWidget_Top                              6332
-#define N_PropertyUIWidget_ZOrder                           6333
-#define N_PropertyUIWidget_ExtData                          6334
+#define N_PropertyUIWidget_TextColour                       6330
+#define N_PropertyUIWidget_Font                             6331
+#define N_PropertyUIWidget_ZOrderClick                      6332
+#define N_PropertyUIWidget_Top                              6333
+#define N_PropertyUIWidget_ZOrder                           6334
+#define N_PropertyUIWidget_Image                            6335
+#define N_PropertyUIWidget_ExtData                          6336
 
 #define N_PropertyUIWindow_Overgo                           6501
 #define N_PropertyUIWindow_AutoRender                       6502
@@ -591,6 +681,7 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 #define N_PropertyUIScheme_WidgetViewID                     7513
 #define N_PropertyUIScheme_WidgetViewStyleID                7514
 #define N_PropertyUIScheme_WidgetViewEffectID               7515
+#define N_PropertyUIScheme_WidgetViewModelID                7516
 
 #define N_PropertyUILayout_Define                           8001
 #define N_PropertyUILayout_Event                            8002
@@ -637,7 +728,9 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 #define N_PropertyApuProgram_Kernel                         11004
 #define N_PropertyApuProgram_Src                            11005
 #define N_PropertyApuProgram_PlatformIndex                  11006
-#define N_PropertyApuProgram_ASM                            11007
+#define N_PropertyApuProgram_DeviceIndex                    11007
+#define N_PropertyApuProgram_ContextIndex                   11008
+#define N_PropertyApuProgram_ASM                            11009
 
 #define N_PropertyPixelBuffer_Pixel                         100101
 #define N_PropertyPixelBuffer_TextureSrc                    100102
@@ -689,6 +782,8 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 
 #define N_PropertyWindow_GTKContainer                       200536 
 #define N_PropertyWindow_wxWidgetPanel                      200537 
+#define N_PropertyWindow_wxWidgetMoveX                      200538
+#define N_PropertyWindow_wxWidgetMoveY                      200539
 
 #define N_PropertySound_Type
 #define N_PropertySound_Gain                                200601
@@ -713,5 +808,8 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 #define N_PropertyValueSound_Order                          200620
 #define N_PropertyValueSound_TimeOrder                      200621
 #define N_PropertyValueSound_Fusion                         200622
+
+#define N_Property_Custom                                   1000000
+#define N_Property_CustomMax                                9000000
 
 #endif

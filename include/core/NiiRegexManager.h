@@ -25,32 +25,61 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 ------------------------------------------------------------------------------
 */
 
-#ifndef _NII_LightFactory_H_
-#define _NII_LightFactory_H_
+#ifndef _NII_REGEX_MANAGER_H_
+#define _NII_REGEX_MANAGER_H_
 
 #include "NiiPreInclude.h"
-#include "NiiSpaceObjFactory.h"
+#include "NiiSingleton.h"
 
 namespace NII
 {
-    /** 用于创建灯光的工厂类对象
+    /**
     @version NIIEngine 3.0.0
     */
-    class _EngineAPI LightFactory : public SpaceObjFactory
+    class _EngineAPI RegexMatcher : public UIAlloc
     {
     public:
-        LightFactory();
-        ~LightFactory();
+        /// 
+        enum MatchState
+        {
+            MS_VALID,
+            MS_INVALID,
+            MS_PARTIAL
+        };
 
-        /// @copydetails SpaceObjFactory::getID
-        FactoryID getID() const;
+        virtual ~RegexMatcher() {}
+        
+        /**
+        @version NIIEngine 3.0.0
+        */
+        virtual void setRegex(const String & regex) = 0;
+        
+        /**
+        @version NIIEngine 3.0.0
+        */
+        virtual const String & getRegex() const = 0;
+        
+        /**
+        @version NIIEngine 3.0.0
+        */
+        virtual MatchState match(const String & str) const = 0;
+    };
+    
+    class RegexManager : public Singleton<RegexManager>, public DataAlloc
+    {
+    public:
+        RegexManager();
+        ~RegexManager();
 
-        /// @copydetails SpaceObjFactory::create
-        SpaceObj * create(SpaceID sid, SpaceManager * mag, const PropertyData * params = 0);
+        /**
+        @version NIIEngine 3.0.0
+        */
+        RegexMatcher * create() const;
 
-        /// @copydetails SpaceObjFactory::destroy
-        void destroy(void * obj);
+        /**
+        @version NIIEngine 3.0.0
+        */
+        void destroy(RegexMatcher * obj) const;
     };
 }
-
 #endif

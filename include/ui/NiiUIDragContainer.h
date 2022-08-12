@@ -53,7 +53,7 @@ namespace UI
         /** 获取拖放时的透明度
         @version NIIEngine 3.0.0
         */
-        NIIf getDragAlpha() const;
+        NIIf getDragAlpha() const               { return mDragAlpha; }
 
         /** 设置拖放位置阀值
         @version NIIEngine 3.0.0
@@ -63,19 +63,19 @@ namespace UI
         /** 获取拖放位置阀值
         @version NIIEngine 3.0.0
         */
-        NIIf getDragThreshold() const;
+        NIIf getDragThreshold() const           { return mDragThreshold;  }
 
         /** 设置是否启用黏贴模式
         @note 一般指按一下拖拽按钮就能黏住,不需要一直按住
         @version NIIEngine 3.0.0
         */
-        void setStickyMode(bool b);
+        void setStickyMode(bool b)              { mStickyMode = b;  }
 
         /** 获取是否启用黏贴模式
         @note 一般指按一下拖拽按钮就能黏住,不需要一直按住
         @version NIIEngine 3.0.0
         */
-        bool isStickyMode() const;
+        bool isStickyMode() const               { return mStickyMode; }
 
         /** 设置拖放时的游标
         @version NIIEngine 3.0.0
@@ -95,12 +95,12 @@ namespace UI
         /** 当前是否启用拖放
         @version NIIEngine 3.0.0
         */
-        bool isDragEnable() const;
+        bool isDragEnable() const               { return mDragEnable; }
 
         /** 是否开始拖放
         @version NIIEngine 3.0.0
         */
-        bool isDragging() const;
+        bool isDragging() const                 { return mDrag; }
 
         /** 外部控制
         @version NIIEngine 3.0.0

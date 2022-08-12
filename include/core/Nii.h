@@ -29,8 +29,7 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 #define _NII_H_
 
 #include "NiiPreInclude.h"
-#include "NiiPropertyList.h"
-#include "NiiErrorList.h"
+#include "NiiDefine.h"
 #include "NiiVFSManager.h"
 #include "NiiGpuProgramManager.h"
 #include "NiiGBufferManager.h"
@@ -65,7 +64,7 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 #include "NiiMeshSerializer.h"
 #include "NiiParticleEffect.h"
 #include "NiiProfiler.h"
-#include "NiiCustomRenderQueue.h"
+#include "NiiRenderQueue.h"
 #include "NiiFrameObjListener.h"
 #include "NiiTextureFrame.h"
 #include "NiiViewWindow.h"
@@ -78,7 +77,6 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 #include "NiiSkeletonSerializer.h"
 #include "NiiStaticSpace.h"
 #include "NiiStrConv.h"
-#include "NiiGeometryCom.h"
 #include "NiiShaderChTexture.h"
 #include "NiiShaderChProgram.h"
 #include "NiiViewport.h"

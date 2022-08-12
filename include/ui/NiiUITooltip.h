@@ -28,7 +28,6 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 #define _NII_UI_TOOLTIP_H_
 
 #include "NiiUIPreInclude.h"
-#include "NiiUIWidgetView.h"
 #include "NiiUIContainer.h"
 
 namespace NII

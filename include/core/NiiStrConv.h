@@ -31,9 +31,8 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 #include "NiiPreInclude.h"
 #include "NiiCommon.h"
 #include "NiiMatrix4.h"
-#include "NiiQuaternion.h"
 #include "NiiVector2.h"
-#include "NiiRelPos.h"
+#include "NiiRect.h"
 #include "NiiShaderCh.h"
 #include "NiiGpuProgram.h"
 
@@ -538,21 +537,21 @@ namespace NII
 
         /** UTF-8单字符串转使用的字符串
         @note
-            一般在win32路径中使用.linux内核是使用ucs-4的,wchar_t是4个字节,而win32中wchar_t是2个字节使用ucs-2(vc).
+            一般在路径中使用.linux内核是使用ucs-4的,wchar_t是4个字节,而win32中wchar_t是2个字节使用ucs-2(vc).
         @version NIIEngine 3.0.0
         */
         static void conv(const VString & in, String & out);
 
         /** UTF-8使用的字符串转单字符串
         @note
-            一般在win32路径中使用.linux内核是使用ucs-4的,wchar_t是4个字节,而win32中wchar_t是2个字节使用ucs-2(vc).
+            一般在路径中使用.linux内核是使用ucs-4的,wchar_t是4个字节,而win32中wchar_t是2个字节使用ucs-2(vc).
         @version NIIEngine 3.0.0
         */
         static void conv(const String & in, VString & out);
 
         /** 转换UTF-8编码到UCS-2编码
         @note
-            一般在win32路径中使用.linux内核是使用ucs-4的,wchar_t是4个字节,而win32中wchar_t是2个字节使用ucs-2(vc).
+            一般在路径中使用.linux内核是使用ucs-4的,wchar_t是4个字节,而win32中wchar_t是2个字节使用ucs-2(vc).
         @param[out] out 使用完后必须使用 N_free 释放掉
         @version NIIEngine 3.0.0
         */
@@ -560,7 +559,7 @@ namespace NII
 
         /** 转换UCS-2字符为字符串
         @note
-            一般在win32路径中使用.linux内核是使用ucs-4的,wchar_t是4个字节,而win32中wchar_t是2个字节使用ucs-2(vc).
+            一般在路径中使用.linux内核是使用ucs-4的,wchar_t是4个字节,而win32中wchar_t是2个字节使用ucs-2(vc).
         @version NIIEngine 3.0.0
         */
         static void convUTF(const Nui16 * in, VString & out);

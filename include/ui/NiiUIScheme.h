@@ -29,7 +29,6 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 #define _NII_UI_Scheme_H_
 
 #include "NiiUIPreInclude.h"
-#include "NiiUISchemeManager.h"
 
 namespace NII
 {
@@ -79,13 +78,13 @@ namespace UI
 
         bool isStyleDefineLoad() const;
 
-        const FileList & getPixelList() const;
+        const FileList & getPixelList() const           { return mPixelList; }
 
-        const FileList & getPixelGroupList() const;
+        const FileList & getPixelGroupList() const      { return mPixelGroupList; }
 
-        const FileList & getFontList() const;
+        const FileList & getFontList() const            { return mFontList; }
 
-        const FileList & getStyleList() const;
+        const FileList & getStyleList() const           { return mStyleList; }
     protected:
         Scheme(SchemeID sid);
         
@@ -101,7 +100,7 @@ namespace UI
 
         void loadAliasFactory();
 
-        void loadStyleDefine();
+        void loadStyleView();
 
         void unloadPixelGroup();
 
@@ -115,7 +114,7 @@ namespace UI
 
         void unloadAliasFactory();
 
-        void unloadStyleDefine();
+        void unloadStyleView();
     private:
         typedef vector<FactoryID>::type TypeList;
         struct UIModule
@@ -133,10 +132,13 @@ namespace UI
 
         struct StyleDefine
         {
-            FactoryID mFactoryID;
+            GroupID mGroupID;
+            StyleViewID mID;
+            FactoryID mModelID;
             WidgetViewlID mViewID;
             StyleID mStyleID;
             EffectID mEffectID;
+            String mName;
         };
 
         typedef vector<UIModule>::type UIModuleList;

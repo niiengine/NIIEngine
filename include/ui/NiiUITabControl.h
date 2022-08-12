@@ -30,8 +30,8 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 
 #include "NiiUIPreInclude.h"
 #include "NiiUIContainer.h"
-#include "NiiEventSignal.h"
-#include "NiiUITabButton.h"
+#include "NiiEvent.h"
+#include "NiiUIButton.h"
 
 namespace NII
 {

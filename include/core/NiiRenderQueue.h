@@ -29,9 +29,263 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 #define _NII_RenderQueue_H_
 
 #include "NiiPreInclude.h"
+#include "NiiShaderCh.h"
 
 namespace NII
 {
+    /** 渲染过滤器
+    @version NIIEngine 3.0.0 高级api
+    */
+    class _EngineAPI RenderFilter : public RenderAlloc
+    {
+    public:
+        RenderFilter() {}
+        virtual ~RenderFilter() {}
+
+        /** 执行渲染
+        @version NIIEngine 3.0.0
+        */
+        virtual void render(const ShaderCh * ch, GeometryObj * obj) = 0;
+
+        /** 执行渲染
+        @version NIIEngine 3.0.0
+        */
+        virtual void render(const ShaderCh * ch, const GeometryObjList & obj) = 0;
+    };
+
+    /** 渲染排序模式
+    @ersion NIIEngine 3.0.0
+    */
+    enum RenderSortMode
+    {
+        RSM_View_Descending = 0x01, ///< 由视口距离降序
+        RSM_View_Ascending = 0x02, ///< 由视口距离升序
+        RSM_Ch_Index = 0x04, ///< 由渲染通路的先后绘制排序
+        RSM_All = 0x07
+    };
+
+    /** 渲染几何
+    @version NIIEngine 3.0.0
+    */
+    struct RenderCh
+    {
+        RenderCh(GeometryObj * geo, ShaderCh * shader) :
+            mGeo(geo),
+            mCh(shader) {}
+
+        ShaderCh * mCh;
+        GeometryObj * mGeo;
+    };
+
+    /** 渲染排序
+    @version NIIEngine 3.0.0
+    */
+    class _EngineAPI RenderSort : public RenderAlloc
+    {
+    public:
+        typedef vector<RenderCh>::type RenderList;
+    public:
+        RenderSort();
+        ~RenderSort();
+
+        /** 添加
+        @version NIIEngine 3.0.0
+        */
+        void add(ShaderCh * ch, GeometryObj * obj);
+
+        /** 移去
+        @version NIIEngine 3.0.0
+        */
+        void remove(ShaderCh * ch);
+
+        /** 添加排序模式
+        @version NIIEngine 3.0.0
+        */
+        void addSort(RenderSortMode om) { mSortMark |= om; }
+
+        /** 移去排序模式
+        @version NIIEngine 3.0.0
+        */
+        void removeSort(RenderSortMode om) { mSortMark &= ~om; }
+
+        /** 移去所有
+        @version NIIEngine 3.0.0
+        */
+        void clear();
+
+        /** 依照指定摄象机排序渲染对象
+        @version NIIEngine 3.0.0
+        */
+        void sort(const Camera * cam);
+
+        /** 执行渲染过滤器渲染
+        @version NIIEngine 3.0.0
+        */
+        void render(RenderFilter * filter, RenderSortMode rsm) const;
+
+        /** 合并渲染排序
+        @version NIIEngine 3.0.0
+        */
+        void merge(const RenderSort & o);
+    protected:
+        typedef map<ShaderCh *, GeometryObjList *, ShaderCh::IndexLess>::type ChRenderList;
+    protected:
+        RenderList mRenderList;
+        ChRenderList mChRenderList;
+        Nmark mSortMark;
+    };
+
+    /** 渲染等级组
+    @version NIIEngine 3.0.0
+    */
+    class _EngineAPI RenderLevelGroup : public RenderAlloc
+    {
+    public:
+        RenderLevelGroup(RenderGroup * parent);
+
+        virtual ~RenderLevelGroup();
+
+        /** 添加排序模式
+        @version NIIEngine 3.0.0
+        */
+        virtual void addSort(RenderSortMode rsm);
+
+        /** 移去排序模式
+        @version NIIEngine 3.0.0
+        */
+        virtual void removeSort(RenderSortMode rsm);
+
+        /** 重至排序模式
+        @see RenderSortMode
+        */
+        virtual void resetSort();
+
+        /** 添加渲染
+        @version NIIEngine 3.0.0
+        */
+        virtual void add(GeometryObj * obj, ShaderFusion * sf);
+
+        /** 移去渲染
+        @version NIIEngine 3.0.0
+        */
+        virtual void remove(ShaderCh * ch);
+
+        /** 排序
+        @version NIIEngine 3.0.0
+        */
+        virtual void sort(const Camera * cam);
+
+        /** 清除这个可渲染物群组
+        @version NIIEngine 3.0.0
+        */
+        virtual void clear();
+
+        /** 获取渲染列
+        @version NIIEngine 3.0.0
+        */
+        inline const RenderSort & getBasic() const { return mBasic; }
+
+        /** 获取渲染列
+        @version NIIEngine 3.0.0
+        */
+        inline const RenderSort & getAlphaBasic() const { return mAlphaBasic; }
+
+        /** 获取渲染列
+        @version NIIEngine 3.0.0
+        */
+        inline const RenderSort & getAlphaSortBasic() const { return mAlphaSortBasic; }
+
+        /** 合并可渲染物群组
+        @version NIIEngine 3.0.0
+        */
+        virtual void merge(const RenderLevelGroup * o);
+    protected:
+        RenderGroup * mParent;
+        DrawCallGroup * mDrawCallGroup;
+        RenderSort mBasic;
+        RenderSort mAlphaBasic;
+        RenderSort mAlphaSortBasic;
+    };
+
+    /** 渲染组
+    @version NIIEngine 3.0.0
+    */
+    class _EngineAPI RenderGroup : public RenderAlloc
+    {
+    public:
+        typedef map<Nui16, RenderLevelGroup *, std::less<Nui16> >::type RenderList;
+    public:
+        RenderGroup(RenderQueue * parent);
+
+        virtual ~RenderGroup();
+
+        /** 设置是否启用阴影
+        @version NIIEngine 3.0.0
+        */
+        inline void setShadowEnable(bool b) { mShadowsEnable = b; }
+
+        /** 获取是否启用阴影
+        @version NIIEngine 3.0.0
+        */
+        inline bool isShadowEnable() const { return mShadowsEnable; }
+
+        /** 添加排序模式
+        @see RenderSortMode
+        */
+        void addSort(RenderSortMode om);
+
+        /** 添加排序模式
+        @see RenderSortMode
+        */
+        void addSort(Nui16 level, RenderSortMode om);
+
+        /** 移去排序模式
+        @version NIIEngine 3.0.0
+        */
+        void removeSort(RenderSortMode om);
+
+        /** 移去排序模式
+        @version NIIEngine 3.0.0
+        */
+        void removeSort(Nui16 level, RenderSortMode om);
+
+        /** 重至排序模式
+        @version NIIEngine 3.0.0
+        */
+        void resetSort();
+
+        /** 添加渲染
+        @version NIIEngine 3.0.0
+        */
+        void add(GeometryObj * obj, ShaderFusion * sf, Nui16 level);
+
+        /** 移去渲染
+        @param[in] destroy
+        @version NIIEngine 3.0.0
+        */
+        void clear(bool destroy = false);
+
+        /** 合并渲染组
+        @version NIIEngine 3.0.0
+        */
+        void merge(const RenderGroup * o);
+
+        /** 获取渲染列表
+        @version NIIEngine 3.0.0
+        */
+        inline const RenderList & getRenderList() const { return mRenderList; }
+    protected:
+        /** 创建渲染等级组实现
+        @version NIIEngine 3.0.0
+        */
+        virtual void createImpl(RenderLevelGroup *& out);
+    protected:
+        RenderQueue * mParent;
+        RenderList mRenderList;
+        Nmark mSortMark;
+        bool mShadowsEnable;
+    };
+
     /** 渲染队列组
     @version NIIEngine 3.0.0
     */
@@ -198,6 +452,117 @@ namespace NII
         GroupID mDefaultGroup;
         Nui16 mDefaultLevel;
         bool mRemoveGroupOnClear;
+    };
+
+    /** 自定义队列
+    @version NIIEngine 3.0.0
+    */
+    class _EngineAPI CustomQueue : public RenderAlloc
+    {
+    public:
+        CustomQueue(GroupID gid, const String & name = StrUtil::WBLANK);
+
+        virtual ~CustomQueue();
+
+        /** 名字(辅助)
+        @version NIIEngine 3.0.0
+        */
+        const String & getName() const { return mName; }
+
+        /** 获取渲染组
+        @version NIIEngine 3.0.0
+        */
+        GroupID getRenderGroup() const { return mRenderGroup; }
+
+        /** 设置渲染通道
+        @version NIIEngine 3.0.0
+        */
+        void setShaderCh(ShaderCh * ch) { mShaderCh = ch; }
+
+        /** 获取渲染通道
+        @version NIIEngine 3.0.0
+        */
+        ShaderCh * getShaderCh() const { return mShaderCh; }
+
+        /** 是否启动阴影
+        @version NIIEngine 3.0.0
+        */
+        void setShadowEnable(bool b) { mShadowEnable = b; }
+
+        /** 是否启动阴影
+        @version NIIEngine 3.0.0
+        */
+        bool isShadowEnable() const { return mShadowEnable; }
+
+        /** 执行渲染
+        @version NIIEngine 3.0.0
+        */
+        virtual void render(RenderGroup * group, RenderPattern * pattern, SpaceManager * dst);
+    protected:
+        /** 执行渲染实现
+        @version NIIEngine 3.0.0 高级api
+        */
+        virtual void renderImpl(RenderGroup * group, RenderPattern * pattern);
+    protected:
+        String mName;
+        GroupID mRenderGroup;
+        ShaderCh * mShaderCh;
+        bool mShadowEnable;
+    };
+    typedef vector<CustomQueue *>::type CustomQueueList;
+
+    /** 自定义渲染
+    @version NIIEngine 3.0.0
+    */
+    class _EngineAPI CustomRenderQueue : public RenderAlloc
+    {
+    public:
+        CustomRenderQueue(Nid id);
+        virtual ~CustomRenderQueue();
+
+        /** 获取ID
+        @version NIIEngine 3.0.0
+        */
+        Nid getID() const { return mID; }
+
+        /** 添加自定义队列
+        @note 参数内存将由这个类管理
+        @version NIIEngine 3.0.0
+        */
+        void add(CustomQueue * obj) { mList.push_back(obj); }
+
+        /** 添加自定义队列
+        @version NIIEngine 3.0.0
+        */
+        CustomQueue * add(GroupID qid, const String & name);
+
+        /** 获取自定义队列
+        @version NIIEngine 3.0.0
+        */
+        CustomQueue * get(Nidx index) { N_assert(index < mList.size(), "error"); return mList[index]; }
+
+        /** 移去自定义队列
+        @version NIIEngine 3.0.0
+        */
+        void remove(Nidx index);
+
+        /** 移去所有自定义队列
+        @version NIIEngine 3.0.0
+        */
+        void removeAll();
+
+        /** 获取数量
+        @version NIIEngine 3.0.0
+        */
+        NCount getCount() const { return mList.size(); }
+
+        /** 获取自定义队列
+        @version NIIEngine 3.0.0 高级api
+        */
+        const CustomQueueList & getList() { return mList; }
+    protected:
+        Nid mID;
+        CustomQueueList mList;
     };
 }
 #endif

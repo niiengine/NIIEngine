@@ -55,7 +55,7 @@ namespace NII
             */
             DT_File = 0x01,
             /** 写入到内存
-            @par MemDataStream ** 数据格式
+            @par MemStream ** 数据格式
             @version NIIEngine 3.0.0
             */
             DT_Memory = 0x02,

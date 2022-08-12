@@ -40,13 +40,15 @@ namespace NII
     class _EngineAPI FontManager : public ResourceManager, public Singleton<FontManager>
     {
     public:
+        typedef map<FontID, Font *>::type FontMap;
+    public:
         FontManager();
         ~FontManager();
 
         /** 加载所有已经定义的资源
         @version NIIEngine 3.0.0
         */
-        void createAllDefine(const String & pattern, GroupID gid);
+        void createDefine(const String & pattern, GroupID gid);
 
         /** 从脚本中创建字体
         @version NIIEngine 3.0.0
@@ -103,17 +105,22 @@ namespace NII
         @param[in] gid
         @version NIIEngine 3.0.0
         */
-        static void setGroup(GroupID gid);
+        static inline void setGroup(GroupID gid){ ResourceGroup = gid;}
 
         /** 获取字体资源组
         @version NIIEngine 3.0.0
         */
-        static GroupID getGroup();
+        static inline GroupID getGroup()        { return ResourceGroup;}
 
         /** 获取默认字体
         @version NIIEngine 3.0.0
         */
-        Font * getDefault() const;
+        Font * getDefault() const               { return mDefault;}
+        
+        /** 获取列表 
+        @version NIIEngine 3.0.0
+        */
+        const FontMap & getList() const         { return mFontList;}
 
         /** 写入到 XML 脚本
         @param[in] fid 字体ID
@@ -137,8 +144,6 @@ namespace NII
 
         /// @copydetails ResourceManager::removeImpl
         virtual void removeImpl(Resource * obj);
-    protected:
-        typedef map<FontID, Font *>::type FontMap;
     protected:
         static GroupID ResourceGroup;
         FontMap mFontList;

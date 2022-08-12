@@ -33,7 +33,7 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 #include "NiiRenderFrameListener.h"
 #include "NiiScriptParserSys.h"
 #include "NiiResourceSchemeManager.h"
-#include "NiiSpaceObjFactory.h"
+#include "NiiSpaceObj.h"
 
 namespace NII
 {

@@ -28,7 +28,7 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 #define _NII_UI_ConfigXmlAnalyze_H_
 
 #include "NiiUIPreInclude.h"
-#include "NiiXmlAnalyze.h"
+#include "NiiXmlAnalyzeManager.h"
 
 namespace NII
 {

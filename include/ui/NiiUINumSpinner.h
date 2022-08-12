@@ -63,7 +63,7 @@ namespace UI
         /** 获取当前值
         @version NIIEngine 3.0.0
         */
-        NIIf getCurrent() const;
+        NIIf getCurrent() const             { return mCurrentValue; }
 
         /** 设置步进值
         @version NIIEngine 3.0.0
@@ -73,7 +73,7 @@ namespace UI
         /** 获取步进值
         @version NIIEngine 3.0.0
         */
-        NIIf getStepValue() const;
+        NIIf getStepValue() const           { return mStepValue; }
 
         /** 设置最大值
         @version NIIEngine 3.0.0
@@ -83,7 +83,7 @@ namespace UI
         /** 获取最大值
         @version NIIEngine 3.0.0
         */
-        NIIf getMaxValue() const;
+        NIIf getMaxValue() const            { return mMaxValue; }
 
         /** 设置最小值
         @version NIIEngine 3.0.0
@@ -93,7 +93,7 @@ namespace UI
         /** 获取最小值
         @version NIIEngine 3.0.0
         */
-        NIIf getMinValue() const;
+        NIIf getMinValue() const            { return mMinValue; }
 
         /** 设置数值模式
         @version NIIEngine 3.0.0
@@ -103,28 +103,58 @@ namespace UI
         /** 获取数值模式
         @version NIIEngine 3.0.0
         */
-        NumMode getNumMode() const;
+        NumMode getNumMode() const          { return mNumMode; }
+
+        /** 设置文本区域
+        @version NIIEngine 3.0.0
+        */
+        void setTextAreaView(StyleViewID id) { mTextAreaView = id; }
+
+        /** 获取文本区域
+        @version NIIEngine 3.0.0
+        */
+        StyleViewID getTextAreaView() const { return mTextAreaView; }
+
+        /** 设置增值按纽
+        @version NIIEngine 3.0.0
+        */
+        void setIncreaseView(StyleViewID id) { mIncreaseView = id; }
+
+        /** 获取增值按纽
+        @version NIIEngine 3.0.0
+        */
+        StyleViewID getIncreaseView() const { return mIncreaseView; }
+
+        /** 设置减值按纽
+        @version NIIEngine 3.0.0
+        */
+        void setDecreaseView(StyleViewID id) { mDecreaseView = id; }
+
+        /** 获取减值按纽
+        @version NIIEngine 3.0.0
+        */
+        StyleViewID getDecreaseView() const { return mDecreaseView; }
+
+        /** 获取文本区域
+        @version NIIEngine 3.0.0
+        */
+        Editbox * getTextArea() const { return mTextArea; }
+
+        /** 获取增值按纽
+        @version NIIEngine 3.0.0
+        */
+        PushButton * getIncrease() const { return mIncrease; }
+
+        /** 获取减值按纽
+        @version NIIEngine 3.0.0
+        */
+        PushButton * getDecrease() const { return mDecrease; }
     protected:
         /// @copydetails Container::initChild
         void initChild();
 
         /// @copydetails PropertyCmdObj::initCmd
         bool initCmd(PropertyCmdSet * dest);
-
-        /** 获取文本区域
-        @version NIIEngine 3.0.0
-        */
-        Editbox * getTextArea() const;
-
-        /** 获取增值按纽
-        @version NIIEngine 3.0.0
-        */
-        PushButton * getIncrease() const;
-
-        /** 获取减值按纽
-        @version NIIEngine 3.0.0
-        */
-        PushButton * getDecrease() const;
 
         /** 获取区域值
         @version NIIEngine 3.0.0
@@ -224,6 +254,9 @@ namespace UI
         Editbox * mTextArea;
         PushButton * mIncrease;
         PushButton * mDecrease;
+        StyleViewID mTextAreaView;
+        StyleViewID mIncreaseView;
+        StyleViewID mDecreaseView;
         NumMode mNumMode;
         NIIf mStepValue;
         NIIf mCurrentValue;

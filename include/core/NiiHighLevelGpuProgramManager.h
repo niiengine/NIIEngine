@@ -105,9 +105,7 @@ namespace NII
         HighLevelGpuProgramFactory * getFactory(ShaderLanguage lang);
 
         /// @copydetails ResourceManager::createImpl
-        Resource * createImpl(ResourceID rid, GroupID gid,
-            ResLoadScheme * ls, ResResultScheme * rs,
-                const PropertyData * params);
+        Resource * createImpl(ResourceID rid, GroupID gid, ResLoadScheme * ls, ResResultScheme * rs, const PropertyData * params);
     protected:
         typedef map<ShaderLanguage, HighLevelGpuProgramFactory *>::type FactoryMap;
     protected:

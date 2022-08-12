@@ -46,10 +46,10 @@ namespace NII_COMMAND
     public:
         EventFunctor();
         EventFunctor(Event * obj);
-		EventFunctor(Functor * func);
-
         EventFunctor(const EventFunctor & o);
         EventFunctor(const Event * dst, const EventFunctor & o);
+
+        EventFunctor(Functor * func);
         EventFunctor(Functor & func);
         EventFunctor(const Functor & func);
 
@@ -147,6 +147,37 @@ namespace NII_COMMAND
     protected:
         EventID mID;            ///< 事件ID
         SignalPtrs mSignalList; ///< 函子处理槽列表
+    };
+
+    /**
+    @version NIIEngine 3.0.0
+    */
+    class _EngineAPI EventSignal : public SignalPtr
+    {
+    public:
+        /**
+        */
+        EventSignal();
+
+        /**
+        */
+        EventSignal(const SignalPtr & signal);
+
+        ~EventSignal();
+
+        /**
+        */
+        EventSignal & operator=(const SignalPtr & signal);
+
+        /**
+        */
+        bool connected() const;
+
+        /**
+        */
+        void disconnect();
+    private:
+        SignalPtr mSignal;
     };
 }
 }

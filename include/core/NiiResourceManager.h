@@ -83,7 +83,7 @@ namespace NII
         /** 是否存在资源
         @version NIIEngine 3.0.0
         */
-        virtual bool isExist(ResourceID rid);
+        virtual bool isExist(ResourceID rid, GroupID gid = GroupUnknow);
 
         /** 是否存在资源
         @note PID 在运行时也是唯一的,但仅局限于当前的运行程序

@@ -46,6 +46,24 @@ namespace NII
         */
         bool isOlder(DriverVersion o) const;
         
+        /** 驱动版本是否比另一个旧
+        @param[in] o 另一个
+        @version NIIEngine 3.0.0
+        */
+        bool isOlder(NIIi _major, NIIi _minor) const;
+        
+        /** 驱动版本是否比另一个新
+        @param[in] o 另一个
+        @version NIIEngine 3.0.0
+        */
+        bool isNewer(DriverVersion o) const;
+        
+        /** 驱动版本是否比另一个新
+        @param[in] o 另一个
+        @version NIIEngine 3.0.0
+        */
+        bool isNewer(NIIi _major, NIIi _minor) const;
+        
         /** 驱动版本字符串
         @version NIIEngine 3.0.0
         */

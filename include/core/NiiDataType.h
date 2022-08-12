@@ -41,7 +41,7 @@ namespace NII
         DT_Float2x      = 1,         ///< 以2个浮点为单位的
         DT_Float3x      = 2,         ///< 以3个浮点为单位的
         DT_Float4x      = 3,         ///< 以4个浮点为单位的
-        DT_Doubel1x     = 4,
+        DT_Double1x     = 4,
         DT_Double2x     = 5,
         DT_Double3x     = 6,
         DT_Double4x     = 7,
@@ -74,7 +74,9 @@ namespace NII
         DT_ByteUnit4x   = 39,
         DT_HalfFloat2x  = 40,
         DT_HalfFloat4x  = 41,
-        DT_Unkonw       = 42
+        DT_Sampler      = 42,
+        DT_Subroutine   = 43,
+        DT_Unkonw       = 44
     };
     
     /** 数据类型辅助
@@ -83,6 +85,11 @@ namespace NII
     class _EngineAPI DataTypeUtil
     {
     public:
+        /**
+        @version NIIEngine 5.0.0
+        */
+        bool isUnit(DataType type);
+    
         /** 获取成分大小
         @param[in] type 数据成份
         @version NIIEngine 3.0.0

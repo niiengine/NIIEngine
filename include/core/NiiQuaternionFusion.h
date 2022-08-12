@@ -29,7 +29,7 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 #define _NII_Quaternion_FUSION_H_
 
 #include "NiiPreInclude.h"
-#include "NiiFusionNum.h"
+#include "NiiFusionData.h"
 #include "NiiStrConv.h"
 #include "NiiException.h"
 

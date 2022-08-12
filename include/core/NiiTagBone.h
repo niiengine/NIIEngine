@@ -29,7 +29,7 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 #define _NII_TAG_BONE_H_
 
 #include "NiiPreInclude.h"
-#include "NiiBone.h"
+#include "NiiSkeleton.h"
 #include "NiiMatrix4.h"
 
 namespace NII

@@ -29,7 +29,7 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 #define _NII_SpreadParticle_H_
 
 #include "NiiPreInclude.h"
-#include "NiiPropertyCmdObj.h"
+#include "NiiPropertyObj.h"
 #include "NiiParticle.h"
 #include "NiiString.h"
 #include "NiiVector3.h"

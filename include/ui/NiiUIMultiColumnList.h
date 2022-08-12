@@ -29,7 +29,6 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 #define _NII_UI_MultiColumnList_H_
 
 #include "NiiUIPreInclude.h"
-#include "NiiUIWidgetView.h"
 #include "NiiUIListHeader.h"
 #include "NiiUIContainer.h"
 

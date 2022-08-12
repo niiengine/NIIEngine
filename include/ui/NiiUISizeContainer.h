@@ -42,7 +42,7 @@ namespace UI
     public:
         SizeContainer(WidgetID wid, FactoryID fid, Container * own, const String & name = N_StrBlank,
             LangID lid = N_PrimaryLang);
-        ~SizeContainer();
+        virtual ~SizeContainer();
 
         /** 设置自动大小
         @version NIIEngine 3.0.0
@@ -52,7 +52,7 @@ namespace UI
         /** 是否自动大小
         @version NIIEngine 3.0.0
         */
-        bool isAutoSize() const;
+        bool isAutoSize() const                 { return mAutoSize; }
 
         /** 设置内容区域大小
         @version NIIEngine 3.0.0
@@ -62,7 +62,7 @@ namespace UI
         /** 获取内容区域大小
         @version NIIEngine 3.0.0
         */
-        const Rectf & getContentArea() const;
+        const Rectf & getContentArea() const    { return mChildArea; }
 
         /** 获取自动内容区域大小
         @version NIIEngine 3.0.0

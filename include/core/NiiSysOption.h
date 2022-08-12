@@ -30,7 +30,7 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 
 #include "NiiPreInclude.h"
 #include "NiiString.h"
-#include "NiiPropertyData.h"
+#include "NiiPropertyObj.h"
 
 #if N_PLAT == N_PLAT_WIN32
     #include <windows.h>

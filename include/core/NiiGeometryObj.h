@@ -35,6 +35,34 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 
 namespace NII
 {
+    /** 几何查询器
+    @remark 这个类可以保存查询结果
+    @version NIIEngine 3.0.0 高级api
+    */
+    class GeometryQuery
+    {
+    public:
+        GeometryQuery();
+        virtual ~GeometryQuery();
+
+        /** 设置模型调试模式
+        @version NIIEngine 3.0.0
+        */
+        void setDebugMode(bool b)   { mDebug = b; }
+
+        /** 获取调试模式模式
+        @version NIIEngine 3.0.0
+        */
+        bool isDebugMode() const    { return mDebug; }
+
+        /** 执行查询
+        @version NIIEngine 3.0.0 高级api
+        */
+        virtual void query(GeometryObj * obj) = 0;
+    protected:
+        bool mDebug;
+    };
+
     /** 几何对象
     @remark 这类对象能渲染
     @version NIIEngine 3.0.0
