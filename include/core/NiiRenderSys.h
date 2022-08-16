@@ -107,7 +107,7 @@ namespace NII
         GF_WBuffer = N_CategoryGroupValue(CC_Count, CC_Common1,             33),
         GF_Debug = N_CategoryGroupValue(CC_Count, CC_Common1,               34),
         CF_PersistentMapping = N_CategoryGroupValue(CC_Count, CC_Common1,   35),
-        CF_InstanceBase = N_CategoryGroupValue(CC_Count, CC_Common1,        36),
+        CF_BaseInstance = N_CategoryGroupValue(CC_Count, CC_Common1,        36),
         CF_IndirectBuffer = N_CategoryGroupValue(CC_Count, CC_Common1,      37),
 
         GF_Alpha_Coverage = N_CategoryGroupValue(CC_Count, CC_Common2,      0),
@@ -155,7 +155,7 @@ namespace NII
         /** 获取Gpu信息
         @version NIIEngine 3.0.0
         */
-        inline const GPUInfo * getGpuInfo() const           { return &mGPUInfo; }
+        inline GPUInfo * getGpuInfo() const           { return &mGPUInfo; }
 
         /** 添加特性支持
         @version NIIEngine 3.0.0
@@ -180,12 +180,12 @@ namespace NII
         /** 添加着色程序支持
         @version NIIEngine 3.0.0
         */
-        inline void add(ShaderLanguageMark m)               { mSLMark |= m; }
+        inline void addShader(ShaderLanguageMark m)         { mSLMark |= m; }
 
         /** 移去着色程序支持
         @version NIIEngine 3.0.0
         */
-        inline void remove(ShaderLanguageMark m)            { mSLMark &= ~m; }
+        inline void removeShader(ShaderLanguageMark m)      { mSLMark &= ~m; }
 
         /** 是否支持着色程序
         @version NIIEngine 3.0.0
@@ -211,72 +211,72 @@ namespace NII
         @remark 像素
         @version NIIEngine 3.0.0
         */
-        inline NIIf getMaxPointSize() const { return mMaxPointSize; }
+        inline NIIf getMaxPointSize() const                 { return mMaxPointSize; }
 
         /** 获取支持的同步渲染目标数量
         @version NIIEngine 3.0.0
         */
-        inline Nui16 getMaxMultiFrameObj() const { return mMaxMultiFrameObj; }
+        inline Nui16 getMaxMultiFrameObj() const            { return mMaxMultiFrameObj; }
 
         /** 获取最大空间数量
         @version NIIEngine 3.0.0
         */
-        inline Nui16 getMaxSpace() const { return mMaxSpace; }
+        inline Nui16 getMaxSpace() const                    { return mMaxSpace; }
 
         /** 获取硬件模板位深
         @version NIIEngine 3.0.0
         */
-        inline Nui16 getStencilBit() const { return mStencilBit; }
+        inline Nui16 getStencilBit() const                  { return mStencilBit; }
 
         /** 获取顶点纹理最大数量
         @version NIIEngine 3.0.0
         */
-        inline Nui16 getMaxVertexTexUnit() const { return mMaxVertexTexUnit; }
+        inline Nui16 getMaxVertexTexUnit() const            { return mMaxVertexTexUnit; }
 
         /** 获取顶点属性最大数量
         @version NIIEngine 3.0.0
         */
-        inline void setMaxVertexAttrib(Nui16 num) { mMaxVertexAttrib = num; }
+        inline void setMaxVertexAttrib(Nui16 num)           { mMaxVertexAttrib = num; }
 
         /** 获取顶点属性最大数量
         @version NIIEngine 3.0.0
         */
-        inline Nui16 getMaxVertexAttrib() const { return mMaxVertexAttrib; }
+        inline Nui16 getMaxVertexAttrib() const             { return mMaxVertexAttrib; }
 
         /** 设置最大的各向异性
         @version NIIEngine 4.0.0
         */
-        inline void setMaxAnisotropy(NIIf s) { mMaxSupportedAnisotropy = s; }
+        inline void setMaxAnisotropy(NIIf s)                { mMaxSupportedAnisotropy = s; }
 
         /** 获取最大的各向异性
         @version NIIEngine 4.0.0
         */
-        inline NIIf getMaxAnisotropy() const { return mMaxSupportedAnisotropy; }
+        inline NIIf getMaxAnisotropy() const                { return mMaxSupportedAnisotropy; }
 
         /** 获取是否仅2次幂纹理
         @version NIIEngine 3.0.0
         */
-        inline bool isOnlyPow2Texture() const { return mOnlyPow2Texture; }
+        inline bool isOnlyPow2Texture() const               { return mOnlyPow2Texture; }
 
         /** 设置顶点着色程序局部参数最大数量
         @version NIIEngine 3.0.0
         */
-        inline Nui16 getMaxVPFloatParamCount() const { return mMaxVPParam[0]; }
+        inline Nui16 getMaxVPFloatParamCount() const        { return mMaxVPParam[0]; }
 
         /** 设置顶点着色程序局部参数最大数量
         @version NIIEngine 3.0.0
         */
-        inline Nui16 getMaxVPIntParamCount() const { return mMaxVPParam[2]; }
+        inline Nui16 getMaxVPIntParamCount() const          { return mMaxVPParam[2]; }
 
         /** 设置顶点着色程序局部参数最大数量
         @version NIIEngine 3.0.0
         */
-        inline Nui16 getMaxVPBoolParamCount() const { return mMaxVPParam[3]; }
+        inline Nui16 getMaxVPBoolParamCount() const         { return mMaxVPParam[3]; }
 
         /** 获取片段着色程序支持floating常量数目
         @version NIIEngine 3.0.0
         */
-        inline Nui16 getMaxFPFloatCount() const { return mMaxFPParam[0]; }
+        inline Nui16 getMaxFPFloatCount() const             { return mMaxFPParam[0]; }
 
         /** 获取片段着色程序支持integer常量数目
         @version NIIEngine 3.0.0
@@ -440,73 +440,46 @@ namespace NII
         Nui16 mMaxCPParam[4];
         bool mOnlyPow2Texture;
     };
-    
-    /** 平台特定数据
-    @version NIIEngine 3.0.0 高级api
-    */
-    class _EngineAPI RenderSysData
-    {
-    public:
-        enum Type
-        {
-            T_Unknow        = 0,
-            T_DX9_0         = 0x01,
-            T_DX10_0        = 0x02,
-            T_DX11_0        = 0x04,
-            T_DX12_0        = 0x08,
-            T_OPENGL1_1     = 0x10,
-            T_OPENGL2_1     = 0x20,
-            T_OPENGL3_3     = 0x30,
-            T_OPENGL4_3     = 0x40,
-            T_OPENGL4_6     = 0x80,
-            T_OPENGL_ES1_1  = 0x100,
-            T_OPENGL_ES2_1  = 0x200,
-            T_OPENGL_ES3_1  = 0x400,
-            T_DIRECT_FB     = 0x800,
-
-            T_WIN32         = 0x100000,
-            T_WINRT         = 0x200000,     ///< win8编程框架
-            T_WIN8_PHONE    = 0x400000,
-            T_LINUX         = 0x800000,     ///< linux内核
-            T_LINUX_X       = 0x1000000,    ///< x窗体级别的linux系统
-            T_OSX           = 0x2000000,    ///< 苹果mac os x(darwin)
-            T_IOS           = 0x4000000,    ///< 苹果iphone(darwin)
-            T_ANDROID       = 0x8000000,    ///< 安桌系统(linux内核级)
-            T_EMSCRIPTEN    = 0x10000000,   ///< web编程框架
-            T_FREEBSD       = 0x20000000,   ///< freeBSD
-        };
-    public:
-        /** 获取平台额外信息
-        @param[in] name 需要获取的属性名字
-        @param[in] data 指向存储获取内容的内存指针
-        @return 是否获取成功
-        @note 一般在最底端接口重写这个函数
-        @version NIIEngien 3.0.0 高级api
-        */
-        virtual bool getPlatformData(const String & name, void * data) const;
-
-        /** 获取平台额外信息
-        @param[in] name 需要获取的属性名字
-        @param[in] data 指向存储获取内容的内存指针
-        @return 组合类型
-        @note 一般在最底端接口重写这个函数
-        @version NIIEngien 3.0.0 高级api
-        */
-        virtual Nmark getPlatformType() const;
-    };
 
     typedef vector<ViewWindow *>::type WindowList;
+    typedef map<GroupID, TextureList>::type DepthBufferList;
+    
     /** 渲染系统
     @note 部分函数很接近底层
     @version NIIEngine 3.0.0
     */
-    class _EngineAPI RenderSys : public SysAlloc
+    class _EngineAPI RenderSys : public RenderSysData, public SysAlloc
     {
         friend class Engine;
         friend class SpaceManager;
     public:
-        typedef map<String, FrameObj *>::type FrameList;
-        typedef multimap<GroupID, FrameObj *>::type FrameLevelList;
+        /** 监听事件发生
+        @version NIIEngine 5.0.0
+        */
+        class _EngineAPI Listener
+        {
+        public:
+            Listener() {}
+            virtual ~Listener();
+
+            virtual void signal(EventID eid, const PropertyData * pd = 0) = 0;
+        };
+
+        /** 
+        @version NIIEngine 5.0.0
+        */
+        struct _EngineAPI DrawRecord
+        {
+            DrawRecord();
+            inline reset()          { mBatchCount = mTriangleCount = mVertexCount = 0; }
+            
+            NCount mDrawCount;
+            NCount mVertexCount;
+            NCount mTriangleCount;
+            NCount mInstanceCount;
+            NCount mBatchCount;
+            bool mEnable;
+        };
     public:
         RenderSys();
         virtual ~RenderSys();
@@ -558,12 +531,12 @@ namespace NII
         /** 获取自定义属性集
         @version NIIEngine 3.0.0
         */
-        inline const SysOptionList & getConfig() const { return mOptions; }
+        inline const SysOptionList & getConfig() const          { return mOptions; }
 
         /** 获取自定义属性集数据
         @version NIIEngine 3.0.0
         */
-        inline const PropertyData * getConfigData() const { return &mOptionData; }
+        inline const PropertyData * getConfigData() const       { return &mOptionData; }
 
         /** 构建渲染系统特性
         @version NIIEngine 3.0.0
@@ -579,7 +552,7 @@ namespace NII
         /** 获取渲染系统能力
         @version NIIEngine 3.0.0
         */
-        inline RenderFeature * getFeature() const { N_assert(mFeature, "SYS Uninitialized");  return mFeature; }
+        inline RenderFeature * getFeature() const               { N_assert(mFeature, "SYS Uninitialized");  return mFeature; }
 
         /** 构建固定编程管线着色程序参数
         @version NIIEngine 5.0.0
@@ -589,7 +562,7 @@ namespace NII
         /** 获取固定编程管线着色程序参数
         @verison NIIEngine 5.0.0
         */
-        inline GpuProgramParam * getFFPParam() const { N_assert(mFFGPP, "SYS Uninitialized"); return mFFGPP; }
+        inline GpuProgramParam * getFFPParam() const            { N_assert(mFFGPP, "SYS Uninitialized"); return mFFGPP; }
 
         /** 设置动态灯光
         @version NIIEngine 3.0.0
@@ -610,22 +583,22 @@ namespace NII
         @remark Has NO effec
         @version NIIEngine 3.0.0 高级api
         */
-        void setVSync(bool b);
+        void setVSync(bool b)               { mVSync = b;}
 
         /** 获取是否使用同步垂直
         @version NIIEngine 3.0.0 高级api
         */
-        bool isVSync() const;
+        bool isVSync() const                { return mVSync; }
 
         /** 设置是否使用深度缓存
         @version NIIEngine 3.0.0 高级api
         */
-        void setWBuffer(bool b);
+        void setWBuffer(bool b)             { mWBuffer = b; }
 
         /** 获取是否使用深度缓存
         @version NIIEngine 3.0.0 高级api
         */
-        bool getWBuffer() const;
+        bool getWBuffer() const             { return mWBuffer;}
 
         /** 设置投影矩阵
         @version NIIEngine 3.0.0 高级api
@@ -651,53 +624,23 @@ namespace NII
         @version NIIEngine 3.0.0
         */
         virtual void _setLight(NCount cnt) = 0;
-
+        
         /** 创建一个新的渲染窗体
         @param[in] w 窗体的宽
         @param[in] h 窗体的高
         @version NIIEngine 3.0.0
         */
-        virtual ViewWindow * createView(const String & name, NCount w, NCount h, bool full, const PropertyData * ext = 0) = 0;
-
-        /** 加入渲染帧对象
-        @version NIIEngine 3.0.0
-        */
-        virtual void add(FrameObj * obj);
-
-        /** 移去渲染帧对象
-        @version NIIEngine 3.0.0
-        */
-        virtual FrameObj * remove(const FrameObj * obj);
+        virtual ViewWindow * createWindow(const String & name, NCount w, NCount h, bool full, const PropertyData * ext = 0) = 0;
 
         /** 创建多个窗体
         @version NIIEngine 3.0.0
         */
-        virtual bool createView(const WindowDefineList & dlist, WindowList & out);
-
-        /** 创建复合渲染帧对象
+        virtual bool createWindow(const WindowDefineList & dlist, WindowList & out);
+        
+        /** 删除窗口
         @version NIIEngine 3.0.0
         */
-        virtual MultiTextureFrame * createMultiFrame(const String & name) = 0;
-
-        /** 删除渲染帧对象
-        @version NIIEngine 3.0.0
-        */
-        virtual void destroyFrame(const FrameObj * fo);
-
-        /** 获取渲染帧对象
-        @version NIIEngine 3.0.0
-        */
-        virtual FrameObj * getFrame(const String & name);
-
-        /** 创建扩展缓存
-        @version NIIEngine 3.0.0
-        */
-        virtual void createExtBuffer(FrameObj * obj);
-
-        /** 删除扩展缓存
-        @version NIIEngine 3.0.0
-        */
-        void destroyAllExtBuffer(bool all = true);
+        virtual void destroyWindow(ViewWindow * window);
 
         /** 创建一个像素查询
         @version NIIEngine 3.0.0
@@ -709,45 +652,50 @@ namespace NII
         */
         virtual void destroy(PixelCountQuery * obj);
 
+        /** 删除深度缓存
+        @version NIIEngine 5.0.0
+        */
+        virtual Texture * createDepthBuffer(Texture * colour, GroupID poolId, bool texture, PixelFormat pf);
+
         /** 设置顶点缓存
         @version NIIEngine 3.0.0
         */
-        void setInstanceData(VertexBuffer * buf);
+        void setInstanceData(VertexBuffer * buf)            { mInstanceBuffer = buf; }
 
         /** 获取顶点缓存
         @version NIIEngine 3.0.0
         */
-        VertexBuffer * getInstanceBuffer() const;
+        VertexBuffer * getInstanceBuffer() const            { return mInstanceBuffer; }
 
         /** 设置复用顶点
         @version NIIEngine 3.0.0
         */
-        void setInstanceData(VertexData * vd);
+        void setInstanceData(VertexData * vd)               { mInstanceData = val; }
 
         /** 获取复用顶点
         @version NIIEngine 3.0.0
         */
-        VertexData * getInstanceData() const;
+        VertexData * getInstanceData() const                { return mInstanceData; }
 
         /** 设置复用顶点次数
         @version NIIEngine 3.0.0
         */
-        void setInstanceCount(NCount b);
+        void setInstanceCount(NCount b)                     { mInstanceCount = b; }
 
         /** 获取复用顶点次数
         @version NIIEngine 3.0.0
         */
-        NCount getInstanceCount() const;
+        NCount getInstanceCount() const                     { return mInstanceCount; }
 
         /** 设置视口类型
         @versin NIIEngine 4.0.0
         */
-        virtual bool setViewportType(ViewportType type);
+        virtual bool getBufferType(ViewportType type);
 
         /** 创建颜色属性
         @versin NIIEngine 4.0.0
         */
-        virtual ShaderChColour * createColour(const String & name = Independent, bool Bindtosys = false) const;
+        virtual ShaderChColour * createColour(const String & name = Independent, bool BindtoRsys = false) const;
 
         /** 获取颜色属性
         @versin NIIEngine 4.0.0
@@ -757,7 +705,7 @@ namespace NII
         /** 创建渲染点的属性
         @version NIIEngine 3.0.0
         */
-        virtual ShaderChPoint * createPoint(const String & name = Independent, bool Bindtosys = false) const;
+        virtual ShaderChPoint * createPoint(const String & name = Independent, bool BindtoRsys = false) const;
 
         /** 创建渲染点的属性
         @version NIIEngine 3.0.0
@@ -767,7 +715,7 @@ namespace NII
         /** 创建颜色缓存
         @version NIIEngine 3.0.0
         */
-        virtual ShaderChBlend * createBlend(const String & name = Independent, bool Bindtosys = false) const;
+        virtual ShaderChBlend * createBlend(const String & name = Independent, bool BindtoRsys = false) const;
 
         /** 创建颜色缓存
         @version NIIEngine 3.0.0
@@ -777,47 +725,42 @@ namespace NII
         /** 创建透明度测试
         @version NIIEngine 3.0.0
         */
-        virtual ShaderChAlpha * createAlpha(const String & name = Independent, bool Bindtosys = false) const;
-
-        /** 创建透明度测试
-        @version NIIEngine 3.0.0
-        */
-        virtual ShaderChAlpha * getAlpha(const String & name) const;
+        virtual ShaderChColour * createAlpha(const String & name = Independent, bool BindtoRsys = false) const;
 
         /** 创建雾模式
         @version NIIEngine 3.0.0
         */
-        virtual ShaderChFog * createFog(const String & name = Independent, bool Bindtosys = false) const;
+        virtual ShaderChFog * createFog(const String & name = Independent, bool BindtoRsys = false) const;
 
         /** 创建雾模式
         @version NIIEngine 3.0.0
         */
         virtual ShaderChFog * getFog(const String & name) const;
 
-        /** 创建深度测试
-        @version NIIEngine 3.0.0
+        /** 创建模板深度测试
+        @version NIIEngine 5.0.0
         */
-        virtual ShaderChDepth * createDepth(const String & name = Independent, bool Bindtosys = false) const;
+        virtual ShaderChStencil * createStencil(const String & name = Independent, bool BindtoRsys = false) const;
 
-        /** 创建深度测试
-        @version NIIEngine 3.0.0
-        */
-        virtual ShaderChDepth * getDepth(const String & name) const;
-
-        /** 创建模板测试
-        @version NIIEngine 3.0.0
-        */
-        virtual ShaderChStencil * createStencil(const String & name = Independent, bool Bindtosys = false) const;
-
-        /** 创建模板测试
-        @version NIIEngine 3.0.0
+        /** 创建模板深度测试
+        @version NIIEngine 5.0.0
         */
         virtual ShaderChStencil * getStencil(const String & name) const;
+        
+        /** 删除模板深度测试
+        @version NIIEngine 5.0.0
+        */
+        virtual void destroyStencil(ShaderChStencil * scds) {}
+        
+        /** 同步模板深度测试cpu/gpu数据
+        @version NIIEngine 5.0.0
+        */
+        virtual void syncStencil(ShaderChStencil * scds)    {}
 
         /** 创建纹理混合
         @version NIIEngine 3.0.0
         */
-        virtual TextureBlend * createTexBlend(const String & name = Independent, bool Bindtosys = false) const;
+        virtual TextureBlend * createTexBlend(const String & name = Independent, bool BindtoRsys = false) const;
 
         /** 获取纹理混合
         @version NIIEngine 3.0.0
@@ -827,7 +770,7 @@ namespace NII
         /** 获取纹理样本
         @version NIIEngine 3.0.0
         */
-        virtual TextureSampleUnit * createTexSample(const String & name = Independent, bool Bindtosys = false) const;
+        virtual TextureSampleUnit * createTexSample(const String & name = Independent, bool BindtoRsys = false) const;
 
         /** 获取纹理样本
         @version NIIEngine 3.0.0
@@ -864,16 +807,6 @@ namespace NII
         */
         void setBlend(const String & name, Nmark applymark = 0xFFFFFFFF);
 
-        /** 设置透明度测试
-        @version NIIEngine 3.0.0
-        */
-        virtual void setAlpha(const ShaderChAlpha & a, Nmark applymark = 0xFFFFFFFF) = 0;
-
-        /** 设置透明度测试
-        @version NIIEngine 3.0.0
-        */
-        void setAlpha(const String & name, Nmark applymark = 0xFFFFFFFF);
-
         /** 设置雾模式
         @version NIIEngine 3.0.0
         */
@@ -887,20 +820,9 @@ namespace NII
         /** 设置深度测试
         @version NIIEngine 3.0.0
         */
-        virtual void setDepth(const ShaderChDepth & d, Nmark applymark = 0xFFFFFFFF) = 0;
+        virtual void setStencil(const ShaderChStencil & d, Nmark applymark = 0xFFFFFFFF);
 
         /** 设置深度测试
-        @version NIIEngine 3.0.0
-        */
-        void setDepth(const String & name, Nmark applymark = 0xFFFFFFFF);
-
-        /** 设置模版测试参数
-        @note 原始概念
-        @version NIIEngine 3.0.0
-        */
-        virtual void setStencil(const ShaderChStencil & d, Nmark applymark = 0xFFFFFFFF) = 0;
-
-        /** 设置模版测试
         @version NIIEngine 3.0.0
         */
         void setStencil(const String & name, Nmark applymark = 0xFFFFFFFF);
@@ -911,14 +833,14 @@ namespace NII
         virtual void setFFPParam(const GpuProgramParam & param, Nmark typemark) = 0;
 
         /** 设置深度测试(分离操作)
-        @see ShaderChDepth
+        @see ShaderChStencil
         @note 用于共面三角形的前后区分
         @version NIIEngine 3.0.0
         */
         virtual void _setDepthOpFunc(CmpMode func = CPM_LESS_EQUAL) = 0;
 
         /** 设置深度偏量(分离操作)
-        @see ShaderChDepth
+        @see ShaderChStencil
         @note 用于共面三角形的前后区分
         @version NIIEngine 3.0.0
         */
@@ -926,7 +848,7 @@ namespace NII
 
         /** 设置深度偏量(分离操作)
         @param[in] derive 如果为真,深度偏差 = base + multi(current) * basefactor
-        @see ShaderChDepth
+        @see ShaderChStencil
         @note 用于共面三角形的前后区分
         @version NIIEngine 3.0.0
         */
@@ -935,12 +857,22 @@ namespace NII
         /** 获取深度缓存最小值
         @version NIIEngine 3.0.0
         */
-        virtual NIIf getMinDepth() = 0;
+        virtual NIIf getMinDepth() const = 0;
 
         /** 获取深度缓存最大值
         @version NIIEngine 3.0.0
         */
-        virtual NIIf getMaxDepth() = 0;
+        virtual NIIf getMaxDepth() const = 0;
+        
+        /** 获取深度范围
+        @version NIIEngine 5.0.0
+        */
+        virtual NIIf getDepthRange() const                              { return 1.0f; }
+        
+        /** 翻转深度
+        @version NIIEngine 5.0.0
+        */
+        bool isReverseDepth() const                                     { return mReverseDepth; }
 
         /** 设置颜色掩码
         @param[in] mark ColourMark一个或多个组合
@@ -1009,7 +941,7 @@ namespace NII
         @note 原始概念
         @version NIIEngine 3.0.0
         */
-        virtual void _bindTexture(Nidx index, ResourceID rid, bool enable);
+        virtual void _bindTexture(Nidx index, ResourceID rid, bool enable) { _bindTexture(unit, static_cast<Texture *>(N_Only(Texture).get(rid)), b);}
 
         /** 绑定纹理
         @note 原始概念
@@ -1022,6 +954,24 @@ namespace NII
         @version NIIEngine 3.0.0
         */
         virtual void _bindVertexTexture(Nidx index, const Texture * tex);
+        
+        /** 绑定纹理顶点
+        @note 原始概念
+        @version NIIEngine 3.0.0
+        */
+        virtual void _bindGeometryTexture(Nidx unit, const Texture * tex);
+        
+        /** 绑定纹理顶点
+        @note 原始概念
+        @version NIIEngine 3.0.0
+        */
+        virtual void _bindTessControlTexture(Nidx unit, const Texture * tex);
+        
+        /** 绑定纹理顶点
+        @note 原始概念
+        @version NIIEngine 3.0.0
+        */
+        virtual void _bindDomainTexture(Nidx unit, const Texture * tex);
 
         /** 设置纹理单元使用的坐标
         @note 原始概念
@@ -1063,12 +1013,12 @@ namespace NII
         /** 获取实际纹理元素x偏移
         @version NIIEngine 3.0.0
         */
-        virtual NIIf getTexelXOffset() = 0;
+        virtual NIIf getTexelXOffset() const = 0;
 
         /** 获取实际纹理元素y偏移
         @version NIIEngine 3.0.0
         */
-        virtual NIIf getTexelYOffset() = 0;
+        virtual NIIf getTexelYOffset() const = 0;
 
         /** 设置法线是否自动单位化
         @version NIIEngine 3.0.0
@@ -1080,12 +1030,6 @@ namespace NII
         @version NIIEngine 3.0.0
         */
         virtual void _setViewport(Viewport * vp) = 0;
-
-        /** 获取视口
-        @note 原始概念
-        @version NIIEngine 3.0.0
-        */
-        virtual Viewport * _getViewport();
 
         /** 清除缓存
         @version NIIEngine 3.0.0
@@ -1108,11 +1052,6 @@ namespace NII
         */
         virtual void addClipPlane(const Plane & clip);
 
-        /** 添加裁剪面
-        @version NIIEngine 3.0.0
-        */
-        virtual void addClipPlane(NIIf a, NIIf b, NIIf c, NIIf d);
-
         /** 清除裁剪区域
         @version NIIEngine 3.0.0
         */
@@ -1122,13 +1061,13 @@ namespace NII
         @note 如果启用,将关闭可编程管线
         @version NIIEngine 3.0.0
         */
-        void setFixedPipelineMode(bool b);
+        void setFixedPipelineMode(bool b)           { mFixedPipelineMode = b; }
 
         /** 获取是否固定管线模式
         @note 如果启用,将关闭可编程管线
         @version NIIEngine 3.0.0
         */
-        bool isFixedPipelineMode() const;
+        bool isFixedPipelineMode() const            { return mFixedPipelineMode; }
 
         /** 启用着色程序
         @version NIIEngine 3.0.0
@@ -1154,33 +1093,67 @@ namespace NII
         @param[in] count 渲染当前状态的次数
         */
         virtual void setRenderCount(NCount count);
+        
+        /** 设置几何
+        @versio NIIEngine 6.0.0
+        */
+        virtual void setGeometry(const GeometryRaw * vao) = 0;
 
         /** 渲染几何元
         @note 把所有状态设置好了才渲染几何元
         @version NIIEngine 3.0.0 高级api
         */
-        virtual void _render(const GeometryRaw & op);
-
-        /** 初始化帧对象内容
-        @version NIIEngine 3.0.0
+        virtual void _render(/*const GeometryRaw & op*/);
+        
+        /** 执行已经设置的任务并且清理之前设置的状态
+        @version NIIEngine 5.0.0
         */
-        virtual void _initAllFrame();
+        virtual void _clear();
 
-        /** 更新帧对象内容
-        @param[in] swap 向渲染系统交换显示内存
-        @version NIIEngine 3.0.0
+        /** 执行已经设置的任务
+        @version NIIEngine 5.0.0
         */
-        virtual void _updateAllFrame(bool swap = true);
-
-        /** 向渲染系统交换显示内存
-        @version NIIEngine 3.0.0
-        */
-        virtual void _swapAllFrame(bool vsync = true);
+        virtual void _flush() = 0;
 
         /** 重至几何数量
-        @version NIIEngine 3.0.0
+        @version NIIEngine 5.0.0
         */
-        virtual void _resetGeoCount();
+        void _resetRecord()                                             { mMetrics.reset(); }
+        
+        /** 记录几何
+        @version NIIEngine 5.0.0
+        */
+        void _addRecord(const DrawRecord & a);
+
+        /** 设置是否记录几何
+        @version NIIEngine 5.0.0
+        */
+        void setRecordEnable(bool set)                                  { mMetrics.mEnable = set; }
+        
+        /** 获取是否记录几何
+        @version NIIEngine 5.0.0
+        */
+        void isRecordEnable() const                                     { return mMetrics.mEnable; }
+
+        /** 获取几何
+        @version NIIEngine 5.0.0
+        */
+        const DrawRecord & getRecord() const                            { return mMetrics; }
+        
+        /**
+        @version NIIEngine 5.0.0
+        */
+        void _update();
+        
+        /**
+        @version NIIEngine 5.0.0
+        */
+        virtual void _beginFrameOnce();
+
+        /**
+        @version NIIEngine 5.0.0
+        */
+        virtual void _endFrameOnce();
 
         /** 开始帧
         @version NIIEngine 3.0.0 高级api
@@ -1217,7 +1190,7 @@ namespace NII
         /** 获取渲染系统专用的投影矩阵
         @version NIIEngine 3.0.0
         */
-        virtual void getSysProj(const Matrix4f & in, Matrix4f & out, bool gpuprog = false) = 0;
+        virtual void getSysProj(const Matrix4f & in, Matrix4f & out, bool gpuprog = false);
 
         /** 获取渲染系统专用的投影矩阵
         @version NIIEngine 3.0.0
@@ -1227,7 +1200,17 @@ namespace NII
         /** 获取渲染系统专用的投影矩阵
         @version NIIEngine 3.0.0
         */
-        virtual void getSysProj(NIIf l, NIIf r, NIIf b, NIIf t, NIIf near, NIIf far, Matrix4f & out,  bool gpuprog = false) = 0;
+        virtual void getSysProj(NIIf l, NIIf r, NIIf b, NIIf t, NIIf near, NIIf far, Matrix4f & out, bool gpuprog = false) = 0;
+        
+        /** 获取渲染系统专用的投影矩阵
+        @version NIIEngine 3.0.0
+        */
+        virtual void getSysProj(const Matrix4 & in, Matrix4 & out, NIIf near, NIIf far, Frustum::Type type);
+        
+        /** 获取OpenVr专用的投影矩阵
+        @version NIIEngine 6.0.0
+        */
+        virtual void getOpenVrProj(const Matrix4 & in, Matrix4 & out);
 
         /** 获取渲染系统专用的正交投影矩阵
         @version NIIEngine 3.0.0
@@ -1249,43 +1232,395 @@ namespace NII
         @note opengl 和 d3d 至少在着色程序上有所区别
         @version NIIEngine 3.0.0
         */
-        virtual SchemeID getMaterialScheme() const;
+        virtual SchemeID getMaterial() const;
 
         /** 返回驱动版本
         @version NIIEngine 3.0.0
         */
-        virtual const DriverVersion & getDriverVersion() const;
+        const DriverVersion & getDriverVersion() const      { return mVersion; }
 
         /** 获取当前渲染顶点数量
         @version NIIEngine 3.0.0
         */
-        virtual NCount getVertexCount() const;
+        virtual NCount getVertexCount() const               { return mMetrics.mVertexCount; }
 
         /** 获取当前渲染三角形数量
         @version NIIEngine 3.0.0
         */
-        virtual NCount getTriangleCount() const;
+        virtual NCount getTriangleCount() const             { return mMetrics.mTriangleCount; }
 
         /** 获取当前渲染批次数量
         @version NIIEngine 3.0.0
         */
-        virtual NCount getBatchCount() const;
+        virtual NCount getBatchCount() const                { return mMetrics.mBatchCount; }
 
         /** 错误码代表的字符串
         @version NIIEngine 3.0.0
         */
         virtual String getErrorString(NIIl num) const = 0;
+        
+        /** 是否特性支持
+        @version NIIEngine 3.0.0
+        */
+        inline bool isSupport(GpuFeature c) const           { N_assert(mFeature, "SYS Uninitialized");  return mFeature->isSupport(c); }
+        
+        /** 是否支持着色程序
+        @version NIIEngine 3.0.0
+        */
+        inline bool isShaderSupport(ShaderLanguage m) const { N_assert(mFeature, "SYS Uninitialized");  return mFeature->isShaderSupport(m); }
+
+        /** 检测设备是否有效
+        @version NIIEngine 3.0.0
+        */
+        virtual bool checkDevice(bool select = false)       { return true; }
+
+        /** 检测样本类型
+        @version NIIEngine 3.0.0
+        */
+        virtual SampleType checkSample(const SampleType & st, PixelFormat pf);
+
+        /** 设置纹理所使用的设备器
+        @version NIIEngine 3.0.0
+        */
+        virtual void _setContext(Texture * texture) = 0;
+
+        /** 获取视口
+        @version NIIEngine 3.0.0
+        */
+        Viewport * getViewports() const				            { return mActiveViewports; }
+        
+        /** 获取视口数量
+        @version NIIEngine 3.0.0
+        */
+        NCount getViewportCount() const						    { return mViewportCount; }
+
+        /** 创建帧缓存对象
+        @version NIIEngine 3.0.0
+        */
+        virtual FrameBufferObject * createFBO() const = 0;
+
+        /** 删除帧缓存对象
+        @version NIIEngine 3.0.0
+        */
+        void destroy(FrameBufferObject * fbo);
+        
+        /** 获取帧缓存对象
+        @version NIIEngine 3.0.0
+        */
+        FrameBufferObject * getFBO() const                      { return mActiveFrame; }
+        
+        /** 开始帧缓存对象
+        @version NIIEngine 5.0.0
+        */
+        virtual void beginFBO(FrameBufferObject * fbo, Texture * target, NCount mipLevel, const ViewportList & list, bool warnIfRtvWasFlushed);
+
+        /** 执行帧缓存对象
+        @version NIIEngine 5.0.0
+        */
+        virtual void executeFBO();
+
+        /** 结束帧缓存对象
+        @version NIIEngine 5.0.0
+        */
+        virtual void endFBO();
+        
+        /** 清理帧缓存对象
+        @version NIIEngine 5.0.0
+        */
+        virtual void clearBuffer(FrameBufferObject * fbo, Texture * dst, NCount mipLevel) = 0;
+
+        /** 设置缓存
+        @remarks
+        @version NIIEngine 5.0.0
+        */
+        virtual void _setBuffer(Nidx slotStart, const GpuParamBuffer * gpb);
+        
+        /** 设置纹理
+        @remarks
+        @version NIIEngine 5.0.0
+        */
+        virtual void _setTexture(Nidx slotStart, const ShaderChTexture * sct) = 0;
+        
+        /** 设置采样类型
+        @remarks
+        @version NIIEngine 5.0.0
+        */
+        virtual void _setSampler(Nidx slotStart, const TextureSample * ts) = 0;
+        
+        /** 设置缓存(计算着色程序)
+        @remarks
+        @version NIIEngine 5.0.0
+        */
+        virtual void _setBufferCS(Nidx slotStart, const GpuParamBuffer * gpb) = 0;
+        
+        /** 设置纹理(计算着色程序)
+        @remarks
+        @version NIIEngine 5.0.0
+        */
+        virtual void _setTextureCS(Nidx slotStart, const ShaderChTexture * sct) = 0;
+        
+        /** 设置采样类型(计算着色程序)
+        @remarks
+        @version NIIEngine 5.0.0
+        */
+        virtual void _setSamplerCS(Nidx slotStart, const TextureSample * ts) = 0;
+
+        /** 设置绘制索引
+        @version NIIEngine 5.0.0
+        */
+        virtual void _setIndirect(IndirectBuffer * ib) = 0;
+
+        /** 创建存储任务
+        @remarks
+        @version NIIEngine 5.0.0
+        */
+        virtual void createStorageTask(StorageTask *& st)               {}
+        
+        /** 删除存储任务
+        @remarks
+        @version NIIEngine 5.0.0
+        */
+        virtual void destroyStorageTask(StorageTask * st)               {}
+        
+        /** 同步存储任务cpu/gpu数据
+        @remarks
+        @version NIIEngine 5.0.0
+        */
+        virtual void syncStorageTask(StorageTask * st)                  {}
+        
+        /** 执行存储任务
+        @remarks
+        @version NIIEngine 5.0.0
+        */
+        virtual void _execute(StorageTask * st)                         {}
+        
+        /** 创建混合
+        @remarks
+        @version NIIEngine 5.0.0
+        */
+        virtual void createBlend(ShaderChBlend *& scb)                  {}
+        
+        /** 删除混合
+        @remarks
+        @version NIIEngine 5.0.0
+        */
+        virtual void destroyBlend(ShaderChBlend * scb)                  {}
+        
+        /** 同步混合cpu/gup数据
+        @remarks
+        @version NIIEngine 5.0.0
+        */
+        virtual void syncBlend(ShaderChBlend * scb)                     {}
+        
+        /** 创建纹理采样单元
+        @version NIIEngine 5.0.0
+        */
+        virtual void createTextureSample(TextureSampleUnit *& tsu)      {}
+        
+        /** 删除纹理采样单元
+        @version NIIEngine 5.0.0
+        */
+        virtual void destroyTextureSample(TextureSampleUnit * tsu)      {}
+        
+        /** 同步纹理采样单元cpu/gpu数据
+        @version NIIEngine 5.0.0
+        */
+        virtual void syncTextureSample(TextureSampleUnit * tsu)         {}
+        
+        /** 创建纹理
+        @version NIIEngine 5.0.0
+        */
+        virtual void createTexture(ShaderChTexture *& sct)              {}
+        
+        /** 删除纹理
+        @version NIIEngine 5.0.0
+        */
+        virtual void destroyTexture(ShaderChTexture * sct)              {}
+        
+        /** 同步纹理cpu/gpu数据
+        @version NIIEngine 5.0.0
+        */
+        virtual void syncTexture(ShaderChTexture * sct)                 {}
+        
+        /** 创建纹理采样
+        @remarks
+        @version NIIEngine 5.0.0
+        */
+        virtual void createSampler(TextureSample *& ts)                 {}
+        
+        /** 删除纹理采样
+        @remarks
+        @version NIIEngine 5.0.0
+        */
+        virtual void destroySampler(TextureSample * ts)                 {}
+        
+        /** 创建缓存
+        @remarks
+        @version NIIEngine 5.0.0
+        */
+        virtual void createBuffer(GpuParamBuffer *& gpb)                {}
+        
+        /** 删除缓存
+        @remarks
+        @version NIIEngine 5.0.0
+        */
+        virtual void destroyBuffer(GpuParamBuffer * gpb)                {}
+        
+        /** 同步缓存cpu/gpu数据
+        @remarks
+        @version NIIEngine 5.0.0
+        */
+        virtual void syncBuffer(GpuParamBuffer * gpb)                   {}
+
+        /** 创建渲染状态对象
+        @remarks
+        @version NIIEngine 5.0.0
+        */
+        virtual void createRSO(RenderStateObject *& rso)                {}
+        
+        /** 删除渲染状态对象
+        @remarks
+        @version NIIEngine 5.0.0
+        */
+        virtual void destroyRSO(RenderStateObject * rso);
+        
+        /** 设置渲染状态对象
+        @remarks
+        @version NIIEngine 5.0.0
+        */
+        virtual void setRSO(const RenderStateObject * rso);
+        
+        /** 同步渲染状态对象cpu/gpu数据
+        @remarks
+        @version NIIEngine 5.0.0
+        */
+        virtual void syncRSO(RenderStateObject * rso)                   {}
+
+        /** 创建计算状态对象
+        @remarks
+        @version NIIEngine 5.0.0
+        */
+        virtual void createCSO(ComputeStateObject *& cso)               {}
+        
+        /** 删除计算状态对象
+        @remarks
+        @version NIIEngine 5.0.0
+        */
+        virtual void destroyCSO(ComputeStateObject * cso)               {}
+        
+        /** 设置计算状态对象
+        @remarks
+        @version NIIEngine 5.0.0
+        */
+        virtual void setCSO(const ComputeStateObject * cso) = 0;
+        
+        /** 同步计算状态对象cpu/gpu数据
+        @remarks
+        @version NIIEngine 5.0.0
+        */
+        virtual void syncCSO(ComputeStateObject * cso)                  {}
+        
+        /** 执行计算状态对象
+        @remarks
+        @version NIIEngine 5.0.0
+        */
+        virtual void _execute(const ComputeStateObject & cso) = 0;
+
+        /** 获取缓存管理器
+        @version NIIEngine 4.0.0
+        */
+        GBufferManager * getBufferManager() const                       { return mBufferManager; }
+
+        /** 获取纹理管理器
+        @version NIIEngine 4.0.0
+        */
+        TextureManager * getTextureManager() const                      { return mTextureManager; }
+
+        /** 获取着色程序基础版本
+        @return OpenGL 3.2 返回150, OpenGL 3.3 返回330
+        */
+        Nui32 getShaderVersion() const                                  { return mShaderVersion; }
+        
+        /** 检测硬件api是否支持
+        @version NIIEngine 5.0.0
+        */
+        virtual bool checkGpuApi(const String & ext) const              { return false; }
+
+        /**
+        @version NIIEngine 5.0.0
+        */
+        virtual void addListener(Listener * l);
+
+        /**
+        @version NIIEngine 5.0.0
+        */
+        virtual void removeListener(Listener * l);
+
+        /**
+        @version NIIEngine 5.0.0
+        */
+        virtual void registerThread() = 0;
+
+        /** 
+        @version NIIEngine 5.0.0
+        */
+        virtual void unregisterThread() = 0;
+
+        /** 
+        @version NIIEngine 5.0.0
+        */
+        virtual void beginProfiler(const String & name) = 0;
+        
+        /** 
+        @version NIIEngine 5.0.0
+        */
+        virtual void markProfiler(const String & name) = 0;
+
+        /** 
+        @version NIIEngine 5.0.0
+        */
+        virtual void endProfiler() = 0;
+
+        /** 
+        @version NIIEngine 5.0.0
+        */
+        virtual void setupGPUProfiler() = 0;
+
+        /** 
+        @version NIIEngine 5.0.0
+        */
+        virtual void shutdownGPUProfiler() = 0;
+
+        /** 
+        @version NIIEngine 5.0.0
+        */
+        virtual void beginGPUProfiler(const String & name, Nui32 * data) = 0;
+
+        /** 
+        @version NIIEngine 5.0.0
+        */
+        virtual void endGPUProfiler(const String & name) = 0;
+        
+        /** 设置主监听
+        @version NIIEngine 5.0.0
+        */
+        static void setListener(Listener * lis)         { mListener = lis; }
+
+        /** 获取主监听
+        @version NIIEngine 5.0.0
+        */
+        static Listener * getListener()                 { return mListener; }
     protected:
         /** 下一重复渲染
         @return 是否还需要重复渲染
         @version NIIEngine 3.0.0 高级api
         */
         virtual bool updateParam();
-
+        
         /** 创建帧扩展缓存
         @version NIIEngine 3.0.0 高级api
         */
-        virtual ExtFrameBuffer * createExtFrameImpl(FrameObj * dst) = 0;
+        virtual Texture * createDepthImpl(Texture * colour, bool framebuf, PixelFormat pf);
 
         /** 设置裁减面
         @version NIIEngine 3.0.0 高级api
@@ -1296,31 +1631,25 @@ namespace NII
         @version NIIEngine 3.0.0 高级api
         */
         virtual void initImpl(ViewWindow * primary) = 0;
-
-        /** 通知摄象机被删除了
-        @version NIIEngine 3.0.0 高级api
-        */
-        virtual void _notifyDestroy(const Camera * cam);
     public:
         static const Matrix4f ProjClipSpace2DToImageSpace;
     protected:
         typedef list<PixelCountQuery *>::type PixelCountQueryList;
-        typedef map<GroupID, ExtFrameBufferList>::type ExtFrameList;
         typedef map<String, ShaderChColour *>::type ColourList;
         typedef map<String, ShaderChPoint *>::type PointList;
         typedef map<String, ShaderChBlend *>::type BlendList;
-        typedef map<String, ShaderChAlpha *>::type AlphaList;
+        typedef map<String, ShaderChColour *>::type AlphaList;
         typedef map<String, ShaderChFog *>::type FogList;
-        typedef map<String, ShaderChDepth *>::type DepthList;
         typedef map<String, ShaderChStencil *>::type StencilList;
         typedef map<String, TextureBlend *>::type TexBlendList;
         typedef map<String, TextureSampleUnit *>::type TexSampleList;
+        typedef set<FrameBufferObject*>::type FrameBufferObjectList;
+        typedef set<ViewWindow *>::type WindowSet;
+        typedef list<Listener *>::type ListenerList;
     protected:
         String mName;
         DriverVersion mVersion;
         RenderFeature * mVendorFeature;
-        Viewport * mActiveViewport;
-        FrameObj * mActiveFrame;
         GpuProgramParam * mActiveVGPP;
         GpuProgramParam * mActiveGGPP;
         GpuProgramParam * mActiveFGPP;
@@ -1329,18 +1658,18 @@ namespace NII
         GpuProgramParam * mActiveCGPP;
         GpuProgramParam * mFFGPP;
         RenderFeature * mFeature;
+        GBufferManager * mBufferManager;
         TextureManager * mTextureManager;
-        ExtFrameList mExtFrameList;
-        FrameList mFrameObjList;
-        FrameLevelList mFrameLevelList;
+        FrameBufferObject * mActiveFrame;
+        WindowSet mWindows;
+        EventIDList mEventNames;
+        ListenerList mEventListenerList;
         PixelCountQueryList mPixelQueryList;
+        FrameBufferObjectList mFBOList;
         CullingMode mCullingMode;
         PlaneList mClipPlanes;
         Colour mTextureBlend[NII_MAX_TextureLayer][2];
         NCount mEnableTexCount;
-        NCount mVertexCount;
-        NCount mTriangleCount;
-        NCount mBatchCount;
         NCount mRenderCount;
         NCount mCurrentRender;
         Vector3f mTextureProjRel;
@@ -1349,6 +1678,8 @@ namespace NII
         NIIf mDepthBiasFactor;
         NIIf mDepthBiasSlopeScale;
         NCount mInstanceCount;
+        ViewportList mActiveViewports;
+        GpuParamBuffer * mGpuBufferList;
         VertexBuffer * mInstanceBuffer;
         VertexData * mInstanceData;
         SysOptionList mOptions;
@@ -1358,10 +1689,14 @@ namespace NII
         BlendList mBlendList;
         AlphaList mAlphaList;
         FogList mFogList;
-        DepthList mDepthList;
         StencilList mStencilList;
         TexBlendList mTexBlendList;
         TexSampleList mTexSampleList;
+        DepthBufferList mDepthBufferList;
+        DrawRecord mMetrics;
+        Nui32 mShaderVersion;
+        NCount mViewportCount;
+        Nidx mUavStartingSlot;
         bool mFixedPipelineMode;
         bool mVertexTextureShared;
         bool mVPMode;
@@ -1370,13 +1705,16 @@ namespace NII
         bool mTPMode;
         bool mDPMode;
         bool mCPMode;
+        bool mGpuBufValid;
         bool mClipValid;
         bool mAutoDepthBias;
         bool mInvertVertexWinding;
         bool mSysFeatureValid;
         bool mTexProjRelative;
+        bool mReverseDepth;
         bool mWBuffer;
         bool mVSync;
+        static Listener * mListener;
     };
     typedef vector<RenderSys *>::type RenderSysList;
 }

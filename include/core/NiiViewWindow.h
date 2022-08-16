@@ -29,17 +29,23 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 #define _NII_VIEW_WINDOW_H_
 
 #include "NiiPreInclude.h"
+#include "NiiCommon.h"
 
 namespace NII
 {
     /** 渲染视窗
     @version NIIEngine 3.0.0
     */
-    class _EngineAPI ViewWindow : public FrameAlloc
+    class _EngineAPI ViewWindow : public RenderSysData
     {
     public:
         ViewWindow(Nui32 wpixel, Nui32 hpixel, bool full, const String & name = N_StrBlank);
         virtual ~ViewWindow();
+        
+        /** 
+        @version NIIEngine 5.0.0
+        */
+        virtual void _init() = 0;
         
         /** 设置名字
         @version NIIEngine 3.0.0
@@ -261,11 +267,6 @@ namespace NII
         */
         String screenshots(const String & name, const String & ext);
 
-        /** 
-        @version NIIEngine 5.0.0
-        */
-        virtual void _initialize(TextureGpuManager * tgm) = 0;
-
         /**
         @version NIIEngine 5.0.0
         */
@@ -280,8 +281,6 @@ namespace NII
         @version NIIEngine 5.0.0
         */
         TextureGpu * getStencil() const                 { return mStencil; }
-
-        virtual void getPlatformData(IdString name, void * pData) {}
         
         /** 通知形态变化
         @version NIIEngine 3.0.0
@@ -309,9 +308,9 @@ namespace NII
         SampleType mSample;
         SampleType mSrcSample;
 
-        TextureGpu * mBuffer;
-        TextureGpu * mDepth;
-        TextureGpu * mStencil;
+        Texture * mBuffer;
+        Texture * mDepth;
+        Texture * mStencil;     ///< 可能于 mDepth 值相同
         Nui32 mDisplayFrequency;
         Nui32 mDisplayDenominator;
 
