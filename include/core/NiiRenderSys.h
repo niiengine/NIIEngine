@@ -74,53 +74,59 @@ namespace NII
         GF_Tex_Compress = N_CategoryGroupValue(CC_Count, CC_Common1,        5),
         GF_Tex_1D = N_CategoryGroupValue(CC_Count, CC_Common1,              6),
         GF_Tex_3D = N_CategoryGroupValue(CC_Count, CC_Common1,              7),
-        GF_Tex_Dot3 = N_CategoryGroupValue(CC_Count, CC_Common1,            8),
-        GF_Tex_Float = N_CategoryGroupValue(CC_Count, CC_Common1,           9),
-        GF_Tex_NonPow2 = N_CategoryGroupValue(CC_Count, CC_Common1,         10),
-        GF_Tex_MipMapBias = N_CategoryGroupValue(CC_Count, CC_Common1,      11),
+        CF_Tex_CubeArray = N_CategoryGroupValue(CC_Count, CC_Common1,       8),
+        GF_Tex_Dot3 = N_CategoryGroupValue(CC_Count, CC_Common1,            9),
+        GF_Tex_Float = N_CategoryGroupValue(CC_Count, CC_Common1,           10),
+        GF_Tex_NonPow2 = N_CategoryGroupValue(CC_Count, CC_Common1,         11),
+        GF_Tex_MipMapBias = N_CategoryGroupValue(CC_Count, CC_Common1,      12),
 
-        GF_Program_Vertex = N_CategoryGroupValue(CC_Count, CC_Common1,      12),
-        GF_Program_Fragment = N_CategoryGroupValue(CC_Count, CC_Common1,    13),
-        GF_Program_Geometry = N_CategoryGroupValue(CC_Count, CC_Common1,    14),
-        GF_Program_Tess = N_CategoryGroupValue(CC_Count, CC_Common1,        15),
-        GF_Program_Domain = N_CategoryGroupValue(CC_Count, CC_Common1,      16),
-        GF_Program_Compute = N_CategoryGroupValue(CC_Count, CC_Common1,     17),
-        GF_Program_VertexTexFetch = N_CategoryGroupValue(CC_Count, CC_Common1, 18),
-        GF_Fixed_Pipeline = N_CategoryGroupValue(CC_Count, CC_Common1,      19),
+        GF_Program_Vertex = N_CategoryGroupValue(CC_Count, CC_Common1,      13),
+        GF_Program_Fragment = N_CategoryGroupValue(CC_Count, CC_Common1,    14),
+        GF_Program_Geometry = N_CategoryGroupValue(CC_Count, CC_Common1,    15),
+        GF_Program_Tess = N_CategoryGroupValue(CC_Count, CC_Common1,        16),
+        GF_Program_Domain = N_CategoryGroupValue(CC_Count, CC_Common1,      17),
+        GF_Program_Compute = N_CategoryGroupValue(CC_Count, CC_Common1,     18),
+        GF_Program_VertexTexFetch = N_CategoryGroupValue(CC_Count, CC_Common1,  19),
+        CF_Program_SeparateObject = N_CategoryGroupValue(CC_Count, CC_Common1,  20),
+        CF_Program_StorgeBuffer = N_CategoryGroupValue(CC_Count, CC_Common1,    21),
+        CF_Program_ConstBuffer = N_CategoryGroupValue(CC_Count, CC_Common1,     22),
+        CF_Program_ViwportArray = N_CategoryGroupValue(CC_Count, CC_Common1,     23),
+        GF_Fixed_Pipeline = N_CategoryGroupValue(CC_Count, CC_Common1,      23),
 
-        GF_Point_Param = N_CategoryGroupValue(CC_Count, CC_Common1,         20),
-        GF_Point_Sprites = N_CategoryGroupValue(CC_Count, CC_Common1,       21),
-        GF_LineWide = N_CategoryGroupValue(CC_Count, CC_Common1,            22),
+        GF_Point_Param = N_CategoryGroupValue(CC_Count, CC_Common1,         24),
+        GF_Point_Sprites = N_CategoryGroupValue(CC_Count, CC_Common1,       25),
+        GF_LineWide = N_CategoryGroupValue(CC_Count, CC_Common1,            24),
 
-        GF_HW_Stencil = N_CategoryGroupValue(CC_Count, CC_Common1,          23),
-        GF_HW_GAMMA = N_CategoryGroupValue(CC_Count, CC_Common1,            24),
-        GF_HW_Buffer = N_CategoryGroupValue(CC_Count, CC_Common1,           25),
-        GF_HW_PixelQuery = N_CategoryGroupValue(CC_Count, CC_Common1,       26),
+        GF_HW_Stencil = N_CategoryGroupValue(CC_Count, CC_Common1,          25),
+        GF_HW_GAMMA = N_CategoryGroupValue(CC_Count, CC_Common1,            26),
+        GF_HW_Buffer = N_CategoryGroupValue(CC_Count, CC_Common1,           27),
+        GF_HW_PixelQuery = N_CategoryGroupValue(CC_Count, CC_Common1,       28),
 
-        GF_Vertex_UByte4 = N_CategoryGroupValue(CC_Count, CC_Common1,       27),
-        GF_Vertex_Instance = N_CategoryGroupValue(CC_Count, CC_Common1,     28),
-        GF_Index_32 = N_CategoryGroupValue(CC_Count, CC_Common1,            29),
+        GF_Vertex_UByte4 = N_CategoryGroupValue(CC_Count, CC_Common1,       29),
+        GF_Vertex_Instance = N_CategoryGroupValue(CC_Count, CC_Common1,     30),
+        GF_Index_32 = N_CategoryGroupValue(CC_Count, CC_Common1,            31),
 
-        GF_Stencil_BothSide = N_CategoryGroupValue(CC_Count, CC_Common1,    30),
-        GF_Stencil_Wrap = N_CategoryGroupValue(CC_Count, CC_Common1,        31),
-        GF_Colour_Blend = N_CategoryGroupValue(CC_Count, CC_Common1,        32),
-        GF_WBuffer = N_CategoryGroupValue(CC_Count, CC_Common1,             33),
-        GF_Debug = N_CategoryGroupValue(CC_Count, CC_Common1,               34),
-        CF_PersistentMapping = N_CategoryGroupValue(CC_Count, CC_Common1,   35),
-        CF_BaseInstance = N_CategoryGroupValue(CC_Count, CC_Common1,        36),
-        CF_IndirectBuffer = N_CategoryGroupValue(CC_Count, CC_Common1,      37),
+        GF_Stencil_BothSide = N_CategoryGroupValue(CC_Count, CC_Common1,    32),
+        GF_Stencil_Wrap = N_CategoryGroupValue(CC_Count, CC_Common1,        33),
+        GF_Colour_Blend = N_CategoryGroupValue(CC_Count, CC_Common1,        34),
+        GF_WBuffer = N_CategoryGroupValue(CC_Count, CC_Common1,             35),
+        GF_Debug = N_CategoryGroupValue(CC_Count, CC_Common1,               36),
+        CF_PersistentMapping = N_CategoryGroupValue(CC_Count, CC_Common1,   37),
+        CF_BaseInstance = N_CategoryGroupValue(CC_Count, CC_Common1,        38),
+        CF_IndirectBuffer = N_CategoryGroupValue(CC_Count, CC_Common1,      39),
 
         GF_Alpha_Coverage = N_CategoryGroupValue(CC_Count, CC_Common2,      0),
         GF_Render_To_Texture = N_CategoryGroupValue(CC_Count, CC_Common2,   1),
         GF_Render_To_Vertex = N_CategoryGroupValue(CC_Count, CC_Common2,    2),
-        GF_Tex_Fromat_DXT = N_CategoryGroupValue(CC_Count, CC_Common2,      3),
-        GF_Tex_Fromat_VTC = N_CategoryGroupValue(CC_Count, CC_Common2,      4),
-        GF_Tex_Fromat_PVRTC = N_CategoryGroupValue(CC_Count, CC_Common2,    5),
-        GF_Tex_Fromat_ETC2 = N_CategoryGroupValue(CC_Count, CC_Common2,     6),
-        GF_Tex_Fromat_BC4_5 = N_CategoryGroupValue(CC_Count, CC_Common2,    7),
-        GF_Tex_Fromat_BC6H_7 = N_CategoryGroupValue(CC_Count, CC_Common2,   8),
-        GF_Tex_Fromat_ASTC = N_CategoryGroupValue(CC_Count, CC_Common2,     9),
-        GF_Shader_Binary_Get = N_CategoryGroupValue(CC_Count, CC_Common2,   10),
+        GF_Tex_Gather = N_CategoryGroupValue(CC_Count, CC_Common2,          3),
+        GF_Tex_Fromat_DXT = N_CategoryGroupValue(CC_Count, CC_Common2,      4),
+        GF_Tex_Fromat_VTC = N_CategoryGroupValue(CC_Count, CC_Common2,      5),
+        GF_Tex_Fromat_PVRTC = N_CategoryGroupValue(CC_Count, CC_Common2,    6),
+        GF_Tex_Fromat_ETC2 = N_CategoryGroupValue(CC_Count, CC_Common2,     7),
+        GF_Tex_Fromat_BC4_5 = N_CategoryGroupValue(CC_Count, CC_Common2,    8),
+        GF_Tex_Fromat_BC6H_7 = N_CategoryGroupValue(CC_Count, CC_Common2,   9),
+        GF_Tex_Fromat_ASTC = N_CategoryGroupValue(CC_Count, CC_Common2,     10),
+        GF_Shader_Binary_Get = N_CategoryGroupValue(CC_Count, CC_Common2,   11),
 
         GF_RenderTarget_LessDepth = N_CategoryGroupValue(CC_Count, CC_Ext1,         0),
         GF_RenderTarget_AttachMainDepth = N_CategoryGroupValue(CC_Count, CC_Ext1,   1),
@@ -257,6 +263,21 @@ namespace NII
         @version NIIEngine 3.0.0
         */
         inline bool isOnlyPow2Texture() const               { return mOnlyPow2Texture; }
+        
+        /** 获取最大的2D纹理尺寸
+        @version NIIEngine 5.0.0
+        */
+        inline Nui16 getMax2dTexSize() const                { return mMaxTexSize[0]; }
+        
+        /** 获取最大的3D纹理尺寸
+        @version NIIEngine 5.0.0
+        */
+        inline Nui16 getMax3dTexSize const                  { return mMaxTexSize[1]; }
+        
+        /** 获取最大的Cube纹理尺寸
+        @version NIIEngine 5.0.0
+        */
+        inline Nui16 getMaxCubeTexSize const                { return mMaxTexSize[2]; }
 
         /** 设置顶点着色程序局部参数最大数量
         @version NIIEngine 3.0.0
@@ -281,32 +302,32 @@ namespace NII
         /** 获取片段着色程序支持integer常量数目
         @version NIIEngine 3.0.0
         */
-        inline Nui16 getMaxFPIntCount() const { return mMaxFPParam[2]; }
+        inline Nui16 getMaxFPIntCount() const               { return mMaxFPParam[2]; }
 
         /** 获取片段着色程序支持boolean常量数目
         @version NIIEngine 3.0.0
         */
-        inline Nui16 getMaxFPBoolCount() const { return mMaxFPParam[3]; }
+        inline Nui16 getMaxFPBoolCount() const              { return mMaxFPParam[3]; }
 
         /** 获取几何着色程序支持float常量数目
         @version NIIEngine 3.0.0
         */
-        inline Nui16 getMaxGPFloatCount() const { return mMaxGPParam[0]; }
+        inline Nui16 getMaxGPFloatCount() const             { return mMaxGPParam[0]; }
 
         /** 获取几何着色程序支持int常量数目
         @version NIIEngine 3.0.0
         */
-        inline Nui16 getMaxGPIntCount() const { return mMaxGPParam[2]; }
+        inline Nui16 getMaxGPIntCount() const               { return mMaxGPParam[2]; }
 
         /** 获取几何着色程序支持bool常量数目
         @version NIIEngine 3.0.0
         */
-        inline Nui16 getMaxGPBoolCount() const { return mMaxGPParam[3]; }
+        inline Nui16 getMaxGPBoolCount() const              { return mMaxGPParam[3]; }
 
         /** 获取几何程序输出顶点最大数量
         @version NIIEngine 3.0.0
         */
-        inline NIIi getMaxGeometryOutput() const { return mMaxGPOutput; }
+        inline NIIi getMaxGeometryOutput() const            { return mMaxGPOutput; }
 
         /** 输出细节
         @version NIIEngine 3.0.0
@@ -322,6 +343,11 @@ namespace NII
         @version NIIEngine 3.0.0 高级api
         */
         inline void setMaxTexUnit(Nui16 num) { mMaxTextureUnit = num; }
+        
+        /** 设置纹理最大尺寸
+        @version NIIEngine 5.0.0
+        */
+        void setMaxTexSize(NCount t2d, NCount t3d, NCount tCube);
 
         /** 设置点的最大大小
         @remark 像素
@@ -438,6 +464,7 @@ namespace NII
         Nui16 mMaxTPParam[4];
         Nui16 mMaxDPParam[4];
         Nui16 mMaxCPParam[4];
+        Nui16 mMaxTexSize[3];
         bool mOnlyPow2Texture;
     };
 
@@ -462,7 +489,7 @@ namespace NII
             Listener() {}
             virtual ~Listener();
 
-            virtual void signal(EventID eid, const PropertyData * pd = 0) = 0;
+            virtual void signal(EventID eid, const PropertyData * params = 0) = 0;
         };
 
         /** 
@@ -677,12 +704,12 @@ namespace NII
         */
         VertexData * getInstanceData() const                { return mInstanceData; }
 
-        /** 设置复用顶点次数
+        /** 设置绘制次数
         @version NIIEngine 3.0.0
         */
         void setInstanceCount(NCount b)                     { mInstanceCount = b; }
 
-        /** 获取复用顶点次数
+        /** 获取绘制次数
         @version NIIEngine 3.0.0
         */
         NCount getInstanceCount() const                     { return mInstanceCount; }
@@ -941,7 +968,7 @@ namespace NII
         @note 原始概念
         @version NIIEngine 3.0.0
         */
-        virtual void _bindTexture(Nidx index, ResourceID rid, bool enable) { _bindTexture(unit, static_cast<Texture *>(N_Only(Texture).get(rid)), b);}
+        virtual void _bindTexture(Nidx index, ResourceID rid, bool enable) { _bindTexture(unit, static_cast<Texture *>(N_Only(Texture).get(rid)), enable);}
 
         /** 绑定纹理
         @note 原始概念
@@ -1097,13 +1124,13 @@ namespace NII
         /** 设置几何
         @versio NIIEngine 6.0.0
         */
-        virtual void setGeometry(const GeometryRaw * vao) = 0;
+        virtual void setGeometry(const GeometryRaw * geo) = 0;
 
         /** 渲染几何元
         @note 把所有状态设置好了才渲染几何元
         @version NIIEngine 3.0.0 高级api
         */
-        virtual void _render(/*const GeometryRaw & op*/);
+        virtual void _render();
         
         /** 执行已经设置的任务并且清理之前设置的状态
         @version NIIEngine 5.0.0
@@ -1238,6 +1265,16 @@ namespace NII
         @version NIIEngine 3.0.0
         */
         const DriverVersion & getDriverVersion() const      { return mVersion; }
+        
+        /** 驱动版本是否比另一个旧
+        @version NIIEngine 5.0.0
+        */
+        inline bool isVersionOlder(NIIi _major, NIIi _minor) const  { return mVersion.isOlder(_major, _minor);}
+        
+        /** 驱动版本是否比另一个新
+        @version NIIEngine 5.0.0
+        */
+        inline bool isVersionNewer(NIIi _major, NIIi _minor) const  { return mVersion.isNewer(_major, _minor);}
 
         /** 获取当前渲染顶点数量
         @version NIIEngine 3.0.0
@@ -1555,6 +1592,11 @@ namespace NII
         @version NIIEngine 5.0.0
         */
         virtual void removeListener(Listener * l);
+        
+        /**
+        @version NIIEngine 5.0.0
+        */
+        virtual void signal(EventID eid, const PropertyData * params= 0)
 
         /**
         @version NIIEngine 5.0.0
@@ -1657,6 +1699,7 @@ namespace NII
         GpuProgramParam * mActiveDGPP;
         GpuProgramParam * mActiveCGPP;
         GpuProgramParam * mFFGPP;
+        GeometryRaw * mGeometry;
         RenderFeature * mFeature;
         GBufferManager * mBufferManager;
         TextureManager * mTextureManager;

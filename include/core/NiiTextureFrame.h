@@ -1,4 +1,4 @@
-ï»¿/*
+/*
 -----------------------------------------------------------------------------
 A
      __      _   _   _   ______
@@ -25,15 +25,15 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 ------------------------------------------------------------------------------
 */
 
-#ifndef _NII_TEXTUREFRAME_H_
-#define _NII_TEXTUREFRAME_H_
+#ifndef _NII_MultiTextureFrame_H_
+#define _NII_MultiTextureFrame_H_
 
 #include "NiiPreInclude.h"
 #include "NiiFrameObj.h"
 
 namespace NII
 {
-    /** å¸§è¾“å‡ºåˆ°çº¹ç†å¸§
+    /** Ö¡Êä³öµ½ÎÆÀíÖ¡
     @version NIIEngine 3.0.0
     */
     class _EngineAPI TextureFrame : public FrameObj
@@ -42,12 +42,12 @@ namespace NII
         TextureFrame(FrameBuffer * dst, NCount z);
         virtual ~TextureFrame();
 
-        /** å¡«å……åˆ°åƒç´ å—ä¸­
+        /** Ìî³äµ½ÏñËØ¿éÖĞ
         @version NIIEngine 3.0.0
         */
         virtual void fill(FaceType type, const Box & src, PixelBlock & dst);
 
-        /** è·å–åƒç´ æ ¼å¼
+        /** »ñÈ¡ÏñËØ¸ñÊ½
         @version NIIEngine 3.0.0
         */
         PixelFormat getFormat() const;
@@ -55,5 +55,60 @@ namespace NII
         FrameBuffer * mBuffer;
         NCount mZOft;
     };
+
+    /** Ö¡Êä³öµ½¶à¸öÎÆÀí
+    @note ÎÆÀí»ù´¡¸ñÊ½±ØĞëÏàÍ¬
+    @version NIIEngine 3.0.0
+    */
+    class _EngineAPI MultiTextureFrame : public FrameObj
+    {
+    public:
+        typedef vector<TextureFrame *>::type AttachList;
+    public:
+        MultiTextureFrame(const String & name);
+
+        /** ¸½¼Ó
+        @param[in] index Ë÷Òı
+        @param[in] obj ¶ÔÏó
+        @version NIIEngine 3.0.0
+        */
+        virtual void attach(Nidx index, TextureFrame * obj);
+
+        /** ½â³ı
+        @param[in] index Ë÷Òı
+        @version NIIEngine 3.0.0
+        */
+        virtual void detach(Nidx index);
+
+        /** »ñÈ¡
+        @param[in] index Ë÷Òı
+        @version NIIEngine 3.0.0
+        */
+        TextureFrame * getAttach(NCount index);
+
+        /** »ñÈ¡ÁĞ±í
+        @version NIIEngine 3.0.0
+        */
+        const AttachList & getAttachList() const;
+
+        /// @copydetails FrameObj::fill
+        virtual void fill(FrameObj::FaceType buffer, const Box & src, PixelBlock & dst);
+
+        /// @copydetails FrameObj::getFormat
+        PixelFormat getFormat() const;
+    protected:
+        /** ÊµÏÖ
+        @version NIIEngine 3.0.0 ¸ß¼¶api
+        */
+        virtual void attachImpl(Nidx index, TextureFrame * obj) = 0;
+
+        /** ÊµÏÖ
+        @version NIIEngine 3.0.0 ¸ß¼¶api
+        */
+        virtual void detachImpl(Nidx index) = 0;
+    protected:
+        AttachList mAttachList;
+    };
 }
+
 #endif

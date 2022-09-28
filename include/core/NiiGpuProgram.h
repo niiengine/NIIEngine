@@ -47,7 +47,7 @@ namespace NII
         SL_GLSLES   = 0x10000000,           ///< (gles glsles) language
         SL_CG       = 0x8000000,            ///< (nv cg) language
         SL_ASM      = 0x4000000,            ///< (汇编) language
-        SL_ALTER    = 0x2000000,            ///< 一般存在代替方案的着色程序
+        SL_ALTER    = 0x1000000,            ///< 一般存在代替方案的着色程序
 
         SL_ARBVP1 = 0x01 | SL_OPENGL,       ///< gl1.1 arbvp1
         SL_VP_20 = 0x02 | SL_OPENGL,        ///< gl2.0 vp20
@@ -73,6 +73,8 @@ namespace NII
         SL_GLSL_1_5 = 0x400000 | SL_OPENGL,  ///< (gl glsl1.5) language
         SL_GLSL_3_3 = 0x800000 | SL_OPENGL,  ///< (gl glsl3.3) language
         SL_GLSL_4_2 = 0x1000000 | SL_OPENGL,  ///< (gl glsl4.2) language
+        SL_GLSL_4_3 = 0x2000000 | SL_OPENGL,  ///< (gl glsl4.3) language
+        SL_GLSL_4_4 = 0x4000000 | SL_OPENGL,  ///< (gl glsl4.4) language
 
         SL_VS_1_1 = 0x01 | SL_DX,           ///< dx8 vs_1_1
         SL_VS_2_0 = 0x02 | SL_DX,           ///< dx9 vs_2_0

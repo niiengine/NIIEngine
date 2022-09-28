@@ -276,7 +276,6 @@ namespace NII
     class PlaneSpace;
     class MultiTextureFrame;
     class ViewWindow;
-    class RenderObjListener;
     class Resource;
     class ResourceSchemeManager;
     class ResourceManager;
@@ -341,7 +340,7 @@ namespace NII
     class ShaderChColour;
     class ShaderChPoint;
     class ShaderChBlend;
-    class ShaderChDepthStencil;
+    class ShaderChStencil;
     class ShaderChProgram;
     class Texture;
     class TextureManager;
@@ -568,7 +567,8 @@ namespace NII
     #define GroupCustom                 2
     #define GroupDefault                3
     #define GroupInner                  4
-    #define GroupNii                    5
+    #define GroupSeparate               5
+    #define GroupNii                    6
 
     #define Thread_Interrupt
     #define Thread_Signal

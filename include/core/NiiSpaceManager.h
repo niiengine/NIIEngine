@@ -820,12 +820,12 @@ namespace NII
         /** 添加监听
         @version NIIEngine 3.0.0
         */
-        virtual void add(RenderObjListener * obj);
+        virtual void add(GeometryObjListener * obj);
 
         /** 移除监听
         @version NIIEngine 3.0.0
         */
-        virtual void remove(RenderObjListener * obj);
+        virtual void remove(GeometryObjListener * obj);
 
         /** 添加排除渲染组
         @version NIIEngine 3.0.0
@@ -1014,7 +1014,7 @@ namespace NII
         typedef vector<MeshLodEvent>::type MeshLodEventList;
         typedef vector<MaterialLodEvent>::type MaterialLodEventList;
         typedef vector<RenderListener *>::type RenderListenerList;
-        typedef vector<RenderObjListener *>::type GeoRenderListenerList;
+        typedef vector<GeometryObjListener *>::type GeoRenderListenerList;
         static RenderPattern * mNoShadowPattern;
         static CustomRenderList mCustomRenderList;
     protected:

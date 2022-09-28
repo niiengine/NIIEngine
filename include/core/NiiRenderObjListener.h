@@ -36,10 +36,10 @@ namespace NII
 {
     /** 抽象类接口,类必须实现它如果它们希望当单个对象渲染后从场景管理器接收事件 
     */
-    class _EngineAPI RenderObjListener
+    class _EngineAPI GeometryObjListener
     {
     public:
-        virtual ~RenderObjListener() {}
+        virtual ~GeometryObjListener() {}
 
         /** 当开始渲染单个对象事引发的事件
         @remark

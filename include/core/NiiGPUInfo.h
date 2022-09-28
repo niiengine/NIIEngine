@@ -41,16 +41,21 @@ namespace NII
     {
         GT_Unknow   = 0,
         GT_Nvidia   = 1,
-        GT_Ati      = 2,
-        GT_Intel    = 3,
-        GT_PowerVR  = 4,
-        GT_SIS      = 5,
-        GT_S3       = 6,
-        GT_Matrox   = 7,
-        GT_3DLABS   = 8,
-        GT_WARP     = 9,
-        GT_Apple    = 10,
-        GT_Count    = 11
+        GT_Amd      = 2,
+        GT_Arm      = 3,
+        GT_Intel    = 4,
+        GT_PowerVR  = 5,
+        GT_SIS      = 6,
+        GT_S3       = 7,
+        GT_Matrox   = 8,
+        GT_3DLABS   = 9,
+        GT_WARP     = 10,   // Microsoft WARP http://msdn.microsoft.com/en-us/library/dd285359.aspx
+        GT_Apple    = 11,
+        GT_Software = 12, 
+        GT_Qualcomm = 13,
+        GT_Mozilla  = 14,   // WebGL Mozilla/Firefox
+        GT_Webkit   = 15,   // WebGL WebKit/Chrome
+        GT_Count    = 16
     };
 
     /** GPU供应商细节
@@ -61,6 +66,9 @@ namespace NII
     public:
         GpuVendorDetail();
         GpuVendorDetail(GPUVendor v, const String & ser, Nui32 num);
+        
+        /// 
+        static void init() const;
         
         /** 转换类型
         @version NIIEngine 3.0.0

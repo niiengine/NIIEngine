@@ -52,7 +52,7 @@ namespace NII
         GBT_IndirectData    = 10,
         GBT_Count           = 10
     };
-        
+
     /** 着色程序缓存
     @version NIIEngine 5.0.0
     */
@@ -259,8 +259,8 @@ namespace NII
     public:
         enum Type
         {
-            T_Vertex = 0,
-            T_Index
+            T_Vertex = 16,
+            T_Index = 20
         };
     public:
         IndirectBuffer(BufferManager * mag, Type type, NCount size, NCount multi, ModeMark mode, Nui8 * initData, GroupID gid = 0, NCount goft = 0, NCount padSize = 0);

@@ -146,7 +146,7 @@ namespace NII
         /** 附加类型码
         @version NIIEngine 3.0.0 高级api
         */
-        inline GeoRawTypeMark getRawMark() const    { return mMark; }
+        inline GeoRawTypeMark getMark() const       { return mMark; }
         
         /** 设置顶点范围
         @note单位
@@ -222,8 +222,8 @@ namespace NII
         Nmark mVaoType;             ///< 顶点数组类型相同代表数据模型相同 (mMark & GRT_AarryObject)
         Nmark mRenderID;            ///< 渲染ID相同代表潜在优化渲染 (mMark & GRT_AarryObject)
         OperationType mType;        ///< 操作类型
-        NCount mOffset;             ///< 开始绘制处(顶点级偏移)(mMark & GRT_OffsetCount)
-        NCount mCount;              ///< 从开始到结束绘制数(顶点级数量)(mMark & GRT_OffsetCount)
+        NCount mOffset;             ///< 开始绘制处(顶点级偏移)((mMark & GRT_OffsetCount) && ~(mMark & GRT_Indirect))
+        NCount mCount;              ///< 从开始到结束绘制数(顶点级数量)((mMark & GRT_OffsetCount) && ~(mMark & GRT_Indirect))
         NCount mInstanceOffset;     ///< 实例开始((mMark & GRT_Instancing) && ~(mMark & GRT_Indirect))
         NCount mInstanceCount;      ///< 实例数量,着色程序才可控 ((mMark & GRT_Instancing) && ~(mMark & GRT_Indirect))
     private:
