@@ -33,7 +33,6 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 #include "NiiFusion.h"
 #include "NiiViewRectGeo.h"
 #include "NiiFrameFusion.h"
-#include "NiiFrameShaderOp.h"
 
 namespace NII
 {
