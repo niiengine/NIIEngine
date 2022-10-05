@@ -96,7 +96,7 @@ namespace NII
         */
         Texture * touchFusionTexture(FrameFusion * fusion, ResourceID rid, const String & localName,
             NCount w, NCount h, PixelFormat pf, Nui32 fsaa, const String & fsaaHint, bool sRGB,
-                TextureSet & applyList, FrameFusionShader::SourceType scope);
+                TextureSet & applyList, FrameShader::SourceType scope);
 
         /** 释放纹理(未引用)
         @version NIIEngine 3.0.0

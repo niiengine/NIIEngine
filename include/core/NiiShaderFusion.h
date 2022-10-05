@@ -46,17 +46,17 @@ namespace NII
         /** 通道状态合成
         @version NIIEngine 3.0.0
         */
-        class FusionShader : public ShaderAlloc
+        class Fusion : public ShaderAlloc
         {
         public:
-            FusionShader();
-            ~FusionShader();
+            Fusion();
+            ~Fusion();
         public:
             ShaderStep mStep;       ///< 渲染阶段
             ShaderCh * mSrc;        ///< 原始通道
             ShaderCh * mDest;       ///< 推导通道
         };
-        typedef vector<FusionShader *>::type FusionShaderList;
+        typedef vector<Fusion *>::type FusionShaderList;
     public:
         ShaderFusion(Material * parent);
         ShaderFusion(Material * parent, const ShaderFusion & o);

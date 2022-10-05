@@ -40,7 +40,7 @@ namespace NII
     /** 帧通路
     @version NIIEngine 3.0.0
     */
-    class _EngineAPI FrameShaderOp : public FrameAlloc
+    class _EngineAPI FusionShaderOp : public FrameAlloc
     {
     public:
         /**
@@ -63,13 +63,13 @@ namespace NII
 
         typedef std::pair<String, Nui32> OpUnit;
     public:
-        FrameShaderOp(FrameShaderCh * ch);
-        ~FrameShaderOp();
+        FusionShaderOp(FusionShader * ch);
+        ~FusionShaderOp();
 
         /** 获取渲染通路
         @version NIIEngine 3.0.0
         */
-        inline FrameShaderCh * getCh() const    { return mCh; }
+        inline FusionShader * getCh() const    { return mCh; }
 
         /** 获取当前渲染器是否支持
         @version NIIEngine 3.0.0
@@ -318,7 +318,7 @@ namespace NII
         const String & getCustomType() const    { return mCustomType; }
     private:
         Nui32 mID;
-        FrameShaderCh * mCh;
+        FusionShader * mCh;
         String mCustomType;
         OpType mType;
         Material * mMaterial;
@@ -351,18 +351,18 @@ namespace NII
     /** 合成的FrameObj的渲染
     @version NIIEngine 3.0.0
     */
-    class _EngineAPI FrameShaderCh : public FrameAlloc
+    class _EngineAPI FusionShader : public FrameAlloc
     {
     public:
-        typedef vector<FrameShaderOp *>::type OpList;
+        typedef vector<FusionShaderOp *>::type OpList;
     public:
-        FrameShaderCh(FrameFusionShader * fusion);
-        ~FrameShaderCh();
+        FusionShader(FrameShader * fusion);
+        ~FusionShader();
 
         /** 获取父对象
         @version NIIEngine 3.0.0
         */
-        FrameFusionShader * getFusion() const   { return mFusion; }
+        FrameShader * getFusion() const   { return mFusion; }
 
         /** 获取渲染器是否支持.
         @version NIIEngine 3.0.0
@@ -442,7 +442,7 @@ namespace NII
         /** 创建混合操作.
         @version NIIEngine 3.0.0
         */
-        FrameShaderOp * create();
+        FusionShaderOp * create();
 
         /** 移去混合操作.
         @version NIIEngine 3.0.0
@@ -452,7 +452,7 @@ namespace NII
         /** 获取混合操作.
         @version NIIEngine 3.0.0
         */
-        FrameShaderOp * get(Nidx idx);
+        FusionShaderOp * get(Nidx idx);
 
         /** 获取混合操作数量.
         @version NIIEngine 3.0.0
@@ -469,7 +469,7 @@ namespace NII
         */
         const OpList & getList() const          { return mPasses; }
     private:
-        FrameFusionShader * mFusion;
+        FrameShader * mFusion;
         OpList mPasses;
         String mOutputName;
         Nui32 mVisibleMask;
@@ -483,7 +483,7 @@ namespace NII
     /** 基本组成技术
     @version NIIEngine 3.0.0
     */
-    class _EngineAPI FrameFusionShader : public FrameAlloc
+    class _EngineAPI FrameShader : public FrameAlloc
     {
     public:
         /** 合成器的纹理来源
@@ -528,11 +528,11 @@ namespace NII
             bool mFSAA;
             bool mHWGamma;
         };
-        typedef vector<FrameShaderCh *>::type TargetList;
+        typedef vector<FusionShader *>::type TargetList;
         typedef vector<FrameDefine *>::type DefineList;
     public:
-        FrameFusionShader(Fusion * parent);
-        virtual ~FrameFusionShader();
+        FrameShader(Fusion * parent);
+        virtual ~FrameShader();
 
         /** 获取父对象
         @version NIIEngine 3.0.0
@@ -603,7 +603,7 @@ namespace NII
         /** 创建合成通道
         @version NIIEngine 3.0.0
         */
-        FrameShaderCh * createCh();
+        FusionShader * createCh();
 
         /** 移去合成通道
         @version NIIEngine 3.0.0
@@ -613,7 +613,7 @@ namespace NII
         /** 获取合成通道
         @version NIIEngine 3.0.0
         */
-        FrameShaderCh * getCh(Nidx idx) const;
+        FusionShader * getCh(Nidx idx) const;
 
         /** 获取合成通道数量
         @version NIIEngine 3.0.0
@@ -633,12 +633,12 @@ namespace NII
         /** 获取输出混合通道
         @version NIIEngine 3.0.0
         */
-        FrameShaderCh * getOutputCh() const         { return mOutputCh;}
+        FusionShader * getOutputCh() const         { return mOutputCh;}
     private:
         String mName;
         SchemeID mSchemeID;
         Fusion * mParent;
-        FrameShaderCh * mOutputCh;
+        FusionShader * mOutputCh;
         DefineList mDefineList;
         TargetList mTargetList;
     };
@@ -649,7 +649,7 @@ namespace NII
     class _EngineAPI Fusion : public Resource
     {
     public:
-        typedef vector<FrameFusionShader *>::type FrameList;
+        typedef vector<FrameShader *>::type FrameList;
     public:
         Fusion(ResourceID rid, GroupID gid, 
             ResLoadScheme * ls = 0, ResResultScheme * rs = 0, LangID lid = N_PrimaryLang);
@@ -659,7 +659,7 @@ namespace NII
         @param[out] obj 创建合成帧
         @version NIIEngine 3.0.0
         */
-        FrameFusionShader * create();
+        FrameShader * create();
 
         /** 删除指定索引合成帧
         @param[in] index 指定索引
@@ -675,7 +675,7 @@ namespace NII
         /** 获取合成帧
         @version NIIEngine 3.0.0
         */
-        FrameFusionShader * get(Nidx index) const;
+        FrameShader * get(Nidx index) const;
 
         /** 合成帧数量
         @version NIIEngine 3.0.0
@@ -700,13 +700,13 @@ namespace NII
         /** 获取支持的合成帧.
         @version NIIEngine 3.0.0
         */
-        FrameFusionShader * getValid(Nidx idx) const;
+        FrameShader * getValid(Nidx idx) const;
 
         /** 获取支持合成帧
         @param[in] sid 方案ID
         @version NIIEngine 3.0.0
         */
-        FrameFusionShader * getValid(SchemeID sid = 0) const;
+        FrameShader * getValid(SchemeID sid = 0) const;
 
         /** 获取渲染纹理
         @param[in] name

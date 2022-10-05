@@ -364,9 +364,9 @@ namespace NII
     class FrameFusionListener;
     class ScriptModule;
     class GeometryQuery;
-    class FrameShaderOp;
-    class FrameShaderCh;
-    class FrameFusionShader;
+    class FusionShaderOp;
+    class FusionShader;
+    class FrameShader;
     class InputManager;
     class FrameFusionRender;
     class RenderEffectManager;

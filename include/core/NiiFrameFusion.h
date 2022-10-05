@@ -77,7 +77,7 @@ namespace NII
         @param[in] pass
         @version NIIEngine 3.0.0
         */
-        virtual FrameFusionRender * createInstance(FrameFusion * fusion, const FrameShaderOp * op);
+        virtual FrameFusionRender * createInstance(FrameFusion * fusion, const FusionShaderOp * op);
     };
 
     /** 合成实例
@@ -111,18 +111,18 @@ namespace NII
             virtual void notifyMaterialRender(Nui32 shaderchid, Material * obj);
         };
     public:
-        FrameFusion(FrameFusionShader * shader, FrameResult * result);
+        FrameFusion(FrameShader * shader, FrameResult * result);
         virtual ~FrameFusion();
 
         /** 设置使用的渲染
         @param[in] reuseTextures
         */
-        void setShader(FrameFusionShader * shader, bool reuseTextures = true);
+        void setShader(FrameShader * shader, bool reuseTextures = true);
 
         /** 获取合成器混合
         @version NIIEngine 3.0.0
         */
-        inline FrameFusionShader * getShader() const    { return mFusionShader; }
+        inline FrameShader * getShader() const    { return mFusionShader; }
 
         /** 获取合成结果
         @version NIIEngine 3.0.0
@@ -152,7 +152,7 @@ namespace NII
         /** 获取是否启动
         @version NIIEngine 3.0.0
         */
-        bool isEnable() const;
+        bool isEnable() const                           { return mEnabled; }
 
         /** 设置是否活动
         @version NIIEngine 3.0.0
@@ -162,7 +162,7 @@ namespace NII
         /** 获取是否活动
         @version NIIEngine 3.0.0
         */
-        bool isAlive() const;
+        bool isAlive() const                            { return mAlive; }
 
         /** 获取纹理实例.
         @version NIIEngine 3.0.0
@@ -207,16 +207,16 @@ namespace NII
         /** 获取
         @version NIIEngine 3.0.0
         */
-        void deriveOptions(const FrameFusionShader::FrameDefine * def, bool & sRGB, Nui32 & fsaa, String & fsaaHint);
+        void deriveOptions(const FrameShader::FrameDefine * def, bool & sRGB, Nui32 & fsaa, String & fsaaHint);
     private:
         typedef vector<Listener *>::type Listeners;
         typedef map<String, Texture *>::type TextureList;
         typedef map<String, MultiTextureFrame *>::type MultiFrameObjList;
-        typedef map<FrameFusionShader::FrameDefine *, Texture *>::type RefTextureList;
+        typedef map<FrameShader::FrameDefine *, Texture *>::type RefTextureList;
     protected:
         Fusion * mFusion;
         FrameResult * mResult;
-        FrameFusionShader * mFusionShader;
+        FrameShader * mFusionShader;
         Listeners mListeners;
         TextureList mTextureList;
         MultiFrameObjList mMultiFrameObjList;
