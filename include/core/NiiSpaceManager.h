@@ -85,7 +85,7 @@ namespace NII
             Viewport * mView;
             Camera * mCamera;
             RenderQueue * mQueue;
-            FrameResult * mFusion;
+            FusionInstance * mFusion;
             FrameObj * mFrame;
         };
 
@@ -677,12 +677,12 @@ namespace NII
         /** 设置帧合成
         @version NIIEngine 3.0.0 高级api
         */
-        void setFrameResult(FrameResult * chain);
+        void setFrameResult(FusionInstance * chain);
 
         /** 获取帧合成
         @version NIIEngine 3.0.0 高级api
         */
-        FrameResult * getFrameResult() const;
+        FusionInstance * getFrameResult() const;
 
         /** 获取原点节点
         @version NIIEngine 3.0.0 高级api
@@ -1028,7 +1028,7 @@ namespace NII
         LightPlaneClipList mLightPlaneClipList;
         RenderPattern * mRenderPattern;
         RenderQueue * mMainQueue;
-        FrameResult * mFrameResult;
+        FusionInstance * mFrameResult;
         SpaceNode * mOriginNode;
         RenderSys * mGPUSys; //
         Camera * mCamera;

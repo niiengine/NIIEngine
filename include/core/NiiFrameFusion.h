@@ -62,10 +62,10 @@ namespace NII
     /** FrameFusion渲染
     @version NIIEngine 3.0.0
     */
-    class _EngineAPI FrameFusionRender : public FrameAlloc
+    class _EngineAPI FusionRender : public FrameAlloc
     {
     public:
-        virtual ~FrameFusionRender();
+        virtual ~FusionRender();
 
         /** 执行渲染操作
         @vesion NIIEngine 3.0.0
@@ -77,7 +77,7 @@ namespace NII
         @param[in] pass
         @version NIIEngine 3.0.0
         */
-        virtual FrameFusionRender * createInstance(FrameFusion * fusion, const FusionShaderOp * op);
+        virtual FusionRender * createInstance(FrameFusion * fusion, const FusionShaderOp * op);
     };
 
     /** 合成实例
@@ -85,7 +85,7 @@ namespace NII
     */
     class _EngineAPI FrameFusion : public FrameAlloc
     {
-        friend class FrameResult;
+        friend class FusionInstance;
         friend class RectFusionRender;
     public:
         /** 监听器
@@ -111,7 +111,7 @@ namespace NII
             virtual void notifyMaterialRender(Nui32 shaderchid, Material * obj);
         };
     public:
-        FrameFusion(FrameShader * shader, FrameResult * result);
+        FrameFusion(FrameShader * shader, FusionInstance * result);
         virtual ~FrameFusion();
 
         /** 设置使用的渲染
@@ -127,7 +127,7 @@ namespace NII
         /** 获取合成结果
         @version NIIEngine 3.0.0
         */
-        inline FrameResult * getResult() const          { return mResult; }
+        inline FusionInstance * getInstance() const     { return mResult; }
 
         /** 获取合成器
         @version NIIEngine 3.0.0
@@ -215,7 +215,7 @@ namespace NII
         typedef map<FrameShader::FrameDefine *, Texture *>::type RefTextureList;
     protected:
         Fusion * mFusion;
-        FrameResult * mResult;
+        FusionInstance * mResult;
         FrameShader * mFusionShader;
         Listeners mListeners;
         TextureList mTextureList;
@@ -229,13 +229,13 @@ namespace NII
     /** 合成结果.
     @version NIIEngine 3.0.0
     */
-    class _EngineAPI FrameResult : public FrameObjListener, public ViewportListener, public FrameAlloc
+    class _EngineAPI FusionInstance : public FrameObjListener, public ViewportListener, public FrameAlloc
     {
     public:
         typedef vector<FrameFusion *>::type FusionList;
     public:
-        FrameResult(Viewport * vp);
-        virtual ~FrameResult();
+        FusionInstance(Viewport * vp);
+        virtual ~FusionInstance();
 
         /** 获取这个链的目标视口
         @version NIIEngine 3.0.0
@@ -302,7 +302,7 @@ namespace NII
         /** 创建渲染步骤
         @version NIIEngine 3.0.0
         */
-        void setupRender(FrameFusionRender * render);
+        void setupRender(FusionRender * render);
 
         /** 删除渲染步骤
         @version NIIEngine 3.0.0
@@ -342,7 +342,7 @@ namespace NII
     protected:
         void createResource();
         void destroyResource();
-        typedef vector<FrameFusionRender *>::type RenderList;
+        typedef vector<FusionRender *>::type RenderList;
     protected:
         Viewport * mViewport;
         FrameFusion * mOriginal;

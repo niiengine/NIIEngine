@@ -69,17 +69,17 @@ namespace NII
         /** 获取视口的合成帧
         @version NIIEngine 3.0.0
         */
-        FrameResult * getResult(Viewport * vp);
+        FusionInstance * getInstance(Viewport * vp);
 
         /** 获取视口是否存在合成帧
         @version NIIEngine 3.0.0
         */
-        bool isResultExist(Viewport * vp) const;
+        bool isInstanceExist(Viewport * vp) const;
 
         /** 移去视口的合成帧
         @version NIIEngine 3.0.0
         */
-        void removeResult(Viewport * vp);
+        void removeInstance(Viewport * vp);
 
         /** 启用合成帧
         @version NIIEngine 3.0.0
@@ -89,7 +89,7 @@ namespace NII
         /** 重新构建合成帧
         @version NIIEngine 3.0.0
         */
-        void rebuildResult();
+        void rebuildInstance();
 
         /** 检获纹理
         @version NIIEngine 3.0.0
@@ -121,7 +121,7 @@ namespace NII
         /** 添加合成渲染方式
         @version NIIEngine 3.0.0
         */
-        bool addRender(const String & name, FrameFusionRender * render);
+        bool addRender(const String & name, FusionRender * render);
 
         /** 移去合成渲染方式
         @version NIIEngine 3.0.0
@@ -131,7 +131,7 @@ namespace NII
         /** 获取合成渲染方式
         @version NIIEngine 3.0.0
         */
-        FrameFusionRender * getRender(const String & name);
+        FusionRender * getRender(const String & name);
 
         /// @copydetails Resource::removeAll
         void removeAll();
@@ -150,9 +150,9 @@ namespace NII
                 const PropertyData * params);
     private:
         typedef map<Nui64, Texture *>::type DefineList;
-        typedef map<Viewport *, FrameResult *>::type FusionResultList;
+        typedef map<Viewport *, FusionInstance *>::type FusionResultList;
         typedef map<String, FrameFusionListener *>::type ListenerList;
-        typedef map<String, FrameFusionRender *>::type RenderList;
+        typedef map<String, FusionRender *>::type RenderList;
         typedef map<Nui64, TextureList *>::type TempTextureList;
         typedef map<std::pair<ResourceID, String>, DefineList>::type FusionTextureList;
     private:

@@ -359,7 +359,7 @@ namespace NII
     class ThreadManager;
     class Fusion;
     class FusionManager;
-    class FrameResult;
+    class FusionInstance;
     class FrameFusion;
     class FrameFusionListener;
     class ScriptModule;
@@ -368,7 +368,7 @@ namespace NII
     class FusionShader;
     class FrameShader;
     class InputManager;
-    class FrameFusionRender;
+    class FusionRender;
     class RenderEffectManager;
     class IDManager;
     class Pattern;
