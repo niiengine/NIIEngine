@@ -507,6 +507,11 @@ namespace NII
             NCount mBatchCount;
             bool mEnable;
         };
+        
+        typedef map<Nid, FusionMetadata::Fusion*>::type FusionNodeTypeMap;
+        typedef vector<ShadowMetadata *>::type FusionNodeTypeList;
+        typedef map<Nid, FusionMetadata*>::type FusionMetadataList;
+        typedef vector<Fusion *>::type FusionList;
     public:
         RenderSys();
         virtual ~RenderSys();
@@ -1133,11 +1138,13 @@ namespace NII
         virtual void _render();
         
         /** 执行已经设置的任务并且清理之前设置的状态
+        @note 把结果显现出来(可能并不是显示图像)
         @version NIIEngine 5.0.0
         */
         virtual void _clear();
 
         /** 执行已经设置的任务
+        @note 把结果显现出来(可能并不是显示图像)
         @version NIIEngine 5.0.0
         */
         virtual void _flush() = 0;
@@ -1170,7 +1177,12 @@ namespace NII
         /**
         @version NIIEngine 5.0.0
         */
-        void _update();
+        virtual void _update();
+        
+        /**
+        @version NIIEngine 6.0.0
+        */
+        virtual void  _updateFusion();
         
         /**
         @version NIIEngine 5.0.0
@@ -1349,7 +1361,7 @@ namespace NII
         /** 开始帧缓存对象
         @version NIIEngine 5.0.0
         */
-        virtual void beginFBO(FrameBufferObject * fbo, Texture * target, NCount mipLevel, const ViewportList & list, bool warnIfRtvWasFlushed);
+        virtual void beginFBO(FrameBufferObject * fbo, Texture * target, NCount mipLevel, const ViewportList & list);
 
         /** 执行帧缓存对象
         @version NIIEngine 5.0.0
@@ -1594,6 +1606,136 @@ namespace NII
         virtual void removeListener(Listener * l);
         
         /**
+        @version NIIEngine 6.0.0
+        */
+        FusionMetadata::Fusion * createFusionNodeType(const String & name, FusionType type);
+
+        /**
+        @version NIIEngine 6.0.0
+        */
+        FusionMetadata::Fusion * getFusionNodeType(Nid name, FusionType type) const;
+
+        /**
+        @version NIIEngine 6.0.0
+        */
+        bool isFusionNodeTypeExist(Nid name, FusionType type) const;
+
+        /**
+        @version NIIEngine 6.0.0
+        */
+        const FusionNodeTypeMap & getFusionNodeTypeList() const        { return mFusionNodeTypeList; }
+
+        /**
+        @version NIIEngine 6.0.0
+        */
+        void removeFusionNodeType(Nid name, FusionType type);
+        
+        /**
+        @version NIIEngine 6.0.0
+        */
+        void removeAllFusionNodeType(FusionType type);
+        
+        /**
+        @version NIIEngine 6.0.0
+        */
+        FusionMetadata * createFusionType(const String & name);
+
+        /**
+        @version NIIEngine 6.0.0
+        */
+        void removeFusionType( Nid name );
+
+        /**
+        @version NIIEngine 6.0.0
+        */
+        void removeAllFusionType();
+
+        /**
+        @version NIIEngine 6.0.0
+        */
+        bool isFusionTypeExist(Nid name) const;
+
+        /**
+        @version NIIEngine 6.0.0
+        */
+        FusionMetadata * getFusionType(Nid name) const;
+
+        /**
+        @version NIIEngine 6.0.0
+        */
+        size_t getFrameCount() const                            { return mFrameCount; }
+        
+        /** 默认合成场景
+        @version NIIEngine 6.0.0
+        */
+        Fusion * getFusion() const                              { return mFusion; }
+
+        /**
+        @version NIIEngine 6.0.0
+        */
+        TextureGpu * createShadowTexture( PixelFormat pf );
+
+        /**
+        @version NIIEngine 6.0.0
+        */
+        RectGeo * getFullScreenTriangle() const                 { return mFSTriangle; }
+
+        /**
+        @version NIIEngine 6.0.0
+        */
+        RectGeo * getFullScreenQuad() const                     { return mFSQuad; }
+
+        /**
+        @version NIIEngine 6.0.0
+        */
+        Fusion * addFusion( SceneManager * mag, const TextureList & targetlist, Camera * cam,
+            int position = -1, const Vector2f & vpOffset = Vector2f::ZERO, const Vector2f & vpScale = Vector2f::UNIT);
+
+        /**
+        @version NIIEngine 6.0.0
+        */
+        void removeFusion( Fusion * fusion );
+
+        /**
+        @version NIIEngine 6.0.0
+        */
+        void removeAllFusion();
+
+        /**
+        @version NIIEngine 6.0.0
+        */
+        size_t getFusionCount() const                               { return mFusionList.size(); }
+        
+        /**
+        @version NIIEngine 6.0.0
+        */
+        void _swapFusion();
+
+        /**
+        */
+        void createSpaceFusionType( const String & fusiontype, const Colour & colour);
+
+        /**
+        @version NIIEngine 6.0.0
+        */
+        void setFusionFactory(FusionFactory * factory)              { mFusionFactory = factory; }
+
+        /**
+        @version NIIEngine 6.0.0
+        */
+        FusionFactory * getFusionFactory() const                    { return mFusionFactory; }
+
+        /**
+        @version NIIEngine 6.0.0
+        */
+        void addListener(FusionListener * listener);
+
+        /**
+        @version NIIEngine 6.0.0
+        */
+        void removeListener(FusionListener * listener);
+        
+        /**
         @version NIIEngine 5.0.0
         */
         virtual void signal(EventID eid, const PropertyData * params= 0)
@@ -1701,6 +1843,7 @@ namespace NII
         GpuProgramParam * mFFGPP;
         GeometryRaw * mGeometry;
         RenderFeature * mFeature;
+        Fusion * mFusion;
         GBufferManager * mBufferManager;
         TextureManager * mTextureManager;
         FrameBufferObject * mActiveFrame;
@@ -1740,6 +1883,21 @@ namespace NII
         Nui32 mShaderVersion;
         NCount mViewportCount;
         Nidx mUavStartingSlot;
+        
+        FusionNodeTypeMap mFusionNodeTypeList;
+        FusionNodeTypeMap mShadowNodeTypeList;
+        FusionNodeTypeList mUnfinishedShadowNodes;
+
+        FusionMetadataList mFusionMetadataList;
+        FusionFactory * mFusionFactory;
+        
+        FusionList mFusionList;
+        FusionListenerList mListeners;
+        size_t mFrameCount;
+        TextureList mNullTextureList;
+        RectGeo * mFSTriangle;
+        RectGeo * mFSQuad;
+        
         bool mFixedPipelineMode;
         bool mVertexTextureShared;
         bool mVPMode;

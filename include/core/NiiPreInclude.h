@@ -102,7 +102,7 @@ namespace NII
     class UnitFusion;
     class AnimationFusionObj;
     class VertexKeyFrameTrack;
-    class ViewRectGeo;
+    class RectGeo;
     class PropertyKeyFrameTrack;
     class TrackTime;
     class KeyFrameTrack;

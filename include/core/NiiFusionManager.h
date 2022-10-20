@@ -157,7 +157,7 @@ namespace NII
         typedef map<std::pair<ResourceID, String>, DefineList>::type FusionTextureList;
     private:
         FusionResultList mFusionResultList;
-        mutable ViewRectGeo * mRect;
+        mutable RectGeo * mRect;
         ListenerList mListenerList;
         RenderList mRenderList;
         TempTextureList mTempTextureList;
