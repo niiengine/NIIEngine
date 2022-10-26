@@ -468,6 +468,7 @@ namespace NII
     typedef vector<NIIf>::type BufferArray;
     typedef vector<Nid>::type IDList;
     typedef vector<Nidx>::type IdxList;
+    typedef vector<Nui32>::type ChList;
     typedef vector<ResourceID>::type ResourceIDList;
     typedef vector<GroupID>::type GroupIDList;
     typedef vector<ObjID>::type ObjIDList;
