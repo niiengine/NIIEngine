@@ -147,8 +147,8 @@ namespace NII
 
             struct Item
             {
-                Item(TextureGpu * tex, Operation op) : mTexture(tex), mOp(op) {}
-                TextureGpu * mTexture;
+                Item(Texture * tex, Operation op) : mTexture(tex), mOp(op) {}
+                Texture * mTexture;
                 Operation mOp;
                 NIIi mErrorCode;
                 bool mImmediate;
@@ -305,12 +305,12 @@ namespace NII
         /** 复制数据结构模型
         @version NIIEngine 5.0.0
         */
-        void copyModel(TextureGpu * src);
+        void copyModel(Texture * src);
 
         /** 复制数据结构模型是否相同
         @version NIIEngine 5.0.0
         */
-        bool isModelEqual(const TextureGpu & o) const;
+        bool isModelEqual(const Texture & o) const;
         
         /** 等待纹理完成加载
         @version NIIEngine 6.0.0
@@ -426,6 +426,11 @@ namespace NII
         @version NIIEngine 5.0.0
         */
         virtual void mipmap() = 0;
+        
+        /** 生成抗锯齿结果
+        @version NIIEngine 6.0.0
+        */
+        void msaa(Texture * dst);
         
         /** 设置纹理宽度/高度/深度/数组
         @remark 期望宽度,需在加载前设置
@@ -736,17 +741,6 @@ namespace NII
         */
         virtual void getMultiSampleCoord(Vector2List & location) = 0;
 
-        /**
-        @param dst
-        @param dstBox
-        @param dstMipLevel
-        @param srcBox
-        @param srcMipLevel
-        @param mass
-        */
-        virtual void memcpy(TextureGpu * dst, const PixelBlock & dstBox, Nui8 dstMip,
-            const PixelBlock & srcBox, Nui8 srcMip);
-
         bool isPool() const                         { return (mMark & MM_POOL) == MM_POOL;}
         bool isPoolSlice() const                    { return (mMark & MM_POOLSLICE) == MM_POOLSLICE;}
         bool isTexture() const                      { return (mMark & (MM_FRAME | MM_Window)) == 0;}
@@ -790,11 +784,6 @@ namespace NII
         @version NIIEngine 5.0.0
         */
         void process(Process::Operation prc, bool immediate = false);
-        
-        /** 
-        @version NIIEngine 6.0.0
-        */
-        void msaa(Texture * dst);
 
         /**
         @version NIIEngine 5.0.0
@@ -804,18 +793,23 @@ namespace NII
         /**
         @version NIIEngine 5.0.0
         */
-        void read(PixelBlock & dst, const PixelBlock & src, bool autoResolve = true);
+        void read(PixelBlock & dst, const PixelBlock & src, bool msaa = true);
         
         /**
         @version NIIEngine 5.0.0
         */
-        void read(Image * dst, NCount srcMinMip, NCount srcMaxMip, bool autoResolve = true);
+        void read(Image * dst, NCount srcMinMip, NCount srcMaxMip, bool msaa = true);
+        
+        /**
+        @version NIIEngine 5.0.0
+        */
+        virtual void memcpy(Texture * dst, const PixelBlock & dstBox, Nui8 dstMip, const PixelBlock & srcBox, Nui8 srcMip, bool msaa = true);
 
         /** 
         @version NIIEngine 5.0.0
         */
         void write(Image * src, NCount minMip, NCount maxMip, NCount depthidx = 0u, NCount depthcnt = -1, NCount arrayidx = 0, NCount arraycnt = -1);
-
+        
         /**
         @version NIIEngine 5.0.0
         */
