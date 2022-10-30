@@ -91,9 +91,9 @@ namespace NII
             8x CSAA(Quality),setCsaa(8, true)
             16x CSAA, setCsaa(16, false)
             16x CSAA(Quality),setCsaa(16, true)
-        @param cass 8 or 16
+        @param csaa 8 or 16
         */
-        void setCsaa(Nui8 cass, bool quality);
+        void setCsaa(Nui8 csaa, bool quality);
 
         /**
             2f4x EQAA call setEqaa( 2u, 4u )
@@ -154,6 +154,7 @@ namespace NII
                 bool mImmediate;
             };                
 
+            typedef list<Item>::type ItemList;
             virtual void process(const Item & item) = 0;
         };
         vector<Process *>::type ProcessList;
@@ -768,12 +769,12 @@ namespace NII
         /**
         @version NIIEngine 5.0.0
         */
-        void addListener(Process * prc);
+        void addProcess(Process * prc);
 
         /**
         @version NIIEngine 5.0.0
         */
-        void removeListener(Process * prc);
+        void removeProcess(Process * prc);
         
         /**
         @version NIIEngine 5.0.0

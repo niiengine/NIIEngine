@@ -34,15 +34,255 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 
 namespace NII
 {
+    struct _EngineAPI TexturePool
+    {
+        Texture * mPool;
+        SliceList mFreeList;
+        TextureList mUsedList;
+        Nui16 mNextSlice;
+        bool mPrimary;
+
+        bool isFree() const;
+        bool empty() const;
+    };
+
+    typedef list<TexturePool>::type TexturePoolList;
+    
+    struct MappedPool
+    {
+        MappedPool() : mFormat(PF_UNKNOWN), mDim(0), mArray(0) {}
+        MappedPool(PixelFormat pf, NCount dim, NCount array) :
+            mFormat(pf), 
+            mDim(dim), 
+            mArray(array) {}
+
+        bool operator () (const MappedPool & o1, const MappedPool & o2) const;
+            
+        PixelFormat mFormat;
+        NCount mDim;
+        NCount mArray;
+    };
+
+    typedef vector<MappedPool>::type MappedPoolList;
+
     /** 纹理管理器类
     @version NIIEngine 3.0.0
     */
-    class _EngineAPI TextureManager : public ResourceManager, public Singleton<TextureManager>
+    class _EngineAPI TextureManager : public ResourceManager, public Texture::Process, public ThreadMain, public Singleton<TextureManager>
     {
+    public:
+        struct Metadata
+        {
+            Metadata();
+            
+            ResourceID mName;
+            GroupID mPoolId;
+            PixelFormat mFormat;
+            Texture::Type mType;
+            NCount mWidth;
+            NCount mHeight;
+            NCount mDepth;
+            NCount mArray;
+            NCount mMipmapCount;
+        };
+
+        typedef map<ResourceID, Metadata>::type MetadataList;
+
+        struct Item
+        {
+            Item() : mTexture( 0 ) {}
+            Item(ResourceID rid, GroupID gid, Texture * tex, Nmark mark) :
+                mRID(rid), mGroup(gid), mTexture(tex), mMark(mark), mDestroyTask(false)
+            {
+            }
+            
+            Texture * mTexture;
+            Nmark mMark;
+            ResourceID mRID;
+            GroupID mGroup;
+            bool mDestroyTask;
+        };
+        typedef map<ResourceID, Item>::type ItemList;
     public:
         TextureManager();
         virtual ~TextureManager();
 
+        /** 设置类型
+        @version NIIEngine 5.0.0
+        */
+        void setMipmapGen(Texture::MipmapGenType type)              { mMipmapGen = type; }
+
+        /** 获取类型
+        @version NIIEngine 5.0.0
+        */
+        Texture::MipmapGenType getMipmapGen() const                 { return mMipmapGen; }
+
+        /** 设置类型
+        @version NIIEngine 5.0.0
+        */
+        void setCubemapMipmapGen(Texture::MipmapGenType type)       { mMipmapGenCube = type; }
+
+        /** 获取类型
+        @version NIIEngine 5.0.0
+        */
+        Texture::MipmapGenType getCubemapMipmapGen() const          { return mMipmapGenCube; }
+
+        /** 获取纹理项目
+        @version NIIEngine 5.0.0
+        */
+        const ItemList & getItemList() const                        { return mItemList; }
+
+        /** 更新
+        @param sync 等待更新完成
+        @version NIIEngine 5.0.0
+        */
+        bool _update(bool sync);
+
+        /** 等待数据完成
+        @version NIIEngine 5.0.0
+        */
+        void waitAll();
+
+        /** 等待数据完成
+        @version NIIEngine 5.0.0
+        */
+        void wait(Texture * tex, bool metadata, bool cpudata = false);
+
+        /**
+        @version NIIEngine 3.0.0
+        */
+        Texture * createPool(GroupID pid, NCount width, NCount height, NCount array, NCount mipmaps, PixelFormat pf);
+
+        /**
+        @version NIIEngine 5.0.0
+        */
+        bool isPoolExist(GroupID pid) const;
+        
+        /**
+        @version NIIEngine 5.0.0
+        */
+        bool isPoolExist(GroupID pid, NCount width, NCount height, NCount mipmaps, PixelFormat pf) const;
+
+        /**
+        @version NIIEngine 5.0.0
+        */
+        void poolAlloc(Texture * texture);
+
+        /**
+        @version NIIEngine 5.0.0
+        */
+        void poolFree(Texture * texture);
+
+        /** 
+        @version NIIEngine 5.0.0
+        */
+        MappedTexture * createMapped(NCount width, NCount height, NCount depth, NCount array, PixelFormat pf, NIIf usedThreshold = 0.25);
+            
+        /** 
+        @version NIIEngine 5.0.0
+        */
+        void removeMapped(MappedTexture * mapped);
+        
+        /**
+        @version NIIEngine 5.0.0
+        */
+        void destroyAllMapped();
+        
+        /**
+        @version NIIEngine 5.0.0
+        */
+        void setMappedMaxDim(NCount dim);
+        
+        /**
+        @version NIIEngine 5.0.0
+        */
+        NCount getMappedMaxDim() const;
+        
+        /** 
+        @version NIIEngine 5.0.0
+        */
+        void setMappedMaxSize(NCount size);
+        
+        /** 
+        @version NIIEngine 5.0.0
+        */
+        NCount getMappedMaxSize() const;
+        
+        /** 
+        @version NIIEngine 5.0.0
+        */
+        void setMappedPoolMaxSize(NCount size)              { mMappedPoolMaxSize = size; }
+        
+        /** 
+        @version NIIEngine 5.0.0
+        */
+        NCount getMappedPoolMaxSize() const                 { return mMappedPoolMaxSize; }
+
+        /**
+        @version NIIEngine 5.0.0
+        */
+        TextureAsync * createAsync(NCount width, NCount height, NCount depth, NCount array, Texture::Type type, PixelFormat pf);
+                    
+        /**
+        @version NIIEngine 5.0.0
+        */
+        void destroyAsync(TextureAsync * async);
+        
+        /**
+        @version NIIEngine 5.0.0
+        */
+        void destroyAllAsync();
+
+        /**
+        @version NIIEngine 5.0.0
+        */
+        void _updateMetadata(Texture * texture);
+        
+        /**
+        @version NIIEngine 5.0.0
+        */
+        void _removeMetadata(Texture * texture);
+        
+        /**
+        @version NIIEngine 5.0.0
+        */
+        void readMetadata(const String & filename, const Nui8 * data, bool createpool);
+        
+        /**
+        @version NIIEngine 5.0.0
+        */
+        void writeMetadata(String & out);
+        
+        /**
+        @version NIIEngine 5.0.0
+        */
+        void setMaxProcessSize(NCount size)     { mMaxProcessSize = size; }
+        
+        /**
+        @version NIIEngine 5.0.0
+        */
+        NCount getMaxProcessSize() const        { return mMaxProcessSize; }
+        
+        /**
+        @version NIIEngine 5.0.0
+        */
+        bool executeTask(Texture * texture, Texture::Process::Operation reason, const Texture::Task & task);
+
+        /**
+        @version NIIEngine 5.0.0
+        */
+        virtual void process(const Item & item);
+
+        /**
+        @version NIIEngine 5.0.0
+        */
+        void schedule(Texture * dst, const Task & task);
+
+        /**
+        @version NIIEngine 5.0.0
+        */
+        void syncToCpu(Texture * dst, bool storage);
+        
         /** 设置默认纹理位深
         @param[in] bit 位深
         @param[in] reload 重载所有纹理
@@ -68,27 +308,13 @@ namespace NII
         inline NCount getMipMapCount() const    { return mMipMapCount; }
 
         /** 创建纹理
-        @param rid 资源句柄,这个句柄很可能是无定义的
-        @version NIIEngine 3.0.0 高级api
-        */
-        Texture * createTexture(ResourceID rid, GroupID gid);
-
-        /** 创建纹理
         @param[in] rid 资源句柄
         @param[in] w 宽
         @param[in] h 高
         @param[in] pf 像素格式
         @version NIIEngine 3.0.0 高级api
         */
-        Texture * createTexture(ResourceID rid, GroupID gid, NCount w, NCount h, PixelFormat pf = PF_A8B8G8R8);
-
-        /** 创建纹理
-        @param rid 句柄
-        @param file 文件
-        @param gid 资源组
-        @version NIIEngine 3.0.0 高级api
-        */
-        Texture * createTexture(ResourceID rid, GroupID gid, const String & file);
+        Texture * createTexture(ResourceID rid, GroupID gid, GroupID poolId, NCount w, NCount h, PixelFormat pf = PF_A8B8G8R8, const String & file = N_StrBlank);
 
         /** 创建纹理
         @param rid 句柄
@@ -96,24 +322,34 @@ namespace NII
         @param d 深度
         @version NIIEngine 3.0.0 高级api
         */
-        Texture * createTexture(ResourceID rid, GroupID gid, Texture::Type type, PixelFormat pf, NCount w, NCount h, 
-            NCount d = 1, NIIi mipmaps = -1, Nmark usage = Texture::MM_MIPMAP_AUTO | Buffer::M_DEV | Buffer::M_WRITE,
+        Texture * createTexture(ResourceID rid, GroupID gid, GroupID poolId, Texture::Type type, PixelFormat pf, NCount w, NCount h, 
+            NCount d = 1, NIIi mipmaps = -1, Nmark usage = Texture::MM_MIPMAP_AUTO | Buffer::M_NORMAL ,
             ResLoadScheme * ls = 0, ResResultScheme * rs = 0, bool HWsRGB = false, 
             NCount fsaa = 0, const String & fsaaHint = StrUtil::WBLANK);
+            
+        /**
+        @version NIIEngine 5.0.0
+        */
+        void destroyTexture(Texture * texture);
+
+        /**
+        @version NIIEngine 5.0.0
+        */
+        void destroyAllTextures();
 
         /** 安排资源
         @version NIIEngine 3.0.0
         */
         virtual Texture * plan(ResourceID rid, GroupID gid, Texture::Type type = Texture::T_2D,
             PixelFormat pf = PF_UNKNOWN, NIIi mipmaps = -1, NIIf gamma = 1.0f,
-            Nmark mark = Texture::MM_AGP_COLOUR | Texture::MM_AGP_ALPHA);
+            Nmark mark = Texture::MM_FRAME_RGB | Texture::MM_FRAME_A);
 
         /** 加载
         @version NIIEngine 3.0.0
         */
         virtual Texture * load(ResourceID rid, GroupID gid, Texture::Type type = Texture::T_2D,
             PixelFormat pf = PF_UNKNOWN, NIIi mipmaps = -1, NIIf gamma = 1.0f,
-            Nmark mark = Texture::MM_AGP_COLOUR | Texture::MM_AGP_ALPHA);
+            Nmark mark = Texture::MM_FRAME_RGB | Texture::MM_FRAME_A);
 
         /** 从图片中加载
         @param[in] img 像素来源
@@ -121,7 +357,7 @@ namespace NII
         */
         virtual Texture * load(ResourceID rid, GroupID gid, const Image & img,
             Texture::Type type = Texture::T_2D, PixelFormat pf = PF_UNKNOWN, NIIi mipmaps = -1,
-            NIIf gamma = 1.0f, Nmark mark = Texture::MM_AGP_COLOUR | Texture::MM_AGP_ALPHA);
+            NIIf gamma = 1.0f, Nmark mark = Texture::MM_FRAME_RGB | Texture::MM_FRAME_A);
 
         /** 从流中加载
         @param[in] stream 像素来源,未编码的数据流
@@ -129,7 +365,7 @@ namespace NII
         */
         virtual Texture * load(ResourceID rid, GroupID gid, DataStream * stream, NCount w, NCount h, 
             Texture::Type type = Texture::T_2D, PixelFormat pf = PF_UNKNOWN, NIIi mipmaps = -1,
-            NIIf gamma = 1.0f, Nmark mark = Texture::MM_AGP_COLOUR | Texture::MM_AGP_ALPHA);
+            NIIf gamma = 1.0f, Nmark mark = Texture::MM_FRAME_RGB | Texture::MM_FRAME_A);
 
         /** 获取渲染系统实际使用的格式
         @version NIIEngine 3.0.0 高级api
@@ -144,24 +380,100 @@ namespace NII
         */
         static void convert(Image & dst, Texture * src);
 
-        /** 计算纹理大小(辅助)
-        @param[in] mipmaps LOD映射
-        @param[in] faces 面数量
-        @version NIIEngine 3.0.0
-        */
-        static NCount calcSize(NCount mipmaps, NCount faces, NCount w, NCount h, NCount d, PixelFormat pf);
-
         /** 获取错误加载时使用的纹理
         @version NIIEngine 3.0.0
         */
-        Texture * getWarning() const;
+        Texture * getWarning() const                { return mWarningTexture; }
     protected:
+        void swapWorker();
+    
+        bool _setMetadata(Texture * tex);
+        
+        void processSchedule(Texture * texture, Texture::Process::Operation reason, bool immediate);
+
+        void processLoadRequest(const TextureRequest & req);
+
         /// @copydetails Resource::init
         void init();
+        
+        /**
+        @version NIIEngine 5.0.0
+        */
+        void destroyAll();
+        
+        /**
+        @version NIIEngine 5.0.0
+        */
+        void destroyAllPools();
+
+        /**
+        @version NIIEngine 5.0.0
+        */
+        virtual Texture * createTextureImpl(RecoverType rtype, IdString name, uint32 textureFlags, Texture::Type type) = 0;
+
+        /**
+        @version NIIEngine 5.0.0
+        */
+        virtual MappedTexture * createMappedImpl(NCount width, NCount height, NCount depth, NCount array, PixelFormat pf)=0;
+
+        /**
+        @version NIIEngine 5.0.0
+        */
+        virtual void destroyMappedImpl(MappedTexture * mapped) = 0;
+
+        /**
+        @version NIIEngine 5.0.0
+        */
+        virtual TextureAsync * createAsyncImpl(NCount width, NCount height, NCount array, Texture::Type type, PixelFormat pf) = 0;
     protected:
+        typedef vector<Texture::Task>::type TaskList;
+        typedef map<Texture *, TaskList>::type TextureTaskList;
+        
+        struct SyncTask
+        {
+            Texture * mTexture;
+            TextureAsyncList mAsyncList;
+            Nui8 * mData;
+            bool mStorage;
+        };
+        typedef vector<SyncTask>::type SyncList;
+
+        Texture::MipmapGenType mMipmapGen;
+        Texture::MipmapGenType mMipmapGenCube;
+        ThreadCondition mRequestCond;
+        ThreadCondition mCond;
+        ThreadMutex mRequestMutex;
+        ThreadMutex mMutex;
+        
+        MappedPoolList mMappedPoolList;
+        ThreadData mThreadData[2];
+        StreamingData mStreamingData;
+
+        TexturePoolList mPool;
+        
+        ItemList mItemList;
+        MetadataList mMetadataList;
+        ThreadMutex mEntriesMutex;
+
+        NCount mMappedPoolMaxSize;
+        NCount mMaxProcessRequest;
+        NCount mMaxProcessSize;
+
+        MappedTextureList mMappedList;
+        MappedTextureList mFreeMappedList;
+
+        SyncList mSyncList;
+        TextureAsyncList mAsyncList;
+        TextureTaskList mTextureTaskList;
+        Texture::Process::ItemList mProcessList;
+
+        Nui8 mDummyData[128];
+        
         NCount mBitDepth;
         NCount mMipMapCount;
-        mutable Texture * mWarningTexture;
+        Texture * mWarningTexture;
+        bool mDoProcess;
+        bool mShuttingDown;
     };
 }
 #endif

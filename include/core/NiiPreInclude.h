@@ -469,6 +469,7 @@ namespace NII
     typedef vector<Nid>::type IDList;
     typedef vector<Nidx>::type IdxList;
     typedef vector<Nui32>::type ChList;
+    typedef vector<Nui16>::type SliceList
     typedef vector<ResourceID>::type ResourceIDList;
     typedef vector<GroupID>::type GroupIDList;
     typedef vector<ObjID>::type ObjIDList;

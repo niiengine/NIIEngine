@@ -370,32 +370,32 @@ namespace NII
             PixelFormat pf = PF_UNKNOWN, Nui8 * data = 0);
         ~PixelBlock();
         
-        /**
+        /** 设置格式
         @version NIIEngine 3.0.0
         */
         inline void setFormat(PixelFormat pf)   { mFormat = pf; }
 
-        /**
+        /** 获取格式
         @version NIIEngine 3.0.0
         */
         inline PixelFormat getFormat() const    { return mFormat; }
 
-        /**
+        /** 获取总大小
         @version NIIEngine 3.0.0
         */
         inline NCount getSize() const           { return mSliceSize * getVolume(); }
 
-        /**
+        /** 是否压缩格式
         @version NIIEngine 3.0.0
         */
         inline bool isCompress() const          { return PixelUtil::isCompress(pf); }
         
-        /**
+        /** 空
         @version NIIEngine 3.0.0
         */
         inline bool isEmpty() const             { return mWidth == 0 && mHeight == 0 && mDepth == 0;}
         
-        /**
+        /** 是否容积相等
         @version NIIEngine 3.0.0
         */
         bool equalVolume(const PixelBlock & o) const
@@ -403,7 +403,7 @@ namespace NII
             return mWidth == o.mWidth && mHeight == o.mHeight && mDepth == o.mDepth && mArray == o.mArray;
         }
         
-        /**
+        /** 是否容积相等
         @verison NIIEngine 3.0.0
         */
         bool equalVolume(const PixelVolume & o) const
@@ -412,7 +412,7 @@ namespace NII
                 mFormat == o.mFormat;
         }
         
-        /**
+        /** 是否片相等
         @version NIIEngine 3.0.0
         */
         bool equalSlice(const PixelBlock & o) const
@@ -420,7 +420,7 @@ namespace NII
             return mWidth == o.mWidth && mHeight == o.mHeight && mFormat == o.mFormat;
         }
         
-        /**
+        /** 是否片相等
         @verison NIIEngine 3.0.0
         */
         bool equalSlice(const PixelVolume & o) const
@@ -428,7 +428,7 @@ namespace NII
             return mWidth == o.mWidth && mHeight == o.mHeight && mFormat == o.mFormat;
         }
         
-        /**
+        /** 是否数据结构相等
         @verison NIIEngine 3.0.0
         */
         bool equal(const PixelBlock & o) const

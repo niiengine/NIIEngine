@@ -219,22 +219,22 @@ namespace NII
         /** 设置内存使用极限
         @version NIIEngine 3.0.0
         */
-        void setMemMax(NCount c);
+        void setMemMax(NCount c)                { mMemMax = c; }
 
         /** 获取内存使用极限
         @version NIIEngine 3.0.0
         */
-        NCount getMemMax() const;
+        NCount getMemMax() const                { return mMemMax; }
 
         /** 获取内存使用数量
         @version NIIEngine 3.0.0
         */
-        NCount getMemUsage() const;
+        NCount getMemUsage() const              { return mMemUsage; }
 
         /** 资源类型
         @version NIIEngine 3.0.0
         */
-        ResourceType getType() const;
+        ResourceType getType() const            { return mType;}
 
         /** 分配有效的资源ID
         @remark 设计模式中使用
@@ -245,18 +245,18 @@ namespace NII
         /** 设置输出详细程度
         @version NIIEngine 3.0.0
         */
-        void setVerbose(VerboseMode m);
+        void setVerbose(VerboseMode m)          { mVerbose = m; }
 
         /** 获取输出详细程度
         @version NIIEngine 3.0.0
         */
-        VerboseMode getVerbose();
+        VerboseMode getVerbose()                { return mVerbose; }
 
         /** 获取处理资源列表
         @note 线程不安全的
         @version NIIEngine 3.0.0 高级api
         */
-        const PrcIDMap & getPrcResList();
+        const PrcIDMap & getPrcResList()        { return mPrcIDs; }
     public:
         /** 通知这个管理器,一个资源的被引用
         @version NIIEngine 3.0.0
@@ -293,6 +293,11 @@ namespace NII
         */
         virtual Resource * createImpl(ResourceID rid, GroupID gid,
             ResLoadScheme * ls, ResResultScheme * rs, const PropertyData * params) = 0;
+            
+        /** 删除资源
+        @version NIIEngine 5.0.0 高级api
+        */ 
+        virtual destroyImpl(Resource * obj) = 0;
 
         /** 添加对象到管理器中
         @version NIIEngine 3.0.0 高级api
