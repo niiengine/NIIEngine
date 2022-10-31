@@ -134,6 +134,7 @@ namespace NII
                 O_CpuToDisk,//write to disk
                 O_GpuToDisk,//write to disk
                 O_InGpu,
+                O_InCpu,
                 O_Valid,
                 O_OutCpu,
                 O_OutGpu,

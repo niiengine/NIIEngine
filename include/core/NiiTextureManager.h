@@ -56,7 +56,7 @@ namespace NII
             mDim(dim), 
             mArray(array) {}
 
-        bool operator () (const MappedPool & o1, const MappedPool & o2) const;
+        bool operator()(const MappedPool & o1, const MappedPool & o2) const;
             
         PixelFormat mFormat;
         NCount mDim;
@@ -138,37 +138,57 @@ namespace NII
         */
         bool _update(bool sync);
 
-        /** 等待数据完成
+        /** 等待所有纹理数据完成
         @version NIIEngine 5.0.0
         */
         void waitAll();
 
-        /** 等待数据完成
+        /** 等待纹理数据完成
         @version NIIEngine 5.0.0
         */
         void wait(Texture * tex, bool metadata, bool cpudata = false);
+        
+        /** 添加映射池
+        @version NIIEngine 5.0.0
+        */
+        void addMappedPool(PixelFormat pf, NCount dim, NCount array);
+        
+        /** 映射池是否存在
+        @version NIIEngine 5.0.0
+        */
+        bool isMappedPoolExist(PixelFormat pf, NCount dim);
+        
+        /** 获取所有映射池
+        @version NIIEngine 5.0.0
+        */
+        const MappedPoolList & getMappedPoolList() const            { return mMappedPoolList; }
 
-        /**
+        /** 创建纹理池
         @version NIIEngine 3.0.0
         */
         Texture * createPool(GroupID pid, NCount width, NCount height, NCount array, NCount mipmaps, PixelFormat pf);
 
-        /**
+        /** 纹理池是否存在
         @version NIIEngine 5.0.0
         */
         bool isPoolExist(GroupID pid) const;
         
-        /**
+        /** 纹理池是否存在
         @version NIIEngine 5.0.0
         */
         bool isPoolExist(GroupID pid, NCount width, NCount height, NCount mipmaps, PixelFormat pf) const;
+        
+        /** 获取纹理池列表
+        @version NIIEngine 5.0.0
+        */
+        const TexturePoolList & getPoolList() const                 { return mPool; }
 
-        /**
+        /** 纹理池中分配纹理
         @version NIIEngine 5.0.0
         */
         void poolAlloc(Texture * texture);
 
-        /**
+        /** 纹理池删除纹理
         @version NIIEngine 5.0.0
         */
         void poolFree(Texture * texture);
@@ -246,7 +266,7 @@ namespace NII
         /**
         @version NIIEngine 5.0.0
         */
-        void readMetadata(const String & filename, const Nui8 * data, bool createpool);
+        void readMetadata(DataStream * in, bool createpool);
         
         /**
         @version NIIEngine 5.0.0
@@ -409,7 +429,7 @@ namespace NII
         /**
         @version NIIEngine 5.0.0
         */
-        virtual Texture * createTextureImpl(RecoverType rtype, IdString name, uint32 textureFlags, Texture::Type type) = 0;
+        virtual Texture * createTextureImpl(RecoverType rtype, IdString name, Nmark usage, Texture::Type type) = 0;
 
         /**
         @version NIIEngine 5.0.0
@@ -453,7 +473,7 @@ namespace NII
         
         ItemList mItemList;
         MetadataList mMetadataList;
-        ThreadMutex mEntriesMutex;
+        ThreadMutex mItemMutex;
 
         NCount mMappedPoolMaxSize;
         NCount mMaxProcessRequest;
