@@ -90,7 +90,7 @@ namespace NII
 
         struct Item
         {
-            Item() : mTexture( 0 ) {}
+            Item() : mTexture(0) {}
             Item(ResourceID rid, GroupID gid, Texture * tex, Nmark mark) :
                 mRID(rid), mGroup(gid), mTexture(tex), mMark(mark), mDestroyTask(false)
             {
@@ -186,12 +186,12 @@ namespace NII
         /** 纹理池中分配纹理
         @version NIIEngine 5.0.0
         */
-        void poolAlloc(Texture * texture);
+        void poolAlloc(Texture * tex);
 
         /** 纹理池删除纹理
         @version NIIEngine 5.0.0
         */
-        void poolFree(Texture * texture);
+        void poolFree(Texture * tex);
 
         /** 
         @version NIIEngine 5.0.0
@@ -256,12 +256,12 @@ namespace NII
         /**
         @version NIIEngine 5.0.0
         */
-        void _updateMetadata(Texture * texture);
+        void _updateMetadata(Texture * tex);
         
         /**
         @version NIIEngine 5.0.0
         */
-        void _removeMetadata(Texture * texture);
+        void _removeMetadata(Texture * tex);
         
         /**
         @version NIIEngine 5.0.0
@@ -286,7 +286,7 @@ namespace NII
         /**
         @version NIIEngine 5.0.0
         */
-        bool executeTask(Texture * texture, Texture::Process::Operation reason, const Texture::Task & task);
+        bool executeTask(Texture * tex, Texture::Process::Operation reason, const Texture::Task & task);
 
         /**
         @version NIIEngine 5.0.0
@@ -405,6 +405,9 @@ namespace NII
         */
         Texture * getWarning() const                { return mWarningTexture; }
     protected:
+        /// @copydetails ThreadMain::run
+        void run(void * arg);
+
         void swapWorker();
     
         bool _setMetadata(Texture * tex);
@@ -458,22 +461,19 @@ namespace NII
         };
         typedef vector<SyncTask>::type SyncList;
 
+        TextureThreadData * mTTData;
         Texture::MipmapGenType mMipmapGen;
         Texture::MipmapGenType mMipmapGenCube;
         ThreadCondition mRequestCond;
         ThreadCondition mCond;
         ThreadMutex mRequestMutex;
         ThreadMutex mMutex;
-        
-        MappedPoolList mMappedPoolList;
-        ThreadData mThreadData[2];
-        StreamingData mStreamingData;
-
-        TexturePoolList mPool;
+        ThreadMutex mItemMutex;
         
         ItemList mItemList;
+        TexturePoolList mPool;
+        MappedPoolList mMappedPoolList;
         MetadataList mMetadataList;
-        ThreadMutex mItemMutex;
 
         NCount mMappedPoolMaxSize;
         NCount mMaxProcessRequest;

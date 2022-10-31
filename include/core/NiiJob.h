@@ -84,37 +84,37 @@ namespace NII
         /** 任务是否被停止
         @version NIIEngine 3.0.0
         */
-        bool isStop() const;
+        bool isStop() const             {return mAborted;}
 
         /** 获取ID
         @note 如果返回0则代表任务没有启动
         @version NIIEngine 3.0.0
         */
-        inline RequestID getID() const { return mID; }
+        inline RequestID getID() const  { return mID; }
 
         /** 设置重试次数
         @version NIIEngine 3.0.0
         */
-        void setRetryCount(NCount c);
+        void setRetryCount(NCount c)    { mRetryCount = c; }
 
         /** 获取重试次数
         @version NIIEngine 3.0.0
         */
-        NCount getRetryCount() const;
+        NCount getRetryCount() const    { return mRetryCount; }
 
         /** 设置任务超时
         @remark 任务从开始历经的时间超过参数的将自动结束任务
         @param[in] ms 默认为0,表示没有时间限制
         @version nIIEngine 3.0.0
         */
-        void setTimeOut(TimeDurMS ms);
+        void setTimeOut(TimeDurMS ms)   { mTimeOut = ms; }
 
         /** 获取任务超时
         @remark 任务从开始历经的时间超过参数的将自动结束任务
         @return 默认为0,表示没有时间限制.单位:毫秒
         @version NIIEngine 3.0.0
         */
-        TimeDurMS getTimeOut() const;
+        TimeDurMS getTimeOut() const    { return mTimeOut; }
 
         /** 设置是否使用独立的线程
         @note 仅在任务未处理前设置有效
