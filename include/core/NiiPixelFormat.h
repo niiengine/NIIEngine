@@ -337,8 +337,56 @@ namespace NII
     class _EngineAPI PixelVolume : public BufferAlloc
     {
     public:
+        PixelVolume();
         PixelVolume(NCount width, NCount height, NCount depth, PixelFormat pf);
         PixelVolume(NCount width, NCount height, NCount depth, NCount array, PixelFormat pf);
+        
+        /** 设置格式
+        @version NIIEngine 3.0.0
+        */
+        inline void setFormat(PixelFormat pf)       { mFormat = pf; }
+
+        /** 获取格式
+        @version NIIEngine 3.0.0
+        */
+        inline PixelFormat getFormat() const        { return mFormat; }
+        
+        /** 获取这个盒子的宽
+        @version NIIEngine 3.0.0
+        */
+        inline NCount getWidth() const              { return mWidth; }
+
+        /** 获取这个盒子的高
+        @version NIIEngine 3.0.0
+        */
+        inline NCount getHeight() const             { return mHeight; }
+
+        /** 获取这个盒子的深
+        @version NIIEngine 3.0.0
+        */
+        inline NCount getDepth() const              { return mDepth; }
+        
+        /** 获取这个盒子的数组
+        @version NIIEngine 3.0.0
+        */
+        inline NCount getArray() const              { return mArray; }
+        
+        /** 是否容积相等
+        @verison NIIEngine 3.0.0
+        */
+        bool equalVolume(const PixelVolume & o) const
+        {
+            return mWidth == o.mWidth && mHeight == o.mHeight && mDepth == o.mDepth && mArray == o.mArray && 
+                mFormat == o.mFormat;
+        }
+        
+        /** 是否片相等
+        @verison NIIEngine 3.0.0
+        */
+        bool equalSlice(const PixelVolume & o) const
+        {
+            return mWidth == o.mWidth && mHeight == o.mHeight && mFormat == o.mFormat;
+        }
     public:
         NCount mWidth, mHeight, mDepth, mArray; ///< 假设以后支持3D Array纹理
         PixelFormat mFormat;
@@ -347,7 +395,7 @@ namespace NII
     /** 像素块
     @version NIIEngine 3.0.0
     */
-    class _EngineAPI PixelBlock : public BufferAlloc
+    class _EngineAPI PixelBlock : public PixelVolume
     {
     public:
         /** 像素过滤
@@ -369,16 +417,6 @@ namespace NII
         PixelBlock(NCount width, NCount height, NCount depth, NCount array, NCount unitSize, NCount rowSize, NCount sliceSize, 
             PixelFormat pf = PF_UNKNOWN, Nui8 * data = 0);
         ~PixelBlock();
-        
-        /** 设置格式
-        @version NIIEngine 3.0.0
-        */
-        inline void setFormat(PixelFormat pf)   { mFormat = pf; }
-
-        /** 获取格式
-        @version NIIEngine 3.0.0
-        */
-        inline PixelFormat getFormat() const    { return mFormat; }
 
         /** 获取总大小
         @version NIIEngine 3.0.0
@@ -403,27 +441,10 @@ namespace NII
             return mWidth == o.mWidth && mHeight == o.mHeight && mDepth == o.mDepth && mArray == o.mArray;
         }
         
-        /** 是否容积相等
-        @verison NIIEngine 3.0.0
-        */
-        bool equalVolume(const PixelVolume & o) const
-        {
-            return mWidth == o.mWidth && mHeight == o.mHeight && mDepth == o.mDepth && mArray == o.mArray && 
-                mFormat == o.mFormat;
-        }
-        
         /** 是否片相等
         @version NIIEngine 3.0.0
         */
         bool equalSlice(const PixelBlock & o) const
-        {
-            return mWidth == o.mWidth && mHeight == o.mHeight && mFormat == o.mFormat;
-        }
-        
-        /** 是否片相等
-        @verison NIIEngine 3.0.0
-        */
-        bool equalSlice(const PixelVolume & o) const
         {
             return mWidth == o.mWidth && mHeight == o.mHeight && mFormat == o.mFormat;
         }
@@ -455,26 +476,6 @@ namespace NII
             return o.mLeft >= mLeft && o.getRight() <= getRight() && o.mTop >= mTop && o.getBottom() <= getBottom() &&
                 o.mFront >= mFront && o.getBack() <= getBack() && o.mArrayIdx >= mArrayIdx && o.getMaxArray() <= getMaxArray();
         }
-
-        /** 获取这个盒子的宽
-        @version NIIEngine 3.0.0
-        */
-        inline NCount getWidth() const              { return mWidth; }
-
-        /** 获取这个盒子的高
-        @version NIIEngine 3.0.0
-        */
-        inline NCount getHeight() const             { return mHeight; }
-
-        /** 获取这个盒子的深
-        @version NIIEngine 3.0.0
-        */
-        inline NCount getDepth() const              { return mDepth; }
-        
-        /** 获取这个盒子的数组
-        @version NIIEngine 3.0.0
-        */
-        inline NCount getArray() const              { return mArray; }
         
         /** 获取这个盒子的右边
         @version NIIEngine 3.0.0
@@ -578,9 +579,7 @@ namespace NII
         static void applyGamma(Nui8 * data, NIIf gamma, NCount size, NCount bpp);
     public:
         const Nui8 * mData;
-        PixelFormat mFormat;
         NCount mLeft, mTop, mFront, mArrayIdex; ///< 假设以后支持3D Array纹理
-        NCount mWidth, mHeight, mDepth, mArray; ///< 假设以后支持3D Array纹理
         NCount mUnitSize;                       ///< 单位字节
         NCount mRowSize;                        ///< 单位字节
         NCount mSliceSize;                      ///< 单位字节

@@ -282,7 +282,7 @@ namespace NII
             bool mImmediate = false;
         }
     public:
-        Texture(RecoverType rtype, IdString name, Nui32 flags, Type type);
+        Texture(ResourceID rid, Type type, Nmark usage, RecoverType rtype);
                     
         virtual ~Texture();
         

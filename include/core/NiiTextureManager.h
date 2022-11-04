@@ -64,6 +64,7 @@ namespace NII
     };
 
     typedef vector<MappedPool>::type MappedPoolList;
+    class ImageSlice;
 
     /** 纹理管理器类
     @version NIIEngine 3.0.0
@@ -196,7 +197,7 @@ namespace NII
         /** 
         @version NIIEngine 5.0.0
         */
-        MappedTexture * createMapped(NCount width, NCount height, NCount depth, NCount array, PixelFormat pf, NIIf usedThreshold = 0.25);
+        MappedTexture * createMapped(const PixelVolume & vol, NIIf usedThreshold = 0.25);
             
         /** 
         @version NIIEngine 5.0.0
@@ -326,6 +327,15 @@ namespace NII
         @version NIIEngine 3.0.0
         */
         inline NCount getMipMapCount() const    { return mMipMapCount; }
+        
+        /** 创建纹理
+        @param[in] rid 资源句柄
+        @param[in] w 宽
+        @param[in] h 高
+        @param[in] pf 像素格式
+        @version NIIEngine 3.0.0 高级api
+        */
+        Texture * createTexture(ResourceID rid, GroupID gid, GroupID poolId, RecoverType rtype, Texture::FeatureType type);
 
         /** 创建纹理
         @param[in] rid 资源句柄
@@ -334,7 +344,7 @@ namespace NII
         @param[in] pf 像素格式
         @version NIIEngine 3.0.0 高级api
         */
-        Texture * createTexture(ResourceID rid, GroupID gid, GroupID poolId, NCount w, NCount h, PixelFormat pf = PF_A8B8G8R8, const String & file = N_StrBlank);
+        Texture * createTexture(ResourceID rid, GroupID gid, GroupID poolId, RecoverType rtype, Texture::Type type = Texture::T_2D, PixelFormat pf = PF_A8B8G8R8, const String & file = N_StrBlank);
 
         /** 创建纹理
         @param rid 句柄
@@ -342,8 +352,8 @@ namespace NII
         @param d 深度
         @version NIIEngine 3.0.0 高级api
         */
-        Texture * createTexture(ResourceID rid, GroupID gid, GroupID poolId, Texture::Type type, PixelFormat pf, NCount w, NCount h, 
-            NCount d = 1, NIIi mipmaps = -1, Nmark usage = Texture::MM_MIPMAP_AUTO | Buffer::M_NORMAL ,
+        Texture * createTexture(ResourceID rid, GroupID gid, GroupID poolId, RecoverType rtype, Texture::Type type, 
+            PixelFormat pf, NCount w, NCount h, NCount d = 1, NIIi mipmaps = -1, Nmark usage = Texture::MM_MIPMAP_AUTO | Buffer::M_NORMAL ,
             ResLoadScheme * ls = 0, ResResultScheme * rs = 0, bool HWsRGB = false, 
             NCount fsaa = 0, const String & fsaaHint = StrUtil::WBLANK);
             
@@ -406,17 +416,9 @@ namespace NII
         Texture * getWarning() const                { return mWarningTexture; }
     protected:
         /// @copydetails ThreadMain::run
-        void run(void * arg);
+        void run(void * arg); 
 
-        void swapWorker();
-    
-        bool _setMetadata(Texture * tex);
-        
-        void processSchedule(Texture * texture, Texture::Process::Operation reason, bool immediate);
-
-        void processLoadRequest(const TextureRequest & req);
-
-        /// @copydetails Resource::init
+        /// @copydetails ResourceManager::init
         void init();
         
         /**
@@ -432,12 +434,12 @@ namespace NII
         /**
         @version NIIEngine 5.0.0
         */
-        virtual Texture * createTextureImpl(RecoverType rtype, IdString name, Nmark usage, Texture::Type type) = 0;
+        virtual Texture * createTextureImpl(ResourceID rid, Texture::Type type, Nmark usage, RecoverType rtype) = 0;
 
         /**
         @version NIIEngine 5.0.0
         */
-        virtual MappedTexture * createMappedImpl(NCount width, NCount height, NCount depth, NCount array, PixelFormat pf)=0;
+        virtual MappedTexture * createMappedImpl(const PixelVolume & vol)=0;
 
         /**
         @version NIIEngine 5.0.0
@@ -448,6 +450,16 @@ namespace NII
         @version NIIEngine 5.0.0
         */
         virtual TextureAsync * createAsyncImpl(NCount width, NCount height, NCount array, Texture::Type type, PixelFormat pf) = 0;
+        
+        void swapWorker();
+    
+        bool _setMetadata(Texture * tex);
+        
+        void processSchedule(Texture * texture, Texture::Process::Operation reason, bool immediate);
+
+        void processLoadRequest(const TextureRequest & req);
+        
+        void processSlice(ImageSlice * slice)
     protected:
         typedef vector<Texture::Task>::type TaskList;
         typedef map<Texture *, TaskList>::type TextureTaskList;
