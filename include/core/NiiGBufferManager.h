@@ -57,25 +57,33 @@ namespace NII
             ST_Count
         };
     public:
-        /**
-        @version NIIEngine 5.0.0
-        */
-        struct _EngineAPI MemoryStatsEntry
-        {
-            MemoryStatsEntry( uint32 type, NCount oft, NCount size, NCount reserve ) :
-                poolType( type ), offset( oft ),
-                sizeBytes( size ), poolCapacity( reserve ) {}
-
-            uint32 poolType;
-            NCount offset;
-            NCount sizeBytes;
-            NCount poolCapacity; /// This value is the same for all entries with same poolType & poolIdx
-        };
-
-        typedef vector<MemoryStatsEntry>::type MemoryStatsList;
-        
         GBufferManager();
         virtual ~GBufferManager();
+        
+        /** 
+        @version NIIEngine 5.0.0
+        */
+        virtual void _update();
+        
+        /**
+        @version NIIEngine 6.0.0
+        */
+        virtual uint8 wait() = 0;
+
+        /** 
+        @version NIIEngine 6.0.0
+        */
+        virtual void wait(NCount frameCount) = 0;
+        
+        /** 
+        @version NIIEngine 6.0.0
+        */
+        virtual void _beginFrame() {}
+        
+        /** 
+        @version NIIEngine 6.0.0
+        */
+        virtual void _endFrame() {}
         
         /**
         @version NIIEngine 5.0.0
@@ -316,31 +324,6 @@ namespace NII
         @version NIIEngine 3.0.0
         */
         void destroyAll();
-
-        /**
-        @version NIIEngine 3.0.0
-        */
-        virtual void getMemoryStats(MemoryStatsList & outStats, size_t & outCapacityBytes, size_t & outFreeBytes, Log * log) const = 0;
-
-        /** 
-        @version NIIEngine 5.0.0
-        */
-        virtual void _beginFrame(void) {}
-        
-        /** 
-        @version NIIEngine 5.0.0
-        */
-        virtual void _update(void);
-
-        /**
-        @version NIIEngine 5.0.0
-        */
-        void _notifyStagingBufferEnteredZeroRef( MappedBuffer * buf );
-        
-        /**
-        @version NIIEngine 5.0.0
-        */
-        void _notifyStagingBufferLeftZeroRef( MappedBuffer * buf );
         
         /** 获取最大顶点成分
         @version NIIEngine 
@@ -360,63 +343,21 @@ namespace NII
         /**
         @version NIIEngine 5.0.0
         */
-        inline Timer * getTimer(void)                                   { return mTimer; }
+        inline Timer * getTimer()                                       { return mTimer; }
 
         /**
         @version NIIEngine 5.0.0
         */
         inline uint32 getFrameCount() const                             { return mFrameCount; }
-        
-        /**
-        @version NIIEngine 5.0.0
-        */
-        virtual bool isStaticUpdate() const                     { return true; }
 
         /**
-        @version NIIEngine 5.0.0
+        @version NIIEngine 6.0.0
         */
-        //void setDefaultStagingBufferlifetime( uint32 lifetime, uint32 unfencedTime );
-
-        /**
-        @version NIIEngine 5.0.0
-        */
-        //inline uint32 getDefaultStagingBufferUnfencedTime() const       { return mDefaultStagingBufferUnfencedTime; }
-        
-        /**
-        @version NIIEngine 5.0.0
-        */
-        //inline uint32 getDefaultStagingBufferLifetime() const           { return mDefaultStagingBufferLifetime; }
-
-        /// Returns the current frame # (which wraps to 0 every mDynamicBufferMultiplier
-        /// times). But first stalls until that mDynamicBufferMultiplier-1 frame behind
-        /// is finished.
-        virtual uint8 waitForTailFrameToFinish(void) = 0;
-
-        /** Waits for a specific frame to be ready.
-            Calling waitForSpecificFrameToFinish( mFrameCount - mDynamicBufferMultiplier )
-            equals to calling waitForTailFrameToFinish.
-        @remarks
-            WARNING: calling waitForSpecificFrameToFinish( mFrameCount ); will perform
-            a full stall!
-        @par
-            Avoid calling this function. Some implementations may decide to always full stall
-            unless (mFrameCount - frameCount) >= mDynamicBufferMultiplier
-        */
-        virtual void waitForSpecificFrameToFinish( NCount frameCount ) = 0;
-
-        /// If this returns true, then waitForSpecificFrameToFinish is guaranteed to return immediately.
-        virtual bool isFrameFinished( NCount frameCount ) = 0;
+        virtual bool isFrameFinished(NCount frameCount) = 0;
     protected:
-        /** Removes all the buffers whose destruction was delayed until now.
-        @remarks
-            Reads mDynamicBufferCurrentFrame and mFrameCount.
-            Caller is responsible for hazard checking.
-        */
-        void destroyDelayedBuffers( uint8 fromDynamicFrame );
+        void destroyRecover(Nui32 frameMark);
         
-        void _destroyAllDelayedBuffers(void);
-
-        inline void callDestroyBufferImpl( GpuBuffer * buffer );
+        void destroyAllRecover();
     public:
         /** 回收
         @version NIIEngine 高级api
@@ -462,6 +403,16 @@ namespace NII
         @version NIIEngine 3.0.0
         */
         virtual void onDestroy(GeometryPixel * obj);
+        
+        /**
+        @version NIIEngine 5.0.0
+        */
+        void onUnRef(MappedBuffer * buf);
+        
+        /**
+        @version NIIEngine 5.0.0
+        */
+        void onRef(MappedBuffer * buf);
     protected:
         N_mutex(mVertexBuffersMutex)
         N_mutex(mIndexBuffersMutex)
@@ -502,11 +453,11 @@ namespace NII
         struct Recover
         {
             GpuBuffer * mBuffer;
-            uint32 frame;
-            uint8 frameNumDynamic;
+            Nui32 mFrame;       //理想帧
+            Nui32 mFrameMark;   //实际帧
 
-            Recover( GpuBuffer * buffer, uint32 _frame, uint8 _frameNumDynamic ) :
-                mBuffer( buffer ), frame( _frame ), frameNumDynamic( _frameNumDynamic ) {}
+            Recover(GpuBuffer * buffer, Nui32 frameCount, Nui32 frameMark) :
+                mBuffer(buffer), mFrame(frameCount), mFrameMark(frameMark) {}
         };
 
         typedef vector<Recover>::type RecoverList;
@@ -522,6 +473,7 @@ namespace NII
         typedef set<GeometryRaw *>::type VAOList;
         typedef vector<GpuGroupID>::type GpuGroupList;
     protected:
+        Timer * mTimer;
         VertexDataList mVertexDataList;
         IndexBufferList mIndexBuffers;
         VertexBufferList mVertexBuffers;
@@ -531,6 +483,8 @@ namespace NII
         TextureBufferList mTextureBufferList;
         StorageBufferList mStorageBufferList;
         GeometryPixelList mGeoPixelList;
+        MappedBufferList mRefMappedList;
+        MappedBufferList mFreeMappedList;
         RecoverList mRecoverList;
         VAOList mVAOList;
         GpuGroupList mGpuGroupList;
@@ -538,18 +492,8 @@ namespace NII
         NCount mAlignment[GBT_Count];
         NCount mMaxSize[GBT_Count];
         NCount mMaxVertexAttribs;
-        Timer * mTimer;
-
-        uint32 mDefaultStagingBufferUnfencedTime;
-        uint32 mDefaultStagingBufferLifetime;
-
-        MappedBufferList mRefMappedList;
-        MappedBufferList mFreeMappedList;
-
         bool mForcePoolGroup;
-        uint8 mDynamicBufferMultiplier;
-        uint8 mDynamicBufferCurrentFrame;
-        unsigned long mNextStagingBufferTimestampCheckpoint;
+        Nui64 mNextCheck;
         uint32 mFrameCount;
         uint32 mValidVAO;
     };

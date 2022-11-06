@@ -378,9 +378,9 @@ namespace NII
         /// @copydetails Buffer::getHostData
         virtual Nui8 * getHostData() const;
     protected:
-        virtual TextureBuffer* createViewImpl( PixelFormat pf ) = 0;
-        virtual TextureBuffer* createIndexImpl( NCount usize ) = 0;
-        virtual TextureBuffer* createIndirectImpl( IndirectBuffer::Type type ) = 0;
+        virtual TextureBuffer* createViewImpl(PixelFormat pf) = 0;
+        virtual TextureBuffer* createIndexImpl(NCount usize) = 0;
+        virtual TextureBuffer* createIndirectImpl(IndirectBuffer::Type type) = 0;
     protected:
         TextureBufferList mTextureList;
         IndexBufferList mIndexBuffer;
@@ -394,6 +394,7 @@ namespace NII
     */
     class _EngineAPI MappedBuffer : public BufferAlloc
     {
+        friend class GBufferManager;
     public:
         enum BlockType
         {
