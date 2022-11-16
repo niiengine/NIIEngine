@@ -61,7 +61,7 @@ namespace NII
         virtual ~GBufferManager();
         
         /** 
-        @version NIIEngine 5.0.0
+        @version NIIEngine 6.0.0
         */
         virtual void _update();
         
@@ -450,6 +450,9 @@ namespace NII
         */
         virtual void destroyPoolImpl(GpuGroupID gid) = 0;
     protected:
+        /**
+        @remark 实际帧达到了理想帧说明任务已经完成了
+        */
         struct Recover
         {
             GpuBuffer * mBuffer;
@@ -474,6 +477,7 @@ namespace NII
         typedef vector<GpuGroupID>::type GpuGroupList;
     protected:
         Timer * mTimer;
+        VAOList mVAOList;
         VertexDataList mVertexDataList;
         IndexBufferList mIndexBuffers;
         VertexBufferList mVertexBuffers;
@@ -486,16 +490,15 @@ namespace NII
         MappedBufferList mRefMappedList;
         MappedBufferList mFreeMappedList;
         RecoverList mRecoverList;
-        VAOList mVAOList;
         GpuGroupList mGpuGroupList;
         NCount mPoolDefaultSize;
         NCount mAlignment[GBT_Count];
         NCount mMaxSize[GBT_Count];
         NCount mMaxVertexAttribs;
+        Nui32 mFrameCount;
+        Nui32 mValidVAO;
         bool mForcePoolGroup;
         Nui64 mNextCheck;
-        uint32 mFrameCount;
-        uint32 mValidVAO;
     };
 }
 #endif

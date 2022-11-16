@@ -60,12 +60,12 @@ namespace NII
         /** 设置是否自动删除
         @version NIIEngine 3.0.0
         */
-        void setAutoDestroy(bool b);
+        void setAutoDestroy(bool b)             { mAutoDestroy = b; }
 
         /** 获取是否自动删除
         @version NIIEngine 3.0.0
         */
-        bool isAutoDestroy() const;
+        bool isAutoDestroy() const              { return mAutoDestroy; }
 
         /** 任务的频繁类型
         @note 用于调整缓存存储结构

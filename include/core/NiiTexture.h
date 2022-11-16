@@ -780,7 +780,7 @@ namespace NII
         /**
         @version NIIEngine 5.0.0
         */
-        const ProcessList & getListeners() const                    { return mListeners; }
+        const ProcessList & getProcessList() const                  { return mProcessList; }
 
         /**
         @version NIIEngine 5.0.0
@@ -892,7 +892,7 @@ namespace NII
         StringList mOriginList;
         TextureBufferList mViewList;
         GpuBuffer * mMainGpuBuffer;
-        ProcessList mListeners;
+        ProcessList mProcessList;
         TexturePool * mPool;
         GroupID mPoolId;
         NCount mWidth;                  ///< 纹理的宽(实际显示)

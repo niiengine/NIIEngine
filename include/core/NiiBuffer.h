@@ -389,6 +389,14 @@ namespace NII
             M_EXT35 = 0x10000000000000
         };
         typedef Nmark ModeMark;
+        
+        enum OpType
+        {
+            OT_UNKNOW,
+            OT_READ,
+            OT_WRITE,
+            OT_READWRITE
+        };
 
         /** 锁定特征
         @remark 用于上锁操作

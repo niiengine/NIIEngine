@@ -128,11 +128,6 @@ namespace NII
         */
         Texture::MipmapGenType getCubemapMipmapGen() const          { return mMipmapGenCube; }
 
-        /** 获取纹理项目
-        @version NIIEngine 5.0.0
-        */
-        const ItemList & getItemList() const                        { return mItemList; }
-
         /** 更新
         @param sync 等待更新完成
         @version NIIEngine 5.0.0
@@ -238,6 +233,11 @@ namespace NII
         @version NIIEngine 5.0.0
         */
         NCount getMappedPoolMaxSize() const                 { return mMappedPoolMaxSize; }
+        
+        /** 获取纹理项目
+        @version NIIEngine 5.0.0
+        */
+        const ItemList & getItemList() const                { return mItemList; }
 
         /**
         @version NIIEngine 5.0.0
@@ -451,14 +451,29 @@ namespace NII
         */
         virtual TextureAsync * createAsyncImpl(NCount width, NCount height, NCount array, Texture::Type type, PixelFormat pf) = 0;
         
+        /**
+        @version NIIEngine 5.0.0
+        */
         void swapWorker();
     
+        /**
+        @version NIIEngine 5.0.0
+        */
         bool _setMetadata(Texture * tex);
         
+        /**
+        @version NIIEngine 5.0.0
+        */
         void processSchedule(Texture * texture, Texture::Process::Operation reason, bool immediate);
 
+        /**
+        @version NIIEngine 5.0.0
+        */
         void processLoadRequest(const TextureRequest & req);
         
+        /**
+        @version NIIEngine 5.0.0
+        */
         void processSlice(ImageSlice * slice)
     protected:
         typedef vector<Texture::Task>::type TaskList;
