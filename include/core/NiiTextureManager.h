@@ -365,7 +365,7 @@ namespace NII
         /**
         @version NIIEngine 5.0.0
         */
-        void destroyAllTextures();
+        void destroyAllTexture();
 
         /** 安排资源
         @version NIIEngine 3.0.0
@@ -429,7 +429,7 @@ namespace NII
         /**
         @version NIIEngine 5.0.0
         */
-        void destroyAllPools();
+        void destroyAllPool();
 
         /**
         @version NIIEngine 5.0.0

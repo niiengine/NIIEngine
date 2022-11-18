@@ -33,6 +33,40 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 
 namespace NII
 {
+    /**
+    @remark 所有需要排序的成分汇总成一个数值,只需排序这个数值就可以确认渲染次序
+    */
+    struct RenderQueueItem
+    {
+        RenderQueueItem() : mSortNum(0), mGeometryObj(0), mSpaceObj(0) {}
+        RenderQueueItem(uint64 sn, GeometryObj * gobj, SpaceObj * sobj) :
+            mSortNum(sn), mGeometryObj(gobj), mSpaceObj(sobj) {}
+
+        bool operator < (const RenderQueueItem & o) const
+        {
+            return mSortNum < o.mSortNum;
+        }
+    public:
+        GeometryObj * mGeometryObj;
+        SpaceObj * mSpaceObj;
+        Nui64 mSortNum;         ///< 排序数值
+    };
+    
+    /** 渲染几何
+    @version NIIEngine 3.0.0
+    */
+    struct RenderCh
+    {
+        RenderCh(GeometryObj * geo, SpaceObj * sobj, ShaderCh * shader) :
+            mGeo(geo),
+            mSpace(sobj),
+            mCh(shader) {}
+
+        ShaderCh * mCh;
+        GeometryObj * mGeo;
+        SpaceObj * mSpace;
+    };
+    
     /** 渲染过滤器
     @version NIIEngine 3.0.0 高级api
     */
@@ -45,7 +79,7 @@ namespace NII
         /** 执行渲染
         @version NIIEngine 3.0.0
         */
-        virtual void render(const ShaderCh * ch, GeometryObj * obj) = 0;
+        virtual void render(const ShaderCh * ch, GeometryObj * gobj, SpaceObj * sobj) = 0;
 
         /** 执行渲染
         @version NIIEngine 3.0.0
@@ -59,22 +93,9 @@ namespace NII
     enum RenderSortMode
     {
         RSM_View_Descending = 0x01, ///< 由视口距离降序
-        RSM_View_Ascending = 0x02, ///< 由视口距离升序
-        RSM_Ch_Index = 0x04, ///< 由渲染通路的先后绘制排序
+        RSM_View_Ascending = 0x02,  ///< 由视口距离升序
+        RSM_Ch_Index = 0x04,        ///< 由渲染通路的先后绘制排序
         RSM_All = 0x07
-    };
-
-    /** 渲染几何
-    @version NIIEngine 3.0.0
-    */
-    struct RenderCh
-    {
-        RenderCh(GeometryObj * geo, ShaderCh * shader) :
-            mGeo(geo),
-            mCh(shader) {}
-
-        ShaderCh * mCh;
-        GeometryObj * mGeo;
     };
 
     /** 渲染排序
@@ -101,12 +122,12 @@ namespace NII
         /** 添加排序模式
         @version NIIEngine 3.0.0
         */
-        void addSort(RenderSortMode om) { mSortMark |= om; }
+        void addSort(RenderSortMode om)         { mSortMark |= om; }
 
         /** 移去排序模式
         @version NIIEngine 3.0.0
         */
-        void removeSort(RenderSortMode om) { mSortMark &= ~om; }
+        void removeSort(RenderSortMode om)      { mSortMark &= ~om; }
 
         /** 移去所有
         @version NIIEngine 3.0.0
