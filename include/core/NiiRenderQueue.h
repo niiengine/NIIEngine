@@ -39,7 +39,7 @@ namespace NII
     struct RenderQueueItem
     {
         RenderQueueItem() : mSortNum(0), mGeometryObj(0), mSpaceObj(0) {}
-        RenderQueueItem(uint64 sn, GeometryObj * gobj, SpaceObj * sobj) :
+        RenderQueueItem(SpaceObj * sobj, GeometryObj * gobj, Nui64 sn) :
             mSortNum(sn), mGeometryObj(gobj), mSpaceObj(sobj) {}
 
         bool operator < (const RenderQueueItem & o) const
@@ -47,24 +47,26 @@ namespace NII
             return mSortNum < o.mSortNum;
         }
     public:
-        GeometryObj * mGeometryObj;
         SpaceObj * mSpaceObj;
+        GeometryObj * mGeometryObj;
         Nui64 mSortNum;         ///< 排序数值
     };
+    
+    typedef vector<RenderQueueItem>::type RenderQueueItemList;
     
     /** 渲染几何
     @version NIIEngine 3.0.0
     */
     struct RenderCh
     {
-        RenderCh(GeometryObj * geo, SpaceObj * sobj, ShaderCh * shader) :
+        RenderCh(SpaceObj * sobj, GeometryObj * geo, ShaderCh * ch) :
             mGeo(geo),
             mSpace(sobj),
-            mCh(shader) {}
+            mCh(ch) {}
 
-        ShaderCh * mCh;
-        GeometryObj * mGeo;
         SpaceObj * mSpace;
+        GeometryObj * mGeo;
+        ShaderCh * mCh;
     };
     
     /** 渲染过滤器
@@ -79,12 +81,12 @@ namespace NII
         /** 执行渲染
         @version NIIEngine 3.0.0
         */
-        virtual void render(const ShaderCh * ch, GeometryObj * gobj, SpaceObj * sobj) = 0;
+        virtual void render(SpaceObj * sobj, GeometryObj * gobj, const ShaderCh * ch) = 0;
 
         /** 执行渲染
         @version NIIEngine 3.0.0
         */
-        virtual void render(const ShaderCh * ch, const GeometryObjList & obj) = 0;
+        virtual void render(const ShaderCh * ch, const RenderQueueItemList & obj) = 0;
     };
 
     /** 渲染排序模式
@@ -112,7 +114,7 @@ namespace NII
         /** 添加
         @version NIIEngine 3.0.0
         */
-        void add(ShaderCh * ch, GeometryObj * obj);
+        void add(SpaceObj * sobj, GeometryObj * obj, ShaderCh * ch);
 
         /** 移去
         @version NIIEngine 3.0.0
@@ -149,7 +151,7 @@ namespace NII
         */
         void merge(const RenderSort & o);
     protected:
-        typedef map<ShaderCh *, GeometryObjList *, ShaderCh::IndexLess>::type ChRenderList;
+        typedef map<ShaderCh *, RenderQueueItemList *, ShaderCh::IndexLess>::type ChRenderList;
     protected:
         RenderList mRenderList;
         ChRenderList mChRenderList;
@@ -397,42 +399,42 @@ namespace NII
         /** 设置默认组
         @version NIIEngine 3.0.0
         */
-        void setDefaultGroup(GroupID grp)           {mDefaultGroup = grp;   }
+        void setDefaultGroup(GroupID grp)           { mDefaultGroup = grp; }
 
         /** 获取默认组
         @version NIIEngine 3.0.0
         */
-        GroupID getDefaultGroup() const             {return mDefaultGroup;  }
+        GroupID getDefaultGroup() const             { return mDefaultGroup; }
 
         /** 设置默认等级
         @version NIIEngine 3.0.0
         */
-        void setDefaultLevel(Nui16 lv)              {mDefaultLevel = lv;    }
+        void setDefaultLevel(Nui16 lv)              { mDefaultLevel = lv; }
 
         /** 获取默认等级
         @version NIIEngine 3.0.0
         */
-        Nui16 getDefaultLevel() const               {return mDefaultLevel;  }
+        Nui16 getDefaultLevel() const               { return mDefaultLevel; }
 
         /** 清理队列时是否删除所有渲染组
         @versioin NIIEngine 3.0.0
         */
-        void setDestroyAllOnClear(bool r)           {mRemoveGroupOnClear = r;   }
+        void setDestroyAllOnClear(bool r)           { mRemoveGroupOnClear = r; }
         
         /** 清理队列时是否删除所有渲染组
         @version NIIEngine 3.0.0
         */
-        bool isDestroyAllOnClear() const            {return mRemoveGroupOnClear;}
+        bool isDestroyAllOnClear() const            { return mRemoveGroupOnClear; }
         
         /** 添加指定对象到队列
         @version NIIEngine 3.0.0
         */
-        void add(GeometryObj * obj)                 {add(obj, mDefaultGroup, mDefaultLevel);}
+        void add(GeometryObj * obj)                 { add(obj, mDefaultGroup, mDefaultLevel); }
 
         /** 添加指定对象到队列
         @version NIIEngine 3.0.0
         */
-        void add(GeometryObj * obj, GroupID gid)    {add(obj, gid, mDefaultLevel);}
+        void add(GeometryObj * obj, GroupID gid)    { add(obj, gid, mDefaultLevel); }
 
         /** 添加指定对象到队列
         @version NIIEngine 3.0.0
