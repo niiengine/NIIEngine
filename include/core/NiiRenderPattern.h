@@ -216,66 +216,66 @@ namespace NII
         /** 设置阴影投射是否使用后表面,而不是正表面.
         @version NIIEngine 3.0.0
         */
-        void setBackFaceInCast(bool b);
+        void setBackFaceInCast(bool b)          { mBackFaceInCast = b; }
 
         /** 获得阴影投射是否使用后表面,而不是正表面.
         @version nIIEngine 3.0.0
         */
-        bool isBackFaceInCast() const;
+        bool isBackFaceInCast() const           { return mBackFaceInCast;}
 
         /** 是否无限远裁剪面
         @remark 蒙板阴影专用
         @version NIIEngine 3.0.0
         */
-        void setInfiniteFar(bool b);
+        void setInfiniteFar(bool b)             { mInfiniteFar = b; }
 
         /** 是否无限远裁剪面
         @remark 蒙板阴影专用
         @version NIIEngine 3.0.0
         */
-        bool isInfiniteFar()const;
+        bool isInfiniteFar()const               { return mInfiniteFar; }
 
         /** 设置是否进行灯光面裁剪.
         @version NIIEngine 3.0.0
         */
-        void setLightClipPlane(bool b);
+        void setLightClipPlane(bool b)          { mLightClipPlane = b; }
 
         /** 获取是否进行灯光面裁剪.
         @version NIIEngine 3.0.0
         */
-        bool isLightClipPlane() const;
+        bool isLightClipPlane() const           { return mLightClipPlane; }
 
         /** 设置是否禁止阴影
         @version NIIEngine 3.0.0
         */
-        void setShadowEnable(bool b);
+        void setShadowEnable(bool b)            { mShadowEnable = b; }
 
         /** 获取是否禁止阴影
         @version NIIEngine 3.0.0
         */
-        bool isShadowEnable() const;
+        bool isShadowEnable() const             { return mShadowEnable; }
 
         /** 设置阴影的延伸长度
         @param[in] ext 延伸长度
         @version NIIEngine 3.0.0
         */
-        void setShadowExtent(NIIf ext);
+        void setShadowExtent(NIIf ext)          { mShadowExtent = dist; }
 
         /** 获取阴影的延伸长度
         @version NIIEngine 3.0.0
         */
-        NIIf getShadowExtent() const;
+        NIIf getShadowExtent() const            { return mShadowExtent; }
 
         /** 设置阴影最大延伸长度
         @param[in] ext 最大延伸长度
         @version NIIEngine 3.0.0
         */
-        void setShadowExtentMax(NIIf ext);
+        void setShadowExtentMax(NIIf ext)       { mShadowExtentMax = ext; }
 
         /** 获取阴影最大延伸长度
         @version NIIEngine 3.0.0
         */
-        NIIf getShadowExtentMax() const;
+        NIIf getShadowExtentMax() const         { return mShadowExtentMax; }
 
         /** 添加监听
         @version NIIEngine 3.0.0
