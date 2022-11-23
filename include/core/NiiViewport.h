@@ -376,7 +376,7 @@ namespace NII
         /** 获取渲染形式
         @version NIIEngine 3.0.0
         */
-        inline CustomRenderQueue * getCustomRender()    { return mCustomRender; }
+        inline RenderQueueFusion * getQueueFusion()     { return mQueueFusion; }
         
         /** 设置缓存类型
         @version NIIEngine 5.0.0
@@ -411,7 +411,7 @@ namespace NII
         ViewportID mID;
         Camera * mCamera;
         FrameObj * mTarget;
-        CustomRenderQueue * mCustomRender;
+        RenderQueueFusion * mQueueFusion;
         ViewportListenerList mListeners;
         ViewportType mBufferType;
         SchemeID mMaterial;

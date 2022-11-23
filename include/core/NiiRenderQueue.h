@@ -313,7 +313,7 @@ namespace NII
     /** 渲染队列组
     @version NIIEngine 3.0.0
     */
-    enum RenderQueueGroup
+    enum RenderGroupType
     {
         RQG_Unknow      = 0,
         RQG_Bg          = 1,
@@ -392,7 +392,7 @@ namespace NII
     class _EngineAPI RenderQueue : public RenderAlloc
     {
     public:
-        typedef vector<std::pair<RenderQueueGroup, RenderGroup *> >::type GroupList;
+        typedef vector<std::pair<RenderGroupType, RenderGroup *> >::type GroupList;
     public:
         RenderQueue();
         virtual ~RenderQueue();
@@ -450,12 +450,12 @@ namespace NII
         /** 获取指定渲染队列群组
         @version NIIEngine 3.0.0
         */
-        RenderGroup * getQueueGroup(GroupID qid);
+        RenderGroup * getGroup(GroupID qid);
 
         /** 获取渲染列表
         @version NIIEngine 3.0.0 高级api
         */
-        const GroupList & getRenderList() const{ return mGroups;}
+        const GroupList & getGroupList() const{ return mGroups;}
 
         /** 合并队列
         @version NIIEngine 3.0.0
@@ -481,12 +481,12 @@ namespace NII
     /** 自定义队列
     @version NIIEngine 3.0.0
     */
-    class _EngineAPI CustomQueue : public RenderAlloc
+    class _EngineAPI RenderGroupFusion : public RenderAlloc
     {
     public:
-        CustomQueue(GroupID gid, const String & name = StrUtil::WBLANK);
+        RenderGroupFusion(GroupID gid, const String & name = StrUtil::WBLANK);
 
-        virtual ~CustomQueue();
+        virtual ~RenderGroupFusion(){}
 
         /** 名字(辅助)
         @version NIIEngine 3.0.0
@@ -532,16 +532,16 @@ namespace NII
         GroupID mRenderGroup;
         ShaderCh * mShaderCh;
     };
-    typedef vector<CustomQueue *>::type CustomQueueList;
+    typedef vector<RenderGroupFusion *>::type RenderGroupFusionList;
 
     /** 自定义渲染
     @version NIIEngine 3.0.0
     */
-    class _EngineAPI CustomRenderQueue : public RenderAlloc
+    class _EngineAPI RenderQueueFusion : public RenderAlloc
     {
     public:
-        CustomRenderQueue(Nid id);
-        virtual ~CustomRenderQueue();
+        RenderQueueFusion(Nid id);
+        virtual ~RenderQueueFusion();
 
         /** 获取ID
         @version NIIEngine 3.0.0
@@ -552,17 +552,17 @@ namespace NII
         @note 参数内存将由这个类管理
         @version NIIEngine 3.0.0
         */
-        void add(CustomQueue * obj) { mList.push_back(obj); }
+        void add(RenderGroupFusion * obj) { mList.push_back(obj); }
 
         /** 添加自定义队列
         @version NIIEngine 3.0.0
         */
-        CustomQueue * add(GroupID qid, const String & name);
+        RenderGroupFusion * add(GroupID qid, const String & name);
 
         /** 获取自定义队列
         @version NIIEngine 3.0.0
         */
-        CustomQueue * get(Nidx index) { N_assert(index < mList.size(), "error"); return mList[index]; }
+        RenderGroupFusion * get(Nidx index) { N_assert(index < mList.size(), "error"); return mList[index]; }
 
         /** 移去自定义队列
         @version NIIEngine 3.0.0
@@ -582,10 +582,10 @@ namespace NII
         /** 获取自定义队列
         @version NIIEngine 3.0.0 高级api
         */
-        const CustomQueueList & getList()   { return mList; }
+        const RenderGroupFusionList & getList()   { return mList; }
     protected:
         Nid mID;
-        CustomQueueList mList;
+        RenderGroupFusionList mList;
     };
 }
 #endif

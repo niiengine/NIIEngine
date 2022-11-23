@@ -263,8 +263,8 @@ namespace NII
     class RenderLevelGroup;
     class RenderQueue;
     class RenderGroup;
-    class CustomQueue;
-    class CustomRenderQueue;
+    class RenderGroupFusion;
+    class RenderQueueFusion;
 
     class RenderListener;
     class RenderSys;

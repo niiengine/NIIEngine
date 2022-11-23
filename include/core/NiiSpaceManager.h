@@ -900,22 +900,22 @@ namespace NII
         /** 设置自定义渲染队列
         @version NIIEngine 3.0.0
         */
-        static CustomRenderQueue * createCustomRender(Nid id);
+        static RenderQueueFusion * createQueueFusion(Nid id);
 
         /** 自定义渲染队列
         @version NIIEngine 3.0.0
         */
-        static CustomRenderQueue * getCustomRender(Nid id);
+        static RenderQueueFusion * getQueueFusion(Nid id);
 
         /** 删除自定义渲染队列
         @version NIIEngine 3.0.0
         */
-        static void destroyCustomRender(Nid id);
+        static void destroyQueueFusion(Nid id);
 
         /** 删除所有自定义渲染队列
         @version NIIEngine 3.0.0
         */
-        static void destroyAllCustomRender();
+        static void destroyAllQueueFusion();
     public:
         /** 资源事件
         @version NIIEngine 3.0.0
@@ -960,7 +960,7 @@ namespace NII
         /** 渲染队列
         @version NIIEngine 3.0.0
         */
-        virtual void renderQueue(CustomRenderQueue * s);
+        virtual void renderQueue(RenderQueueFusion * s);
 
         /** 渲染队列前
         @version NIIEngine 3.0.0
@@ -1003,7 +1003,7 @@ namespace NII
         typedef map<SpaceID, SpaceNode *>::type SceneNodeList;
         typedef map<SpaceID, StaticSpace *>::type StaticSpaceList;
         typedef map<SpaceID, InstanceSpace *>::type InstanceSpaceList;
-        typedef map<Nid, CustomRenderQueue *>::type CustomRenderList;
+        typedef map<Nid, RenderQueueFusion *>::type QueueFusionList;
         typedef map<Light *, Rectf>::type LightClipList;
         typedef map<Light *, PlaneList>::type LightPlaneClipList;
         typedef set<SpaceNode *>::type AutoFocusList;
@@ -1016,7 +1016,7 @@ namespace NII
         typedef vector<RenderListener *>::type RenderListenerList;
         typedef vector<GeometryObjListener *>::type GeoRenderListenerList;
         static RenderPattern * mNoShadowPattern;
-        static CustomRenderList mCustomRenderList;
+        static QueueFusionList mQueueFusionList;
     protected:
         String mName;
         TypeID mType;
