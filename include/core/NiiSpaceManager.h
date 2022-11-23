@@ -108,42 +108,42 @@ namespace NII
         /** 获取名称
         @version NIIEngine 3.0.0
         */
-        const String & getName() const;
+        const String & getName() const              { return mName; }
 
         /** 获取类型名称.
         @version NIIEngine 3.0.0
         */
-        TypeID getTypeID() const;
+        TypeID getTypeID() const                    { return mType; }
 
         /** 设置使用优化材质
         @version NIIEngine 3.0.0
         */
-        void setOptMaterial(bool b);
+        void setOptMaterial(bool b)                 { mOptCh = b; }
 
         /** 是否使用优化材质
         @version NIIEngine 3.0.0
         */
-        bool isOptMaterial() const;
+        bool isOptMaterial() const                  { return mOptCh; }
 
         /** 设置是否自动可见空间
         @version NIIEngine 3.0.0
         */
-        void setAutoVisibleSpace(bool b);
+        void setAutoVisibleSpace(bool b)            { mAutoVisibleSpace = b; }
 
         /** 获取是否自动可见空间
         @version NIIEngine 3.0.0
         */
-        bool isAutoVisibleSpace() const;
+        bool isAutoVisibleSpace() const             { return mAutoVisibleSpace; }
 
         /** 设置可见掩码
         @version NIIEngine 3.0.0
         */
-        void setVisibleMask(Nmark mark);
+        void setVisibleMask(Nmark mark)             { mVisibleMark = mark; }
 
         /** 获取可见掩码
         @version NIIEngine 3.0.0
         */
-        Nmark getVisibleMask();
+        Nmark getVisibleMask()                      { return mVisibleMark; }
 
         /** 获得环境可见掩码
         @version NIIEngine 3.0.0
@@ -153,32 +153,32 @@ namespace NII
         /** 设置摄象机原点模式
         @version NIIEngine 3.0.0 高级api
         */
-        void setCameraOrigin(bool b);
+        void setCameraOrigin(bool b)                { mCameraOrigin = b; }
 
         /** 获取摄象机原点模式
         @version NIIEngine 3.0.0 高级api
         */
-        bool isCameraOrigin() const;
+        bool isCameraOrigin() const                 { return mCameraOrigin; }
 
         /** 设置自动单位化法线.
         @version NIIEngine 3.0.0
         */
-        void setUnitNormals(bool b);
+        void setUnitNormals(bool b)                 { mUnitNormals = b; }
 
         /** 获取自动单位化法线.
         @version NIIEngine 3.0.0
         */
-        bool isUnitNormals() const;
+        bool isUnitNormals() const                  { return mUnitNormals; }
 
         /** 设置反缩放翻转拣选
         @version NIIEngine 3.0.0
         */
-        void setNegScaleFlipCull(bool b);
+        void setNegScaleFlipCull(bool b)            { mNegScaleFlipCull = b; }
 
         /** 获得反缩放翻转拣选
         @version NIIEngine 3.0.0
         */
-        bool isNegScaleFlipCull() const;
+        bool isNegScaleFlipCull() const             { return mNegScaleFlipCull; }
 
         /** 设置锁定渲染通路
         @version NIIEngine 3.0.0 高级api
@@ -702,12 +702,12 @@ namespace NII
         /** 获取主渲染队列
         @version NIIEngine 3.0.0 高级api
         */
-        virtual RenderQueue * getRenderQueue();
+        RenderQueue * getRenderQueue() const            { return mMainQueue; }
 
         /** 获取渲染视口
         @version NIIEngine 3.0.0 高级api
         */
-        Viewport * getViewport() const;
+        Viewport * getViewport() const                  { return mView; }
 
         /** 应用渲染通路
         @param[in] ch 渲染通路

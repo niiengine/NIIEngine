@@ -96,8 +96,9 @@ namespace NII
     {
         RSM_View_Descending = 0x01, ///< 由视口距离降序
         RSM_View_Ascending = 0x02,  ///< 由视口距离升序
-        RSM_Ch_Index = 0x04,        ///< 由渲染通路的先后绘制排序
-        RSM_All = 0x07
+        RSM_View_Stable = 0x04,     ///< std::stable_sort or std::sort
+        RSM_Ch_Index = 0x08,        ///< 由渲染通路的先后绘制排序
+        RSM_All = 0x0F
     };
 
     /** 渲染排序
@@ -186,7 +187,7 @@ namespace NII
         /** 添加渲染
         @version NIIEngine 3.0.0
         */
-        virtual void add(GeometryObj * obj, ShaderFusion * sf);
+        virtual void add(SpaceObj * sobj, GeometryObj * obj, ShaderFusion * sf);
 
         /** 移去渲染
         @version NIIEngine 3.0.0
@@ -280,7 +281,7 @@ namespace NII
         /** 添加渲染
         @version NIIEngine 3.0.0
         */
-        void add(GeometryObj * obj, ShaderFusion * sf, Nui16 level);
+        void add(SpaceObj * sobj, GeometryObj * obj, ShaderFusion * sf, Nui16 level);
 
         /** 移去渲染
         @param[in] destroy
@@ -429,17 +430,17 @@ namespace NII
         /** 添加指定对象到队列
         @version NIIEngine 3.0.0
         */
-        void add(GeometryObj * obj)                 { add(obj, mDefaultGroup, mDefaultLevel); }
+        void add(SpaceObj * sobj, GeometryObj * obj)                 { add(obj, mDefaultGroup, mDefaultLevel); }
 
         /** 添加指定对象到队列
         @version NIIEngine 3.0.0
         */
-        void add(GeometryObj * obj, GroupID gid)    { add(obj, gid, mDefaultLevel); }
+        void add(SpaceObj * sobj, GeometryObj * obj, GroupID gid)    { add(obj, gid, mDefaultLevel); }
 
         /** 添加指定对象到队列
         @version NIIEngine 3.0.0
         */
-        void add(GeometryObj * obj, GroupID gid, Nui16 level);
+        void add(SpaceObj * sobj, GeometryObj * obj, GroupID gid, Nui16 level);
 
         /** 清理队列
         @version NIIEngine 3.0.0
@@ -496,6 +497,16 @@ namespace NII
         @version NIIEngine 3.0.0
         */
         GroupID getRenderGroup() const { return mRenderGroup; }
+        
+        /** 是否启动阴影
+        @version NIIEngine 3.0.0
+        */
+        void setShadowEnable(bool b)    { mShadowEnable = b; }
+
+        /** 是否启动阴影
+        @version NIIEngine 3.0.0
+        */
+        bool isShadowEnable() const     { return mShadowEnable; }
 
         /** 设置渲染通道
         @version NIIEngine 3.0.0
@@ -506,16 +517,6 @@ namespace NII
         @version NIIEngine 3.0.0
         */
         ShaderCh * getShaderCh() const { return mShaderCh; }
-
-        /** 是否启动阴影
-        @version NIIEngine 3.0.0
-        */
-        void setShadowEnable(bool b) { mShadowEnable = b; }
-
-        /** 是否启动阴影
-        @version NIIEngine 3.0.0
-        */
-        bool isShadowEnable() const { return mShadowEnable; }
 
         /** 执行渲染
         @version NIIEngine 3.0.0
@@ -530,7 +531,6 @@ namespace NII
         String mName;
         GroupID mRenderGroup;
         ShaderCh * mShaderCh;
-        bool mShadowEnable;
     };
     typedef vector<CustomQueue *>::type CustomQueueList;
 
@@ -577,12 +577,12 @@ namespace NII
         /** 获取数量
         @version NIIEngine 3.0.0
         */
-        NCount getCount() const { return mList.size(); }
+        NCount getCount() const             { return mList.size(); }
 
         /** 获取自定义队列
         @version NIIEngine 3.0.0 高级api
         */
-        const CustomQueueList & getList() { return mList; }
+        const CustomQueueList & getList()   { return mList; }
     protected:
         Nid mID;
         CustomQueueList mList;
