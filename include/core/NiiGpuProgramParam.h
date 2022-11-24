@@ -465,24 +465,24 @@ namespace NII
             OT_RW       = OT_READ|OT_WRITE
         };
 
-        struct StorageBufferUnit
+        struct StorageUnit
         {
-            StorageBufferUnit()             { memset( this, 0, sizeof( StorageBufferUnit ) );}
+            StorageUnit()             { memset( this, 0, sizeof( StorageUnit ) );}
 
-            bool operator != (const StorageBufferUnit & o) const
+            bool operator != (const StorageUnit & o) const
             {
                 if (mBuffer != o.mBuffer || mOffset != o.mOffset || mSize != o.mSize)
                     return true;
                 return false;
             }
 
-            bool operator == (const StorageBufferUnit & o) const
+            bool operator == (const StorageUnit & o) const
             {
                 if (mBuffer == o.mBuffer && mOffset == o.mOffset && mSize == o.mSize)
                     return true;
                 return false;
             }
-            bool operator < (const StorageBufferUnit & o) const
+            bool operator < (const StorageUnit & o) const
             {
                 if (mBuffer < o.mBuffer || mOffset < o.mOffset || mSize < o.mSize)
                     return true;
@@ -495,25 +495,25 @@ namespace NII
             PixelFormat mPadding;   ///< no using
         };
 
-        struct SamplerBufferUnit
+        struct SamplerUnit
         {
-            SamplerBufferUnit()             { memset( this, 0, sizeof( SamplerBufferUnit ) );}
+            SamplerUnit()             { memset( this, 0, sizeof( SamplerUnit ) );}
 
-            bool operator != (const SamplerBufferUnit & o) const
+            bool operator != (const SamplerUnit & o) const
             {
                 if (mBuffer != o.mBuffer || mMipmap != o.mMipmap || mArrayIndex != o.mArrayIndex || mFormat != o.mFormat)
                     return true;
                 return false;
             }
 
-            bool operator == (const SamplerBufferUnit & o) const
+            bool operator == (const SamplerUnit & o) const
             {
                 if (mBuffer == o.mBuffer && mMipmap == o.mMipmap && mArrayIndex == o.mArrayIndex && mFormat == o.mFormat)
                     return true;
                 return false;
             }
 
-            bool operator < (const SamplerBufferUnit & o) const
+            bool operator < (const SamplerUnit & o) const
             {
                 if (mBuffer < o.mBuffer || mMipmap < o.mMipmap || mArrayIndex < o.mArrayIndex || mFormat < o.mFormat)
                     return true;
@@ -549,25 +549,25 @@ namespace NII
             return mParamType == PT_Sampler;
         }
 
-        StorageBufferUnit & getBuffer()
+        StorageUnit & getBuffer()
         {
             N_assert( mParamType == PT_Storage );
             return mStorage;
         }
 
-        const StorageBufferUnit & getBuffer() const
+        const StorageUnit & getBuffer() const
         {
             N_assert( mParamType == PT_Storage );
             return mStorage;
         }
 
-        SamplerBufferUnit & getTexture()
+        SamplerUnit & getTexture()
         {
             N_assert( mParamType == PT_Sampler );
             return mSampler;
         }
 
-        const SamplerBufferUnit & getTexture() const
+        const SamplerUnit & getTexture() const
         {
             N_assert( mParamType == PT_Sampler );
             return mSampler;
@@ -697,8 +697,8 @@ namespace NII
         ParamType mParamType;
         union
         {
-            StorageBufferUnit mStorage;
-            SamplerBufferUnit mSampler;
+            StorageUnit mStorage;
+            SamplerUnit mSampler;
         };
         NCount mRefCount;
         bool mAutoDestroy;
