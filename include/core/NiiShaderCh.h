@@ -1628,7 +1628,7 @@ namespace NII
     /**
     @version NIIEngine 5.0.0
     */
-    class _EngineAPI SampleTypeObject
+    class _EngineAPI SampleObject
     {
     public:
         /*enum FeatureType
@@ -1640,25 +1640,25 @@ namespace NII
             FT_InvertVertexWinding      = 1u << 4u
         };*/
         
-        SampleTypeObject & operator = (const SampleTypeObject & o)
+        SampleObject & operator = (const SampleObject & o)
         {
-            memcpy(this, &o, sizeof(SampleTypeObject));
+            memcpy(this, &o, sizeof(SampleObject));
             return *this;
         }
 
-        bool operator == (const SampleTypeObject & o) const
+        bool operator == (const SampleObject & o) const
         {
-            return !memcmp(this, &o, sizeof(SampleTypeObject));
+            return !memcmp(this, &o, sizeof(SampleObject));
         }
 
-        bool operator != (const SampleTypeObject & o) const
+        bool operator != (const SampleObject & o) const
         {
             return !(*this == o);
         }
 
-        bool operator < (const SampleTypeObject & o) const
+        bool operator < (const SampleObject & o) const
         {
-            return memcmp(this, &o, sizeof(SampleTypeObject)) < 0;
+            return memcmp(this, &o, sizeof(SampleObject)) < 0;
         }
     public:
         PixelFormat mColour[NII_MAX_RenderTarget];
@@ -1698,7 +1698,7 @@ namespace NII
         */
         bool lessRender(const RenderStateObject & o) const;
     public:
-        SampleTypeObject pass;
+        SampleObject pass;
         VertexUnitListList mUnitsList;
         GpuProgram * mVS;
         GpuProgram * mGS;
