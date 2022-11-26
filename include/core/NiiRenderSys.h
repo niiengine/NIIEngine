@@ -1464,17 +1464,17 @@ namespace NII
         /** 创建纹理采样单元
         @version NIIEngine 5.0.0
         */
-        virtual void createTextureSample(TextureSampleUnit *& tsu)      {}
+        virtual void createTexSample(TextureSampleUnit *& tsu)          {}
         
         /** 删除纹理采样单元
         @version NIIEngine 5.0.0
         */
-        virtual void destroyTextureSample(TextureSampleUnit * tsu)      {}
+        virtual void destroyTexSample(TextureSampleUnit * tsu)          {}
         
         /** 同步纹理采样单元cpu/gpu数据
         @version NIIEngine 5.0.0
         */
-        virtual void syncTextureSample(TextureSampleUnit * tsu)         {}
+        virtual void syncTexSample(TextureSampleUnit * tsu)             {}
         
         /** 创建纹理
         @version NIIEngine 5.0.0
@@ -1595,12 +1595,12 @@ namespace NII
         */
         virtual bool checkGpuApi(const String & ext) const              { return false; }
 
-        /**
+        /** 添加监听
         @version NIIEngine 5.0.0
         */
         virtual void addListener(Listener * l);
 
-        /**
+        /** 移去监听
         @version NIIEngine 5.0.0
         */
         virtual void removeListener(Listener * l);
