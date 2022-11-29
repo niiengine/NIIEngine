@@ -718,6 +718,21 @@ namespace NII
         @version NIIEngine 3.0.0
         */
         NCount getInstanceCount() const                     { return mInstanceCount; }
+        
+        /**
+        @version NIIEngine 6.0.0
+        */
+        RenderPattern * getRenderPattern(RenderPatternType type) const   { return mRenderPatternList[type]; }
+        
+        /**
+        @version NIIEngine 6.0.0
+        */
+        void addRenderPattern(RenderPattern * rp);
+
+        /**
+        @version NIIEngine 6.0.0
+        */
+        void removeRenderPattern(RenderPatternType type);
 
         /** 设置视口类型
         @versin NIIEngine 4.0.0
@@ -1854,6 +1869,7 @@ namespace NII
         FrameBufferObjectList mFBOList;
         CullingMode mCullingMode;
         PlaneList mClipPlanes;
+        RenderPattern * mRenderPatternList[RPT_Count];
         Colour mTextureBlend[NII_MAX_TextureLayer][2];
         NCount mEnableTexCount;
         NCount mRenderCount;
