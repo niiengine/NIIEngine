@@ -30,9 +30,25 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 
 #include "NiiPreInclude.h"
 #include "NiiPattern.h"
+#include "NiiShaderCh.h"
+#include "NiiPropertyObj.h"
 
 namespace NII
 {
+    struct RenderStateCache
+    {
+        RenderStateCache() : mHash(0), mType(RPT_Count) {}
+        RenderStateCache(const RenderStateObject & rso, RenderPatternType type, Nui32 hash) : 
+            mRSO(rso), mType(type), mHash(hash) {}
+        
+        RenderStateObject mRSO;
+        PropertyValueList mPropertyList;
+        RenderPatternType mType;
+        Nui32 mHash;
+    };
+
+    typedef vector<RenderStateCache*>::type RenderStateCacheList;
+    
     class ShadowRenderTest;
 
     /** 阴影处理器类,便于以后的细节优化和修改

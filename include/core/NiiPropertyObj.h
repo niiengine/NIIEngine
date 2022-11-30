@@ -34,6 +34,21 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 
 namespace NII
 {
+    struct _EngineAPI PropertyValue
+    {
+        PropertyValue(PropertyID key, String value) : mKey( key ), mValue( value ) {}
+
+        bool operator == (const PropertyValue & o) const
+        {
+            return mKey == o.mKey && mValue == o.mValue;
+        }
+        
+        PropertyID mKey;
+        String mValue;
+    };
+
+    typedef vector<PropertyValue>::type PropertyValueList;
+    
     /** 属性数据结构
     @note 一般由 XML JSON YAML 等可描述脚本序列化程序使用
     @version NIIEngine 3.0.0
