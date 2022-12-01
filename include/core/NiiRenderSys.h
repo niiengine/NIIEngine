@@ -733,6 +733,21 @@ namespace NII
         @version NIIEngine 6.0.0
         */
         void removeRenderPattern(RenderPatternType type);
+        
+        /**
+        @version NIIEngine 6.0.0
+        */
+        ComputePattern * getComputePattern(ComputePatternType type) const   { return mComputePatternList[type]; }
+        
+        /**
+        @version NIIEngine 6.0.0
+        */
+        void addComputePattern(ComputePattern * rp);
+
+        /**
+        @version NIIEngine 6.0.0
+        */
+        void removeComputePattern(ComputePatternType type);
 
         /** 设置视口类型
         @versin NIIEngine 4.0.0
@@ -1870,6 +1885,7 @@ namespace NII
         CullingMode mCullingMode;
         PlaneList mClipPlanes;
         RenderPattern * mRenderPatternList[RPT_Count];
+        ComputePattern * mComputePatternList[CPT_Count];
         Colour mTextureBlend[NII_MAX_TextureLayer][2];
         NCount mEnableTexCount;
         NCount mRenderCount;

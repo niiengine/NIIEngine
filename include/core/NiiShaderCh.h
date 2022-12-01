@@ -1698,7 +1698,7 @@ namespace NII
         */
         bool lessRender(const RenderStateObject & o) const;
     public:
-        SampleObject pass;
+        SampleObject mSampleObject;
         VertexUnitListList mUnitsList;
         GpuProgram * mVS;
         GpuProgram * mGS;

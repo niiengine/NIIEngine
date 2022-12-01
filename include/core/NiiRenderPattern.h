@@ -38,12 +38,12 @@ namespace NII
     struct RenderStateCache
     {
         RenderStateCache() : mHash(0), mType(RPT_Count) {}
-        RenderStateCache(const RenderStateObject & rso, RenderPatternType type, Nui32 hash) : 
-            mRSO(rso), mType(type), mHash(hash) {}
+        RenderStateCache(const RenderStateObject & rso, RenderPattern * pattern, Nui32 hash) : 
+            mRSO(rso), mPattern(pattern), mHash(hash) {}
         
         RenderStateObject mRSO;
         PropertyValueList mPropertyList;
-        RenderPatternType mType;
+        RenderPattern * mPattern;
         Nui32 mHash;
     };
 
