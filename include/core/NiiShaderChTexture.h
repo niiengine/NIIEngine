@@ -1223,17 +1223,17 @@ namespace NII
         /** »º´æ²Û
         @version NIIEngine 5.0.0
         */
-        struct BufferParam
+        struct StorageUnit
         {
-            BufferParam()            { memset(this, 0, sizeof(BufferParam)); }
+            StorageUnit()            { memset(this, 0, sizeof(StorageUnit)); }
 
-            BufferParam(TextureBuffer * buf, NCount oft, NCount size) : mBuffer(buf), mOffset(oft), mSize(size)
+            StorageUnit(TextureBuffer * buf, NCount oft, NCount size) : mBuffer(buf), mOffset(oft), mSize(size)
             {
                 if(mBuffer)
                     mBuffer->touch();
             }
             
-            ~BufferParam()
+            ~StorageUnit()
             {
                 if(mBuffer)
                 {
@@ -1253,7 +1253,7 @@ namespace NII
             
             TextureBuffer * getBuffer() const           { return mBuffer; }
             
-            BufferParam & operator =(const BufferParam & o)
+            StorageUnit & operator =(const StorageUnit & o)
             {
                 if(mBuffer)
                     mBuffer->untouch();
@@ -1265,17 +1265,17 @@ namespace NII
                 return *this;
             }
             
-            bool operator == (const BufferParam & o) const
+            bool operator == (const StorageUnit & o) const
             {
                 return mBuffer == o.mBuffer && mOffset == o.mOffset && mSize == o.mSize;
             }
             
-            bool operator != (const BufferParam & o) const
+            bool operator != (const StorageUnit & o) const
             {
                 return mBuffer != o.mBuffer || mOffset != o.mOffset || mSize != o.mSize;
             }
 
-            bool operator < (const BufferParam & o) const
+            bool operator < (const StorageUnit & o) const
             {
                 if(mBuffer != o.mBuffer)
                     return mBuffer < o.mBuffer;
@@ -1296,18 +1296,18 @@ namespace NII
         /** ÎÆÀí²Û
         @version NIIEngine 5.0.0
         */
-        struct TextureParam
+        struct SamplerUnit
         {
-            TextureParam()           { memset(this, 0, sizeof(TextureParam)); }
+            SamplerUnit()           { memset(this, 0, sizeof(SamplerUnit)); }
             
-            TextureParam(ShaderChTextureUnit * buf, PixelFormat pf, Nui16 mipmaps, Nui16 arrayidx, Nui16 mipmaps, bool force2d) :
+            SamplerUnit(ShaderChTextureUnit * buf, PixelFormat pf, Nui16 mipmaps, Nui16 arrayidx, Nui16 mipmaps, bool force2d) :
                 mTexture(buf), mFormat(pf), mMipmapCount(mipmaps), mArrayIndex(arrayidx), mMipmap(mipmaps), mForce2DArray(force2d)
             {
                 if(mTexture)
                     mTexture->touch();
             }
             
-            ~TextureParam()
+            ~SamplerUnit()
             {
                 if(mTexture)
                 {
@@ -1327,7 +1327,7 @@ namespace NII
             
             ShaderChTextureUnit * getBuffer() const           { return mTexture; }
             
-            TextureParam & operator =(const TextureParam & o)
+            SamplerUnit & operator =(const SamplerUnit & o)
             {
                 if(mTexture)
                     mTexture->untouch();
@@ -1342,19 +1342,19 @@ namespace NII
                 return *this;
             }
             
-            bool operator == (const TextureParam & o) const
+            bool operator == (const SamplerUnit & o) const
             {
                 return mTexture == o.mTexture && mMipmap == o.mMipmap && mMipmapCount == o.mMipmapCount &&
                     mArrayIndex == o.mArrayIndex && mFormat == o.mFormat;
             }
 
-            bool operator != (const TextureParam & o) const
+            bool operator != (const SamplerUnit & o) const
             {
                 return mTexture != o.mTexture || mMipmap != o.mMipmap || mMipmapCount != o.mMipmapCount || 
                     mArrayIndex != o.mArrayIndex || mFormat != o.mFormat;
             }
 
-            bool operator < (const TextureParam & o) const
+            bool operator < (const SamplerUnit & o) const
             {
                 if(mTexture != o.mTexture)
                     return mTexture < o.mTexture;
@@ -1425,25 +1425,25 @@ namespace NII
                 return mPType == ST_Texture;
             }
 
-            BufferParam & getBuffer()
+            StorageUnit & getBuffer()
             {
                 N_assert1(mPType == ST_Buffer);
                 return mBuffer;
             }
 
-            const BufferParam & getBuffer() const
+            const StorageUnit & getBuffer() const
             {
                 N_assert1(mPType == ST_Buffer);
                 return mBuffer;
             }
 
-            TextureParam & getTexture()
+            SamplerUnit & getTexture()
             {
                 N_assert1(mPType == ST_Texture);
                 return mTexture;
             }
 
-            const TextureParam & getTexture() const
+            const SamplerUnit & getTexture() const
             {
                 N_assert1(mPType == ST_Texture);
                 return mTexture;
@@ -1499,8 +1499,8 @@ namespace NII
             SamplerType mPType;
             union
             {
-                BufferParam  mBuffer;
-                TextureParam mTexture;
+                StorageUnit  mBuffer;
+                SamplerUnit mTexture;
             };
         };
         
