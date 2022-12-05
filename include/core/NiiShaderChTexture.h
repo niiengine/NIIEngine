@@ -529,6 +529,7 @@ namespace NII
         SetList mSetList;
         NCountb mUsed[GpuProgram::ST_Cnt];
     };
+    typedef vector<TextureSample *>::type TextureSampleList;
     
     /** 纹理数据检索类型
     @remark 如果纹理保存的并非像素,而是其他着色程序使用的信息

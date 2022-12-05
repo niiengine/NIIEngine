@@ -1159,7 +1159,7 @@ namespace NII
         /** 设置几何
         @versio NIIEngine 6.0.0
         */
-        virtual void setGeometry(const GeometryRaw * geo) = 0;
+        virtual void setGeometry(const GeometryRaw * geo);
 
         /** 渲染几何元
         @note 把所有状态设置好了才渲染几何元

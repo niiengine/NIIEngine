@@ -202,5 +202,6 @@ namespace NII
         GroupID mGroup;     ///< 文件系统所属的组
         bool mReadOnly;     ///< 只读标记
     };
+    typedef vector<VFS *>::type VFSList;
 }
 #endif

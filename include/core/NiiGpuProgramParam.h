@@ -703,7 +703,7 @@ namespace NII
         NCount mRefCount;
         bool mAutoDestroy;
     };
-    typedef vector<GpuParamBufferUnit>::type GpuParamBufferList;
+    typedef vector<GpuParamBufferUnit>::type GpuParamBufferUnitList;
     
     /** 着色参数缓存
     @version NIIEngine 3.0.0
@@ -716,12 +716,12 @@ namespace NII
 
         bool operator == (const GpuParamBuffer & o) const
         {
-            if (mGpuParamBufferList.size() == o.mGpuParamBufferList.size())
+            if (mGpuParamBufferUnitList.size() == o.mGpuParamBufferUnitList.size())
             {
-                NCount i, iend = mGpuParamBufferList.size();
+                NCount i, iend = mGpuParamBufferUnitList.size();
                 for (i = 0; i < iend; ++i)
                 {
-                    if (mGpuParamBufferList[i] != o.mGpuParamBufferList[i])
+                    if (mGpuParamBufferUnitList[i] != o.mGpuParamBufferUnitList[i])
                         return false;
                 }
                 return true;
@@ -731,14 +731,14 @@ namespace NII
 
         bool operator < (const GpuParamBuffer & o) const
         {
-            if (mGpuParamBufferList.size() != o.mGpuParamBufferList.size())
+            if (mGpuParamBufferUnitList.size() != o.mGpuParamBufferUnitList.size())
             {
-                return mGpuParamBufferList.size() < o.mGpuParamBufferList.size();
+                return mGpuParamBufferUnitList.size() < o.mGpuParamBufferUnitList.size();
             }
-            NCount i, iend = mGpuParamBufferList.size();
+            NCount i, iend = mGpuParamBufferUnitList.size();
             for (i = 0; i < iend; ++i)
             {
-                if (mGpuParamBufferList[i] < o.mGpuParamBufferList[i])
+                if (mGpuParamBufferUnitList[i] < o.mGpuParamBufferUnitList[i])
                     return false;
             }
             return true;
@@ -787,10 +787,11 @@ namespace NII
         typedef map<VString, Nidx>::type NamedSlotList;
         typedef map<Nidx, Nidx>::type SlotList;
     protected:
-        GpuParamBufferList mGpuParamBufferList;
+        GpuParamBufferUnitList mGpuParamBufferUnitList;
         NamedSlotList mNamedSlotList;
         SlotList mSlotList;
     };
+    typedef vector<GpuParamBuffer>::type GpuParamBufferList;
     
     /** 预定义着色程序值
     @version NIIEngine 3.0.0
