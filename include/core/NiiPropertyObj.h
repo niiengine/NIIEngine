@@ -84,7 +84,7 @@ namespace NII
         @note 不管理(数据指针)的有效性,没有副本产生
         @version NIIEngine 3.0.0 adv api
         */
-        void addData(PropertyID pid, void * value);
+        void addData(PropertyID pid, const Any & value);
 
         /** 添加属性(补充)
         @param pid 属性ID
@@ -128,7 +128,7 @@ namespace NII
         @param[in] idx 属性ID
         @version NIIEngine 3.0.0 adv api
         */
-        const void * getData(Nidx idx) const;
+        const Any & getData(Nidx idx) const;
 
         /** 获取值
         @param[in] idx 属性ID
@@ -302,7 +302,7 @@ namespace NII
         @param[in] init 属性默认值
         @version NIIEngine 3.0.0 adv
         */
-        bool getData(PropertyID pid, void *& out, void * init = 0) const;
+        bool getData(PropertyID pid, Any & out, const Any & init = 0) const;
 
         /** 获取值
         @param[in] pid 属性ID
@@ -315,17 +315,17 @@ namespace NII
         /** 属性数量
         @version NIIEngine 3.0.0
         */
-        inline NCount getCount() const { return mPropertys.size() + mExtPropertys.size(); }
+        inline NCount getCount() const                      { return mPropertys.size() + mExtPropertys.size(); }
 
         /** 获取属性值列表
         @version NIIEngine 3.0.0 adv api
         */
-        inline const PropertyList & getList() const { return mPropertys; }
+        inline const PropertyList & getList() const         { return mPropertys; }
 
         /** 获取属性值列表
         @version NIIEngine 3.0.0 adv api
         */
-        inline const ExtPropertyList & getExtList() const { return mExtPropertys; }
+        inline const ExtPropertyList & getExtList() const   { return mExtPropertys; }
 
         /** 复制对象
         @note 返回的使用完后使用 N_delete 删除
@@ -380,24 +380,24 @@ namespace NII
         /** 获取值(字符串)
         @version NIIEngine 3.0.0
         */
-        virtual void get(const PropertyCmdObj * own, String & out) const = 0;
+        virtual void get(const PropertyCmdObj * own, String & out) const;
 
         /** 获取值(数据指针)
         @param[out] out 已经实例化的指针
         @version NIIEngine 3.0.0 高级api
         */
-        virtual void get(const PropertyCmdObj * own, void * out) const;
+        virtual void get(const PropertyCmdObj * own, Any & out) const;
 
         /** 设置值(字符串)
         @version NIIEngine 3.0.0
         */
-        virtual void set(PropertyCmdObj * own, const String & in) = 0;
+        virtual void set(PropertyCmdObj * own, const String & in);
 
         /** 设置值(数据指针)
         @param[in] in 已经实例化的指针
         @version NIIEngine 3.0.0 高级api
         */
-        virtual void set(PropertyCmdObj * own, const void * in);
+        virtual void set(PropertyCmdObj * own, const Any & in);
 
         /** 创建数值混合对象
         @version NIIEngine 3.0.0 高级api
@@ -490,7 +490,7 @@ namespace NII
         /** 是否存在属性控制
         @version NIIEngine 3.0.0
         */
-        bool isExist(PropertyID pid)const;
+        bool isExist(PropertyID pid)const               { return mCmdMap.find(pid) != mCmdMap.end();}
 
         /** 获取属性控制
         @version NIIEngine 3.0.0
@@ -559,7 +559,7 @@ namespace NII
         @note 此函数比PropertyID慢
         @version NIIEngine 3.0.0
         */
-        virtual bool set(const String & pname, const void * out);
+        virtual bool set(const String & pname, const Any & out);
 
         /** 设置属性值
         @note 必须明确知道所设置的属性是什么类型
@@ -571,7 +571,7 @@ namespace NII
         @note 必须明确知道所设置的属性是什么类型,输入参数是类型实体的指针
         @version NIIEngine 3.0.0
         */
-        virtual bool set(PropertyID pid, const void * out);
+        virtual bool set(PropertyID pid, const Any & out);
 
         /** 获取属性值
         @note 必须明确知道所获取的属性是什么类型
@@ -583,7 +583,7 @@ namespace NII
         @note 必须明确知道所获取的属性是什么类型,输出参数是类型实体的指针
         @version NIIEngine 3.0.0
         */
-        virtual bool get(PropertyID pid, void * out) const;
+        virtual bool get(PropertyID pid, Any & out) const;
 
         /** 获取属性名字
         @version NIIEngine 3.0.0
@@ -669,7 +669,7 @@ namespace NII
         N_static_mutex(mCmdCollectMapMutex);
         static CmdCollectMap mCmdCollectMap;
     };
-
+    
 #define N_PropertyCmdb(OWN, PNAME, PID, VERBOSE, SetFun, GetFun, _default, _rable, _wable, _sable) \
     class _EngineInner PNAME : public PropertyCmd                       \
     {                                                                   \
@@ -686,7 +686,7 @@ namespace NII
             StrConv::conv(val, t1);                                     \
             static_cast<OWN *>(own)->SetFun(t1);                        \
         }                                                               \
-        void get(const PropertyCmdObj * own, void * out)                \
+        /*void get(const PropertyCmdObj * own, void * out)                \
         {                                                               \
             bool * temp = (bool *)out;                                  \
             *temp = static_cast<const OWN *>(own)->GetFun();            \
@@ -695,7 +695,7 @@ namespace NII
         {                                                               \
             bool * temp = (bool *)in;                                   \
             static_cast<OWN *>(own)->SetFun(*temp);                     \
-        }                                                               \
+        }  */                                                             \
         bool isReadable() const{ return _rable; }                       \
         bool isWritable() const { return _wable; }                      \
         bool isSerialize() const { return _sable;}                      \
@@ -718,7 +718,7 @@ namespace NII
             StrConv::conv(val, t1);                                        \
             static_cast<OWN *>(own)->SetFun(t1);                        \
         }                                                               \
-        void get(const PropertyCmdObj * own, void * out)                \
+        /*void get(const PropertyCmdObj * own, void * out)                \
         {                                                               \
             NIIi * temp = (NIIi *)out;                                  \
             *temp = static_cast<const OWN *>(own)->GetFun();            \
@@ -727,7 +727,7 @@ namespace NII
         {                                                               \
             NIIi * temp = (NIIf *)in;                                   \
             static_cast<OWN *>(own)->SetFun(*temp);                     \
-        }                                                               \
+        } */                                                              \
         bool isReadable() const{ return _rable; }                       \
         bool isWritable() const { return _wable; }                      \
         bool isSerialize() const { return _sable;}                      \
@@ -750,7 +750,7 @@ namespace NII
             StrConv::conv(val, t1);                                        \
             static_cast<OWN *>(own)->SetFun(t1);                        \
         }                                                               \
-        void get(const PropertyCmdObj * own, void * out)                \
+        /*void get(const PropertyCmdObj * own, void * out)                \
         {                                                               \
             NIIf * temp = (NIIf *)out;                                  \
             *temp = static_cast<const OWN *>(own)->GetFun();            \
@@ -759,7 +759,7 @@ namespace NII
         {                                                               \
             NIIf * temp = (NIIf *)in;                                   \
             static_cast<OWN *>(own)->SetFun(*temp);                     \
-        }                                                               \
+        }*/                                                               \
         bool isReadable() const{ return _rable; }                       \
         bool isWritable() const { return _wable; }                      \
         bool isSerialize() const { return _sable;}                      \
@@ -783,7 +783,7 @@ namespace NII
             CONV::conv(val, temp);                                      \
             static_cast<OWN *>(own)->SetFun(temp.x, temp.y, temp.z, temp.w);    \
         }                                                               \
-        void get(const PropertyCmdObj * own, void * out)                \
+        /*void get(const PropertyCmdObj * own, void * out)                \
         {                                                               \
             NIIi * temp = (NIIi *)out;                                  \
             static_cast<const OWN *>(own)->GetFun(*temp, *++temp, *++temp, *++temp);    \
@@ -792,7 +792,7 @@ namespace NII
         {                                                               \
             NIIi * temp = (NIIi *)in;                                   \
             static_cast<OWN *>(own)->SetFun(*temp, *++temp, *++temp, *++temp);      \
-        }                                                               \
+        }*/                                                               \
         bool isReadable() const{ return _rable; }                       \
         bool isWritable() const { return _wable; }                      \
         bool isSerialize() const { return _sable;}                      \
@@ -816,7 +816,7 @@ namespace NII
             StrConv::conv(val, temp);                                           \
             static_cast<OWN *>(own)->SetFun(temp.x, temp.y, temp.z, temp.w);    \
         }                                                                       \
-        void get(const PropertyCmdObj * own, void * out)                        \
+        /*void get(const PropertyCmdObj * own, void * out)                        \
         {                                                                       \
             NIIf * temp = (NIIf *)out;                                          \
             static_cast<const OWN *>(own)->GetFun(*temp, *++temp, *++temp, *++temp);    \
@@ -825,7 +825,7 @@ namespace NII
         {                                                                       \
             NIIf * temp = (NIIf *)in;                                           \
             static_cast<OWN *>(own)->SetFun(*temp, *++temp, *++temp, *++temp);  \
-        }                                                                       \
+        } */                                                                      \
         bool isReadable() const{ return _rable; }                               \
         bool isWritable() const { return _wable; }                              \
         bool isSerialize() const { return _sable;}                              \
@@ -849,7 +849,7 @@ namespace NII
             TCONV::conv(value, temp);                                           \
             static_cast<OWN *>(own)->SetFun(value);                             \
         }                                                                       \
-        void get(const PropertyCmdObj * own, void * out)                        \
+        /*void get(const PropertyCmdObj * own, void * out)                        \
         {                                                                       \
             T * temp = (T *)out;                                                \
             *temp = static_cast<const OWN *>(own)->GetFun();                    \
@@ -858,7 +858,7 @@ namespace NII
         {                                                                       \
             T * temp = (T *)in;                                                 \
             static_cast<OWN *>(own)->SetFun(*temp);                             \
-        }                                                                       \
+        }  */                                                                     \
         bool isReadable() const{ return _rable; }                               \
         bool isWritable() const { return _wable; }                              \
         bool isSerialize() const { return _sable;}                              \

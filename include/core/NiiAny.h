@@ -50,10 +50,10 @@ namespace NII
     public:
         Any() : mContent(0){}
 
-        template<typename ValueType> explicit Any(const ValueType & value)
-          : mContent(N_new_t(holder<ValueType>)(value)){}
+        template<typename Type> explicit Any(const Type & o)
+          : mContent(N_new_t(holder<Type>)(o)){}
 
-        Any(const Any & other) : mContent(other.mContent ? other.mContent->clone() : 0){}
+        Any(const Any & o) : mContent(o.mContent ? o.mContent->clone() : 0){}
 
         virtual ~Any()
         { 
@@ -66,7 +66,7 @@ namespace NII
             return *this;
         }
 
-        template<typename ValueType> Any & operator=(const ValueType & o)
+        template<typename Type> Any & operator=(const Type & o)
         {
             Any(o).swap(*this);
             return *this;
@@ -98,21 +98,21 @@ namespace NII
             mContent = NULL;
         }
 
-        template<typename ValueType> ValueType operator()() const
+        template<typename Type> Type operator()() const
         {
             if (!mContent)
             {
                 N_EXCEPT(InvalidParam, _I18n("Bad cast from uninitialised Any"));
             }
-            else if(getType() == typeid(ValueType))
+            else if(getType() == typeid(Type))
             {
-                 return static_cast<Any::holder<ValueType> *>(mContent)->held;
+                 return static_cast<Any::holder<Type> *>(mContent)->held;
             }
             else
             {
                 StringStream str;
                 str << _I18n("Bad cast from type '") << getType().name() << "' "
-                    << _I18n("to '") << typeid(ValueType).name() << "'";
+                    << _I18n("to '") << typeid(Type).name() << "'";
                 N_EXCEPT(InvalidParam, str.str());
             }
         }
@@ -129,14 +129,14 @@ namespace NII
             virtual void writeToStream(std::ostream& o) = 0;
         };
 
-        template<typename ValueType> class holder : public placeholder
+        template<typename Type> class holder : public placeholder
         {
         public:
-            holder(const ValueType & value) : held(value){}
+            holder(const Type & value) : held(value){}
         public:
             virtual const std::type_info & getType() const
             {
-                return typeid(ValueType);
+                return typeid(Type);
             }
 
             virtual placeholder * clone() const
@@ -148,13 +148,13 @@ namespace NII
             {
                 o << held;
             }
-        public: // 描述
-            ValueType held;
+        public:
+            Type held;
         };
-    protected: // 描述
+    protected:
         placeholder * mContent;
 
-        template<typename ValueType> friend ValueType * any_cast(Any *);
+        template<typename Type> friend Type * any_cast(Any *);
     };
 
     /// 专门在Any基础上建立的算术运算符类,而且能表示其他任何支持+,-,*and/的类型.
@@ -174,9 +174,9 @@ namespace NII
     public:
         AnyNumeric() : Any(){}
 
-        template<typename ValueType> AnyNumeric(const ValueType & value)
+        template<typename Type> AnyNumeric(const Type & type)
         {
-            mContent = N_new_t(numholder<ValueType>)(value);
+            mContent = N_new_t(numholder<Type>)(type);
         }
 
         AnyNumeric(const AnyNumeric & other) : Any()
@@ -184,49 +184,49 @@ namespace NII
             mContent = other.mContent ? other.mContent->clone() : 0;
         }
 
-        AnyNumeric & operator=(const AnyNumeric & rhs)
+        AnyNumeric & operator=(const AnyNumeric & o)
         {
-            AnyNumeric(rhs).swap(*this);
+            AnyNumeric(o).swap(*this);
             return * this;
         }
-        AnyNumeric operator+(const AnyNumeric & rhs) const
+        AnyNumeric operator+(const AnyNumeric & o) const
         {
-            return AnyNumeric(static_cast<numplaceholder *>(mContent)->add(rhs.mContent));
+            return AnyNumeric(static_cast<numplaceholder *>(mContent)->add(o.mContent));
         }
-        AnyNumeric operator-(const AnyNumeric & rhs) const
+        AnyNumeric operator-(const AnyNumeric & o) const
         {
-            return AnyNumeric(static_cast<numplaceholder *>(mContent)->subtract(rhs.mContent));
+            return AnyNumeric(static_cast<numplaceholder *>(mContent)->subtract(o.mContent));
         }
-        AnyNumeric operator*(const AnyNumeric & rhs) const
+        AnyNumeric operator*(const AnyNumeric & o) const
         {
-            return AnyNumeric(static_cast<numplaceholder *>(mContent)->multiply(rhs.mContent));
+            return AnyNumeric(static_cast<numplaceholder *>(mContent)->multiply(o.mContent));
         }
         AnyNumeric operator*(NIIf factor) const
         {
             return AnyNumeric(static_cast<numplaceholder *>(mContent)->multiply(factor));
         }
-        AnyNumeric operator/(const AnyNumeric & rhs) const
+        AnyNumeric operator/(const AnyNumeric & o) const
         {
-            return AnyNumeric(static_cast<numplaceholder *>(mContent)->divide(rhs.mContent));
+            return AnyNumeric(static_cast<numplaceholder *>(mContent)->divide(o.mContent));
         }
-        AnyNumeric & operator+=(const AnyNumeric & rhs)
+        AnyNumeric & operator+=(const AnyNumeric & o)
         {
-            *this = AnyNumeric(static_cast<numplaceholder *>(mContent)->add(rhs.mContent));
+            *this = AnyNumeric(static_cast<numplaceholder *>(mContent)->add(o.mContent));
             return *this;
         }
-        AnyNumeric & operator-=(const AnyNumeric & rhs)
+        AnyNumeric & operator-=(const AnyNumeric & o)
         {
-            *this = AnyNumeric(static_cast<numplaceholder *>(mContent)->subtract(rhs.mContent));
+            *this = AnyNumeric(static_cast<numplaceholder *>(mContent)->subtract(o.mContent));
             return *this;
         }
-        AnyNumeric & operator*=(const AnyNumeric & rhs)
+        AnyNumeric & operator*=(const AnyNumeric & o)
         {
-            *this = AnyNumeric(static_cast<numplaceholder *>(mContent)->multiply(rhs.mContent));
+            *this = AnyNumeric(static_cast<numplaceholder *>(mContent)->multiply(o.mContent));
             return *this;
         }
-        AnyNumeric & operator/=(const AnyNumeric & rhs)
+        AnyNumeric & operator/=(const AnyNumeric & o)
         {
-            *this = AnyNumeric(static_cast<numplaceholder *>(mContent)->divide(rhs.mContent));
+            *this = AnyNumeric(static_cast<numplaceholder *>(mContent)->divide(o.mContent));
             return *this;
         }
     protected:
@@ -235,14 +235,14 @@ namespace NII
             mContent = pholder;
         }
 
-        template<typename ValueType> class numholder : public numplaceholder
+        template<typename Type> class numholder : public numplaceholder
         {
         public: // structors
-            numholder(const ValueType & value) : held(value){}
+            numholder(const Type & type) : held(type){}
 
             virtual const std::type_info & getType() const
             {
-                return typeid(ValueType);
+                return typeid(Type);
             }
 
             virtual placeholder * clone() const
@@ -250,54 +250,54 @@ namespace NII
                 return N_new_t(numholder)(held);
             }
 
-            virtual placeholder * add(placeholder * rhs)
+            virtual placeholder * add(placeholder * o)
             {
-                return N_new_t(numholder)(held + static_cast<numholder*>(rhs)->held);
+                return N_new_t(numholder)(held + static_cast<numholder*>(o)->held);
             }
-            virtual placeholder * subtract(placeholder * rhs)
+            virtual placeholder * subtract(placeholder * o)
             {
-                return N_new_t(numholder)(held - static_cast<numholder*>(rhs)->held);
+                return N_new_t(numholder)(held - static_cast<numholder*>(o)->held);
             }
-            virtual placeholder * multiply(placeholder * rhs)
+            virtual placeholder * multiply(placeholder * o)
             {
-                return N_new_t(numholder)(held * static_cast<numholder*>(rhs)->held);
+                return N_new_t(numholder)(held * static_cast<numholder*>(o)->held);
             }
             virtual placeholder * multiply(NIIf factor)
             {
                 return N_new_t(numholder)(held * factor);
             }
-            virtual placeholder * divide(placeholder * rhs)
+            virtual placeholder * divide(placeholder * o)
             {
-                return N_new_t(numholder)(held / static_cast<numholder*>(rhs)->held);
+                return N_new_t(numholder)(held / static_cast<numholder*>(o)->held);
             }
             virtual void writeToStream(std::ostream& o)
             {
                 o << held;
             }
         public:
-            ValueType held;
+            Type held;
         };
     };
 
-    template<typename ValueType> ValueType * any_cast(Any * operand)
+    template<typename Type> Type * any_cast(Any * data)
     {
-        return operand && (std::strcmp(operand->getType().name(), typeid(ValueType).name()) == 0)
-            ? &static_cast<Any::holder<ValueType> *>(operand->mContent)->held : 0;
+        return data && (std::strcmp(data->getType().name(), typeid(Type).name()) == 0)
+            ? &static_cast<Any::holder<Type> *>(data->mContent)->held : 0;
     }
 
-    template<typename ValueType> const ValueType * any_cast(const Any * operand)
+    template<typename Type> const Type * any_cast(const Any * data)
     {
-        return any_cast<ValueType>(const_cast<Any *>(operand));
+        return any_cast<Type>(const_cast<Any *>(data));
     }
 
-    template<typename ValueType> ValueType any_cast(const Any & operand)
+    template<typename Type> Type any_cast(const Any & data)
     {
-        const ValueType * result = any_cast<ValueType>(&operand);
+        const Type * result = any_cast<Type>(&data);
         if(!result)
         {
             StringStream str;
-            str << _I18n("Bad cast from type '") << operand.getType().name() << "' "
-                << _I18n("to '") << typeid(ValueType).name() << "'";
+            str << _I18n("Bad cast from type '") << data.getType().name() << "' "
+                << _I18n("to '") << typeid(Type).name() << "'";
             N_EXCEPT(InvalidParam, str.str());
         }
         return *result;
