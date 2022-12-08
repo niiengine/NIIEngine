@@ -31,6 +31,7 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 #include "NiiPreInclude.h"
 #include "NiiScriptProperty.h"
 #include "NiiString.h"
+#include "NiiAny.h"
 
 namespace NII
 {
@@ -686,16 +687,14 @@ namespace NII
             StrConv::conv(val, t1);                                     \
             static_cast<OWN *>(own)->SetFun(t1);                        \
         }                                                               \
-        /*void get(const PropertyCmdObj * own, void * out)                \
+        void get(const PropertyCmdObj * own, Any & out)                 \
         {                                                               \
-            bool * temp = (bool *)out;                                  \
-            *temp = static_cast<const OWN *>(own)->GetFun();            \
+            out = Any(static_cast<const OWN *>(own)->GetFun());         \
         }                                                               \
-        void set(PropertyCmdObj * own, const void * in)                 \
+        void set(PropertyCmdObj * own, const Any & in)                  \
         {                                                               \
-            bool * temp = (bool *)in;                                   \
-            static_cast<OWN *>(own)->SetFun(*temp);                     \
-        }  */                                                             \
+            static_cast<OWN *>(own)->SetFun(NII::any_cast<bool>(in));   \
+        }                                                               \
         bool isReadable() const{ return _rable; }                       \
         bool isWritable() const { return _wable; }                      \
         bool isSerialize() const { return _sable;}                      \
@@ -710,24 +709,22 @@ namespace NII
         void get(const PropertyCmdObj * own, String & out) const        \
         {                                                               \
             NIIi t1 = static_cast<const OWN *>(own)->GetFun();          \
-            StrConv::conv(t1, out);                                        \
+            StrConv::conv(t1, out);                                     \
         }                                                               \
         void set(PropertyCmdObj * own, const String & val)              \
         {                                                               \
             NIIi t1;                                                    \
-            StrConv::conv(val, t1);                                        \
+            StrConv::conv(val, t1);                                     \
             static_cast<OWN *>(own)->SetFun(t1);                        \
         }                                                               \
-        /*void get(const PropertyCmdObj * own, void * out)                \
+        void get(const PropertyCmdObj * own, Any & out)                 \
         {                                                               \
-            NIIi * temp = (NIIi *)out;                                  \
-            *temp = static_cast<const OWN *>(own)->GetFun();            \
+            out = Any(static_cast<const OWN *>(own)->GetFun());         \
         }                                                               \
-        void set(PropertyCmdObj * own, const void * in)                 \
+        void set(PropertyCmdObj * own, const Any & in)                  \
         {                                                               \
-            NIIi * temp = (NIIf *)in;                                   \
-            static_cast<OWN *>(own)->SetFun(*temp);                     \
-        } */                                                              \
+            static_cast<OWN *>(own)->SetFun(NII::any_cast<NIIi>(in));   \
+        }                                                               \
         bool isReadable() const{ return _rable; }                       \
         bool isWritable() const { return _wable; }                      \
         bool isSerialize() const { return _sable;}                      \
@@ -742,24 +739,22 @@ namespace NII
         void get(const PropertyCmdObj * own, String & out) const        \
         {                                                               \
             NIIf t1 = static_cast<const OWN *>(own)->GetFun();          \
-            StrConv::conv(t1, out);                                        \
+            StrConv::conv(t1, out);                                     \
         }                                                               \
         void set(PropertyCmdObj * own, const String & val)              \
         {                                                               \
             NIIf t1;                                                    \
-            StrConv::conv(val, t1);                                        \
+            StrConv::conv(val, t1);                                     \
             static_cast<OWN *>(own)->SetFun(t1);                        \
         }                                                               \
-        /*void get(const PropertyCmdObj * own, void * out)                \
+        void get(const PropertyCmdObj * own, Any & out)                 \
         {                                                               \
-            NIIf * temp = (NIIf *)out;                                  \
-            *temp = static_cast<const OWN *>(own)->GetFun();            \
+            out = Any(static_cast<const OWN *>(own)->GetFun());         \
         }                                                               \
-        void set(PropertyCmdObj * own, const void * in)                 \
+        void set(PropertyCmdObj * own, const Any & in)                  \
         {                                                               \
-            NIIf * temp = (NIIf *)in;                                   \
-            static_cast<OWN *>(own)->SetFun(*temp);                     \
-        }*/                                                               \
+            static_cast<OWN *>(own)->SetFun(NII::any_cast<NIIf>(in));   \
+        }                                                               \
         bool isReadable() const{ return _rable; }                       \
         bool isWritable() const { return _wable; }                      \
         bool isSerialize() const { return _sable;}                      \
@@ -775,7 +770,7 @@ namespace NII
         {                                                               \
             NIIi u1, v1, u2, v2;                                        \
             static_cast<const OWN *>(own)->GetFun(u1, v1, u2, v2);      \
-            CONV::conv(Vector4f(u1, v1, u2, v2), out);                  \
+            CONV::conv(Vector4i(u1, v1, u2, v2), out);                  \
         }                                                               \
         void set(PropertyCmdObj * own, const String & val)              \
         {                                                               \
@@ -783,16 +778,17 @@ namespace NII
             CONV::conv(val, temp);                                      \
             static_cast<OWN *>(own)->SetFun(temp.x, temp.y, temp.z, temp.w);    \
         }                                                               \
-        /*void get(const PropertyCmdObj * own, void * out)                \
+        void get(const PropertyCmdObj * own, Any & out)                 \
         {                                                               \
-            NIIi * temp = (NIIi *)out;                                  \
-            static_cast<const OWN *>(own)->GetFun(*temp, *++temp, *++temp, *++temp);    \
+            NIIi u1, v1, u2, v2;                                        \
+            static_cast<const OWN *>(own)->GetFun(u1, v1, u2, v2);      \
+            out = Any(Vector4i(u1, v1, u2, v2));                        \
         }                                                               \
-        void set(PropertyCmdObj * own, const void * in)                 \
+        void set(PropertyCmdObj * own, const Any & in)                  \
         {                                                               \
-            NIIi * temp = (NIIi *)in;                                   \
-            static_cast<OWN *>(own)->SetFun(*temp, *++temp, *++temp, *++temp);      \
-        }*/                                                               \
+            const Vector4i & temp = NII::any_cast<Vector4i>(in);        \
+            static_cast<OWN *>(own)->SetFun(temp.x, temp.y, temp.z, temp.w);    \
+        }                                                               \
         bool isReadable() const{ return _rable; }                       \
         bool isWritable() const { return _wable; }                      \
         bool isSerialize() const { return _sable;}                      \
@@ -816,16 +812,17 @@ namespace NII
             StrConv::conv(val, temp);                                           \
             static_cast<OWN *>(own)->SetFun(temp.x, temp.y, temp.z, temp.w);    \
         }                                                                       \
-        /*void get(const PropertyCmdObj * own, void * out)                        \
+        void get(const PropertyCmdObj * own, Any & out)                         \
         {                                                                       \
-            NIIf * temp = (NIIf *)out;                                          \
-            static_cast<const OWN *>(own)->GetFun(*temp, *++temp, *++temp, *++temp);    \
+            NIIf u1, v1, u2, v2;                                                \
+            static_cast<const OWN *>(own)->GetFun(u1, v1, u2, v2);              \
+            out = Any(Vector4f(u1, v1, u2, v2));                                \
         }                                                                       \
-        void set(PropertyCmdObj * own, const void * in)                         \
+        void set(PropertyCmdObj * own, const Any & in)                          \
         {                                                                       \
-            NIIf * temp = (NIIf *)in;                                           \
-            static_cast<OWN *>(own)->SetFun(*temp, *++temp, *++temp, *++temp);  \
-        } */                                                                      \
+            const Vector4f & temp = NII::any_cast<Vector4f>(in);                \
+            static_cast<OWN *>(own)->SetFun(temp.x, temp.y, temp.z, temp.w);    \
+        }                                                                       \
         bool isReadable() const{ return _rable; }                               \
         bool isWritable() const { return _wable; }                              \
         bool isSerialize() const { return _sable;}                              \
@@ -849,16 +846,48 @@ namespace NII
             TCONV::conv(value, temp);                                           \
             static_cast<OWN *>(own)->SetFun(value);                             \
         }                                                                       \
-        /*void get(const PropertyCmdObj * own, void * out)                        \
+        void get(const PropertyCmdObj * own, Any & out)                         \
         {                                                                       \
-            T * temp = (T *)out;                                                \
-            *temp = static_cast<const OWN *>(own)->GetFun();                    \
+            out = Any(static_cast<const OWN *>(own)->GetFun());                 \
         }                                                                       \
-        void set(PropertyCmdObj * own, const void * in)                         \
+        void set(PropertyCmdObj * own, const Any & in)                          \
         {                                                                       \
-            T * temp = (T *)in;                                                 \
-            static_cast<OWN *>(own)->SetFun(*temp);                             \
-        }  */                                                                     \
+            static_cast<OWN *>(own)->SetFun(NII::any_cast<T>(in));              \
+        }                                                                       \
+        bool isReadable() const{ return _rable; }                               \
+        bool isWritable() const { return _wable; }                              \
+        bool isSerialize() const { return _sable;}                              \
+        PropertyCmd * clone() const { return N_new PNAME();   }                 \
+        void getDefault(String & out) const{ out = _T(_default);}};
+        
+#define N_PropertyCmd4T(OWN, PNAME, PID, VERBOSE, TCONV, SetFun, GetFun, _default, _rable, _wable, _sable) \
+    class _EngineInner PNAME : public PropertyCmd                               \
+    {                                                                           \
+    public:                                                                     \
+        PNAME() : PropertyCmd(PID, _T(VERBOSE)) {}                              \
+        void get(const PropertyCmdObj * own, String & out) const                \
+        {                                                                       \
+            T u1, v1, u2, v2;                                                   \
+            static_cast<const OWN *>(own)->GetFun(u1, v1, u2, v2);              \
+            TCONV::conv(Vector4<T>(u1, v1, u2, v2), out);                       \
+        }                                                                       \
+        void set(PropertyCmdObj * own, const String & val)                      \
+        {                                                                       \
+            Vector4<T> temp;                                                    \
+            TCONV::conv(val, temp);                                             \
+            static_cast<OWN *>(own)->SetFun(temp.x, temp.y, temp.z, temp.w);    \
+        }                                                                       \
+        void get(const PropertyCmdObj * own, Any & out)                         \
+        {                                                                       \
+            T u1, v1, u2, v2;                                                   \
+            static_cast<const OWN *>(own)->GetFun(u1, v1, u2, v2);              \
+            out = Any(Vector4<T>(u1, v1, u2, v2));                              \
+        }                                                                       \
+        void set(PropertyCmdObj * own, const Any & in)                          \
+        {                                                                       \
+            const Vector4<T> & temp = NII::any_cast<Vector4<T> >(in);           \
+            static_cast<OWN *>(own)->SetFun(temp.x, temp.y, temp.z, temp.w);    \
+        }                                                                       \
         bool isReadable() const{ return _rable; }                               \
         bool isWritable() const { return _wable; }                              \
         bool isSerialize() const { return _sable;}                              \

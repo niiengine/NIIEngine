@@ -100,20 +100,13 @@ namespace NII
 
         template<typename Type> Type operator()() const
         {
-            if (!mContent)
-            {
-                N_EXCEPT(InvalidParam, _I18n("Bad cast from uninitialised Any"));
-            }
-            else if(getType() == typeid(Type))
+            if (mContent)
             {
                  return static_cast<Any::holder<Type> *>(mContent)->held;
             }
             else
             {
-                StringStream str;
-                str << _I18n("Bad cast from type '") << getType().name() << "' "
-                    << _I18n("to '") << typeid(Type).name() << "'";
-                N_EXCEPT(InvalidParam, str.str());
+                N_EXCEPT(InvalidParam, _I18n("Bad cast from uninitialised Any"));
             }
         }
     protected: // types
@@ -281,8 +274,8 @@ namespace NII
 
     template<typename Type> Type * any_cast(Any * data)
     {
-        return data && (std::strcmp(data->getType().name(), typeid(Type).name()) == 0)
-            ? &static_cast<Any::holder<Type> *>(data->mContent)->held : 0;
+        return data && (data->getType() == typeid(Type)) ? 
+            &static_cast<Any::holder<Type> *>(data->mContent)->held : 0;
     }
 
     template<typename Type> const Type * any_cast(const Any * data)
@@ -290,7 +283,7 @@ namespace NII
         return any_cast<Type>(const_cast<Any *>(data));
     }
 
-    template<typename Type> Type any_cast(const Any & data)
+    template<typename Type> const Type & any_cast(const Any & data)
     {
         const Type * result = any_cast<Type>(&data);
         if(!result)
