@@ -123,7 +123,8 @@ namespace NII
     */
     enum GpuSyncParam
     {
-        GSP_Matrix_Proj = 0,            ///< 投影矩阵
+        GSP_Null = 0,
+        GSP_Matrix_Proj,                ///< 投影矩阵
         GSP_Matrix_View,                ///< 视图矩阵
         GSP_Matrix_Space,               ///< 模型矩阵
         GSP_Matrix_Proj_X_View,         ///< 几何原点矩阵
@@ -268,7 +269,7 @@ namespace NII
     inline bool isBlock(GpuDataType c)      { return c == GDT_Block; }
 
     /** 环境参数
-    @version NIIEngine 3.0.0
+    @version NIIEngine 3.0.0 Deprecated
     */
     struct _EngineAPI GpuEnvParamUnit
     {
@@ -317,6 +318,7 @@ namespace NII
         inline bool isBlock() const         { return mDataType == GDT_Block; }
 
         GpuDataType mDataType;
+        GpuSyncParam mSyncParam;
         Nidx mIndex;                ///< hwbuf idx
         Nmark mTypeMark;
         Nidx mMemIndex;
@@ -324,6 +326,7 @@ namespace NII
         NCount mUnitCount;          ///< Unit数量
         Nidex mArrayIndex;          ///< 数组索引
         bool mArrayMode;
+        bool mValidValue;           ///<辅助
     };
     typedef map<VString, GpuParamUnit>::type GpuParamUnitList;
 
@@ -418,7 +421,7 @@ namespace NII
         /** 获取列表
         @version NIIEngine 3.0.0
         */
-        inline const GpuParamUnitList & getList() const    { return mDefineList; }
+        inline const GpuParamUnitList & getList() const     { return mDefineList; }
 
         /** 获取大小
         @version NIIEngine 3.0.0
@@ -469,6 +472,13 @@ namespace NII
         {
             StorageUnit()             { memset( this, 0, sizeof( StorageUnit ) );}
 
+            StorageUnit & operator= (const StorageUnit & o) const
+            {
+                mBuffer = o.mBuffer;
+                mOffset = o.mOffset;
+                mSize = o.mSize;
+            }
+            
             bool operator != (const StorageUnit & o) const
             {
                 if (mBuffer != o.mBuffer || mOffset != o.mOffset || mSize != o.mSize)
@@ -499,6 +509,14 @@ namespace NII
         {
             SamplerUnit()             { memset( this, 0, sizeof( SamplerUnit ) );}
 
+            SamplerUnit & operator= (const SamplerUnit & o) const
+            {
+                mBuffer = o.mBuffer;
+                mMipmap = o.mMipmap;
+                mArrayIndex = o.mArrayIndex;
+                mFormat = o.mFormat;
+            }
+            
             bool operator != (const SamplerUnit & o) const
             {
                 if (mBuffer != o.mBuffer || mMipmap != o.mMipmap || mArrayIndex != o.mArrayIndex || mFormat != o.mFormat)
@@ -811,6 +829,11 @@ namespace NII
         @version NIIEngine 3.0.0
         */
         void add(const VString & name, GpuDataType type, NCount count = 1);
+        
+        /** 添加变量
+        @version NIIEngine 3.0.0
+        */
+        void add(const VString & name, GpuDataType type, GpuSyncParam param, NCount count = 1);
 
         /** 获取变量
         @version NIIEngine 3.0.0
@@ -902,6 +925,11 @@ namespace NII
         @version NIIEngine 3.0.0 高级api
         */
         inline const GpuParamUnitList & getDefList() const          { return mDefines; }
+        
+        /** 手动设置状态
+        @version NIIEngine 3.0.0
+        */
+        inline void setStateMark() const                            { ++mDirtyMark; }
 
         /** 获取状态掩码
         @version NIIEngine 3.0.0

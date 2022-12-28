@@ -1217,8 +1217,8 @@ namespace NII
         */
         enum SamplerType
         {
-            ST_Buffer,
-            ST_Texture
+            ST_Storage,
+            ST_Sampler
         };
 
         /** »º´æ²Û
@@ -1388,7 +1388,7 @@ namespace NII
         struct Slot
         {
         public:
-            Slot() : mPType(ST_Buffer)
+            Slot() : mPType(ST_Storage)
             {
                 memset(this, 0, sizeof(Slot));
             }
@@ -1401,7 +1401,7 @@ namespace NII
             void operator =(const Slot & o)
             {
                 mPType = o.mPType;
-                if(mPType == ST_Buffer)
+                if(mPType == ST_Storage)
                 {
                     return mBuffer = o.mBuffer;
                 }
@@ -1418,35 +1418,35 @@ namespace NII
 
             bool isBuffer() const
             {
-                return mPType == ST_Buffer;
+                return mPType == ST_Storage;
             }
             
             bool isTexture() const
             {
-                return mPType == ST_Texture;
+                return mPType == ST_Sampler;
             }
 
             StorageUnit & getBuffer()
             {
-                N_assert1(mPType == ST_Buffer);
+                N_assert1(mPType == ST_Storage);
                 return mBuffer;
             }
 
             const StorageUnit & getBuffer() const
             {
-                N_assert1(mPType == ST_Buffer);
+                N_assert1(mPType == ST_Storage);
                 return mBuffer;
             }
 
             SamplerUnit & getTexture()
             {
-                N_assert1(mPType == ST_Texture);
+                N_assert1(mPType == ST_Sampler);
                 return mTexture;
             }
 
             const SamplerUnit & getTexture() const
             {
-                N_assert1(mPType == ST_Texture);
+                N_assert1(mPType == ST_Sampler);
                 return mTexture;
             }
 
@@ -1454,7 +1454,7 @@ namespace NII
             {
                 if(mPType == o.mPType)
                 {
-                    if(mPType == ST_Buffer)
+                    if(mPType == ST_Storage)
                     {
                         return mBuffer == o.mBuffer;
                     }
@@ -1470,7 +1470,7 @@ namespace NII
             {
                 if(mPType == o.mPType)
                 {
-                    if(mPType == ST_Buffer)
+                    if(mPType == ST_Storage)
                     {
                         return mBuffer != o.mBuffer;
                     }
@@ -1487,7 +1487,7 @@ namespace NII
                 if(mPType != o.mPType)
                     return mPType < o.mPType;
 
-                if(mPType == ST_Buffer)
+                if(mPType == ST_Storage)
                 {
                     return mBuffer < o.mBuffer;
                 }
@@ -1500,7 +1500,7 @@ namespace NII
             SamplerType mPType;
             union
             {
-                StorageUnit  mBuffer;
+                StorageUnit mBuffer;
                 SamplerUnit mTexture;
             };
         };

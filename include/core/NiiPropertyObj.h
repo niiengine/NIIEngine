@@ -58,7 +58,7 @@ namespace NII
     {
     public:
         typedef map<PropertyID, PropertyData>::type SubPropertyList;
-        typedef map<PropertyID, void *>::type ExtPropertyList;
+        typedef map<PropertyID, Any>::type ExtPropertyList;
         typedef map<PropertyID, String>::type PropertyList;
     public:
         PropertyData();

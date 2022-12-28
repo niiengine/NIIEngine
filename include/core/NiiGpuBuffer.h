@@ -61,11 +61,35 @@ namespace NII
     public:
         GpuBuffer(BufferManager * mag, NCount unitsize, NCount unitcount, NCount multi, ModeMark mode, Nui8 * initData, GroupID gid = 0, NCount goft = 0, NCount padSize = 0);
 
+        void setIdx(Nidx idx)   { mIdx = idx; }
+        
+        Nidx getIdx() const     { return mIdx; }
+        
+        bool operator () (const GpuBuffer & o1, Nidx o2) const
+        {
+            return o1.mIdx < o2;
+        }
+        bool operator () (Nidx o1, const GpuBuffer & o2) const
+        {
+            return o1 < o2.mIdx;
+        }
+        bool operator () (const GpuBuffer & o1, const GpuBuffer & o2) const
+        {
+            return o1.mIdx < o2.mIdx;
+        }
+        
+        bool operator () (const GpuBuffer * o1, const GpuBuffer * o2) const
+        {
+            return o1->mIdx < o2->mIdx;
+        }
+        
         /** 绑定到着色程序
         @remark slot 就是着色程序中的binding口
         @version NIIEngine 5.0.0
         */
         virtual void bindProgram(GpuProgram::ShaderType type, Nui16 slot, NCount oft, NCount size);
+    protected:
+        Nidx mIdx;
     };
 
     /** GPU AGP / SYS 三角形顶点索引缓存
