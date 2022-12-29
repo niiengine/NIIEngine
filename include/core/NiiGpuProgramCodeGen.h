@@ -25,11 +25,11 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 ------------------------------------------------------------------------------
 */
 
-#ifndef _NII_CODEGEN_H_
-#define _NII_CODEGEN_H_
+#ifndef _NII_GpuProgramCODEGEN_H_
+#define _NII_GpuProgramCODEGEN_H_
 
 #include "NiiPreInclude.h"
-#include "NiiCommon.h"
+#include "NiiCodeGen.h"
 
 namespace NII
 {
@@ -38,51 +38,27 @@ namespace NII
         编码合成与生成
     @version NIIEngine 3.0.0
     */
-    class _EngineAPI CodeGen : public VFSAlloc
+    class _EngineAPI GpuProgramCodeGen : public CodeGen
     {
     public:
-        /** 合成类型
-        @version NIIEngine 3.0.0
-        */
-        enum Type
-        {
-            T_Unknow            = 0,
-            T_Replace           = 1,
-            T_Framework         = 2,
-            T_Plugin            = 3
-        };
+
     public:
-        CodeGen(const String * name, Nid codeid, Type type);
-        virtual ~CodeGen();
+        GpuProgramCodeGen(const String * name, Nid codeid);
+        virtual ~GpuProgramCodeGen();
+
+        /// @copydetails CodeGen::compound
+        void compound(const String * in, String * out);
         
-        /** 返回这个档案代码类型
-        @version NIIEngine 3.0.0
-        */
-        Nid getCodeID() const              { return mCodeID; }
-
-        /** 返回这个档案代码类型
-        @version NIIEngine 3.0.0
-        */
-        Type getGenType() const             { return mGenType; }
-
-        /** 获取原代码
-        @version NIIEngine 3.0.0
-        */
-        const String * getName() const      { return mIn; }
-
-        /** 合成代码
-        @version NIIEngine 3.0.0
-        */
-        virtual void compound(const String * in, String * out);
+        /// @copydetails CodeGen::compound
+        void compound(String * out);
         
-        /** 合成代码
-        @version NIIEngine 3.0.0
-        */
-        virtual void compound(String * out);
+        virtual void setRender(RenderSys * rsys);
+        
+        RenderSys * getRender() const                      { return mRenderSystem; }
+        
+        virtual void clearShaderCache();
     protected:
-        const String * mIn;
-        Type mGenType;
-        Nid mCodeID;
+        RenderStateCacheList mShaderCache;
     };
 }
 #endif

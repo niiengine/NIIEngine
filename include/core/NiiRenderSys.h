@@ -1718,7 +1718,7 @@ namespace NII
         /**
         @version NIIEngine 6.0.0
         */
-        Fusion * addFusion( SceneManager * mag, const TextureList & targetlist, Camera * cam,
+        Fusion * addFusion( SpaceManager * space, const TextureList & targetlist, Camera * cam,
             int position = -1, const Vector2f & vpOffset = Vector2f::ZERO, const Vector2f & vpScale = Vector2f::UNIT);
 
         /**

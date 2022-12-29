@@ -41,8 +41,13 @@ namespace NII
     class _EngineAPI CodeGenFactory : public VFSAlloc
     {
     public:
-        CodeGenFactory() {}
+        CodeGenFactory(Nid codeid) : mCodeID(codeid) {}
         virtual ~CodeGenFactory() {}
+        
+        /** 类型
+        @version NIIEngine 3.0.0
+        */
+        Nid getCodeID() const              { return mCodeID; }
 
         /** 类型
         @version NIIEngine 3.0.0
@@ -58,6 +63,8 @@ namespace NII
         @version NIIEngine 3.0.0
         */
         virtual void destroy(CodeGen * obj) = 0;
+    protected:
+        Nid mCodeID;
     };
 
     /** 编码生成器管理器
@@ -67,7 +74,7 @@ namespace NII
     class _EngineAPI CodeGenManager : public Singleton<CodeGenManager>, public VFSAlloc
     {
     public:
-        typedef map<CodeGen::Type, CodeGenFactory *>::type FactoryList;
+        typedef map<Nid, CodeGenFactory *>::type FactoryList;
     public:
         CodeGenManager();
         virtual ~CodeGenManager();
@@ -84,10 +91,10 @@ namespace NII
 
         /** 加载编码生成器
         @param[in] rawcode 原代码(实例)
-        @param[in] type 类型
+        @param[in] codeid 类型
         @version NIIEngine 3.0.0
         */
-        CodeGen * load(const String * rawcode, CodeGen::Type type);
+        CodeGen * load(const String * rawcode, Nid codeid);
 
         /** 卸载编码生成器
         @param[in] rawcode 原代码(实例)
