@@ -121,6 +121,7 @@ namespace NII
             ST_GS = 3,       ///< 几何
             ST_FS = 4,       ///< 片段/pixel-shader
             ST_CS = 5,       ///< compute-shader
+            ST_PCnt = 5,     ///< 用于管线(Pipeline)渲染的类型数量
             ST_Cnt = 8
         };
     public:

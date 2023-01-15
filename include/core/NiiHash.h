@@ -48,6 +48,24 @@ namespace NII
 
     Nui32 _EngineAPI FastHash(FILE * fp);
     
+    Nui64 _EngineAPI MurmurHash64A(const void * key, NCount size, Nui64 ext);
+    Nui64 _EngineAPI MurmurHash64B(const void * key, NCount size, Nui64 ext);
+
+    void _EngineAPI MurmurHash_x86_32(const void * key, NCount size, Nui32 ext, Nui32 & out);
+
+    void _EngineAPI MurmurHash_x86_128(const void * key, NCount size, const Nui32 & ext[4], Nui32 & out[4]);
+
+    void _EngineAPI MurmurHash_x64_128(const void * key, NCount size, const Nui64 & ext[2], Nui64 & out[2]);
+
+    inline void MurmurHash_128(const void * key, NCount size, void * ext, void * out) 
+    {
+#if N_ARCH == N_ARCH_64
+        MurmurHash_x64_128(key, size, *(const Nui32**)ext, *(Nui32**)out);
+#else
+        MurmurHash_x86_128(key, size, *(const Nui64**)ext, *(Nui64**)out);
+#endif
+    }
+    
     /// นþฯฃสýื้
     template <typename T> class HashedVector
     {

@@ -274,12 +274,18 @@ typedef _WStringStreamBase WStringStream;
     typedef _VStringStreamBase  StringStream;
 #endif
 
-    typedef vector<String>::type    StringList;
-    typedef vector<WString>::type   WStringList;
-    typedef vector<VString>::type   VStringList;
+    typedef vector<String>::type        StringList;
+    typedef vector<WString>::type       WStringList;
+    typedef vector<VString>::type       VStringList;
+    typedef vector<StringList>::type    StringGroupList;
+    typedef vector<WStringList>::type   WStringGroupList;
+    typedef vector<VStringList>::type   VStringGroupList;
     
     typedef set<String>::type       StringSet;
     typedef set<WString>::type      WStringSet;
     typedef set<VString>::type      VStringSet;
+    typedef set<StringSet>::type    StringGroupSet;
+    typedef set<WStringSet>::type   WStringGroupSet;
+    typedef set<VStringSet>::type   VStringGroupSet;
 }
 #endif
