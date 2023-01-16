@@ -66,6 +66,23 @@ namespace NII
 #endif
     }
     
+    /** 128bits hash
+    */
+    struct HashKey
+    {
+        bool operator < ( const HashKey & o ) const
+        {
+            if( mData[0] < o.mData[0] ) return true;
+            if( mData[0] > o.mData[0] ) return false;
+
+            if( mData[1] < o.mData[1] ) return true;
+
+            return false;
+        }
+        
+        Nui64 mData[2];
+    };
+    
     /// นþฯฃสýื้
     template <typename T> class HashedVector
     {
