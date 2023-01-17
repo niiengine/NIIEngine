@@ -218,5 +218,23 @@ namespace NII
     }
 
     typedef vector<DataStream *>::type DataStreamList;
+    
+    /** 线程互斥锁
+    @note only used for N_new DataStream * object
+    @version NIIEngine 6.0.0
+    */
+    class _EngineAPI ScopeDataStream : public StreamAlloc
+    {
+    public:
+        explicit ScopeDataStream(DataStream * data) : mData(data) {}
+        ~ScopeDataStream() { if (mData) N_delete mData; }
+        
+        inline DataStream * getData() { return mData; }
+    protected:
+        ScopeDataStream(const ScopeDataStream & o) : mData(o.mData){}
+		ScopeDataStream & operator=(const ScopeDataStream & o) { return *this; }
+    private:
+        DataStream * mData;
+    };
 }
 #endif

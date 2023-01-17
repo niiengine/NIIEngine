@@ -30,6 +30,7 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 
 #include "NiiPreInclude.h"
 #include "NiiCommon.h"
+#include "NiiDataStream.h"
 #include <ctime>
 
 namespace NII
@@ -64,6 +65,32 @@ namespace NII
         VFST_EXT8           = 22,
         VFST_EXT9           = 23,
         VFST_EXT10          = 24
+    };
+    
+    /** 虚拟文件系统工厂类
+    @note VFS 类是实例对象,所以需要这个类辅助
+    @version NIIEngine 3.0.0
+    */
+    class _EngineAPI VFSFactory : public VFSAlloc
+    {
+    public:
+        VFSFactory() {}
+        virtual ~VFSFactory() {}
+        
+        /** 类型
+        @version NIIEngine 3.0.0
+        */
+        virtual VFSType getType() const = 0;
+
+        /** 创建实例
+        @version NIIEngine 3.0.0
+        */
+        virtual VFS * create(const String & prl) = 0;
+
+        /** 删除实例
+        @version NIIEngine 3.0.0
+        */
+        virtual void destroy(VFS * obj) = 0;
     };
 
     /** 虚拟文件系统
@@ -121,13 +148,14 @@ namespace NII
         /** 打开文件流
         @param[in] file 文件完全名
         @param[in] r 只读
+        @return 返回对象 DataStream 使用完后用 N_delete 删除
         @version NIIEngine 3.0.0
         */
         virtual DataStream * open(const String & file, bool r = true) = 0;
 
         /** 创建新文件(或者覆盖现存在的).
         @param[in] file 文件完全名
-        @return DataStream 操作指针
+        @return 返回对象 DataStream 使用完后用 N_delete 删除
         @version NIIEngine 3.0.0
         */
         virtual DataStream * create(const String & file);
@@ -147,7 +175,7 @@ namespace NII
         @param[in] out 返回文件完全名列表
         @param[in] pattern 文件后缀,可为通配符(*)
         @param[in] r 递归所有路径
-        @param[in] dirs 目录?还是文件
+        @param[in] dirs 目录路径或文件
         @version NIIEngine 3.0.0
         */
         virtual void find(StringList & out, const String & pattern, bool r = true,
@@ -156,7 +184,7 @@ namespace NII
         /** 查找文件信息
         @param[in] pattern 文件后缀,可为通配符(*)
         @param[in] r 递归所有路径
-        @param[in] dirs 目录?还是文件
+        @param[in] dirs 目录路径或文件
         @version NIIEngine 3.0.0
         */
         virtual void find(FileInfoList & out, const String & pattern, bool r = true,
@@ -165,14 +193,14 @@ namespace NII
         /** 列出文件
         @return 返回文件完全名
         @param[in] r 递归所有路径
-        @param[in] dirs 目录?还是文件
+        @param[in] dirs 目录路径或文件
         @version NIIEngine 3.0.0
         */
         virtual void list(StringList & out, bool r = true, bool dirs = false) const = 0;
 
         /** 列出文件信息
         @param[in] r 递归所有路径
-        @param[in] dirs 目录?还是文件
+        @param[in] dirs 目录路径或文件
         @version NIIEngine 3.0.0
         */
         virtual void list(FileInfoList & out, bool r = true, bool dirs = false) const = 0;
@@ -203,5 +231,114 @@ namespace NII
         bool mReadOnly;     ///< 只读标记
     };
     typedef vector<VFS *>::type VFSList;
+    
+    /** 本地文件系统
+    @par ID 0x03
+    @version NIIEngine
+    */
+    class _EngineAPI FileSystem : public VFS
+    {
+    public:
+        FileSystem(const String & name);
+        ~FileSystem();
+
+        /// @copydetails VFS::exists
+        bool isExist(const String & file) const;
+
+        /// @copydetails VFS::peek
+        void peek();
+
+        /// @copydetails VFS::open
+        DataStream * open(const String & file, bool r = true);
+
+        /// @copydetails VFS::create
+        DataStream * create(const String & file);
+
+        /// @copydetails VFS::delete
+        void remove(const String & filename);
+
+        /// @copydetails VFS::close
+        void close();
+
+        /// @copydetails VFS::list
+        void list(StringList & out, bool r = true, bool dirs = false) const;
+
+        /// @copydetails VFS::list
+        void list(FileInfoList & out, bool r = true, bool dirs = false) const;
+
+        /// @copydetails VFS::find
+        void find(StringList & out, const String & pattern, bool r = true, bool dirs = false) const;
+
+        /// @copydetails VFS::find
+        void find(FileInfoList & out, const String & pattern, bool r = true, bool dirs = false) const;
+
+        /// @copydetails VFS::isMatchCase
+        bool isMatchCase() const;
+
+        /// @copydetails VFS::getModifiedTime
+        time_t getModifiedTime(const String & filename);
+        
+        /** 写入文件
+        @version NIIEngine 4.0.0
+        */
+        static bool wirteFile(const String & path, Nui8 *data, NCount size);
+        
+        /** 路径斜杠
+        @version NIIEngine 4.0.0
+        */
+        static bool isPathSlash(Ntchar c);
+        
+        /** 路径存在
+        @version NIIEngine 4.0.0
+        */
+        static bool isPathExist(const String & path);
+        
+        /** 获取文件大小
+        @version NIIEngine 4.0.0
+        */
+        static Nui32 getFileSize(const String & path);
+
+        /** 设置列举是否忽略隐藏文件.
+        @remark 初始化文件资源定位前调用,默认是(忽略隐藏文件)
+        @version NIIEngine 3.0.0
+        */
+        static void setIgnoreHidden(bool set = true);
+
+        /** 获取列举是否忽略隐藏文件.
+        @version NIIEngine 3.0.0
+        */
+        static bool getIgnoreHidden();
+    protected:
+        /** 实用方法,按匹配样板,在一个路径中检索所有文件
+        @param[in] pattern 文件样板(如 *.jpg *.png)
+        @param[in] r 是否向下级联目录
+        @param[in] dirs 设置为真,如果你需要列出目录而不是文件
+        @param[in] slist 检索一个简单的列表
+        @param[in] dlist 检索一个细节的列表
+        */
+        void findFiles(const String & pattern, bool r, bool dirs, StringList * slist, FileInfoList * dlist) const;
+
+        static bool mHiddenFail;
+        N_mutex1
+    };
+
+    /** 文件系统工厂类
+    @version NIIEngine 3.0.0
+    */
+    class _EngineAPI FileSystemArchiveFactory : public VFSFactory
+    {
+    public:
+        FileSystemArchiveFactory();
+        virtual ~FileSystemArchiveFactory();
+
+        /// @copydetails FactoryObj::getType
+        VFSType getType() const;
+
+        /// @copydetails FactoryObj::create
+        VFS * create(const String & prl);
+
+        /// @copydetails FactoryObj::destroy
+        void destroy(VFS * obj);
+    };
 }
 #endif

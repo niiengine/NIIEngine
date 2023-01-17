@@ -38,7 +38,6 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
     #include "NiiCommon.h"
     #include "NiiDataStream.h"
     #include "NiiException.h"
-    #include "NiiFileSystem.h"
     #include "NiiMath.h"
     #include "NiiMatrix3.h"
     #include "NiiMatrix4.h"
