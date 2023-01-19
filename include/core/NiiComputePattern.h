@@ -204,8 +204,14 @@ namespace NII
         */
         void clearStroageBuffer();
 
-        ComputeRaw * clone(const String & cloneName);
+        /**
+        @version NIIEngine 5.0.0
+        */
+        ComputeRaw * clone(const String & name);
 
+        /**
+        @version NIIEngine 5.0.0
+        */
         virtual void process(const Item & item);
     protected:
         void _syncParam();

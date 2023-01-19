@@ -350,12 +350,11 @@ namespace NII
         @note 数据流使用完后要调用 N_delete 释放
         @version NIIEngine 3.0.0
         */
-        DataStream * open(const String & file, GroupID gid = GroupDefault, bool allgroup = true, 
-            Resource * obj = 0);
+        DataStream * open(const String & file, GroupID gid = GroupDefault, bool allgroup = true, Resource * obj = 0);
 
         /** 打开多个文件
         @param[in] pattern 扩展符号/通配符字符'*'
-        @note 数据流使用完后要调用 N_delete 释放
+        @note 数据流使用完后要调用 N_delete 逐一释放
         @version NIIEngine 3.0.0
         */
         DataStreamList opens(const String & pattern, GroupID gid = GroupDefault);
