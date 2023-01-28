@@ -511,7 +511,7 @@ namespace NII
 
             SamplerUnit & operator= (const SamplerUnit & o) const
             {
-                mBuffer = o.mBuffer;
+                mTexture = o.mTexture;
                 mMipmap = o.mMipmap;
                 mArrayIndex = o.mArrayIndex;
                 mFormat = o.mFormat;
@@ -519,34 +519,34 @@ namespace NII
             
             bool operator != (const SamplerUnit & o) const
             {
-                if (mBuffer != o.mBuffer || mMipmap != o.mMipmap || mArrayIndex != o.mArrayIndex || mFormat != o.mFormat)
+                if (mTexture != o.mTexture || mMipmap != o.mMipmap || mArrayIndex != o.mArrayIndex || mFormat != o.mFormat)
                     return true;
                 return false;
             }
 
             bool operator == (const SamplerUnit & o) const
             {
-                if (mBuffer == o.mBuffer && mMipmap == o.mMipmap && mArrayIndex == o.mArrayIndex && mFormat == o.mFormat)
+                if (mTexture == o.mTexture && mMipmap == o.mMipmap && mArrayIndex == o.mArrayIndex && mFormat == o.mFormat)
                     return true;
                 return false;
             }
 
             bool operator < (const SamplerUnit & o) const
             {
-                if (mBuffer < o.mBuffer || mMipmap < o.mMipmap || mArrayIndex < o.mArrayIndex || mFormat < o.mFormat)
+                if (mTexture < o.mTexture || mMipmap < o.mMipmap || mArrayIndex < o.mArrayIndex || mFormat < o.mFormat)
                     return true;
                 return false;
             }
             
             bool isSuitableView() const
             {
-                return (NonSRGB(mFormat) == mBuffer->getFormat() && mMipmap == 0 && mArrayIndex == 0;
+                return (NonSRGB(mFormat) == mTexture->getFormat() && mMipmap == 0 && mArrayIndex == 0;
             }
             
-            Texture * mBuffer;
+            Texture * mTexture;
             NCount mMipmap;
             NCount mArrayIndex;
-            PixelFormat mFormat;   ///<default : mBuffer->getFormat()
+            PixelFormat mFormat;   ///<default : mTexture->getFormat()
         };
     public:
         GpuParamBufferUnit();
@@ -554,7 +554,7 @@ namespace NII
         
         bool empty() const
         {
-            return mStorage.mBuffer == 0 && mSampler.mBuffer == 0;
+            return mStorage.mBuffer == 0 && mSampler.mTexture == 0;
         }
 
         bool isStorage() const

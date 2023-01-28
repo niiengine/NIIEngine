@@ -1623,7 +1623,7 @@ namespace NII
         /** 检测硬件api是否支持
         @version NIIEngine 5.0.0
         */
-        virtual bool checkGpuApi(const String & ext) const              { return false; }
+        virtual bool checkGpuApi(const VString & ext) const             { return false; }
 
         /** 添加监听
         @version NIIEngine 5.0.0

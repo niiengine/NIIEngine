@@ -242,7 +242,7 @@ namespace NII
         FileSystem(const String & name);
         ~FileSystem();
 
-        /// @copydetails VFS::exists
+        /// @copydetails VFS::isExist
         bool isExist(const String & file) const;
 
         /// @copydetails VFS::peek

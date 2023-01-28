@@ -33,6 +33,13 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 #include "NiiRenderPattern.h"
 #include "NiiCodeGen.h"
 
+#define N_VertexShaderFile      _T("nii_vsf")
+#define N_PixelShaderFile       _T("nii_psf")
+#define N_GeometryShaderFile    _T("nii_gsf")
+#define N_HullShaderFile        _T("nii_hsf")
+#define N_DomainShaderFile      _T("nii_dsf")
+#define N_ComputeShaderFile     _T("nii_csf")
+
 namespace NII
 {
     /** GPU Shader编码合成器
@@ -246,7 +253,7 @@ namespace NII
         /** 
         @version NIIEngine 6.0.0
         */
-        VFS * getData()const                                { return mVFS; }
+        VFS * getData() const                               { return mVFS; }
         
         /** 
         @version NIIEngine 6.0.0
@@ -293,6 +300,8 @@ namespace NII
         bool genUndef(String & in, String & out);
         bool genDefine(const String & in, String & out);
         bool genRef(String & in, String & out) const;
+        
+        HighLevelGpuProgram * compileShaderCode(const String & source, const String & debugFilenameOutput, uint32 finalHash, ShaderType shaderType);
     protected:
         VFS * mVFS;
         RenderSys * mRenderSys;
@@ -302,7 +311,6 @@ namespace NII
         RenderStateCacheList mShaderCache;
         String mShaderProfile;
         String mShaderFileExt;
-        IdString mShaderSyntax;
         StringList mShaderTargets;
         IDList mFeatureList;
         String mOutputPath;
