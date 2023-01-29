@@ -300,8 +300,6 @@ namespace NII
         bool genUndef(String & in, String & out);
         bool genDefine(const String & in, String & out);
         bool genRef(String & in, String & out) const;
-        
-        HighLevelGpuProgram * compileShaderCode(const String & source, const String & debugFilenameOutput, uint32 finalHash, ShaderType shaderType);
     protected:
         VFS * mVFS;
         RenderSys * mRenderSys;

@@ -184,12 +184,12 @@ namespace NII
         /** 设置代码串
         @version NIIEngine 3.0.0
         */
-        void setProgramStr(const VString & code);
+        void setProgramCode(const VString & code);
 
         /** 获取代码串
         @version NIIEngine 3.0.0
         */
-        inline const VString & getProgramStr() const    { return mSource; }
+        inline const VString & getProgramCode() const   { return mSource; }
 
         /** 获取代码串hash
         @version NIIEngine 3.0.0

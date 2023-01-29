@@ -133,12 +133,12 @@ namespace NII
         /** 设置代码串
         @version NIIEngine 4.0.0
         */
-        void setProgramStr(const VString & code);
+        void setProgramCode(const VString & code);
 
         /** 获取代码串
         @version NIIEngine 4.0.0
         */
-        inline const VString & getProgramStr() const    { return mSource; }
+        inline const VString & getProgramCode() const   { return mSource; }
         
         /** 获取这个加速程序使用的资源文件名
         @version NIIEngine 4.0.0
