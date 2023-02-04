@@ -35,6 +35,30 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 
 namespace NII
 {
+    /***/
+    enum RenderPatternType
+    {
+        RPT_Single = N_CodeGen_Render + 1,
+        RPT_Normal = N_CodeGen_Render + 2,
+        RPT_Overlay = N_CodeGen_Render + 3,
+        RPT_Toon = N_CodeGen_Render + 4,
+        RPT_Crayon = N_CodeGen_Render + 5,
+        RPT_VanGogh = N_CodeGen_Render + 6,
+        RPT_MidSumNight = N_CodeGen_Render + 7,
+        
+        RPT_Custom1 = N_CodeGen_Render + 8,
+        RPT_Custom2 = N_CodeGen_Render + 9,
+        RPT_Custom3 = N_CodeGen_Render + 10,
+        RPT_Custom4 = N_CodeGen_Render + 11,
+        RPT_Custom5 = N_CodeGen_Render + 12,
+        RPT_Custom6 = N_CodeGen_Render + 13,
+        RPT_Custom7 = N_CodeGen_Render + 14,
+        RPT_Custom8 = N_CodeGen_Render + 15,
+        RPT_Custom9 = N_CodeGen_Render + 16,
+        
+        RPT_Count = N_CodeGen_Render + 17
+    };
+    
     struct RenderStateCache
     {
         RenderStateCache() : mHash(0), mType(RPT_Count) {}

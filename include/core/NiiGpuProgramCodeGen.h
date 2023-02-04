@@ -42,6 +42,8 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 
 namespace NII
 {
+    typedef map<Nid, String>::type SegmentList;
+
     /** GPU Shader编码合成器
     @version NIIEngine 6.0.0
     */
@@ -196,6 +198,7 @@ namespace NII
             NCount mEnd;
         };
     public:
+        GpuProgramCodeGen(Nid codeid);
         GpuProgramCodeGen(const String * name, Nid codeid);
         virtual ~GpuProgramCodeGen();
 
@@ -290,7 +293,7 @@ namespace NII
         */
         virtual void executeEnd(DrawCallGroup * dcg)        {}
     protected:
-        void debugOutput(std::ofstream & out);
+        void debugOutput(Nofstream & out);
 
         void genSegment(VFS * vfs, const StringList & segments);
         bool genMath(const String & in, String & out);

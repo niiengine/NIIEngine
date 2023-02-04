@@ -52,6 +52,7 @@ namespace NII
             T_Plugin            = 3
         };
     public:
+        CodeGen(Nid codeid, Type type);
         CodeGen(const String * name, Nid codeid, Type type);
         virtual ~CodeGen();
         
@@ -65,6 +66,11 @@ namespace NII
         */
         Type getGenType() const             { return mGenType; }
 
+        /** 获取原代码
+        @version NIIEngine 3.0.0
+        */
+        void setName(const String * in)     { mIn = in; }
+        
         /** 获取原代码
         @version NIIEngine 3.0.0
         */

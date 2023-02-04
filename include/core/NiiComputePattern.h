@@ -36,6 +36,24 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 namespace NII
 {
     class ComputeStateCache;
+    
+    enum ComputePatternType
+    {
+        CPT_Normal  = N_CodeGen_Compute + 1,
+        
+        CPT_Custom1 = N_CodeGen_Compute + 2,
+        CPT_Custom2 = N_CodeGen_Compute + 3,
+        CPT_Custom3 = N_CodeGen_Compute + 4,
+        CPT_Custom4 = N_CodeGen_Compute + 5,
+        CPT_Custom5 = N_CodeGen_Compute + 6,
+        CPT_Custom6 = N_CodeGen_Compute + 7,
+        CPT_Custom7 = N_CodeGen_Compute + 8,
+        CPT_Custom8 = N_CodeGen_Compute + 9,
+        CPT_Custom9 = N_CodeGen_Compute + 10,
+        CPT_Custom10= N_CodeGen_Compute + 11,
+        
+        CPT_Count   = N_CodeGen_Compute + 12
+    };
     /**
     @version NIIEngine 5.0.0
     */
@@ -271,7 +289,7 @@ namespace NII
         /**
         @version NIIEngine 5.0.0
         */
-        ComputePatternType getType() const      { return mType; }
+        ComputePatternType getType() const      { return mCodeID; }
 
         /**
         @version NIIEngine 5.0.0
@@ -324,7 +342,6 @@ namespace NII
     protected:
         SysSyncParam * mSysParam;
         String mLanguageTarget;
-        ComputePatternType mType;
         ComputeRawList mComputeRawList;
         CompiledList mCompiledList;
         ShaderCacheList mShaderCacheList;
