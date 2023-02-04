@@ -31,7 +31,7 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 #include "NiiPreInclude.h"
 #include "NiiResource.h"
 #include "NiiResourceSchemeManager.h"
-#include "NiiScriptParserSys.h"
+#include "NiiScriptSys.h"
 #include "NiiSingleton.h"
 
 namespace NII
@@ -39,7 +39,7 @@ namespace NII
     /** 资源管理器
     @version NIIEngine 3.0.0
     */
-    class _EngineAPI ResourceManager : public ScriptParserSys, public ResourceAlloc
+    class _EngineAPI ResourceManager : public PropertyScriptSys, public ResourceAlloc
     {
         friend class Engine;
         friend class RenderSys;

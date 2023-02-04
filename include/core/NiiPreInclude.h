@@ -33,7 +33,7 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 #include "NiiBasicTypes.h"
 #include "NiiThreadInclude.h"
 #include "NiiStdInclude.h"
-#include "NIIStringBase.h"
+#include "NiiStringBase.h"
 #include "NiiHash.h"
 #include "NiiI18NLib.h"
 #include "NiiDefine.h"
@@ -298,7 +298,7 @@ namespace NII
     class ScriptCompiler;
     class ScriptCompilerManager;
     class ScriptAnalyzeFactory;
-    class ScriptParserSys;
+    class PropertyScriptSys;
     class TextureAsync;
     class ThreadCondition;
     class ThreadMutex;

@@ -31,7 +31,7 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 #include "NiiPreInclude.h"
 #include "NiiParticleSpace.h"
 #include "NiiRenderFrameListener.h"
-#include "NiiScriptParserSys.h"
+#include "NiiScriptSys.h"
 #include "NiiResourceSchemeManager.h"
 #include "NiiSpaceObj.h"
 
@@ -42,7 +42,7 @@ namespace NII
     /** 粒子管理器
     @version NIIEngine 3.0.0
     */
-    class _EngineAPI ParticleSpaceManager : public ScriptParserSys, public Singleton<ParticleSpaceManager>, public FXAlloc
+    class _EngineAPI ParticleSpaceManager : public PropertyScriptSys, public Singleton<ParticleSpaceManager>, public FXAlloc
     {
         friend class Engine;
         friend class ParticleSpaceFactory;
@@ -185,10 +185,10 @@ namespace NII
         /// 获取默认工厂类
         inline ParticleSpaceFactory * getFactory() { return mFactory; }
 
-        /// @copydetails ScriptParserSys::parse
+        /// @copydetails PropertyScriptSys::parse
         void parse(DataStream * stream, GroupID gid, PtrList & out);
 
-        /// @copydetails ScriptParserSys::getScriptLevel
+        /// @copydetails PropertyScriptSys::getScriptLevel
         NIIf getScriptLevel() const;
         
         static TimeDurMS mTimeInterval;

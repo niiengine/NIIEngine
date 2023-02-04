@@ -29,7 +29,6 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 #define _NII_SCRIPT_HELPER_MANAGER_H_
 
 #include "NiiPreInclude.h"
-#include "NiiDefine.h"
 #include "NiiSingleton.h"
 
 namespace NII

@@ -29,7 +29,7 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 #define _NII_OverlayManager_H_
 
 #include "NiiPreInclude.h"
-#include "NiiScriptParserSys.h"
+#include "NiiScriptSys.h"
 #include "NiiOverlay.h"
 #include "NiiSingleton.h"
 
@@ -38,7 +38,7 @@ namespace NII
     /** 表层面管理器
     @version NIIEngine 3.0.0
     */
-    class _EngineAPI OverlayManager : public Singleton<OverlayManager>, public ScriptParserSys, public OverlayAlloc
+    class _EngineAPI OverlayManager : public Singleton<OverlayManager>, public PropertyScriptSys, public OverlayAlloc
     {
     public:
         typedef map<OverlayID, Overlay *>::type OverlayMap;
@@ -154,10 +154,10 @@ namespace NII
         */
         OverlayID genValidID();
 
-        /// @copydetails ScriptParserSys::parse
+        /// @copydetails PropertyScriptSys::parse
         void parse(DataStream * stream, GroupID gid, PtrList & out);
 
-        /// @copydetails ScriptParserSys::getScriptLevel
+        /// @copydetails PropertyScriptSys::getScriptLevel
         NIIf getScriptLevel() const;
     protected:
         /** 创建层

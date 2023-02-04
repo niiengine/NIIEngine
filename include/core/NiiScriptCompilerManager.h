@@ -30,7 +30,7 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 
 #include "NiiPreInclude.h"
 #include "NiiScriptCompiler.h"
-#include "NiiScriptParserSys.h"
+#include "NiiScriptSys.h"
 
 namespace NII
 {
@@ -38,7 +38,7 @@ namespace NII
     @version NIIEngine 3.0.0
     */
     class _EngineAPI ScriptCompilerManager : public Singleton<ScriptCompilerManager>,
-        public ScriptParserSys, public ScriptAlloc
+        public PropertyScriptSys, public ScriptAlloc
     {
     public:
         ScriptCompilerManager();
@@ -69,10 +69,10 @@ namespace NII
         */
         void destroy(ScriptAnalyze * obj);
 
-        /// @copydetails ScriptParserSys::parse
+        /// @copydetails PropertyScriptSys::parse
         void parse(DataStream * stream, GroupID gid, PtrList & out);
 
-        /// @copydetails ScriptParserSys::getScriptLevel
+        /// @copydetails PropertyScriptSys::getScriptLevel
         NIIf getScriptLevel() const;
     protected:
         typedef map<FactoryID, ScriptAnalyzeFactory *>::type FactoryList;

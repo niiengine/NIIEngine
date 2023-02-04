@@ -48,6 +48,7 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 #define Nstrlen     wcslen
 #define Nstrcat     wcscat    
 #define Nstrcpy     wcscpy
+#define Nstrncpy    wcsncpy
 #define Nstprintf_s swprintf_s
 #define Nstprintf   swprintf
 #define Nfopen_s    _wfopen_s
@@ -72,6 +73,8 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 #define Naccess     _waccess
 #define Nchmod      _wchmod
 #define Nremove     ::_wremove
+#define Nsnlen      std::wcsnlen
+#define Nstol       std::wcstol
 #ifdef _tgetenv
 #define Ngetenv     _wgetenv
 #else
@@ -100,6 +103,7 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 #define Nstrlen     strlen
 #define Nstrcat     strcat
 #define Nstrcpy     strcpy
+#define Nstrncpy    strncpy
 #define Nstprintf_s sprintf_s
 #define Nstprintf   sprintf
 #define Nfopen_s    fopen_s
@@ -124,6 +128,8 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 #define Naccess     access
 #define Nchmod      chmod
 #define Nremove     ::remove
+#define Nsnlen      std::strnlen
+#define Nstol       std::strtol
 #ifdef WIN32
 #define Nsntprintf  _snprintf
 #define Nvsntprintf _vsnprintf
@@ -287,5 +293,7 @@ typedef _WStringStreamBase WStringStream;
     typedef set<StringSet>::type    StringGroupSet;
     typedef set<WStringSet>::type   WStringGroupSet;
     typedef set<VStringSet>::type   VStringGroupSet;
+    
+    
 }
 #endif
