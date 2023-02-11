@@ -60,7 +60,7 @@ namespace NII
         GRT_Indirect    = 0x20,         ///< 绘制索引
         GRT_AutoVertex  = 0x40,
         GRT_AutoIndex   = 0x80,
-        GRT_AarryObject = 0x100,        ///< VAO对象
+        GRT_ArrayObject = 0x100,        ///< VAO对象
         GRT_Edge_XY     = 0x200,        ///< 边缘辅助
         GRT_Edge_XZ     = 0x400,        ///< 边缘辅助
         GRT_Edge_YZ     = 0x800,        ///< 边缘辅助
@@ -218,9 +218,9 @@ namespace NII
         VertexData * mVertex;       ///< 顶点数据
         IndexData * mIndex;         ///< 索引数据(mMark & GRT_Index)
         IndirectData * mIndirect;   ///< 绘制数据(mMark & GRT_Indirect)
-        Nid mVaoId;                 ///< 顶点数组对象(mMark & GRT_AarryObject)
-        Nmark mVaoType;             ///< 顶点数组类型相同代表数据模型相同 (mMark & GRT_AarryObject)
-        Nmark mRenderID;            ///< 渲染ID相同代表潜在优化渲染 (mMark & GRT_AarryObject)
+        Nid mVaoId;                 ///< 顶点数组对象(mMark & GRT_ArrayObject)
+        Nmark mVaoType;             ///< 顶点数组类型相同代表数据模型相同 (mMark & GRT_ArrayObject)
+        Nmark mRenderID;            ///< 渲染ID相同代表潜在优化渲染 (mMark & GRT_ArrayObject)
         OperationType mType;        ///< 操作类型
         NCount mOffset;             ///< 开始绘制处(顶点级偏移)((mMark & GRT_OffsetCount) && ~(mMark & GRT_Indirect))
         NCount mCount;              ///< 从开始到结束绘制数(顶点级数量)((mMark & GRT_OffsetCount) && ~(mMark & GRT_Indirect))

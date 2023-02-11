@@ -294,6 +294,8 @@ typedef _WStringStreamBase WStringStream;
     typedef set<WStringSet>::type   WStringGroupSet;
     typedef set<VStringSet>::type   VStringGroupSet;
     
-    
+    typedef map<String, String>::type StringMap;
+    typedef map<String, VString>::type VStringMap;
+    typedef map<String, WString>::type WStringMap;
 }
 #endif

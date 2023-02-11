@@ -229,6 +229,8 @@ namespace NII
     };
     typedef vector<VertexUnit>::type VertexUnitList;
     typedef vector<VertexUnitList>::type VertexUnitListList;
+    typedef std::pair<OperationType, VertexUnitListList> GeoOperation;
+    typedef vector<GeoOperation>::type GeoOperationList;
     
     /** 硬件动画
     @version NIIEngine 3.0.0
@@ -286,9 +288,7 @@ namespace NII
             M_Space     = 0x10
         };
 
-        typedef list<VertexUnit>::type Units;
-        typedef vector<Units>::type UnitsList;
-        typedef map<Nui16, Units>::type UnitsMap;
+        typedef map<Nui16, VertexUnitList>::type UnitsMap;
         typedef map<Nui16, VertexBuffer *>::type BindingList;
     public:
         VertexData(GBufferManager * mag = 0);
@@ -417,7 +417,7 @@ namespace NII
         @param[out] out 元素列表.
         @version NIIEngine 3.0.0
         */
-        void getUnits(Nui16 source, Units & out) const;
+        void getUnits(Nui16 source, VertexUnitList & out) const;
         
         /** 给定资源索引获取元素列表.
         @param[in] source 资源索引
@@ -429,7 +429,7 @@ namespace NII
         /** 获取元素列表
         @verison NIIEngine 3.0.0 高级api
         */
-        const Units & getUnits() const              { return mUnits; }
+        const VertexUnitList & getUnits() const              { return mUnits; }
 
         /**绑定缓存
         @version NIIEngine 3.0.0
@@ -560,11 +560,6 @@ namespace NII
         @version NIIEngine 3.0.0
         */
         NCount getUnitSize(Nui16 bidx) const;
-        
-        /** 获取成分总大小
-        @version NIIEngine 4.0.0
-        */
-        static NCount getUnitSize(const Units & lt);
 
         /** 计算边界
         @version NIIEngine 3.0.0
@@ -584,6 +579,16 @@ namespace NII
         @version NIIEngine 3.0.0 高级api
         */
         VertexData * cloneUnit(bool swave = false, GBufferManager * mag = 0) const;
+        
+        /** 获取成分总大小
+        @version NIIEngine 4.0.0
+        */
+        static NCount getUnitSize(const VertexUnitList & lt);
+        
+        /** 获取顶点序列类型
+        @version NIIEngine 6.0.0
+        */
+        static Nidx getVaoType(const GeoOperation & geoOp);
     protected:
         VertexData(const VertexData &) {}
         VertexData & operator=(const VertexData & o) { return *this; }
@@ -595,10 +600,11 @@ namespace NII
         GBufferManager * mMag;
         Nui16 mBufferCount;         ///< 缓存数量
         mutable Nui16 mHighIndex;   ///< 缓存最高索引
-        mutable Units mUnits;       ///< 顶点成分
+        mutable VertexUnitList mUnits;      ///< 顶点成分
         mutable BindingList mBindingList;   ///< 缓存绑定
         VertexBuffer * mExtData;    ///< 扩展缓存
         Nmark mMark;                ///< 辅助
+        static GeoOperationList mGeoLayoutList;
     };
 #if N_PLAT == N_PLAT_WIN32
 #pragma pack(push, 4)
@@ -609,8 +615,8 @@ namespace NII
     typedef struct VertexIndirect
     {
         VertexIndirect() {}
-        VertexIndirect(NCount Count, NCount InstanceCount, NCount Oft, NCount InstanceOft) :
-            mCount(Count), mInstanceCount(InstanceCount), mOft(Oft), mInstanceOft(InstanceOft) {}
+        VertexIndirect(NCount count, NCount instanceCount, NCount oft, NCount instanceOft) :
+            mCount(count), mInstanceCount(instanceCount), mOft(oft), mInstanceOft(instanceOft) {}
         N_ALIGNED_DECL(Nui32, mCount, 4);
         N_ALIGNED_DECL(Nui32, mInstanceCount, 4);
         N_ALIGNED_DECL(Nui32, mOft, 4);
@@ -623,8 +629,8 @@ namespace NII
     typedef struct IndexIndirect
     {
         IndexIndirect() {}
-        IndexIndirect(NCount Count, NCount InstanceCount, NCount Oft, NCount VertexOft, NCount InstanceOft) :
-            mCount(Count), mInstanceCount(InstanceCount), mOft(Oft), mVertexOft(VertexOft), mInstanceOft(InstanceOft) {}
+        IndexIndirect(NCount count, NCount instanceCount, NCount oft, NCount vertexOft, NCount instanceOft) :
+            mCount(count), mInstanceCount(instanceCount), mOft(oft), mVertexOft(vertexOft), mInstanceOft(instanceOft) {}
         N_ALIGNED_DECL(Nui32, mCount, 4);
         N_ALIGNED_DECL(Nui32, mInstanceCount, 4);
         N_ALIGNED_DECL(Nui32, mOft, 4);
@@ -637,6 +643,7 @@ namespace NII
 
     typedef vector<VertexIndirect>::type VertexIndirectList;
     typedef vector<IndexIndirect>::type IndexIndirectList;
+    typedef vector<std::>
 
     /** 绘制索引
     @remark IndirectData
