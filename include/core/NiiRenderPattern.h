@@ -107,12 +107,12 @@ namespace NII
             */
             virtual void onFindGeometry(SpaceManager * sm, Viewport * v);
 
-            /** 寻找投射阴影几何
+            /** 寻找投射阴影的几何
             @version NIIEngine 3.0.0
             */
             virtual void onFindCastGeometry(SpaceManager * sm, Viewport * v);
 
-            /** 寻找解手阴影几何
+            /** 寻找接受阴影的几何
             @version NIIEngine 3.0.0
             */
             virtual void onFindReceiveGeometry(SpaceManager * sm, Viewport * v);

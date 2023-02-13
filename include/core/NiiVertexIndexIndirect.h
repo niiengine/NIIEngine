@@ -314,8 +314,8 @@ namespace NII
         */
         inline const VertexUnit * add(const VertexUnit & unit)
         {
-            mUnits.emplace_back(unit);
-            return &(mUnits.back());
+            mUnitList.emplace_back(unit);
+            return &(mUnitList.back());
         }
 
         /** 添加元素
@@ -398,7 +398,7 @@ namespace NII
         /** 获取成分个数
         @version NIIEngine 3.0.0
         */
-        inline NCount getCount() const              { return mUnits.size(); }
+        inline NCount getCount() const              { return mUnitList.size(); }
 
         /** 获取类型总数
         @param[in] vt
@@ -429,7 +429,7 @@ namespace NII
         /** 获取元素列表
         @verison NIIEngine 3.0.0 高级api
         */
-        const VertexUnitList & getUnits() const              { return mUnits; }
+        const VertexUnitList & getUnits() const              { return mUnitList; }
 
         /**绑定缓存
         @version NIIEngine 3.0.0
@@ -600,7 +600,7 @@ namespace NII
         GBufferManager * mMag;
         Nui16 mBufferCount;         ///< 缓存数量
         mutable Nui16 mHighIndex;   ///< 缓存最高索引
-        mutable VertexUnitList mUnits;      ///< 顶点成分
+        mutable VertexUnitList mUnitList;   ///< 顶点成分
         mutable BindingList mBindingList;   ///< 缓存绑定
         VertexBuffer * mExtData;    ///< 扩展缓存
         Nmark mMark;                ///< 辅助

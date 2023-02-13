@@ -283,13 +283,28 @@ namespace NII
     class _EngineAPI ComputePattern : public GpuProgramCodeGen
     {
     public:
-        ComputePattern(ComputePatternType type, SysSyncParam * param);
+        ComputePattern(ComputePatternType type, SysSyncParam * param, Nid id, const String & name = N_StrBlank);
         virtual ~ComputePattern();
         
         /**
         @version NIIEngine 5.0.0
         */
         ComputePatternType getType() const      { return mCodeID; }
+        
+        /**
+        @version NIIEngine 5.0.0
+        */
+        Nid getID() const                       { return mID; }
+        
+        /**
+        @version NIIEngine 5.0.0
+        */
+        void setName(const String & str)        { mName = str;}
+
+        /**
+        @version NIIEngine 5.0.0
+        */
+        const String & getName() const          { return mName; }
 
         /**
         @version NIIEngine 5.0.0

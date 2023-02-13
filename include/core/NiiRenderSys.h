@@ -161,7 +161,7 @@ namespace NII
         /** 获取Gpu信息
         @version NIIEngine 3.0.0
         */
-        inline GPUInfo * getGpuInfo() const           { return &mGPUInfo; }
+        inline GPUInfo * getGpuInfo() const                 { return &mGPUInfo; }
 
         /** 添加特性支持
         @version NIIEngine 3.0.0
@@ -475,7 +475,7 @@ namespace NII
     @note 部分函数很接近底层
     @version NIIEngine 3.0.0
     */
-    class _EngineAPI RenderSys : public RenderSysData, public SysAlloc
+    class _EngineAPI RenderSys : public RenderSysData, public PropertyScriptSys, public SysAlloc
     {
         friend class Engine;
         friend class SpaceManager;
@@ -512,6 +512,7 @@ namespace NII
         typedef vector<ShadowMetadata *>::type FusionNodeTypeList;
         typedef map<Nid, FusionMetadata*>::type FusionMetadataList;
         typedef vector<Fusion *>::type FusionList;
+        typedef map<Nid, ShaderChMaterial *>::type MaterialList;
     public:
         RenderSys();
         virtual ~RenderSys();
@@ -610,27 +611,57 @@ namespace NII
         @version NIIEngine 3.0.0 高级api
         */
         virtual void setAmbient(const Colour & c) = 0;
+        
+        /** 设置默认渲染处理器
+        @version NIIEngine 6.0.0
+        */
+        void setRenderType(RenderPatternType type)              { mDefaultRenderType = type; }
+        
+        /** 获取默认渲染处理器
+        @version NIIEngine 6.0.0
+        */
+        RenderPatternType getRenderType() const                 { return mDefaultRenderType; }
+        
+        /** 设置默认计算处理器
+        @version NIIEngine 6.0.0
+        */
+        void setComputeType(ComputePatternType type)            { mDefaultComputeType = type; }
+        
+        /** 获取默认计算处理器
+        @version NIIEngine 6.0.0
+        */
+        ComputePatternType getComputeType() const               { return mDefaultComputeType; }
+
+        /** 设置默认影子使用背表面
+        @version NIIEngine 6.0.0
+        */
+        void setBackFaceInCast(bool b);
+
+        /** 影子默认是否使用背表面
+        @version NIIEngine 6.0.0
+        */
+        bool isBackFaceInCast()                                 { return mBackFaceInCast; }
 
         /** 设置是否使用同步垂直
         @remark Has NO effec
         @version NIIEngine 3.0.0 高级api
         */
-        void setVSync(bool b)               { mVSync = b;}
+        void setVSync(bool b)                                   { mVSync = b;}
 
         /** 获取是否使用同步垂直
         @version NIIEngine 3.0.0 高级api
         */
-        bool isVSync() const                { return mVSync; }
+        bool isVSync() const                                    { return mVSync; }
 
         /** 设置是否使用深度缓存
         @version NIIEngine 3.0.0 高级api
         */
-        void setWBuffer(bool b)             { mWBuffer = b; }
+        void setWBuffer(bool b)                                 { mWBuffer = b; }
 
         /** 获取是否使用深度缓存
         @version NIIEngine 3.0.0 高级api
         */
-        bool getWBuffer() const             { return mWBuffer;}
+        bool getWBuffer() const                                 { return mWBuffer;}
 
         /** 设置投影矩阵
         @version NIIEngine 3.0.0 高级api
@@ -657,7 +688,7 @@ namespace NII
         */
         virtual void _setLight(NCount cnt) = 0;
         
-        /** 创建一个新的渲染窗体
+        /** 创建新的渲染窗体
         @param[in] w 窗体的宽
         @param[in] h 窗体的高
         @version NIIEngine 3.0.0
@@ -674,12 +705,12 @@ namespace NII
         */
         virtual void destroyWindow(ViewWindow * window);
 
-        /** 创建一个像素查询
+        /** 创建像素查询
         @version NIIEngine 3.0.0
         */
         virtual void create(PixelCountQuery *& obj) = 0;
 
-        /** 删除一个像素查询
+        /** 删除像素查询
         @version NIIEngine 3.0.0
         */
         virtual void destroy(PixelCountQuery * obj);
@@ -702,7 +733,7 @@ namespace NII
         /** 设置复用顶点
         @version NIIEngine 3.0.0
         */
-        void setInstanceData(VertexData * vd)               { mInstanceData = val; }
+        void setInstanceData(VertexData * vd)               { mInstanceData = vd; }
 
         /** 获取复用顶点
         @version NIIEngine 3.0.0
@@ -719,35 +750,45 @@ namespace NII
         */
         NCount getInstanceCount() const                     { return mInstanceCount; }
         
-        /**
-        @version NIIEngine 6.0.0
-        */
-        RenderPattern * getRenderPattern(RenderPatternType type) const   { return mRenderPatternList[type]; }
-        
-        /**
+        /** 添加渲染处理器
         @version NIIEngine 6.0.0
         */
         void addRenderPattern(RenderPattern * rp);
 
-        /**
+        /** 移去渲染处理器
         @version NIIEngine 6.0.0
         */
         void removeRenderPattern(RenderPatternType type);
+
+        /** 获取渲染处理器
+        @version NIIEngine 6.0.0
+        */
+        RenderPattern * getRenderPattern(RenderPatternType type) const   { return mRenderPatternList[type]; }
         
-        /**
+        /** 获取渲染处理器
+        @version NIIEngine 6.0.0
+        */
+        RenderPattern * getRenderPattern(Nid id);
+        
+        /** 添加计算处理器
+        @version NIIEngine 6.0.0
+        */
+        void addComputePattern(ComputePattern * cp);
+
+        /** 移去计算处理器
+        @version NIIEngine 6.0.0
+        */
+        void removeComputePattern(ComputePatternType type);
+        
+        /** 获取计算处理器
         @version NIIEngine 6.0.0
         */
         ComputePattern * getComputePattern(ComputePatternType type) const   { return mComputePatternList[type]; }
         
-        /**
+        /** 获取渲染处理器
         @version NIIEngine 6.0.0
         */
-        void addComputePattern(ComputePattern * rp);
-
-        /**
-        @version NIIEngine 6.0.0
-        */
-        void removeComputePattern(ComputePatternType type);
+        ComputePattern * getComputePattern(Nid id);
 
         /** 设置视口类型
         @versin NIIEngine 4.0.0
@@ -757,87 +798,200 @@ namespace NII
         /** 创建颜色属性
         @versin NIIEngine 4.0.0
         */
-        virtual ShaderChColour * createColour(const String & name = Independent, bool BindtoRsys = false) const;
+        virtual ShaderChColour * createColour(const String & name = Independent, bool bindToRsys = false) const;
 
         /** 获取颜色属性
         @versin NIIEngine 4.0.0
         */
-        virtual ShaderChColour * getColour(const String & name) const;
+        ShaderChColour * getColour(const String & name) const;
+        
+        /** 获取颜色属性
+        @versin NIIEngine 4.0.0
+        */
+        ShaderChColour * getColour(Nidx idx) const;
+        
+        /** 删除颜色属性
+        @versin NIIEngine 5.0.0
+        */
+        virtual void destroyColour(ShaderChColour * scc);
 
         /** 创建渲染点的属性
         @version NIIEngine 3.0.0
         */
-        virtual ShaderChPoint * createPoint(const String & name = Independent, bool BindtoRsys = false) const;
+        virtual ShaderChPoint * createPoint(const String & name = Independent, bool bindToRsys = false) const;
 
         /** 创建渲染点的属性
         @version NIIEngine 3.0.0
         */
-        virtual ShaderChPoint * getPoint(const String & name) const;
+        ShaderChPoint * getPoint(const String & name) const;
+        
+        /** 创建渲染点的属性
+        @version NIIEngine 3.0.0
+        */
+        ShaderChPoint * getPoint(Nidx idx) const;
+        
+        /** 删除渲染点的属性
+        @version NIIEngine 5.0.0
+        */
+        virtual void destroyPoint(ShaderChPoint * scp);
 
         /** 创建颜色缓存
         @version NIIEngine 3.0.0
         */
-        virtual ShaderChBlend * createBlend(const String & name = Independent, bool BindtoRsys = false) const;
+        virtual ShaderChBlend * createBlend(const String & name = Independent, bool bindToRsys = false) const;
 
-        /** 创建颜色缓存
+        /** 获取颜色缓存
         @version NIIEngine 3.0.0
         */
-        virtual ShaderChBlend * getBlend(const String & name) const;
-
-        /** 创建透明度测试
+        ShaderChBlend * getBlend(const String & name) const;
+        
+        /** 获取颜色缓存
         @version NIIEngine 3.0.0
         */
-        virtual ShaderChColour * createAlpha(const String & name = Independent, bool BindtoRsys = false) const;
+        ShaderChBlend * getBlend(Nidx idx) const;
+        
+        /** 删除混合
+        @version NIIEngine 5.0.0
+        */
+        virtual void destroyBlend(ShaderChBlend * scb);
+        
+        /** 同步混合cpu/gup数据
+        @remarks
+        @version NIIEngine 5.0.0
+        */
+        virtual void syncBlend(ShaderChBlend * scb);
 
         /** 创建雾模式
         @version NIIEngine 3.0.0
         */
-        virtual ShaderChFog * createFog(const String & name = Independent, bool BindtoRsys = false) const;
+        virtual ShaderChFog * createFog(const String & name = Independent, bool bindToRsys = false) const;
 
         /** 创建雾模式
         @version NIIEngine 3.0.0
         */
         virtual ShaderChFog * getFog(const String & name) const;
+        
+        /**
+        @version NIIEngine 5.0.0
+        */
+        virtual ShaderChFog * getFog(Nidx idx) const;
+        
+        /** 删除雾模式
+        @version NIIEngine 2.0.0
+        */
+        virtual void destroyFog(ShaderChFog * scf);
 
         /** 创建模板深度测试
         @version NIIEngine 5.0.0
         */
-        virtual ShaderChStencil * createStencil(const String & name = Independent, bool BindtoRsys = false) const;
+        virtual ShaderChStencil * createStencil(const String & name = Independent, bool bindToRsys = false) const;
 
-        /** 创建模板深度测试
+        /** 获取模板深度测试
         @version NIIEngine 5.0.0
         */
         virtual ShaderChStencil * getStencil(const String & name) const;
         
+        /** 获取模板深度测试
+        @version NIIEngine 5.0.0
+        */
+        const ShaderChStencil * getStencil(Nidx idx) const;
+        
         /** 删除模板深度测试
         @version NIIEngine 5.0.0
         */
-        virtual void destroyStencil(ShaderChStencil * scds) {}
+        virtual void destroyStencil(ShaderChStencil * scs);
         
         /** 同步模板深度测试cpu/gpu数据
         @version NIIEngine 5.0.0
         */
-        virtual void syncStencil(ShaderChStencil * scds)    {}
+        virtual void syncStencil(ShaderChStencil * scs);
 
         /** 创建纹理混合
         @version NIIEngine 3.0.0
         */
-        virtual TextureBlend * createTexBlend(const String & name = Independent, bool BindtoRsys = false) const;
+        virtual TextureBlend * createTexBlend(const String & name = Independent, bool bindToRsys = false) const;
 
         /** 获取纹理混合
         @version NIIEngine 3.0.0
         */
-        virtual TextureBlend * getTexBlend(const String & name) const;
-
-        /** 获取纹理样本
+        TextureBlend * getTexBlend(const String & name) const;
+        
+        /** 获取纹理混合
         @version NIIEngine 3.0.0
         */
-        virtual TextureSampleUnit * createTexSample(const String & name = Independent, bool BindtoRsys = false) const;
+        TextureBlend * getTexBlend(Nidx idx) const;
+        
+        /** 删除纹理混合
+        @version NIIEngine 5.0.0
+        */
+        virtual void destroyTexBlend(TextureBlend * tb);
+
+        /** 创建纹理样本
+        @version NIIEngine 3.0.0
+        */
+        virtual TextureSampleUnit * createTexSample(const String & name = Independent, bool bindToRsys = false) const;
 
         /** 获取纹理样本
         @version NIIEngine 3.0.0
         */
         virtual TextureSampleUnit * getTexSample(const String & name) const;
+
+        /** 获取纹理样本
+        @version NIIEngine 3.0.0
+        */
+        const TextureSampleUnit * getTexSample(Nidx idx) const;
+        
+        /** 删除纹理样本
+        @version NIIEngine 3.0.0
+        */
+        void destroyTexSample(const TextureSampleUnit * tsu);
+        
+        /** 创建纹理
+        @version NIIEngine 5.0.0
+        */
+        virtual ShaderChTexture * createTexture(const String & name = Independent, bool bindToRsys = false) const;
+        
+        /** 获取纹理样本
+        @version NIIEngine 3.0.0
+        */
+        virtual ShaderChTexture * getTexture(const String & name) const;
+
+        /** 获取纹理样本
+        @version NIIEngine 3.0.0
+        */
+        const ShaderChTexture * getTexture(Nidx idx) const;
+        
+        /** 删除纹理
+        @version NIIEngine 5.0.0
+        */
+        virtual void destroyTexture(ShaderChTexture * sct);
+        
+        /** 同步纹理cpu/gpu数据
+        @version NIIEngine 5.0.0
+        */
+        virtual void syncTexture(ShaderChTexture * sct);
+        
+        /** 创建纹理采样
+        @remarks
+        @version NIIEngine 5.0.0
+        */
+        virtual TextureSample * createSampler(const String & name = Independent, bool bindToRsys = false) const;
+        
+        /** 获取纹理样本
+        @version NIIEngine 3.0.0
+        */
+        virtual TextureSample * getSampler(const String & name) const;
+
+        /** 获取纹理样本
+        @version NIIEngine 3.0.0
+        */
+        const TextureSample * getSampler(Nidx idx) const;
+        
+        /** 删除纹理采样
+        @remarks
+        @version NIIEngine 5.0.0
+        */
+        virtual void destroySampler(TextureSample * ts);
 
         /** 设置当前颜色属性
         @version NIIEngine 3.0.0
@@ -1296,12 +1450,37 @@ namespace NII
         @version NIIEngine 3.0.0
         */
         virtual NCount getDisplayMonitorCount() const = 0;
+        
+        /** 添加材质
+        @version NIIEngine 6.0.0
+        */
+        void addMaterial(ShaderChMaterial * mat);
+
+        /** 移去材质
+        @version NIIEngine 6.0.0
+        */
+        void removeMaterial(Nid id);
+
+        /** 获取材质
+        @version NIIEngine 6.0.0
+        */
+        const MaterialList & getMaterialList() const            { return mMaterialList; }
 
         /** 获取系统材质方案
         @note opengl 和 d3d 至少在着色程序上有所区别
         @version NIIEngine 3.0.0
         */
         virtual SchemeID getMaterial() const;
+        
+        /** 获取渲染材质
+        @version NIIEngine 6.0.0
+        */
+        ShaderChMaterial * getMaterial(Nid id, RenderPatternType type) const;
+        
+        /** 获取渲染材质
+        @version NIIEngine 6.0.0
+        */
+        ShaderChMaterial * getMaterial(RenderPatternType type) const;
 
         /** 返回驱动版本
         @version NIIEngine 3.0.0
@@ -1473,89 +1652,29 @@ namespace NII
         */
         virtual void _execute(StorageTask * st)                         {}
         
-        /** 创建混合
-        @remarks
-        @version NIIEngine 5.0.0
-        */
-        virtual void createBlend(ShaderChBlend *& scb)                  {}
-        
-        /** 删除混合
-        @remarks
-        @version NIIEngine 5.0.0
-        */
-        virtual void destroyBlend(ShaderChBlend * scb)                  {}
-        
-        /** 同步混合cpu/gup数据
-        @remarks
-        @version NIIEngine 5.0.0
-        */
-        virtual void syncBlend(ShaderChBlend * scb)                     {}
-        
-        /** 创建纹理采样单元
-        @version NIIEngine 5.0.0
-        */
-        virtual void createTexSample(TextureSampleUnit *& tsu)          {}
-        
-        /** 删除纹理采样单元
-        @version NIIEngine 5.0.0
-        */
-        virtual void destroyTexSample(TextureSampleUnit * tsu)          {}
-        
-        /** 同步纹理采样单元cpu/gpu数据
-        @version NIIEngine 5.0.0
-        */
-        virtual void syncTexSample(TextureSampleUnit * tsu)             {}
-        
-        /** 创建纹理
-        @version NIIEngine 5.0.0
-        */
-        virtual void createTexture(ShaderChTexture *& sct)              {}
-        
-        /** 删除纹理
-        @version NIIEngine 5.0.0
-        */
-        virtual void destroyTexture(ShaderChTexture * sct)              {}
-        
-        /** 同步纹理cpu/gpu数据
-        @version NIIEngine 5.0.0
-        */
-        virtual void syncTexture(ShaderChTexture * sct)                 {}
-        
-        /** 创建纹理采样
-        @remarks
-        @version NIIEngine 5.0.0
-        */
-        virtual void createSampler(TextureSample *& ts)                 {}
-        
-        /** 删除纹理采样
-        @remarks
-        @version NIIEngine 5.0.0
-        */
-        virtual void destroySampler(TextureSample * ts)                 {}
-        
         /** 创建缓存
         @remarks
         @version NIIEngine 5.0.0
         */
-        virtual void createBuffer(GpuParamBuffer *& gpb)                {}
+        virtual void createBuffer(GpuParamBuffer *& gpb);
         
         /** 删除缓存
         @remarks
         @version NIIEngine 5.0.0
         */
-        virtual void destroyBuffer(GpuParamBuffer * gpb)                {}
+        virtual void destroyBuffer(GpuParamBuffer * gpb);
         
         /** 同步缓存cpu/gpu数据
         @remarks
         @version NIIEngine 5.0.0
         */
-        virtual void syncBuffer(GpuParamBuffer * gpb)                   {}
+        virtual void syncBuffer(GpuParamBuffer * gpb)
 
         /** 创建渲染状态对象
         @remarks
         @version NIIEngine 5.0.0
         */
-        virtual void createRSO(RenderStateObject *& rso)                {}
+        virtual void createRSO(RenderStateObject *& rso);
         
         /** 删除渲染状态对象
         @remarks
@@ -1573,7 +1692,7 @@ namespace NII
         @remarks
         @version NIIEngine 5.0.0
         */
-        virtual void syncRSO(RenderStateObject * rso)                   {}
+        virtual void syncRSO(RenderStateObject * rso);
 
         /** 创建计算状态对象
         @remarks
@@ -1693,7 +1812,7 @@ namespace NII
         /**
         @version NIIEngine 6.0.0
         */
-        size_t getFrameCount() const                            { return mFrameCount; }
+        NCount getFrameCount() const                            { return mFrameCount; }
         
         /** 默认合成场景
         @version NIIEngine 6.0.0
@@ -1703,7 +1822,7 @@ namespace NII
         /**
         @version NIIEngine 6.0.0
         */
-        TextureGpu * createShadowTexture( PixelFormat pf );
+        Texture * createShadowTexture(PixelFormat pf);
 
         /**
         @version NIIEngine 6.0.0
@@ -1734,7 +1853,7 @@ namespace NII
         /**
         @version NIIEngine 6.0.0
         */
-        size_t getFusionCount() const                               { return mFusionList.size(); }
+        NCount getFusionCount() const                           { return mFusionList.size(); }
         
         /**
         @version NIIEngine 6.0.0
@@ -1748,12 +1867,12 @@ namespace NII
         /**
         @version NIIEngine 6.0.0
         */
-        void setFusionFactory(FusionFactory * factory)              { mFusionFactory = factory; }
+        void setFusionFactory(FusionFactory * factory)          { mFusionFactory = factory; }
 
         /**
         @version NIIEngine 6.0.0
         */
-        FusionFactory * getFusionFactory() const                    { return mFusionFactory; }
+        FusionFactory * getFusionFactory() const                { return mFusionFactory; }
 
         /**
         @version NIIEngine 6.0.0
@@ -1824,6 +1943,9 @@ namespace NII
         @version NIIEngine 5.0.0
         */
         static Listener * getListener()                 { return mListener; }
+
+        /// @copydetails PropertyScriptSys::parse
+        virtual void parse(DataStream * stream, GroupID gid, PtrList & out);
     protected:
         /** 下一重复渲染
         @return 是否还需要重复渲染
@@ -1852,11 +1974,13 @@ namespace NII
         typedef map<String, ShaderChColour *>::type ColourList;
         typedef map<String, ShaderChPoint *>::type PointList;
         typedef map<String, ShaderChBlend *>::type BlendList;
-        typedef map<String, ShaderChColour *>::type AlphaList;
         typedef map<String, ShaderChFog *>::type FogList;
         typedef map<String, ShaderChStencil *>::type StencilList;
         typedef map<String, TextureBlend *>::type TexBlendList;
         typedef map<String, TextureSampleUnit *>::type TexSampleList;
+        typedef set<GpuParamBuffer>::type GpuParamBufferList;
+        typedef set<TextureSample>::type TextureSampleList;
+        typedef set<ShaderChTexture>::type SCTextureList;
         typedef set<FrameBufferObject*>::type FrameBufferObjectList;
         typedef set<ViewWindow *>::type WindowSet;
         typedef list<Listener *>::type ListenerList;
@@ -1882,6 +2006,8 @@ namespace NII
         ListenerList mEventListenerList;
         PixelCountQueryList mPixelQueryList;
         FrameBufferObjectList mFBOList;
+        RenderPatternType mDefaultRenderType;
+        ComputePatternType mDefaultComputeType;
         CullingMode mCullingMode;
         PlaneList mClipPlanes;
         RenderPattern * mRenderPatternList[RPT_Count];
@@ -1897,7 +2023,7 @@ namespace NII
         NIIf mDepthBiasSlopeScale;
         NCount mInstanceCount;
         ViewportList mActiveViewports;
-        GpuParamBuffer * mGpuBufferList;
+        GpuParamBuffer * mGpuParamBuffer;
         VertexBuffer * mInstanceBuffer;
         VertexData * mInstanceData;
         SysOptionList mOptions;
@@ -1905,12 +2031,15 @@ namespace NII
         ColourList mColourList;
         PointList mPointList;
         BlendList mBlendList;
-        AlphaList mAlphaList;
         FogList mFogList;
         StencilList mStencilList;
         TexBlendList mTexBlendList;
         TexSampleList mTexSampleList;
         DepthBufferList mDepthBufferList;
+        TextureSampleList mSampleList;
+        GpuParamBufferList mGpuParamBufferList;
+        SCTextureList mTextureList;
+        MaterialList mMaterialList;
         DrawRecord mMetrics;
         Nui32 mShaderVersion;
         NCount mViewportCount;
@@ -1925,7 +2054,7 @@ namespace NII
         
         FusionList mFusionList;
         FusionListenerList mListeners;
-        size_t mFrameCount;
+        NCount mFrameCount;
         TextureList mNullTextureList;
         RectGeo * mFSTriangle;
         RectGeo * mFSQuad;
@@ -1945,6 +2074,7 @@ namespace NII
         bool mSysFeatureValid;
         bool mTexProjRelative;
         bool mReverseDepth;
+        bool mBackFaceInCast;
         bool mWBuffer;
         bool mVSync;
         static Listener * mListener;
