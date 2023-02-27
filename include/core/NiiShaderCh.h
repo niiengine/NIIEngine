@@ -33,6 +33,7 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 #include "NiiCommon.h"
 #include "NiiShaderChProgram.h"
 #include "NiiShaderChTexture.h"
+#include "NiiVertexIndexIndirect.h"
 #include "NiiExtData.h"
 
 //#define ShaderChAlpha_Value                     0xFF
@@ -56,10 +57,6 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 #define ShaderCh_DepthClip                      0x04
 #define ShaderCh_StencilCheck                   0x08
 #define ShaderCh_StencilBothSide                0x10
-
-#define ShaderCh_
-#define ShaderCh_
-#define ShaderCh_
 
 #define ShaderChPoint_Sprites                   0x01
 #define ShaderChPoint_Attenuat                  0x02
@@ -154,6 +151,7 @@ namespace NII
         SB_UnitNormals          = 0x8000000,
         SB_LightClip            = 0x10000000,
         SB_LightClipPlane       = 0x20000000,
+        SB_DepthWriteDisable    = 0x40000000,
         // 扩展
         SB_Fusion               = 0x80000000,                   ///< enable() disbale 无效
     };
@@ -1631,15 +1629,6 @@ namespace NII
     class _EngineAPI SampleObject
     {
     public:
-        /*enum FeatureType
-        {
-            FT_StencilCheckDisable      = 1u << 0u,
-            FT_StencilTwoSide           = 1u << 1u,
-            FT_DepthCheckDisable        = 1u << 2u,
-            FT_DepthWriteDisable        = 1u << 3u,
-            FT_InvertVertexWinding      = 1u << 4u
-        };*/
-        
         SampleObject & operator = (const SampleObject & o)
         {
             memcpy(this, &o, sizeof(SampleObject));
@@ -1674,7 +1663,7 @@ namespace NII
     {
     public:
         virtual ~RenderStateObject(){}
-        void initialize();
+        void init();
 
         RenderStateObject & operator = (const RenderStateObject & o);
 
@@ -1697,6 +1686,11 @@ namespace NII
         @version NIIEngine 5.0.0
         */
         bool lessRender(const RenderStateObject & o) const;
+        
+        /** 
+        @version NIIEngine 5.0.0
+        */
+        void initStencil();
     public:
         SampleObject mSampleObject;
         VertexUnitListList mUnitsList;
@@ -1718,7 +1712,7 @@ namespace NII
     {
     public:
         virtual ~ComputeStateObject(){}
-        void initialize();
+        void init();
     public:
         GpuProgram * mCS;
         GpuProgramParam * mParam;

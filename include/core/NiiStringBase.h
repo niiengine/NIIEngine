@@ -297,5 +297,9 @@ typedef _WStringStreamBase WStringStream;
     typedef map<String, String>::type StringMap;
     typedef map<String, VString>::type VStringMap;
     typedef map<String, WString>::type WStringMap;
+    
+    typedef map<Nid, String>::type StringIdMap;
+    typedef map<Nid, VString>::type VStringIdMap;
+    typedef map<Nid, WString>::type WStringIdMap;
 }
 #endif

@@ -495,6 +495,7 @@ namespace NII
     typedef vector<FrameBuffer *>::type FrameBufferList;
     typedef vector<TextureBuffer *>::type TextureBufferList;
     typedef vector<TextureAsync *>::type TextureAsyncList;
+    typedef vector<GpuProgram *>::type GpuProgramList;
     typedef unordered_set<GeometryRaw *>::type VAOList;
 
     typedef Nui32 RGBA;

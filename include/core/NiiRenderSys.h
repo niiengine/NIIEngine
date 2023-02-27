@@ -507,9 +507,9 @@ namespace NII
         };
         
         typedef vector<Fusion *>::type FusionList;
-        typedef map<Nid, FusionMetadata::Fusion*>::type FusionNodeTypeMap;
         typedef vector<ShadowMetadata *>::type FusionNodeTypeList;
-        typedef map<Nid, FusionMetadata*>::type FusionMetadataList;
+        typedef map<Nid, FusionMetadata::Fusion *>::type FusionNodeTypeMap;
+        typedef map<Nid, FusionMetadata *>::type FusionMetadataList;
         typedef map<Nid, ShaderChMaterial *>::type MaterialList;
     public:
         RenderSys();
@@ -761,12 +761,12 @@ namespace NII
         /** 获取渲染处理器
         @version NIIEngine 6.0.0
         */
-        RenderPattern * getRenderPattern(RenderPatternType type) const   { return mRenderPatternList[type]; }
+        RenderPattern * getRenderPattern(RenderPatternType type) const;
         
         /** 获取渲染处理器
         @version NIIEngine 6.0.0
         */
-        RenderPattern * getRenderPattern(Nid id);
+        RenderPattern * getRenderPattern(Nid id) const;
         
         /** 添加计算处理器
         @version NIIEngine 6.0.0
@@ -781,12 +781,12 @@ namespace NII
         /** 获取计算处理器
         @version NIIEngine 6.0.0
         */
-        ComputePattern * getComputePattern(ComputePatternType type) const   { return mComputePatternList[type]; }
+        ComputePattern * getComputePattern(ComputePatternType type) const;
         
         /** 获取渲染处理器
         @version NIIEngine 6.0.0
         */
-        ComputePattern * getComputePattern(Nid id);
+        ComputePattern * getComputePattern(Nid id) const;
 
         /** 设置视口类型
         @versin NIIEngine 4.0.0
@@ -985,7 +985,6 @@ namespace NII
         TextureSample * getSampler(Nidx idx) const;
         
         /** 删除纹理采样
-        @remarks
         @version NIIEngine 5.0.0
         */
         virtual void destroySampler(TextureSample * ts);
@@ -1579,6 +1578,11 @@ namespace NII
         */
         virtual void endFBO();
         
+        /** 
+        @version NIIEngine 6.0.0
+        */
+        SampleObject getSampleObject(ShaderBase extmark);
+        
         /** 清理帧缓存对象
         @version NIIEngine 5.0.0
         */
@@ -1835,12 +1839,12 @@ namespace NII
         @version NIIEngine 6.0.0
         */
         Fusion * addFusion( SpaceManager * space, const TextureList & targetlist, Camera * cam,
-            int position = -1, const Vector2f & vpOffset = Vector2f::ZERO, const Vector2f & vpScale = Vector2f::UNIT);
+            int indx = -1, const Vector2f & vpOffset = Vector2f::ZERO, const Vector2f & vpScale = Vector2f::UNIT);
 
         /**
         @version NIIEngine 6.0.0
         */
-        void removeFusion( Fusion * fusion );
+        void removeFusion(Fusion * fusion);
 
         /**
         @version NIIEngine 6.0.0
@@ -1860,7 +1864,7 @@ namespace NII
         /**
         @version NIIEngine 6.0.0
         */
-        void createSpaceFusionType( const String & fusiontype, const Colour & colour);
+        void createSpaceFusionType(const String & type, const Colour & colour);
 
         /**
         @version NIIEngine 6.0.0
