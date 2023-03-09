@@ -461,6 +461,7 @@ namespace NII
 
     typedef HashedVector<Light *> LightList;
 
+    typedef vector<Nui8>::type DataArray;
     typedef vector<Nui32>::type UIntArray;
     typedef vector<Ni32>::type IntArray;
     typedef vector<NIIf>::type FloatArray;

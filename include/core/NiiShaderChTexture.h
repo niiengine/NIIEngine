@@ -1301,8 +1301,8 @@ namespace NII
         {
             SamplerUnit()           { memset(this, 0, sizeof(SamplerUnit)); }
             
-            SamplerUnit(ShaderChTextureUnit * buf, PixelFormat pf, Nui16 mipmaps, Nui16 arrayidx, Nui16 mipmaps, bool force2d) :
-                mTexture(buf), mFormat(pf), mMipmapCount(mipmaps), mArrayIndex(arrayidx), mMipmap(mipmaps), mForce2DArray(force2d)
+            SamplerUnit(ShaderChTextureUnit * buf, PixelFormat pf, Nui16 mipmaps, Nui16 arrayidx, Nui16 mipmap, bool force2d) :
+                mTexture(buf), mFormat(pf), mMipmapCount(mipmaps), mArrayIndex(arrayidx), mMipmap(mipmap), mForce2DArray(force2d)
             {
                 if(mTexture)
                     mTexture->touch();
@@ -1371,7 +1371,7 @@ namespace NII
                 return false;
             }
 
-            bool isSuitableView() const
+            bool isValidView() const
             {
                 return mFormat == mTexture->getFormat() && mMipmap == 0 && mArrayIndex == 0 && mMipmapCount == 0 &&
                     !(mForce2DArray && (mTexture->getType() == Texture::T_CUBE || mTexture->getType() == Texture::T_CUBEArray));

@@ -470,7 +470,7 @@ namespace NII
 
         struct StorageUnit
         {
-            StorageUnit()             { memset( this, 0, sizeof( StorageUnit ) );}
+            StorageUnit()             { memset(this, 0, sizeof(StorageUnit));}
 
             StorageUnit & operator= (const StorageUnit & o) const
             {
@@ -507,7 +507,14 @@ namespace NII
 
         struct SamplerUnit
         {
-            SamplerUnit()             { memset( this, 0, sizeof( SamplerUnit ) );}
+            SamplerUnit()             { memset(this, 0, sizeof(SamplerUnit));}
+            SamplerUnit(Texture * tex, PixelFormat pf): mTexture(tex), mMipmap(0), mArrayIndex(0)
+            {
+                if(pf == PF_UNKNOWN)
+                    mFormat = PixelUtil::getLinear(tex->getFormat());
+                else
+                    mFormat = pf;
+            }
 
             SamplerUnit & operator= (const SamplerUnit & o) const
             {
@@ -538,9 +545,9 @@ namespace NII
                 return false;
             }
             
-            bool isSuitableView() const
+            bool isValidView() const
             {
-                return (NonSRGB(mFormat) == mTexture->getFormat() && mMipmap == 0 && mArrayIndex == 0;
+                return mFormat == mTexture->getFormat() && mMipmap == 0 && mArrayIndex == 0;
             }
             
             Texture * mTexture;
@@ -569,25 +576,25 @@ namespace NII
 
         StorageUnit & getBuffer()
         {
-            N_assert( mParamType == PT_Storage );
+            N_assert(mParamType == PT_Storage);
             return mStorage;
         }
 
         const StorageUnit & getBuffer() const
         {
-            N_assert( mParamType == PT_Storage );
+            N_assert(mParamType == PT_Storage);
             return mStorage;
         }
 
         SamplerUnit & getTexture()
         {
-            N_assert( mParamType == PT_Sampler );
+            N_assert(mParamType == PT_Sampler);
             return mSampler;
         }
 
         const SamplerUnit & getTexture() const
         {
-            N_assert( mParamType == PT_Sampler );
+            N_assert(mParamType == PT_Sampler);
             return mSampler;
         }
 

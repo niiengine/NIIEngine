@@ -149,11 +149,13 @@ namespace NII
         SB_Light                = 0x2000000,
         SB_FogValid             = 0x4000000,
         SB_UnitNormals          = 0x8000000,
-        SB_LightClip            = 0x10000000,
-        SB_LightClipPlane       = 0x20000000,
-        SB_DepthWriteDisable    = 0x40000000,
+        SB_InvertVertexWinding  = 0x10000000,
+        SB_LightClip            = 0x20000000,
+        SB_LightClipPlane       = 0x40000000,
+        SB_DepthWriteDisable    = 0x80000000,
+        SB_DepthCheckDisable    = 0x100000000,
         // 扩展
-        SB_Fusion               = 0x80000000,                   ///< enable() disbale 无效
+        SB_Fusion               = 0x200000000,                  ///< enable() disbale 无效 64bit enum
     };
 
     /** 渲染通路中的基本颜色
@@ -1652,6 +1654,8 @@ namespace NII
     public:
         PixelFormat mColour[NII_MAX_RenderTarget];
         PixelFormat mDepth;
+        ShaderChStencil * mStencil;
+        ShaderChColour * mColour;
         SampleType mSampleType;
         Nui32 mDevID;
     };

@@ -31,7 +31,9 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 #include "NiiPreInclude.h"
 #include "NiiBox.h"
 
-#define NonSRGB(pf)     pf & 0xfffffff
+#define N_Linear(pf)    PixelUtil::getLinear(pf)
+#define N_SRGB(pf)      PixelUtil::getSRGB(pf)
+
 namespace NII
 {
     /** ÏñËØ¸ñÊ½

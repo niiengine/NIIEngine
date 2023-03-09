@@ -43,6 +43,10 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 namespace NII
 {
     typedef map<Nid, String>::type SegmentList;
+    typedef vector<SegmentList>::type SegmentGroupList
+    
+    typedef map<Nid, String *>::type SegmentRefList;
+    typedef vector<SegmentRefList>::type SegmentRefGroupList
 
     /** GPU Shader编码合成器
     @version NIIEngine 6.0.0
@@ -251,11 +255,6 @@ namespace NII
         /** 
         @version NIIEngine 6.0.0
         */
-        virtual void clearCache();
-        
-        /** 
-        @version NIIEngine 6.0.0
-        */
         VFS * getData() const                               { return mVFS; }
         
         /** 
@@ -266,7 +265,7 @@ namespace NII
         /**
         @version NIIEngine 6.0.0
         */
-        void setQuality(QualityType set);
+        virtual void setQuality(QualityType set);
         
         /**
         @version NIIEngine 6.0.0

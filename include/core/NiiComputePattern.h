@@ -68,7 +68,7 @@ namespace NII
             GBT_Storage
         };
     public:
-        ComputeRaw(Nid name, ComputePattern * creator, const String & source, const StringList & segmentList);
+        ComputeRaw(Nid name, ComputePattern * creator, const String & source, const SegmentList & segmentList);
         virtual ~ComputeRaw();
         
         /** 
@@ -253,8 +253,7 @@ namespace NII
         String mName;
 
         String mSourceFilename;
-        StringList mSegmentList;
-
+        SegmentList mSegmentList;
         Nui32 mCeilCount[3];
         Nui32 mGroupCount[3];
 
@@ -270,7 +269,6 @@ namespace NII
         ShaderChTexture const * mTextureList;
         TextureSample const * mSampleList;
         GpuParamBuffer const * mGpuBufferList;
-        SegmentList mSegmentList;
         NCount mTextureUnitMax;
         NCount mBufferUnitMax;
         NCount mParamValid;
@@ -314,7 +312,7 @@ namespace NII
         /** 
         @version NIIEngine 5.0.0
         */
-        ComputeRaw * createComputeRaw(Nid id, const String & name, const String & source, const StringList & segmentList);
+        ComputeRaw * createComputeRaw(Nid id, const String & name, const String & source, const SegmentList & segmentList);
 
         /**
         @version NIIEngine 5.0.0
