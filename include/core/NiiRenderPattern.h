@@ -61,7 +61,7 @@ namespace NII
     
     struct RenderStateCache
     {
-        RenderStateCache() : mHash(0), mType(RPT_Count) {}
+        RenderStateCache() : mHash(0), mPattern(0) {}
         RenderStateCache(const RenderStateObject & rso, RenderPattern * pattern, Nui32 hash) : 
             mRSO(rso), mPattern(pattern), mHash(hash) {}
         
@@ -89,7 +89,7 @@ namespace NII
         (5)觉得慢就不要阴影算了
     @version NIIEngine 3.0.0 顶级api
     */
-    class _EngineAPI RenderPattern : public Pattern
+    class _EngineAPI RenderPattern : public Pattern, public GpuProgramCodeGen
     {
         friend class SpaceManager;
     public:
@@ -119,9 +119,48 @@ namespace NII
         };
 
         typedef vector<Listener *>::type Listeners;
+		
+        struct Material
+        {
+            Material() : mMaterial(0), mManager(false) {}
+            Material(ShaderChMaterial * mat, bool mag, const String & src, GroupID gid) :
+                mMaterial(mat), 
+                mManager(mag), 
+                mSrc(src), 
+                mGroup(gid) {}
+
+            ShaderChMaterial * mMaterial;
+            String mSrc;
+            GroupID mGroup;
+            bool mManager;
+        };
+
+        typedef map<Nid, Material>::type MaterialList;
+        typedef vector<std::pair<VString, Nui32> >::type TextureBindList;
+        typedef vector<TextureBindList>::type TextureBindGroupList;
     public :
         RenderPattern(SpaceManager * sm, RenderSys * rsys, SysSyncParam * param);
         virtual ~RenderPattern();
+		
+        /**
+        @version NIIEngine 6.0.0
+        */
+        RenderPatternType getType() const                   { return mType; }
+
+        /**
+        @version NIIEngine 6.0.0
+        */
+        Nid getID() const                                   { return mID; }
+
+        /**
+        @version NIIEngine 6.0.0
+        */
+        void setName(const String & str)                    { mName = str;}
+
+        /**
+        @version NIIEngine 6.0.0
+        */
+        const String & getName() const                      { return mName; }
 
         /** 初始化
         @version NIIEngine 3.0.0
@@ -179,6 +218,116 @@ namespace NII
         @version NIIEngine 3.0.0
         */
         virtual void applyLight(const ShaderCh * ch, const LightList & src, NCount & oft, LightList & app);
+		
+        /// @copydetails GpuProgramCodeGen::setup
+        virtual void setup(const VFSList & vfsl);
+
+        /// @copydetails GpuProgramCodeGen::setQuality
+        virtual void setQuality(QualityType set);
+
+        /// @copydetails GpuProgramCodeGen::setRender
+        virtual void setRender(RenderSys * rsys);
+
+        /**
+        @version NIIEngine 6.0.0
+        */
+        void setDirectionalLight(NCounts max)               { mLightCnt = max; }
+
+        /**
+        @version NIIEngine 6.0.0
+        */
+        NCounts getDirectionalLight() const                 { return mLightCnt; }
+
+        /** 
+        @version NIIEngine 6.0.0
+        */
+        void setAreaLightForward(NCounts max, NCounts ltcMax);
+
+        /** 
+        @version NIIEngine 6.0.0
+        */
+        NCounts getAreaLightApprox() const		            { return mAreaLightApproxCnt; }
+
+        /** 
+        @version NIIEngine 6.0.0
+        */
+        NCounts getAreaLightsLtc() const			        { return mAreaLightsLtcCnt; }
+        
+        /** 
+        @version NIIEngine 6.0.0
+        */
+        virtual void addObject(GeometryObj * obj);
+		
+        /** 
+        @version NIIEngine 6.0.0
+        */
+        ShaderChMaterial * createMaterial(Nid id, const ShaderChStencil & stencil, const ShaderChBlend & blend, 
+            const StringIdMap & strlist, bool autoDestroy = true, const String & filename = N_StrBlank, GroupID gid = GroupUnknow);
+
+        /**
+        @version NIIEngine 6.0.0
+        */
+        ShaderChMaterial * getMaterial(Nid id) const;
+
+        /**
+        @version NIIEngine 6.0.0
+        */
+        void destroyMaterial(Nid id);
+
+        /**
+        @version NIIEngine 6.0.0
+        */
+        void destroyAllMaterial();
+
+        /**
+        @version NIIEngine 6.0.0
+        */
+        const MaterialList & getMaterialList() const        { return mMaterialList; }
+
+        /**
+        @version NIIEngine 6.0.0
+        */
+        ShaderChMaterial * getMaterial() const              { return mMaterial; }
+
+        /** 
+        @version NIIEngine 6.0.0
+        */
+        const RenderStateCache * getCache(Nui32 statehash, const RenderStateCache & in, const RenderQueueItem & item, bool casterShadow);
+
+        /** 
+        @version NIIEngine 6.0.0
+        */
+        virtual RenderStateCache * createMaterial(bool casterShadow);
+
+        /** 
+        @version NIIEngine 6.0.0
+        */
+        virtual NCount queue(DrawCallGroup * dcg, const RenderStateCache * cache, const RenderQueueItem & item, bool casterShadow, Nui32 objhash){}
+
+        /**
+        @version NIIEngine 6.0.0
+        */
+        virtual void frameBegin(){}
+
+        /**
+        @version NIIEngine 6.0.0
+        */
+        virtual void frameEnded() {}
+
+        /**
+        @version NIIEngine 6.0.0
+        */
+        void compileProgramCode(const Object & obj, const StringList & srclist);
+
+        /**
+        @version NIIEngine 6.0.0
+        */
+        void compile(ObjectShader & shader);
+
+        /**
+        @version NIIEngine 6.0.0
+        */
+        const ShaderList & getShaderCodeCache() const           { return mShaderList; }
 
         /** 设置三角形面序模式
         @param[in] ch 使用的通路
@@ -327,6 +476,61 @@ namespace NII
         */
         void remove(Listener * s);
     protected:
+        struct Object
+        {
+            GeometryObj * mObj;
+            SegmentRefGroupList mSegmentGroupList;
+            PropertyValueList mPropertyList;
+
+            Object(GeometryObj * obj, const PropertyValueList & pvlist, const SegmentRefGroupList & slist) :
+                mPropertyList(pvlist),
+                mSegmentGroupList(slist),
+                mObj(obj),
+            {
+            }
+
+            bool operator == (const Object & o) const
+            {
+                NCount iend = mSegmentGroupList.size();
+                if(iend != o.mSegmentGroupList[i].size())
+                    return false;
+                for(i = 0; i < iend; ++i)
+                {
+                    if(o.mSegmentGroupList[i] != mSegmentGroupList[i])
+                        return false;
+                }
+                return mPropertyList == o.mPropertyList;
+            }
+        };
+        typedef vector<Object>::type ObjectList;
+
+        struct ObjectShader
+        {
+            Object mObject;
+            GpuProgramList mProgramList;
+
+            ObjectShader(const SegmentRefGroupList & slist) : 
+                mObject(PropertyValueList(), slist){}
+
+            bool operator == (const ObjectShader & o) const
+            {
+                return mObject == o.mObject;
+            }
+        };
+        typedef vector<ObjectShader>::type ShaderList;
+
+        struct Sample
+        {
+            SampleObject mSampleObject;
+            PropertyValueList mPropertyList;
+
+            bool operator == (const Sample & o) const
+            {
+                return mPropertyList == o.mPropertyList && mSampleObject == o.mSampleObject;
+            }
+        };
+        typedef vector<Sample>::type SampleList;
+    protected:
         /** 应用渲染系统
         @version NIIEngine 3.0.0
         */
@@ -356,6 +560,61 @@ namespace NII
         @version NIIEngine 3.0.0
         */
         void onFindReceiveGeometry(Viewport * v);
+		
+        /** 
+        @version NIIEngine 6.0.0
+        */
+        virtual RenderStateCache * createCache(Nui32 objhash, const RenderStateCache & rsc, Nmark mark, const RenderQueueItem & item);
+
+        /** 
+        @version NIIEngine 6.0.0
+        */
+        virtual ShaderChMaterial * createMaterialImpl(Nid id, const ShaderChStencil * stencil = 0, const ShaderChBlend * blend, const StringIdMap & idlist){ return 0;}
+		
+        /**
+        @version NIIEngine 6.0.0
+        */
+        virtual void onGenProperty();
+
+        /** 
+        @version NIIEngine 6.0.0
+        */
+        virtual void onAddObjectNormal(GeometryObj * obj, const SegmentRefGroupList & in) {}
+
+        /** 
+        @version NIIEngine 6.0.0
+        */
+        virtual void onAddObjectShadow(GeometryObj * obj, const SegmentRefGroupList & in) {}
+
+        /**
+        @version NIIEngine 6.0.0
+        */
+        void bindTexture(ShaderType type, const VString & name, int32 texUnit);
+        
+        /**
+        @version NIIEngine 6.0.0
+        */
+        void unbindTexture(ShaderType type, const VString & name, int32 texUnit);
+
+        /** 
+        @version NIIEngine 6.0.0
+        */
+        Nmark addObject(GeometryObj * obj, const PropertyValueList & pvlist, const SegmentRefGroupList & slist);
+
+        /**
+        @version NIIEngine 6.0.0
+        */
+        const Object * getObject(Nui32 objhash) const;
+        
+        /**
+        @version NIIEngine 6.0.0
+        */
+        const RenderStateCache * getCache(Nui32 statehash) const;
+        
+        /** 
+        @version NIIEngine 6.0.0
+        */
+        virtual void clearCache();
     protected:
         SpaceManager * mParent;             ///< 当前场景
         RenderSys * mRenderSys;             ///< 当前渲染系统

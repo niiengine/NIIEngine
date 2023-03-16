@@ -37,7 +37,7 @@ namespace NII
 {
     struct _EngineAPI PropertyValue
     {
-        PropertyValue(PropertyID key, String value) : mKey( key ), mValue( value ) {}
+        PropertyValue(PropertyID key, String value) : mKey(key), mValue(value) {}
 
         bool operator == (const PropertyValue & o) const
         {
@@ -106,6 +106,12 @@ namespace NII
         @version NIIEngine 3.0.0
         */
         void remove(PropertyID pid);
+        
+        /** 移去所有属性
+        @param pid 属性ID
+        @version NIIEngine 3.0.0
+        */
+        void removeAll();
 
         /** 是否存在属性
         @param pid 属性ID

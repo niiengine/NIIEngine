@@ -308,7 +308,7 @@ namespace NII
         QualityType mQualityType;
         LibraryList mLibrary;
         StringGroupList mSegment;
-        RenderStateCacheList mShaderCache;
+        SegmentList mSegmentList;
         String mShaderProfile;
         String mShaderFileExt;
         StringList mShaderTargets;
