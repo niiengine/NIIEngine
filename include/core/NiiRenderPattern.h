@@ -99,23 +99,20 @@ namespace NII
         class Listener
         {
         public:
+			enum ShadowType
+			{
+				ST_Normal,
+				ST_Cast,
+				ST_Receive
+			};
+		public:
             Listener();
             virtual ~Listener();
 
-            /** 寻找可见几何
-            @version NIIEngine 3.0.0
+            /** 寻找可见/阴影投射/阴影接受几何
+            @version NIIEngine 6.0.0
             */
-            virtual void onFindGeometry(SpaceManager * sm, Viewport * v);
-
-            /** 寻找投射阴影的几何
-            @version NIIEngine 3.0.0
-            */
-            virtual void onFindCastGeometry(SpaceManager * sm, Viewport * v);
-
-            /** 寻找接受阴影的几何
-            @version NIIEngine 3.0.0
-            */
-            virtual void onFindReceiveGeometry(SpaceManager * sm, Viewport * v);
+            virtual void onFindGeometry(SpaceManager * sm, Viewport * v, ShadowType type);
         };
 
         typedef vector<Listener *>::type Listeners;
@@ -297,7 +294,7 @@ namespace NII
         /** 
         @version NIIEngine 6.0.0
         */
-        virtual RenderStateCache * createMaterial(bool casterShadow);
+        virtual RenderStateCache * createState(bool casterShadow);
 
         /** 
         @version NIIEngine 6.0.0
@@ -327,7 +324,7 @@ namespace NII
         /**
         @version NIIEngine 6.0.0
         */
-        const ShaderList & getShaderCodeCache() const           { return mShaderList; }
+        const ShaderList & getShaderCodeCache() const    	{ return mShaderList; }
 
         /** 设置三角形面序模式
         @param[in] ch 使用的通路
@@ -361,31 +358,29 @@ namespace NII
         */
         virtual void deriveShadow(const ShaderCh *& dst, const ShaderCh * src);
 
-        /** 是否通过阴影测试
-        @remark 阴影处理
+        /** 是否通过渲染测试
         @param[in] ch 当前应用的通道
         @param[in] obj 当前渲染的对象
         @version NIIEngine 3.0.0
         */
         virtual bool testRender(const ShaderCh * ch, const GeometryObj * obj);
 
-        /** 是否通过阴影测试
-        @remark 阴影处理
+        /** 是否通过渲染测试
         @param[in] ch 当前应用的通道
         */
         virtual bool testRender(const ShaderCh * ch);
 
-        /** 是否在渲染阴影阶段
+        /** 是否处于渲染阴影阶段
         @version NIIEngine 3.0.0
         */
         virtual bool isRenderShadow() const;
 
-        /** 主流纹理阴影
+        /** 是否主流纹理阴影
         @version NIIEngine 3.0.0
         */
         virtual bool isTextureShadow() const;
 
-        /** 主流模版阴影
+        /** 是否主流模版阴影
         @version NIIEngine 3.0.0
         */
         virtual bool isStencilShadow() const;
@@ -475,6 +470,11 @@ namespace NII
         @version NIIEngine 3.0.0
         */
         void remove(Listener * s);
+		
+        /** 移去监听
+        @version NIIEngine 3.0.0
+        */
+        const Listeners & getListeners() const	{ return mListeners; }
     protected:
         struct Object
         {
@@ -549,17 +549,7 @@ namespace NII
         /** 查找可视物体时触发
         @version NIIEngine 3.0.0
         */
-        void onFindGeometry(Viewport * v);
-
-        /** 查找可投射阴影的物体时触发
-        @version NIIEngine 3.0.0
-        */
-        void onFindCastGeometry(Viewport * v);
-
-        /** 查找可接收阴影的物体时触发
-        @version NIIEngine 3.0.0
-        */
-        void onFindReceiveGeometry(Viewport * v);
+        void onFindGeometry(Viewport * v, Listener::ShadowType type);
 		
         /** 
         @version NIIEngine 6.0.0
@@ -569,7 +559,7 @@ namespace NII
         /** 
         @version NIIEngine 6.0.0
         */
-        virtual ShaderChMaterial * createMaterialImpl(Nid id, const ShaderChStencil * stencil = 0, const ShaderChBlend * blend, const StringIdMap & idlist){ return 0;}
+        virtual ShaderChMaterial * createMaterialImpl(Nid id, const ShaderChStencil * stencil = 0, const ShaderChBlend * blend = 0, const StringIdMap & idlist = StringIdMap()){ return 0;}
 		
         /**
         @version NIIEngine 6.0.0
@@ -579,12 +569,7 @@ namespace NII
         /** 
         @version NIIEngine 6.0.0
         */
-        virtual void onAddObjectNormal(GeometryObj * obj, const SegmentRefGroupList & in) {}
-
-        /** 
-        @version NIIEngine 6.0.0
-        */
-        virtual void onAddObjectShadow(GeometryObj * obj, const SegmentRefGroupList & in) {}
+        virtual void onAddObject(GeometryObj * obj, const SegmentRefGroupList & in, Listener::ShadowType type) {}
 
         /**
         @version NIIEngine 6.0.0
@@ -616,6 +601,8 @@ namespace NII
         */
         virtual void clearCache();
     protected:
+        Nid mID;
+        String mName;						///< 辅助
         SpaceManager * mParent;             ///< 当前场景
         RenderSys * mRenderSys;             ///< 当前渲染系统
         RenderQueue * mRenderQueue;         ///< 当前渲染组
@@ -633,6 +620,13 @@ namespace NII
         NIIf mShadowExtentMax;
         Nui32 mLightHash;                   ///< 当前灯光哈希
         Listeners mListeners;               ///< 监听列表
+        ShaderChMaterial * mMaterial;
+        RenderStateCacheList mShaderCache;
+        RenderPatternType mType;
+        MaterialList mMaterialList;
+        NCounts mLightCnt;
+        NCounts mAreaLightApproxCnt;
+        NCounts mAreaLightsLtcCnt;
         bool mInit;
         bool mShadowEnable;
         bool mBackFaceInCast;
