@@ -289,7 +289,7 @@ namespace NII
         /** 
         @version NIIEngine 6.0.0
         */
-        const RenderStateCache * getCache(Nui32 statehash, const RenderStateCache & in, const RenderQueueItem & item, bool casterShadow);
+        const RenderStateCache * getCache(Nui32 stateHash, const RenderStateCache & inState, const RenderQueueItem & inItem, bool casterShadow);
 
         /** 
         @version NIIEngine 6.0.0
@@ -324,7 +324,7 @@ namespace NII
         /**
         @version NIIEngine 6.0.0
         */
-        const ShaderList & getShaderCodeCache() const    	{ return mShaderList; }
+        const ShaderList & getShaderList() const    		{ return mShaderList; }
 
         /** 设置三角形面序模式
         @param[in] ch 使用的通路
@@ -554,7 +554,7 @@ namespace NII
         /** 
         @version NIIEngine 6.0.0
         */
-        virtual RenderStateCache * createCache(Nui32 objhash, const RenderStateCache & rsc, Nmark mark, const RenderQueueItem & item);
+        virtual RenderStateCache * createCache(Nui32 objHash, const RenderStateCache & rsc, Nmark mark, const RenderQueueItem & item);
 
         /** 
         @version NIIEngine 6.0.0
@@ -589,12 +589,12 @@ namespace NII
         /**
         @version NIIEngine 6.0.0
         */
-        const Object * getObject(Nui32 objhash) const;
+        const Object * getObject(Nui32 objHash) const;
         
         /**
         @version NIIEngine 6.0.0
         */
-        const RenderStateCache * getCache(Nui32 statehash) const;
+        const RenderStateCache * getCache(Nui32 stateHash) const;
         
         /** 
         @version NIIEngine 6.0.0
@@ -603,6 +603,7 @@ namespace NII
     protected:
         Nid mID;
         String mName;						///< 辅助
+        RenderPatternType mType;
         SpaceManager * mParent;             ///< 当前场景
         RenderSys * mRenderSys;             ///< 当前渲染系统
         RenderQueue * mRenderQueue;         ///< 当前渲染组
@@ -622,11 +623,20 @@ namespace NII
         Listeners mListeners;               ///< 监听列表
         ShaderChMaterial * mMaterial;
         RenderStateCacheList mShaderCache;
-        RenderPatternType mType;
         MaterialList mMaterialList;
+        SampleList mSampleList;
+        ObjectList mObjectList;
+        ShaderList mShaderList;
+        TextureBindGroupList mTextureBindGroupList;
+        SegmentRefGroupListList mSegmentGroupList;
         NCounts mLightCnt;
         NCounts mAreaLightApproxCnt;
         NCounts mAreaLightsLtcCnt;
+        NCounts mAreaLightIndex;
+        NCounts mCurrentDirectionalLightCnt;
+		NCounts mCurrentAreaApproxLightCnt;
+        NCounts mCurrentAreaApproxLight2Cnt;
+        NCounts mCurrentAreaLtcLightCnt;
         bool mInit;
         bool mShadowEnable;
         bool mBackFaceInCast;
