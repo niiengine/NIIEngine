@@ -113,6 +113,26 @@ namespace NII
             @version NIIEngine 6.0.0
             */
             virtual void onFindGeometry(SpaceManager * sm, Viewport * v, ShadowType type);
+			
+            /** 
+            @version NIIEngine 6.0.0
+            */
+			virtual void onCreateState(SpaceManager * sm, RenderPattern * rp, ShadowType type) {}
+			
+			/**
+			@version NIIEngine 6.0.0
+			*/
+			virtual void onStateChange(SpaceManager * sm, ShadowType type, DrawCallGroup * op) {}
+			
+			/**
+			@version NIIEngine 6.0.0
+			*/
+			virtual void onGParamSize(SpaceManager * sm, ShadowType type, UIntArray & ilist) const {}
+
+			/**
+			@version NIIEngine 6.0.0
+			*/
+			virtual void onGParamData(SpaceManager * sm, ShadowType type, FloatPtrList & fdlist)    {}
         };
 
         typedef vector<Listener *>::type Listeners;

@@ -478,6 +478,7 @@ namespace NII
     typedef vector<EventID>::type EventIDList;
     typedef vector<PropertyID>::type PropertyArray;
     typedef vector<void *>::type PtrList;
+	typedef vector<NIIf *>::type FloatPtrList;
     typedef vector<Nui16>::type BoneIndexList;
     typedef vector<SubMesh *>::type SubMeshList;
     typedef vector<Bone *>::type BoneList;
