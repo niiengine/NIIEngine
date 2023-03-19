@@ -155,8 +155,21 @@ namespace NII
         typedef map<Nid, Material>::type MaterialList;
         typedef vector<std::pair<VString, Nui32> >::type TextureBindList;
         typedef vector<TextureBindList>::type TextureBindGroupList;
+		
+		/**
+		@version NIIEngine 6.0.0
+		*/
+        enum RenderingType
+        {
+            RT_Forward,
+            RT_TiledForward,
+            RT_Deferred,
+			RT_TiledDeferred,
+			RT_TiledDeferredLighting,
+            RT_Unknow,
+        };
     public :
-        RenderPattern(SpaceManager * sm, RenderSys * rsys, SysSyncParam * param);
+        RenderPattern(RenderPatternType type, Nid id, SpaceManager * sm, RenderSys * rsys, SysSyncParam * param, const String & name = N_StrBlank);
         virtual ~RenderPattern();
 		
         /**
@@ -624,6 +637,7 @@ namespace NII
         Nid mID;
         String mName;						///< 辅助
         RenderPatternType mType;
+        RenderingType mRenderingType;
         SpaceManager * mParent;             ///< 当前场景
         RenderSys * mRenderSys;             ///< 当前渲染系统
         RenderQueue * mRenderQueue;         ///< 当前渲染组
