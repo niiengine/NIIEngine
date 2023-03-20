@@ -35,6 +35,8 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 
 namespace NII
 {
+    struct RenderQueueItem;
+	
     /***/
     enum RenderPatternType
     {
@@ -55,7 +57,7 @@ namespace NII
         RPT_Custom7 = N_CodeGen_Render + 14,
         RPT_Custom8 = N_CodeGen_Render + 15,
         RPT_Custom9 = N_CodeGen_Render + 16,
-        
+
         RPT_Count = N_CodeGen_Render + 17
     };
     
@@ -64,7 +66,7 @@ namespace NII
         RenderStateCache() : mHash(0), mPattern(0) {}
         RenderStateCache(const RenderStateObject & rso, RenderPattern * pattern, Nui32 hash) : 
             mRSO(rso), mPattern(pattern), mHash(hash) {}
-        
+
         RenderStateObject mRSO;
         PropertyValueList mPropertyList;
         RenderPattern * mPattern;
@@ -75,36 +77,37 @@ namespace NII
     
     class ShadowRenderTest;
 
-    /** 阴影处理器类,便于以后的细节优化和修改
+    /** 渲染处理器类,便于以后的细节优化和修改
     @remark
         阴影处理在渲染中算是比较复杂的,将带来很多效率问题,有的时候你会看到网络游戏
         把影子都忽略掉了,灯光数量越多产生的阴影越多,效率越慢,阴影实际就是灯光和物体
         的故事
     @note 建议使用引擎默认提供的阴影处理器
     @par 以下几点可以优化阴影效率
-        (1)如果一个阴影完全覆盖一个物体,直接把阴影投射通道加入到物体渲染通道中
-        (2)如果灯光是静态,而且是足够远,物体仅仅只要创建一次阴影体
-        (3)大型物体在灯光(静态,足够远)下,它的阴影最好使用 PlanarShadow
-        (4)方向灯光下,物体可以先创建32个方向的边缘,然后通过灯光位置选择最接近结果的边缘
-        (5)觉得慢就不要阴影算了
+		(1)
+        (2)如果阴影投射完全覆盖一个物体,直接把阴影接受渲染加入到那个物体渲染通道中
+        (3)如果灯光是静态,而且是足够远,物体仅仅只要创建一次阴影体
+        (4)大型物体在灯光(静态,足够远)下,它的阴影最好使用 PlanarShadow
+        (5)方向灯光下,物体可以先创建32个方向的边缘,然后通过灯光位置选择最接近结果的边缘
+        (6)觉得慢就不要阴影算了
     @version NIIEngine 3.0.0 顶级api
     */
     class _EngineAPI RenderPattern : public Pattern, public GpuProgramCodeGen
     {
         friend class SpaceManager;
     public:
+		enum ShadowType
+		{
+			ST_Normal,
+			ST_Cast,
+			ST_Receive
+		};
+
         /** 外部控制
         @version NIIEngine 3.0.0
         */
         class Listener
         {
-        public:
-			enum ShadowType
-			{
-				ST_Normal,
-				ST_Cast,
-				ST_Receive
-			};
 		public:
             Listener();
             virtual ~Listener();
@@ -118,6 +121,12 @@ namespace NII
             @version NIIEngine 6.0.0
             */
 			virtual void onCreateState(SpaceManager * sm, RenderPattern * rp, ShadowType type) {}
+			
+            /** 
+            @version NIIEngine 6.0.0
+            */
+			virtual bool onCreateCache(const RenderQueueItem & inItem, const RenderStateCache * cache,
+				const RenderStateCache & inState, ShaderLanguage sl, const PropertyValueList & pvlist) {}
 			
 			/**
 			@version NIIEngine 6.0.0
@@ -140,9 +149,9 @@ namespace NII
         struct Material
         {
             Material() : mMaterial(0), mManager(false) {}
-            Material(ShaderChMaterial * mat, bool mag, const String & src, GroupID gid) :
+            Material(ShaderChMaterial * mat, bool autoDestroy, const String & src, GroupID gid) :
                 mMaterial(mat), 
-                mManager(mag), 
+                mManager(autoDestroy), 
                 mSrc(src), 
                 mGroup(gid) {}
 
@@ -197,7 +206,7 @@ namespace NII
         */
         virtual void init();
 
-        /** 当前系统软/硬件支持是否支持这个阴影处理
+        /** 当前系统软/硬件是否支持这个渲染处理器
         @version NIIEngine 3.0.0
         */
         virtual bool isValid();
@@ -322,17 +331,17 @@ namespace NII
         /** 
         @version NIIEngine 6.0.0
         */
-        const RenderStateCache * getCache(Nui32 stateHash, const RenderStateCache & inState, const RenderQueueItem & inItem, bool casterShadow);
+        const RenderStateCache * getCache(Nui32 stateHash, const RenderStateCache & inState, const RenderQueueItem & inItem, ShadowType type);
 
         /** 
         @version NIIEngine 6.0.0
         */
-        virtual RenderStateCache * createState(bool casterShadow);
+        virtual RenderStateCache * createState(ShadowType type);
 
         /** 
         @version NIIEngine 6.0.0
         */
-        virtual NCount queue(DrawCallGroup * dcg, const RenderStateCache * cache, const RenderQueueItem & item, bool casterShadow, Nui32 objhash){}
+        virtual NCount queue(DrawCallGroup * dcg, const RenderStateCache * cache, const RenderQueueItem & inItem, ShadowType type, Nui32 objhash){}
 
         /**
         @version NIIEngine 6.0.0
@@ -359,13 +368,13 @@ namespace NII
         */
         const ShaderList & getShaderList() const    		{ return mShaderList; }
 
-        /** 设置三角形面序模式
+        /** 设置三角形面序拣选模式
         @param[in] ch 使用的通路
         @version NIIEngine 3.0.0
         */
         virtual CullingMode setCullingMode(CullingMode mode);
 
-        /** 获取三角形面序模式
+        /** 获取三角形面序拣选模式
         @version NIIEngine 3.0.0
         */
         virtual CullingMode getCullingMode() const;
@@ -582,7 +591,7 @@ namespace NII
         /** 查找可视物体时触发
         @version NIIEngine 3.0.0
         */
-        void onFindGeometry(Viewport * v, Listener::ShadowType type);
+        void onFindGeometry(Viewport * v, ShadowType type);
 		
         /** 
         @version NIIEngine 6.0.0
@@ -602,7 +611,7 @@ namespace NII
         /** 
         @version NIIEngine 6.0.0
         */
-        virtual void onAddObject(GeometryObj * obj, const SegmentRefGroupList & in, Listener::ShadowType type) {}
+        virtual void onAddObject(GeometryObj * obj, const SegmentRefGroupList & in, ShadowType type) {}
 
         /**
         @version NIIEngine 6.0.0

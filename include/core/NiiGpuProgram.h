@@ -46,6 +46,7 @@ namespace NII
         SL_OPENGL   = 0x80000000,           ///< (glsl)
         SL_DX       = 0x40000000,           ///< (hlsl)
         SL_GLSLES   = 0x10000000,           ///< (gles glsles) language
+		SL_METAL	= 0x20000000,
         SL_CG       = 0x8000000,            ///< (nv cg) language
         SL_ASM      = 0x4000000,            ///< (汇编) language
         SL_ALTER    = 0x1000000,            ///< 一般存在代替方案的着色程序
@@ -101,7 +102,9 @@ namespace NII
         SL_GS_4_0 = 0x200000 | SL_DX,       ///< dx10 gs_4_0
         SL_GS_4_1 = 0x400000 | SL_DX,       ///< dx10.1 gs_4_1
         SL_GS_5_0 = 0x800000 | SL_DX,       ///< dx11 gs_5_0
-        SL_HLSL = 0x1000000 | SL_DX         ///< (dx hlsl)language
+        SL_HLSL = 0x1000000 | SL_DX,     	///< (dx hlsl)language
+		
+		GL_METAL = 0x01 | SL_METAL
     };
     typedef NIIi ShaderLanguageMark;
 
