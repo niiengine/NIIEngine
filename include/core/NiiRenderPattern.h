@@ -68,7 +68,7 @@ namespace NII
             mRSO(rso), mPattern(pattern), mHash(hash) {}
 
         RenderStateObject mRSO;
-        PropertyValueList mPropertyList;
+        PropertyValueData mPropertyList;
         RenderPattern * mPattern;
         Nui32 mHash;
     };
@@ -126,7 +126,7 @@ namespace NII
             @version NIIEngine 6.0.0
             */
 			virtual bool onCreateCache(const RenderQueueItem & inItem, const RenderStateCache * cache,
-				const RenderStateCache & inState, ShaderLanguage sl, const PropertyValueList & pvlist) {}
+				const RenderStateCache & inState, ShaderLanguage sl, const PropertyValueData & pvlist) {}
 			
 			/**
 			@version NIIEngine 6.0.0
@@ -522,9 +522,9 @@ namespace NII
         {
             GeometryObj * mObj;
             SegmentRefGroupList mSegmentGroupList;
-            PropertyValueList mPropertyList;
+            PropertyValueData mPropertyList;
 
-            Object(GeometryObj * obj, const PropertyValueList & pvlist, const SegmentRefGroupList & slist) :
+            Object(GeometryObj * obj, const PropertyValueData & pvlist, const SegmentRefGroupList & slist) :
                 mPropertyList(pvlist),
                 mSegmentGroupList(slist),
                 mObj(obj),
@@ -552,7 +552,7 @@ namespace NII
             GpuProgramList mProgramList;
 
             ObjectShader(const SegmentRefGroupList & slist) : 
-                mObject(PropertyValueList(), slist){}
+                mObject(PropertyValueData(), slist){}
 
             bool operator == (const ObjectShader & o) const
             {
@@ -564,7 +564,7 @@ namespace NII
         struct Sample
         {
             SampleObject mSampleObject;
-            PropertyValueList mPropertyList;
+            PropertyValueData mPropertyList;
 
             bool operator == (const Sample & o) const
             {
@@ -592,17 +592,17 @@ namespace NII
         @version NIIEngine 3.0.0
         */
         void onFindGeometry(Viewport * v, ShadowType type);
-		
-        /** 
-        @version NIIEngine 6.0.0
-        */
-        virtual RenderStateCache * createCache(Nui32 objHash, const RenderStateCache & rsc, Nmark mark, const RenderQueueItem & item);
 
         /** 
         @version NIIEngine 6.0.0
         */
-        virtual ShaderChMaterial * createMaterialImpl(Nid id, const ShaderChStencil * stencil = 0, const ShaderChBlend * blend = 0, const StringIdMap & idlist = StringIdMap()){ return 0;}
-		
+        virtual RenderStateCache * createCache(Nui32 objHash, const RenderStateCache & rsc, Nmark stateHash, const RenderQueueItem & item);
+
+        /** 
+        @version NIIEngine 6.0.0
+        */
+        virtual ShaderChMaterial * createMaterialImpl(Nid id, const ShaderChStencil * stencil = 0, const ShaderChBlend * blend = 0, const StringIdMap & idlist = StringIdMap());
+
         /**
         @version NIIEngine 6.0.0
         */
@@ -617,7 +617,7 @@ namespace NII
         @version NIIEngine 6.0.0
         */
         void bindTexture(ShaderType type, const VString & name, int32 texUnit);
-        
+
         /**
         @version NIIEngine 6.0.0
         */
@@ -626,18 +626,18 @@ namespace NII
         /** 
         @version NIIEngine 6.0.0
         */
-        Nmark addObject(GeometryObj * obj, const PropertyValueList & pvlist, const SegmentRefGroupList & slist);
+        Nmark addObject(GeometryObj * obj, const PropertyValueData & pvlist, const SegmentRefGroupList & slist);
 
         /**
         @version NIIEngine 6.0.0
         */
         const Object * getObject(Nui32 objHash) const;
-        
+
         /**
         @version NIIEngine 6.0.0
         */
         const RenderStateCache * getCache(Nui32 stateHash) const;
-        
+
         /** 
         @version NIIEngine 6.0.0
         */
