@@ -58,6 +58,11 @@ namespace NII
 	class _EngineAPI PropertyValueData : public DataAlloc
 	{
 	public :
+        bool operator == (const PropertyValueData & o) const
+        {
+            return mData == o.mData;
+        }
+	
 		inline void push_back(PropertyID key, const String & value)
 		{
 			mData.emplace_back(PropertyValue(key, value));
@@ -65,7 +70,7 @@ namespace NII
 
 		void add(PropertyID key, const String & value);
 
-		const String & get(Nid key, const String & defauleVale);
+		const String & get(PropertyID key, const String & defauleVale);
 		
 		PropertyValueList mData;
 	};
@@ -73,10 +78,20 @@ namespace NII
 	class _EngineAPI StringIdData : public DataAlloc
 	{
 	public :
+        bool operator == (const StringIdData & o) const
+        {
+            return mData == o.mData;
+        }
+		
 		bool isExist(Nid key, String & defauleOut);
 		
 		StringIdMap mData;
 	};
+	
+    inline bool StringIdLess(const std::pair<Nid, String> & o1, const std::pair<Nid, String> & o2)
+    {
+        return o1.first < o2.first;
+    }
 	
     /** 属性数据结构
     @note 一般由 XML JSON YAML 等可描述脚本序列化程序使用

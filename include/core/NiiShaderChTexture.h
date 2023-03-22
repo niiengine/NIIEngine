@@ -463,6 +463,8 @@ namespace NII
         mMagOP = magop;
         mMipOP = mipop;
     }
+	
+	typedef vector<TextureSampleUnit *>::type TextureSampleUnitList;
     
     /** 纹理样本模式设置
     @version NIIEngine 3.0.0
@@ -471,7 +473,6 @@ namespace NII
     {
         friend ShaderChTextureUnit;
     public:
-        typedef vector<TextureSampleUnit *>::type SetList;
         typedef map<VString, TextureSampleUnit>::type UnitList;
     public:
         TextureSample();
@@ -513,7 +514,7 @@ namespace NII
         /** 获取列表
         @version NIIEngine 3.0.0
         */
-        const SetList & getList() const                                     { return mSetList; }
+        const TextureSampleUnitList & getList() const         		{ return mSetList; }
 
         /** 设置使用数量
         @version NIIEngine 3.0.0
@@ -526,7 +527,7 @@ namespace NII
         NCountb getUsedCount(GpuProgram::ShaderType type) const             { N_assert1(type < GpuProgram::ST_Cnt); return mUsed[type]; }
     protected:
         UnitList mUnitList;
-        SetList mSetList;
+        TextureSampleUnitList mSetList;
         NCountb mUsed[GpuProgram::ST_Cnt];
     };
     typedef vector<TextureSample *>::type TextureSampleList;
