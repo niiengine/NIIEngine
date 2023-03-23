@@ -180,6 +180,7 @@ namespace NII
         @param[in] usize 每顶点在缓存中的大小(单位:字节),一个顶点含概位置,法线,辅法线等
         @param[in] ucount 顶点数量.
         @param[in] mode 一般情况使用 Buffer::M_DEVWRITE, 如果读取则应包含 Buffer::M_HOSTREAD
+		@param[in] multi 双缓存则为2，离线混合渲染则更高
         @param[in] pool 是否存在于数据池中的某一连续数据空间,0值则不属于任何一个池
         @version NIIEngine 3.0.0
         */
@@ -194,6 +195,7 @@ namespace NII
         @param[in] usize 索引大小,只有2种,值为2则是16位,值为4则是32位
         @param[in] ucount 在缓存中索引的数量.
         @param[in] mode 一般情况使用 Buffer::M_DEVWRITE, 如果读取则应包含 Buffer::M_HOSTREAD
+		@param[in] multi 双缓存则为2，离线混合渲染则更高
         @param[in] pool 是否存在于数据池中的某一连续数据空间,0值则不属于任何一个池
         @version NIIEngine 3.0.0
         */
@@ -207,6 +209,7 @@ namespace NII
         /** 创建着色程序计数缓存
         @param[in] size 大小
         @param[in] mode 一般情况使用 Buffer::M_DEVWRITE, 如果读取则应包含 Buffer::M_HOSTREAD
+		@param[in] multi 双缓存则为2，离线混合渲染则更高
         @param[in] pool 是否存在于数据池中的某一连续数据空间,0值则不属于任何一个池
         @version NIIEngine 3.0.0
         */
@@ -220,6 +223,7 @@ namespace NII
         /** 创建绘制命令缓存
         @param[in] size 大小
         @param[in] mode 一般情况使用 Buffer::M_DEVWRITE, 如果读取则应包含 Buffer::M_HOSTREAD
+		@param[in] multi 双缓存则为2，离线混合渲染则更高
         @param[in] pool 是否存在于数据池中的某一连续数据空间,0值则不属于任何一个池
         @version NIIEngine 3.0.0
         */
@@ -233,6 +237,7 @@ namespace NII
         /** 创建着色程序数据结构体缓存
         @param[in] size 大小(单位:字节)
         @param[in] mode 一般情况使用 Buffer::M_DEVWRITE, 如果读取则应包含 Buffer::M_HOSTREAD
+		@param[in] multi 双缓存则为2，离线混合渲染则更高
         @param[in] pool 是否存在于数据池中的某一连续数据空间,0值则不属于任何一个池
         @version NIIEngine 3.0.0
         */
@@ -244,6 +249,7 @@ namespace NII
         virtual void destroy(StructBuffer * obj);
 
         /** 创建纹理缓存(可用于着色程序)
+		@param[in] multi 双缓存则为2，离线混合渲染则更高
         @version NIIEngine 3.0.0
         */
         virtual void create(TextureBuffer *& out, PixelFormat pf, NCount size, ModeMark mode, NCount multi = 1, void * initData = 0, GpuGroupID pool = 0) = 0;
@@ -256,6 +262,7 @@ namespace NII
         /** 创建着色程序缓存
         @param[in] usize 单元的大小(单位:字节)
         @param[in] ucount 单元数量.
+		@param[in] multi 双缓存则为2，离线混合渲染则更高
         @version NIIEngine 3.0.0
         */
         virtual void create(StorageBuffer *& out, NCount usize, NCount ucount, NCount multi = 1, void * initData = 0, GpuGroupID pool = 0) = 0;

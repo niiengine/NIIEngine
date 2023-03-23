@@ -327,6 +327,11 @@ namespace NII
         @version NIIEngine 6.0.0
         */
         ShaderChMaterial * getMaterial() const              { return mMaterial; }
+		
+        /** 
+        @version NIIEngine 6.0.0
+        */
+        virtual void getSampleUnit(const ShaderChMaterial * mat, TextureSampleUnitList & tsulist) const {}
 
         /** 
         @version NIIEngine 6.0.0
