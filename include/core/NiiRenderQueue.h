@@ -51,9 +51,9 @@ namespace NII
         GeometryObj * mGeometryObj;
         Nui64 mSortNum;         ///< 排序数值
     };
-    
+
     typedef vector<RenderQueueItem>::type RenderQueueItemList;
-    
+
     /** 渲染几何
     @version NIIEngine 3.0.0
     */
@@ -68,7 +68,7 @@ namespace NII
         GeometryObj * mGeo;
         ShaderCh * mCh;
     };
-    
+
     /** 渲染过滤器
     @version NIIEngine 3.0.0 高级api
     */
@@ -94,6 +94,7 @@ namespace NII
     */
     enum RenderSortMode
     {
+		RSM_None = 0,
         RSM_View_Descending = 0x01, ///< 由视口距离降序
         RSM_View_Ascending = 0x02,  ///< 由视口距离升序
         RSM_View_Stable = 0x04,     ///< std::stable_sort or std::sort
@@ -207,12 +208,12 @@ namespace NII
         /** 获取渲染列
         @version NIIEngine 3.0.0
         */
-        inline const RenderSort & getBasic() const { return mBasic; }
+        inline const RenderSort & getBasic() const 			{ return mBasic; }
 
         /** 获取渲染列
         @version NIIEngine 3.0.0
         */
-        inline const RenderSort & getAlphaBasic() const { return mAlphaBasic; }
+        inline const RenderSort & getAlphaBasic() const 	{ return mAlphaBasic; }
 
         /** 获取渲染列
         @version NIIEngine 3.0.0
@@ -246,12 +247,12 @@ namespace NII
         /** 设置是否启用阴影
         @version NIIEngine 3.0.0
         */
-        inline void setShadowEnable(bool b) { mShadowsEnable = b; }
+        inline void setShadowEnable(bool b) 				{ mShadowsEnable = b; }
 
         /** 获取是否启用阴影
         @version NIIEngine 3.0.0
         */
-        inline bool isShadowEnable() const { return mShadowsEnable; }
+        inline bool isShadowEnable() const 					{ return mShadowsEnable; }
 
         /** 添加排序模式
         @see RenderSortMode
@@ -297,7 +298,7 @@ namespace NII
         /** 获取渲染列表
         @version NIIEngine 3.0.0
         */
-        inline const RenderList & getRenderList() const { return mRenderList; }
+        inline const RenderList & getRenderList() const 	{ return mRenderList; }
     protected:
         /** 创建渲染等级组实现
         @version NIIEngine 3.0.0
@@ -394,7 +395,7 @@ namespace NII
     public:
         typedef vector<std::pair<RenderGroupType, RenderGroup *> >::type GroupList;
     public:
-        RenderQueue();
+        RenderQueue(DrawCallGroup * dcg);
         virtual ~RenderQueue();
 
         /** 设置默认组
@@ -446,11 +447,26 @@ namespace NII
         @version NIIEngine 3.0.0
         */
         void clear();
+		
+		/**
+		@version NIIEngine 6.0.0
+		*/
+        void clearState();
 
         /** 获取指定渲染队列群组
         @version NIIEngine 3.0.0
         */
         RenderGroup * getGroup(GroupID qid);
+		
+		/**
+		@version NIIEngine 6.0.0
+		*/
+        void frameBegin();
+
+		/**
+		@version NIIEngine 6.0.0
+		*/
+        void frameEnded();
 
         /** 获取渲染列表
         @version NIIEngine 3.0.0 高级api
@@ -462,6 +478,11 @@ namespace NII
         */
         void merge(const RenderQueue * o);
     protected:
+		/**
+		@version NIIEngine 6.0.0
+		*/
+        IndirectBuffer * getIndirectBuffer(NCount cnt);
+	
         /** 创建渲染组
         @version NIIEngine 3.0.0
         */
@@ -472,8 +493,17 @@ namespace NII
         */
         void createMainGroup();
     protected:
+		DrawCallGroup * mCommandBuffer;
+        IndirectBufferList mFreeBufferList;
+        IndirectBufferList mUsedBufferList;
         GroupList mGroups;
         GroupID mDefaultGroup;
+        RenderStateCacheList mStateList;
+        Nui32 mRenderMark;
+        RenderPattern::ShadowType mShadowType;
+		VertexData * mVertexData;
+		IndexData * mIndexData;
+        uint32 mVaoId;
         Nui16 mDefaultLevel;
         bool mRemoveGroupOnClear;
     };
@@ -562,7 +592,7 @@ namespace NII
         /** 获取自定义队列
         @version NIIEngine 3.0.0
         */
-        RenderGroupFusion * get(Nidx index) { N_assert(index < mList.size(), "error"); return mList[index]; }
+        RenderGroupFusion * get(Nidx index) 		{ N_assert(index < mList.size(), "error"); return mList[index]; }
 
         /** 移去自定义队列
         @version NIIEngine 3.0.0
@@ -577,12 +607,12 @@ namespace NII
         /** 获取数量
         @version NIIEngine 3.0.0
         */
-        NCount getCount() const             { return mList.size(); }
+        NCount getCount() const             		{ return mList.size(); }
 
         /** 获取自定义队列
         @version NIIEngine 3.0.0 高级api
         */
-        const RenderGroupFusionList & getList()   { return mList; }
+        const RenderGroupFusionList & getList()   	{ return mList; }
     protected:
         Nid mID;
         RenderGroupFusionList mList;
