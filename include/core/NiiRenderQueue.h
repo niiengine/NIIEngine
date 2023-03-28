@@ -35,39 +35,28 @@ namespace NII
 {
     /**
     @remark 所有需要排序的成分汇总成一个数值,只需排序这个数值就可以确认渲染次序
+	@version NIIEngine 6.0.0
     */
-    struct RenderQueueItem
+    struct RenderItem
     {
-        RenderQueueItem() : mSortNum(0), mGeometryObj(0), mSpaceObj(0) {}
-        RenderQueueItem(SpaceObj * sobj, GeometryObj * gobj, Nui64 sn) :
-            mSortNum(sn), mGeometryObj(gobj), mSpaceObj(sobj) {}
+        RenderItem() : mSortNum(0), mGeometryObj(0), mSpaceObj(0) {}
+        RenderItem(SpaceObj * sobj, GeometryObj * geo, Nui64 sn) :
+            mGeometryObj(geo), mSpaceObj(sobj), mCh(0), mSortNum(sn){}
+        RenderItem(SpaceObj * sobj, GeometryObj * geo, ShaderCh * ch) :
+            mGeometryObj(geo), mSpaceObj(sobj), mCh(ch), mSortNum(0){}
 
-        bool operator < (const RenderQueueItem & o) const
+        bool operator < (const RenderItem & o) const
         {
             return mSortNum < o.mSortNum;
         }
     public:
         SpaceObj * mSpaceObj;
         GeometryObj * mGeometryObj;
+        ShaderCh * mCh;
         Nui64 mSortNum;         ///< 排序数值
     };
 
-    typedef vector<RenderQueueItem>::type RenderQueueItemList;
-
-    /** 渲染几何
-    @version NIIEngine 3.0.0
-    */
-    struct RenderCh
-    {
-        RenderCh(SpaceObj * sobj, GeometryObj * geo, ShaderCh * ch) :
-            mGeo(geo),
-            mSpace(sobj),
-            mCh(ch) {}
-
-        SpaceObj * mSpace;
-        GeometryObj * mGeo;
-        ShaderCh * mCh;
-    };
+    typedef vector<RenderItem>::type RenderItemList;
 
     /** 渲染过滤器
     @version NIIEngine 3.0.0 高级api
@@ -86,7 +75,7 @@ namespace NII
         /** 执行渲染
         @version NIIEngine 3.0.0
         */
-        virtual void render(const ShaderCh * ch, const RenderQueueItemList & obj) = 0;
+        virtual void render(const RenderItemList & obj) = 0;
     };
 
     /** 渲染排序模式
@@ -108,7 +97,8 @@ namespace NII
     class _EngineAPI RenderSort : public RenderAlloc
     {
     public:
-        typedef vector<RenderCh>::type RenderList;
+        typedef vector<RenderItem>::type RenderList;
+        typedef map<ShaderCh *, RenderItemList *, ShaderCh::IndexLess>::type ChRenderList;
     public:
         RenderSort();
         ~RenderSort();
@@ -152,8 +142,6 @@ namespace NII
         @version NIIEngine 3.0.0
         */
         void merge(const RenderSort & o);
-    protected:
-        typedef map<ShaderCh *, RenderQueueItemList *, ShaderCh::IndexLess>::type ChRenderList;
     protected:
         RenderList mRenderList;
         ChRenderList mChRenderList;
@@ -226,7 +214,7 @@ namespace NII
         virtual void merge(const RenderLevelGroup * o);
     protected:
         RenderGroup * mParent;
-        DrawCallGroup * mDrawCallGroup;
+        DrawCallGroup * mDrawCallList;
         RenderSort mBasic;
         RenderSort mAlphaBasic;
         RenderSort mAlphaSortBasic;
@@ -493,7 +481,7 @@ namespace NII
         */
         void createMainGroup();
     protected:
-		DrawCallGroup * mCommandBuffer;
+		DrawCallGroup * mDrawCallList;
         IndirectBufferList mFreeBufferList;
         IndirectBufferList mUsedBufferList;
         GroupList mGroups;

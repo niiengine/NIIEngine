@@ -37,7 +37,9 @@ namespace NII
 {
     struct RenderQueueItem;
 	
-    /***/
+    /**
+	@version NIIEngine 6.0.0
+	*/
     enum RenderPatternType
     {
         RPT_Single = N_CodeGen_Render + 1,
@@ -61,6 +63,9 @@ namespace NII
         RPT_Count = N_CodeGen_Render + 17
     };
     
+	/**
+	@version NIIEngine 6.0.0
+	*/
     struct RenderStateCache
     {
         RenderStateCache() : mHash(0), mPattern(0) {}
@@ -96,6 +101,9 @@ namespace NII
     {
         friend class SpaceManager;
     public:
+		/**
+		@version NIIEngine 6.0.0
+		*/
 		enum ShadowType
 		{
 			ST_Normal,
