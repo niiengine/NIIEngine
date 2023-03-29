@@ -39,7 +39,8 @@ namespace NII
     */
     struct RenderItem
     {
-        RenderItem() : mSortNum(0), mGeometryObj(0), mSpaceObj(0) {}
+        RenderItem() : 
+			mGeometryObj(0), mSpaceObj(0), mSortNum(0) {}
         RenderItem(SpaceObj * sobj, GeometryObj * geo, Nui64 sn) :
             mGeometryObj(geo), mSpaceObj(sobj), mCh(0), mSortNum(sn){}
         RenderItem(SpaceObj * sobj, GeometryObj * geo, ShaderCh * ch) :
@@ -116,12 +117,12 @@ namespace NII
         /** 添加排序模式
         @version NIIEngine 3.0.0
         */
-        void addSort(RenderSortMode om)         { mSortMark |= om; }
+        inline void addSort(RenderSortMode om)         { mSortMark |= om; }
 
         /** 移去排序模式
         @version NIIEngine 3.0.0
         */
-        void removeSort(RenderSortMode om)      { mSortMark &= ~om; }
+        inline void removeSort(RenderSortMode om)      { mSortMark &= ~om; }
 
         /** 移去所有
         @version NIIEngine 3.0.0
@@ -389,42 +390,67 @@ namespace NII
         /** 设置默认组
         @version NIIEngine 3.0.0
         */
-        void setDefaultGroup(GroupID grp)           { mDefaultGroup = grp; }
+        inline void setDefaultGroup(GroupID grp)           { mDefaultGroup = grp; }
 
         /** 获取默认组
         @version NIIEngine 3.0.0
         */
-        GroupID getDefaultGroup() const             { return mDefaultGroup; }
+        inline GroupID getDefaultGroup() const             { return mDefaultGroup; }
 
         /** 设置默认等级
         @version NIIEngine 3.0.0
         */
-        void setDefaultLevel(Nui16 lv)              { mDefaultLevel = lv; }
+        inline void setDefaultLevel(Nui16 lv)              { mDefaultLevel = lv; }
 
         /** 获取默认等级
         @version NIIEngine 3.0.0
         */
-        Nui16 getDefaultLevel() const               { return mDefaultLevel; }
+        inline Nui16 getDefaultLevel() const               { return mDefaultLevel; }
 
         /** 清理队列时是否删除所有渲染组
         @versioin NIIEngine 3.0.0
         */
-        void setDestroyAllOnClear(bool r)           { mRemoveGroupOnClear = r; }
+        inline void setDestroyAllOnClear(bool r)           { mRemoveGroupOnClear = r; }
         
         /** 清理队列时是否删除所有渲染组
         @version NIIEngine 3.0.0
         */
-        bool isDestroyAllOnClear() const            { return mRemoveGroupOnClear; }
+        inline bool isDestroyAllOnClear() const            { return mRemoveGroupOnClear; }
+		
+        /** 添加排序模式
+        @see RenderSortMode
+        */
+        void addSort(RenderSortMode om);
+
+        /** 添加排序模式
+        @see RenderSortMode
+        */
+        void addSort(RenderGroupType glevel, RenderSortMode om);
+
+        /** 移去排序模式
+        @version NIIEngine 3.0.0
+        */
+        void removeSort(RenderSortMode om);
+
+        /** 移去排序模式
+        @version NIIEngine 3.0.0
+        */
+        void removeSort(RenderGroupType glevel, RenderSortMode om);
+		
+		/**
+		@version NIIEngine 3.0.0
+		*/
+		void resetSort();
         
         /** 添加指定对象到队列
         @version NIIEngine 3.0.0
         */
-        void add(SpaceObj * sobj, GeometryObj * obj)                 { add(obj, mDefaultGroup, mDefaultLevel); }
+        inline void add(SpaceObj * sobj, GeometryObj * obj)                 { add(obj, mDefaultGroup, mDefaultLevel); }
 
         /** 添加指定对象到队列
         @version NIIEngine 3.0.0
         */
-        void add(SpaceObj * sobj, GeometryObj * obj, GroupID gid)    { add(obj, gid, mDefaultLevel); }
+        inline void add(SpaceObj * sobj, GeometryObj * obj, GroupID gid)    { add(obj, gid, mDefaultLevel); }
 
         /** 添加指定对象到队列
         @version NIIEngine 3.0.0
