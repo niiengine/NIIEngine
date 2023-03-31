@@ -33,7 +33,7 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 
 namespace NII
 {
-    /**
+    /** 
     @remark 所有需要排序的成分汇总成一个数值,只需排序这个数值就可以确认渲染次序
 	@version NIIEngine 6.0.0
     */
@@ -58,6 +58,16 @@ namespace NII
     };
 
     typedef vector<RenderItem>::type RenderItemList;
+
+	/**
+	@version NIIEngine 6.0.0
+	*/
+	enum RenderType
+	{
+		RT_Single,
+		RT_Queue,
+		RT_ArrayQueue
+	};
 
     /** 渲染过滤器
     @version NIIEngine 3.0.0 高级api
@@ -87,66 +97,9 @@ namespace NII
 		RSM_None = 0,
         RSM_View_Descending = 0x01, ///< 由视口距离降序
         RSM_View_Ascending = 0x02,  ///< 由视口距离升序
-        RSM_View_Stable = 0x04,     ///< std::stable_sort or std::sort
-        RSM_Ch_Index = 0x08,        ///< 由渲染通路的先后绘制排序
+        RSM_Stable = 0x04,     		///< std::stable_sort or std::sort
+		RSM_Sort_OK = 0x10,			///< 
         RSM_All = 0x0F
-    };
-
-    /** 渲染排序
-    @version NIIEngine 3.0.0
-    */
-    class _EngineAPI RenderSort : public RenderAlloc
-    {
-    public:
-        typedef vector<RenderItem>::type RenderList;
-        typedef map<ShaderCh *, RenderItemList *, ShaderCh::IndexLess>::type ChRenderList;
-    public:
-        RenderSort();
-        ~RenderSort();
-
-        /** 添加
-        @version NIIEngine 3.0.0
-        */
-        void add(SpaceObj * sobj, GeometryObj * obj, ShaderCh * ch);
-
-        /** 移去
-        @version NIIEngine 3.0.0
-        */
-        void remove(ShaderCh * ch);
-
-        /** 添加排序模式
-        @version NIIEngine 3.0.0
-        */
-        inline void addSort(RenderSortMode om)         { mSortMark |= om; }
-
-        /** 移去排序模式
-        @version NIIEngine 3.0.0
-        */
-        inline void removeSort(RenderSortMode om)      { mSortMark &= ~om; }
-
-        /** 移去所有
-        @version NIIEngine 3.0.0
-        */
-        void clear();
-
-        /** 依照指定摄象机排序渲染对象
-        @version NIIEngine 3.0.0
-        */
-        void sort(const Camera * cam);
-
-        /** 执行渲染过滤器渲染
-        @version NIIEngine 3.0.0
-        */
-        void render(RenderFilter * filter, RenderSortMode rsm) const;
-
-        /** 合并渲染排序
-        @version NIIEngine 3.0.0
-        */
-        void merge(const RenderSort & o);
-    protected:
-        RenderList mRenderList;
-        ChRenderList mChRenderList;
-        Nmark mSortMark;
     };
 
     /** 渲染等级组
@@ -194,20 +147,15 @@ namespace NII
         */
         virtual void clear();
 
-        /** 获取渲染列
+        /** 获取非透明渲染列
         @version NIIEngine 3.0.0
         */
-        inline const RenderSort & getBasic() const 			{ return mBasic; }
+        inline const RenderItemList & getBasic() const 			{ return mBasic; }
 
-        /** 获取渲染列
+        /** 获取透明渲染列
         @version NIIEngine 3.0.0
         */
-        inline const RenderSort & getAlphaBasic() const 	{ return mAlphaBasic; }
-
-        /** 获取渲染列
-        @version NIIEngine 3.0.0
-        */
-        inline const RenderSort & getAlphaSortBasic() const { return mAlphaSortBasic; }
+        inline const RenderItemList & getAlpha() const 			{ return mAlpha; }
 
         /** 合并可渲染物群组
         @version NIIEngine 3.0.0
@@ -216,9 +164,8 @@ namespace NII
     protected:
         RenderGroup * mParent;
         DrawCallGroup * mDrawCallList;
-        RenderSort mBasic;
-        RenderSort mAlphaBasic;
-        RenderSort mAlphaSortBasic;
+        RenderItemList mBasic;
+        RenderItemList mAlpha;
     };
 
     /** 渲染组
@@ -295,6 +242,7 @@ namespace NII
         virtual void createImpl(RenderLevelGroup *& out);
     protected:
         RenderQueue * mParent;
+		RenderType mMode;
         RenderList mRenderList;
         Nmark mSortMark;
         bool mShadowsEnable;
@@ -437,7 +385,7 @@ namespace NII
         */
         void removeSort(RenderGroupType glevel, RenderSortMode om);
 		
-		/**
+		/** 重至排序模式
 		@version NIIEngine 3.0.0
 		*/
 		void resetSort();
@@ -485,7 +433,7 @@ namespace NII
         /** 获取渲染列表
         @version NIIEngine 3.0.0 高级api
         */
-        const GroupList & getGroupList() const{ return mGroups;}
+        const GroupList & getGroupList() const				{ return mGroups;}
 
         /** 合并队列
         @version NIIEngine 3.0.0
