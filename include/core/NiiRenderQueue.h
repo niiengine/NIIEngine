@@ -58,6 +58,8 @@ namespace NII
     };
 
     typedef vector<RenderItem>::type RenderItemList;
+	typedef vector<RenderItemList>::type RenderItemArrayList;
+	typedef map<ShaderCh *, RenderItemList, ShaderCh::IndexLess>::type RenderItemChList;
 
 	/**
 	@version NIIEngine 6.0.0
@@ -166,6 +168,8 @@ namespace NII
         DrawCallGroup * mDrawCallList;
         RenderItemList mBasic;
         RenderItemList mAlpha;
+		RenderItemChList mChBasic;
+		Nmark mSortMark[2];
     };
 
     /** 渲染组
@@ -299,7 +303,7 @@ namespace NII
         virtual void renderBegin() {}
 
         /** 渲染队列前触发
-        @param[in] render 渲染组
+        @param[in] gid 渲染组
         @return 返回true代表渲染这个渲染组,否则不渲染
         @version NIIEngine 3.0.0
         */
@@ -309,7 +313,7 @@ namespace NII
         }
 
         /** 渲染队列后触发
-        @param[in] render 渲染组
+        @param[in] gid 渲染组
         @return 返回true代表重复渲染这个渲染组,否则不重复渲染
         @version NIIEngine 3.0.0
         */
@@ -334,6 +338,11 @@ namespace NII
     public:
         RenderQueue(DrawCallGroup * dcg);
         virtual ~RenderQueue();
+		
+		/**
+		@version NIIEngine 6.0.0
+		*/
+        void prepareState(RenderPattern::ShadowType type);
 
         /** 设置默认组
         @version NIIEngine 3.0.0
@@ -483,12 +492,12 @@ namespace NII
         /** 名字(辅助)
         @version NIIEngine 3.0.0
         */
-        const String & getName() const { return mName; }
+        const String & getName() const 	{ return mName; }
 
         /** 获取渲染组
         @version NIIEngine 3.0.0
         */
-        GroupID getRenderGroup() const { return mRenderGroup; }
+        GroupID getRenderGroup() const 	{ return mRenderGroup; }
         
         /** 是否启动阴影
         @version NIIEngine 3.0.0
