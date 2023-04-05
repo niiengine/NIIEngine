@@ -110,9 +110,25 @@ namespace NII
     class _EngineAPI RenderLevelGroup : public RenderAlloc
     {
     public:
+		/** 排序类型
+		@version 
+		*/
+		enum SortType
+		{
+			ST_BasicCh,
+            ST_BasicSort,
+			ST_AlphaCh,
+			ST_AlphaSort
+		};
+	public:
         RenderLevelGroup(RenderGroup * parent);
 
         virtual ~RenderLevelGroup();
+		
+		/**
+		@version NIIEngine 6.0.0
+		*/
+		void render(SortType type, RenderFilter * filter) const;
 
         /** 添加排序模式
         @version NIIEngine 3.0.0
@@ -169,6 +185,7 @@ namespace NII
         RenderItemList mBasic;
         RenderItemList mAlpha;
 		RenderItemChList mChBasic;
+        RenderItemChList mChAlpha;
 		Nmark mSortMark[2];
     };
 

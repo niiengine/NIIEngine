@@ -214,7 +214,7 @@ namespace NII
         /** 获取子对象列表
         @version NIIEngine 3.0.0
         */
-        const ChildList & getChildList() const	{ return mChildList; }
+        const ChildList & getChildList() const	    { return mChildList; }
 
         /** 获取距离
         @note 是 距离*距离
@@ -378,12 +378,12 @@ namespace NII
         /** 设置监听
         @version NIIEngine 3.0.0
         */
-        void set(PosListener * obj);
+        inline void set(PosListener * plis)         { mListener = plis; }
 
         /** 获取监听
         @version NIIEngine 3.0.0
         */
-        PosListener * getListener() const;
+        inline PosListener * getListener() const    { return mListener; }
 
         /** 获取节点几何
         @remark 一般不显示,用于编辑调试
