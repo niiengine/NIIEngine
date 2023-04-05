@@ -30,12 +30,55 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 
 #include "NiiPreInclude.h"
 #include "NiiMatrix4.h"
-#include "NiiQuaternion.h"
-#include "NiiPosListener.h"
 #include "NiiExtData.h"
 
 namespace NII
 {
+    /** 位置节监听
+    @version NIIEngine 3.0.0
+    */
+    class _EngineAPI PosListener
+    {
+    public:
+        PosListener();
+        virtual ~PosListener();
+
+        /** 创建时
+        @version NIIEngine 3.0.0
+        */
+        virtual void create(PosNode * o);
+
+        /** 删除时
+        @version NIIEngine 3.0.0
+        */
+        virtual void destroy(PosNode * o);
+
+        /** 添加子对象时
+        @version NIIEngine 3.0.0
+        */
+        virtual void add(PosNode * obj, PosNode * child);
+
+        /** 移去子对象时
+        @version NIIEngine 3.0.0
+        */
+        virtual void remove(PosNode * o, PosNode * child);
+
+        /** 附加到其他对象时
+        @version NIIEngine 3.0.0
+        */
+        virtual void attach(PosNode * o);
+
+        /** 从其他对象解除时
+        @version NIIEngine 3.0.0
+        */
+        virtual void detach(PosNode * o);
+
+        /** 更新时
+        @version NIIEngine 3.0.0
+        */
+        virtual void update(PosNode * o);
+    };
+	
     class PosNodeDebugObj;
     /** 位置节点
     @version NIIEngine 3.0.0
@@ -65,7 +108,7 @@ namespace NII
         /** 获取ID
         @version NIIEngine 3.0.0
         */
-        SpaceID getID() const;
+        SpaceID getID() const					{ return mID; }
 
         /** 获取父节点
         @version NIIEngine 3.0.0
@@ -171,7 +214,7 @@ namespace NII
         /** 获取子对象列表
         @version NIIEngine 3.0.0
         */
-        const ChildList & getChildList() const;
+        const ChildList & getChildList() const	{ return mChildList; }
 
         /** 获取距离
         @note 是 距离*距离
