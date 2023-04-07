@@ -59,7 +59,7 @@ namespace NII
 
     typedef vector<RenderItem>::type RenderItemList;
 	typedef vector<RenderItemList>::type RenderItemArrayList;
-	typedef map<ShaderCh *, RenderItemList, ShaderCh::IndexLess>::type RenderItemChList;
+	typedef map<ShaderCh *, RenderItemList *, ShaderCh::IndexLess>::type RenderItemChList;
 
 	/**
 	@version NIIEngine 6.0.0
@@ -97,8 +97,8 @@ namespace NII
     enum RenderSortMode
     {
 		RSM_None = 0,
-        RSM_View_Descending = 0x01, ///< 由视口距离降序
-        RSM_View_Ascending = 0x02,  ///< 由视口距离升序
+        RSM_View = 0x01,            ///< 由视口排序
+        RSM_Material = 0x02,        ///< 由渲染材质排序
         RSM_Stable = 0x04,     		///< std::stable_sort or std::sort
 		RSM_Sort_OK = 0x10,			///< 
         RSM_All = 0x0F
@@ -111,14 +111,16 @@ namespace NII
     {
     public:
 		/** 排序类型
-		@version 
+		@version NIIEngine 6.0.0
 		*/
 		enum SortType
 		{
 			ST_BasicCh,
-            ST_BasicSort,
+            ST_BasicSortDescend,
+            ST_BasicSortAscend,
 			ST_AlphaCh,
-			ST_AlphaSort
+			ST_AlphaSortDescend,
+            ST_AlphaSortAscend
 		};
 	public:
         RenderLevelGroup(RenderGroup * parent);
@@ -174,6 +176,16 @@ namespace NII
         @version NIIEngine 3.0.0
         */
         inline const RenderItemList & getAlpha() const 			{ return mAlpha; }
+        
+        /** 获取非透明渲染列
+        @version NIIEngine 3.0.0
+        */
+        inline const RenderItemChList & getChBasic() const      { return mChBasic; }
+
+        /** 获取透明渲染列
+        @version NIIEngine 3.0.0
+        */
+        inline const RenderItemChList & getChAlpha() const      { return mChAlpha; }
 
         /** 合并可渲染物群组
         @version NIIEngine 3.0.0
