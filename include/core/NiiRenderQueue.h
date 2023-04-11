@@ -97,11 +97,15 @@ namespace NII
     enum RenderSortMode
     {
 		RSM_None = 0,
-        RSM_View = 0x01,            ///< 由视口排序
+        RSM_View = 0x01,            ///< 由视口距离排序
         RSM_Material = 0x02,        ///< 由渲染材质排序
-        RSM_Stable = 0x04,     		///< std::stable_sort or std::sort
-		RSM_Sort_OK = 0x10,			///< 
-        RSM_All = 0x0F
+        RSM_Material_View = 0x04,   ///< 由先渲染材质排序,后视口距离排序
+        RSM_Stable_View = 0x08,     		///< std::stable_sort or std::sort
+        RSM_Stable_Material_View = 0x10,    ///< std::stable_sort or std::sort
+		RSM_Sort_View_OK = 0x100,    ///< 
+        RSM_Sort_Material_OK = 0x200,///< 
+        RSM_Sort_Material_View_OK = 0x400,///< 
+        RSM_All = 0x1F
     };
 
     /** 渲染等级组
@@ -198,7 +202,8 @@ namespace NII
         RenderItemList mAlpha;
 		RenderItemChList mChBasic;
         RenderItemChList mChAlpha;
-		Nmark mSortMark[2];
+        Nmark mBasicMark;
+		Nmark mAlphaMark;
     };
 
     /** 渲染组
