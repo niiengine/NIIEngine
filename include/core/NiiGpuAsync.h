@@ -38,7 +38,7 @@ namespace NII
     /**
     @version NIIEngine 5.0.0
     */
-    class _OgreExport GpuBufferAsync : public BufferAlloc
+    class _EngineAPI GpuBufferAsync : public BufferAlloc
     {
     public:
         GpuBufferAsync(GpuBuffer * src, NCount oft, NCount count);

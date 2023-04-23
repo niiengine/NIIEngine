@@ -30,6 +30,7 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 
 #include "NiiPreInclude.h"
 #include "NiiShaderCh.h"
+#include "NiiRenderPattern.h"
 
 namespace NII
 {
@@ -130,7 +131,7 @@ namespace NII
         RenderLevelGroup(RenderGroup * parent);
 
         virtual ~RenderLevelGroup();
-		
+
 		/**
 		@version NIIEngine 6.0.0
 		*/
@@ -320,7 +321,7 @@ namespace NII
         RQG_Sky_Last    = 40,
         RQG_Surface     = 41,
         RQG_Count       = 42,
-        RQG_Max         = 255
+        RQG_Max         = 256
     };
     
     /** 渲染监听
@@ -337,21 +338,21 @@ namespace NII
         virtual void renderBegin() {}
 
         /** 渲染队列前触发
-        @param[in] gid 渲染组
+        @param[in] rgt 渲染组
         @return 返回true代表渲染这个渲染组,否则不渲染
         @version NIIEngine 3.0.0
         */
-        virtual bool renderBegin(GroupID gid)
+        virtual bool renderBegin(RenderGroupType rgt)
         { 
             return true;
         }
 
         /** 渲染队列后触发
-        @param[in] gid 渲染组
+        @param[in] rgt 渲染组
         @return 返回true代表重复渲染这个渲染组,否则不重复渲染
         @version NIIEngine 3.0.0
         */
-        virtual bool renderEnd(GroupID gid)
+        virtual bool renderEnd(RenderGroupType rgt)
         { 
             return false;
         }
@@ -381,32 +382,32 @@ namespace NII
         /** 设置默认组
         @version NIIEngine 3.0.0
         */
-        inline void setDefaultGroup(GroupID grp)           { mDefaultGroup = grp; }
+        inline void setDefaultGroup(RenderGroupType rgt){ mDefaultGroup = rgt; }
 
         /** 获取默认组
         @version NIIEngine 3.0.0
         */
-        inline GroupID getDefaultGroup() const             { return mDefaultGroup; }
+        inline RenderGroupType getDefaultGroup() const  { return mDefaultGroup; }
 
         /** 设置默认等级
         @version NIIEngine 3.0.0
         */
-        inline void setDefaultLevel(Nui16 lv)              { mDefaultLevel = lv; }
+        inline void setDefaultLevel(Nui16 lv)           { mDefaultLevel = lv; }
 
         /** 获取默认等级
         @version NIIEngine 3.0.0
         */
-        inline Nui16 getDefaultLevel() const               { return mDefaultLevel; }
+        inline Nui16 getDefaultLevel() const            { return mDefaultLevel; }
 
         /** 清理队列时是否删除所有渲染组
         @versioin NIIEngine 3.0.0
         */
-        inline void setDestroyAllOnClear(bool r)           { mRemoveGroupOnClear = r; }
+        inline void setDestroyAllOnClear(bool r)        { mRemoveGroupOnClear = r; }
         
         /** 清理队列时是否删除所有渲染组
         @version NIIEngine 3.0.0
         */
-        inline bool isDestroyAllOnClear() const            { return mRemoveGroupOnClear; }
+        inline bool isDestroyAllOnClear() const         { return mRemoveGroupOnClear; }
 		
         /** 添加排序模式
         @see RenderSortMode
@@ -416,7 +417,7 @@ namespace NII
         /** 添加排序模式
         @see RenderSortMode
         */
-        void addSort(RenderGroupType glevel, RenderSortMode om);
+        void addSort(RenderGroupType rgt, RenderSortMode om);
 
         /** 移去排序模式
         @version NIIEngine 3.0.0
@@ -426,7 +427,7 @@ namespace NII
         /** 移去排序模式
         @version NIIEngine 3.0.0
         */
-        void removeSort(RenderGroupType glevel, RenderSortMode om);
+        void removeSort(RenderGroupType rgt, RenderSortMode om);
 		
 		/** 重至排序模式
 		@version NIIEngine 3.0.0
@@ -436,24 +437,24 @@ namespace NII
         /** 添加指定对象到队列
         @version NIIEngine 3.0.0
         */
-        inline void add(SpaceObj * sobj, GeometryObj * obj)                 { add(obj, mDefaultGroup, mDefaultLevel); }
+        inline void add(SpaceObj * sobj, GeometryObj * obj) { add(obj, mDefaultGroup, mDefaultLevel); }
 
         /** 添加指定对象到队列
         @version NIIEngine 3.0.0
         */
-        inline void add(SpaceObj * sobj, GeometryObj * obj, GroupID gid)    { add(obj, gid, mDefaultLevel); }
+        inline void add(SpaceObj * sobj, GeometryObj * obj, RenderGroupType rgt){ add(obj, rgt, mDefaultLevel); }
 
         /** 添加指定对象到队列
         @version NIIEngine 3.0.0
         */
-        void add(SpaceObj * sobj, GeometryObj * obj, GroupID gid, Nui16 level);
+        void add(SpaceObj * sobj, GeometryObj * obj, RenderGroupType rgt, Nui16 rlg, RenderPattern::ShadowType stype);
 
         /** 清理队列
         @version NIIEngine 3.0.0
         */
         void clear();
 		
-		/**
+		/** 
 		@version NIIEngine 6.0.0
 		*/
         void clearState();
@@ -461,7 +462,7 @@ namespace NII
         /** 获取指定渲染队列群组
         @version NIIEngine 3.0.0
         */
-        RenderGroup * getGroup(GroupID qid);
+        RenderGroup * getGroup(RenderGroupType rgt);
 		
 		/**
 		@version NIIEngine 6.0.0
@@ -502,12 +503,12 @@ namespace NII
         IndirectBufferList mFreeBufferList;
         IndirectBufferList mUsedBufferList;
         GroupList mGroups;
-        GroupID mDefaultGroup;
         RenderStateCacheList mStateList;
-        Nui32 mRenderMark;
-        RenderPattern::ShadowType mShadowType;
 		VertexData * mVertexData;
 		IndexData * mIndexData;
+        RenderPattern::ShadowType mShadowType;
+        RenderGroupType mDefaultGroup;
+        Nui32 mRenderMark;
         uint32 mVaoId;
         Nui16 mDefaultLevel;
         bool mRemoveGroupOnClear;
@@ -519,7 +520,7 @@ namespace NII
     class _EngineAPI RenderGroupFusion : public RenderAlloc
     {
     public:
-        RenderGroupFusion(GroupID gid, const String & name = StrUtil::WBLANK);
+        RenderGroupFusion(RenderGroupType rgt, const String & name = StrUtil::WBLANK);
 
         virtual ~RenderGroupFusion(){}
 
@@ -531,7 +532,7 @@ namespace NII
         /** 获取渲染组
         @version NIIEngine 3.0.0
         */
-        GroupID getRenderGroup() const 	{ return mRenderGroup; }
+        RenderGroupType getRenderGroup() const 	{ return mRenderGroup; }
         
         /** 是否启动阴影
         @version NIIEngine 3.0.0
@@ -564,7 +565,7 @@ namespace NII
         virtual void renderImpl(RenderGroup * group, RenderPattern * pattern);
     protected:
         String mName;
-        GroupID mRenderGroup;
+        RenderGroupType mRenderGroup;
         ShaderCh * mShaderCh;
     };
     typedef vector<RenderGroupFusion *>::type RenderGroupFusionList;
@@ -581,23 +582,23 @@ namespace NII
         /** 获取ID
         @version NIIEngine 3.0.0
         */
-        Nid getID() const { return mID; }
+        Nid getID() const                   { return mID; }
 
         /** 添加自定义队列
         @note 参数内存将由这个类管理
         @version NIIEngine 3.0.0
         */
-        void add(RenderGroupFusion * obj) { mList.push_back(obj); }
+        void add(RenderGroupFusion * obj)   { mList.push_back(obj); }
 
         /** 添加自定义队列
         @version NIIEngine 3.0.0
         */
-        RenderGroupFusion * add(GroupID qid, const String & name);
+        RenderGroupFusion * add(RenderGroupType rgt, const String & name);
 
         /** 获取自定义队列
         @version NIIEngine 3.0.0
         */
-        RenderGroupFusion * get(Nidx index) 		{ N_assert(index < mList.size(), "error"); return mList[index]; }
+        RenderGroupFusion * get(Nidx index) { N_assert(index < mList.size(), "error"); return mList[index]; }
 
         /** 移去自定义队列
         @version NIIEngine 3.0.0
