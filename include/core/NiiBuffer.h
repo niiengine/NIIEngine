@@ -142,20 +142,35 @@ namespace NII
             */
             M_DEVWRITE = M_DEV | 0x20,
             
+            /** 拥有设备读取功能/写入功能(服务端)
+            @version NIIEngine 3.0.0
+            */
+            M_DEVNORMAL = M_DEVREAD | M_DEVWRITE,
+            
             /** 通常情况
             @version NIIEngine 3.0.0
             */
-            M_NORMAL = M_DEVREAD | M_HOSTWRITE,
+            M_Normal = M_DEVREAD | M_HOSTWRITE,
             
             /** 允许服务端在缓冲被映射的状态下读写数据
             @version NIIEngine 3.0.0
             */
             M_PersistentMap =  0x40,
             
+            /** 
+            @version NIIEngine 3.0.0
+            */
+            M_NormalPersistent = M_Normal | M_PersistentMap,
+            
             /** 客户端/服务端更新的数据会在服务端/客户端立即同步
             @version NIIEngine 3.0.0
             */
             M_CoherentMap = 0x80,
+            
+            /** 
+            @version NIIEngine 3.0.0
+            */
+            M_NormalPersistentCoherent = M_Normal | M_PersistentMap | M_CoherentMap,
 
             /** 访问特征区域
             @version NIIEngine 3.0.0
@@ -661,7 +676,7 @@ namespace NII
         @param[in] m Buffer::Mode 选项
         @version NIIEngine 3.0.0
         */
-        virtual Buffer * clone(ModeMark m = M_NORMAL | M_WHOLE) const = 0;
+        virtual Buffer * clone(ModeMark m = M_Normal | M_WHOLE) const = 0;
         
         /** 等待所有内部操作完成
         @remark 有些命令在调用线程中立即返回,但内部并没有完成,这个函数阻塞等待直到命令完成

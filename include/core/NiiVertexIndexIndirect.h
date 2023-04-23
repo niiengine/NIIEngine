@@ -643,7 +643,6 @@ namespace NII
 
     typedef vector<VertexIndirect>::type VertexIndirectList;
     typedef vector<IndexIndirect>::type IndexIndirectList;
-    typedef vector<std::>
 
     /** 绘制索引
     @remark IndirectData
