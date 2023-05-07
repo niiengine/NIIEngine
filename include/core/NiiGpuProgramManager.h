@@ -208,6 +208,11 @@ namespace NII
         @version NIIEngine 6.0.0
         */
         virtual const char * getToken(PixelFormat pf, Texture::Type type, bool msaa, Buffer::OpType access) const;
+        
+        /** 获取语法标记
+        @version NIIEngine 6.0.0
+        */
+        static const char * getCmpString(CmpMode mode);
 
         /** 获取自动同步参数
         @param[in] name 同步参数名字

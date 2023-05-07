@@ -1626,6 +1626,158 @@ namespace NII
     };
     
     /**
+    @version NIIEngine 6.0.0
+    */
+    enum ShadowType
+    {
+        ST_Normal   = 0,
+        ST_Cast     = 1,
+        ST_Receive  = 2,
+        ST_Count    = 3
+    };
+    
+    /**
+    @version NIIEngine 6.0.0
+    */
+    class _EngineAPI ShaderChMaterial : public ShaderAlloc
+    {
+        friend class RenderQueue;
+    public:
+        ShaderChMaterial(Nid name, RenderPattern * rp, const ShaderChStencil * stencil, const ShaderChBlend * blend,
+            const PropertyData & params);
+        virtual ~ShaderChMaterial();
+
+        /**
+        @version NIIEngine 6.0.0
+        */
+        Nid getID() const                   { return mID; }
+        
+        /**
+        @version NIIEngine 6.0.0
+        */
+        void setName(const String & name )  { mName = name; }
+
+        /**
+        @version NIIEngine 6.0.0
+        */
+        const String & getName() const      { return mName; }
+
+        /**
+        @version NIIEngine 6.0.0
+        */
+        RenderPattern * getParent() const   { return mParent; }
+
+        /**
+        @version NIIEngine 6.0.0
+        */
+        void setStencil(const ShaderChStencil * stencil, ShadowType type = ShadowType::ST_Normal);
+
+        /**
+        @version NIIEngine 6.0.0
+        */
+        const ShaderChStencil * getStencil(ShadowType type = ShadowType::ST_Normal) const{ return mDepth[type]; }
+
+        /**
+        @version NIIEngine 6.0.0
+        */
+        void setBlend(const ShaderChBlend * blend, ShadowType type = ShadowType::ST_Normal);
+
+        /**
+        @version NIIEngine 6.0.0
+        */
+        const ShaderChBlend * getBlend(ShadowType type = ShadowType::ST_Normal) const    { return mBlend[type]; }
+
+        /**
+        @version NIIEngine 6.0.0
+        */
+        virtual void setAlphaTest(CmpMode mode, bool onlyInCast = false);
+
+        /**
+        @version NIIEngine 6.0.0
+        */
+        inline CmpMode getAlphaTest() const             { return mAlphaTestCmp; }
+
+        /**
+        @version NIIEngine 6.0.0
+        */
+        bool isAlphaTestOnlyInCast() const              { return mAlphaTestOnlyInCast; }
+
+        /**
+        @version NIIEngine 6.0.0
+        */
+        virtual void setAlphaTestValue(float value);
+
+        /**
+        @version NIIEngine 6.0.0
+        */
+        float getAlphaTestValue() const                 { return mAlphaTestValue; }
+
+        /**
+        @version NIIEngine 6.0.0
+        */
+        void addRef(GeometryObj * obj);
+
+        /**
+        @version NIIEngine 6.0.0
+        */
+        void removeRef(GeometryObj * obj);
+
+        /**
+        @version NIIEngine 6.0.0
+        */
+        const GeometryObjList & getRefList() const      { return mRefList; }
+
+        /**
+        @version NIIEngine 6.0.0
+        */
+        virtual bool isBackFaceInCast() const;
+
+        /**
+        @version NIIEngine 6.0.0
+        */
+        virtual const Colour & getDiffuseColour() const;
+
+        /**
+        @version NIIEngine 6.0.0
+        */
+        virtual const Colour & getEmissiveColour() const;
+        
+        /**
+        @version NIIEngine 6.0.0
+        */
+        ShaderChMaterial * clone(const String & name) const;
+    protected:
+        /**
+        @version NIIEngine 6.0.0
+        */
+        void queueRef(bool onlyUnRef = false);
+
+        /**
+        @version NIIEngine 6.0.0
+        */
+        virtual void init();
+        
+        /**
+        @version NIIEngine 6.0.0
+        */
+        virtual void cloneImpl(ShaderChMaterial * o) const;
+    protected:
+        Nid mID;
+        String mName;
+        RenderPatternType mType;
+        RenderPattern * mParent;
+        GeometryObjList mRefList;
+        ShaderChStencil const * mDepth[ST_Count];
+        ShaderChBlend const * mBlend[ST_Count];
+        CmpMode mAlphaTestCmp;
+        float mShadowConstantBias;
+        float mAlphaTestValue;
+        Nui16 mHash[4];
+        bool mAutoLoadTexture;
+        bool mAlphaTestOnlyInCast;
+    };
+    
+    /**
     @version NIIEngine 5.0.0
     */
     class _EngineAPI SampleObject

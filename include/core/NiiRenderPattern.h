@@ -35,7 +35,7 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 
 namespace NII
 {
-    struct RenderQueueItem;
+    struct RenderItem;
 	
     /**
 	@version NIIEngine 6.0.0
@@ -49,7 +49,7 @@ namespace NII
         RPT_Crayon = N_CodeGen_Render + 5,
         RPT_VanGogh = N_CodeGen_Render + 6,
         RPT_MidSumNight = N_CodeGen_Render + 7,
-        
+
         RPT_Custom1 = N_CodeGen_Render + 8,
         RPT_Custom2 = N_CodeGen_Render + 9,
         RPT_Custom3 = N_CodeGen_Render + 10,
@@ -79,7 +79,7 @@ namespace NII
     };
 
     typedef vector<RenderStateCache*>::type RenderStateCacheList;
-    
+
     class ShadowRenderTest;
 
     /** 渲染处理器类,便于以后的细节优化和修改
@@ -101,16 +101,6 @@ namespace NII
     {
         friend class SpaceManager;
     public:
-		/**
-		@version NIIEngine 6.0.0
-		*/
-		enum ShadowType
-		{
-			ST_Normal,
-			ST_Cast,
-			ST_Receive
-		};
-
         /** 外部控制
         @version NIIEngine 3.0.0
         */
@@ -133,7 +123,7 @@ namespace NII
             /** 
             @version NIIEngine 6.0.0
             */
-			virtual bool onCreateCache(const RenderQueueItem & inItem, const RenderStateCache * cache,
+			virtual bool onCreateCache(const RenderItem & inItem, const RenderStateCache * cache,
 				const RenderStateCache & inState, ShaderLanguage sl, const PropertyValueData & pvlist) {}
 			
 			/**
@@ -156,17 +146,17 @@ namespace NII
 		
         struct Material
         {
-            Material() : mMaterial(0), mManager(false) {}
+            Material() : mMaterial(0), mAutoDestroy(false) {}
             Material(ShaderChMaterial * mat, bool autoDestroy, const String & src, GroupID gid) :
                 mMaterial(mat), 
-                mManager(autoDestroy), 
+                mAutoDestroy(autoDestroy), 
                 mSrc(src), 
                 mGroup(gid) {}
 
             ShaderChMaterial * mMaterial;
             String mSrc;
             GroupID mGroup;
-            bool mManager;
+            bool mAutoDestroy;
         };
 
         typedef map<Nid, Material>::type MaterialList;
@@ -344,7 +334,7 @@ namespace NII
         /** 
         @version NIIEngine 6.0.0
         */
-        const RenderStateCache * getCache(Nui32 stateHash, const RenderStateCache & inState, const RenderQueueItem & inItem, ShadowType type);
+        const RenderStateCache * getCache(Nui32 stateHash, const RenderStateCache & inState, const RenderItem & inItem, ShadowType type);
 
         /** 
         @version NIIEngine 6.0.0
@@ -354,7 +344,7 @@ namespace NII
         /** 
         @version NIIEngine 6.0.0
         */
-        virtual NCount queue(DrawCallGroup * dcg, const RenderStateCache * cache, const RenderQueueItem & inItem, ShadowType type, Nui32 objhash){}
+        virtual NCount queue(DrawCallGroup * dcg, const RenderStateCache * cache, const RenderItem & inItem, ShadowType type, Nui32 objhash){}
 
         /**
         @version NIIEngine 6.0.0
@@ -379,7 +369,7 @@ namespace NII
         /**
         @version NIIEngine 6.0.0
         */
-        const ShaderList & getShaderList() const    		{ return mShaderList; }
+        const ShaderList & getShaderList() const	{ return mShaderList; }
 
         /** 设置三角形面序拣选模式
         @param[in] ch 使用的通路
@@ -609,7 +599,7 @@ namespace NII
         /** 
         @version NIIEngine 6.0.0
         */
-        virtual RenderStateCache * createCache(Nui32 objHash, const RenderStateCache & rsc, Nmark stateHash, const RenderQueueItem & item);
+        virtual RenderStateCache * createCache(Nui32 objHash, const RenderStateCache & rsc, Nmark stateHash, const RenderItem & item);
 
         /** 
         @version NIIEngine 6.0.0

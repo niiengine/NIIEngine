@@ -68,7 +68,7 @@ namespace NII
             GBT_Storage
         };
     public:
-        ComputeRaw(Nid name, ComputePattern * creator, const String & source, const SegmentList & segmentList);
+        ComputeRaw(Nid name, ComputePattern * parent, const String & source, const SegmentList & segmentList);
         virtual ~ComputeRaw();
         
         /** 
@@ -94,7 +94,7 @@ namespace NII
         /** 
         @version NIIEngine 5.0.0
         */
-        ComputePattern * getCreator() const             { return mCreator; }
+        ComputePattern * getParent() const              { return mParent; }
         
         /** 手动设置状态
         @version NIIEngine 5.0.0
@@ -248,7 +248,7 @@ namespace NII
         typedef vector<const TextureSampleUnit *>::type SamplerUnitList;
         typedef map<Nid, GpuParamValue>::type ParamValueList;
     protected:
-        ComputePattern * mCreator;
+        ComputePattern * mParent;
         Nid mID;
         String mName;
 

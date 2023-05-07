@@ -377,7 +377,7 @@ namespace NII
 		/**
 		@version NIIEngine 6.0.0
 		*/
-        void prepareState(RenderPattern::ShadowType type);
+        void prepareState(ShadowType type);
 
         /** 设置默认组
         @version NIIEngine 3.0.0
@@ -447,7 +447,7 @@ namespace NII
         /** 添加指定对象到队列
         @version NIIEngine 3.0.0
         */
-        void add(SpaceObj * sobj, GeometryObj * obj, RenderGroupType rgt, Nui16 rlg, RenderPattern::ShadowType stype);
+        void add(SpaceObj * sobj, GeometryObj * obj, RenderGroupType rgt, Nui16 rlg, ShadowType stype);
 
         /** 清理队列
         @version NIIEngine 3.0.0
@@ -506,7 +506,7 @@ namespace NII
         RenderStateCacheList mStateList;
 		VertexData * mVertexData;
 		IndexData * mIndexData;
-        RenderPattern::ShadowType mShadowType;
+        ShadowType mShadowType;
         RenderGroupType mDefaultGroup;
         Nui32 mRenderMark;
         uint32 mVaoId;
