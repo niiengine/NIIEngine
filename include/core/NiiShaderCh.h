@@ -1804,8 +1804,8 @@ namespace NII
             return memcmp(this, &o, sizeof(SampleObject)) < 0;
         }
     public:
-        PixelFormat mColour[NII_MAX_RenderTarget];
-        PixelFormat mDepth;
+        PixelFormat mColourPF[NII_MAX_RenderTarget];
+        PixelFormat mDepthPF;
         ShaderChStencil * mStencil;
         ShaderChColour * mColour;
         SampleType mSampleType;
