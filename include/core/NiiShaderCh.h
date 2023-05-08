@@ -1643,7 +1643,7 @@ namespace NII
     {
         friend class RenderQueue;
     public:
-        ShaderChMaterial(Nid name, RenderPattern * rp, const ShaderChStencil * stencil, const ShaderChBlend * blend,
+        ShaderChMaterial(Nid name, RenderPattern * rp, ShaderChStencil * stencil, ShaderChBlend * blend,
             const PropertyData & params);
         virtual ~ShaderChMaterial();
 
@@ -1670,7 +1670,7 @@ namespace NII
         /**
         @version NIIEngine 6.0.0
         */
-        void setStencil(const ShaderChStencil * stencil, ShadowType type = ShadowType::ST_Normal);
+        void setStencil(ShaderChStencil * stencil, ShadowType type = ShadowType::ST_Normal);
 
         /**
         @version NIIEngine 6.0.0
@@ -1680,7 +1680,7 @@ namespace NII
         /**
         @version NIIEngine 6.0.0
         */
-        void setBlend(const ShaderChBlend * blend, ShadowType type = ShadowType::ST_Normal);
+        void setBlend(ShaderChBlend * blend, ShadowType type = ShadowType::ST_Normal);
 
         /**
         @version NIIEngine 6.0.0
@@ -1767,8 +1767,8 @@ namespace NII
         RenderPatternType mType;
         RenderPattern * mParent;
         GeometryObjList mRefList;
-        ShaderChStencil const * mDepth[ST_Count];
-        ShaderChBlend const * mBlend[ST_Count];
+        ShaderChStencil * mDepth[ST_Count];
+        ShaderChBlend * mBlend[ST_Count];
         CmpMode mAlphaTestCmp;
         float mShadowConstantBias;
         float mAlphaTestValue;
