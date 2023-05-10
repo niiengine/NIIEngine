@@ -257,12 +257,12 @@ namespace NII
         @param[in] load 是否现在加载
         @version NIIEngine 3.0.0 高级api
         */
-        virtual void touch(bool load = true);
+        virtual void ref(bool load = true);
 
         /** 解除引用这个资源
         @version NIIEngine 3.0.0 高级api
         */
-        virtual void untouch();
+        virtual void unref();
 
         /** 获取引用数量
         @note 用于自动释放资源

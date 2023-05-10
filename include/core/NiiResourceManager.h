@@ -98,7 +98,7 @@ namespace NII
         @param[in] params 额外参数,仅对新创建资源有效,对已经存在的资源无效
         @version NIIEngine 3.0.0
         */
-        virtual TouchResult touch(ResourceID rid, GroupID gid = GroupUnknow,
+        virtual TouchResult ref(ResourceID rid, GroupID gid = GroupUnknow,
             ResLoadScheme * ls = 0, ResResultScheme * rs = 0, const PropertyData * params = 0);
 
         /** 解除资源
@@ -107,7 +107,7 @@ namespace NII
         @param[in] gid 资源组ID
         @version NIIEngine 3.0.0
         */
-        virtual void untouch(ResourceID rid, GroupID gid);
+        virtual void unref(ResourceID rid, GroupID gid);
 
         /** 计划资源
         @remark

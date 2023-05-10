@@ -52,7 +52,7 @@ namespace NII
         /** 尝试获取/创建网格
         @version NIIEngine 3.0.0
         */
-        TouchResult touch(ResourceID rid, GroupID gid,
+        TouchResult ref(ResourceID rid, GroupID gid,
             ResLoadScheme * ls = 0, ResResultScheme * rs = 0,
             const PropertyData * params = 0, GeometryPrefab type = GSP_None,
             Nmark vbmode = Buffer::M_HOST | Buffer::M_DEV | Buffer::M_WRITE,

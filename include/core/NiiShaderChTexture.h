@@ -1133,13 +1133,13 @@ namespace NII
         @remark 引用数量为0,如果是设置为自动删除,这个缓存将被销毁
         @version NIIEngine 3.0.0
         */
-        NCount touch();
+        NCount ref();
 
         /** 解除引用
         @remark 引用数量为0,如果是设置为自动删除,这个缓存将被销毁
         @version NIIEngine 3.0.0
         */
-        NCount untouch();
+        NCount unref();
 
         /** 获取引用数量
         @version NIIEngine 3.0.0
@@ -1232,14 +1232,14 @@ namespace NII
             StorageUnit(TextureBuffer * buf, NCount oft, NCount size) : mBuffer(buf), mOffset(oft), mSize(size)
             {
                 if(mBuffer)
-                    mBuffer->touch();
+                    mBuffer->ref();
             }
             
             ~StorageUnit()
             {
                 if(mBuffer)
                 {
-                    mBuffer->untouch();
+                    mBuffer->unref();
                     mBuffer = 0;
                 }
             }
@@ -1247,10 +1247,10 @@ namespace NII
             void setBuffer(TextureBuffer * buf)         
             {
                 if(mBuffer)
-                    mBuffer->untouch();
+                    mBuffer->unref();
                 mBuffer = buf;
                 if(mBuffer)
-                    mBuffer->touch();
+                    mBuffer->ref();
             }
             
             TextureBuffer * getBuffer() const           { return mBuffer; }
@@ -1258,10 +1258,10 @@ namespace NII
             StorageUnit & operator =(const StorageUnit & o)
             {
                 if(mBuffer)
-                    mBuffer->untouch();
+                    mBuffer->unref();
                 mBuffer = o.mBuffer;
                 if(mBuffer)
-                    mBuffer->touch();
+                    mBuffer->ref();
                 mOffset = o.mOffset;
                 mSize = o.mSize;
                 return *this;
@@ -1306,14 +1306,14 @@ namespace NII
                 mTexture(buf), mFormat(pf), mMipmapCount(mipmaps), mArrayIndex(arrayidx), mMipmap(mipmap), mForce2DArray(force2d)
             {
                 if(mTexture)
-                    mTexture->touch();
+                    mTexture->ref();
             }
             
             ~SamplerUnit()
             {
                 if(mTexture)
                 {
-                    mTexture->untouch();
+                    mTexture->unref();
                     mTexture = 0;
                 }
             }
@@ -1321,10 +1321,10 @@ namespace NII
             void setBuffer(ShaderChTextureUnit * buf)         
             {
                 if(mTexture)
-                    mTexture->untouch();
+                    mTexture->unref();
                 mTexture = buf;
                 if(mTexture)
-                    mTexture->touch();
+                    mTexture->ref();
             }
             
             ShaderChTextureUnit * getBuffer() const           { return mTexture; }
@@ -1332,10 +1332,10 @@ namespace NII
             SamplerUnit & operator =(const SamplerUnit & o)
             {
                 if(mTexture)
-                    mTexture->untouch();
+                    mTexture->unref();
                 mTexture = o.mTexture;
                 if(mTexture)
-                    mTexture->touch();
+                    mTexture->ref();
                 mFormat = o.mFormat;
                 mMipmapCount = o.mMipmapCount;
                 mArrayIndex = o.mArrayIndex;

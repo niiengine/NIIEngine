@@ -136,7 +136,7 @@ namespace NII
         /// @copydetails Resource::removeAll
         void removeAll();
 
-        /// @see ScriptParserSys::parse
+        /// @see PropertyScriptSys::parse
         void parse(DataStream * stream, GroupID gid, PtrList & out);
     protected:
         /** 初始化

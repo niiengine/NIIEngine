@@ -542,12 +542,12 @@ namespace NII
         /**
         @version NIIEngine 5.0.0
         */
-        void touch();
+        void ref();
 
         /**
         @version NIIEngine 5.0.0
         */
-        void untouch();
+        void unref();
 
         /**
         @version NIIEngine 5.0.0

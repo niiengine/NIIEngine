@@ -688,13 +688,13 @@ namespace NII
         @remark 引用数量为0,如果是设置为自动删除,这个缓存将被销毁
         @version NIIEngine 3.0.0
         */
-        NCount touch();
+        NCount ref();
 
         /** 解除引用
         @remark 引用数量为0,如果是设置为自动删除,这个缓存将被销毁
         @version NIIEngine 3.0.0
         */
-        NCount untouch();
+        NCount unref();
 
         /** 获取引用数量
         @version NIIEngine 3.0.0

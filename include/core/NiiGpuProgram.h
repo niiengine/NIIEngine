@@ -543,11 +543,11 @@ namespace NII
         /// @copydetails ResourceID::unload
         void unload();
 
-        /// @copydetails ResourceID::touch
-        void touch(bool load = true);
+        /// @copydetails ResourceID::ref
+        void ref(bool load = true);
 
-        /// @copydetails ResourceID::untouch
-        void untouch();
+        /// @copydetails ResourceID::unref
+        void unref();
 
         /// @copydetails ResourceID::isLoading
         bool isLoading() const;

@@ -157,12 +157,53 @@ namespace NII
         // 扩展
         SB_Fusion               = 0x200000000,                  ///< enable() disbale 无效 64bit enum
     };
+    
+    /**
+    @version NIIEngine 6.0.0
+    */
+    enum ShaderChType
+    {
+        SCT_Colour,
+        SCT_Blend,
+        SCT_Stencil,
+        SCT_Fog,
+        SCT_Point
+    };
+    
+    /**
+    @version NIIEngine 6.0.0
+    */
+    class _EngineAPI ShaderChBase : public ShaderAlloc
+    {
+    public:
+        ShaderChBase(ShaderChType type);
+        virtual ~ShaderChBase();
+        
+        /**
+        @version NIIEngine 6.0.0
+        */
+        virtual void read(GpuProgramParam * out, NCount memoft) const;
+
+        /**
+        @version NIIEngine 6.0.0
+        */
+        virtual void write(const GpuProgramParam * in, NCount memoft);
+        
+        /**
+        @version NIIEngine 6.0.0
+        */
+        virtual void bind();
+    protected:
+        Nid mId;
+        ShaderChType mType;
+        NCount mRefCount;
+    };
 
     /** 渲染通路中的基本颜色
     @remark 适合基本渲染系统
     @version NIIEngine 3.0.0
     */
-    class _EngineAPI ShaderChColour : public ShaderAlloc
+    class _EngineAPI ShaderChColour : public ShaderChBase
     {
     public:
         ShaderChColour();
@@ -396,7 +437,7 @@ namespace NII
     @remark 适合基本渲染系统
     @version NIIEngine 3.0.0
     */
-    class _EngineAPI ShaderChBlend : public ShaderAlloc
+    class _EngineAPI ShaderChBlend : public ShaderChBase
     {
     public:
         ShaderChBlend();
@@ -522,14 +563,14 @@ namespace NII
         int(mMode), int(mAlphaMode), int(mMark)}
         @version NIIEngine 5.0.0
         */
-        void read(GpuProgramParam * param, NCount memoft) const;
+        void read(GpuProgramParam * out, NCount memoft) const;
 
         /** 从着色程序参数中设置
         @note {int(mSrcFactor), int(mDstFactor), int(mSrcAlphaFactor), int(mDstAlphaFactor),
         int(mMode), int(mAlphaMode), int(mMark)}
         @version NIIEngine 5.0.0
         */
-        void write(const GpuProgramParam * param, NCount memoft);
+        void write(const GpuProgramParam * in, NCount memoft);
     public:
         ColourFactor mSrcFactor;        ///< 混合函子
         ColourFactor mDstFactor;        ///< 混合函子
@@ -560,7 +601,7 @@ namespace NII
     @remark 适合基本渲染系统
     @version NIIEngine 3.0.0
     */
-    class _EngineAPI ShaderChStencil : public ShaderAlloc
+    class _EngineAPI ShaderChStencil : public ShaderChBase
     {
     public:
         ShaderChStencil();    
@@ -788,7 +829,7 @@ namespace NII
             int(mBackDepthFailOp), int(mBackTestPassOp) float(mBias), float(mBiasFactor), float(mSlopeScaleBias), int(mDepthFunc), int(mMark)}
         @version NIIEngine 5.0.0
         */
-        void read(GpuProgramParam * param, NCount memoft) const;
+        void read(GpuProgramParam * out, NCount memoft) const;
 
         /** 从着色程序参数中设置
         @note {int(mFrontTestMark), int(mBackTestMark), int(mFrontCmpMark), int(mBackCmpMark), 
@@ -797,7 +838,7 @@ namespace NII
             int(mBackDepthFailOp), int(mBackTestPassOp) float(mBias), float(mBiasFactor), float(mSlopeScaleBias), int(mDepthFunc), int(mMark)}
         @version NIIEngine 5.0.0
         */
-        void write(const GpuProgramParam * param, NCount memoft);
+        void write(const GpuProgramParam * in, NCount memoft);
     private:
         Nmark mMark;
         NIIf mBias;                 ///< 深度缓存设置(多通道的基础值)
@@ -839,7 +880,7 @@ namespace NII
     @remark 适合基本渲染系统
     @version NIIEngine 3.0.0
     */
-    class _EngineAPI ShaderChFog : public ShaderAlloc
+    class _EngineAPI ShaderChFog : public ShaderChBase
     {
     public:
         ShaderChFog();
@@ -906,13 +947,13 @@ namespace NII
         @note {vec4(mColour), int(mMode), float(mBegin), float(mEnd), float(mDensity)}
         @version NIIEngine 5.0.0
         */
-        void read(GpuProgramParam * param, NCount memoft) const;
+        void read(GpuProgramParam * out, NCount memoft) const;
 
         /** 从着色程序参数中设置
         @note {vec4(mColour), int(mMode), float(mBegin), float(mEnd), float(mDensity)}
         @version NIIEngine 5.0.0
         */
-        void write(const GpuProgramParam * param, NCount memoft);
+        void write(const GpuProgramParam * in, NCount memoft);
     public:
         static const ShaderChFog White;
         static const ShaderChFog Red;
@@ -932,7 +973,7 @@ namespace NII
     @remark 适合基本渲染系统
     @version NIIEngine 3.0.0
     */
-    class _EngineAPI ShaderChPoint : public ShaderAlloc
+    class _EngineAPI ShaderChPoint : public ShaderChBase
     {
     public:
         ShaderChPoint();
@@ -1044,14 +1085,14 @@ namespace NII
             float(mQuadratic), int(mMark)}
         @version NIIEngine 5.0.0
         */
-        void read(GpuProgramParam * param, NCount memoft) const;
+        void read(GpuProgramParam * out, NCount memoft) const;
 
         /** 从着色程序参数中设置
         @note {float(mSize), float(mMinSize), float(mMaxSize), float(mLineWidth), float(mConstant), float(mLinear),
             float(mQuadratic), int(mMark)}
         @version NIIEngine 5.0.0
         */
-        void write(const GpuProgramParam * param, NCount memoft);
+        void write(const GpuProgramParam * in, NCount memoft);
 
         /// 渲染系统默认设置
         static const ShaderChPoint Default;

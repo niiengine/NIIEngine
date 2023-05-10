@@ -31,7 +31,7 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 #include "NiiPreInclude.h"
 #include "NiiShadowObj.h"
 #include "NiiSpaceObj.h"
-#include "NiiAnimationFusionObj.h"
+#include "NiiAnimationObj.h"
 #include "NiiQuaternion.h"
 #include "NiiGeometryObj.h"
 #include "NiiAnimation.h"
