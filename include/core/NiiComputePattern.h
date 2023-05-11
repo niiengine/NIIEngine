@@ -353,6 +353,7 @@ namespace NII
         typedef vector<ComputeStateCache *>::type ShaderCacheList;
         typedef map<HashKey, GpuProgram *>::type CompiledList;
     protected:
+        String mName;
         SysSyncParam * mSysParam;
         String mLanguageTarget;
         ComputeRawList mComputeRawList;
