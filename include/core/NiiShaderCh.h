@@ -176,7 +176,7 @@ namespace NII
     class _EngineAPI ShaderChBase : public ShaderAlloc
     {
     public:
-        ShaderChBase(ShaderChType type);
+        ShaderChBase(ShaderChType type, Nmark bindmark = 0xFFFFFFFF);
         virtual ~ShaderChBase();
         
         /**
@@ -197,6 +197,7 @@ namespace NII
         Nid mId;
         ShaderChType mType;
         NCount mRefCount;
+        Nmark mBindMark;
     };
 
     /** 渲染通路中的基本颜色

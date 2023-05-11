@@ -468,7 +468,7 @@ namespace NII
 
     typedef vector<ViewWindow *>::type WindowList;
     typedef map<GroupID, TextureList>::type DepthBufferList;
-    
+
     /** 渲染系统
     @note 部分函数很接近底层
     @version NIIEngine 3.0.0
@@ -792,7 +792,12 @@ namespace NII
         @versin NIIEngine 4.0.0
         */
         virtual bool getBufferType(ViewportType type);
-
+        
+        /**
+        @version NIIEngine 6.0.0
+        */
+        void ref(const ShaderChBase * scb);
+        
         /** 创建颜色属性
         @versin NIIEngine 4.0.0
         */
