@@ -801,7 +801,7 @@ namespace NII
         /** 创建颜色属性
         @versin NIIEngine 4.0.0
         */
-        virtual ShaderChColour * createColour(const String & name = N_StrBlank, bool bindToRsys = false) const;
+        virtual ShaderChColour * createColour(const String & name = N_StrBlank, const ShaderChColour * copy = 0, bool bindToRsys = false) const;
 
         /** 获取颜色属性
         @versin NIIEngine 4.0.0
@@ -821,7 +821,7 @@ namespace NII
         /** 创建渲染点的属性
         @version NIIEngine 3.0.0
         */
-        virtual ShaderChPoint * createPoint(const String & name = N_StrBlank, bool bindToRsys = false) const;
+        virtual ShaderChPoint * createPoint(const String & name = N_StrBlank, const ShaderChPoint * copy = 0, bool bindToRsys = false) const;
 
         /** 创建渲染点的属性
         @version NIIEngine 3.0.0
@@ -841,7 +841,7 @@ namespace NII
         /** 创建颜色缓存
         @version NIIEngine 3.0.0
         */
-        virtual ShaderChBlend * createBlend(const String & name = N_StrBlank, bool bindToRsys = false) const;
+        virtual ShaderChBlend * createBlend(const String & name = N_StrBlank, const ShaderChBlend * copy = 0, bool bindToRsys = false) const;
 
         /** 获取颜色缓存
         @version NIIEngine 3.0.0
@@ -867,7 +867,7 @@ namespace NII
         /** 创建雾模式
         @version NIIEngine 3.0.0
         */
-        virtual ShaderChFog * createFog(const String & name = N_StrBlank, bool bindToRsys = false) const;
+        virtual ShaderChFog * createFog(const String & name = N_StrBlank, const ShaderChFog * copy = 0, bool bindToRsys = false) const;
 
         /** 获取雾模式
         @version NIIEngine 3.0.0
@@ -887,7 +887,7 @@ namespace NII
         /** 创建模板深度测试
         @version NIIEngine 5.0.0
         */
-        virtual ShaderChStencil * createStencil(const String & name = N_StrBlank, bool bindToRsys = false) const;
+        virtual ShaderChStencil * createStencil(const String & name = N_StrBlank, const ShaderChStencil * copy = 0, bool bindToRsys = false) const;
 
         /** 获取模板深度测试
         @version NIIEngine 5.0.0
