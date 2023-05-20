@@ -189,10 +189,20 @@ namespace NII
         */
         virtual void write(const GpuProgramParam * in, NCount memoft);
         
-        /**
+        /** 应用到当前渲染系统
         @version NIIEngine 6.0.0
         */
         virtual void bind();
+        
+        /** 同步CPU数据到GPU中
+        @version NIIEngine 6.0.0
+        */
+        virtual void sync();
+        
+        /**
+        @version NIIEngine 6.0.0
+        */
+        virtual ShaderChBase * clone() const;
     protected:
         Nid mId;
         ShaderChType mType;
@@ -605,8 +615,8 @@ namespace NII
     class _EngineAPI ShaderChStencil : public ShaderChBase
     {
     public:
-        ShaderChStencil();    
-        ShaderChStencil(const ShaderChStencil & o); 
+        ShaderChStencil();
+        ShaderChStencil(const ShaderChStencil & o);
         ShaderChStencil(bool depthCheck, CmpMode mode, bool write, NIIf bias = 0.0f, NIIf scaleslopebias = 0.0f);
         ShaderChStencil(bool stencilTwoside, Nui32 mask = 0xFFFFFFFF, Nui32 cmpmask = 0xFFFFFFFF,
             CmpMode func = CPM_ALWAYS_PASS, Nui32 value = 0, StencilOpType stencilfail = SOT_KEEP,
@@ -818,6 +828,26 @@ namespace NII
         */
         inline StencilOpType getTestPassOp() const          { return mFrontTestPassOp; }
         
+        /** 设置多边形模式
+        @version NIIEngine 3.0.0
+        */
+        inline void setPolygonMode(PolygonMode m)           { mPolygonMode = m; }
+
+        /** 获取多边形模式
+        @version NIIEngine 3.0.0
+        */
+        inline PolygonMode getPolygonMode() const           { return mPolygonMode;}
+
+        /** 设置渲染通道基于三角形面序.
+        @version NIIEngine 3.0.0
+        */
+        inline void setCullingMode(CullingMode mode)        { mCullMode = mode; }
+
+        /** 获取渲染通道基于三角形面序.
+        @version NIIEngine 3.0.0
+        */
+        inline CullingMode getCullingMode() const           { return mCullMode; }
+        
         /** 翻转操作
         @version NIIEngine 5.0.0
         */
@@ -860,6 +890,8 @@ namespace NII
         StencilOpType mBackStencilFailOp;
         StencilOpType mBackDepthFailOp;
         StencilOpType mBackTestPassOp;
+        PolygonMode mPolygonMode;   ///< 几何渲染模式
+        CullingMode mCullMode;      ///< 面拣选模式(gpu)
     };
     
     /** 雾状着色模式.
@@ -1439,26 +1471,6 @@ namespace NII
         */
         inline ShadeMode getShaderMode() const          { return mShaderMode;}
 
-        /** 设置多边形模式
-        @version NIIEngine 3.0.0
-        */
-        inline void setPolygonMode(PolygonMode m)       { mPolygonMode = m; }
-
-        /** 获取多边形模式
-        @version NIIEngine 3.0.0
-        */
-        inline PolygonMode getPolygonMode() const       { return mPolygonMode;}
-
-        /** 设置渲染通道基于三角形面序.
-        @version NIIEngine 3.0.0
-        */
-        inline void setCullingMode(CullingMode mode)    { mCullMode = mode; }
-
-        /** 获取渲染通道基于三角形面序.
-        @version NIIEngine 3.0.0
-        */
-        inline CullingMode getCullingMode() const       { return mCullMode; }
-
         /** 设置系统拣选模式
         @version NIIEngine 3.0.0
         */
@@ -1647,10 +1659,8 @@ namespace NII
         ShaderChTexture * mTexture;     ///< 基础纹理
         ShaderChProgram * mProgram;     ///< 基础着色程序
 
-        CullingMode mCullMode;          ///< 面拣选模式(gpu)
         SysCullingMode mSysCullMode;    ///< 面拣选模式(cpu)
         ShadeMode mShaderMode;          ///< 像素着色模式
-        PolygonMode mPolygonMode;       ///< 几何渲染模式
         ShaderStep mShaderStep;         ///< 渲染阶段
         LightType mOnlyLightType;       ///< 灯光类型,多通道模式只能用着色程序改变状态
         Nmark mLightMask;               ///< 灯光掩码

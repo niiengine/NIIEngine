@@ -798,6 +798,11 @@ namespace NII
         */
         void ref(const ShaderChBase * scb);
         
+        /** 同步CPU数据到GPU
+        @version NIIEngine 6.0.0
+        */
+        void sync(ShaderChBase * scb);
+        
         /** 创建颜色属性
         @versin NIIEngine 4.0.0
         */
@@ -857,12 +862,6 @@ namespace NII
         @version NIIEngine 5.0.0
         */
         virtual void destroyBlend(ShaderChBlend * scb);
-        
-        /** 同步混合cpu/gup数据
-        @remarks
-        @version NIIEngine 5.0.0
-        */
-        virtual void syncBlend(ShaderChBlend * scb);
 
         /** 创建雾模式
         @version NIIEngine 3.0.0
@@ -903,11 +902,6 @@ namespace NII
         @version NIIEngine 5.0.0
         */
         virtual void destroyStencil(ShaderChStencil * scs);
-        
-        /** 同步模板深度测试cpu/gpu数据
-        @version NIIEngine 5.0.0
-        */
-        virtual void syncStencil(ShaderChStencil * scs);
 
         /** 创建纹理混合
         @version NIIEngine 3.0.0
