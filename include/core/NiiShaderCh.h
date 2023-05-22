@@ -857,7 +857,8 @@ namespace NII
         @note {int(mFrontTestMark), int(mBackTestMark), int(mFrontCmpMark), int(mBackCmpMark), 
             int(mFrontCmpValue), int(mBackCmpValue), int(mFrontFunc), int(mBackFunc),
             int(mFrontStencilFailOp), int(mFrontDepthFailOp), int(mFrontTestPassOp), int(mBackStencilFailOp),
-            int(mBackDepthFailOp), int(mBackTestPassOp) float(mBias), float(mBiasFactor), float(mSlopeScaleBias), int(mDepthFunc), int(mMark)}
+            int(mBackDepthFailOp), int(mBackTestPassOp) float(mBias), float(mBiasFactor), float(mSlopeScaleBias), int(mDepthFunc), 
+            int(mPolygonMode),int(mCullMode),int(mMark)}
         @version NIIEngine 5.0.0
         */
         void read(GpuProgramParam * out, NCount memoft) const;
@@ -866,7 +867,8 @@ namespace NII
         @note {int(mFrontTestMark), int(mBackTestMark), int(mFrontCmpMark), int(mBackCmpMark), 
             int(mFrontCmpValue), int(mBackCmpValue), int(mFrontFunc), int(mBackFunc),
             int(mFrontStencilFailOp), int(mFrontDepthFailOp), int(mFrontTestPassOp), int(mBackStencilFailOp),
-            int(mBackDepthFailOp), int(mBackTestPassOp) float(mBias), float(mBiasFactor), float(mSlopeScaleBias), int(mDepthFunc), int(mMark)}
+            int(mBackDepthFailOp), int(mBackTestPassOp) float(mBias), float(mBiasFactor), float(mSlopeScaleBias), int(mDepthFunc), 
+            int(mPolygonMode),int(mCullMode),int(mMark)}
         @version NIIEngine 5.0.0
         */
         void write(const GpuProgramParam * in, NCount memoft);
@@ -1702,22 +1704,22 @@ namespace NII
         /**
         @version NIIEngine 6.0.0
         */
-        Nid getID() const                   { return mID; }
+        inline Nid getID() const                    { return mID; }
         
         /**
         @version NIIEngine 6.0.0
         */
-        void setName(const String & name )  { mName = name; }
+        inline void setName(const String & name )   { mName = name; }
 
         /**
         @version NIIEngine 6.0.0
         */
-        const String & getName() const      { return mName; }
+        inline const String & getName() const       { return mName; }
 
         /**
         @version NIIEngine 6.0.0
         */
-        RenderPattern * getParent() const   { return mParent; }
+        inline RenderPattern * getParent() const    { return mParent; }
 
         /**
         @version NIIEngine 6.0.0
@@ -1727,7 +1729,7 @@ namespace NII
         /**
         @version NIIEngine 6.0.0
         */
-        const ShaderChStencil * getStencil(ShadowType type = ShadowType::ST_Normal) const{ return mDepth[type]; }
+        inline const ShaderChStencil * getStencil(ShadowType type = ShadowType::ST_Normal) const{ return mDepth[type]; }
 
         /**
         @version NIIEngine 6.0.0
@@ -1737,7 +1739,7 @@ namespace NII
         /**
         @version NIIEngine 6.0.0
         */
-        const ShaderChBlend * getBlend(ShadowType type = ShadowType::ST_Normal) const    { return mBlend[type]; }
+        inline const ShaderChBlend * getBlend(ShadowType type = ShadowType::ST_Normal) const    { return mBlend[type]; }
 
         /**
         @version NIIEngine 6.0.0
@@ -1747,12 +1749,12 @@ namespace NII
         /**
         @version NIIEngine 6.0.0
         */
-        inline CmpMode getAlphaTest() const             { return mAlphaTestCmp; }
+        inline CmpMode getAlphaTest() const                 { return mAlphaTestCmp; }
 
         /**
         @version NIIEngine 6.0.0
         */
-        bool isAlphaTestOnlyInCast() const              { return mAlphaTestOnlyInCast; }
+        inline bool isAlphaTestOnlyInCast() const           { return mAlphaTestOnlyInCast; }
 
         /**
         @version NIIEngine 6.0.0
@@ -1762,7 +1764,7 @@ namespace NII
         /**
         @version NIIEngine 6.0.0
         */
-        float getAlphaTestValue() const                 { return mAlphaTestValue; }
+        inline float getAlphaTestValue() const              { return mAlphaTestValue; }
 
         /**
         @version NIIEngine 6.0.0
@@ -1777,7 +1779,7 @@ namespace NII
         /**
         @version NIIEngine 6.0.0
         */
-        const GeometryObjList & getRefList() const      { return mRefList; }
+        inline const GeometryObjList & getRefList() const   { return mRefList; }
 
         /**
         @version NIIEngine 6.0.0
@@ -1841,25 +1843,25 @@ namespace NII
             return *this;
         }
 
-        bool operator == (const SampleObject & o) const
+        inline bool operator == (const SampleObject & o) const
         {
             return !memcmp(this, &o, sizeof(SampleObject));
         }
 
-        bool operator != (const SampleObject & o) const
+        inline bool operator != (const SampleObject & o) const
         {
-            return !(*this == o);
+            return memcmp(this, &o, sizeof(SampleObject));
         }
 
-        bool operator < (const SampleObject & o) const
+        inline bool operator < (const SampleObject & o) const
         {
             return memcmp(this, &o, sizeof(SampleObject)) < 0;
         }
     public:
         PixelFormat mColourPF[NII_MAX_RenderTarget];
         PixelFormat mDepthPF;
-        ShaderChStencil * mStencil;
-        ShaderChColour * mColour;
+        ShaderChStencil * mStencil = 0;
+        ShaderChColour * mColour = 0;
         SampleType mSampleType;
         Nui32 mDevID;
     };

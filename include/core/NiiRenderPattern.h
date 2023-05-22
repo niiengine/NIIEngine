@@ -268,12 +268,12 @@ namespace NII
         /**
         @version NIIEngine 6.0.0
         */
-        void setDirectionalLight(NCounts max)               { mLightCnt = max; }
+        inline void setDirectionalLight(NCounts max)        { mLightCnt = max; }
 
         /**
         @version NIIEngine 6.0.0
         */
-        NCounts getDirectionalLight() const                 { return mLightCnt; }
+        inline NCounts getDirectionalLight() const          { return mLightCnt; }
 
         /** 
         @version NIIEngine 6.0.0
@@ -283,12 +283,12 @@ namespace NII
         /** 
         @version NIIEngine 6.0.0
         */
-        NCounts getAreaLightApprox() const		            { return mAreaLightApproxCnt; }
+        inline NCounts getAreaLightApprox() const		    { return mAreaLightApproxCnt; }
 
         /** 
         @version NIIEngine 6.0.0
         */
-        NCounts getAreaLightsLtc() const			        { return mAreaLightsLtcCnt; }
+        inline NCounts getAreaLightsLtc() const			    { return mAreaLightsLtcCnt; }
         
         /** 
         @version NIIEngine 6.0.0
