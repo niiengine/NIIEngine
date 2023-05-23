@@ -1820,6 +1820,7 @@ namespace NII
         String mName;
         RenderPatternType mType;
         RenderPattern * mParent;
+        ShaderCh * mOrigin;
         GeometryObjList mRefList;
         ShaderChStencil * mDepth[ST_Count];
         ShaderChBlend * mBlend[ST_Count];
