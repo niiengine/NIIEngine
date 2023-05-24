@@ -108,42 +108,42 @@ namespace NII
         /** 获取名称
         @version NIIEngine 3.0.0
         */
-        const String & getName() const              { return mName; }
+        inline const String & getName() const              { return mName; }
 
         /** 获取类型名称.
         @version NIIEngine 3.0.0
         */
-        TypeID getTypeID() const                    { return mType; }
+        inline TypeID getTypeID() const                    { return mType; }
 
         /** 设置使用优化材质
         @version NIIEngine 3.0.0
         */
-        void setOptMaterial(bool b)                 { mOptCh = b; }
+        inline void setOptMaterial(bool b)                 { mOptCh = b; }
 
         /** 是否使用优化材质
         @version NIIEngine 3.0.0
         */
-        bool isOptMaterial() const                  { return mOptCh; }
+        inline bool isOptMaterial() const                  { return mOptCh; }
 
         /** 设置是否自动可见空间
         @version NIIEngine 3.0.0
         */
-        void setAutoVisibleSpace(bool b)            { mAutoVisibleSpace = b; }
+        inline void setAutoVisibleSpace(bool b)            { mAutoVisibleSpace = b; }
 
         /** 获取是否自动可见空间
         @version NIIEngine 3.0.0
         */
-        bool isAutoVisibleSpace() const             { return mAutoVisibleSpace; }
+        inline bool isAutoVisibleSpace() const             { return mAutoVisibleSpace; }
 
         /** 设置可见掩码
         @version NIIEngine 3.0.0
         */
-        void setVisibleMask(Nmark mark)             { mVisibleMark = mark; }
+        inline void setVisibleMask(Nmark mark)             { mVisibleMark = mark; }
 
         /** 获取可见掩码
         @version NIIEngine 3.0.0
         */
-        Nmark getVisibleMask()                      { return mVisibleMark; }
+        inline Nmark getVisibleMask()                      { return mVisibleMark; }
 
         /** 获得环境可见掩码
         @version NIIEngine 3.0.0
@@ -153,42 +153,42 @@ namespace NII
         /** 设置摄象机原点模式
         @version NIIEngine 3.0.0 高级api
         */
-        void setCameraOrigin(bool b)                { mCameraOrigin = b; }
+        inline void setCameraOrigin(bool b)                { mCameraOrigin = b; }
 
         /** 获取摄象机原点模式
         @version NIIEngine 3.0.0 高级api
         */
-        bool isCameraOrigin() const                 { return mCameraOrigin; }
+        inline bool isCameraOrigin() const                 { return mCameraOrigin; }
 
         /** 设置自动单位化法线.
         @version NIIEngine 3.0.0
         */
-        void setUnitNormals(bool b)                 { mUnitNormals = b; }
+        inline void setUnitNormals(bool b)                 { mUnitNormals = b; }
 
         /** 获取自动单位化法线.
         @version NIIEngine 3.0.0
         */
-        bool isUnitNormals() const                  { return mUnitNormals; }
+        inline bool isUnitNormals() const                  { return mUnitNormals; }
 
         /** 设置反缩放翻转拣选
         @version NIIEngine 3.0.0
         */
-        void setNegScaleFlipCull(bool b)            { mNegScaleFlipCull = b; }
+        inline void setNegScaleFlipCull(bool b)            { mNegScaleFlipCull = b; }
 
         /** 获得反缩放翻转拣选
         @version NIIEngine 3.0.0
         */
-        bool isNegScaleFlipCull() const             { return mNegScaleFlipCull; }
+        inline bool isNegScaleFlipCull() const             { return mNegScaleFlipCull; }
 
         /** 设置锁定渲染通路
         @version NIIEngine 3.0.0 高级api
         */
-        void setLockRenderCh(bool b);
+        inline void setLockRenderCh(bool b)                { mLockRenderCh = b; }
 
         /** 是否锁定渲染通路
         @version NIIEngine 3.0.0 高级api
         */
-        bool isLockRenderCh() const;
+        inline bool isLockRenderCh() const                 { return mLockRenderCh; }
 
         /** 设置是否显示边界
         @version NIIEngine 3.0.0
@@ -214,25 +214,25 @@ namespace NII
         @note 是全局状态,不应叠加
         @version NIIEngine 3.0.0
         */
-        void setAmbient(const Colour & c);
+        inline void setAmbient(const Colour & c)            { mAmbient = c; }
 
         /** 获取环境光
         @note 是全局状态,不应叠加
         @version NIIEngine 3.0.0
         */
-        const Colour & getAmbient() const;
+        inline const Colour & getAmbient() const            { return mAmbient; }
 
         /** 设置应用的雾
         @note 是全局状态,不应叠加
         @version NIIEngine 3.0.0
         */
-        void setFog(const ShaderChFog & f);
+        inline void setFog(const ShaderChFog & f)           { mFog = f; }
 
         /** 获取应用的雾
         @note 是全局状态,不应叠加
         @version NIIEngine 3.0.0
         */
-        const ShaderChFog & getFog() const;
+        inline const ShaderChFog & getFog() const           { return mFog; }
 
         /** 更新空间体
         @version NIIEngine 3.0.0 高级api
@@ -302,17 +302,17 @@ namespace NII
         /** 通知灯光变化
         @version NIIEngine 3.0.0 高级 api
         */
-        void notifyLightChange();
+        void notifyLight();
 
         /** 获取灯光变化掩码
         @version NIIEngine 3.0.0 api
         */
-        Nmark getLightChange() const;
+        inline Nmark getLightDirtyMark() const              { return mLightDirtyMark; }
 
         /** 获取当前影响渲染的灯光
         @version NIIEngine 3.0.0
         */
-        const LightList & getEffectLights() const;
+        inline const LightList & getLightList() const       { return mValidLights; }
 
         /** 获取灯光的容积区域
         @version NIIEngine 3.0.0
@@ -325,14 +325,14 @@ namespace NII
         */
         virtual const Rectf & getClipRect(Light * l, const Camera * proj);
 
-        /** 寻找灯光列表
-        @param[in] dst 输出
+        /** 从当前有效的灯光中寻找指定的
+        @param[in] out 寻找出来的
         @param[in] pos 位置
         @param[in] radius 辐射范围
         @param[in] mark 掩码
         @version NIIEngine 3.0.0 高级api
         */
-        virtual void findLight(LightList & dst, const Vector3f & pos, NIIf radius, Nmark mark);
+        virtual void findLight(LightList & out, const Vector3f & pos, NIIf radius, Nmark mark);
 
         /** 创建几何空间
         @param[in] rid 网格资源
@@ -354,17 +354,17 @@ namespace NII
         /** 是否存在几何空间
         @version NIIEngine 3.0.0
         */
-        bool isGeoExist(SpaceID sid) const;
+        inline bool isGeoExist(SpaceID sid) const       { return isSpaceExist(sid, N_FACTORY_GeoSpace);}
 
         /** 删除几何空间
         @version NIIEngine 3.0.0
         */
-        void destroyGeo(SpaceID sid);
+        inline void destroyGeo(SpaceID sid)             { destroySpace(sid, N_FACTORY_GeoSpace);}
 
         /** 删除所有几何空间
         @version NIIEngine 3.0.0
         */
-        void destroyAllGeo();
+        inline void destroyAllGeo()                     { destroyAllSpace(N_FACTORY_GeoSpace); }
 
         /** 自绘制几何
         @param[in] sid
@@ -372,25 +372,25 @@ namespace NII
         */
         CustomSpaceObj * createCustomGeo(SpaceID sid);
 
-        /** 删除绘制几何
-        @version NIIEngine 3.0.0
-        */
-        void destroyCustomGeo(SpaceID sid);
-
         /** 获取自绘制几何.
         @version NIIEngine 3.0.0
         */
         CustomSpaceObj * getCustomGeo(SpaceID sid) const;
 
+        /** 删除绘制几何
+        @version NIIEngine 3.0.0
+        */
+        inline void destroyCustomGeo(SpaceID sid)       { destroySpace(sid, N_FACTORY_CustomSpace); }
+
         /** 自绘制几何是否存在
         @version NIIEngine 3.0.0
         */
-        bool isCustomGeoExist(SpaceID sid) const;
+        inline bool isCustomGeoExist(SpaceID sid) const { return isSpaceExist(sid, N_FACTORY_CustomSpace); }
 
         /** 删除所有绘制几何
         @version NIIEngine 3.0.0
         */
-        void destroyAllCustomGeo();
+        inline void destroyAllCustomGeo()               { destroyAllSpace(N_FACTORY_CustomSpace); }
 
         /** 创建空间节点
         @version NIIEngine 3.0.0
@@ -442,17 +442,17 @@ namespace NII
         /** 是否存在像素轨迹
         @version NIIEngine 3.0.0
         */
-        bool isOrbitExist(SpaceID sid) const;
+        inline bool isOrbitExist(SpaceID sid) const     { return isSpaceExist(sid, N_FACTORY_PixelOrbit); }
 
         /** 删除像素轨迹
         @version NIIEngine 3.0.0
         */
-        void destroyOrbit(SpaceID sid);
+        inline void destroyOrbit(SpaceID sid)           { destroySpace(sid, N_FACTORY_PixelOrbit); }
 
         /** 删除所有轨迹
         @version NIIEngine 3.0.0
         */
-        void destroyAllOrbit();
+        inline void destroyAllOrbit()                   { destroyAllSpace(N_FACTORY_PixelOrbit); }
 
         /** 创建同态粒子
         @version NIIEngine 3.0.0
@@ -467,17 +467,17 @@ namespace NII
         /** 同态粒子是否存在
         @version NIIEngine 3.0.0
         */
-        bool isParticleCtrlExist(SpaceID sid) const;
+        inline bool isParticleCtrlExist(SpaceID sid) const{ return isSpaceExist(sid, N_FACTORY_ParticleCtrl); }
 
         /** 删除同态粒子
         @version NIIEngine 3.0.0
         */
-        void destroyParticleCtrl(SpaceID sid);
+        inline void destroyParticleCtrl(SpaceID sid)    { destroySpace(sid, N_FACTORY_ParticleCtrl); }
 
         /** 删除所有同态粒子
         @version NIIEngine 3.0.0
         */
-        void destroyAllParticleCtrl();
+        inline void destroyAllParticleCtrl()            { destroyAllSpace(N_FACTORY_ParticleCtrl); }
 
         /** 创建粒子空间
         @version NIIEngine 3.0.0
@@ -497,17 +497,17 @@ namespace NII
         /** 是否存在粒子空间
         @version NIIEngine 3.0.0
         */
-        bool isParticleSpaceExist(SpaceID sid) const;
+        inline bool isParticleSpaceExist(SpaceID sid) const { return isSpaceExist(sid, N_FACTORY_ParticleSpace); }
 
         /** 删除粒子空间
         @version NIIEngine 3.0.0
         */
-        void destroyParticleSpace(SpaceID sid);
+        inline void destroyParticleSpace(SpaceID sid)       { destroySpace(sid, N_FACTORY_ParticleSpace); }
 
         /** 删除所有粒子空间
         @version NIIEngine 3.0.0
         */
-        void destroyAllParticleSpace();
+        inline void destroyAllParticleSpace()               { destroyAllSpace(N_FACTORY_ParticleSpace); }
 
         /** 创建静态空间体
         @version NIIEngine 3.0.0
@@ -751,7 +751,7 @@ namespace NII
         /** 渲染对象
         @param[in] obj 渲染对象
         @param[in] ch 通路
-        @param[in] lightClip 灯光裁剪
+        @param[in] lightClip 使用设置中的灯光,是否灯光裁剪
         @version NIIEngine 3.0.0 高级api
         */
         virtual void render(GeometryObj * geo, const ShaderCh * ch, bool lightClip);
@@ -759,12 +759,11 @@ namespace NII
         /** 指定灯光去渲染对象
         @param[in] obj 渲染对象
         @param[in] ch 通路
-        @param[in] lights 灯光列表
+        @param[in] lights 指定灯光列表
         @param[in] lightClip 灯光裁剪
         @version NIIEngine 3.0.0 高级api
         */
-        virtual void render(GeometryObj * geo, const ShaderCh * ch, const LightList & lights, 
-            bool lightClip);
+        virtual void render(GeometryObj * geo, const ShaderCh * ch, const LightList & lights, bool lightClip);
 
         /** 渲染单个对象
         @param[in] aloneframe 单独渲染一帧
@@ -1046,7 +1045,7 @@ namespace NII
         StaticSpaceList mStatics;
         InstanceSpaceList mInstances;
         NCount mLastLightLimit;
-        Nmark mLightsDirty;
+        Nmark mLightDirtyMark;
         Nmark mLastFrame;
 
         RenderListenerList mRenderListenerList;

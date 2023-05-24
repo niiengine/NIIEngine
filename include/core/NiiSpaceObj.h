@@ -57,12 +57,12 @@ namespace NII
         /** 设置工厂类的类型掩码
         @version NIIEngine 3.0.0
         */
-        void setTypeMark(Nmark mark) { mTypeMark = mark; }
+        inline void setTypeMark(Nmark mark)         { mTypeMark = mark; }
 
         /** 获取工厂类的类型掩码
         @version NIIEngine 3.0.0
         */
-        Nmark getTypeMark() const { return mTypeMark; }
+        inline Nmark getTypeMark() const            { return mTypeMark; }
     protected:
         Nmark mTypeMark;
     };
@@ -147,7 +147,7 @@ namespace NII
         /** 获取空间ID
         @version NIIEngine 3.0.0
         */
-        inline SpaceID getID() const            { return mID; }
+        inline SpaceID getID() const                    { return mID; }
 
         /** 获取类型ID
         @version NIIEngine 3.0.0
@@ -157,12 +157,12 @@ namespace NII
         /** 设置几何管理器
         @verison NIIEngine 3.0.0 高级api
         */
-        void setManager(SpaceManager * mag)     { mManager = mag; }
+        inline void setManager(SpaceManager * mag)      { mManager = mag; }
 
         /** 获取几何管理器
         @version NIIEngine 3.0.0
         */
-        SpaceManager * getManager() const       { return mManager;  }
+        inline SpaceManager * getManager() const        { return mManager;  }
 
         /** 设置拣选模式
         @param[in] t 拣选模式
@@ -189,18 +189,18 @@ namespace NII
         @remark
         @version NIIEngine 3.0.0
         */
-        void setCastShadow(bool b)              { mCastShadows = b; }
+        inline void setCastShadow(bool b)               { mCastShadows = b; }
 
         /** 获取是否投射阴影
         @version NIIEngine 3.0.0
         */
-        bool isCastShadow() const               { return mCastShadows; }
+        inline bool isCastShadow() const                { return mCastShadows; }
 
         /** 与上一帧比较是否移动
         @note 非线程安全
         @version NIIEngine 3.0.0
         */
-        bool isMove() const                     { return mMove; }
+        inline bool isMove() const                      { return mMove; }
 
         /** 空间位置改变时调用
         @version NIIEngine 3.0.0 高级api
@@ -242,12 +242,12 @@ namespace NII
         /** 设置相关对象
         @version NIIEngine 3.0.0
         */
-        void setRel(SpaceObj * o)               { mRelation = o; }
+        inline void setRel(SpaceObj * o)                { mRelation = o; }
 
         /** 获取相关对象
         @version NIIEngine 3.0.0
         */
-        SpaceObj * getRel() const               { return mRelation; }
+        inline SpaceObj * getRel() const                { return mRelation; }
 
         /** 获取对称盒(局部)
         @version NIIEngine 3.0.0
@@ -307,22 +307,22 @@ namespace NII
         /** 设置渲染像素限制
         @version NIIEngine 3.0.0
         */
-        void setVisibleDistanceLimit(NIIf f)    { mDisLimit = f; }
+        inline void setVisibleDistanceLimit(NIIf f)     { mDisLimit = f; }
 
         /** 获取渲染像素限制
         @version NIIEngine 3.0.0
         */
-        NIIf getVisibleDistanceLimit() const    { return mDisLimit; }
+        inline NIIf getVisibleDistanceLimit() const     { return mDisLimit; }
 
         /** 设置渲染像素限制
         @version NIIEngine 3.0.0
         */
-        void setVisiblePixelLimit(NIIf f)       { mPixelLimit = f; }
+        inline void setVisiblePixelLimit(NIIf f)        { mPixelLimit = f; }
 
         /** 获取渲染像素限制
         @version NIIEngine 3.0.0
         */
-        NIIf getVisiblePixelLimit() const       { return mPixelLimit; }
+        inline NIIf getVisiblePixelLimit() const        { return mPixelLimit; }
 
         /** 获取可见结果
         @remark 加上环境条件是否可见
@@ -333,12 +333,12 @@ namespace NII
         /** 设置是否调试模式
         @version NIIEngine 3.0.0
         */
-        void setDebugMode(bool b)               { mDebugMode = b; }
+        inline void setDebugMode(bool b)                { mDebugMode = b; }
 
         /** 获取是否调试模式
         @version NIIEngine 3.0.0
         */
-        bool isDebugMode() const                { return mDebugMode; }
+        inline bool isDebugMode() const                 { return mDebugMode; }
 
         /** 设置渲染队列
         @param[in] rqid
@@ -359,37 +359,37 @@ namespace NII
         /** 获取这个对象当前的监听
         @version NIIEngine 3.0.0
         */
-        SpaceObjListener * getListener() const  { return mListener; }
+        inline SpaceObjListener * getListener() const   { return mListener; }
 
         /** 设置可见掩码
         @version NIIEngine 3.0.0
         */
-        void setVisibleMark(Nmark m)            { mVisibleMark = m; }
+        inline void setVisibleMark(Nmark m)             { mVisibleMark = m; }
 
         /** 返回可见掩码
         @version NIIEngine 3.0.0
         */
-        Nmark getVisibleMark() const            { return mVisibleMark; }
+        inline Nmark getVisibleMark() const             { return mVisibleMark; }
 
         /** 设置灯光掩码
         @version NIIEngine 3.0.0
         */
-        void setLightMark(Nmark mark)           { mLightMask = mark; mLightDirtyMark = 0;}
+        inline void setLightMark(Nmark mark)            { mLightMask = mark; mLightDirtyMark = 0;}
 
         /** 获取灯光掩码
         @version NIIEngine 3.0.0
         */
-        Nmark getLightMark()const               { return mLightMask; }
+        inline Nmark getLightMark()const                { return mLightMask; }
 
         /** 设置场景物相交可见掩码
         @version NIIEngine 3.0.0
         */
-        void setIntersectMark(Nmark m)          { mIntersectMark = m; }
+        inline void setIntersectMark(Nmark m)           { mIntersectMark = m; }
 
         /** 返回场景物相交可见掩码
         @version NIIEngine 3.0.0
         */
-        Nmark getIntersectMark() const          { return mIntersectMark; }
+        inline Nmark getIntersectMark() const           { return mIntersectMark; }
 
         /** 类型掩码
         @version NIIEngine 3.0.0
@@ -424,12 +424,12 @@ namespace NII
         /** 设置工厂类
         @version NIIEngine 3.0.0
         */
-        void setFactory(SpaceObjFactory * f)    { mFactory = f; }
+        inline void setFactory(SpaceObjFactory * f)     { mFactory = f; }
 
         /** 获取工厂类
         @version NIIEngine 3.0.0
         */
-        SpaceObjFactory *  getFactory() const   { return mFactory; }
+        inline SpaceObjFactory * getFactory() const     { return mFactory; }
     protected:
         N_static_mutex(mValidIDMutex)
         static SpaceID mValidID;
