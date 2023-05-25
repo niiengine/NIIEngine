@@ -44,13 +44,22 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 
 namespace NII
 {
-    _EngineAPI extern const Nui32  NiiOrMark[32];
-    _EngineAPI extern const Nui32  NiiAndMark[32];
-    _EngineAPI extern const Nui32  NiiNotMark[32];
-    _EngineAPI extern const EventID EventCount;
-    _EngineAPI extern const PropertyID PropertyCount;
-    _EngineAPI extern const StateID StateCount;
-
+    // Deprecated
+    _EngineAPI extern const Nui32  N32_1OrMark[32];     ///< { 0x01, 0x02, 0x04, 0x08, 0x10, ... }
+    _EngineAPI extern const Nui32  N32_1AndMark[32];    ///< { 0x01, 0x03, 0x07, 0x0F, 0x1F, ... }
+    _EngineAPI extern const Nui32  N32_1NotMark[32];    ///< { 0xFFFFFFFE, 0xFFFFFFFD, 0xFFFFFFFB, 0xFFFFFFF7, 0xFFFFFFEF, ... }
+    
+    // 64位类型对64位cpu的寄存器帮助大
+    _EngineAPI extern const Nui64  N64_1OrMark[64];     ///< { 0x01, 0x02, 0x04, 0x08, 0x10, ... }
+    _EngineAPI extern const Nui64  N64_1AndMark[64];    ///< { 0x01, 0x03, 0x07, 0x0F, 0x1F, ... }
+    _EngineAPI extern const Nui64  N64_1NotMark[64];    ///< { 0xFFFFFFFFFFFFFFE, 0xFFFFFFFFFFFFFFD, 0xFFFFFFFFFFFFFFB, ... }
+    _EngineAPI extern const Nui64  N64_16OrMark[4];     ///< { 0xFFFF, 0xFFFF0000, 0xFFFF00000000, 0xFFFF000000000000 }
+    _EngineAPI extern const Nui64  N64_16AndMark[4];    ///< { 0xFFFF, 0xFFFFFFFF, 0xFFFFFFFFFFFF, 0xFFFFFFFFFFFFFFFF }
+    _EngineAPI extern const Nui64  N64_16NotMark[4];    ///< { 0xFFFFFFFFFFFF0000, 0xFFFFFFFF0000FFFF, 0xFFFF0000FFFFFFFF, 0xFFFFFFFFFFFF }
+    
+    _EngineAPI extern const EventID     EventCount;
+    _EngineAPI extern const PropertyID  PropertyCount;
+    _EngineAPI extern const StateID     StateCount;
     enum TextEncodeType
     {
         TET_ASCII,

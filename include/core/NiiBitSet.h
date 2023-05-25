@@ -120,7 +120,7 @@ namespace NII
         */
         inline bool isTrue(Nidx io)
         {
-            return (mData[io >> IOMark].data & NiiOrMark[io % IOValid]) != 0;
+            return (mData[io >> IOMark].data & N32_1OrMark[io % IOValid]) != 0;
         }
 
         /** 检测指定io位置的值是否为真
@@ -130,7 +130,7 @@ namespace NII
         */
         inline bool isTrue(Nidx r, Nidx sr)
         {
-            return (mData[r].data & NiiOrMark[sr]) != 0;
+            return (mData[r].data & N32_1OrMark[sr]) != 0;
         }
 
         /** 获取指定[0-io]位置所处的范围内最高有效位(0开始)

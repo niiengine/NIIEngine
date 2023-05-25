@@ -182,22 +182,22 @@ namespace NII
         /**
         @version NIIEngine 6.0.0
         */
-        RenderPatternType getType() const                   { return mType; }
+        inline RenderPatternType getType() const            { return mType; }
 
         /**
         @version NIIEngine 6.0.0
         */
-        Nid getID() const                                   { return mID; }
+        inline Nid getID() const                            { return mID; }
 
         /**
         @version NIIEngine 6.0.0
         */
-        void setName(const String & str)                    { mName = str;}
+        inline void setName(const String & str)             { mName = str;}
 
         /**
         @version NIIEngine 6.0.0
         */
-        const String & getName() const                      { return mName; }
+        inline const String & getName() const               { return mName; }
 
         /** 初始化
         @version NIIEngine 3.0.0
@@ -260,7 +260,7 @@ namespace NII
         virtual void setup(const VFSList & vfsl);
 
         /// @copydetails GpuProgramCodeGen::setQuality
-        virtual void setQuality(QualityType set);
+        virtual void setQuality(QualityType type);
 
         /// @copydetails GpuProgramCodeGen::setRender
         virtual void setRender(RenderSys * rsys);
@@ -319,12 +319,12 @@ namespace NII
         /**
         @version NIIEngine 6.0.0
         */
-        const MaterialList & getMaterialList() const        { return mMaterialList; }
+        inline const MaterialList & getMaterialList() const { return mMaterialList; }
 
         /**
         @version NIIEngine 6.0.0
         */
-        ShaderChMaterial * getMaterial() const              { return mMaterial; }
+        inline ShaderChMaterial * getMaterial() const       { return mMaterial; }
 		
         /** 
         @version NIIEngine 6.0.0
@@ -369,18 +369,18 @@ namespace NII
         /**
         @version NIIEngine 6.0.0
         */
-        const ShaderList & getShaderList() const	{ return mShaderList; }
+        inline const ShaderList & getShaderList() const     { return mShaderList; }
 
         /** 设置三角形面序拣选模式
         @param[in] ch 使用的通路
         @version NIIEngine 3.0.0
         */
-        virtual CullingMode setCullingMode(CullingMode mode);
+        virtual void setCullingMode(CullingMode mode);
 
         /** 获取三角形面序拣选模式
         @version NIIEngine 3.0.0
         */
-        virtual CullingMode getCullingMode() const;
+        inline CullingMode getCullingMode() const          { return mCullingMode; }
 
         /** 排序渲染灯光
         @remark 建立阴影时,先对灯光排序

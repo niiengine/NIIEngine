@@ -608,19 +608,26 @@ namespace NII
     #define N_Parent_Obj                4294967295
 	#define N_ChildID(pid, id)			(pid << N_Level_Bit_Escape) + id
 
-    #define N_Only(mag)     NII::mag##Manager::getOnly()
-    #define N_OnlyPtr(mag)  NII::mag##Manager::getOnlyPtr()
-    #define N_Engine()      NII::Engine::getOnly()
-    #define N_EnginePtr()   NII::Engine::getOnlyPtr()
-    #define N_Timer()       NII::Engine::getOnly().getTimer()
-    
+    #define N_Only(mag)                 NII::mag##Manager::getOnly()
+    #define N_OnlyPtr(mag)              NII::mag##Manager::getOnlyPtr()
+    #define N_Engine()                  NII::Engine::getOnly()
+    #define N_EnginePtr()               NII::Engine::getOnlyPtr()
+    #define N_Timer()                   NII::Engine::getOnly().getTimer()
+
     #define N_MarkTrue(src, mark)                   ((src & mark) == mark)
     #define N_MarkOnlyTrue(src, flmark, mark)       ((src & flmark) == mark)
     #define N_MarkFalse(src, mark)                  ((src & mark) != mark)
     #define N_MarkOnlyFalse(src, flmark, mark)      ((src & flmark) != mark)
-    
+
     #define N_SetMark(src, mark)                    src |= mark
     #define N_SetMarkOnly(src, flmark, mark)        src ~= flmark;src |= mark
+
+    // param lastest only for 16bit
+    #define N_64_16_0(data, num)        ((data & 0xFFFFFFFFFFFF0000 ) | (Nui64)num)
+    #define N_64_16_1(data, num)        ((data & 0xFFFFFFFF0000FFFF ) | (Nui64)num << 16)
+    #define N_64_16_2(data, num)        ((data & 0xFFFF0000FFFFFFFF ) | (Nui64)num << 32)
+    #define N_64_16_3(data, num)        ((data & 0xFFFFFFFFFFFF ) | (Nui64)num << 48)
+    #define N_64_16(data, idx, num)     ((data & N64_16NotMark[idx] ) | (Nui64)num << (idx << 4))
 }
 
 #endif

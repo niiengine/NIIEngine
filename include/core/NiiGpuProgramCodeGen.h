@@ -265,7 +265,7 @@ namespace NII
         /**
         @version NIIEngine 6.0.0
         */
-        virtual void setQuality(QualityType set);
+        virtual void setQuality(QualityType type);
         
         /**
         @version NIIEngine 6.0.0
