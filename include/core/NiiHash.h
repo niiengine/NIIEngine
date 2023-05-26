@@ -46,7 +46,10 @@ namespace NII
 
     Nui32 _EngineAPI FastHash(FILE * fp);
     
+    // 64-bit hash for 64-bit platforms
     Nui64 _EngineAPI MurmurHash64A(const void * key, NCount size, Nui64 ext);
+    
+    // 64-bit hash for 32-bit platforms
     Nui64 _EngineAPI MurmurHash64B(const void * key, NCount size, Nui64 ext);
 
     void _EngineAPI MurmurHash_x86_32(const void * key, NCount size, Nui32 ext, Nui32 & out);
@@ -120,82 +123,46 @@ namespace NII
 
         ~HashedVector() {}
 
-        void dirtyHash()
-        {
-            mListHashDirty = true;
-        }
+        inline void dirtyHash()             { mListHashDirty = true; }
 
-        bool isHashDirty() const
-        {
-            return mListHashDirty;
-        }
+        inline bool isHashDirty() const     { return mListHashDirty; }
 
-        iterator begin()
-        {
-            // 假设哈希需要重新计算在非-const
-            dirtyHash();
-            return mList.begin();
-        }
-        iterator end() { return mList.end(); }
-        const_iterator begin() const { return mList.begin(); }
-        const_iterator end() const { return mList.end(); }
-        reverse_iterator rbegin()
-        {
-            // 假设哈希需要重新计算在非-const
-            dirtyHash();
-            return mList.rbegin();
-        }
-        reverse_iterator rend() { return mList.rend(); }
-        const_reverse_iterator rbegin() const { return mList.rbegin(); }
-        const_reverse_iterator rend() const { return mList.rend(); }
-        size_type size() const { return mList.size(); }
-        size_type max_size() const { return mList.max_size(); }
-        size_type capacity() const { return mList.capacity(); }
-        bool empty() const { return mList.empty(); }
-        reference operator[](size_type n)
-        {
-            // 假设哈希需要重新计算在非-const
-            dirtyHash();
-            return mList[n];
-        }
-        const_reference operator[](size_type n) const { return mList[n]; }
-        reference at(size_type n)
-        {
-            // 假设哈希需要重新计算在非-const
-            dirtyHash();
-            return mList.const_iterator(n);
-        }
-        const_reference at(size_type n) const { return mList.at(n); }
+        inline iterator begin()             { dirtyHash(); return mList.begin(); }
+        inline iterator end()               { return mList.end(); }
+        inline const_iterator begin() const { return mList.begin(); }
+        inline const_iterator end() const   { return mList.end(); }
+        inline reverse_iterator rbegin()    { dirtyHash(); return mList.rbegin(); }
+        inline reverse_iterator rend()                  { return mList.rend(); }
+        inline const_reverse_iterator rbegin() const    { return mList.rbegin(); }
+        inline const_reverse_iterator rend() const      { return mList.rend(); }
+        inline size_type size() const                   { return mList.size(); }
+        inline size_type max_size() const               { return mList.max_size(); }
+        inline size_type capacity() const               { return mList.capacity(); }
+        inline bool empty() const                       { return mList.empty(); }
+        inline reference operator[](size_type n)        { dirtyHash(); return mList[n]; }
+        inline const_reference operator[](size_type n) const   { return mList[n]; }
+        inline reference at(size_type n)                { dirtyHash(); return mList.const_iterator(n); }
+        inline const_reference at(size_type n) const    { return mList.at(n); }
 
-        HashedVector<T> & operator=(const HashedVector<T>& rhs)
+        HashedVector<T> & operator=(const HashedVector<T>& o)
         {
-            mList = rhs.mList;
-            mListHash = rhs.mListHash;
-            mListHashDirty = rhs.mListHashDirty;
+            mList = o.mList;
+            mListHash = o.mListHash;
+            mListHashDirty = o.mListHashDirty;
             return *this;
         }
 
-        void reserve(NCount t) { mList.reserve(t); }
+        inline void reserve(NCount t)                   { mList.reserve(t); }
 
-        reference front()
-        {
-            // 假设哈希需要重新计算在非-const
-            dirtyHash();
-            return mList.front();
-        }
+        inline reference front()                        { dirtyHash(); return mList.front(); }
 
-        const_reference front() const { return mList.front(); }
+        inline const_reference front() const            { return mList.front(); }
 
-        reference back()
-        {
-            // 假设哈希需要重新计算在非-const
-            dirtyHash();
-            return mList.back();
-        }
+        inline reference back()                         { dirtyHash(); return mList.back(); }
 
-        const_reference back() const { return mList.back(); }
+        inline const_reference back() const             { return mList.back(); }
 
-        void push_back(const T & t)
+        inline void push_back(const T & t)
         {
             mList.push_back(t);
             // 快速自由的哈希添加
@@ -203,17 +170,9 @@ namespace NII
                 addToHash(t);
         }
 
-        void pop_back()
-        {
-            mList.pop_back();
-            dirtyHash();
-        }
+        inline void pop_back()                          { dirtyHash(); mList.pop_back(); }
 
-        void swap(HashedVector<T> & o)
-        {
-            mList.swap(o.mList);
-            dirtyHash();
-        }
+        inline void swap(HashedVector<T> & o)           { dirtyHash(); mList.swap(o.mList); }
 
         iterator insert(iterator pos, const T & t)
         {
@@ -226,33 +185,33 @@ namespace NII
             return ret;
         }
 
-        template <class InputIterator> void insert(iterator pos, InputIterator f, InputIterator l)
+        inline template <class InputIterator> void insert(iterator pos, InputIterator f, InputIterator l)
         {
             mList.insert(pos, f, l);
             dirtyHash();
         }
 
-        void insert(iterator pos, size_type n, const T & x)
+        inline void insert(iterator pos, size_type n, const T & x)
         {
             mList.insert(pos, n, x);
             dirtyHash();
         }
 
-        iterator erase(iterator pos)
+        inline iterator erase(iterator pos)
         {
             iterator ret = mList.erase(pos);
             dirtyHash();
             return ret;
         }
 
-        iterator erase(iterator first, iterator last)
+        inline iterator erase(iterator first, iterator last)
         {
             iterator ret = mList.erase(first, last);
             dirtyHash();
             return ret;
         }
 
-        void clear()
+        inline void clear()
         {
             mList.clear();
             mListHash = 0;
@@ -270,40 +229,43 @@ namespace NII
                 dirtyHash();
         }
 
-        bool operator==(const HashedVector<T> & b)
+        inline bool operator==(const HashedVector<T> & b)
         {
             return mListHash == b.mListHash;
         }
 
-        bool operator<(const HashedVector<T> & b)
+        inline bool operator<(const HashedVector<T> & b)
         {
             return mListHash < b.mListHash;
         }
 
         /// 获取哈希值
-        Nui32 getHash() const
-        {
-            if (isHashDirty())
-                recalcHash();
-
-            return mListHash;
-        }
+        inline HashType getHash() const                 { recalcHash(); return mListHash; }
     protected:
-        void addToHash(const T & newPtr) const
+        inline void addToHash(const T & newPtr) const
         {
-            mListHash = FastHash((const Nui8 *)&newPtr, sizeof(T), mListHash);
+            //mListHash = FastHash((const Nui8 *)&newPtr, sizeof(T), mListHash);
+            
+#if N_ARCH == N_ARCH_64
+            mListHash = MurmurHash64A(&newPtr, sizeof(T), mListHash);
+#else
+            mListHash = MurmurHash64B(&newPtr, sizeof(T), mListHash);
+#endif
         }
 
         void recalcHash() const
         {
-            mListHash = 0;
-            for (const_iterator i = mList.begin(); i != mList.end(); ++i)
-                addToHash(*i);
-            mListHashDirty = false;
+            if(mListHashDirty)
+            {
+                mListHash = 0;
+                for (const_iterator i = mList.begin(); i != mList.end(); ++i)
+                    addToHash(*i);
+                mListHashDirty = false;
+            }
         }
     protected:
         VectorImpl mList;
-        mutable Nui32 mListHash;
+        mutable HashType mListHash;
         mutable bool mListHashDirty;
     };
 }

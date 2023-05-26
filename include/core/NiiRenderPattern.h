@@ -69,13 +69,13 @@ namespace NII
     struct RenderStateCache
     {
         RenderStateCache() : mHash(0), mPattern(0) {}
-        RenderStateCache(const RenderStateObject & rso, RenderPattern * pattern, Nui32 hash) : 
+        RenderStateCache(const RenderStateObject & rso, RenderPattern * pattern, HashType hash) : 
             mRSO(rso), mPattern(pattern), mHash(hash) {}
 
         RenderStateObject mRSO;
         PropertyValueData mPropertyList;
         RenderPattern * mPattern;
-        Nui32 mHash;
+        HashType mHash;
     };
 
     typedef vector<RenderStateCache*>::type RenderStateCacheList;
@@ -334,7 +334,7 @@ namespace NII
         /** 
         @version NIIEngine 6.0.0
         */
-        const RenderStateCache * getCache(Nui32 stateHash, const RenderStateCache & inState, const RenderItem & inItem, ShadowType type);
+        const RenderStateCache * getCache(HashType stateHash, const RenderStateCache & inState, const RenderItem & inItem, ShadowType type);
 
         /** 
         @version NIIEngine 6.0.0
@@ -344,7 +344,7 @@ namespace NII
         /** 
         @version NIIEngine 6.0.0
         */
-        virtual NCount queue(DrawCallGroup * dcg, const RenderStateCache * cache, const RenderItem & inItem, ShadowType type, Nui32 objhash){}
+        virtual NCount queue(DrawCallGroup * dcg, const RenderStateCache * cache, const RenderItem & inItem, ShadowType type, HashType objhash){}
 
         /**
         @version NIIEngine 6.0.0
@@ -445,66 +445,66 @@ namespace NII
         /** 设置阴影投射是否使用后表面,而不是正表面.
         @version NIIEngine 3.0.0
         */
-        void setBackFaceInCast(bool b)          { mBackFaceInCast = b; }
+        inline void setBackFaceInCast(bool b)          { mBackFaceInCast = b; }
 
         /** 获得阴影投射是否使用后表面,而不是正表面.
         @version nIIEngine 3.0.0
         */
-        bool isBackFaceInCast() const           { return mBackFaceInCast;}
+        inline bool isBackFaceInCast() const           { return mBackFaceInCast;}
 
         /** 是否无限远裁剪面
         @remark 蒙板阴影专用
         @version NIIEngine 3.0.0
         */
-        void setInfiniteFar(bool b)             { mInfiniteFar = b; }
+        inline void setInfiniteFar(bool b)             { mInfiniteFar = b; }
 
         /** 是否无限远裁剪面
         @remark 蒙板阴影专用
         @version NIIEngine 3.0.0
         */
-        bool isInfiniteFar()const               { return mInfiniteFar; }
+        inline bool isInfiniteFar()const               { return mInfiniteFar; }
 
         /** 设置是否进行灯光面裁剪.
         @version NIIEngine 3.0.0
         */
-        void setLightClipPlane(bool b)          { mLightClipPlane = b; }
+        inline void setLightClipPlane(bool b)          { mLightClipPlane = b; }
 
         /** 获取是否进行灯光面裁剪.
         @version NIIEngine 3.0.0
         */
-        bool isLightClipPlane() const           { return mLightClipPlane; }
+        inline bool isLightClipPlane() const           { return mLightClipPlane; }
 
         /** 设置是否禁止阴影
         @version NIIEngine 3.0.0
         */
-        void setShadowEnable(bool b)            { mShadowEnable = b; }
+        inline void setShadowEnable(bool b)            { mShadowEnable = b; }
 
         /** 获取是否禁止阴影
         @version NIIEngine 3.0.0
         */
-        bool isShadowEnable() const             { return mShadowEnable; }
+        inline bool isShadowEnable() const             { return mShadowEnable; }
 
         /** 设置阴影的延伸长度
         @param[in] ext 延伸长度
         @version NIIEngine 3.0.0
         */
-        void setShadowExtent(NIIf ext)          { mShadowExtent = dist; }
+        inline void setShadowExtent(NIIf ext)          { mShadowExtent = dist; }
 
         /** 获取阴影的延伸长度
         @version NIIEngine 3.0.0
         */
-        NIIf getShadowExtent() const            { return mShadowExtent; }
+        inline NIIf getShadowExtent() const            { return mShadowExtent; }
 
         /** 设置阴影最大延伸长度
         @param[in] ext 最大延伸长度
         @version NIIEngine 3.0.0
         */
-        void setShadowExtentMax(NIIf ext)       { mShadowExtentMax = ext; }
+        inline void setShadowExtentMax(NIIf ext)       { mShadowExtentMax = ext; }
 
         /** 获取阴影最大延伸长度
         @version NIIEngine 3.0.0
         */
-        NIIf getShadowExtentMax() const         { return mShadowExtentMax; }
+        inline NIIf getShadowExtentMax() const         { return mShadowExtentMax; }
 
         /** 添加监听
         @version NIIEngine 3.0.0
@@ -519,7 +519,7 @@ namespace NII
         /** 移去监听
         @version NIIEngine 3.0.0
         */
-        const Listeners & getListeners() const	{ return mListeners; }
+        inline const Listeners & getListeners() const   { return mListeners; }
     protected:
         struct Object
         {
@@ -599,7 +599,7 @@ namespace NII
         /** 
         @version NIIEngine 6.0.0
         */
-        virtual RenderStateCache * createCache(Nui32 objHash, const RenderStateCache & rsc, Nmark stateHash, const RenderItem & item);
+        virtual RenderStateCache * createCache(HashType objHash, const RenderStateCache & rsc, HashType stateHash, const RenderItem & item);
 
         /** 
         @version NIIEngine 6.0.0
@@ -634,12 +634,12 @@ namespace NII
         /**
         @version NIIEngine 6.0.0
         */
-        const Object * getObject(Nui32 objHash) const;
+        const Object * getObject(HashType objHash) const;
 
         /**
         @version NIIEngine 6.0.0
         */
-        const RenderStateCache * getCache(Nui32 stateHash) const;
+        const RenderStateCache * getCache(HashType stateHash) const;
 
         /** 
         @version NIIEngine 6.0.0
@@ -665,7 +665,7 @@ namespace NII
         Colour mShadowColour;
         NIIf mShadowExtent;                 ///< 阴影长度
         NIIf mShadowExtentMax;
-        Nui32 mLightHash;                   ///< 当前灯光哈希
+        HashType mLightHash;                ///< 当前灯光哈希
         Listeners mListeners;               ///< 监听列表
         ShaderChMaterial * mMaterial;
         RenderStateCacheList mShaderCache;

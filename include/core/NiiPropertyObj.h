@@ -70,7 +70,7 @@ namespace NII
 
 		void add(PropertyID key, const String & value);
 
-		const String & get(PropertyID key, const String & defauleVale);
+		const String & get(PropertyID key, const String & init = N_StrBlank);
 		
 		PropertyValueList mData;
 	};
