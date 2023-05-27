@@ -53,7 +53,7 @@ namespace NII
         CC_Ext1 = 2,
         CC_D3D = 3,
         CC_GL = 4,
-        CC_Spec3 = 5,
+        CC_Vulkan = 5,
         CC_Spec4 = 6,
         CC_Count = 7
     };

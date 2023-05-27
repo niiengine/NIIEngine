@@ -504,6 +504,8 @@ namespace NII
     typedef Nui32 ARGB;
     typedef Nui32 ABGR;
     typedef Nui32 BGRA;
+    
+    typedef Nui64 HashType;
 
     #define multiCeil(num, alignment )  (((num + alignment - 1u) / alignment ) * alignment)
     #define multiFloor(num, alignment ) NCount((num / alignment) * alignment)
