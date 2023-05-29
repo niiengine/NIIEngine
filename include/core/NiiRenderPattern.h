@@ -114,23 +114,23 @@ namespace NII
             @version NIIEngine 6.0.0
             */
             virtual void onFindGeometry(SpaceManager * sm, Viewport * v, ShadowType type);
-			
+
             /** 
             @version NIIEngine 6.0.0
             */
 			virtual void onCreateState(SpaceManager * sm, RenderPattern * rp, ShadowType type) {}
-			
+
             /** 
             @version NIIEngine 6.0.0
             */
 			virtual bool onCreateCache(const RenderItem & inItem, const RenderStateCache * cache,
 				const RenderStateCache & inState, ShaderLanguage sl, const PropertyValueData & pvlist) {}
-			
+
 			/**
 			@version NIIEngine 6.0.0
 			*/
 			virtual void onStateChange(SpaceManager * sm, ShadowType type, DrawCallGroup * op) {}
-			
+
 			/**
 			@version NIIEngine 6.0.0
 			*/
@@ -380,7 +380,7 @@ namespace NII
         /** 获取三角形面序拣选模式
         @version NIIEngine 3.0.0
         */
-        inline CullingMode getCullingMode() const          { return mCullingMode; }
+        inline CullingMode getCullingMode() const           { return mCullingMode; }
 
         /** 排序渲染灯光
         @remark 建立阴影时,先对灯光排序
@@ -579,7 +579,7 @@ namespace NII
         /** 应用渲染系统
         @version NIIEngine 3.0.0
         */
-        void applyRender(RenderSys * sys);
+        inline void setRender(RenderSys * sys)      { mRenderSys = rsys; }
 
         /** 阴影通路
         @version NIIEngine 顶级api

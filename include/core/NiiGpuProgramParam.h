@@ -472,27 +472,27 @@ namespace NII
         {
             StorageUnit()             { memset(this, 0, sizeof(StorageUnit));}
 
-            StorageUnit & operator= (const StorageUnit & o) const
+            inline StorageUnit & operator= (const StorageUnit & o) const
             {
                 mBuffer = o.mBuffer;
                 mOffset = o.mOffset;
                 mSize = o.mSize;
             }
             
-            bool operator != (const StorageUnit & o) const
+            inline bool operator != (const StorageUnit & o) const
             {
                 if (mBuffer != o.mBuffer || mOffset != o.mOffset || mSize != o.mSize)
                     return true;
                 return false;
             }
 
-            bool operator == (const StorageUnit & o) const
+            inline bool operator == (const StorageUnit & o) const
             {
                 if (mBuffer == o.mBuffer && mOffset == o.mOffset && mSize == o.mSize)
                     return true;
                 return false;
             }
-            bool operator < (const StorageUnit & o) const
+            inline bool operator < (const StorageUnit & o) const
             {
                 if (mBuffer < o.mBuffer || mOffset < o.mOffset || mSize < o.mSize)
                     return true;
@@ -516,7 +516,7 @@ namespace NII
                     mFormat = pf;
             }
 
-            SamplerUnit & operator= (const SamplerUnit & o) const
+            inline SamplerUnit & operator= (const SamplerUnit & o) const
             {
                 mTexture = o.mTexture;
                 mMipmap = o.mMipmap;
@@ -524,28 +524,28 @@ namespace NII
                 mFormat = o.mFormat;
             }
             
-            bool operator != (const SamplerUnit & o) const
+            inline bool operator != (const SamplerUnit & o) const
             {
                 if (mTexture != o.mTexture || mMipmap != o.mMipmap || mArrayIndex != o.mArrayIndex || mFormat != o.mFormat)
                     return true;
                 return false;
             }
 
-            bool operator == (const SamplerUnit & o) const
+            inline bool operator == (const SamplerUnit & o) const
             {
                 if (mTexture == o.mTexture && mMipmap == o.mMipmap && mArrayIndex == o.mArrayIndex && mFormat == o.mFormat)
                     return true;
                 return false;
             }
 
-            bool operator < (const SamplerUnit & o) const
+            inline bool operator < (const SamplerUnit & o) const
             {
                 if (mTexture < o.mTexture || mMipmap < o.mMipmap || mArrayIndex < o.mArrayIndex || mFormat < o.mFormat)
                     return true;
                 return false;
             }
             
-            bool isValidView() const
+            inline bool isValidView() const
             {
                 return mFormat == mTexture->getFormat() && mMipmap == 0 && mArrayIndex == 0;
             }
@@ -559,40 +559,40 @@ namespace NII
         GpuParamBufferUnit();
         ~GpuParamBufferUnit();
         
-        bool empty() const
+        inline bool empty() const
         {
             return mStorage.mBuffer == 0 && mSampler.mTexture == 0;
         }
 
-        bool isStorage() const
+        inline bool isStorage() const
         {
             return mParamType == PT_Storage;
         }
         
-        bool isTexture() const
+        inline bool isTexture() const
         {
             return mParamType == PT_Sampler;
         }
 
-        StorageUnit & getBuffer()
+        inline StorageUnit & getBuffer()
         {
             N_assert(mParamType == PT_Storage);
             return mStorage;
         }
 
-        const StorageUnit & getBuffer() const
+        inline const StorageUnit & getBuffer() const
         {
             N_assert(mParamType == PT_Storage);
             return mStorage;
         }
 
-        SamplerUnit & getTexture()
+        inline SamplerUnit & getTexture()
         {
             N_assert(mParamType == PT_Sampler);
             return mSampler;
         }
 
-        const SamplerUnit & getTexture() const
+        inline const SamplerUnit & getTexture() const
         {
             N_assert(mParamType == PT_Sampler);
             return mSampler;
@@ -692,7 +692,7 @@ namespace NII
         @param[in] oft 偏移(单位:字节)
         @version NIIEngine 3.0.0
         */
-        void set(NCount oft, const Matrix4f * in, NCount cnt = 1)               { set(oft, &in.data(), 16 * cnt); }
+        inline void set(NCount oft, const Matrix4f * in, NCount cnt = 1)        { set(oft, &in.data(), 16 * cnt); }
 
         /** 设置参数值
         @param[in] oft 偏移(单位:字节)
@@ -787,7 +787,7 @@ namespace NII
         /** 获取绑定点缓存数量
         @version NIIEngine 3.0.0
         */
-        NCount getBindingCount() const          { return mSlotList.size(); }
+        inline NCount getBindingCount() const           { return mSlotList.size(); }
 
         /** 添加绑定点
         @version NIIEngine 3.0.0
@@ -807,7 +807,12 @@ namespace NII
         /** 获取绑定点数量
         @version NIIEngine 3.0.0
         */
-        NCount getBindingPointsCount() const;
+        inline NCount getBindingPointsCount() const     { return mNamedSlotList.size();}
+        
+        /** 所有成分是否有效
+        @version NIIEngine 5.0.0
+        */
+        bool isValid() const;
     protected:
         typedef map<VString, Nidx>::type NamedSlotList;
         typedef map<Nidx, Nidx>::type SlotList;
@@ -1067,7 +1072,7 @@ namespace NII
         /** 设置参数值
         @param[in] index 定义索引
         @param[in] oft 偏移(单位:4字节)
-        @param[in] cnt4x 参数为1则写入4个Ni32，参数为2则写入8个Ni32. ...(单位: 4*cnt4x)
+        @param[in] cnt4x 参数为1则写入4个Ni32，参数为2则写入8个Ni32. ...(单位: 4*Nui32)
         @version NIIEngine 3.0.0
         */
         void set(Nui32 index, NCount oft, const Ni32 * in, NCount cnt4x);
@@ -1075,7 +1080,7 @@ namespace NII
         /** 设置参数值
         @param[in] index 定义索引
         @param[in] oft 偏移(单位:4字节)
-        @param[in] cnt4x 参数为1则写入4个NIIf，参数为2则写入8个NIIf. ...(单位: 4*cnt4x)
+        @param[in] cnt4x 参数为1则写入4个NIIf，参数为2则写入8个NIIf. ...(单位: 4*Nui32)
         @version NIIEngine 3.0.0
         */
         void set(Nui32 index, NCount oft, const NIIf * in, NCount cnt4x);
@@ -1083,7 +1088,7 @@ namespace NII
         /** 设置参数值
         @param[in] index 定义索引
         @param[in] oft 偏移(单位:4字节)
-        @param[in] cnt4x 参数为1则写入4个NIId，参数为2则写入8个NIId. ...(单位: 4*cnt4x)
+        @param[in] cnt4x 参数为1则写入4个NIId，参数为2则写入8个NIId. ...(单位: 4*Nui32)
         @version NIIEngine 3.0.0
         */
         void set(Nui32 index, NCount oft, const NIId * in, NCount cnt4x);
@@ -1370,11 +1375,6 @@ namespace NII
         @version NIIEngine 3.0.0 高级api
         */
         void syncValue();
-        
-        /** 获取公共参数列表
-        @version NIIEngine 3.0.0 高级api
-        */
-        inline const ShareSyncList & getValueList() const       { return mShareSyncList; }
 
         /** 是否允许参数丢失
         @version NIIEngine 3.0.0  高级api
@@ -1466,9 +1466,10 @@ namespace NII
         void write(StructBuffer * src, NCount srcoft, NCount oft, NCount size);
     protected:
         /** 获取参数绑定
+        @param[in] reqCnt 需要多少个4xByte(128bits)
         @version NIIEngine 3.0.0
         */
-        GpuParamBlock * getBlock(Nui32 index, NCount reqCnt, Nmark typemark, GpuDataType dtype);
+        GpuParamBlock * getBlock(Nui32 index, NCount reqCnt, Nmark typemark, GpuDataType dtype, bool reduce = false);
 
         /** 移去参数绑定
         @version NIIEngine 3.0.0

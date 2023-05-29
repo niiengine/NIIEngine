@@ -811,9 +811,9 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 #define N_PropertySound_FusionType                          200617
 #define N_PropertySound_SubIndex                            200618
 #define N_PropertySound_TimeIndex                           200619
-#define N_PropertyValueSound_Order                          200620
-#define N_PropertyValueSound_TimeOrder                      200621
-#define N_PropertyValueSound_Fusion                         200622
+#define N_PropertySound_Order                               200620
+#define N_PropertySound_TimeOrder                           200621
+#define N_PropertySound_Fusion                              200622
 
 #define N_Property_Custom                                   1000000
 #define N_Property_CustomMax                                9000000
