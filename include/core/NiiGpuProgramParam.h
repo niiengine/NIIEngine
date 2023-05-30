@@ -267,40 +267,14 @@ namespace NII
     inline bool isUInt(GpuDataType c)       { return c > GDT_Int4X && c < GDT_Bool; }
     inline bool isBool(GpuDataType c)       { return c > GDT_UInt4X && c < GDT_Sampler1D; }
     inline bool isBlock(GpuDataType c)      { return c == GDT_Block; }
-
-    /** 环境参数
-    @version NIIEngine 3.0.0 Deprecated
-    */
-    struct _EngineAPI GpuEnvParamUnit
-    {
-        GpuEnvParamUnit(const String & name, GpuSyncParam sync, NCount cnt, Nui16 exttype, Nui16 datatype);
-
-        inline bool isFloat() const         { return mDataType > GDT_Unknow && mDataType < GDT_Int; }
-
-        inline bool isDouble() const        { return mDataType > GDT_SamplerArray2D && mDataType < GDT_Block; }
-
-        inline bool isSampler() const       { return mDataType > GDT_Bool4X && mDataType < GDT_64Int; }
-
-        inline bool isInt() const           { return mDataType > GDT_Matrix4X4 && mDataType < GDT_UInt; }
-
-        inline bool isUInt() const          { return mDataType > GDT_Int4X && mDataType < GDT_Bool; }
-
-        inline bool isBool() const          { return mDataType > GDT_UInt4X && mDataType < GDT_Sampler1D; }
-
-        inline bool isBlock() const         { return mDataType == GDT_Block; }
-        
-        String mName;
-        GpuSyncParam mSyncParam;
-        Nui16 mDataType;
-        Nui16 mInputType;
-        NCount mCount;
-    };
     
     /** 着程序自定义参数
     @version NIIEngine 3.0.0
     */
     struct _EngineAPI GpuParamUnit
     {
+        GpuParamUnit(const String & name, GpuSyncParam sync, NCount unitCnt, Nui16 exttype, Nui16 datatype);
+        
         GpuParamUnit();
 
         inline bool isFloat() const         { return mDataType > GDT_Unknow && mDataType < GDT_Int; }
@@ -317,16 +291,17 @@ namespace NII
 
         inline bool isBlock() const         { return mDataType == GDT_Block; }
 
-        GpuDataType mDataType;
-        GpuSyncParam mSyncParam;
-        Nidx mIndex;                ///< hwbuf idx
-        Nmark mTypeMark;
         Nidx mMemIndex;
-        NCount mUnit4XSize;         ///< 4XByte
-        NCount mUnitCount;          ///< Unit数量
-        Nidex mArrayIndex;          ///< 数组索引
+        Nui32 mSyncParam;           ///< GpuSyncParam
+        Nui32 mTypeMark;            ///< GpuParamType
+        Nui32 mUnit32bSize;
+        Nui32 mUnitCount;           ///< Unit数量
+        Nui16 mIndex;               ///< hwbuf idx
+        Nui16 mArrayIndex;          ///< 数组索引
+        Nui16 mDataType;
+        Nui16 mInputType;
         bool mArrayMode;
-        bool mValidValue;           ///<辅助
+        bool mValidValue;           ///< 辅助
     };
     typedef map<VString, GpuParamUnit>::type GpuParamUnitList;
 
@@ -1184,14 +1159,14 @@ namespace NII
         @param[in] oft 偏移(单位:4字节)
         @version NIIEngine 3.0.0 高级api
         */
-        inline void _write(Nidx memidx, NCount oft, NIIf in)                    { _write(memidx + oft, &in, 1); }
+        inline void _write(Nidx memidx, NCount oft, NIIf in){ _write(memidx + oft, &in, 1); }
 
         /** 写入缓存数据(直接操作缓存,需要明确的oft)
         @param[in] memidx 缓存存储索引
         @param[in] oft 偏移(单位:4字节)
         @version NIIEngine 3.0.0 高级api
         */
-        inline void _write(Nidx memidx, NCount oft, Ni32 in)                    { _write(memidx + oft, &in, 1); }
+        inline void _write(Nidx memidx, NCount oft, Ni32 in){ _write(memidx + oft, &in, 1); }
 
         /** 写入缓存数据(直接操作缓存,需要明确的oft)
         @param[in] memidx 缓存存储索引
@@ -1411,12 +1386,12 @@ namespace NII
         /** 设置多重绘制数量参数
         @version NIIEngine 3.0.0
         */
-        void setRenderCount(NIIf c);
+        inline void setRenderCount(NIIf c)                      { if(mRenderCountPtr) *mRenderCountPtr = c; }
 
         /** 获取多重绘制数量参数
         @version NIIEngine 3.0.0
         */
-        NIIf * getRenderCount() const;
+        inline NIIf * getRenderCount() const                    { return mRenderCountPtr; }
 
         /** 从缓存索引获取参数索引
         @version NIIEngine 3.0.0

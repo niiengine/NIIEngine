@@ -182,7 +182,7 @@ namespace NII
         /** 着色存在缓存是否存在
         @version NIIEngine 3.0.0
         */
-        bool isCacheExist(Nui32 cid) const;
+        inline bool isCacheExist(Nui32 cid) const       { return mCacheList.find(cid) != mCacheList.end(); }
 
         /** 获取着色程序的二进制缓存
         @version NIIEngine 3.0.0
@@ -192,12 +192,12 @@ namespace NII
         /** 调试着色程序
         @version NIIEngine 5.0.0
         */
-        void setDebugShaders(bool set)                  { mDebug = set;}
+        inline void setDebugShaders(bool set)           { mDebug = set;}
         
         /** 调试着色程序
         @version NIIEngine 5.0.0
         */
-        bool getDebugShaders() const                    { return mDebug; }
+        inline bool getDebugShaders() const             { return mDebug; }
         
         /** 获取语法标记
         @version NIIEngine 6.0.0
@@ -218,13 +218,13 @@ namespace NII
         @param[in] name 同步参数名字
         @version NIIEngine 3.0.0
         */
-        static const GpuEnvParamUnit * getGpuSyncParam(const String & name);
+        static const GpuParamUnit * getSyncParam(const String & name);
 
         /** 获取自动同步参数
         @param[in] idx 同步参数下标
         @version NIIEngine 3.0.0
         */
-        static const GpuEnvParamUnit * getGpuSyncParam(Nidx idx);
+        static const GpuParamUnit * getSyncParam(Nidx idx, String * outName = 0);
     protected:
         /// @copydetails ResourceManager::createImpl
         Resource * createImpl(ResourceID rid, GroupID gid, ResLoadScheme * ls, ResResultScheme * rs,
@@ -234,7 +234,8 @@ namespace NII
         virtual Resource * createImpl(ResourceID rid, GroupID gid, ResLoadScheme * ls, ResResultScheme * rs,
             GpuProgram::ShaderType type, ShaderLanguage sl);
     protected:
-        static GpuEnvParamUnit mGpuSyncParamList[];
+        unordered_map<VString, GpuParamUnit>::type GpuParamUnitList;
+        static GpuParamUnitList mSyncParamList;
         ShareCustomList mShareCustomList;
         CacheList mCacheList;
         String mCachePath;
@@ -276,10 +277,10 @@ namespace NII
         @version NIIEngine 3.0.0
         */
         HighLevelGpuProgram * create(ResourceID rid, GroupID gid, ShaderLanguage lang, GpuProgram::ShaderType type);
-        
-        virtual const char* getToken( PixelFormat pf ) const = 0;
-        
-        virtual const char* getToken( PixelFormat pf, Texture::Type textureType, bool isMsaa, GpuParamBufferUnit::OpType access ) const = 0;
+
+        virtual const char * getToken(PixelFormat pf) const = 0;
+
+        virtual const char * getToken(PixelFormat pf, Texture::Type type, bool isMsaa, GpuParamBufferUnit::OpType access) const = 0;
     protected:
         /// @copydetails ResourceManager::init
         void init();
