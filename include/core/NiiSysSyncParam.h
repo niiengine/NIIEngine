@@ -199,7 +199,7 @@ namespace NII
         NIIi getPassNumber() const;
         void setPassNumber(const NIIi passNumber);
         void incPassNumber();
-        void updateLightCustomGpuParameter(const GpuEnvParamBlock & bind, GpuProgramParam *params) const;
+        void updateLightCustomGpuParameter(const GpuSyncParamBlock & bind, GpuProgramParam *params) const;
     protected:
         Light * getLight(NCount index) const;
     protected:

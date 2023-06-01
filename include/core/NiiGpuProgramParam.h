@@ -340,13 +340,13 @@ namespace NII
     /** 同步参数内存绑定
     @version NIIEngine 3.0.0
     */
-    struct _EngineAPI GpuEnvParamBlock
+    struct _EngineAPI GpuSyncParamBlock
     {
     public:
-        GpuEnvParamBlock(Nui32 syncParam, Nidx memidx, Ni32 inputInt, Nui32 typeMark, Nui32 ucount = 4) :
+        GpuSyncParamBlock(Nui32 syncParam, Nidx memidx, Ni32 inputInt, Nui32 typeMark, Nui32 ucount = 4) :
             mSyncParam(syncParam), mMemIndex(memidx), mTypeMark(typeMark), mInputInt(inputInt), mUnitCount(ucount) {}
 
-        GpuEnvParamBlock(Nui32 syncParam, Nidx memidx, NIIf inputFloat, Nui32 typeMark, Nui32 ucount = 4) :
+        GpuSyncParamBlock(Nui32 syncParam, Nidx memidx, NIIf inputFloat, Nui32 typeMark, Nui32 ucount = 4) :
             mSyncParam(syncParam), mMemIndex(memidx), mTypeMark(typeMark), mInputFloat(inputFloat), mUnitCount(ucount) {}
 
         Nidx mMemIndex;
@@ -359,7 +359,7 @@ namespace NII
             NIIf mInputFloat;
         };
     };
-    typedef vector<GpuEnvParamBlock>::type GpuEnvParamBlockList;
+    typedef vector<GpuSyncParamBlock>::type GpuSyncParamBlockList;
 
     /** 着色程序自定义参数集
     @version NIIEngine 3.0.0
@@ -1269,39 +1269,39 @@ namespace NII
         /** 获取同步参数绑定
         @version NIIEngine 3.0.0
         */
-        const GpuEnvParamBlock * getEnvParamBlock(const VString & name) const;
+        const GpuSyncParamBlock * getSyncParamBlock(const VString & name) const;
 
         /** 获取同步参数绑定
         @param[in] index 参数索引
         @version NIIEngine 3.0.0 高级api
         */
-        const GpuEnvParamBlock * getEnvParamBlock(Nidx index) const;
+        const GpuSyncParamBlock * getSyncParamBlock(Nidx index) const;
 
         /** 获取同步参数绑定
         @param[in] memidx 缓存索引
         @version NIIEngine 3.0.0
         */
-        const GpuEnvParamBlock * _getEnvParamBlock(Nidx memidx) const;
+        const GpuSyncParamBlock * _getSyncParamBlock(Nidx memidx) const;
 
         /** 移去同步参数
         @version NIIEngine 3.0.0
         */
-        void removeEnvParam(Nidx index);
+        void removeSyncParam(Nidx index);
 
         /** 移去同步参数
         @version NIIEngine 3.0.0
         */
-        void removeEnvParam(const VString & name);
+        void removeSyncParam(const VString & name);
 
         /** 移去所有同步参数
         @version NIIEngine 3.0.0
         */
-        void removeAllEnvParam();
+        void removeAllSyncParam();
 
         /** 获取同步参数列表
         @version NIIEngine 3.0.0 高级api
         */
-        inline const GpuEnvParamBlockList & getEnvParamList() const { return mEnvParamList; }
+        inline const GpuSyncParamBlockList & getSyncParamList() const { return mSyncParamList; }
 
         /** 更新同步参数
         @param[in] src 参数资源
@@ -1454,7 +1454,7 @@ namespace NII
         /** 移去参数绑定
         @version NIIEngine 3.0.0
         */
-        void removeBlock(GpuEnvParamBlock * idx);
+        void removeBlock(GpuSyncParamBlock * idx);
 
         /** 获取参数种类
         @version NIIEngine 3.0.0
@@ -1466,7 +1466,7 @@ namespace NII
         GpuParamDefine * mParamDefine;
         GpuParamBuffer * mParamBuffer;
         GpuParamBlockList mBlockList;
-        GpuEnvParamBlockList mEnvParamList;
+        GpuSyncParamBlockList mSyncParamList;
         ShareSyncList mShareSyncList;
         ExtDataList mExtDataList;
         mutable BufferArray mBufferData;      // shared layout 预分配缓存为128byte(32*(float 4byte)) -> alter uav buffer uniform buffer
@@ -1496,5 +1496,60 @@ namespace NII
     {
         NIIf temp[4] = { in.x, in.y, in.z, 1.0f }; set(index, oft, temp, 1);
     }
+    
+    /** 着色程序自定义参数
+    @version NIIEngine 3.0.0
+    */
+    class _EngineAPI CustomGpuParam
+    {
+    public:
+        CustomGpuParam();
+
+        /** 为这个可渲染物设置一个自定义参数,用于推倒计算这个指定的可渲染物,
+            像GPU着色程序参数那样
+        @param[in] index
+        @param[in] value
+        @version NIIEngine 3.0.0
+        */
+        inline void setCustonParam(Nidx index, const Vector4f & value)  { mCGPUParamList.emplace(index, value); }
+
+        /** 给定索引获取关联这个可渲染物的自定义值
+        @param[in] index 参数使用的索引
+        @version NIIEngine 3.0.0
+        */
+        const Vector4f & getCustomParam(Nidx index) const;
+
+        /** 移去自定义参数
+        @param[in] index 参数使用的索引
+        @version NIIEngine 3.0.0
+        */
+        void removeCustomParam(Nidx index);
+
+        /** 是否存在自定义参数
+        @param[in] index 参数使用的索引
+        @version NIIEngine 3.0.0
+        */
+        inline bool isCustomParamExist(Nidx index) const                { return mCGPUParamList.find(index) != mCGPUParamList.end(); }
+
+        /** 更新自定义参数到实际的着色程序参数中
+        @note 参数使用的索引 bind 里的 mInputInt
+        @param[in] dst 需要更新的着色程序参数集
+        @param[in] bind 需要更新着色程序参数
+        @version NIIEngine 3.0.0
+        */
+        virtual void updateCustom(GpuProgramParam * dst, const GpuSyncParamBlock & bind) const;
+        
+        /** 更新自定义参数到实际的着色程序参数中
+        @param[in] dst 需要更新的着色程序参数集
+        @param[in] index 参数使用的索引
+        @param[in] bind 需要更新着色程序参数
+        @version NIIEngine 3.0.0
+        */
+        virtual void updateCustom(GpuProgramParam * dst, Nidx index, const GpuSyncParamBlock & entry) const;
+    protected:
+        typedef map<Nidx, Vector4f>::type CustomParameterMap;
+    protected:
+        CustomParameterMap mCGPUParamList;
+    };
 }
 #endif
