@@ -30,7 +30,7 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 
 #include "NiiPreInclude.h"
 #include "NiiGeometryRaw.h"
-#include "NiiGpuCustomParam.h"
+#include "NiiGpuProgramParam.h"
 #include "NiiExtData.h"
 
 namespace NII
@@ -48,12 +48,12 @@ namespace NII
         /** 设置模型调试模式
         @version NIIEngine 3.0.0
         */
-        void setDebugMode(bool b)   { mDebug = b; }
+        inline void setDebugMode(bool b)        { mDebug = b; }
 
         /** 获取调试模式模式
         @version NIIEngine 3.0.0
         */
-        bool isDebugMode() const    { return mDebug; }
+        inline bool isDebugMode() const         { return mDebug; }
 
         /** 执行查询
         @version NIIEngine 3.0.0 高级api
@@ -67,7 +67,7 @@ namespace NII
     @remark 这类对象能渲染
     @version NIIEngine 3.0.0
     */
-    class _EngineAPI GeometryObj : virtual public ExtData, public GpuCustomParam
+    class _EngineAPI GeometryObj : virtual public ExtData, public CustomGpuParam
     {
     public:
         enum Mode
@@ -106,39 +106,39 @@ namespace NII
         /** 启用模式
         @version NIIEngine 3.0.0
         */
-        void on(Mode mode)                      { mGeometryMark |= mode;  }
+        inline void on(Mode mode)               { mGeometryMark |= mode;  }
 
         /** 启用模式
         @version NIIEngine 3.0.0
         */
-        void off(Mode mode)                     { mGeometryMark &= ~mode;  }
+        inline void off(Mode mode)              { mGeometryMark &= ~mode;  }
 
         /** 是否启用模式
         @version NIIEngine 3.0.0
         */
-        bool isOn(Mode mode) const              { return mGeometryMark & mode; }
+        inline bool isOn(Mode mode) const       { return mGeometryMark & mode; }
 
         /** 设置几何LOD
         @remark 如果等级足够高,离当前摄像机足够远,很可能直接变跳过,或者用个颜色像素代替
         @version NIIEngine 3.0.0
         */
-        void setGeometryLod(Nidx16 index)       { mLodIndex = index;  }
+        inline void setGeometryLod(Nidx16 idx)  { mLodIndex = idx;  }
 
         /** 获取几何LOD
         @remark 如果等级足够高,离当前摄像机足够远,很可能直接变跳过,或者用个颜色像素代替
         @version NIIEngine 3.0.0
         */
-        Nidx16 getGeometryLod() const           { return mLodIndex; }
+        inline Nidx16 getGeometryLod() const    { return mLodIndex; }
 
         /** 设置灯光开始索引
         @version NIIEngine 3.0.0
         */
-        void setLightBegin(Nidx16 i)            { mLightBegin = i; }
+        inline void setLightBegin(Nidx16 i)     { mLightBegin = i; }
 
         /** 获取灯光开始索引
         @verison NIIEngine 3.0.0
         */
-        Nidx16 getLightBegin() const            { return mLightBegin; }
+        inline Nidx16 getLightBegin() const     { return mLightBegin; }
 
         /** 获取几何数据.
         @version NIIEngine 3.0.0

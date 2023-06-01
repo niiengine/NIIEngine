@@ -181,7 +181,7 @@ namespace NII
         /// @see GeometryObj::isCastShadow
         bool isCastShadow() const;
 
-        /// @copydetails GpuCustomParam::updateCustom
+        /// @copydetails CustomGpuParam::updateCustom
         void updateCustom(GpuProgramParam * params, const GpuEnvParamBlock & bind) const;
     protected:
         GeometryCom(GeometrySpace * parent, SubMesh * obj);

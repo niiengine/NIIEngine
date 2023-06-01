@@ -273,7 +273,7 @@ namespace NII
     */
     struct _EngineAPI GpuParamUnit
     {
-        GpuParamUnit(const String & name, GpuSyncParam sync, NCount unitCnt, Nui16 exttype, Nui16 datatype);
+        GpuParamUnit(Nui32 syncParam, Nui32 unitCnt, Nui16 inputType, Nui16 dataType);
         
         GpuParamUnit();
 
@@ -311,10 +311,10 @@ namespace NII
     struct _EngineAPI GpuParamBlock
     {
     public:
-        GpuParamBlock() : m4XSize(0), mMemIndex(0), mDataType(GDT_Unknow), mTypeMark(GPT_Render) {}
+        GpuParamBlock() : m32bSize(0), mMemIndex(0), mDataType(GDT_Unknow), mTypeMark(GPT_Render) {}
 
-        GpuParamBlock(Nidx memidx, GpuDataType type, NCount _4xsize, Nmark mark) :
-            mMemIndex(memidx), mDataType(type), m4XSize(_4xsize), mTypeMark(mark) {}
+        GpuParamBlock(Nidx memidx, Nui16 dataType, Nui32 _32bSize, Nui32 typeMark) :
+            mMemIndex(memidx), mDataType(dataType), m32bSize(_32bSize), mTypeMark(typeMark) {}
 
         inline bool isFloat() const         { return mDataType > GDT_Unknow && mDataType < GDT_Int; }
 
@@ -331,9 +331,9 @@ namespace NII
         inline bool isBlock() const         { return mDataType == GDT_Block; }
     public:
         Nidx mMemIndex;
-        GpuDataType mDataType;
-        NCount m4XSize;             ///< 4XByte
-        Nmark mTypeMark;
+        Nui32 m32bSize;
+        Nui32 mTypeMark;
+        Nui16 mDataType;
     };
     typedef map<Nui32, GpuParamBlock>::type GpuParamBlockList;
 
@@ -343,16 +343,16 @@ namespace NII
     struct _EngineAPI GpuEnvParamBlock
     {
     public:
-        GpuEnvParamBlock(GpuSyncParam type, Nidx memidx, Ni32 input, Nmark mark, NCount count = 4) :
-            mSyncParam(type), mMemIndex(memidx), mTypeMark(mark), mInputInt(input), mUnitCount(count) {}
+        GpuEnvParamBlock(Nui32 syncParam, Nidx memidx, Ni32 inputInt, Nui32 typeMark, Nui32 ucount = 4) :
+            mSyncParam(syncParam), mMemIndex(memidx), mTypeMark(typeMark), mInputInt(inputInt), mUnitCount(ucount) {}
 
-        GpuEnvParamBlock(GpuSyncParam type, Nidx memidx, NIIf input, Nmark mark, NCount count = 4) :
-            mSyncParam(type), mMemIndex(memidx), mTypeMark(mark), mInputFloat(input), mUnitCount(count) {}
+        GpuEnvParamBlock(Nui32 syncParam, Nidx memidx, NIIf inputFloat, Nui32 typeMark, Nui32 ucount = 4) :
+            mSyncParam(syncParam), mMemIndex(memidx), mTypeMark(typeMark), mInputFloat(inputFloat), mUnitCount(ucount) {}
 
         Nidx mMemIndex;
-        GpuSyncParam mSyncParam;
-        Nmark mTypeMark;
-        NCount mUnitCount;
+        Nui32 mTypeMark;
+        Nui32 mSyncParam;
+        Nui32 mUnitCount;
         union
         {
             Ni32 mInputInt;
@@ -944,7 +944,7 @@ namespace NII
         GpuParamUnitList mDefines;
         mutable BufferArray mBufferData; 
         NCount mDataSize;
-        Nmark mDirtyMark;
+        NCount mDirtyMark;
     };
 
     class ParamValueSync;
