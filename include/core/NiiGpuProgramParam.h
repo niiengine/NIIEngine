@@ -716,12 +716,12 @@ namespace NII
 
         bool operator == (const GpuParamBuffer & o) const
         {
-            if (mGpuParamBufferUnitList.size() == o.mGpuParamBufferUnitList.size())
+            if (mUnitList.size() == o.mUnitList.size())
             {
-                NCount i, iend = mGpuParamBufferUnitList.size();
+                NCount i, iend = mUnitList.size();
                 for (i = 0; i < iend; ++i)
                 {
-                    if (mGpuParamBufferUnitList[i] != o.mGpuParamBufferUnitList[i])
+                    if (mUnitList[i] != o.mUnitList[i])
                         return false;
                 }
                 return true;
@@ -731,14 +731,14 @@ namespace NII
 
         bool operator < (const GpuParamBuffer & o) const
         {
-            if (mGpuParamBufferUnitList.size() != o.mGpuParamBufferUnitList.size())
+            if (mUnitList.size() != o.mUnitList.size())
             {
-                return mGpuParamBufferUnitList.size() < o.mGpuParamBufferUnitList.size();
+                return mUnitList.size() < o.mUnitList.size();
             }
-            NCount i, iend = mGpuParamBufferUnitList.size();
+            NCount i, iend = mUnitList.size();
             for (i = 0; i < iend; ++i)
             {
-                if (mGpuParamBufferUnitList[i] < o.mGpuParamBufferUnitList[i])
+                if (mUnitList[i] < o.mUnitList[i])
                     return false;
             }
             return true;
@@ -767,7 +767,7 @@ namespace NII
         /** 添加绑定点
         @version NIIEngine 3.0.0
         */
-        void addBindingPoint(const VString & name, Nidx slot);
+        inline void addBindingPoint(const VString & name, Nidx slot){ mNamedSlotList.insert_or_assign(Npair(name, slot));}
         
         /** 移去绑定点
         @version NIIEngine 3.0.0
@@ -789,10 +789,10 @@ namespace NII
         */
         bool isValid() const;
     protected:
-        typedef map<VString, Nidx>::type NamedSlotList;
-        typedef map<Nidx, Nidx>::type SlotList;
+        typedef map<VString, Nidx>::type NamedSlotList;//<GPUProgram name, GPUbinding[Nidx]
+        typedef map<Nidx, Nidx>::type SlotList; //<mUnitList[Nidx], GPUbinding[Nidx]
     protected:
-        GpuParamBufferUnitList mGpuParamBufferUnitList;
+        GpuParamBufferUnitList mUnitList;
         NamedSlotList mNamedSlotList;
         SlotList mSlotList;
     };
@@ -923,7 +923,7 @@ namespace NII
         */
         inline Nul getStateMark() const                             { return mDirtyMark; }
 
-        /** 获取浮点部分数据
+        /** 获取数据
         @version NIIEngine 3.0.0
         */
         inline void * getBufferData(NCount pos = 0) const           { return &mBufferData[pos];}
@@ -942,7 +942,7 @@ namespace NII
     protected:
         String mName;
         GpuParamUnitList mDefines;
-        mutable BufferArray mBufferData; 
+        mutable GBufferArray mBufferData; 
         NCount mDataSize;
         NCount mDirtyMark;
     };
@@ -1411,7 +1411,7 @@ namespace NII
         /** 获取NIIf常量列表的引用
         @version NIIEngine 3.0.0 高级api
         */
-        inline const BufferArray & getBufferData() const        { return mBufferData; }
+        inline const GBufferArray & getBufferData() const       { return mBufferData; }
 
         /** 获取浮点缓存
         @version NIIEngine 3.0.0 高级api
@@ -1469,7 +1469,7 @@ namespace NII
         GpuSyncParamBlockList mSyncParamList;
         ShareSyncList mShareSyncList;
         ExtDataList mExtDataList;
-        mutable BufferArray mBufferData;      // shared layout 预分配缓存为128byte(32*(float 4byte)) -> alter uav buffer uniform buffer
+        mutable GBufferArray mBufferData;      // shared layout 预分配缓存为128byte(32*(float 4byte)) -> alter uav buffer uniform buffer
         NIIf * mRenderCountPtr;
         Nmark mParamTypeMark;
         BitSet mBitSet;
