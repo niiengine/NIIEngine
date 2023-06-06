@@ -56,17 +56,17 @@ namespace NII
         /** 获取发生行号
         @@version NIIEngine 3.0.0
         */
-        NIIl getLine() const                { return mLine; }
+        inline NIIl getLine() const                { return mLine; }
 
         /** 获取发生文件
         @version NIIEngine 3.0.0
         */
-        const String & getFile() const      { return mFile; }
+        inline const String & getFile() const      { return mFile; }
 
         /** 获取发生函数
         @version NIIEngine 3.0.0
         */
-        const String & getSource() const    { return mSrc; }
+        inline const String & getSource() const    { return mSrc; }
 
         /** 获取错误描述
         @version NIIEngine 3.0.0

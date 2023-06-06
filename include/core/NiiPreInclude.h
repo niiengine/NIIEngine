@@ -560,11 +560,6 @@ namespace NII
         #define NII_DEFAULT_RT_GROUP 4
         #define NII_REND_TO_TEX_RT_GROUP 2
     #endif
-    
-    #define N_Mark(value, mark)         value |= (mark)
-    #define N_NonMark(value, mark)      value &= ~(mark)
-    #define N_MarkValue(value, mark)    (value) | (mark)
-    #define N_NonMarkValue(value, mark) (value) & ~(mark)
 
     #define N_DMBFuncSign(api) extern "C" void api NiiDynModuleBegin(void) throw()
     #define N_DMEFuncSign(api) extern "C" void api NiiDynModuleEnd(void)
@@ -615,6 +610,11 @@ namespace NII
     #define N_Engine()                  NII::Engine::getOnly()
     #define N_EnginePtr()               NII::Engine::getOnlyPtr()
     #define N_Timer()                   NII::Engine::getOnly().getTimer()
+    
+    #define N_Mark(value, mark)                     value |= (mark)
+    #define N_NonMark(value, mark)                  value &= ~(mark)
+    #define N_MarkValue(value, mark)                (value) | (mark)
+    #define N_NonMarkValue(value, mark)             (value) & ~(mark)
 
     #define N_MarkTrue(src, mark)                   ((src & mark) == mark)
     #define N_MarkOnlyTrue(src, flmark, mark)       ((src & flmark) == mark)

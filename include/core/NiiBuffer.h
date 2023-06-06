@@ -525,7 +525,7 @@ namespace NII
         /** 获取辅助缓存
         @version NIIEngine 5.0.0 高级api
         */
-        Buffer * getSecondBuffer() const            { return mSecond;}
+        inline Buffer * getSecondBuffer() const     { return mSecond;}
         
         /** 设置操作类
         @version NIIEngine 5.0.0 高级api
@@ -535,7 +535,7 @@ namespace NII
         /** 获取操作类
         @version NIIEngine 5.0.0 高级api
         */
-        BufferOp * getOperation() const             { return mOp; }
+        inline BufferOp * getOperation() const      { return mOp; }
         
         /** 获取CPU存储
         @version NIIEngine 5.0.0 高级api

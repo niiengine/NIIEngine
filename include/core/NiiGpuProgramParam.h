@@ -401,7 +401,7 @@ namespace NII
         /** 获取大小
         @version NIIEngine 3.0.0
         */
-        inline NCount getSize()const                        { return mDefineDataSize; }
+        inline NCount getSize() const                       { return mDefineDataSize; }
 
         /** 保存到文件
         @version NIIEngine 3.0.0
@@ -743,22 +743,22 @@ namespace NII
             }
             return true;
         }
-        
+
         /** 添加绑定点缓存
         @version NIIEngine 3.0.0
         */
         void addBinding(Nidx slot, const GpuParamBufferUnit & unit);
-        
+
         /** 移去绑定点缓存
         @version NIIEngine 3.0.0
         */
         void removeBinding(Nidx slot);
-        
+
         /** 获取绑定点缓存
         @version NIIEngine 3.0.0
         */
         const GpuParamBufferUnit * getBinding(Nidx slot) const;
-        
+
         /** 获取绑定点缓存数量
         @version NIIEngine 3.0.0
         */
@@ -768,22 +768,22 @@ namespace NII
         @version NIIEngine 3.0.0
         */
         inline void addBindingPoint(const VString & name, Nidx slot){ mNamedSlotList.insert_or_assign(Npair(name, slot));}
-        
+
         /** 移去绑定点
         @version NIIEngine 3.0.0
         */
         void removeBindingPoint(const VString & name);
-        
+
         /** 获取绑定点
         @version NIIEngine 3.0.0
         */
         Nidx getBindingPoint(const VString & name) const;
-        
+
         /** 获取绑定点数量
         @version NIIEngine 3.0.0
         */
         inline NCount getBindingPointsCount() const     { return mNamedSlotList.size();}
-        
+
         /** 所有成分是否有效
         @version NIIEngine 5.0.0
         */
@@ -797,7 +797,7 @@ namespace NII
         SlotList mSlotList;
     };
     typedef vector<GpuParamBuffer>::type GpuParamBufferList;
-    
+
     /** 预定义着色程序值
     @version NIIEngine 3.0.0
     */
@@ -1159,21 +1159,21 @@ namespace NII
         @param[in] oft 偏移(单位:4字节)
         @version NIIEngine 3.0.0 高级api
         */
-        inline void _write(Nidx memidx, NCount oft, NIIf in){ _write(memidx + oft, &in, 1); }
+        inline void _write(Nidx memidx, NCount oft, NIIf in)                { _write(memidx + oft, &in, 1); }
 
         /** 写入缓存数据(直接操作缓存,需要明确的oft)
         @param[in] memidx 缓存存储索引
         @param[in] oft 偏移(单位:4字节)
         @version NIIEngine 3.0.0 高级api
         */
-        inline void _write(Nidx memidx, NCount oft, Ni32 in){ _write(memidx + oft, &in, 1); }
+        inline void _write(Nidx memidx, NCount oft, Ni32 in)                { _write(memidx + oft, &in, 1); }
 
         /** 写入缓存数据(直接操作缓存,需要明确的oft)
         @param[in] memidx 缓存存储索引
         @param[in] oft 偏移(单位:4字节)
         @version NIIEngine 3.0.0 高级api
         */
-        inline void _write(Nidx memidx, NCount oft, const Vector3f & in)        { _write(memidx + oft, &in.x, 3); }
+        inline void _write(Nidx memidx, NCount oft, const Vector3f & in)    { _write(memidx + oft, &in.x, 3); }
 
         /** 写入缓存数据(直接操作缓存,需要明确的oft)
         @param[in] memidx 缓存存储索引

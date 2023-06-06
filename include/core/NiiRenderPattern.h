@@ -579,7 +579,7 @@ namespace NII
         /** 应用渲染系统
         @version NIIEngine 3.0.0
         */
-        inline void setRender(RenderSys * sys)      { mRenderSys = rsys; }
+        inline void setRender(RenderSys * rsys)      { mRenderSys = rsys; }
 
         /** 阴影通路
         @version NIIEngine 顶级api
