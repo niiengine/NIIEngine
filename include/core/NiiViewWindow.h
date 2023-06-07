@@ -195,7 +195,7 @@ namespace NII
         /** 获取是否无边框
         @version NIIEngine 4.0.0
         */
-        bool isBorderless() const                       { return mBorderless; }
+        inline bool isBorderless() const                       { return mBorderless; }
         
         /** 获取渲染对象的宽度
         @version NIIEngine 3.0.0
@@ -205,22 +205,22 @@ namespace NII
         /** 获取渲染对象的宽度
         @version NIIEngine 3.0.0
         */
-        Nui32 getWidth() const                          { return mBuffer->getWidth(); }
+        inline Nui32 getWidth() const                          { return mBuffer->getWidth(); }
         
         /** 获取渲染对象的高度
         @version NIIEngine 3.0.0
         */
-        Nui32 getHeight() const                         { return mBuffer->getHeight(); }
+        inline Nui32 getHeight() const                         { return mBuffer->getHeight(); }
         
         /** 获取视图宽度
         @version NIIEngine 4.0.0
         */
-        Nui32 getViewWidth() const                      { return mViewWidth; }
+        inline Nui32 getViewWidth() const                      { return mViewWidth; }
         
         /** 获取视图高度
         @version NIIEngine 4.0.0
         */
-        Nui32 getViewHeight() const                     { return mViewHeight; }
+        inline Nui32 getViewHeight() const                     { return mViewHeight; }
         
         /** 获取缓存/视图比率
         @version NIIEngine 4.0.0
@@ -245,17 +245,17 @@ namespace NII
         /** 是否多重采样
         @version NIIEngine 5.0.0
         */
-        bool isMultiSample() const                      { return mBuffer->isMultiSample(); }
+        inline bool isMultiSample() const               { return mBuffer->isMultiSample(); }
 
         /** 设置显示频率
         @version NIIEngine 5.0.0
         */
-        Nui32 getDisplayFrequency() const               { return mDisplayFrequency; }
+        inline Nui32 getDisplayFrequency() const        { return mDisplayFrequency; }
         
         /** 设置显示频率除数(分数时使用)
         @version NIIEngine 5.0.0
         */
-        Nui32 getDisplayDenominator() const             { return mDisplayDenominator; }
+        inline Nui32 getDisplayDenominator() const      { return mDisplayDenominator; }
         
         /** 截屏
         @version NIIEngine 3.0.0
@@ -270,17 +270,17 @@ namespace NII
         /**
         @version NIIEngine 5.0.0
         */
-        TextureGpu * getBuffer() const                  { return mBuffer; }
+        inline Texture * getBuffer() const              { return mBuffer; }
         
         /**
         @version NIIEngine 5.0.0
         */
-        TextureGpu * getDepth() const                   { return mDepth; }
+        inline Texture * getDepth() const               { return mDepth; }
         
         /**
         @version NIIEngine 5.0.0
         */
-        TextureGpu * getStencil() const                 { return mStencil; }
+        inline Texture * getStencil() const             { return mStencil; }
         
         /** 通知形态变化
         @version NIIEngine 3.0.0

@@ -376,16 +376,16 @@ namespace NII
         /** 是否容积相等
         @verison NIIEngine 3.0.0
         */
-        bool equalVolume(const PixelVolume & o) const
+        inline bool equalVolume(const PixelVolume & o) const
         {
-            return mWidth == o.mWidth && mHeight == o.mHeight && mDepth == o.mDepth && mArray == o.mArray && 
-                mFormat == o.mFormat;
+            return mWidth == o.mWidth && mHeight == o.mHeight && mDepth == o.mDepth && 
+                mArray == o.mArray && mFormat == o.mFormat;
         }
         
         /** 是否片相等
         @verison NIIEngine 3.0.0
         */
-        bool equalSlice(const PixelVolume & o) const
+        inline bool equalSlice(const PixelVolume & o) const
         {
             return mWidth == o.mWidth && mHeight == o.mHeight && mFormat == o.mFormat;
         }
@@ -438,7 +438,7 @@ namespace NII
         /** 是否容积相等
         @version NIIEngine 3.0.0
         */
-        bool equalVolume(const PixelBlock & o) const
+        inline bool equalVolume(const PixelBlock & o) const
         {
             return mWidth == o.mWidth && mHeight == o.mHeight && mDepth == o.mDepth && mArray == o.mArray;
         }
@@ -446,7 +446,7 @@ namespace NII
         /** 是否片相等
         @version NIIEngine 3.0.0
         */
-        bool equalSlice(const PixelBlock & o) const
+        inline bool equalSlice(const PixelBlock & o) const
         {
             return mWidth == o.mWidth && mHeight == o.mHeight && mFormat == o.mFormat;
         }
@@ -473,7 +473,7 @@ namespace NII
         /** 是否包含
         @verison NIIEngine 3.0.0
         */
-        bool contains( const PixelBlock &o ) const
+        inline bool contains( const PixelBlock &o ) const
         {
             return o.mLeft >= mLeft && o.getRight() <= getRight() && o.mTop >= mTop && o.getBottom() <= getBottom() &&
                 o.mFront >= mFront && o.getBack() <= getBack() && o.mArrayIdx >= mArrayIdx && o.getMaxArray() <= getMaxArray();

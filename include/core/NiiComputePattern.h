@@ -79,22 +79,22 @@ namespace NII
         /** 
         @version NIIEngine 5.0.0
         */
-        Nid getID() const                               { return mID; }
+        inline Nid getID() const                               { return mID; }
         
         /** 
         @version NIIEngine 5.0.0
         */
-        void setName(const String & name)               { mName = name; }
+        inline void setName(const String & name)               { mName = name; }
         
         /** 
         @version NIIEngine 5.0.0
         */
-        const String & getName() const                  { return mName; }
+        inline const String & getName() const                  { return mName; }
 
         /** 
         @version NIIEngine 5.0.0
         */
-        ComputePattern * getParent() const              { return mParent; }
+        inline ComputePattern * getParent() const              { return mParent; }
         
         /** 手动设置状态
         @version NIIEngine 5.0.0
@@ -115,17 +115,17 @@ namespace NII
         @version NIIEngine 5.0.0
         */
         void setCeilCount(Nui32 x, Nui32 y, Nui32 z);
-        Nui32 getCeilX() const                          { return mCeilCount[0]; }
-        Nui32 getCeilY() const                          { return mCeilCount[1]; }
-        Nui32 getCeilZ() const                          { return mCeilCount[2]; }
+        inline Nui32 getCeilX() const                          { return mCeilCount[0]; }
+        inline Nui32 getCeilY() const                          { return mCeilCount[1]; }
+        inline Nui32 getCeilZ() const                          { return mCeilCount[2]; }
 
         /** 
         @version NIIEngine 5.0.0
         */
         void setGroupCount(Nui32 x, Nui32 y, Nui32 z);
-        Nui32 getGroupX() const                         { return mGroupCount[0]; }
-        Nui32 getGroupY() const                         { return mGroupCount[1]; }
-        Nui32 getGroupZ() const                         { return mGroupCount[2]; }
+        inline Nui32 getGroupX() const                         { return mGroupCount[0]; }
+        inline Nui32 getGroupY() const                         { return mGroupCount[1]; }
+        inline Nui32 getGroupZ() const                         { return mGroupCount[2]; }
 
         /**
         @version NIIEngine 5.0.0
@@ -155,12 +155,12 @@ namespace NII
         /**
         @version NIIEngine 5.0.0
         */
-        NCount getTextureCount() const                  { return mTextureUnitList.size(); }
+        inline NCount getTextureCount() const           { return mTextureUnitList.size(); }
 
         /**
         @version NIIEngine 5.0.0
         */
-        TextureGpu * getTexture(Nidx idx) const;
+        Texture * getTexture(Nidx idx) const;
 
         /**
         @version NIIEngine 5.0.0
@@ -175,7 +175,7 @@ namespace NII
         /**
         @version NIIEngine 5.0.0
         */
-        NCount getBufferCount() const                   { return mBufferUnitList.size(); }
+        inline NCount getBufferCount() const                   { return mBufferUnitList.size(); }
 
         /**
         @version NIIEngine 5.0.0
@@ -200,17 +200,17 @@ namespace NII
         /**
         @version NIIEngine 5.0.0 adv
         */
-        StructBuffer * getStructBuffer(Nidx idx) const  { return mStructBufferList[idx]; }
+        inline StructBuffer * getStructBuffer(Nidx idx) const  { return mStructBufferList[idx]; }
         
         /**
         @version NIIEngine 5.0.0 adv
         */
-        TextureSampleUnit * getSampler(Nidx idx) const  { return mSamplerUnitList[idx]; }
+        inline TextureSampleUnit * getSampler(Nidx idx) const  { return mSamplerUnitList[idx]; }
         
         /**
         @version NIIEngine 5.0.0 adv
         */
-        GpuParamBufferUnit & getBuffer(Nidx idx) const  { return mBufferUnitList[idx]; }
+        inline GpuParamBufferUnit & getBuffer(Nidx idx) const  { return mBufferUnitList[idx]; }
 
         /**
         @version NIIEngine 5.0.0
@@ -287,22 +287,22 @@ namespace NII
         /**
         @version NIIEngine 5.0.0
         */
-        ComputePatternType getType() const      { return mCodeID; }
+        inline ComputePatternType getType() const      { return mCodeID; }
         
         /**
         @version NIIEngine 5.0.0
         */
-        Nid getID() const                       { return mID; }
+        inline Nid getID() const                       { return mID; }
         
         /**
         @version NIIEngine 5.0.0
         */
-        void setName(const String & str)        { mName = str;}
+        inline void setName(const String & str)        { mName = str;}
 
         /**
         @version NIIEngine 5.0.0
         */
-        const String & getName() const          { return mName; }
+        inline const String & getName() const          { return mName; }
 
         /**
         @version NIIEngine 5.0.0
@@ -337,7 +337,7 @@ namespace NII
         /**
         @version NIIEngine 5.0.0
         */
-        SysSyncParam * getParam() const         { return mSysParam; }
+        inline SysSyncParam * getParam() const         { return mSysParam; }
         
         /**
         @version NIIEngine 5.0.0

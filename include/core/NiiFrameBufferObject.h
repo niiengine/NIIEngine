@@ -58,8 +58,8 @@ namespace NII
         bool operator == (const FrameTarget & o) const;
         bool operator < (const FrameTarget & o) const;
         
-        TextureGpu * mTexture;
-        TextureGpu * mTarget;
+        Texture * mTexture;
+        Texture * mTarget;
 
         Nui16 mMip;
         Nui16 mTargetMip;
@@ -87,7 +87,7 @@ namespace NII
             TT_Colour  = TT_Colour0|TT_Colour1|TT_Colour2|TT_Colour3|TT_Colour4|TT_Colour5|TT_Colour6|TT_Colour7,
             TT_Depth   = 1u << NII_DepthTargetIndex,
             TT_Stencil = 1u << NII_StencilTargetIndex,
-            TT_All = TT_Colour|Depth|TT_Stencil
+            TT_All = TT_Colour | TT_Depth | TT_Stencil
         };
     public:
         FrameBufferObject();
@@ -100,13 +100,16 @@ namespace NII
         virtual void syncType(Nmark type);
 
         virtual void setClearColour(const Colour & clr);
+        
         virtual void setClearColour(Nidx idx, const Colour & clr);
+        
         virtual void setClearDepth(NIIf depth);
+        
         virtual void setClearStencil(Nui32 stencil);
 
-        Nui32 getColourCount() const                { return mColourCount; }
+        inline Nui32 getColourCount() const            { return mColourCount; }
 
-        bool isTextureFlipping() const              { return mTextureFlipping; }
+        inline bool isFlipping() const                 { return mTextureFlipping; }
         
         bool isStencilFeature() const;
 
