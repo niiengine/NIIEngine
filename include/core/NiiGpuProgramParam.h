@@ -453,7 +453,7 @@ namespace NII
                 mOffset = o.mOffset;
                 mSize = o.mSize;
             }
-            
+
             inline bool operator != (const StorageUnit & o) const
             {
                 if (mBuffer != o.mBuffer || mOffset != o.mOffset || mSize != o.mSize)

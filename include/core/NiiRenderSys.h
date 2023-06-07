@@ -335,12 +335,12 @@ namespace NII
         /** 设置名称
         @version NIIEngine 3.0.0
         */
-        inline void setName(const String & rs) { mName = rs; }
+        inline void setName(const String & rs)              { mName = rs; }
 
         /** 设置多纹理采样最大数量
         @version NIIEngine 3.0.0 高级api
         */
-        inline void setMaxTexUnit(Nui16 num) { mMaxTextureUnit = num; }
+        inline void setMaxTexUnit(Nui16 num)                { mMaxTextureUnit = num; }
         
         /** 设置纹理最大尺寸
         @version NIIEngine 5.0.0
@@ -351,37 +351,37 @@ namespace NII
         @remark 像素
         @version NIIEngine 3.0.0 高级api
         */
-        inline void setMaxPointSize(NIIf s) { mMaxPointSize = s; }
+        inline void setMaxPointSize(NIIf s)                 { mMaxPointSize = s; }
 
         /** 设置支持同步渲染目标的数目
         @version NIIEngine 3.0.0
         */
-        void setMaxMultiFrameObj(Nui16 num) { mMaxMultiFrameObj = num; }
+        inline void setMaxMultiFrameObj(Nui16 num)          { mMaxMultiFrameObj = num; }
 
         /** 设置最大空间数量
         @version NIIEngine 3.0.0
         */
-        void setMaxSpace(Nui16 num) { mMaxSpace = num; }
+        inline void setMaxSpace(Nui16 num)                  { mMaxSpace = num; }
 
         /** 设置硬件模板位深
         @version NIIEngine 3.0.0
         */
-        void setStencilBit(Nui16 num) { mStencilBit = num; }
+        inline void setStencilBit(Nui16 num)                { mStencilBit = num; }
 
         /** 设置顶点纹理最大数量
         @version NIIEngine 3.0.0
         */
-        void setMaxVertexTexUnit(Nui16 n) { mMaxVertexTexUnit = n; }
+        inline void setMaxVertexTexUnit(Nui16 n)            { mMaxVertexTexUnit = n; }
 
         /** 设置几何程序输出顶点最大数量
         @version NIIEngine 3.0.0
         */
-        void setMaxGeometryOutput(NIIi count) { mMaxGPOutput = count; }
+        inline void setMaxGeometryOutput(NIIi count)        { mMaxGPOutput = count; }
 
         /** 设置是否仅2次幂纹理
         @version NIIEngine 3.0.0
         */
-        void setOnlyPow2Texture(bool l) { mOnlyPow2Texture = l; }
+        inline void setOnlyPow2Texture(bool l)              { mOnlyPow2Texture = l; }
 
         /** 设置顶点着色程序局部参数最大数量
         @version NIIEngine 3.0.0
@@ -562,12 +562,12 @@ namespace NII
         /** 获取自定义属性集
         @version NIIEngine 3.0.0
         */
-        inline const SysOptionList & getConfig() const          { return mOptions; }
+        inline const SysOptionList & getConfig() const      { return mOptions; }
 
         /** 获取自定义属性集数据
         @version NIIEngine 3.0.0
         */
-        inline const PropertyData * getConfigData() const       { return &mOptionData; }
+        inline const PropertyData * getConfigData() const   { return &mOptionData; }
 
         /** 构建渲染系统特性
         @version NIIEngine 3.0.0
@@ -583,7 +583,7 @@ namespace NII
         /** 获取渲染系统能力
         @version NIIEngine 3.0.0
         */
-        inline RenderFeature * getFeature() const               { N_assert(mFeature, "SYS Uninitialized");  return mFeature; }
+        inline RenderFeature * getFeature() const           { N_assert(mFeature, "SYS Uninitialized");  return mFeature; }
 
         /** 构建固定编程管线着色程序参数
         @version NIIEngine 5.0.0
@@ -593,7 +593,7 @@ namespace NII
         /** 获取固定编程管线着色程序参数
         @verison NIIEngine 5.0.0
         */
-        inline GpuProgramParam * getFFPParam() const            { N_assert(mFFGPP, "SYS Uninitialized"); return mFFGPP; }
+        inline GpuProgramParam * getFFPParam() const        { N_assert(mFFGPP, "SYS Uninitialized"); return mFFGPP; }
 
         /** 设置动态灯光
         @version NIIEngine 3.0.0
@@ -613,22 +613,22 @@ namespace NII
         /** 设置默认渲染处理器
         @version NIIEngine 6.0.0
         */
-        void setRenderType(RenderPatternType type)              { mDefaultRenderType = type; }
+        inline void setRenderType(RenderPatternType type)   { mDefaultRenderType = type; }
         
         /** 获取默认渲染处理器
         @version NIIEngine 6.0.0
         */
-        RenderPatternType getRenderType() const                 { return mDefaultRenderType; }
+        inline RenderPatternType getRenderType() const      { return mDefaultRenderType; }
         
         /** 设置默认计算处理器
         @version NIIEngine 6.0.0
         */
-        void setComputeType(ComputePatternType type)            { mDefaultComputeType = type; }
+        inline void setComputeType(ComputePatternType type) { mDefaultComputeType = type; }
         
         /** 获取默认计算处理器
         @version NIIEngine 6.0.0
         */
-        ComputePatternType getComputeType() const               { return mDefaultComputeType; }
+        inline ComputePatternType getComputeType() const    { return mDefaultComputeType; }
 
         /** 设置默认影子使用背表面
         @version NIIEngine 6.0.0
@@ -638,28 +638,28 @@ namespace NII
         /** 影子默认是否使用背表面
         @version NIIEngine 6.0.0
         */
-        bool isBackFaceInCast()                                 { return mBackFaceInCast; }
+        inline bool isBackFaceInCast()                      { return mBackFaceInCast; }
 
         /** 设置是否使用同步垂直
         @remark Has NO effec
         @version NIIEngine 3.0.0 高级api
         */
-        void setVSync(bool b)                                   { mVSync = b;}
+        inline void setVSync(bool b)                        { mVSync = b;}
 
         /** 获取是否使用同步垂直
         @version NIIEngine 3.0.0 高级api
         */
-        bool isVSync() const                                    { return mVSync; }
+        inline bool isVSync() const                         { return mVSync; }
 
         /** 设置是否使用深度缓存
         @version NIIEngine 3.0.0 高级api
         */
-        void setWBuffer(bool b)                                 { mWBuffer = b; }
+        inline void setWBuffer(bool b)                      { mWBuffer = b; }
 
         /** 获取是否使用深度缓存
         @version NIIEngine 3.0.0 高级api
         */
-        bool getWBuffer() const                                 { return mWBuffer;}
+        inline bool getWBuffer() const                      { return mWBuffer;}
 
         /** 设置投影矩阵
         @version NIIEngine 3.0.0 高级api
@@ -721,32 +721,32 @@ namespace NII
         /** 设置顶点缓存
         @version NIIEngine 3.0.0
         */
-        void setInstanceData(VertexBuffer * buf)            { mInstanceBuffer = buf; }
+        inline void setInstanceData(VertexBuffer * buf)     { mInstanceBuffer = buf; }
 
         /** 获取顶点缓存
         @version NIIEngine 3.0.0
         */
-        VertexBuffer * getInstanceBuffer() const            { return mInstanceBuffer; }
+        inline VertexBuffer * getInstanceBuffer() const     { return mInstanceBuffer; }
 
         /** 设置复用顶点
         @version NIIEngine 3.0.0
         */
-        void setInstanceData(VertexData * vd)               { mInstanceData = vd; }
+        inline void setInstanceData(VertexData * vd)        { mInstanceData = vd; }
 
         /** 获取复用顶点
         @version NIIEngine 3.0.0
         */
-        VertexData * getInstanceData() const                { return mInstanceData; }
+        inline VertexData * getInstanceData() const         { return mInstanceData; }
 
         /** 设置绘制次数
         @version NIIEngine 3.0.0
         */
-        void setInstanceCount(NCount b)                     { mInstanceCount = b; }
+        inline void setInstanceCount(NCount b)              { mInstanceCount = b; }
 
         /** 获取绘制次数
         @version NIIEngine 3.0.0
         */
-        NCount getInstanceCount() const                     { return mInstanceCount; }
+        inline NCount getInstanceCount() const              { return mInstanceCount; }
         
         /** 添加渲染处理器
         @version NIIEngine 6.0.0
@@ -816,7 +816,7 @@ namespace NII
         /** 获取颜色属性
         @versin NIIEngine 4.0.0
         */
-        ShaderChColour * getColour(Nidx idx) const;
+        inline ShaderChColour * getColour(Nidx idx) const   { return &mColourList[idx]; }
         
         /** 删除颜色属性
         @versin NIIEngine 5.0.0
@@ -836,7 +836,7 @@ namespace NII
         /** 创建渲染点的属性
         @version NIIEngine 3.0.0
         */
-        ShaderChPoint * getPoint(Nidx idx) const;
+        inline ShaderChPoint * getPoint(Nidx idx) const     { return &mPointList[idx]; }
         
         /** 删除渲染点的属性
         @version NIIEngine 5.0.0
@@ -856,7 +856,7 @@ namespace NII
         /** 获取颜色缓存
         @version NIIEngine 3.0.0
         */
-        ShaderChBlend * getBlend(Nidx idx) const;
+        inline ShaderChBlend * getBlend(Nidx idx) const     { return &mBlendList[idx]; }
         
         /** 删除混合
         @version NIIEngine 5.0.0
@@ -876,7 +876,7 @@ namespace NII
         /** 获取雾模式
         @version NIIEngine 5.0.0
         */
-        ShaderChFog * getFog(Nidx idx) const;
+        inline ShaderChFog * getFog(Nidx idx) const         { return &mFogList[idx]; }
         
         /** 删除雾模式
         @version NIIEngine 2.0.0
@@ -896,7 +896,7 @@ namespace NII
         /** 获取模板深度测试
         @version NIIEngine 5.0.0
         */
-        ShaderChStencil * getStencil(Nidx idx) const;
+        inline ShaderChStencil * getStencil(Nidx idx) const { return &mStencilList[idx]; }
         
         /** 删除模板深度测试
         @version NIIEngine 5.0.0
@@ -916,7 +916,7 @@ namespace NII
         /** 获取纹理混合
         @version NIIEngine 3.0.0
         */
-        TextureBlend * getTexBlend(Nidx idx) const;
+        inline TextureBlend * getTexBlend(Nidx idx) const   { return &mTexBlendList[idx]; }
         
         /** 删除纹理混合
         @version NIIEngine 5.0.0
@@ -936,7 +936,7 @@ namespace NII
         /** 获取纹理样本
         @version NIIEngine 3.0.0
         */
-        TextureSampleUnit * getTexSample(Nidx idx) const;
+        inline TextureSampleUnit * getTexSample(Nidx idx) const { return &mTexSampleList[idx]; }
         
         /** 删除纹理样本
         @version NIIEngine 3.0.0
@@ -956,7 +956,7 @@ namespace NII
         /** 获取纹理集
         @version NIIEngine 3.0.0
         */
-        ShaderChTexture * getTexture(Nidx idx) const;
+        inline ShaderChTexture * getTexture(Nidx idx) const     { return &mTextureList[idx]; }
         
         /** 删除纹理集
         @version NIIEngine 5.0.0
@@ -981,7 +981,7 @@ namespace NII
         /** 获取纹理样本
         @version NIIEngine 3.0.0
         */
-        TextureSample * getSampler(Nidx idx) const;
+        inline TextureSample * getSampler(Nidx idx) const       { return &mSampleList[idx]; }
         
         /** 删除纹理采样
         @version NIIEngine 5.0.0
@@ -1078,12 +1078,12 @@ namespace NII
         /** 获取深度范围
         @version NIIEngine 5.0.0
         */
-        virtual NIIf getDepthRange() const                              { return 1.0f; }
+        virtual NIIf getDepthRange() const;
         
         /** 翻转深度
         @version NIIEngine 5.0.0
         */
-        bool isReverseDepth() const                                     { return mReverseDepth; }
+        inline bool isReverseDepth() const                  { return mReverseDepth; }
 
         /** 设置颜色掩码
         @param[in] mark ColourMark一个或多个组合
@@ -1272,13 +1272,13 @@ namespace NII
         @note 如果启用,将关闭可编程管线
         @version NIIEngine 3.0.0
         */
-        void setFixedPipelineMode(bool b)           { mFixedPipelineMode = b; }
+        inline void setFixedPipelineMode(bool b)            { mFixedPipelineMode = b; }
 
         /** 获取是否固定管线模式
         @note 如果启用,将关闭可编程管线
         @version NIIEngine 3.0.0
         */
-        bool isFixedPipelineMode() const            { return mFixedPipelineMode; }
+        inline bool isFixedPipelineMode() const             { return mFixedPipelineMode; }
 
         /** 启用着色程序
         @version NIIEngine 3.0.0
@@ -1331,7 +1331,7 @@ namespace NII
         /** 重至几何数量
         @version NIIEngine 5.0.0
         */
-        void _resetRecord()                                             { mMetrics.reset(); }
+        inline void _resetRecord()                          { mMetrics.reset(); }
         
         /** 记录几何
         @version NIIEngine 5.0.0
@@ -1341,17 +1341,17 @@ namespace NII
         /** 设置是否记录几何
         @version NIIEngine 5.0.0
         */
-        void setRecordEnable(bool set)                                  { mMetrics.mEnable = set; }
+        inline void setRecordEnable(bool set)               { mMetrics.mEnable = set; }
         
         /** 获取是否记录几何
         @version NIIEngine 5.0.0
         */
-        void isRecordEnable() const                                     { return mMetrics.mEnable; }
+        inline void isRecordEnable() const                  { return mMetrics.mEnable; }
 
         /** 获取几何
         @version NIIEngine 5.0.0
         */
-        const DrawRecord & getRecord() const                            { return mMetrics; }
+        inline const DrawRecord & getRecord() const         { return mMetrics; }
         
         /**
         @version NIIEngine 5.0.0
@@ -1459,7 +1459,7 @@ namespace NII
         /** 获取材质
         @version NIIEngine 6.0.0
         */
-        const MaterialList & getMaterialList() const            { return mMaterialList; }
+        inline const MaterialList & getMaterialList() const { return mMaterialList; }
 
         /** 获取系统材质方案
         @note opengl 和 d3d 至少在着色程序上有所区别
@@ -1480,7 +1480,7 @@ namespace NII
         /** 返回驱动版本
         @version NIIEngine 3.0.0
         */
-        const DriverVersion & getDriverVersion() const      { return mVersion; }
+        inline const DriverVersion & getDriverVersion() const{ return mVersion; }
         
         /** 驱动版本是否比另一个旧
         @version NIIEngine 5.0.0
@@ -1540,12 +1540,12 @@ namespace NII
         /** 获取视口
         @version NIIEngine 3.0.0
         */
-        Viewport * getViewports() const				        { return mActiveViewports; }
+        inline Viewport * getViewports() const	            { return mActiveViewports; }
         
         /** 获取视口数量
         @version NIIEngine 3.0.0
         */
-        NCount getViewportCount() const			            { return mViewportCount; }
+        inline NCount getViewportCount() const			    { return mViewportCount; }
 
         /** 创建帧缓存对象
         @version NIIEngine 3.0.0
@@ -1560,7 +1560,7 @@ namespace NII
         /** 获取帧缓存对象
         @version NIIEngine 3.0.0
         */
-        FrameBufferObject * getFBO() const                      { return mActiveFrame; }
+        inline FrameBufferObject * getFBO() const           { return mActiveFrame; }
         
         /** 开始帧缓存对象
         @version NIIEngine 5.0.0
@@ -1727,22 +1727,22 @@ namespace NII
         /** 获取缓存管理器
         @version NIIEngine 4.0.0
         */
-        GBufferManager * getBufferManager() const                       { return mBufferManager; }
+        inline GBufferManager * getBufferManager() const    { return mBufferManager; }
 
         /** 获取纹理管理器
         @version NIIEngine 4.0.0
         */
-        TextureManager * getTextureManager() const                      { return mTextureManager; }
+        inline TextureManager * getTextureManager() const   { return mTextureManager; }
 
         /** 获取着色程序基础版本
         @return OpenGL 3.2 返回150, OpenGL 3.3 返回330
         */
-        Nui32 getShaderVersion() const                                  { return mShaderVersion; }
+        inline Nui32 getShaderVersion() const               { return mShaderVersion; }
         
         /** 检测硬件api是否支持
         @version NIIEngine 5.0.0
         */
-        virtual bool checkGpuApi(const VString & ext) const             { return false; }
+        virtual bool checkGpuApi(const VString & ext) const { return false; }
 
         /** 添加监听
         @version NIIEngine 5.0.0
@@ -1812,12 +1812,12 @@ namespace NII
         /**
         @version NIIEngine 6.0.0
         */
-        NCount getFrameCount() const                            { return mFrameCount; }
+        inline NCount getFrameCount() const                 { return mFrameCount; }
         
         /** 默认合成场景
         @version NIIEngine 6.0.0
         */
-        Fusion * getFusion() const                              { return mFusion; }
+        inline Fusion * getFusion() const                   { return mFusion; }
 
         /**
         @version NIIEngine 6.0.0
@@ -1827,12 +1827,12 @@ namespace NII
         /**
         @version NIIEngine 6.0.0
         */
-        RectGeo * getFullScreenTriangle() const                 { return mFSTriangle; }
+        inline RectGeo * getFullScreenTriangle() const      { return mFSTriangle; }
 
         /**
         @version NIIEngine 6.0.0
         */
-        RectGeo * getFullScreenQuad() const                     { return mFSQuad; }
+        inline RectGeo * getFullScreenQuad() const          { return mFSQuad; }
 
         /**
         @version NIIEngine 6.0.0
@@ -1853,7 +1853,7 @@ namespace NII
         /**
         @version NIIEngine 6.0.0
         */
-        NCount getFusionCount() const                           { return mFusionList.size(); }
+        inline NCount getFusionCount() const                { return mFusionList.size(); }
         
         /**
         @version NIIEngine 6.0.0
@@ -1868,12 +1868,12 @@ namespace NII
         /**
         @version NIIEngine 6.0.0
         */
-        void setFusionFactory(FusionFactory * factory)          { mFusionFactory = factory; }
+        inline void setFusionFactory(FusionFactory * factory){ mFusionFactory = factory; }
 
         /**
         @version NIIEngine 6.0.0
         */
-        FusionFactory * getFusionFactory() const                { return mFusionFactory; }
+        inline FusionFactory * getFusionFactory() const     { return mFusionFactory; }
 
         /**
         @version NIIEngine 6.0.0

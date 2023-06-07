@@ -58,7 +58,11 @@ namespace NII
     typedef int                 Nid;
     typedef size_t              Nidx;
     typedef unsigned short      Nidx16;
+    typedef unsigned int        Nidx32;
+    typedef uint64_t            Nidx64;
     typedef uint64_t            Nmark;
+    typedef unsigned short      Nmark16;
+    typedef unsigned int        Nmark32;
     typedef uint64_t            Nmark64;
     /////////////////////////////////
     typedef char                Nutf8;

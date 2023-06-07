@@ -157,7 +157,7 @@ namespace NII
             */
             M_PersistentMap =  0x40,
             
-            /** 
+            /** 通常情况 和 允许服务端在缓冲被映射的状态下读写数据
             @version NIIEngine 3.0.0
             */
             M_NormalPersistent = M_Normal | M_PersistentMap,
@@ -167,7 +167,7 @@ namespace NII
             */
             M_CoherentMap = 0x80,
             
-            /** 
+            /** M_Normal M_PersistentMap M_CoherentMap 特性
             @version NIIEngine 3.0.0
             */
             M_NormalPersistentCoherent = M_Normal | M_PersistentMap | M_CoherentMap,
@@ -207,7 +207,7 @@ namespace NII
             */
             M_QueueDrawRecover = 0x2000,
 
-            /** 每次类drawcall函数调用后数据被重写
+            /** 每次like-drawcall函数调用后数据被重写
             @version NIIEngine 3.0.0
             */
             M_DrawCallRecover = 0x4000,
@@ -465,7 +465,7 @@ namespace NII
         */
         inline GroupID getGroupID() const           { return mGroupID; }
         
-        /** 获取群组偏移
+        /** 获取群组中的偏移
         @version NIIEngine 5.0.0
         */
         inline NCount getGroupOffset() const        { return mOffset; }
@@ -475,7 +475,7 @@ namespace NII
         */
         inline NCount getUnitCount() const          { return mUnitCount; }
 
-        /** 获取单元大小
+        /** 获取单元大小(单位:字节)
         @version NIIEngine 3.0.0
         */
         inline NCount getUnitSize() const           { return mUnitSize; }
@@ -491,10 +491,10 @@ namespace NII
         */
         void setSync(bool set);
 
-        /** 设置是否绑定计数自动删除
+        /** 设置是否计数自动删除
         @version NIIEngine 3.0.0
         */
-        void setRefDestroy(bool set);
+        inline void setRefDestroy(bool set)         { mAutoDestroy = set; }
 
         /** 是否支持特性
         @param[in] mode Buffer::Mode选项
@@ -520,7 +520,7 @@ namespace NII
         /** 设置辅助缓存
         @version NIIEngine 5.0.0 高级api
         */
-        void setSecondBuffer(Buffer * buff);
+        inline void setSecondBuffer(Buffer * buff)  { mSecond = buff; }
         
         /** 获取辅助缓存
         @version NIIEngine 5.0.0 高级api
@@ -572,8 +572,8 @@ namespace NII
 
         /** 读取数据到缓冲中
         @param[in] out 内存区域
-        @param[in] oft 从这个缓存开始到读取位置的字节偏移量(单位字节)
-        @param[in] size 读取的区域大小 单位字节
+        @param[in] oft 从这个缓存开始到读取位置的字节偏移量(单位:字节)
+        @param[in] size 读取的区域大小(单位:字节)
         @version NIIEngine 3.0.0
         */
         virtual void read(void * out, NCount oft, NCount size);
@@ -585,16 +585,16 @@ namespace NII
 
         /** 读取数据到缓冲中
         @param[in] out 内存区域
-        @param[in] unitoft 从这个缓存开始到读取位置的单元偏移量(单位单元)
-        @param[in] unitCnt 读取的区域大小 单位单元
+        @param[in] unitoft 从这个缓存开始到读取位置的单元偏移量(单位:单元)
+        @param[in] unitCnt 读取的区域大小(单位:单元)
         @version NIIEngine 3.0.0
         */
         void readUnit(void * out, NCount unitOft, NCount unitCnt);
 
         /** 把系统内存写入到缓冲区
         @param[in] in 写入的数据资源
-        @param[in] oft 从这个缓存开始到写入位置的偏移量(单位字节)
-        @param[in] size 写入数据的大小,单位字节
+        @param[in] oft 从这个缓存开始到写入位置的偏移量(单位:字节)
+        @param[in] size 写入数据的大小(单位:字节)
         @version NIIEngine 3.0.0
         */
         virtual void write(const void * in, NCount oft, NCount size);
@@ -606,8 +606,8 @@ namespace NII
 
         /** 把系统内存写入到缓冲区
         @param[in] in 写入的数据资源
-        @param[in] unitoft 从这个缓存开始到写入位置的单元偏移量(单位单元)
-        @param[in] unitCnt 写入数据的大小,单位单元
+        @param[in] unitoft 从这个缓存开始到写入位置的单元偏移量(单位:单元)
+        @param[in] unitCnt 写入数据的大小(单位:单元)
         @version NIIEngine 3.0.0
         */
         void writeUnit(const void * in, NCount unitOft, NCount unitCnt);
@@ -615,9 +615,9 @@ namespace NII
         /** 从指定缓冲区复制数据
         @remark (this)要有 M_DEVWRITE 功能, 来源缓存(src)要有 M_DEVREAD 功能
         @param[in] src 需要读取的数据源缓存
-        @param[in] srcoft 数据源到读取的位置的字节偏移量(单位字节)
-        @param[in] oft 从这个缓存开始到写入位置的字节偏移量(单位字节)
-        @param[in] size 复制的数据长度,单位:字节
+        @param[in] srcoft 数据源到读取的位置的字节偏移量(单位:字节)
+        @param[in] oft 从这个缓存开始到写入位置的字节偏移量(单位:字节)
+        @param[in] size 复制的数据长度(单位:字节)
         @version NIIEngine 3.0.0
         */
         virtual void write(Buffer * src, NCount srcOft, NCount oft, NCount size);
@@ -625,9 +625,9 @@ namespace NII
         /** 从指定缓冲区复制数据
         @remark (this)要有 M_DEVWRITE 功能, 来源缓存(src)要有 M_DEVREAD 功能
         @param[in] src 需要读取的数据源缓存
-        @param[in] srcUnitOft 数据源到读取的位置的单元偏移量(单位单元)
-        @param[in] unitOft 从这个缓存开始到写入位置的单元偏移量(单位单元)
-        @param[in] unitCnt 复制的数据长度,单位:单元
+        @param[in] srcUnitOft 数据源到读取的位置的单元偏移量(单位:单元)
+        @param[in] unitOft 从这个缓存开始到写入位置的单元偏移量(单位:单元)
+        @param[in] unitCnt 复制的数据长度(单位:单元)
         @version NIIEngine 3.0.0
         */
         void writeUnit(Buffer * src, NCount srcUnitOft, NCount unitOft, NCount unitCnt);

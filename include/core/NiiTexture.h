@@ -55,19 +55,19 @@ namespace NII
         
         explicit SampleType(const String & hint)
         {
-            parseString( hint );
+            parseString(hint);
         }
         
-        bool operator !=(const SampleType & o) const
+        inline bool operator !=(const SampleType & o) const
         {
-            return mMultiSampling != o.mMultiSampling || mCoverageSampling != o.mCoverageSampling || 
-                   mType != o.mType;
+            return mMultiSampling != o.mMultiSampling || 
+                mCoverageSampling != o.mCoverageSampling || mType != o.mType;
         }
 
-        bool operator ==(const SampleType & o) const
+        inline bool operator ==(const SampleType & o) const
         {
-            return mMultiSampling == o.mMultiSampling && mCoverageSampling == o.mCoverageSampling &&
-                   mType == o.mType;
+            return mMultiSampling == o.mMultiSampling && 
+                mCoverageSampling == o.mCoverageSampling && mType == o.mType;
         }
         
         inline bool isMultiSample() const              { return mMultiSampling > 1u; }
@@ -327,37 +327,37 @@ namespace NII
         /** 设置期望的存储方式
         @version NIIEngine 3.0.0
         */
-        void setStorage(StorageType type)           { mNextStorage = type; }
+        inline void setStorage(StorageType type)    { mNextStorage = type; }
         
         /** 获取期望的存储方式
         @version NIIEngine 3.0.0
         */
-        StorageType getStorage() const              { return mNextStorage; }
+        inline StorageType getStorage() const       { return mNextStorage; }
         
         /** 获取当前存储方式
         @version NIIEngine 3.0.0
         */
-        StorageType getCurrentStorage() const       { return mCurrentStorage; }
+        inline StorageType getCurrentStorage() const{ return mCurrentStorage; }
         
         /** 获取回收类型
         @version NIIEngine 5.0.0
         */
-        RecoverType getRecoverType() const          { return mRecoverType;}
+        inline RecoverType getRecoverType() const   { return mRecoverType;}
         
         /** 设置自动控制数据
         @version NIIEngine 3.0.0
         */
-        void setAutoData(bool d)                    { mAutoData = d; }
+        inline void setAutoData(bool d)             { mAutoData = d; }
         
         /** 是否自动控制数据
         @version NIIEngine 3.0.0
         */
-        bool isAutoData() const                     { return mAutoData; }
+        inline bool isAutoData() const              { return mAutoData; }
 
         /** 获取任务数量
         @version NIIEngine 3.0.0
         */
-        Nui32 getTaskCount() const                 { return mTaskCount; }
+        inline Nui32 getTaskCount() const           { return mTaskCount; }
 
         using Resource::load;
 
@@ -488,14 +488,14 @@ namespace NII
         @par 3D纹理特性
         @version NIIEngine 3.0.0
         */
-        inline NCount getDepth() const              { return mDepth;  }
+        inline NCount getDepth() const              { return mDepth; }
 
         /** 返回原输入纹理的深度.
         @remark 来源像素的深度
         @par 3D纹理特性
         @version NIIEngine 3.0.0
         */
-        inline NCount getOriginDepth() const        { return mSrcDepth;  }
+        inline NCount getOriginDepth() const        { return mSrcDepth; }
 
         /** 返回纹理数组
         @version NIIEngine 3.0.0
@@ -506,7 +506,7 @@ namespace NII
         @remark 正方映射纹理为6
         @version NIIEngine 3.0.0
         */
-        inline NCount getUnitCount() const          { return mArray;}
+        inline NCount getUnitCount() const          { return mArray; }
         
         /** 获取容积
         @version NIIEngine 5.0.0
@@ -560,13 +560,13 @@ namespace NII
         @remark 需在加载前设置, mipmap 就是纹理的LOD概念
         @version NIIEngine 3.0.0
         */
-        inline NCount getMipmapCount() const        { return mMipmapCount;  }
+        inline NCount getMipmapCount() const        { return mMipmapCount; }
 
         /** 获取原输入纹理的映射层数量
         @remark mipmap 就是纹理的LOD概念
         @version NIIEngine 3.0.0
         */
-        inline NCount getSrcMipmapCount() const     { return mSrcMipmapCount;  }
+        inline NCount getSrcMipmapCount() const     { return mSrcMipmapCount; }
         
         /** 设置纹理类型
         @remark 需在加载前设置
@@ -578,7 +578,7 @@ namespace NII
         @remark 需在加载前设置
         @version NIIEngine 3.0.0
         */
-        inline Type getType() const                 { return mTextureType;  }
+        inline Type getType() const                 { return mTextureType; }
         
         /** 获取纹理实际类型
         @remark 需在加载前设置
@@ -590,18 +590,18 @@ namespace NII
         @remark 正方映射纹理为6
         @version NIIEngine 3.0.0
         */
-        void setUnitResource(const StringList & reslist);
+        void setUnitResource(const StringList & rl) { mOriginList = rl; }
 
         /** 设置应用在纹理加载的伽玛调整系数
         @remark 加载和转换管道为浮点值的时候让硬件去做伽玛颜色矫正
         @version NIIEngine 3.0.0
         */
-        void setHardwareSRGB(bool b);
+        inline void setHardwareSRGB(bool b)         { b ? mMark |= MM_SRGB : mMark &= ~MM_SRGB; }
 
         /** 设置应用在纹理加载的伽玛调整系数
         @version NIIEngine 3.0.0
         */
-        bool isHardwareSRGB() const;
+        inline bool isHardwareSRGB() const          { return (mMark & MM_SRGB); }
 
         /** 设置 MemMode 标识符
         @remark 需在加载前设置
@@ -609,7 +609,7 @@ namespace NII
         @note 将会覆盖所有原来的属性
         @version NIIEngine 3.0.0 顶级api
         */
-        inline void setModeMark(Nmark m)            { mMark = m;  }
+        inline void setModeMark(Nmark m)            { mMark = m; }
 
         /** 获取 MemMode 标识符
         @remark 需在加载前设置
@@ -706,7 +706,7 @@ namespace NII
         /** 获取实际存储缓存
         @version NIIEngine 3.0.0
         */
-        GpuBuffer * getGpuBuffer() const            { return mMainGpuBuffer; }
+        inline GpuBuffer * getGpuBuffer() const     { return mMainBuffer; }
 
         /** 获取纹理原数据类型
         @verison NIIEngine 3.0.0
@@ -726,12 +726,12 @@ namespace NII
         /** 获取池中的位置
         @version NIIEngine 5.0.0
         */
-        uint32 getPoolArray() const                 { return mPoolArray;}
+        inline Nui16 getPoolArray() const           { return mPoolArray; }
         
         /** 是否多样本
         @version NIIEngine 5.0.0
         */
-        bool isMultiSample() const                  { return mSrcSample.isMultiSample(); }
+        inline bool isMultiSample() const           { return mSrcSample.isMultiSample(); }
 
         /** 是否支持采样模式
         @version NIIEngine 5.0.0
@@ -743,29 +743,29 @@ namespace NII
         */
         virtual void getMultiSampleCoord(Vector2List & location) = 0;
 
-        bool isPool() const                         { return (mMark & MM_POOL) == MM_POOL;}
-        bool isPoolSlice() const                    { return (mMark & MM_POOLSLICE) == MM_POOLSLICE;}
-        bool isTexture() const                      { return (mMark & (MM_FRAME | MM_Window)) == 0;}
-        bool isFrame() const                        { return (mMark & MM_FRAME) == MM_FRAME; }
-        bool isBufferStroge() const                 { return (mMark & MM_BufferStroge) != MM_BufferStroge;}
-        bool isAutoMipmap() const                   { return (mMark & MM_MIPMAP_AUTO) == MM_MIPMAP_AUTO;}
-        bool isAutoGenMipmap() const                { return (mMark & MM_MIPMAP_CHECK) == MM_MIPMAP_CHECK;}
-        bool isManualMSAA() const                   { return (mMark & MM_ManualMSAA) == MM_ManualMSAA;}
-        bool isAlterView() const                    { return (mMark & MM_AlterView) == MM_AlterView; }
-        bool isPreferSRGB() const                   { return (mMark & MM_PreferSRGB) == MM_PreferSRGB;}
-        bool isWindow() const                       { return (mMark & MM_Window) == MM_Window;}
-        bool isFlipping() const                     { return (mMark & MM_VertFlip) == MM_VertFlip;}
-        bool isManual() const                       { return (mMark & (MM_BufferStroge | MM_FRAME | MM_Manual)) != 0;}
+        inline bool isPool() const                  { return (mMark & MM_POOL) == MM_POOL;}
+        inline bool isPoolSlice() const             { return (mMark & MM_POOLSLICE) == MM_POOLSLICE;}
+        inline bool isTexture() const               { return (mMark & (MM_FRAME | MM_Window)) == 0;}
+        inline bool isFrame() const                 { return (mMark & MM_FRAME) == MM_FRAME; }
+        inline bool isBufferStroge() const          { return (mMark & MM_BufferStroge) != MM_BufferStroge;}
+        inline bool isAutoMipmap() const            { return (mMark & MM_MIPMAP_AUTO) == MM_MIPMAP_AUTO;}
+        inline bool isAutoGenMipmap() const         { return (mMark & MM_MIPMAP_CHECK) == MM_MIPMAP_CHECK;}
+        inline bool isManualMSAA() const            { return (mMark & MM_ManualMSAA) == MM_ManualMSAA;}
+        inline bool isAlterView() const             { return (mMark & MM_AlterView) == MM_AlterView; }
+        inline bool isPreferSRGB() const            { return (mMark & MM_PreferSRGB) == MM_PreferSRGB;}
+        inline bool isWindow() const                { return (mMark & MM_Window) == MM_Window;}
+        inline bool isFlipping() const              { return (mMark & MM_VertFlip) == MM_VertFlip;}
+        inline bool isManual() const                { return (mMark & (MM_BufferStroge | MM_FRAME | MM_Manual)) != 0;}
         
         /**
         @version NIIEngine 5.0.0
         */
-        inline GroupID getPoolId() const		                    { return mPoolId; }
+        inline GroupID getPoolId() const		    { return mPoolId; }
         
         /**
         @version NIIEngine 5.0.0
         */
-        inline const TexturePool * getPool() const                  { return mPool; }
+        inline const TexturePool * getPool() const  { return mPool; }
 
         /**
         @version NIIEngine 5.0.0
@@ -780,7 +780,7 @@ namespace NII
         /**
         @version NIIEngine 5.0.0
         */
-        const ProcessList & getProcessList() const                  { return mProcessList; }
+        inline const ProcessList & getProcessList() const{ return mProcessList; }
 
         /**
         @version NIIEngine 5.0.0
@@ -891,7 +891,7 @@ namespace NII
         FrameBufferList	mSurfaceList;
         StringList mOriginList;
         TextureBufferList mViewList;
-        GpuBuffer * mMainGpuBuffer;
+        GpuBuffer * mMainBuffer;
         ProcessList mProcessList;
         TexturePool * mPool;
         GroupID mPoolId;

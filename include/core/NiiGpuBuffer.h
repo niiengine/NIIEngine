@@ -61,24 +61,24 @@ namespace NII
     public:
         GpuBuffer(BufferManager * mag, NCount unitsize, NCount unitcount, NCount multi, ModeMark mode, Nui8 * initData, GroupID gid = 0, NCount goft = 0, NCount padSize = 0);
 
-        void setIdx(Nidx idx)   { mIdx = idx; }
+        inline void setIdx(Nidx idx)   { mIdx = idx; }
         
-        Nidx getIdx() const     { return mIdx; }
+        inline Nidx getIdx() const     { return mIdx; }
         
-        bool operator () (const GpuBuffer & o1, Nidx o2) const
+        inline bool operator () (const GpuBuffer & o1, Nidx o2) const
         {
             return o1.mIdx < o2;
         }
-        bool operator () (Nidx o1, const GpuBuffer & o2) const
+        inline bool operator () (Nidx o1, const GpuBuffer & o2) const
         {
             return o1 < o2.mIdx;
         }
-        bool operator () (const GpuBuffer & o1, const GpuBuffer & o2) const
+        inline bool operator () (const GpuBuffer & o1, const GpuBuffer & o2) const
         {
             return o1.mIdx < o2.mIdx;
         }
         
-        bool operator () (const GpuBuffer * o1, const GpuBuffer * o2) const
+        inline bool operator () (const GpuBuffer * o1, const GpuBuffer * o2) const
         {
             return o1->mIdx < o2->mIdx;
         }
@@ -146,7 +146,7 @@ namespace NII
         
         /// @copydetails Buffer::clone()
         Buffer * clone(ModeMark m = M_WRITE | M_WHOLE | M_HOST) const;
-        
+
         /// @copydetails Buffer::getHostData
         virtual Nui8 * getHostData() const;
     };
@@ -163,7 +163,7 @@ namespace NII
 
         /// @copydetails Buffer::clone
         Buffer * clone(ModeMark m = M_WRITE | M_WHOLE | M_HOST) const;
-        
+
         /// @copydetails Buffer::getHostData
         virtual Nui8 * getHostData() const;
     };
@@ -190,7 +190,7 @@ namespace NII
         /** 获取当前锁定的像素块
         @version NIIEngine 3.0.0
         */
-        const PixelBlock & getMutexData();
+        const PixelBlock & getMutexData() const;
 
         /** 从另外帧缓存复制
         @version NIIEngine 3.0.0
@@ -289,7 +289,7 @@ namespace NII
     public:
         IndirectBuffer(BufferManager * mag, Type type, NCount size, NCount multi, ModeMark mode, Nui8 * initData, GroupID gid = 0, NCount goft = 0, NCount padSize = 0);
         
-        inline Type getType() const         { return mType; }
+        inline Type getType() const             { return mType; }
         
         /// @copydetails Buffer::clone
         Buffer * clone(ModeMark m = M_WRITE | M_WHOLE | M_HOST) const;
@@ -312,7 +312,7 @@ namespace NII
         /** 获取纹理格式
         @version NIIEngine 5.0.0
         */
-        PixelFormat getFormat() const           { return mPixelFormat; }
+        inline PixelFormat getFormat() const    { return mPixelFormat; }
         
         /// @copydetails Buffer::clone
         Buffer * clone(ModeMark m = M_WRITE | M_WHOLE | M_HOST) const;
@@ -486,7 +486,7 @@ namespace NII
         /**
         @version NIIEngine 5.0.0
         */
-        bool getLockState() const       { return mMapping; }
+        inline bool getLockState() const    { return mMapping; }
 
         /**
         @version NIIEngine 5.0.0
@@ -537,7 +537,7 @@ namespace NII
         /**
         @version NIIEngine 5.0.0
         */
-        NCount getMaxSize() const                   { return mSizeBytes; }
+        inline NCount getMaxSize() const    { return mSizeBytes; }
 
         /**
         @version NIIEngine 5.0.0
@@ -552,12 +552,12 @@ namespace NII
         /**
         @version NIIEngine 5.0.0
         */
-        NCount getRefCount() const                  { return mRefCount; }
+        inline NCount getRefCount() const   { return mRefCount; }
 
         /**
         @version NIIEngine 5.0.0
         */
-        NIIl getLastTime()                          { return mLastTime; }
+        inline NIIl getLastTime() const     { return mLastTime; }
     protected:
         virtual const void * readMapImpl(NCount offset, NCount size) = 0;
 
@@ -570,11 +570,11 @@ namespace NII
         virtual void recover(NCount offset, NCount size);
     protected:
         GBufferManager * mMag;
+        ModeMark mMark;
         BlockList mFreeBlockList;
         BlockOpType mLastOp;
         NCount mOffset;
         NCount mSizeBytes;
-        ModeMark mMark;
         
         NCount mMappingStart;
         NCount mLastUploadOffset;
@@ -598,12 +598,12 @@ namespace NII
         /** 群组偏移
         @version NIIEngine 5.0.0
         */
-        NCount getGroupOffset() const                           { return mGroupOffset; }
+        inline NCount getGroupOffset() const{ return mGroupOffset; }
         
         /** 群组索引
         @version NIIEngine 5.0.0
         */
-        NCount getGroupIndex() const                            { return mGroupIndex; }
+        inline NCount getGroupIndex() const { return mGroupIndex; }
 
         /**
         @version NIIEngine 5.0.0
@@ -618,7 +618,7 @@ namespace NII
         /**
         @version NIIEngine 5.0.0
         */
-        PixelFormat getFormat() const                           { return mFormat; }
+        inline PixelFormat getFormat() const                           { return mFormat; }
 
         /**
         @version NIIEngine 5.0.0
@@ -658,13 +658,13 @@ namespace NII
         virtual PixelBlock mapImpl(const PixelVolume & vol) = 0;
     protected:
         GBufferManager * mMag;
+        Nui8 * mMappedPtr;
         PixelFormat mFormat;
         NCount mLastFrame;
         NCount mOffset;
         NCount mSize;
         NCount mCurrentOffset;
         NCount mGroupIndex;
-        Nui8 * mMappedPtr;
         bool mMapping;
     };
     typedef vector<MappedTexture*>::type MappedTextureList;
