@@ -64,12 +64,12 @@ namespace NII
         /** 从文件种加载特性
         @version NIIEngine 3.0.0
         */
-        RenderFeature * getFeature(const String & name);
+        RenderFeature * getFeature(const String & name) const;
 
         /** 获取特性列表 
         @version NIIEngine 3.0.0
         */
-        const FeatureList & getFeatureList() const;
+        inline const FeatureList & getFeatureList() const       { return mFeatureList; }
     protected:
         RenderFeatureSerializer * mSerializer;
         FeatureList mFeatureList;

@@ -30,11 +30,18 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 
 #include "NiiPreInclude.h"
 #include "NiiColour.h"
+#include "NiiCommon.h"
 
 namespace NII
 {
+    /**
+    @version NIIEngine 6.0.0
+    */
     struct _EngineAPI FrameTarget
     {
+        /**
+        @version NIIEngine 6.0.0
+        */
         enum InitType
         {
             IT_None,
@@ -43,6 +50,9 @@ namespace NII
             IT_Texture
         };
         
+        /**
+        @version NIIEngine 6.0.0
+        */
         enum StoreType
         {
             ST_None,
@@ -60,20 +70,25 @@ namespace NII
         
         Texture * mTexture;
         Texture * mTarget;
+        InitType mInitType;
+        StoreType mStoreType;
 
         Nui16 mMip;
         Nui16 mTargetMip;
 
         Nui16 mArrayIndex;
         Nui16 mTargetArrayIndex;
-
-        InitType mInitType;
-        StoreType mStoreType;
     };
 
-    class _EngineAPI FrameBufferObject : public RenderSysAlloc
+    /**
+    @version NIIEngine 6.0.0
+    */
+    class _EngineAPI FrameBufferObject : public RenderSysData, public RenderSysAlloc
     {
     public:
+        /**
+        @version NIIEngine 6.0.0
+        */
         enum TargetType
         {
             TT_Colour0 = 0x01,
@@ -93,27 +108,55 @@ namespace NII
         FrameBufferObject();
         virtual ~FrameBufferObject();
 
+        /**
+        @version NIIEngine 6.0.0
+        */
         virtual bool isTargetEqual(const FrameBufferObject * o) const;
 
+        /**
+        @version NIIEngine 6.0.0
+        */
         bool isTarget(const Texture * tex) const;
         
+        /**
+        @version NIIEngine 6.0.0
+        */
         virtual void syncType(Nmark type);
-
+        
+        /**
+        @version NIIEngine 6.0.0
+        */
         virtual void setClearColour(const Colour & clr);
         
+        /**
+        @version NIIEngine 6.0.0
+        */
         virtual void setClearColour(Nidx idx, const Colour & clr);
         
+        /**
+        @version NIIEngine 6.0.0
+        */
         virtual void setClearDepth(NIIf depth);
         
+        /**
+        @version NIIEngine 6.0.0
+        */
         virtual void setClearStencil(Nui32 stencil);
 
+        /**
+        @version NIIEngine 6.0.0
+        */
         inline Nui32 getColourCount() const            { return mColourCount; }
 
+        /**
+        @version NIIEngine 6.0.0
+        */
         inline bool isFlipping() const                 { return mTextureFlipping; }
         
+        /**
+        @version NIIEngine 6.0.0
+        */
         bool isStencilFeature() const;
-
-        virtual void getPlatformData(IdString name, void * pData, uint32 extraParam) {}
     public:
         FrameTarget mColour[NII_MAX_RenderTargetDS];
         Colour mClearColour[NII_MAX_RenderTarget];
@@ -126,7 +169,7 @@ namespace NII
         bool mStencilReadOnly;
         bool mDeptReadOnly;
         bool mAllArray[NII_MAX_RenderTarget];
-        bool mInformationOnly;
+        bool mStepping;
     };
 }
 #endif
