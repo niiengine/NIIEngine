@@ -271,7 +271,6 @@ namespace NII
     class RenderFeature;
     class RenderSysManager;
     class RenderFeatureSerializer;
-    class FrameObj;
     class FrameObjListener;
     class PlaneSpace;
     class MultiTextureFrame;

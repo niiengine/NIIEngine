@@ -220,7 +220,7 @@ namespace NII
         /** 获取缓冲区
         @version NIIEngine 3.0.0
         */
-        inline FrameObj * getBuffer() const             { return mTarget; }
+        inline Texture * getBuffer() const             { return mTarget; }
         
         /** 完整的缓存
         @version NIIEngine 3.0.0
@@ -410,7 +410,7 @@ namespace NII
     protected:
         ViewportID mID;
         Camera * mCamera;
-        FrameObj * mTarget;
+        Texture * mTarget;
         RenderQueueFusion * mQueueFusion;
         ViewportListenerList mListeners;
         ViewportType mBufferType;
