@@ -38,7 +38,7 @@ namespace NII
 {
     /** 设备结果(视口中的)帧
     @remark 一个冲刷结果,和摄像机,视口,帧缓存有关系
-    @version NIIEngine 3.0.0
+    @version NIIEngine 3.0.0 deprecated
     */
     class _EngineAPI FrameObj : public RenderSysData, public FrameAlloc
     {
@@ -76,7 +76,7 @@ namespace NII
         /** 获取辅助名字
         @version NIIEngine 3.0.0
         */
-        inline const String & getName() const       { return mName; }
+        inline const String & getName() const       { return mName; }   //ok
 
         /** 冲刷缓存
         @param[in] swap 交换帧缓存
@@ -89,7 +89,7 @@ namespace NII
         @param[in] vsync 同步垂直
         @version NIIEngine 3.0.0
         */
-        virtual void swap(bool vsync = true);
+        virtual void swap(bool vsync = true);                           //ok
 
         /** 复制当前渲染目标内容到一个像素盒
         @version NIIEngine 3.0.0
@@ -119,12 +119,12 @@ namespace NII
         /** 是否自动冲刷缓存
         @version NIIEngine 3.0.0
         */
-        void setAutoFlush(bool b);
+        void setAutoFlush(bool b)                       { b ? mMark |= M_AUTO : mMark &= ~M_AUTO;}
 
         /** 是否自动冲刷缓存
         @version NIIEngine 3.0.0
         */
-        bool isAutoFlush() const;
+        bool isAutoFlush() const                        { return (mMark & M_AUTO); }
 
         /** 设置冲刷优先级
         @version NIIEngine 3.0.0
@@ -149,18 +149,18 @@ namespace NII
         /** 用于设置渲染目标活动状态
         @version NIIEngine 3.0.0
         */
-        virtual void setActive(bool b);
+        virtual void setActive(bool b);         //ok
 
         /** 用于检索或设置渲染目标活动状态
         @version NIIEngine 3.0.0
         */
-        virtual bool isActive() const;
+        virtual bool isActive() const;          //ok
 
         /** 第一个渲染窗体
         @remark 第一个渲染窗体可能包含了一个主的设备器,主设备器共享渲染系统资源
         @version NIIEngine 3.0.0
         */
-        virtual bool isFirstWindow() const;
+        virtual bool isFirstWindow() const;     //ok
 
         /** 是否硬件sRGB
         @version NIIEngine 3.0.0
@@ -171,7 +171,7 @@ namespace NII
         @remark D3D用了左上角作为原点，而OpenGL用了左下角
         @version NIIEngine 3.0.0
         */
-        virtual bool isTextureFlipping() const;
+        virtual bool isFlipping() const;
 
         /** 是否立体模式
         @version NIIEngine 3.0.0
@@ -181,12 +181,12 @@ namespace NII
         /** 获取渲染对象的宽度
         @version NIIEngine 3.0.0
         */
-        virtual Nui32 getWidth() const;
+        virtual Nui32 getWidth() const;     //ok
 
         /** 获取渲染对象的高度
         @version NIIEngine 3.0.0
         */
-        virtual Nui32 getHeight() const;
+        virtual Nui32 getHeight() const;    //ok
 
         /** 获取渲染颜色深度
         @version NIIEngine 3.0.0
@@ -196,7 +196,7 @@ namespace NII
         /** 输出缓存格式
         @version NIIEngine 3.0.0
         */
-        virtual PixelFormat getFormat() const;
+        virtual PixelFormat getFormat() const; //ok
 
         /** 使用扩展帧缓存
         @version NIIEngine 3.0.0
@@ -267,7 +267,7 @@ namespace NII
         /** 获取多重采样设置
         @version NIIEngine 3.0.0
         */
-        virtual Nui32 getFSAA() const                   { return mFSAA; }
+        virtual Nui32 getFSAA() const                   { return mFSAA; }       // ok
 
         /** 获取多重采样设置
         @version NIIEngine 3.0.0

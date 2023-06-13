@@ -610,18 +610,18 @@ namespace NII
     #define N_EnginePtr()               NII::Engine::getOnlyPtr()
     #define N_Timer()                   NII::Engine::getOnly().getTimer()
     
-    #define N_Mark(value, mark)                     value |= (mark)
-    #define N_NonMark(value, mark)                  value &= ~(mark)
-    #define N_MarkValue(value, mark)                (value) | (mark)
-    #define N_NonMarkValue(value, mark)             (value) & ~(mark)
+    #define N_Mark(value, mark)                     (value) |= (mark)
+    #define N_MarkOnly(value, flmark, mark)         ((value) ~= (flmark)) |= (mark)
+    #define N_NonMark(value, mark)                  (value) &= ~(mark)
+    #define N_MarkValue(value, mark)                ((value) | (mark))
+    #define N_MarkOnlyValue(value, flmark, mark)    (((value) ~ (flmark)) | (mark))
+    #define N_NonMarkValue(value, mark)             ((value) & ~(mark))
+    #define N_MarkBool(value, mark, b)              (b) ? (value) |= (mark) : (value) &= ~(mark)
 
-    #define N_MarkTrue(src, mark)                   ((src & mark) == mark)
+    #define N_MarkTrue(src, mark)                   ((src & mark) == mark) // (src & mark)
     #define N_MarkOnlyTrue(src, flmark, mark)       ((src & flmark) == mark)
     #define N_MarkFalse(src, mark)                  ((src & mark) != mark)
     #define N_MarkOnlyFalse(src, flmark, mark)      ((src & flmark) != mark)
-
-    #define N_SetMark(src, mark)                    src |= mark
-    #define N_SetMarkOnly(src, flmark, mark)        src ~= flmark;src |= mark
 
     // param lastest only for 16bit
     #define N_64_16_0(data, num)        ((data & 0xFFFFFFFFFFFF0000 ) | (Nui64)num)
