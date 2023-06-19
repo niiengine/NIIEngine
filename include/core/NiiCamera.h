@@ -206,7 +206,7 @@ namespace NII
         /** 获取摄象机位置
         @version NIIEngine 3.0.0
         */
-        inline const Vector3f & getPos() const          {return mPosition; }
+        inline const Vector3f & getPos() const          { return mPosition; }
 
         /** 获取摄象机上方向向量.
         @version NIIEngine 3.0.0
@@ -453,22 +453,22 @@ namespace NII
         /** 使用扩展的LOD控制摄象机
         @version NIIEngine 3.0.0 高级api
         */
-        inline void setExtLod(const Camera * obj)   { obj == this ? mExtLod = 0 : mExtLod = obj; }
+        inline void setExtLod(const Camera * obj)   { obj == this ? mLod = 0 : mLod = obj; }
 
         /** 获取扩展的LOD控制摄象机
         @version NIIEngine 3.0.0 高级api
         */
-        inline const Camera * getExtLod() const     { return mExtLod ? mExtLod : this; } 
+        inline const Camera * getExtLod() const     { return mLod ? mLod : this; } 
 
         /** 使用扩展的裁减区域
         @version NIIEngine 3.0.0 高级api
         */
-        inline void setExtCulling(Frustum * obj)    { mExtCull = obj; }
+        inline void setExtCulling(Frustum * obj)    { mCull = obj; }
 
         /** 返回扩展的裁减区域
         @version NIIEngine 3.0.0 高级api
         */
-        inline Frustum * getExtCulling() const      { return mExtCull; }
+        inline Frustum * getExtCulling() const      { return mCull; }
 
         /** 获取视图距阵
         @param[in] 是否获取其他的裁减区域的视图距阵
@@ -557,8 +557,8 @@ namespace NII
         bool mAutoAspectRatio;
 
         Viewport * mViewport;
-        Frustum * mExtCull;
-        const Camera * mExtLod;
+        Frustum * mCull;
+        const Camera * mLod;
         PosNode * mFocusNode;
         Vector3f mFocusOffset;
         PlaneList mSubClips;

@@ -86,14 +86,15 @@ namespace NII
         FBT_STENCIL = 0x4
     };
 
-    /** 摄像机中的一个视区/视口
+    /** 视口
+    @remark 视口里可以秒速多个摄像机
     @version NIIEngine 3.0.0
     */
     class _EngineAPI Viewport : public FrameAlloc
     {
         friend class RenderSys;
     public:
-        Viewport(ViewportID id, Camera * cam, Texture * buf, const Vector4f & area, const Vector4f & clip, NIIi z, NCount mipLevel);
+        Viewport(ViewportID id, Texture * buf, const Vector4f & area, const Vector4f & clip, NIIi z, NCount mipLevel);
         virtual ~Viewport();
 
         /** 获取ID
@@ -104,7 +105,7 @@ namespace NII
         /** 更新内容
         @version NIIEngine 3.0.0
         */
-        void update();
+        void update(Camera * target);
 
         /** 同步状态
         @note 一般是指大小/位置
@@ -221,16 +222,6 @@ namespace NII
         @version NIIEngine 3.0.0
         */
         void remove(ViewportListener * l);
-
-        /** 设置所属的摄像机
-        @version NIIEngine 3.0.0
-        */
-        void setCamera(Camera * c);
-
-        /** 获取所属的摄像机
-        @version NIIEngine 3.0.0
-        */
-        inline Camera * getCamera() const               { return mCamera; }
 
         /** 获取缓冲区
         @version NIIEngine 3.0.0
@@ -468,7 +459,6 @@ namespace NII
         void syncAspectImpl();
     protected:
         ViewportID mID;
-        Camera * mCamera;
         Texture * mTarget;
         RenderQueueFusion * mQueueFusion;
         ViewportListenerList mListeners;
