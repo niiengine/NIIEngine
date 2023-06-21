@@ -105,7 +105,7 @@ namespace NII
         /** 更新内容
         @version NIIEngine 3.0.0
         */
-        void update(Camera * target);
+        void update(Camera * target, const RenderQueueFusion * rqfusion);
 
         /** 同步状态
         @note 一般是指大小/位置
