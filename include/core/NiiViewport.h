@@ -417,16 +417,6 @@ namespace NII
         @version NIIEngine 3.0.0
         */
         inline bool isShadowEnable() const              { return N_MarkTrue(mMark, Viewport_ShadowEnable); }
-
-        /** 设置渲染形式
-        @version NIIEngine 3.0.0
-        */
-        void setCustomRender(Nid id);
-
-        /** 获取渲染形式
-        @version NIIEngine 3.0.0
-        */
-        inline RenderQueueFusion * getQueueFusion()     { return mQueueFusion; }
         
         /** 设置缓存类型
         @version NIIEngine 5.0.0
@@ -460,7 +450,6 @@ namespace NII
     protected:
         ViewportID mID;
         Texture * mTarget;
-        RenderQueueFusion * mQueueFusion;
         ViewportListenerList mListeners;
         ViewportType mBufferType;
         SchemeID mMaterial;
