@@ -144,7 +144,7 @@ namespace NII
         @note 正交轴
         @version NIIEngine 3.0.0
         */
-        const Radian & getFOV() const;
+        inline const Radian & getFOV() const    { return mFOV; }
 
         /** 设置偏转
         @remark 正交方向
@@ -155,7 +155,7 @@ namespace NII
         /** 获取偏转
         @version NIIEngine 3.0.0
         */
-        NIIf getDirection() const;
+        inline NIIf getDirection() const        { return mDirection; }
 
         /** 是否自定义区域
         @version NIIEngine 3.0.0

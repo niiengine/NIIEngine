@@ -29,7 +29,6 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 #define _NII_PLANE_H_
 
 #include "NiiPreInclude.h"
-#include "NiiVector3.h"
 #include "NiiAABox.h"
 
 namespace NII
@@ -95,12 +94,12 @@ namespace NII
         /** 是否相交
         @version NIIEngine 3.0.0
         */
-        bool intersects(const AABox & o) const;
+        inline bool intersects(const AABox & o) const { return (getSide(o) == Plane::PT_Merge); }
 
         /** 返回到点的距离
         @version NIIEngine 3.0.0
         */
-        NIIf distance(const Vector3f & o) const;
+        inline NIIf distance(const Vector3f & o) const{ return mNormal.dotProduct(o) + mD; }
 
         /** 投射点到平面上
         @param[in] v 投射前的位置
@@ -118,42 +117,65 @@ namespace NII
         /** 平截头的扩展(投影距阵近平面)
         @version NIIEngine 3.0.0
         */
-        static bool getFrustumNearPlane(const Matrix4f & space, Plane & out);
+        inline static bool getFrustumNearPlane(const Matrix4f & space, Plane & out)
+        {
+            return getPlane(space[0][2], space[1][2], space[2][2], space[3][2], out);
+        }
 
         /** 平截头的扩展(投影距阵远平面)
         @version NIIEngine 3.0.0
         */
-        static bool getFrustumFarPlane(const Matrix4f & space, Plane & out);
+        inline static bool getFrustumFarPlane(const Matrix4f & space, Plane & out)
+        {
+            return getPlane(space[0][3] - space[0][2], space[1][3] - space[1][2], 
+                space[2][3] - space[2][2], space[3][3] - space[3][2], out);
+        }
 
         /** 平截头的扩展(投影距阵左平面)
         @version NIIEngine 3.0.0
         */
-        static bool getFrustumLeftPlane(const Matrix4f & space, Plane & out);
+        inline static bool getFrustumLeftPlane(const Matrix4f & space, Plane & out)
+        {
+            return getPlane(space[0][3] + space[0][0], space[1][3] + space[1][0], 
+                space[2][3] + space[2][0], space[3][3] + space[3][0], out);
+        }
 
         /** 平截头的扩展(投影距阵右平面)
         @version NIIEngine 3.0.0
         */
-        static bool getFrustumRightPlane(const Matrix4f & space, Plane & out);
+        static bool getFrustumRightPlane(const Matrix4f & space, Plane & out)
+        {
+            return getPlane(space[0][3] - space[0][0], space[1][3] - space[1][0], 
+                space[2][3] - space[2][0], space[3][3] - space[3][0], out);
+        }
 
         /** 平截头的扩展(投影距阵上平面)
         @version NIIEngine 3.0.0
         */
-        static bool getFrustumTopPlane(const Matrix4f & space, Plane & out);
+        static bool getFrustumTopPlane(const Matrix4f & space, Plane & out)
+        {
+            return getPlane(space[0][3] - space[0][1], space[1][3] - space[1][1], 
+                space[2][3] - space[2][1], space[3][3] - space[3][1], out);
+        }
 
         /** 平截头的扩展(投影距阵下平面)
         @version NIIEngine 3.0.0
         */
-        static bool getFrustumBottomPlane(const Matrix4f & space, Plane & out);
+        static bool getFrustumBottomPlane(const Matrix4f & space, Plane & out)
+        {
+            return getPlane(space[0][3] + space[0][1], space[1][3] + space[1][1], 
+                space[2][3] + space[2][1], space[3][3] + space[3][1], out);
+        }
 
         /** 平截头的扩展(处理投影距阵)
         @param[in] a
         @param[in] b
         @param[in] c
         @param[in] d
-        @param[in] dest 结果输出
+        @param[in] out 结果输出
         @version NIIEngine 3.0.0
         */
-        static bool makeFrustumPlane(NIIf a, NIIf b, NIIf c, NIIf d, Plane & dest);
+        static bool getPlane(NIIf a, NIIf b, NIIf c, NIIf d, Plane & out);
     public:
         Vector3f mNormal;
         NIIf mD;

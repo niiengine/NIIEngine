@@ -106,12 +106,12 @@ namespace NII
             return *this;
         }
 
-        Vector2<T> min() const
+        inline Vector2<T> min() const
         {
             return Vector2<T>(mLeft, mTop);
         }
 
-        Vector2<T> max() const
+        inline Vector2<T> max() const
         {
             return Vector2<T>(mRight, mBottom);
         }
@@ -314,12 +314,12 @@ namespace NII
             mBottom = mTop + height;
         }
 
-        Vector2<T> getPos() const
+        inline Vector2<T> getPos() const
         {
             return Vector2<T>(mLeft, mTop);
         }
 
-        void setSize(const PlaneSize<T> & size)
+        inline void setSize(const PlaneSize<T> & size)
         {
             mRight = mLeft + size.mWidth;
             mBottom = mTop + size.mHeight;

@@ -81,7 +81,7 @@ namespace NII
         @param[in] vp 需要渲染的视口
         @version NIIEngine 3.0.0 高级api
         */
-        void render(Viewport * vp);
+        void render(Viewport * vp, const RenderQueueFusion * rqfusion);
 
         /** 世界空间的视点.
         @param[in] v 点

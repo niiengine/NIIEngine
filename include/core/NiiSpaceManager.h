@@ -662,7 +662,7 @@ namespace NII
         /** 获取渲染处理器
         @version NIIEngine 3.0.0 高级api
         */
-        RenderPattern * getRenderPattern() const;
+        inline RenderPattern * getRenderPattern() const     { return mRenderPattern; }
 
         /** 设置渲染系统
         @version NIIEngine 3.0.0 高级api
@@ -672,17 +672,17 @@ namespace NII
         /** 获取渲染系统
         @version NIIEngine 3.0.0 高级api
         */
-        RenderSys * getGPUSys() const;
+        inline RenderSys * getGPUSys() const                { return mGPUSys; }
 
         /** 设置帧合成
         @version NIIEngine 3.0.0 高级api
         */
-        void setFrameResult(FusionInstance * chain);
+        inline void setFrameResult(FusionInstance * chain)  { mFrameResult = chain; }
 
         /** 获取帧合成
         @version NIIEngine 3.0.0 高级api
         */
-        FusionInstance * getFrameResult() const;
+        inline FusionInstance * getFrameResult() const      { return mFrameResult; }
 
         /** 获取原点节点
         @version NIIEngine 3.0.0 高级api
