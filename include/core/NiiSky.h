@@ -61,12 +61,12 @@ namespace NII
         /** 设置空间域
         @version NIIEngine 3.0.0
         */
-        void setSpace(SpaceManager * sm)                { mParent = sm; }
+        inline void setSpace(SpaceManager * sm)         { mParent = sm; }
         
         /** 获取空间域
         @version NIIEngine 3.0.0
         */
-        SpaceManager * getSpace() const                 { return mParent; }
+        inline SpaceManager * getSpace() const          { return mParent; }
         
         /** 设置渲染组
         @version NIIEngine 3.0.0

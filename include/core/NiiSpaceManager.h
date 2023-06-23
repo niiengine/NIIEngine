@@ -247,7 +247,7 @@ namespace NII
         /** 渲染空间体
         @version NIIEngine 3.0.0 高级api
         */
-        virtual void renderSpace(Camera * camera, Viewport * vp);
+        virtual void renderSpace(Camera * camera, Viewport * vp, const RenderQueueFusion * rqfusion);
 
         /** 创建摄像机
         @version NIIEngine 3.0.0
@@ -702,12 +702,12 @@ namespace NII
         /** 获取主渲染队列
         @version NIIEngine 3.0.0 高级api
         */
-        RenderQueue * getRenderQueue() const            { return mMainQueue; }
+        inline RenderQueue * getRenderQueue() const         { return mMainQueue; }
 
         /** 获取渲染视口
         @version NIIEngine 3.0.0 高级api
         */
-        Viewport * getViewport() const                  { return mView; }
+        inline Viewport * getViewport() const               { return mView; }
 
         /** 应用渲染通路
         @param[in] ch 渲染通路
