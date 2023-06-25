@@ -587,7 +587,7 @@ namespace NII
         /** 获取指定类型空间对象
         @version NIIEngine 3.0.0
         */
-        virtual const SpaceMap & getSpace(FactoryID fid) const;
+        inline const SpaceMap & getSpace(FactoryID fid) const       { return getSpace(fid); }
 
         /** 空间对象是否存在
         @version NIIEngine 3.0.0
@@ -949,17 +949,12 @@ namespace NII
         /** 准备队列
         @version NIIEngine 3.0.0
         */
-        virtual void prepareQueue();
+        virtual void prepareQueue(const RenderQueueFusion * rqfusion);
 
         /** 渲染队列
         @version NIIEngine 3.0.0
         */
-        virtual void renderQueue();
-
-        /** 渲染队列
-        @version NIIEngine 3.0.0
-        */
-        virtual void renderQueue(RenderQueueFusion * s);
+        virtual void renderQueue(const RenderQueueFusion * rqfusion);
 
         /** 渲染队列前
         @version NIIEngine 3.0.0

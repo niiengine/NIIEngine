@@ -477,7 +477,7 @@ namespace NII
         /** 获取渲染列表
         @version NIIEngine 3.0.0 高级api
         */
-        const GroupList & getGroupList() const				{ return mGroups;}
+        inline const GroupList & getGroupList() const       { return mGroups;}
 
         /** 合并队列
         @version NIIEngine 3.0.0
@@ -557,12 +557,12 @@ namespace NII
         /** 执行渲染
         @version NIIEngine 3.0.0
         */
-        virtual void render(RenderGroup * group, RenderPattern * pattern, SpaceManager * dst);
+        virtual void render(RenderGroup * group, RenderPattern * pattern, SpaceManager * dst) const;
     protected:
         /** 执行渲染实现
         @version NIIEngine 3.0.0 高级api
         */
-        virtual void renderImpl(RenderGroup * group, RenderPattern * pattern);
+        virtual void renderImpl(RenderGroup * group, RenderPattern * pattern) const;
     protected:
         String mName;
         RenderGroupType mRenderGroup;
