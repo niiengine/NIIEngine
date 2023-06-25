@@ -54,7 +54,7 @@ namespace NII
     public:
         SpaceObj * mSpaceObj;
         GeometryObj * mGeometryObj;
-        ShaderCh * mCh;
+        ShaderCh * mCh;         // 推导出ShaderChMaterial
         Nui64 mSortNum;         ///< 排序数值
     };
 
@@ -477,7 +477,7 @@ namespace NII
         /** 获取渲染列表
         @version NIIEngine 3.0.0 高级api
         */
-        inline const GroupList & getGroupList() const       { return mGroups;}
+        inline const GroupList & getGroupList() const   { return mGroups;}
 
         /** 合并队列
         @version NIIEngine 3.0.0
@@ -515,6 +515,7 @@ namespace NII
     };
 
     /** 自定义队列
+    @remark 用于混用阴影技术
     @version NIIEngine 3.0.0
     */
     class _EngineAPI RenderGroupFusion : public RenderAlloc
@@ -527,32 +528,33 @@ namespace NII
         /** 名字(辅助)
         @version NIIEngine 3.0.0
         */
-        const String & getName() const 	{ return mName; }
+        inline const String & getName() const 	        { return mName; }
 
         /** 获取渲染组
         @version NIIEngine 3.0.0
         */
-        RenderGroupType getRenderGroup() const 	{ return mRenderGroup; }
+        inline RenderGroupType getRenderGroup() const   { return mRenderGroup; }
         
-        /** 是否启动阴影
-        @version NIIEngine 3.0.0
+        /** 设置使用的阴影技术
+        @param[in] sf SF_None则没有阴影
+        @version NIIEngine 6.0.0
         */
-        void setShadowEnable(bool b)    { mShadowEnable = b; }
-
-        /** 是否启动阴影
-        @version NIIEngine 3.0.0
+        inline void setShadowFeture(ShadowFeture sf)    { mShadowFeture = sf; }
+        
+        /** 获取使用的阴影技术
+        @version NIIEngine 6.0.0
         */
-        bool isShadowEnable() const     { return mShadowEnable; }
+        inline ShadowFeture getShadowFeture() const     { return mShadowFeture; }
 
         /** 设置渲染通道
         @version NIIEngine 3.0.0
         */
-        void setShaderCh(ShaderCh * ch) { mShaderCh = ch; }
+        inline void setShaderCh(ShaderCh * ch)          { mShaderCh = ch; }
 
         /** 获取渲染通道
         @version NIIEngine 3.0.0
         */
-        ShaderCh * getShaderCh() const { return mShaderCh; }
+        inline ShaderCh * getShaderCh() const           { return mShaderCh; }
 
         /** 执行渲染
         @version NIIEngine 3.0.0
@@ -566,6 +568,7 @@ namespace NII
     protected:
         String mName;
         RenderGroupType mRenderGroup;
+        ShadowFeture mShadowFeture;
         ShaderCh * mShaderCh;
     };
     typedef vector<RenderGroupFusion *>::type RenderGroupFusionList;
@@ -582,13 +585,13 @@ namespace NII
         /** 获取ID
         @version NIIEngine 3.0.0
         */
-        Nid getID() const                   { return mID; }
+        inline Nid getID() const                    { return mID; }
 
         /** 添加自定义队列
         @note 参数内存将由这个类管理
         @version NIIEngine 3.0.0
         */
-        void add(RenderGroupFusion * obj)   { mList.push_back(obj); }
+        inline void add(RenderGroupFusion * obj)    { mList.push_back(obj); }
 
         /** 添加自定义队列
         @version NIIEngine 3.0.0
@@ -598,7 +601,7 @@ namespace NII
         /** 获取自定义队列
         @version NIIEngine 3.0.0
         */
-        RenderGroupFusion * get(Nidx index) { N_assert(index < mList.size(), "error"); return mList[index]; }
+        inline RenderGroupFusion * get(Nidx index)  { N_assert(index < mList.size(), "error"); return mList[index]; }
 
         /** 移去自定义队列
         @version NIIEngine 3.0.0
@@ -613,12 +616,12 @@ namespace NII
         /** 获取数量
         @version NIIEngine 3.0.0
         */
-        NCount getCount() const             		{ return mList.size(); }
+        inline NCount getCount() const              { return mList.size(); }
 
         /** 获取自定义队列
         @version NIIEngine 3.0.0 高级api
         */
-        const RenderGroupFusionList & getList()   	{ return mList; }
+        inline const RenderGroupFusionList & getList() const    { return mList; }
     protected:
         Nid mID;
         RenderGroupFusionList mList;
