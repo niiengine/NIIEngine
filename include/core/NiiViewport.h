@@ -58,7 +58,7 @@ namespace NII
         @version NIIEngine 3.0.0
         */
         virtual void onCreate(Viewport * obj);
-        
+
         /** 删除视口时触发
         @version NIIEngine 3.0.0
         */
@@ -377,16 +377,6 @@ namespace NII
         @version NIIEngine 3.0.0
         */
         inline Nmark32 getClearMark() const             { return mClearMark; }
-
-        /** 获取最后更新的渲染面数目
-        @version NIIEngine 3.0.0
-        */
-        NCount getTriangleCount() const;
-
-        /** 获取最后更新的渲染批次数目.
-        @version NIIEngine 3.0.0
-        */
-        NCount getBatchCount() const;
 
         /** 设置是否渲染UI
         @version NIIEngine 3.0.0

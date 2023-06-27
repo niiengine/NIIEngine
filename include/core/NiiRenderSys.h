@@ -1125,11 +1125,6 @@ namespace NII
         */
         virtual bool isInvertVertexWinding();
 
-        /** 绑定渲染帧
-        @version NIIEngine 3.0.0
-        */
-        virtual void _setFrame(FrameObj * fo) = 0;
-
         /** 启用纹理
         @note 原始概念
         @version NIIEngine 3.0.0 高级api
@@ -1377,16 +1372,6 @@ namespace NII
         @version NIIEngine 3.0.0 高级api
         */
         virtual void _beginFrame() = 0;
-
-        /** 暂停渲染
-        @version NIIEngine 3.0.0 高级api
-        */
-        virtual FrameObj * _pauseFrame();
-
-        /** 恢复渲染
-        @version NIIEngine 3.0.0 高级api
-        */
-        virtual void _resumeFrame(FrameObj * fo);
 
         /** 结束当前视口的每帧渲染
         @version NIIEngine 3.0.0
