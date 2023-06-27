@@ -146,47 +146,24 @@ namespace NII
         @remark 一般用于空间物体影响当前空间,但空间物体实际并不存在于视区
         @param[in] b1 边界盒
         @param[in] b2 范围边界
-        @param[in] receiver 合并物是否接收阴影
+        @param[in] mark ST_Normal ST_Cast ST_Receive 复合参数
         */
-        void expandBound(const AABox & b1, const Sphere & b2, bool receiver = true);
-
-        /** 扩容摄像投影区域
-        @remark 一般用于空间物体影响当前空间,但空间物体实际并不存在于视区
-        @param[in] b1 边界盒
-        @param[in] b2 范围边界
-        @version NIIEngine 3.0.0
-        */
-        void expandCastBound(const AABox & b1, const Sphere & b2);
+        void expandBound(const AABox & b1, const Sphere & b2, Nmark mark = ShadowType::ST_Normal | ShadowType::ST_Receive);
 
         /** 获取摄像最近区域
         @version NIIEngine 3.0.0
         */
-        inline NIIf getBoundMin() const                 { return mMin; }
+        inline NIIf getBoundMin(ShadowType type) const          { return mMin[type]; }
 
         /** 获取摄像最远区域
         @version NIIEngine 3.0.0
         */
-        inline NIIf getBoundMax() const                 { return mMax; }
-
-        /** 获取摄像投射最近区域
-        @version NIIEngine 3.0.0
-        */
-        inline NIIf getCastBoundMin() const             { return mMinCast; }
-
-        /** 获取摄像投射最远区域
-        @version NIIEngine 3.0.0
-        */
-        inline NIIf getCastBoundMax() const             { return mMaxCast; }
+        inline NIIf getBoundMax(ShadowType type) const          { return mMax[type]; }
 
         /** 获取摄像区域
         @version NIIEngine 3.0.0
         */
-        inline const AABox & getBound() const           { return mAABB; }
-
-        /** 获取阴影接收摄像区域
-        @version NIIEngine 3.0.0
-        */
-        inline const AABox & getReceiveBound() const    { return mAABBReceive; }
+        inline const AABox & getBound(ShadowType type) const    { return mAABB[type]; }
 
         /** 添加摄像机监听器
         @version NIIEngine 3.0.0
@@ -540,12 +517,9 @@ namespace NII
         NIIf mSubTop;
         NIIf mSubRight;
         NIIf mSubBottom;
-        AABox mAABB;
-        NIIf mMin;
-        NIIf mMax;
-        AABox mAABBReceive;
-        NIIf mMinCast;
-        NIIf mMaxCast;
+        AABox mAABB[ShadowType::ST_Count];  //0: normarl 1: cast 2: Receive
+        NIIf mMin[ShadowType::ST_Count];
+        NIIf mMax[ShadowType::ST_Count];
         mutable Quaternion mLocalOri;
         mutable Vector3f mLocalPos;
         mutable Vector3f mSpacePos;
