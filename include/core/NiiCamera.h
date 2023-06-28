@@ -329,7 +329,7 @@ namespace NII
         /** 获取重新计算宽/高比
         @version NIIEngine 3.0.0
         */
-        inline bool getAutoAspectRatio() const          { return mAutoAspectRatio; }
+        inline bool isAutoAspectRatio() const           { return mAutoAspectRatio; }
 
         /** 获取渲染像素宽/高比
         @version NIIEngine 3.0.0

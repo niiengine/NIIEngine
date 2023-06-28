@@ -87,7 +87,7 @@ namespace NII
     };
 
     /** 视口
-    @remark 视口里可以秒速多个摄像机
+    @remark 视口里可以描述多个摄像机
     @version NIIEngine 3.0.0
     */
     class _EngineAPI Viewport : public FrameAlloc
@@ -222,6 +222,11 @@ namespace NII
         @version NIIEngine 3.0.0
         */
         void remove(ViewportListener * l);
+        
+        /** 获取缓冲区
+        @version NIIEngine 6.0.0 adv
+        */
+        inline void setBuffer(Texture * buf) const      { mTarget = buf; }
 
         /** 获取缓冲区
         @version NIIEngine 3.0.0
