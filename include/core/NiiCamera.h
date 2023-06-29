@@ -43,13 +43,12 @@ namespace NII
     class _EngineAPI CameraListener
     {
     public:
-        CameraListener();
         virtual ~CameraListener();
 
-        /** 在创建时调用
+        /** 加入监听时触发
         @version NIIEngine 3.0.0
         */
-        virtual void onCreate(Camera * obj);
+        virtual void onInit(Camera * obj);
 
         /** 在删除时调用
         @version NIIEngine 3.0.0

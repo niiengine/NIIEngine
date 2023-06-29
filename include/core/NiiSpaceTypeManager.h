@@ -158,16 +158,16 @@ namespace NII
         /** 获取列表
         @version NIIEngine 3.0.0
         */
-        SpaceList & getSpaceList();
+        inline SpaceList & getSpaceList()                   { return mSpaceList; }
 
         /** 获取列表
         @version NIIEngine 3.0.0 高级api
         */
-        const SpaceList & getSpaceList() const;
+        inline const SpaceList & getSpaceList() const       { return mSpaceList; }
     private:
         typedef vector<SpaceTypeFactory *>::type FactoryList;
     private:
-        RenderSys * mGpuSys;
+        RenderSys * mRenderSys;
         FactoryList mFactoryList;
         SpaceTypeList mSpaceTypeList;
         SpaceList mSpaceList;

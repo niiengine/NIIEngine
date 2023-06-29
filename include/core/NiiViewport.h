@@ -54,25 +54,30 @@ namespace NII
     public:
         virtual ~ViewportListener();
 
-        /** 创建视口时触发
+        /** 加入监听时触发
         @version NIIEngine 3.0.0
         */
-        virtual void onCreate(Viewport * obj);
+        virtual void onInit(Viewport * obj);
 
         /** 删除视口时触发
         @version NIIEngine 3.0.0
         */
         virtual void onDestroy(Viewport * obj);
 
-        /** 所属摄像机改变时触发
-        @version NIIEngine 3.0.0
+        /** 拣选时触发
+        @version NIIEngine 6.0.0
         */
-        virtual void onCameraChange(Viewport * obj, Camera * dst);
+        virtual void onCull(Camera * target);
+
+        /** 渲染时触发
+        @version NIIEngine 6.0.0
+        */
+        virtual void onRender(Camera * target);
 
         /** 视口区域改变时触发
         @version NIIEngine 3.0.0
         */
-        virtual void onAreaChange(Viewport * obj);
+        virtual void onSize(Viewport * obj);
     };
     typedef vector<ViewportListener *>::type ViewportListenerList;
 
@@ -223,7 +228,7 @@ namespace NII
         */
         void remove(ViewportListener * l);
         
-        /** 获取缓冲区
+        /** 设置缓冲区
         @version NIIEngine 6.0.0 adv
         */
         inline void setBuffer(Texture * buf) const      { mTarget = buf; }
@@ -433,6 +438,16 @@ namespace NII
         */
         static NIIf getDefaultDirection();
     public:
+        /** 拣选时触发
+        @version NIIEngine 6.0.0
+        */
+        void onCull(Camera * target);
+        
+        /** 渲染时触发
+        @version NIIEngine 6.0.0
+        */
+        void onRender(Camera * target);
+
         /** 同步实现
         @version NIIEngine 3.0.0
         */

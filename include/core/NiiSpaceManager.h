@@ -354,17 +354,17 @@ namespace NII
         /** 是否存在几何空间
         @version NIIEngine 3.0.0
         */
-        inline bool isGeoExist(SpaceID sid) const       { return isSpaceExist(sid, N_FACTORY_GeoSpace);}
+        inline bool isGeoExist(SpaceID sid) const           { return isSpaceExist(sid, N_FACTORY_GeoSpace);}
 
         /** 删除几何空间
         @version NIIEngine 3.0.0
         */
-        inline void destroyGeo(SpaceID sid)             { destroySpace(sid, N_FACTORY_GeoSpace);}
+        inline void destroyGeo(SpaceID sid)                 { destroySpace(sid, N_FACTORY_GeoSpace);}
 
         /** 删除所有几何空间
         @version NIIEngine 3.0.0
         */
-        inline void destroyAllGeo()                     { destroyAllSpace(N_FACTORY_GeoSpace); }
+        inline void destroyAllGeo()                         { destroyAllSpace(N_FACTORY_GeoSpace); }
 
         /** 自绘制几何
         @param[in] sid
@@ -667,12 +667,12 @@ namespace NII
         /** 设置渲染系统
         @version NIIEngine 3.0.0 高级api
         */
-        void setGPUSys(RenderSys * sys);
+        void setRender(RenderSys * sys);
 
         /** 获取渲染系统
         @version NIIEngine 3.0.0 高级api
         */
-        inline RenderSys * getGPUSys() const                { return mGPUSys; }
+        inline RenderSys * getRender() const                { return mRenderSys; }
 
         /** 设置帧合成
         @version NIIEngine 3.0.0 高级api
@@ -1024,7 +1024,7 @@ namespace NII
         RenderQueue * mMainQueue;
         FusionInstance * mFrameResult;
         SpaceNode * mOriginNode;
-        RenderSys * mGPUSys; //
+        RenderSys * mRenderSys; //
         Camera * mCamera;
         Viewport * mView;
         Colour mAmbient;

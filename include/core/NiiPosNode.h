@@ -108,7 +108,7 @@ namespace NII
         /** 获取ID
         @version NIIEngine 3.0.0
         */
-        SpaceID getID() const					{ return mID; }
+        inline SpaceID getID() const                    { return mID; }
 
         /** 获取父节点
         @version NIIEngine 3.0.0
@@ -214,7 +214,7 @@ namespace NII
         /** 获取子对象列表
         @version NIIEngine 3.0.0
         */
-        const ChildList & getChildList() const	    { return mChildList; }
+        inline const ChildList & getChildList() const   { return mChildList; }
 
         /** 获取距离
         @note 是 距离*距离

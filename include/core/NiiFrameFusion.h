@@ -189,11 +189,6 @@ namespace NII
         */
         void remove(Listener * obj);
     private:
-        /** 摄像机改变时
-        @version NIIEngine 3.0.0
-        */
-        void onCameraChange(Camera * camera);
-
         /** 创建纹理
         @version NIIEngine 3.0.0
         */
@@ -334,11 +329,8 @@ namespace NII
         /// @copydetails ViewportListener::onDestroy
         virtual void onDestroy(Viewport * obj);
 
-        /// @copydetails ViewportListener::onCameraChange
-        virtual void onCameraChange(Viewport * obj);
-
-        /// @copydetails ViewportListener::onAreaChange
-        virtual void onAreaChange(Viewport * obj);
+        /// @copydetails ViewportListener::onSize
+        virtual void onSize(Viewport * obj);
     protected:
         void createResource();
         void destroyResource();
