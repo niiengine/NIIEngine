@@ -265,6 +265,7 @@ namespace NII
     class RenderGroup;
     class RenderGroupFusion;
     class RenderQueueFusion;
+    class FrameBufferObject;
 
     class RenderListener;
     class RenderSys;

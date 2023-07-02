@@ -108,13 +108,13 @@ namespace NII
         @remark 用于着色程序/渲染系统,着色程序/渲染系统可能需要四元值
         @version NIIEngine 3.0.0
         */
-        Vector4f getVector4Space() const;
+        Vector4f getSpace4() const;
 
         /** 获取4元空间
         @remark 用于着色程序/渲染系统,着色程序/渲染系统可能需要四元值
         @version NIIEngine 3.0.0
         */
-        Vector4f getVector4RelSpace() const;
+        Vector4f getRelSpace4() const;
 
         /** 设置反射(漫)颜色.
         @version NIIEngine 3.0.0

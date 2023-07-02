@@ -72,27 +72,27 @@ namespace NII
 
         /** 设置当前渲染目标
         */
-        inline void setCurrentRenderTarget(const FrameObj * target) { mCurrentRenderTarget = target; }
+        inline void setCurrentFBO(const FrameBufferObject * fbo)        { mCurrentFBO = fbo; }
 
         /** 设置当前视口
         */
-        inline void setCurrentViewport(const Viewport * viewport) { mCurrentViewport = viewport; }
+        inline void setCurrentViewport(const Viewport * viewport)       { mCurrentViewport = viewport; }
 
         /** 设置用于点灯光阴影挤压距离
         */
-        inline void setShadowDirLightExtrusionDistance(NIIf dist) { mDirLightExtrusionDistance = dist; }
+        inline void setShadowDirLightExtrusionDistance(NIIf dist)       { mDirLightExtrusionDistance = dist; }
 
         /** 设置主摄象机边界信息
         */
-        inline void setMainCamBoundsInfo(Camera * info) { mSceneDepthRangeDirty = true; }
+        inline void setMainCameraBound(Camera * info);
 
         /** 为查询需求设置当前scene manager
         */
-        inline void setCurrentSceneManager(const SpaceManager * sm) { mCurrentSceneManager = sm; }
+        inline void setCurrentSceneManager(const SpaceManager * sm)     { mCurrentSpaceManager = sm; }
 
         /** 设置当前通道
         */
-        inline void setCurrentPass(const ShaderCh * pass) { mCurrentPass = pass; }
+        inline void setCurrentPass(const ShaderCh * ch)                 { mCurrentShaderCh = ch; }
 
         NCount getWorldMatrixCount() const;
 
@@ -112,63 +112,63 @@ namespace NII
         const Vector4f & getCameraPositionObjectSpace() const;
         const Vector4f & getLodCameraPosition() const;
         const Vector4f & getLodCameraPositionObjectSpace() const;
-        bool hasLightList() const { return mCurrentLightList->size() != 0; }
-        inline NIIf getLightNumber(NCount index) const { return static_cast<NIIf>(getLight(index)->getIndex()); }
-        inline NIIf getLightCount() const { return (NIIf)mCurrentLightList->size(); }
-        inline NIIf getLightCastsShadows(NCount index) const { return getLight(index)->isCastShadow() ? 1.0f : 0.0f; }
+        bool hasLightList() const                                       { return mCurrentLightList->size() != 0; }
+        inline NIIf getLightNumber(NCount index) const                  { return static_cast<NIIf>(getLight(index)->getIndex()); }
+        inline NIIf getLightCount() const                               { return (NIIf)mCurrentLightList->size(); }
+        inline NIIf getLightCastsShadows(NCount index) const            { return getLight(index)->isCastShadow() ? 1.0f : 0.0f; }
         inline const Colour & getLightDiffuseColour(NCount index) const { return getLight(index)->getDiffuse(); }
         inline const Colour & getLightSpecularColour(NCount index) const { return getLight(index)->getSpecular(); }
         const Colour getLightDiffuseColourWithPower(NCount index) const;
         const Colour getLightSpecularColourWithPower(NCount index) const;
-        inline const Vector3f & getLightPosition(NCount index) const { return getLight(index)->getRelSpacePos(); }
-        inline Vector4f getLightAs4DVector(NCount index) const { return getLight(index)->getVector4RelSpace(); }
-        inline const Vector3f & getLightDirection(NCount index) const { return getLight(index)->getSpaceDirection(); }
-        inline NIIf getLightPowerScale(NCount index) const { return getLight(index)->getBrightFactor(); }
+        inline const Vector3f & getLightPosition(NCount index) const    { return getLight(index)->getRelSpacePos(); }
+        inline Vector4f getLightRelSpace4(NCount index) const           { return getLight(index)->getRelSpace4(); }
+        inline const Vector3f & getLightDirection(NCount index) const   { return getLight(index)->getSpaceDirection(); }
+        inline NIIf getLightPowerScale(NCount index) const              { return getLight(index)->getBrightFactor(); }
         Vector4f getLightAttenuation(NCount index) const;
         Vector4f getSpotlightParams(NCount index) const;
-        inline void setAmbientLightColour(const Colour& ambient) { mAmbient = ambient; }
-        inline const Colour & getAmbientLightColour() const { return mAmbient; }
-        inline const Colour & getSurfaceAmbientColour() const { return mCurrentPass->getColour().getAmbient(); }
-        inline const Colour & getSurfaceDiffuseColour() const { return mCurrentPass->getColour().getDiffuse(); }
-        inline const Colour & getSurfaceSpecularColour() const { return mCurrentPass->getColour().getSpecular(); }
-        inline const Colour & getSurfaceEmissiveColour() const { return mCurrentPass->getColour().getEmissive(); }
-        inline NIIf getSurfaceShininess() const { return mCurrentPass->getColour().getShininess(); }
-        inline Colour getDerivedAmbientLightColour() const { return getAmbientLightColour() * getSurfaceAmbientColour(); }
-        Colour getDerivedSceneColour() const;
+        inline void setAmbientColour(const Colour& ambient)             { mAmbient = ambient; }
+        inline const Colour & getAmbientColour() const                  { return mAmbient; }
+        inline const Colour & getChAmbientColour() const                { return mCurrentShaderCh->getColour().getAmbient(); }
+        inline const Colour & getChDiffuseColour() const                { return mCurrentShaderCh->getColour().getDiffuse(); }
+        inline const Colour & getChSpecularColour() const               { return mCurrentShaderCh->getColour().getSpecular(); }
+        inline const Colour & getChEmissiveColour() const               { return mCurrentShaderCh->getColour().getEmissive(); }
+        inline NIIf getChShininess() const                              { return mCurrentShaderCh->getColour().getShininess(); }
+        inline Colour getEnvAmbientColour() const                       { return getAmbientColour() * getChAmbientColour(); }
+        Colour getSceneColour() const;
         void setFog(const ShaderChFog & fog);
-        inline const Colour & getFogColour() const { return mFogColour; }
-        inline const Vector4f & getFogParams() const { return mFogParams; }
+        inline const Colour & getFogColour() const                      { return mFogColour; }
+        inline const Vector4f & getFogParams() const                    { return mFogParams; }
         void setPoint(const ShaderChPoint & point);
-        inline const Vector4f & getPointParams() const { return mPointParams; }
+        inline const Vector4f & getPointParams() const                  { return mPointParams; }
         const Matrix4f & getTextureViewProjMatrix(NCount index) const;
         const Matrix4f & getTextureWorldViewProjMatrix(NCount index) const;
         const Matrix4f & getSpotlightViewProjMatrix(NCount index) const;
         const Matrix4f & getSpotlightWorldViewProjMatrix(NCount index) const;
         const Matrix4f & getTextureTransformMatrix(Nidx index) const;
-        inline const FrameObj * getCurrentRenderTarget() const { return mCurrentRenderTarget; }
-        inline const GeometryObj * getCurrentRenderable() const { return mCurrentRenderable; }
-        inline const ShaderCh * getCurrentPass() const { return mCurrentPass; }
+        inline const FrameBufferObject * getCurrentFBO() const          { return mCurrentFBO; }
+        inline const GeometryObj * getCurrentGeometryObj() const        { return mCurrentGeometryObj; }
+        inline const ShaderCh * getCurrentPass() const                  { return mCurrentShaderCh; }
         Vector4f getTextureSize(Nidx index) const;
         Vector4f getInverseTextureSize(NCount index) const;
         Vector4f getPackedTextureSize(NCount index) const;
         NIIf getShadowExtrusionDistance() const;
         const Vector4f & getSceneDepthRange() const;
         const Vector4f & getShadowSceneDepthRange(NCount index) const;
-        inline const Colour & getShadowColour() const { return mCurrentSceneManager->getRenderPattern()->getShadowColour(); }
-        inline Matrix4f getInverseViewProjMatrix() const { return getViewProjectionMatrix().inverse(); }
-        inline Matrix4f getInverseTransposeViewProjMatrix() const { return getInverseViewProjMatrix().T(); }
-        inline Matrix4f getTransposeViewProjMatrix() const { return getViewProjectionMatrix().T(); }
-        inline Matrix4f getTransposeViewMatrix() const { return getViewMatrix().T(); }
-        inline Matrix4f getInverseTransposeViewMatrix() const { return getInverseViewMatrix().T(); }
-        inline Matrix4f getTransposeProjectionMatrix() const { return getProjMatrix().T(); }
-        inline Matrix4f getInverseProjectionMatrix() const { return getProjMatrix().inverse(); }
+        inline const Colour & getShadowColour() const               { return mCurrentSpaceManager->getRenderPattern()->getShadowColour(); }
+        inline Matrix4f getInverseViewProjMatrix() const            { return getViewProjectionMatrix().inverse(); }
+        inline Matrix4f getInverseTransposeViewProjMatrix() const   { return getInverseViewProjMatrix().T(); }
+        inline Matrix4f getTransposeViewProjMatrix() const          { return getViewProjectionMatrix().T(); }
+        inline Matrix4f getTransposeViewMatrix() const              { return getViewMatrix().T(); }
+        inline Matrix4f getInverseTransposeViewMatrix() const       { return getInverseViewMatrix().T(); }
+        inline Matrix4f getTransposeProjectionMatrix() const        { return getProjMatrix().T(); }
+        inline Matrix4f getInverseProjectionMatrix() const          { return getProjMatrix().inverse(); }
         inline Matrix4f getInverseTransposeProjectionMatrix() const { return getInverseProjectionMatrix().T(); }
-        inline Matrix4f getTransposeWorldViewProjMatrix() const { return getWorldViewProjMatrix().T(); }
-        inline Matrix4f getInverseWorldViewProjMatrix() const { return getWorldViewProjMatrix().inverse(); }
+        inline Matrix4f getTransposeWorldViewProjMatrix() const     { return getWorldViewProjMatrix().T(); }
+        inline Matrix4f getInverseWorldViewProjMatrix() const       { return getWorldViewProjMatrix().inverse(); }
         inline Matrix4f getInverseTransposeWorldViewProjMatrix() const { return getInverseWorldViewProjMatrix().T(); }
-        inline Matrix4f getTransposeWorldViewMatrix() const { return getWorldViewMatrix().T(); }
-        inline Matrix4f getTransposeWorldMatrix() const { return getWorldMatrix().T(); }
-        inline TimeDurMS getTime() const { return N_Only(Animation).getCostTime(); }
+        inline Matrix4f getTransposeWorldViewMatrix() const         { return getWorldViewMatrix().T(); }
+        inline Matrix4f getTransposeWorldMatrix() const             { return getWorldMatrix().T(); }
+        inline TimeDurMS getTime() const                            { return N_Only(Animation).getCostTime(); }
         NIIf getTime_0_X(TimeDurMS x) const;
         NIIf getCosTime_0_X(TimeDurMS x) const;
         NIIf getSinTime_0_X(TimeDurMS x) const;
@@ -256,15 +256,15 @@ namespace NII
         mutable bool mLodCameraPositionObjectSpaceDirty;
         bool mCameraRelativeRendering;
         
-        const GeometryObj * mCurrentRenderable;
+        const GeometryObj * mCurrentGeometryObj;
         const Camera * mCurrentCamera;
         Vector3f mCameraRelativePosition;
         const LightList * mCurrentLightList;
         const Frustum * mCurrentTextureProjector[NII_MAX_LIGHT];
-        const FrameObj * mCurrentRenderTarget;
+        const FrameBufferObject * mCurrentFBO;
         const Viewport * mCurrentViewport;
-        const SpaceManager * mCurrentSceneManager;
-        const ShaderCh * mCurrentPass;
+        const SpaceManager * mCurrentSpaceManager;
+        const ShaderCh * mCurrentShaderCh;
         Light mBlankLight;
     };
 }
