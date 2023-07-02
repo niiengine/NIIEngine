@@ -247,7 +247,7 @@ namespace NII
         /** 渲染空间体
         @version NIIEngine 3.0.0 高级api
         */
-        virtual void renderSpace(Camera * camera, Viewport * vp, const RenderQueueFusion * rqfusion);
+        virtual void renderSpace(Camera * camera, Viewport * vp, const RenderQueueFusion * rqfusion, ShadowType type);
 
         /** 创建摄像机
         @version NIIEngine 3.0.0
@@ -1025,7 +1025,7 @@ namespace NII
         FusionInstance * mFrameResult;
         SpaceNode * mOriginNode;
         RenderSys * mRenderSys; //
-        Camera * mCamera;
+        Camera * mCamera[ShadowType::ST_Count];
         Viewport * mView;
         Colour mAmbient;
         ShaderChFog mFog;
