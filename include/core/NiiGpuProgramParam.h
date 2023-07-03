@@ -36,23 +36,35 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 
 namespace NII
 {
-    /** Gpu参数种类
+    /** Gpu程序参数绑定类型
     @version NIIEngine 3.0.0
     */
-    enum GpuParamType
+    enum GpuBindType
     {
-        GPT_View            = 0x01,   ///< 视图空间
-        GPT_Space           = 0x02,   ///< 模型空间
-        GPT_Colour          = 0x04,
-        GPT_Light           = 0x08,
-        GPT_Texture         = 0x10,
-        GPT_Fog             = 0x20,
-        GPT_Fps             = 0x40,
-        GPT_ShaderCh        = 0x80,
-        GPT_Other           = 0x100,
-        GPT_Queue           = 0x200,
-        GPT_Frame           = 0x400,
-        GPT_Render          = GPT_View | GPT_Colour | GPT_Texture | GPT_Fog | GPT_Fps | GPT_Other,
+        GPT_VS              = 0x01,
+        GPT_TS              = 0x02,
+        GPT_DS              = 0x04,
+        GPT_GS              = 0x08,
+        GPT_FS              = 0x10,
+        GPT_CS              = 0x20,
+        GPT_View_Param      = 0x40,   ///< 视图空间
+        GPT_Space_Param     = 0x80,   ///< 模型空间
+        GPT_Colour_Param    = 0x100,
+        GPT_Light_Param     = 0x200,
+        GPT_Texture_Param   = 0x400,
+        GPT_Fog_Param       = 0x800,
+        GPT_Fps_Param       = 0x1000,
+        GPT_ShaderCh_Param  = 0x2000,
+        GPT_Other_Param     = 0x4000,
+        GPT_Queue_Param     = 0x8000,
+        GPT_Frame_Param     = 0x10000,
+        GPT_Render_Param    = GPT_View_Param | GPT_Colour_Param | GPT_Texture_Param | GPT_Fog_Param | GPT_Fps_Param | GPT_Other_Param,
+        GPT_VS_Param        = 0x20000,
+        GPT_TS_Param        = 0x40000,
+        GPT_DS_Param        = 0x80000,
+        GPT_GS_Param        = 0x100000,
+        GPT_FS_Param        = 0x200000,
+        GPT_CS_Param        = 0x400000,
         GPT_Unknow          = 0xFFFFFFFF
     };
 
@@ -293,7 +305,7 @@ namespace NII
 
         Nidx mMemIndex;
         Nui32 mSyncParam;           ///< GpuSyncParam
-        Nui32 mTypeMark;            ///< GpuParamType
+        Nui32 mTypeMark;            ///< GpuBindType
         Nui32 mUnit32bSize;
         Nui32 mUnitCount;           ///< Unit数量
         Nui16 mIndex;               ///< hwbuf idx
@@ -311,7 +323,7 @@ namespace NII
     struct _EngineAPI GpuParamBlock
     {
     public:
-        GpuParamBlock() : m32bSize(0), mMemIndex(0), mDataType(GDT_Unknow), mTypeMark(GPT_Render) {}
+        GpuParamBlock() : m32bSize(0), mMemIndex(0), mDataType(GDT_Unknow), mTypeMark(GPT_Render_Param) {}
 
         GpuParamBlock(Nidx memidx, Nui16 dataType, Nui32 _32bSize, Nui32 typeMark) :
             mMemIndex(memidx), mDataType(dataType), m32bSize(_32bSize), mTypeMark(typeMark) {}
@@ -1305,7 +1317,7 @@ namespace NII
 
         /** 更新同步参数
         @param[in] src 参数资源
-        @param[in] mark GpuParamType
+        @param[in] mark GpuBindType
         @version NIIEngine 3.0.0 高级api
         */
         void sync(const SysSyncParam * src, Nmark mark);

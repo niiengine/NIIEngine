@@ -128,12 +128,12 @@ namespace NII
         /** 设置是否自动可见空间
         @version NIIEngine 3.0.0
         */
-        inline void setAutoVisibleSpace(bool b)            { mAutoVisibleSpace = b; }
+        inline void setAutoVisible(bool b)                  { mAutoVisible = b; }
 
         /** 获取是否自动可见空间
         @version NIIEngine 3.0.0
         */
-        inline bool isAutoVisibleSpace() const             { return mAutoVisibleSpace; }
+        inline bool isAutoVisible() const                   { return mAutoVisible; }
 
         /** 设置可见掩码
         @version NIIEngine 3.0.0
@@ -687,7 +687,7 @@ namespace NII
         /** 获取原点节点
         @version NIIEngine 3.0.0 高级api
         */
-        virtual SpaceNode * getOriginNode() const;
+        inline SpaceNode * getOriginNode() const            { return mOriginNode; }
         
         /** 设置队列是否使用阴影体积
         @version NIIEngine 3.0.0 高级api
@@ -718,15 +718,11 @@ namespace NII
         */
         const ShaderCh * applyCh(const ShaderCh * ch, bool force, bool shadow);
 
-        /** 应用GPU程序
-        @version NIIEngine 3.0.0 高级api
-        */
-        void applyGpuProgram(GpuProgram * obj);
-
         /** 应用GPU参数
-        @version NIIEngine 3.0.0 高级api
+        @param mark GpuBindType一个或多个组合
+        @version NIIEngine 6.0.0 高级api
         */
-        void applyGpuParam(const ShaderChProgram * pg);
+        void applyGpuProgram(const ShaderChProgram * pg, Nmark mark);
 
         /** 在灯光群中建立矩形裁剪
         @version NIIEngine 3.0.0 高级api
@@ -1062,7 +1058,7 @@ namespace NII
         bool mOptCh;
         bool mLockRenderCh;
         bool mUnitNormals;
-        bool mAutoVisibleSpace;
+        bool mAutoVisible;
         bool mNegScaleFlipCull;
         bool mLastCustomRender;
         bool mCameraOrigin;

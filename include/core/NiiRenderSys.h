@@ -1281,9 +1281,10 @@ namespace NII
         virtual void on(GpuProgram * prg);
 
         /** 绑定着色程序参数
+        @param mark GpuBindType一个或多个组合
         @version NIIEngine 3.0.0
         */
-        virtual void on(GpuProgram::ShaderType type, GpuProgramParam * params, Nmark range) = 0;
+        virtual void on(GpuProgram::ShaderType type, GpuProgramParam * params, Nmark mark) = 0;
 
         /** 禁用指定类型着色程序
         @version NIIEngine 3.0.0
