@@ -543,6 +543,7 @@ namespace NII
         virtual Nui8 * getHostData() const;
 
         /** 锁定整个缓冲区(可)读/写(CPU 操作)
+        @remark 尽量使用read/write代替
         @param[in] mm MuteMode单一/MuteMode复合选项
         @param[in] multiIdx 复合缓存选项,默认只有1倍,索引为0.双缓存1则是DEV应用中的.更多的一般用于离线渲染
         @return 指向锁定/映射内存
@@ -551,6 +552,7 @@ namespace NII
         inline void * lock(MuteMark mm, NCount multiIdx = 0){ return lock(mm | M_WHOLE, 0, mSize, multiIdx); }
 
         /** 锁定的缓冲区(可)读/写.(CPU 操作)
+        @remark 尽量使用read/write代替 
         @param[in] mm MuteMode单一/MuteMode复合选项
         @param[in] oft 从锁定缓存开始的字节偏移量
         @param[in] size 锁定面积大小(单位:字节)
@@ -561,11 +563,15 @@ namespace NII
         virtual void * lock(MuteMark mm, NCount oft, NCount size, NCount multiIdx = 0);
 
         /** 释放这个缓冲区的锁.(CPU 操作)
+        @remark 尽量使用read/write代替 
+        @note lock函数操作完后调用
         @version NIIEngine 3.0.0
         */
         virtual void unlock(UnlockType type);
         
         /** 释放这个缓冲区的锁(CPU 操作)
+        @remark 尽量使用read/write代替 
+        @note lock函数操作完后调用
         @version NIIEngine 5.0.0
         */
         virtual void unlock(UnlockType type, NCount oft, NCount size);
