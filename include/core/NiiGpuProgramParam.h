@@ -289,19 +289,19 @@ namespace NII
         
         GpuParamUnit();
 
-        inline bool isFloat() const         { return mDataType > GDT_Unknow && mDataType < GDT_Int; }
+        inline bool isFloat() const         { return isFloat(mDataType); }
 
-        inline bool isDouble() const        { return mDataType > GDT_SamplerArray2D && mDataType < GDT_Block; }
+        inline bool isDouble() const        { return isDouble(mDataType); }
 
-        inline bool isSampler() const       { return mDataType > GDT_Bool4X && mDataType < GDT_64Int; }
+        inline bool isSampler() const       { return isSampler(mDataType); }
 
-        inline bool isInt() const           { return mDataType > GDT_Matrix4X4 && mDataType < GDT_UInt; }
+        inline bool isInt() const           { return isInt(mDataType); }
 
-        inline bool isUInt() const          { return mDataType > GDT_Int4X && mDataType < GDT_Bool; }
+        inline bool isUInt() const          { return isUInt(mDataType); }
 
-        inline bool isBool() const          { return mDataType > GDT_UInt4X && mDataType < GDT_Sampler1D; }
+        inline bool isBool() const          { return isBool(mDataType); }
 
-        inline bool isBlock() const         { return mDataType == GDT_Block; }
+        inline bool isBlock() const         { return isBlock(mDataType); }
 
         Nidx mMemIndex;
         Nui32 mTypeMark;            ///< GpuBindType
@@ -333,23 +333,23 @@ namespace NII
 
         GpuParamBlock(Nidx memidx, Nui16 syncParam, NIIf inputFloat, Nui32 _32bSize, Nui32 typeMark) :
             mMemIndex(memidx), mDataType(GDT_Float), mSyncParam(syncParam), m32bSize(_32bSize), mTypeMark(typeMark), mInputFloat(inputFloat){}
-            
-        inline bool isFloat() const         { return mDataType > GDT_Unknow && mDataType < GDT_Int; }
 
-        inline bool isDouble() const        { return mDataType > GDT_SamplerArray2D && mDataType < GDT_Block; }
+        inline bool isFloat() const         { return isFloat(mDataType); }
 
-        inline bool isSampler() const       { return mDataType > GDT_Bool4X && mDataType < GDT_64Int; }
+        inline bool isDouble() const        { return isDouble(mDataType); }
 
-        inline bool isInt() const           { return mDataType > GDT_Matrix4X4 && mDataType < GDT_UInt; }
+        inline bool isSampler() const       { return isSampler(mDataType); }
 
-        inline bool isUInt() const          { return mDataType > GDT_Int4X && mDataType < GDT_Bool; }
+        inline bool isInt() const           { return isInt(mDataType); }
 
-        inline bool isBool() const          { return mDataType > GDT_UInt4X && mDataType < GDT_Sampler1D; }
+        inline bool isUInt() const          { return isUInt(mDataType); }
 
-        inline bool isBlock() const         { return mDataType == GDT_Block; }
+        inline bool isBool() const          { return isBool(mDataType); }
+
+        inline bool isBlock() const         { return isBlock(mDataType); }
     public:
         Nidx mMemIndex;
-        Nui32 m32bSize;
+        Nui32 m32bSize; ///< mUnitCount * mUnit32bSize
         Nui32 mTypeMark;
         Nui16 mDataType;
         Nui16 mSyncParam;
@@ -639,6 +639,30 @@ namespace NII
         @version NIIEngine 3.0.0
         */
         void set(NCount oft, Ni32 in, Ni32 in2 = 0, Ni32 in3 = 0, Ni32 in4 = 0);
+        
+        /** 设置参数值
+        @param[in] oft 偏移(单位:字节)
+        @version NIIEngine 3.0.0
+        */
+        void set(NCount oft, const bool * in, NCount cnt = 1);
+
+        /** 设置参数值
+        @param[in] oft 偏移(单位:字节)
+        @version NIIEngine 3.0.0
+        */
+        void set(NCount oft, const Ni32 * in, NCount cnt = 1);
+
+        /** 设置参数值
+        @param[in] oft 偏移(单位:字节)
+        @version NIIEngine 3.0.0
+        */
+        void set(NCount oft, const NIIf * in, NCount cnt = 1);
+
+        /** 设置参数值
+        @param[in] oft 偏移(单位:字节)
+        @version NIIEngine 3.0.0
+        */
+        void set(NCount oft, const NIId * in, NCount cnt = 1);
 
         /** 设置参数值
         @param[in] oft 偏移(单位:字节)
@@ -669,30 +693,6 @@ namespace NII
         @version NIIEngine 3.0.0
         */
         inline void set(NCount oft, const Matrix4f * in, NCount cnt = 1)        { set(oft, &in.data(), 16 * cnt); }
-
-        /** 设置参数值
-        @param[in] oft 偏移(单位:字节)
-        @version NIIEngine 3.0.0
-        */
-        void set(NCount oft, const bool * in, NCount cnt = 1);
-
-        /** 设置参数值
-        @param[in] oft 偏移(单位:字节)
-        @version NIIEngine 3.0.0
-        */
-        void set(NCount oft, const Ni32 * in, NCount cnt = 1);
-
-        /** 设置参数值
-        @param[in] oft 偏移(单位:字节)
-        @version NIIEngine 3.0.0
-        */
-        void set(NCount oft, const NIIf * in, NCount cnt = 1);
-
-        /** 设置参数值
-        @param[in] oft 偏移(单位:字节)
-        @version NIIEngine 3.0.0
-        */
-        void set(NCount oft, const NIId * in, NCount cnt = 1);
     public:
         OpType mOpType;
         ParamType mParamType;
@@ -1494,16 +1494,6 @@ namespace NII
         */
         GpuParamBlock * getBlock(Nui32 index, NCount size32b, Nmark typemark, GpuDataType dtype, bool reduce = false);
 
-        /** 移去参数绑定
-        @version NIIEngine 3.0.0
-        */
-        void removeBlock(Nui32 index);
-        
-        /** 移去参数绑定
-        @version NIIEngine 3.0.0
-        */
-        void removeBlock(GpuParamBlock * idx);
-
         /** 获取参数种类
         @version NIIEngine 3.0.0
         */
@@ -1540,9 +1530,9 @@ namespace NII
         Ni32 temp[4] = { in, in2, in3, in4 }; set(index, oft32b, temp, 1);
     }
 
-    inline void GpuProgramParam::set(Nui32 index, NCount oft, const Vector3f & in)
+    inline void GpuProgramParam::set(Nui32 index, NCount oft32b, const Vector3f & in)
     {
-        NIIf temp[4] = { in.x, in.y, in.z, 1.0f }; set(index, oft, temp, 1);
+        NIIf temp[4] = { in.x, in.y, in.z, 1.0f }; set(index, oft32b, temp, 1);
     }
     
     /** 着色程序自定义参数
@@ -1593,7 +1583,7 @@ namespace NII
         @param[in] bind 需要更新着色程序参数
         @version NIIEngine 3.0.0
         */
-        virtual void updateCustom(GpuProgramParam * dst, Nidx index, const GpuParamBlock & entry) const;
+        virtual void updateCustom(GpuProgramParam * dst, Nidx index, const GpuParamBlock & bind) const;
     protected:
         typedef map<Nidx, Vector4f>::type CustomParameterMap;
     protected:
