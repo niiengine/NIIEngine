@@ -285,7 +285,7 @@ namespace NII
     */
     struct _EngineAPI GpuParamUnit
     {
-        GpuParamUnit(Nui32 syncParam, Nui32 unitCnt, Nui16 inputType, Nui16 dataType);
+        GpuParamUnit(Nui16 syncParam, Nui32 unitCnt, Nui16 inputType, Nui16 dataType);
         
         GpuParamUnit();
 
@@ -304,10 +304,10 @@ namespace NII
         inline bool isBlock() const         { return mDataType == GDT_Block; }
 
         Nidx mMemIndex;
-        Nui32 mSyncParam;           ///< GpuSyncParam
         Nui32 mTypeMark;            ///< GpuBindType
-        Nui32 mUnit32bSize;         ///< Unit(32位)大小
         Nui32 mUnitCount;           ///< Unit数量
+        Nui16 mUnit32bSize;         ///< Unit(32位,4字节)大小
+        Nui16 mSyncParam;           ///< GpuSyncParam
         Nui16 mIndex;               ///< hwbuf idx
         Nui16 mArrayIndex;          ///< 数组索引
         Nui16 mDataType;
@@ -323,18 +323,16 @@ namespace NII
     struct _EngineAPI GpuParamBlock
     {
     public:
-        GpuParamBlock() : m32bSize(0), mMemIndex(0), mDataType(GDT_Unknow), mTypeMark(GPT_Render_Param) {}
+        GpuParamBlock() : mMemIndex(0), mDataType(GDT_Unknow), m32bSize(0), mTypeMark(GPT_Render_Param) {}
 
         GpuParamBlock(Nidx memidx, Nui16 dataType, Nui32 _32bSize, Nui32 typeMark) :
             mMemIndex(memidx), mDataType(dataType), mSyncParam(GSP_Null), m32bSize(_32bSize), mTypeMark(typeMark) {}
 
         GpuParamBlock(Nidx memidx, Nui16 syncParam, Ni32 inputInt, Nui32 _32bSize, Nui32 typeMark) :
-            mMemIndex(memidx), mSyncParam(syncParam), mTypeMark(typeMark), m32bSize(_32bSize), mInputInt(inputInt), 
-                mUnitCount(ucount) {}
+            mMemIndex(memidx), mDataType(GDT_Float), mSyncParam(syncParam), m32bSize(_32bSize), mTypeMark(typeMark), mInputInt(inputInt){}
 
         GpuParamBlock(Nidx memidx, Nui16 syncParam, NIIf inputFloat, Nui32 _32bSize, Nui32 typeMark) :
-            mMemIndex(memidx), mSyncParam(syncParam), mTypeMark(typeMark), m32bSize(_32bSize), mInputFloat(inputFloat), 
-                mUnitCount(ucount) {}
+            mMemIndex(memidx), mDataType(GDT_Float), mSyncParam(syncParam), m32bSize(_32bSize), mTypeMark(typeMark), mInputFloat(inputFloat){}
             
         inline bool isFloat() const         { return mDataType > GDT_Unknow && mDataType < GDT_Int; }
 
