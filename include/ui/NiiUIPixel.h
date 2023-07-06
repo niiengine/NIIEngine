@@ -613,11 +613,11 @@ namespace UI
     /**
     @version NIIEngine 3.0.0
     */
-    template <typename T> class ViewWrap : public PixelLayout
+    template <typename T> class WrapLayout : public PixelLayout
     {
     public:
-        ViewWrap(const PixelUnitGrid * str) : PixelLayout(str){}
-        ~ViewWrap();
+        WrapLayout(const PixelUnitGrid * str) : PixelLayout(str){}
+        ~WrapLayout();
 
         ///@copydetails PixelLayout::layout
         void layout(const Widget * dest, const PlaneSizef & area_size);
@@ -639,9 +639,9 @@ namespace UI
         LineList mLineList;
     };
     //------------------------------------------------------------------------
-    template<> _EngineAPI void ViewWrap<JustifyLayout>::layout(const Widget * dest, const PlaneSizef & area_size);
+    template<> _EngineAPI void WrapLayout<JustifyLayout>::layout(const Widget * dest, const PlaneSizef & area_size);
     //------------------------------------------------------------------------
-    template <typename T> ViewWrap<T>::~ViewWrap()
+    template <typename T> WrapLayout<T>::~WrapLayout()
     {
         NCount i, iend = mLineList.size();
         for(i = 0; i < iend; ++i)
@@ -654,7 +654,7 @@ namespace UI
     }
     //------------------------------------------------------------------------
     template <typename T>
-    void ViewWrap<T>::layout(const Widget * dest, const PlaneSizef & area_size)
+    void WrapLayout<T>::layout(const Widget * dest, const PlaneSizef & area_size)
     {
         NCount i, iend = mLineList.size();
         for(i = 0; i < iend; ++i)
@@ -690,7 +690,7 @@ namespace UI
         mLineList.push_back(frs);
     }
     //------------------------------------------------------------------------
-    template <typename T> void ViewWrap<T>::draw(const Widget * dest, GeometryPixel & buffer,
+    template <typename T> void WrapLayout<T>::draw(const Widget * dest, GeometryPixel & buffer,
         const Vector2f & pos, const ColourArea * colour, const Rectf * clip) const
     {
         Vector2f line_pos(pos);
@@ -702,7 +702,7 @@ namespace UI
         }
     }
     //------------------------------------------------------------------------
-    template <typename T> NIIf ViewWrap<T>::getHExtent(const Widget * dest) const
+    template <typename T> NIIf WrapLayout<T>::getHExtent(const Widget * dest) const
     {
         NIIf re = 0;
         LineList::const_iterator i, iend = mLineList.end();
@@ -716,7 +716,7 @@ namespace UI
         return re;
     }
     //------------------------------------------------------------------------
-    template <typename T> NIIf ViewWrap<T>::getVExtent(const Widget * dest) const
+    template <typename T> NIIf WrapLayout<T>::getVExtent(const Widget * dest) const
     {
         NIIf re = 0;
         LineList::const_iterator i, iend = mLineList.end();

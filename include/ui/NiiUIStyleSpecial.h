@@ -30,12 +30,76 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 
 #include "NiiUIPreInclude.h"
 #include "NiiSizeDefine.h"
-#include "NiiUIStyleArea.h"
 
 namespace NII
 {
 namespace UI
 {
+    /** 描述UI单元或图象成分
+    @version NIIEngine 3.0.0
+    */
+    class _EngineAPI StyleArea : public UIAlloc
+    {
+    public:
+        StyleArea();
+
+        /** 获取区域的像素区域
+        @param w
+        @version NIIEngine 3.0.0
+        */
+        Rectf getPixelRect(const Widget & w) const;
+
+        /** 获取区域的像素区域
+        @param w
+        @param container
+        @version NIIEngine 3.0.0
+        */
+        Rectf getPixelRect(const Widget & w, const Rectf & container) const;
+
+        /**设置
+        @version NIIEngine 3.0.0
+        */
+        void setSrcFetch(StyleID sid, Nid style_special);
+
+        /**
+        @version NIIEngine 3.0.0
+        */
+        void setPropertyFetch(PropertyID pid);
+
+        /**
+        @version NIIEngine 3.0.0
+        */
+        inline PropertyID getPropertyFetch() const      { return mPropertyID; }
+
+        /** 通过属性获取
+        @version NIIEngine 3.0.0
+        */
+        inline bool isPropertyFetch() const             { return mPropertyID != 0 && mStyleID == 0; }
+
+        /**
+        @version NIIEngine 3.0.0
+        */
+        inline bool isSpecialFetch() const              { return mStyleID != 0 && mPropertyID != 0; }
+
+        /**
+        @version NIIEngine 3.0.0
+        */
+        bool notifyFont(Widget * widget, const Font * font) const;
+
+        /** 
+        @version NIIEngine 3.0.0
+        */
+        void write(XmlSerializer * out) const;
+    public:
+        SizeDefine mLeft;
+        SizeDefine mTop;
+        SizeDefine mXDim;
+        SizeDefine mYDim;
+    private:
+        PropertyID mPropertyID;
+        StyleID mStyleID;
+    };
+
     /** 风格特定
     @version NIIEngine 3.0.0
     */

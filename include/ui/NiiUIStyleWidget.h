@@ -30,7 +30,7 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 
 #include "NiiUIPreInclude.h"
 #include "NiiAssignProperty.h"
-#include "NiiUIStyleArea.h"
+#include "NiiUIStyleSpecial.h"
 
 namespace NII
 {
