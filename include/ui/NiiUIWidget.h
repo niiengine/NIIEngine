@@ -32,7 +32,7 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 #include "NiiCommandObj.h"
 #include "NiiPropertyObj.h"
 #include "NiiExtData.h"
-#include "NiiUIPixelUnitGrid.h"
+#include "NiiUIPixel.h"
 #include "NiiUIWidgetAide.h"
 #include "NiiUIWidgetList.h"
 #include "NiiUIWidgetEventArgs.h"

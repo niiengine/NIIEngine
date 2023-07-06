@@ -31,7 +31,7 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 #include "NiiUIPreInclude.h"
 #include "NiiUIContainer.h"
 #include "NiiColour.h"
-#include "NiiUIPixelUnitGrid.h"
+#include "NiiUIPixel.h"
 #include "NiiRect.h"
 #include "NiiString.h"
 
@@ -54,9 +54,9 @@ namespace UI
         virtual bool operator> (const ListboxItem & o) const;
 
         /**
-        @version NIIEngine 3.0.0
+        @version NIIEngine 3.0.0 adv
         */
-        void setID(Nui32 id)                { mID = id; }
+        inline void setID(Nui32 id)         { mID = id; }
 
         /**
         @version NIIEngine 3.0.0
@@ -71,7 +71,7 @@ namespace UI
         /**
         @version NIIEngine 3.0.0
         */
-        const String & getText() const      { return mRawText; }
+        inline const String & getText() const{ return mRawText; }
 
         /**
         @version NIIEngine 3.0.0
@@ -111,7 +111,7 @@ namespace UI
         /**
         @version NIIEngine 3.0.0
         */
-        void setOwnerWindow(const Container * owner)            { mParent = owner; }
+        inline void setOwnerWindow(const Container * owner)     { mParent = owner; }
 
         /**
         @version NIIEngine 3.0.0

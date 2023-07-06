@@ -30,7 +30,7 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 
 #include "NiiPreProcess.h"
 #include "NiiUIWidgetManager.h"
-#include "NiiUIPixelUnitGrid.h"
+#include "NiiUIPixel.h"
 #include "NiiUIScrollbar.h"
 #include "NiiColour.h"
 

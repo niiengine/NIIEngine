@@ -33,7 +33,7 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 #include "NiiUIWidget.h"
 #include "NiiUIException.h"
 #include "NiiUIStyle.h"
-#include "NiiUIPixelUnitGrid.h"
+#include "NiiUIPixel.h"
 
 using namespace NII::UI;
 
@@ -211,7 +211,7 @@ namespace NII
         /** 创建UI视图
         @version NIIEngine 3.0.0
         */
-        WidgetView * createView(FactoryID wid);
+        WidgetView * createWindow(FactoryID wid);
 
         /** 删除UI视图
         @version NIIEngine 3.0.0
