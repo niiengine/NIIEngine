@@ -29,13 +29,55 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 #define _NII_UI_StyleWidget_H_
 
 #include "NiiUIPreInclude.h"
-#include "NiiAssignProperty.h"
 #include "NiiUIStyleSpecial.h"
 
 namespace NII
 {
 namespace UI
 {
+    /** 属性赋值
+    @version NIIEngine 3.0.0
+    */
+    class _EngineAPI AssignProperty : public StreamAlloc
+    {
+    public:
+        AssignProperty();
+        AssignProperty(PropertyID pid, const String & value);
+
+        /** 应用到属性控制对象中
+        @version NIIEngine 3.0.0
+        */
+        void apply(PropertyCmdObj * obj) const;
+
+        /** 设置属性
+        @version NIIEngine 3.0.0
+        */
+        inline void setProperty(PropertyID pid)         { mProperty = pid; }
+
+        /** 获取属性
+        @version NIIEngine 3.0.0
+        */
+        inline PropertyID getProperty() const           { return mProperty; }
+
+        /** 设置值
+        @version NIIEngine 3.0.0
+        */
+        inline void setValue(const String & value)      { mValue = value; }
+
+        /** 获取值
+        @version NIIEngine 3.0.0
+        */
+        inline const String & getValue() const          { return mValue;}
+
+        /** 写入到 XML
+        @version NIIEngine 3.0.0
+        */
+        void write(XmlSerializer * out) const;
+    private:
+        PropertyID mProperty;
+        String mValue;
+    };
+    
     /** 风格附属单元
     @version NIIEngine 3.0.0
     */

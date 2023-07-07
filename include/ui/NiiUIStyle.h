@@ -32,7 +32,6 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 #include "NiiUIStyleWidget.h"
 #include "NiiUIStyleLayout.h"
 #include "NiiUIStyleSection.h"
-#include "NiiAssignProperty.h"
 #include "NiiStylePropertyCmd.h"
 #include "NiiListenerProperty.h"
 #include "NiiListenerEvent.h"
