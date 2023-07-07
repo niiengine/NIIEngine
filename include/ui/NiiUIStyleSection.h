@@ -31,7 +31,7 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 #include "NiiUIPreInclude.h"
 #include "NiiUIWidget.h"
 #include "NiiUIStyleSpecial.h"
-#include "NiiUICommon.h"
+#include "NiiUIStrConv.h"
 #include "NiiColour.h"
 #include "NiiXMLSerializer.h"
 #include "NiiGeometryPixel.h"
@@ -42,7 +42,7 @@ namespace NII
 namespace UI
 {
     /** 属性类型
-    @note UIStrConv 需要实现具体的类型到字符串之间的转换
+    @note UI::StrConv 需要实现具体的类型到字符串之间的转换
     @version NIIEngine 3.0.0
     */
     template<typename T> class PropertyType
@@ -96,12 +96,12 @@ namespace UI
 
         inline String toStr() const
         {
-            return UIStrConv::conv(mValue);
+            return UI::StrConv::conv(mValue);
         }
 
         inline T fromStr(const String & str)
         {
-            UIStrConv::conv(str, mValue);
+            UI::StrConv::conv(str, mValue);
             return mValue;
         }
 
