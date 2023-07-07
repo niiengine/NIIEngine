@@ -49,12 +49,12 @@ namespace UI
         /** 设置大小的类型
         @version NIIEngine 3.0.0
         */
-        inline void setType(SizeType type) { mType = type; }
+        inline void setType(SizeType type)      { mType = type; }
 
         /** 获取大小的类型
         @version NIIEngine 3.0.0
         */
-        inline SizeType getType() const { return mType; }
+        inline SizeType getType() const         { return mType; }
 
         /** 获取大小
         @param wid 大小的来源
@@ -112,17 +112,17 @@ namespace UI
         /** 获取值
         @version NIIEngine 3.0.0
         */
-        inline const SizeBase * getValue() const { return mBase; }
+        inline const SizeBase * getValue() const{ return mBase; }
 
         /** 设置值类型
         @version NIIEngine 3.0.0
         */
-        inline void setType(SizeType type) { mType = type; };
+        inline void setType(SizeType type)      { mType = type; };
 
         /** 获取值类型
         @version NIIEngine 3.0.0
         */
-        inline SizeType getType() const { return mType; }
+        inline SizeType getType() const         { return mType; }
 
         /** 输出到XML序列
         @param out
@@ -143,10 +143,10 @@ namespace UI
         RelationSize(const RelPosf & value, SizeType type);
 
         /// 设置值
-        void setBaseValue(const RelPosf & val);
+        inline void setBaseValue(const RelPosf & val)   { mValue = value; }
 
         /// 获取值
-        const RelPosf & getBaseValue() const;
+        inline const RelPosf & getBaseValue() const     { return mValue; }
 
         /// @copydetails SizeBase::getValue
         NIIf getValue(const Widget & w) const;
@@ -176,10 +176,10 @@ namespace UI
         AbsoluteSize(NIIf val);
 
         /// 设置值
-        void setBaseValue(NIIf val);
+        inline void setBaseValue(NIIf val)      { mValue = val; }
 
         /// 获取值
-        NIIf getBaseValue() const;
+        inline NIIf getBaseValue() const        { return mValue; }
 
         /// @copydetails SizeBase::getValue
         NIIf getValue(const Widget & w) const;
