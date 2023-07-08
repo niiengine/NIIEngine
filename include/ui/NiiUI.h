@@ -38,7 +38,7 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 #include "NiiGeometryPixel.h"
 #include "NiiUISheet.h"
 #include "NiiPixelBuffer.h"
-#include "NiiPixelBufferManager.h"
+#include "NiiPixelManager.h"
 #include "NiiUIPixel.h"
 #include "NiiRenderEffectManager.h"
 #include "NiiUISchemeManager.h"

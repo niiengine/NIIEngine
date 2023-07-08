@@ -1690,11 +1690,6 @@ namespace UI
         @version NIIEngine 3.0.0
         */
         static const EventID EventCount;
-
-        /** 内部事件
-        @version NIIEngine 3.0.0
-        */
-        static const PropertyID InnerPropertyLimit;
     protected:
         /// @copydetails PropertyCmdObj::initCmd
         virtual bool initCmd(PropertyCmdSet * dest);

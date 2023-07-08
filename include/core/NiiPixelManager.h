@@ -24,8 +24,8 @@ Email: niiengine@gmail.com OR niiengine@163.com
 Licence: commerce(www.niiengine.com/license)(Three kinds)
 ------------------------------------------------------------------------------
 */
-#ifndef _PIXEL_BUFFER_MANAGER_H_
-#define _PIXEL_BUFFER_MANAGER_H_
+#ifndef _PIXEL_MANAGER_H_
+#define _PIXEL_MANAGER_H_
 
 #include "NiiPreInclude.h"
 #include "NiiSingleton.h"
@@ -37,11 +37,11 @@ namespace NII
     /** 像素缓存管理器
     @version NIIEngine 3.0.0
     */
-    class _EngineAPI PixelBufferManager : public Singleton<PixelBufferManager>, public BufferAlloc
+    class _EngineAPI PixelManager : public Singleton<PixelManager>, public BufferAlloc
     {
     public:
-        PixelBufferManager();
-        ~PixelBufferManager();
+        PixelManager();
+        ~PixelManager();
 
         /** 加载创建像素缓存
         @param[in] file 脚本文件名字

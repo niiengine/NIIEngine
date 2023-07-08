@@ -32,10 +32,9 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 #include "NiiUIStyleWidget.h"
 #include "NiiUIStyleLayout.h"
 #include "NiiUIStyleSection.h"
-#include "NiiStylePropertyCmd.h"
+#include "NiiUIStyleSpecial.h"
 #include "NiiListenerProperty.h"
 #include "NiiListenerEvent.h"
-#include "NiiUIStyleSpecial.h"
 #include "NiiAnimationObj.h"
 
 namespace NII
