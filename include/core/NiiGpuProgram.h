@@ -396,7 +396,7 @@ namespace NII
         bool mVertexInterpolation;
     };
     
-    /** 高层着色程序工厂类
+    /** 高层着色程序工厂类(glsl hlsl)
     @version NIIEngine 3.0.0
     */
     class _EngineAPI HighLevelGpuProgramFactory : public FactoryObj

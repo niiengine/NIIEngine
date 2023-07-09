@@ -790,11 +790,11 @@ namespace NII
         */
         bool isValid() const;
     protected:
-        typedef map<VString, Nidx>::type NamedSlotList;//<GPUProgram name, GPUbinding[Nidx]
+        typedef map<VString, Nidx>::type NamedBindList;//<GPUProgram name, GPUbinding[Nidx]
         typedef map<Nidx, Nidx>::type SlotList; //<mUnitList[Nidx], GPUbinding[Nidx]
     protected:
         GpuParamBufferUnitList mUnitList;
-        NamedSlotList mNamedSlotList;
+        NamedBindList mNamedSlotList;
         SlotList mSlotList;
     };
     typedef vector<GpuParamBuffer>::type GpuParamBufferList;
@@ -1493,6 +1493,16 @@ namespace NII
         @version NIIEngine 3.0.0
         */
         GpuParamBlock * getBlock(Nui32 index, NCount size32b, Nmark typemark, GpuDataType dtype, bool reduce = false);
+        
+        /** 转换为自动参数
+        @version NIIEngine 6.0.0
+        */
+        void set(GpuParamBlock * block, GpuSyncParam type, Ni32 extraInfo);
+        
+        /** 转换为自动参数
+        @version NIIEngine 6.0.0
+        */
+        void set(GpuParamBlock * block, GpuSyncParam type, NIIf extraInfo);
 
         /** 获取参数种类
         @version NIIEngine 3.0.0
@@ -1570,24 +1580,23 @@ namespace NII
         inline bool isCustomParamExist(Nidx index) const                { return mCGPUParamList.find(index) != mCGPUParamList.end(); }
 
         /** 更新自定义参数到实际的着色程序参数中
-        @note 参数使用的索引 bind 里的 mInputInt
         @param[in] dst 需要更新的着色程序参数集
-        @param[in] bind 需要更新着色程序参数
+        @param[in] src 源着色程序数据块
         @version NIIEngine 3.0.0
         */
-        virtual void updateCustom(GpuProgramParam * dst, const GpuParamBlock & bind) const;
+        virtual void updateCustom(GpuProgramParam * dst, const GpuParamBlock & src) const;
         
         /** 更新自定义参数到实际的着色程序参数中
         @param[in] dst 需要更新的着色程序参数集
-        @param[in] index 参数使用的索引
-        @param[in] bind 需要更新着色程序参数
+        @param[in] index 参数使用的索引, mCGPUParamList[index]
+        @param[in] src 源着色程序数据块
         @version NIIEngine 3.0.0
         */
-        virtual void updateCustom(GpuProgramParam * dst, Nidx index, const GpuParamBlock & bind) const;
+        virtual void updateCustom(GpuProgramParam * dst, Nidx index, const GpuParamBlock & src) const;
     protected:
-        typedef map<Nidx, Vector4f>::type CustomParameterMap;
+        typedef map<Nidx, Vector4f>::type GParamValueList;
     protected:
-        CustomParameterMap mCGPUParamList;
+        GParamValueList mCGPUParamList;
     };
 }
 #endif
