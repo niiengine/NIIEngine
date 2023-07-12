@@ -351,8 +351,10 @@ namespace NII
         Nidx mMemIndex;
         Nui32 m32bSize; ///< mUnitCount * mUnit32bSize
         Nui32 mTypeMark;
+        Nui16 mIndex;
         Nui16 mDataType;
         Nui16 mSyncParam;
+        Nui16 mPadding;
         union
         {
             Ni32 mInputInt;

@@ -94,6 +94,13 @@ namespace NII
         */
         inline void setCurrentPass(const ShaderCh * ch)                 { mCurrentShaderCh = ch; }
 
+        /** 设置当前灯光列表
+        */
+        Light * getLight(NCount index) const;
+        
+        /** 获取世界矩阵数量
+        @version NIIEngine 3.0.0
+        */
         NCount getWorldMatrixCount() const;
 
         const Matrix4f & getWorldMatrix() const;
@@ -196,12 +203,8 @@ namespace NII
         NIIf getFOV() const;
         NIIf getNearClipDistance() const;
         NIIf getFarClipDistance() const;
-        NIIi getPassNumber() const;
-        void setPassNumber(const NIIi passNumber);
-        void incPassNumber();
-        void updateLightCustomGpuParameter(const GpuParamBlock & bind, GpuProgramParam *params) const;
-    protected:
-        Light * getLight(NCount index) const;
+        inline NIIi getChIndex() const                  { return mChIndex; }
+        inline void setChIndex(NIIi idx)                { mChIndex = idx; }
     protected:
         mutable Matrix4f mWorldMatrix[256];
         mutable NCount mWorldMatrixCount;
@@ -249,7 +252,7 @@ namespace NII
         mutable Colour mFogColour;
         mutable Vector4f mFogParams;
         mutable Vector4f mPointParams;
-        mutable NIIi mPassNumber;
+        mutable NIIi mChIndex;
         mutable Vector4f mSceneDepthRange;
         mutable bool mSceneDepthRangeDirty;
         mutable bool mLodCameraPositionDirty;
