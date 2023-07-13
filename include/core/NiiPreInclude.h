@@ -88,7 +88,7 @@ namespace NII
     class PixelChain;
     class PixelBuffer;
     class PixelBufferGroup;
-    class PixelBufferManager;
+    class PixelManager;
     class MemStream;
     class ScriptLanguage;
     class ScriptHelperManager;

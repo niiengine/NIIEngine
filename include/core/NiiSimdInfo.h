@@ -59,12 +59,14 @@ namespace NII
             CS_FPU         = 1 << 12,
             CS_PRO         = 1 << 13,
             CS_HTT         = 1 << 14,
+            CS_AVX         = 1 << 15,
+            CS_AVX2        = 1 << 16,
 #elif N_CPU == NII_CPU_PPC
-            CS_ALTIVEC     = 1 << 15,
+            CS_ALTIVEC     = 1 << 17,
 #elif N_CPU == NII_CPU_ARM
-            CS_VFP         = 1 << 16,
-            CS_VFP3        = 1 << 17
-            CS_NEON        = 1 << 18,
+            CS_VFP         = 1 << 18,
+            CS_VFP3        = 1 << 19
+            CS_NEON        = 1 << 20,
 #endif
             CS_NONE        = 0
         };
@@ -85,7 +87,8 @@ namespace NII
         Nui32 mCpuMark;
     };
 
-    /**
+    /** 加速处理器信息
+    @remark 核显一般和CPU使用同一个内存控制器
     @version NIIEngine 4.0.0
     */
     class _EngineInner ApuInfo : public CPUAlloc

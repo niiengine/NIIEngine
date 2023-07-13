@@ -103,7 +103,7 @@ namespace NII
         /** 创建加速缓存
         @param[in] size 
         @param[in] count 数量.
-        @param[in] mode 一般情况使用 Buffer::M_DEV | M_WRITE, 如果写入则应包含 M_WRITE 或 M_HOST
+        @param[in] mode 一般情况使用 Buffer::M_DEVWRITE, 如果写入则应包含 M_WRITE 或 M_HOST
         @version NIIEngine 3.0.0
         */
         virtual void create(ApuBuffer *& out, const ApuContext * ctx, void * src, NCount unitSize, NCount unitCnt, Nmark mode);

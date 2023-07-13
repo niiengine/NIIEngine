@@ -114,48 +114,53 @@ namespace NII
             /** cpu读取快,cpu写入快,gpu读取中,gpu写入慢(客服端)
             @version NIIEngine 3.0.0
             */
-            M_HOST = 0x01,
+            M_HOST          = 0x01,
 
             /** gpu读取快,gpu写入快,如果没有M_HOST标识,cpu不能直接读写操作,
                 但可通过其他指令操作,如使用(着色程序，加速程序，或内部复制内存API)(服务端)
             @version NIIEngine 3.0.0
             */
-            M_DEV = 0x02,
+            M_DEV           = 0x02,
             
             /** 拥有客服端读取功能
             @version NIIEngine 3.0.0
             */
-            M_HOSTREAD = M_HOST | 0x04,
+            M_HOSTREAD      = M_HOST | 0x04,
             
             /** 拥有客服端写入功能
             @version NIIEngine 3.0.0
             */
-            M_HOSTWRITE = M_HOST | 0x08,
+            M_HOSTWRITE     = M_HOST | 0x08,
             
             /** 拥有设备读取功能(服务端)(默认)
             @version NIIEngine 3.0.0
             */
-            M_DEVREAD = M_DEV | 0x10,
+            M_DEVREAD       = M_DEV | 0x10,
             
             /** 拥有设备写入功能(服务端)
             @version NIIEngine 3.0.0
             */
-            M_DEVWRITE = M_DEV | 0x20,
+            M_DEVWRITE      = M_DEV | 0x20,
             
             /** 拥有设备读取功能/写入功能(服务端)
             @version NIIEngine 3.0.0
             */
-            M_DEVNORMAL = M_DEVREAD | M_DEVWRITE,
+            M_DEVNORMAL     = M_DEVREAD | M_DEVWRITE,
+            
+            /** 只读,初始化数据后不可改变数据
+            @version NIIEngine 3.0.0
+            */
+            M_OnlyREAD      = M_DEVREAD | M_HOSTREAD,
             
             /** 通常情况
             @version NIIEngine 3.0.0
             */
-            M_Normal = M_DEVREAD | M_HOSTWRITE,
+            M_Normal        = M_DEVREAD | M_HOSTWRITE,
             
             /** 允许服务端在缓冲被映射的状态下读写数据
             @version NIIEngine 3.0.0
             */
-            M_PersistentMap =  0x40,
+            M_PersistentMap = 0x40,
             
             /** 通常情况 和 允许服务端在缓冲被映射的状态下读写数据
             @version NIIEngine 3.0.0
@@ -165,7 +170,7 @@ namespace NII
             /** 客户端/服务端更新的数据会在服务端/客户端立即同步
             @version NIIEngine 3.0.0
             */
-            M_CoherentMap = 0x80,
+            M_CoherentMap   = 0x80,
             
             /** M_Normal M_PersistentMap M_CoherentMap 特性
             @version NIIEngine 3.0.0
@@ -175,7 +180,7 @@ namespace NII
             /** 访问特征区域
             @version NIIEngine 3.0.0
             */
-            M_USAGEMARK = 0xFF,
+            M_USAGEMARK     = 0xFF,
             
             /** 每次操作都是整块(整体)的
             @version NIIEngine 3.0.0
@@ -200,17 +205,22 @@ namespace NII
             /** 每帧冲刷后数据被重写
             @version NIIEngine 3.0.0
             */
-            M_FrameRecover = 0x1000,
+            M_FrameRecover      = 0x1000,
 
             /** 每次队列绘制完后数据被重写
             @version NIIEngine 3.0.0
             */
-            M_QueueDrawRecover = 0x2000,
+            M_QueueDrawRecover  = 0x2000,
 
             /** 每次like-drawcall函数调用后数据被重写
             @version NIIEngine 3.0.0
             */
-            M_DrawCallRecover = 0x4000,
+            M_DrawRecover       = 0x4000,
+            
+            /** 绘制特征区域
+            @version NIIEngine 3.0.0
+            */
+            M_DrawRecoverMARK   = 0x7000,
 
             /** 复合缓存,拥有1倍以上的大小,此选项默认2倍大小(double缓存概念).
                 可以有更多用在帧缓存混算.

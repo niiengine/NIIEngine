@@ -325,14 +325,14 @@ namespace NII
     public:
         GpuParamBlock() : mMemIndex(0), mDataType(GDT_Unknow), m32bSize(0), mTypeMark(GPT_Render_Param) {}
 
-        GpuParamBlock(Nidx memidx, Nui16 dataType, Nui32 _32bSize, Nui32 typeMark) :
-            mMemIndex(memidx), mDataType(dataType), mSyncParam(GSP_Null), m32bSize(_32bSize), mTypeMark(typeMark) {}
+        GpuParamBlock(Nui16 idx, Nidx memidx, Nui16 dataType, Nui32 _32bSize, Nui32 typeMark) :
+            mIndex(idx), mMemIndex(memidx), mDataType(dataType), mSyncParam(GSP_Null), m32bSize(_32bSize), mTypeMark(typeMark) {}
 
-        GpuParamBlock(Nidx memidx, Nui16 syncParam, Ni32 inputInt, Nui32 _32bSize, Nui32 typeMark) :
-            mMemIndex(memidx), mDataType(GDT_Float), mSyncParam(syncParam), m32bSize(_32bSize), mTypeMark(typeMark), mInputInt(inputInt){}
+        GpuParamBlock(Nui16 idx, Nidx memidx, Nui16 syncParam, Ni32 inputInt, Nui32 _32bSize, Nui32 typeMark) :
+            mIndex(idx), mMemIndex(memidx), mDataType(GDT_Float), mSyncParam(syncParam), m32bSize(_32bSize), mTypeMark(typeMark), mInputInt(inputInt){}
 
-        GpuParamBlock(Nidx memidx, Nui16 syncParam, NIIf inputFloat, Nui32 _32bSize, Nui32 typeMark) :
-            mMemIndex(memidx), mDataType(GDT_Float), mSyncParam(syncParam), m32bSize(_32bSize), mTypeMark(typeMark), mInputFloat(inputFloat){}
+        GpuParamBlock(Nui16 idx, Nidx memidx, Nui16 syncParam, NIIf inputFloat, Nui32 _32bSize, Nui32 typeMark) :
+            mIndex(idx),  mMemIndex(memidx), mDataType(GDT_Float), mSyncParam(syncParam), m32bSize(_32bSize), mTypeMark(typeMark), mInputFloat(inputFloat){}
 
         inline bool isFloat() const         { return isFloat(mDataType); }
 

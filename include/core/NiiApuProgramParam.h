@@ -48,7 +48,7 @@ namespace NII
                 mMutexMark(0), mUnitSize(unitSize), mUnitCount(unitCnt){}
 
             Unit(void * src, const void * data, Nmark typemark, NCount unitSize, NCount unitCnt) :
-                mSrc(src), mDst(0), mTypeMark(typemark | Buffer::M_CONST),
+                mSrc(src), mDst(0), mTypeMark(typemark | M_OnlyREAD),
                 mMutexMark(0), mUnitSize(unitSize), mUnitCount(unitCnt) 
             {
                 memcpy(mRawData, data, unitSize * unitCnt);
@@ -56,7 +56,7 @@ namespace NII
 
             inline const void * getConstData() const    { return mRawData; }
 
-            inline bool isConst() const                 { return mTypeMark & Buffer::M_CONST; }
+            inline bool isConst() const                 { return N_MarkOnlyTrue(mTypeMark, M_USAGEMARK, M_OnlyREAD); }
 
             void * mSrc;
             ApuBuffer * mDst;

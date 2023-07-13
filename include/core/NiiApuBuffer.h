@@ -42,7 +42,7 @@ namespace NII
         ApuL_OPENCL = 0x1,
         ApuL_CUDA   = 0x2
     };
-    typedef NIIi ApuLanguageMark;
+    typedef Nui32 ApuLanguageMark;
 
     /** Apu缓存
     @version NIIEngine 3.0.0
