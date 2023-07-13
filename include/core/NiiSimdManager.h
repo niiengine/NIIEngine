@@ -30,7 +30,7 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 
 #include "NiiPreInclude.h"
 #include "NiiSingleton.h"
-#include "NiiSimdInfo.h"
+#include "NiiCPUInfo.h"
 #include "NiiResourceManager.h"
 #include "NiiApuProgram.h"
 #include "NiiApuBuffer.h"

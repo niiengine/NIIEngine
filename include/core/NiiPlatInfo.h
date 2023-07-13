@@ -29,13 +29,12 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 #define _NII_PLATINFO_H_
 
 #include "NiiPreInclude.h"
-#include "NiiSimdInfo.h"
+#include "NiiCPUInfo.h"
 #include "NiiString.h"
 
 namespace NII
 {
     class CPUInfo;
-    class SimdInfo;
     class SystemInfo;
 
     /** 平台特征
@@ -87,7 +86,7 @@ namespace NII
         @return 如果支持则返回true
         @version NIIEngine 3.0.0
         */
-        static bool isSupport(SimdInfo::CpuSimd type);
+        static bool isSupport(CPUInfo::CpuSimd type);
 
         /** 记录平台信息
         @version NIIEngine 3.0.0
@@ -95,7 +94,6 @@ namespace NII
         static void log(Log * log);
     private:
         static CPUInfo * mCPU;
-        static SimdInfo * mCPUext;
         static SystemInfo * mSys;
     };
 }
