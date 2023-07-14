@@ -121,13 +121,14 @@ namespace NII
 
         /** 获取一条贯穿视窗的区域
         @remark 包含远/近平截面.渲染系统里还有个像素拾获,获取更符合实际
+        @param[out] plans
         @param[in] viewleft
         @param[in] viewtop
         @param[in] viewright
         @param[in] viewbottom
         @version NIIEngine 3.0.0
         */
-        PlaneSpace getVolume(NIIf viewleft, NIIf viewtop, NIIf viewright, NIIf viewbottom);
+        void getVolume(PlaneSpace & plans, NIIf viewleft, NIIf viewtop, NIIf viewright, NIIf viewbottom);
 
         /** 是否启用扩展空间模式
         @remark 一般用于空间物体影响当前空间,但空间物体实际并不存在于视区

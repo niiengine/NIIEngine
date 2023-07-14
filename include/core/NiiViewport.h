@@ -438,16 +438,6 @@ namespace NII
         */
         static NIIf getDefaultDirection();
     public:
-        /** 拣选时触发
-        @version NIIEngine 6.0.0 adv
-        */
-        void onCull(Camera * target);
-        
-        /** 渲染时触发
-        @version NIIEngine 6.0.0 adv
-        */
-        void onRender(Camera * target);
-
         /** 同步实现
         @version NIIEngine 3.0.0
         */
