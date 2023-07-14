@@ -55,15 +55,15 @@ namespace NII
         */
         virtual void onDestroy(Camera * obj);
 
-        /** 渲染前调用
+        /** 拣选后触发
         @version NIIEngine 3.0.0
         */
-        virtual void onPreRender(Camera * obj);
+        virtual void onCull(Camera * obj);
 
-        /** 渲染后调用
+        /** 渲染后触发
         @version NIIEngine 3.0.0
         */
-        virtual void onEndRender(Camera * obj);
+        virtual void onRender(Camera * obj);
     };
     typedef vector<CameraListener *>::type CameraListenerList;
     
@@ -75,8 +75,14 @@ namespace NII
     public:
         Camera(SpaceID sid, SpaceManager * sm = 0);
         virtual ~Camera();
+        
+        /** 拣选视口
+        @param[in] vp 需要渲染的视口
+        @version NIIEngine 3.0.0 高级api
+        */
+        void cull(Viewport * vp, const RenderQueueFusion * rqfusion);
 
-        /** 渲染的视口
+        /** 渲染视口
         @param[in] vp 需要渲染的视口
         @version NIIEngine 3.0.0 高级api
         */

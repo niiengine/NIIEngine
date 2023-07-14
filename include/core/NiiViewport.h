@@ -67,12 +67,12 @@ namespace NII
         /** 拣选时触发
         @version NIIEngine 6.0.0
         */
-        virtual void onCull(Camera * target);
+        virtual void onCull(Viewport * obj, Camera * target);
 
         /** 渲染时触发
         @version NIIEngine 6.0.0
         */
-        virtual void onRender(Camera * target);
+        virtual void onRender(Viewport * obj, Camera * target);
 
         /** 视口区域改变时触发
         @version NIIEngine 3.0.0
@@ -439,12 +439,12 @@ namespace NII
         static NIIf getDefaultDirection();
     public:
         /** 拣选时触发
-        @version NIIEngine 6.0.0
+        @version NIIEngine 6.0.0 adv
         */
         void onCull(Camera * target);
         
         /** 渲染时触发
-        @version NIIEngine 6.0.0
+        @version NIIEngine 6.0.0 adv
         */
         void onRender(Camera * target);
 

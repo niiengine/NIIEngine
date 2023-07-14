@@ -304,7 +304,7 @@ namespace NII
         inline bool isBlock() const         { return isBlock(mDataType); }
 
         Nidx mMemIndex;
-        Nui32 mTypeMark;            ///< GpuBindType
+        Nui32 mGBTMark;             ///< GpuBindType
         Nui32 mUnitCount;           ///< Unit数量
         Nui16 mUnit32bSize;         ///< Unit(32位,4字节)大小
         Nui16 mSyncParam;           ///< GpuSyncParam
@@ -323,16 +323,16 @@ namespace NII
     struct _EngineAPI GpuParamBlock
     {
     public:
-        GpuParamBlock() : mMemIndex(0), mDataType(GDT_Unknow), m32bSize(0), mTypeMark(GPT_Render_Param) {}
+        GpuParamBlock() : mMemIndex(0), mDataType(GDT_Unknow), m32bSize(0), mGBTMark(GPT_Render_Param) {}
 
-        GpuParamBlock(Nui16 idx, Nidx memidx, Nui16 dataType, Nui32 _32bSize, Nui32 typeMark) :
-            mIndex(idx), mMemIndex(memidx), mDataType(dataType), mSyncParam(GSP_Null), m32bSize(_32bSize), mTypeMark(typeMark) {}
+        GpuParamBlock(Nui16 idx, Nidx memidx, Nui16 dataType, Nui32 _32bSize, Nui32 gbtMark) :
+            mIndex(idx), mMemIndex(memidx), mDataType(dataType), mSyncParam(GSP_Null), m32bSize(_32bSize), mGBTMark(gbtMark) {}
 
-        GpuParamBlock(Nui16 idx, Nidx memidx, Nui16 syncParam, Ni32 inputInt, Nui32 _32bSize, Nui32 typeMark) :
-            mIndex(idx), mMemIndex(memidx), mDataType(GDT_Float), mSyncParam(syncParam), m32bSize(_32bSize), mTypeMark(typeMark), mInputInt(inputInt){}
+        GpuParamBlock(Nui16 idx, Nidx memidx, Nui16 syncParam, Ni32 inputInt, Nui32 _32bSize, Nui32 gbtMark) :
+            mIndex(idx), mMemIndex(memidx), mDataType(GDT_Float), mSyncParam(syncParam), m32bSize(_32bSize), mGBTMark(gbtMark), mInputInt(inputInt){}
 
-        GpuParamBlock(Nui16 idx, Nidx memidx, Nui16 syncParam, NIIf inputFloat, Nui32 _32bSize, Nui32 typeMark) :
-            mIndex(idx),  mMemIndex(memidx), mDataType(GDT_Float), mSyncParam(syncParam), m32bSize(_32bSize), mTypeMark(typeMark), mInputFloat(inputFloat){}
+        GpuParamBlock(Nui16 idx, Nidx memidx, Nui16 syncParam, NIIf inputFloat, Nui32 _32bSize, Nui32 gbtMark) :
+            mIndex(idx),  mMemIndex(memidx), mDataType(GDT_Float), mSyncParam(syncParam), m32bSize(_32bSize), mGBTMark(gbtMark), mInputFloat(inputFloat){}
 
         inline bool isFloat() const         { return isFloat(mDataType); }
 
@@ -350,7 +350,7 @@ namespace NII
     public:
         Nidx mMemIndex;
         Nui32 m32bSize; ///< mUnitCount * mUnit32bSize
-        Nui32 mTypeMark;
+        Nui32 mGBTMark;
         Nui16 mIndex;
         Nui16 mDataType;
         Nui16 mSyncParam;
@@ -1016,7 +1016,7 @@ namespace NII
         /** 定义参数
         @version NIIEngine 3.0.0
         */
-        void define(Nui32 index, Nmark typemark, GpuDataType type, NCount cnt);
+        void define(Nui32 index, Nui32 gbtMark, GpuDataType dataType, NCount cnt);
 
         /** 取消定义
         @version NIIEngine 3.0.0
@@ -1300,12 +1300,12 @@ namespace NII
         /** 设置同步参数(直接操作缓存,需要明确的memidx)
         @version NIIEngine 3.0.0 高级api
         */
-        void _set(Nidx memidx, GpuSyncParam type, Ni32 input, Nmark mark, NCount size = 4);
+        void _set(Nidx memidx, GpuSyncParam type, Ni32 input, Nui32 gbtMark, NCount size = 4);
 
         /** 设置同步参数(直接操作缓存,需要明确的memidx)
         @version NIIEngine 3.0.0 高级api
         */
-        void _set(Nidx memidx, GpuSyncParam type, NIIf input, Nmark mark, NCount size = 4);
+        void _set(Nidx memidx, GpuSyncParam type, NIIf input, Nui32 gbtMark, NCount size = 4);
 
         /** 获取同步参数绑定
         @version NIIEngine 3.0.0
@@ -1494,7 +1494,7 @@ namespace NII
         @param[in] reduce 如果已经存在的块比实际需要的大,是否缩减
         @version NIIEngine 3.0.0
         */
-        GpuParamBlock * getBlock(Nui32 index, NCount size32b, Nmark typemark, GpuDataType dtype, bool reduce = false);
+        GpuParamBlock * getBlock(Nui32 index, NCount size32b, Nui32 gbtMark, GpuDataType dtype, bool reduce = false);
         
         /** 转换为自动参数
         @version NIIEngine 6.0.0
@@ -1509,7 +1509,7 @@ namespace NII
         /** 获取参数种类
         @version NIIEngine 3.0.0
         */
-        Nmark getParamTypeMark(GpuSyncParam sparam);
+        Nui32 getGBTMark(GpuSyncParam sparam);
     protected:
         typedef map<Nui32, Ni32>::type ExtDataList;
     protected:
@@ -1521,7 +1521,7 @@ namespace NII
         ExtDataList mExtDataList;
         mutable GBufferArray mBufferData;      // shared layout 预分配缓存为128byte(32*(float 4byte)) -> alter uav buffer uniform buffer
         NIIf * mRenderCountPtr;
-        Nmark mParamTypeMark;
+        Nmark mParamGBTMark;
         BitSet mBitSet;
         bool mTransposeMatrix;
         bool mAllowParamLost;

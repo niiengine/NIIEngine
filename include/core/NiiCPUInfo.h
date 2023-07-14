@@ -139,7 +139,7 @@ namespace NII
         /** 检测CPU是否支持指定并行算术
         @return 如果支持则返回true.
         */
-        bool isSupport(CpuSimd type);
+        inline bool isSupport(CpuSimd type)         { return (mCpuMark & type) != 0; }
     private:
         bool readStat(Nui64 & user, Nui64 & nice, Nui64 & sys, Nui64 & idle, Nui64 & io);
     private:
