@@ -231,7 +231,7 @@ namespace NII
         /** 设置缓冲区
         @version NIIEngine 6.0.0 adv
         */
-        inline void setBuffer(Texture * buf) const      { mTarget = buf; }
+        void setBuffer(Texture * buf) const;
 
         /** 获取缓冲区
         @version NIIEngine 3.0.0

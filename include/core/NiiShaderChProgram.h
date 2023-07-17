@@ -36,7 +36,6 @@ namespace NII
     class ShaderChShader;
 
     /** 应用着色程序
-    @note 性质特殊,不能在任意渲染通路中切换
     @version NIIEngine 3.0.0
     */
     class _EngineAPI ShaderChProgram : public ShaderAlloc
@@ -49,15 +48,22 @@ namespace NII
         enum ShaderType
         {
             ST_VS = 0,       ///< 顶点(渲染物件时)
-            ST_FS = 1,       ///< 片段(渲染物件时)
-            ST_GS = 2,       ///< 几何(渲染物件时)
-            ST_VS_SR = 3,    ///< 顶点阴影接收(渲染时段扩展)
-            ST_FS_SR = 4,    ///< 片段阴影接收(渲染时段扩展)
-            ST_VS_SC = 5,    ///< 顶点投射阴影(渲染时段扩展)
-            ST_FS_SC = 6,    ///< 片段投射阴影(渲染时段扩展)
-            ST_FS_N = 7,     ///< 法线片段(法线纹理用)(渲染时段扩展)
-            ST_FS_F = 8,     ///< 镜面片段(倒影)(渲染时段扩展)
-            ST_Count = 9
+            ST_TS = 1,       ///< 顶点TS(渲染物件时)
+            ST_DS = 2,       ///< 顶点DS(渲染物件时)
+            ST_FS = 3,       ///< 片段(渲染物件时)
+            ST_GS = 4,       ///< 几何(渲染物件时)
+            ST_CS = 5,
+            ST_VS_SR = 6,    ///< 顶点阴影接收(渲染时段扩展)
+            ST_TS_SR = 7,    ///< 顶点TS阴影接收(渲染时段扩展)
+            ST_DS_SR = 8,    ///< 顶点DS阴影接收(渲染时段扩展)
+            ST_FS_SR = 9,    ///< 片段阴影接收(渲染时段扩展)
+            ST_VS_SC = 10,   ///< 顶点投射阴影(渲染时段扩展)
+            ST_TS_SC = 11,   ///< 顶点TS投射阴影(渲染时段扩展)
+            ST_DS_SC = 12,   ///< 顶点DS投射阴影(渲染时段扩展)
+            ST_FS_SC = 13,   ///< 片段投射阴影(渲染时段扩展)
+            ST_FS_N = 14,    ///< 法线片段(法线纹理用)(渲染时段扩展)
+            ST_FS_F = 15,    ///< 镜面片段(倒影)(渲染时段扩展)
+            ST_Count = 16
         };
     public:
         ShaderChProgram(ShaderCh * ch);
@@ -65,16 +71,11 @@ namespace NII
         ShaderChProgram & operator =(const ShaderChProgram & o);
         ~ShaderChProgram();
 
-        /** 是否存在着色程序
-        @version NIIEngine 3.0.0
-        */
-        bool isExist() const;
-
         /** 是否存在此类型的着色程序
-        @param[in] type 只能单个,不能组合
+        @param[in] type 只能单个,不能组合. ST_Count 则是任意一个类型是否存在着色程序
         @version NIIEngine 3.0.0
         */
-        bool isExist(ShaderType type) const;
+        bool isExist(ShaderType type = ST_Count) const;
 
         /** 加入着色程序到队列中
         @remark 这些程序会按加入时的顺序运行,注意顺序
@@ -124,28 +125,27 @@ namespace NII
         /** 获取参数设置
         @param[in] index
         @param[in] type
-        @param[in] out1
-        @param[in] out2
+        @param[in] outProg
+        @param[in] outParam
         @version NIIEngine 3.0.0
         */
-        void get(ShaderType type, GpuProgram * & outID, GpuProgramParam *& outParam, Nidx index = 0) const;
+        void get(ShaderType type, GpuProgram *& outProg, GpuProgramParam *& outParam, Nidx index = 0) const;
         
         /** 获取参数设置
-        @param[in] index
+        @remark 获取index = 1的
         @param[in] type
-        @param[in] out
+        @param[in] outProg
         @version NIIEngine 3.0.0
         */
-        GpuProgram * getProgram(ShaderType type, Nidx index = 0) const;
+        void get(ShaderType type, GpuProgram *& outProg) const;
 
         /** 获取参数设置
-        @param[in] index
+        @remark 获取index = 1的
         @param[in] type
         @param[in] out1
-        @param[in] out2
         @version NIIEngine 3.0.0
         */
-        GpuProgramParam * getParam(ShaderType type, Nidx index = 0) const;
+        void getParam(ShaderType type, GpuProgramParam *& outParam) const;
 
         /** 局部化多线程
         @version NIIEngine 3.0.0
