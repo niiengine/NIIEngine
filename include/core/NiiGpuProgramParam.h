@@ -47,13 +47,15 @@ namespace NII
         GPT_GS              = 0x08,
         GPT_FS              = 0x10,
         GPT_CS              = 0x20,
+        GPT_ProgramMark     = 0x3F,
         GPT_VS_Param        = 0x40,
         GPT_TS_Param        = 0x80,
         GPT_DS_Param        = 0x100,
         GPT_GS_Param        = 0x200,
         GPT_FS_Param        = 0x400,
         GPT_CS_Param        = 0x800,
-        GPT_TypeMark        = 0xFFF,
+        GPT_ParamMark       = 0xFC0,
+        GPT_GPGPMark        = 0xFFF,
         GPT_View_Param      = 0x1000,   ///< 视图空间
         GPT_Space_Param     = 0x2000,   ///< 模型空间
         GPT_Colour_Param    = 0x4000,
@@ -66,7 +68,7 @@ namespace NII
         GPT_Queue_Param     = 0x200000,
         GPT_Frame_Param     = 0x300000,
         GPT_Render_Param    = GPT_View_Param | GPT_Colour_Param | GPT_Texture_Param | GPT_Fog_Param | GPT_Fps_Param | GPT_Other_Param,
-        GPT_ParamMark       = 0xFFF000,
+        GPT_TypeParamMark   = 0xFFF000,
         GPT_Unknow          = 0xFFFFFFFF
     };
 
@@ -582,14 +584,7 @@ namespace NII
         {
             if (mParamType == o.mParamType && mOpType == o.mOpType)
             {
-                if (mParamType == PT_Storage)
-                {
-                    return mStorage != o.mStorage;
-                }
-                else
-                {
-                    return mSampler != o.mSampler;
-                }
+                return mParamType == PT_Storage ? mStorage != o.mStorage : mSampler != o.mSampler;
             }
             return true;
         }
@@ -598,14 +593,7 @@ namespace NII
         {
             if (mParamType == o.mParamType && mOpType == o.mOpType)
             {
-                if (mParamType == PT_Storage)
-                {
-                    return mStorage == o.mStorage;
-                }
-                else
-                {
-                    return mSampler == o.mSampler;
-                }
+                return mParamType == PT_Storage ? mStorage == o.mStorage : mSampler == o.mSampler;
             }
             return false;
         }
@@ -614,14 +602,7 @@ namespace NII
         {
             if (mParamType < o.mParamType || mOpType < o.mOpType)
             {
-                if (mParamType == PT_Storage)
-                {
-                    return mStorage < o.mStorage;
-                }
-                else
-                {
-                    return mSampler < o.mSampler;
-                }
+                return mParamType == PT_Storage ? mStorage < o.mStorage : mSampler < o.mSampler;
             }
             return false;
         }
@@ -719,35 +700,9 @@ namespace NII
         GpuParamBuffer() {}
         virtual ~GpuParamBuffer() {}
 
-        bool operator == (const GpuParamBuffer & o) const
-        {
-            if (mUnitList.size() == o.mUnitList.size())
-            {
-                NCount i, iend = mUnitList.size();
-                for (i = 0; i < iend; ++i)
-                {
-                    if (mUnitList[i] != o.mUnitList[i])
-                        return false;
-                }
-                return true;
-            }
-            return false;
-        }
+        bool operator == (const GpuParamBuffer & o) const;
 
-        bool operator < (const GpuParamBuffer & o) const
-        {
-            if (mUnitList.size() != o.mUnitList.size())
-            {
-                return mUnitList.size() < o.mUnitList.size();
-            }
-            NCount i, iend = mUnitList.size();
-            for (i = 0; i < iend; ++i)
-            {
-                if (mUnitList[i] < o.mUnitList[i])
-                    return false;
-            }
-            return true;
-        }
+        bool operator < (const GpuParamBuffer & o) const;
 
         /** 添加绑定点缓存
         @version NIIEngine 3.0.0

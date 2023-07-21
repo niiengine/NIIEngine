@@ -29,8 +29,6 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 #define _NII_DataEquation_H_
 
 #include "NiiPreInclude.h"
-#include "NiiDataFunc.h"
-#include "NiiDataValue.h"
 
 namespace NII
 {
@@ -50,21 +48,91 @@ namespace NII
         /** 是否有效
         @version NIIEngine 3.0.0
         */
-        bool isEnable() const
-        {
-            return mValid;
-        }
+        inline bool isEnable() const        { return mValid; }
 
         /** 设置是否有效
         @version NIIEngine 3.0.0
         */
-        void setEnable(bool b)
-        {
-            mValid = b;
-        }
+        inline void setEnable(bool b)       { mValid = b; }
     protected:
         bool mValid;
     };
+    
+    /** 数据参子
+    @version NIIEngine 3.0.0
+    */
+    template <typename T> class DataValue : public DataAlloc
+    {
+    public:
+        DataValue(bool autoDsy) :
+            mAutoDestroy(autoDsy)
+        {
+        }
+
+        virtual ~DataValue() {}
+
+        /** 获取值
+        @remark version NIIEngine 3.0.0
+        */
+        virtual const T getValue() const = 0;
+
+        /** 设置值
+        @remark version NIIEngine 3.0.0
+        */
+        virtual void setValue(const T & v) = 0;
+
+        /** 设置是否自动删除数据
+        @version NIIEngine 3.0.0
+        */
+        inline void setAutoDestroy(bool b)  { mAutoDestroy = b; }
+
+        /** 获取是否自动删除数据
+        @version NIIEngine 3.0.0
+        */
+        inline bool isAutoDestroy() const   { return mAutoDestroy; }
+    protected:
+        bool mAutoDestroy;
+    };
+    
+    /** 数据函子
+    @remark 用于映射数据
+    @version NIIEngine 3.0.0
+    */
+    template <typename in, typename out> class DataFunc : public DataAlloc
+    {
+    public:
+        DataFunc(bool autoDsy) : 
+            mAutoDestroy(autoDsy)
+        {
+        }
+
+        virtual ~DataFunc() {}
+
+        /** 函子
+        @param[in] src 输入值
+        @return 输出值
+        @version NIIEngine 3.0.0
+        */
+        virtual out func(const in & src) = 0;
+        
+        /** 函子是否有效
+        @version NIIEngine 3.0.0
+        */
+        virtual bool isValid() const        { return true; }
+        
+        /** 设置是否自动删除数据
+        @version NIIEngine 3.0.0
+        */
+        inline void setAutoDestroy(bool b)  { mAutoDestroy = b; }
+        
+        /** 获取是否自动删除数据
+        @version NIIEngine 3.0.0
+        */
+        inline bool isAutoDestroy() const   { return mAutoDestroy; }
+    protected:
+        bool mAutoDestroy;
+    };
+
     /** 函数/参子等式
     @version NIIEngine 3.0.0
     */
@@ -109,50 +177,32 @@ namespace NII
         /** 设置输入
         @version NIIEngine 3.0.0
         */
-        void setInput(const DataValue<in> * src)
-        {
-            mSrc = src;
-        }
+        inline void setInput(const DataValue<in> * src)     { mSrc = src; }
 
         /** 获取输入
         @version NIIEngine 3.0.0
         */
-        const DataValue<in> * getInput() const
-        {
-            return mSrc;
-        }
+        inline const DataValue<in> * getInput() const       { return mSrc; }
 
         /** 输出
         @version NIIEngine 3.0.0
         */
-        void setOutput(DataValue<out> * dst)
-        {
-            mDst = dst;
-        }
+        inline void setOutput(DataValue<out> * dst)         { mDst = dst; }
 
         /** 输出
         @version NIIEngine 3.0.0
         */
-        const DataValue<out> * getOutput() const
-        {
-            return mDst;
-        }
+        inline const DataValue<out> * getOutput() const     { return mDst; }
 
         /** 设置这个控制使用的函数对象.
         @version NIIEngine 3.0.0
         */
-        void setFunc(const DataFunc<in, out> * func)
-        {
-            mFunc = func;
-        }
+        inline void setFunc(const DataFunc<in, out> * func) { mFunc = func; }
 
         /** 返回这个控制使用的函数对象的一个指针.
         @version NIIEngine 3.0.0
         */
-        const DataFunc<in, out> * getFunc() const
-        {
-            return mFunc;
-        }
+        inline const DataFunc<in, out> * getFunc() const    { return mFunc; }
     protected:
         const DataValue<in> * mSrc;
         DataValue<out> * mDst;

@@ -88,11 +88,11 @@ namespace NII
 
         /** 为查询需求设置当前scene manager
         */
-        inline void setCurrentSceneManager(const SpaceManager * sm)     { mCurrentSpaceManager = sm; }
+        inline void setCurrentSpaceManager(const SpaceManager * sm)     { mCurrentSpaceManager = sm; }
 
         /** 设置当前通道
         */
-        inline void setCurrentPass(const ShaderCh * ch)                 { mCurrentShaderCh = ch; }
+        inline void setCurrentShaderCh(const ShaderCh * ch)             { mCurrentShaderCh = ch; }
 
         /** 设置当前灯光列表
         */
@@ -154,7 +154,7 @@ namespace NII
         const Matrix4f & getTextureTransformMatrix(Nidx index) const;
         inline const FrameBufferObject * getCurrentFBO() const          { return mCurrentFBO; }
         inline const GeometryObj * getCurrentGeometryObj() const        { return mCurrentGeometryObj; }
-        inline const ShaderCh * getCurrentPass() const                  { return mCurrentShaderCh; }
+        inline const ShaderCh * getCurrentShaderCh() const              { return mCurrentShaderCh; }
         Vector4f getTextureSize(Nidx index) const;
         Vector4f getInverseTextureSize(NCount index) const;
         Vector4f getPackedTextureSize(NCount index) const;

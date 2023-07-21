@@ -50,12 +50,12 @@ namespace NII
         /** 获取最后一帧时间控制值
         @version NIIEngine 3.0.0
         */
-        DataValue<TimeDurMS> * getLastTimeValue() const;
+        inline DataValue<TimeDurMS> * getLastTimeValue() const              { return mFrameTimeValue; }
 
         /** 获取简单的时间控制函数.
         @version NIIEngine 3.0.0
         */
-        DataFunc<TimeDurMS, TimeDurMS> * getNormalTimeFunc() const;
+        inline DataFunc<TimeDurMS, TimeDurMS> * getNormalTimeFunc() const   { return mNormalTimeFunc; }
 
         /** 创建动画(全局)
         @note AnimationObj 中很可能已经存在动画, 这个函数是控制动态附加动画
@@ -161,12 +161,12 @@ namespace NII
         /** 设置资源群组
         @version NIIEngine 3.0.0
         */
-        void setGroup(GroupID gid);
+        inline void setGroup(GroupID gid)               { mGroupID = gid; }
 
         /** 获取资源群组
         @version NIIEngine 3.0.0
         */
-        GroupID getGroup();
+        inline GroupID getGroup()                       { return mGroupID; }
 
         /** 生成有效ID
         @version NIIEngine 3.0.0

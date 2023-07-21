@@ -183,12 +183,12 @@ namespace NII
         /** 设置锁定渲染通路
         @version NIIEngine 3.0.0 高级api
         */
-        inline void setLockRenderCh(bool b)                { mLockRenderCh = b; }
+        inline void setLockShaderCh(bool b)                { mLockShaderCh = b; }
 
         /** 是否锁定渲染通路
         @version NIIEngine 3.0.0 高级api
         */
-        inline bool isLockRenderCh() const                 { return mLockRenderCh; }
+        inline bool isLockShaderCh() const                 { return mLockShaderCh; }
 
         /** 设置是否显示边界
         @version NIIEngine 3.0.0
@@ -718,7 +718,7 @@ namespace NII
         */
         const ShaderCh * applyCh(const ShaderCh * ch, bool force, bool shadow);
 
-        /** 应用GPU参数
+        /** 应用GPU程序,参数
         @param mark GpuBindType一个或多个组合
         @version NIIEngine 6.0.0 高级api
         */
@@ -952,11 +952,6 @@ namespace NII
         */
         virtual void renderQueue(const RenderQueueFusion * rqfusion);
 
-        /** 渲染队列前
-        @version NIIEngine 3.0.0
-        */
-        virtual bool onPreRenderQueue(GroupID qid);
-
         /** 渲染对象时
         @version NIIEngine 3.0.0
         */
@@ -1056,7 +1051,7 @@ namespace NII
         N_mutable_mutex(mSpaceMutex)
         bool mShadowVolume;
         bool mOptCh;
-        bool mLockRenderCh;
+        bool mLockShaderCh;
         bool mUnitNormals;
         bool mAutoVisible;
         bool mNegScaleFlipCull;

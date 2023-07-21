@@ -47,12 +47,12 @@ namespace NII
         /** 更新所有等式
         @version NIIEngine 3.0.0
         */
-        void update();
+        void update(Nmark frameMark);
 
         /** 创建等式
         @version NIIEngine 3.0.0
         */
-        template <typename in, typename out> DataEquation<in, out> * create(const DataValue<in> * src,
+        template <typename in, typename out> inline DataEquation<in, out> * create(const DataValue<in> * src,
             DataValue<out> * dest, DataFunc<in, out> * func)
         {
             DataEquation<in, out> * c = N_new DataEquation<in, out>(src, dest, func);
@@ -72,6 +72,7 @@ namespace NII
     protected:
         typedef set<DataEquationBase *>::type EquationList;
         EquationList mEquationList;
+        Nmark mLastFrame;
     };
 }
 #endif
