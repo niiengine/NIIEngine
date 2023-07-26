@@ -33,7 +33,7 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 #include "NiiColour.h"
 #include "NiiPlane.h"
 #include "NiiShaderCh.h"
-#include "NiiShadowGenCamera.h"
+#include "NiiCamera.h"
 #include "NiiGpuProgramParam.h"
 #include "NiiFusionDataCollector.h"
 
@@ -197,12 +197,12 @@ namespace NII
         /** 设置生成阴影时使用的摄像机
         @version NIIEngine 3.0.0
         */
-        void setShadowCamera(ShadowGenCamera * obj);
+        void setShadowCamera(ShadowSetup * obj);
 
         /** 设置生成阴影时使用的摄像机
         @version NIIEngine 3.0.0
         */
-        inline const ShadowGenCamera * getShadowCamera() const { return mShadowCamera; }
+        inline const ShadowSetup * getShadowCamera() const { return mShadowCamera; }
 
         /** 设置灯光排序相对位置
         @version NIIEngine 3.0.0
@@ -415,7 +415,7 @@ namespace NII
         Radian mSpotOuter;
         Radian mSpotInner;
         NIIf mSpotFalloff;
-        ShadowGenCamera * mShadowCamera;
+        ShadowSetup * mShadowCamera;
         NIIf mShadowNearClip;
         NIIf mShadowFarClip;
         NIIf mShadowExtent;

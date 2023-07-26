@@ -194,17 +194,12 @@ namespace NII
         /** 设置是否反射
         @version NIIEngine 3.0.0
         */
-        void setReflection(bool b);
+        void setReflection(bool b, const Plane & p = Plane());
 
         /** 获取是否反射
         @version NIIEngine 3.0.0
         */
         inline bool isReflection() const            { return mReflect;  }
-
-        /** 设置反射平面
-        @version NIIEngine 3.0.0
-        */
-        void setReflection(const Plane & p);
 
         /** 获取反射平面
         @version NIIEngine 3.0.0
@@ -246,12 +241,7 @@ namespace NII
         @param[in] plane
         @version NIIEngine 3.0.0
         */
-        void setCustomNearClip(const Plane & plane);
-
-        /** 设置是否使用自定义近裁减面
-        @version NIIEngine 3.0.0
-        */
-        void setCustomNearClip(bool b);
+        void setCustomNearClip(bool b, const Plane & plane = Plane());
 
         /** 自定义近裁剪面在使用?
         @version NIIEngine 3.0.0

@@ -85,7 +85,7 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 #include "NiiViewport.h"
 #include "NiiFrameResult.h"
 #include "NiiSysOption.h"
-#include "NiiShadowGenCamera.h"
+#include "NiiCamera.h"
 #include "NiiNodeFusion.h"
 #include "NiiVertexOffsetFusion.h"
 #include "NiiUnitFusion.h"
