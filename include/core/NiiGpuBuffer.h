@@ -361,7 +361,6 @@ namespace NII
         void destroyAllIndexView();
         
         /** 创建索引视图(访问数据模型)
-        @param[in] uszie 只有2种,值为2则是16位,值为4则是32位
         @version NIIEngine 5.0.0
         */
         IndirectBuffer* createIndirectView(IndirectBuffer::Type type, NCount oft, NCount count);
@@ -598,12 +597,12 @@ namespace NII
         /** 群组偏移
         @version NIIEngine 5.0.0
         */
-        inline NCount getGroupOffset() const{ return mGroupOffset; }
+        inline NCount getGroupOffset() const    { return mGroupOffset; }
         
         /** 群组索引
         @version NIIEngine 5.0.0
         */
-        inline NCount getGroupIndex() const { return mGroupIndex; }
+        inline NCount getGroupIndex() const     { return mGroupIndex; }
 
         /**
         @version NIIEngine 5.0.0
@@ -613,12 +612,12 @@ namespace NII
         /**
         @version NIIEngine 5.0.0
         */
-        inline NCount getSize() const                           {return mSize;}
+        inline NCount getSize() const           { return mSize;}
 
         /**
         @version NIIEngine 5.0.0
         */
-        inline PixelFormat getFormat() const                           { return mFormat; }
+        inline PixelFormat getFormat() const    { return mFormat; }
 
         /**
         @version NIIEngine 5.0.0
@@ -650,7 +649,7 @@ namespace NII
         /** 
         @version NIIEngine 5.0.0
         */
-        NCount getLastFrame() const                             { return mLastFrame; }
+        inline NCount getLastFrame() const      { return mLastFrame; }
     protected:
         /**
         @version NIIEngine 5.0.0

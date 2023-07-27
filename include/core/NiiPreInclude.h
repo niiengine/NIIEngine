@@ -312,7 +312,6 @@ namespace NII
     class MeshSerializer;
     class ShadowObj;
     class ShadowVolume;
-    class ShadowTextureManager;
     class RenderObj;
     class LinearSpline;
     class Skeleton;

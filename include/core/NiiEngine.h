@@ -619,7 +619,7 @@ namespace NII
         MaterialManager * mMaterialManager;
         SkeletonManager * mSkeletonManager;
         AnimationManager * mAnimationManager;
-        PixelBufferManager * mPixelBufferManager;
+        PixelManager * mPixelBufferManager;
         MeshManager * mMeshManager;
         FontManager * mFontManager;
         LogManager * mLogManager;
@@ -632,7 +632,6 @@ namespace NII
         ResourceSchemeManager * mResSchemeManager;
         FusionManager * mFusionManager;
         ExtTextureManager * mExtTextureManager;
-        ShadowTextureManager * mShadowTexManager;
         RenderSysManager * mRenderSysManager;
         ScriptCompilerManager * mCompilerManager;
         LodSchemeManager * mLodSchemeManager;

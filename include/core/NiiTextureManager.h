@@ -34,6 +34,26 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 
 namespace NII
 {
+    /** 纹理配置
+    @version NIIEngine 3.0.0
+    */
+    class _EngineAPI TextureDefine : public ShadowAlloc
+    {
+    public:
+        TextureDefine();
+
+        bool operator== (const TextureDefine & o2);
+        bool operator!= (const TextureDefine & o2);
+    public:
+        Nui32 mWidth;           ///< 宽度
+        Nui32 mHeight;          ///< 高度
+        Nui32 mFSAA;            ///< 抗锯齿等级
+        PixelFormat mFormat;    ///< 格式
+        GroupID mGroup;         ///< 群组id
+    };
+
+    typedef vector<TextureDefine>::type TextureDefineList;
+    
     struct _EngineAPI TexturePool
     {
         Texture * mPool;
@@ -227,17 +247,17 @@ namespace NII
         /** 
         @version NIIEngine 5.0.0
         */
-        void setMappedPoolMaxSize(NCount size)              { mMappedPoolMaxSize = size; }
+        inline void setMappedPoolMaxSize(NCount size)       { mMappedPoolMaxSize = size; }
         
         /** 
         @version NIIEngine 5.0.0
         */
-        NCount getMappedPoolMaxSize() const                 { return mMappedPoolMaxSize; }
+        inline NCount getMappedPoolMaxSize() const          { return mMappedPoolMaxSize; }
         
         /** 获取纹理项目
         @version NIIEngine 5.0.0
         */
-        const ItemList & getItemList() const                { return mItemList; }
+        inline const ItemList & getItemList() const         { return mItemList; }
 
         /**
         @version NIIEngine 5.0.0
@@ -366,6 +386,26 @@ namespace NII
         @version NIIEngine 5.0.0
         */
         void destroyAllTexture();
+        
+        /** 获取
+        @version NIIEngine 3.0.0
+        */
+        virtual void getTexture(const TextureDefineList & in, TextureList & out);
+
+        /**
+        @version NIIEngine 3.0.0
+        */
+        virtual Texture * getDummy(PixelFormat format);
+
+        /** 回收所有阴影纹理
+        @version NIIEngine 3.0.0
+        */
+        virtual void recoverShadow();
+
+        /** 清除所有阴影纹理
+        @version NIIEngine 3.0.0
+        */
+        virtual void clearShadow();
 
         /** 安排资源
         @version NIIEngine 3.0.0
@@ -501,7 +541,9 @@ namespace NII
         TexturePoolList mPool;
         MappedPoolList mMappedPoolList;
         MetadataList mMetadataList;
-
+        TextureList mShadowTextureList;
+        TextureList mDummyTextureList;
+        
         NCount mMappedPoolMaxSize;
         NCount mMaxProcessRequest;
         NCount mMaxProcessSize;
@@ -514,6 +556,7 @@ namespace NII
         TextureTaskList mTextureTaskList;
         Texture::Process::ItemList mProcessList;
 
+        
         Nui8 mDummyData[128];
         
         NCount mBitDepth;
