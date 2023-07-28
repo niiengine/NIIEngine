@@ -261,16 +261,6 @@ namespace NII
         @version NIIEngine 3.0.0 高级api
         */
         virtual void setTextureFade(NIIf start, NIIf end);
-
-        /** 在渲染到纹理时的特殊处理
-        @version NIIEngine 3.0.0 高级api
-        */
-        virtual void setTextureAmbient();
-
-        /** 在渲染到纹理时的特殊处理
-        @version NIIEngine 3.0.0 高级api
-        */
-        virtual void setColourBlend(ShaderChTextureUnit * src);
     private:
         ShadowMappingData * mShaderData;
     protected:

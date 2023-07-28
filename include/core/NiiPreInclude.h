@@ -482,7 +482,7 @@ namespace NII
     typedef vector<SubMesh *>::type SubMeshList;
     typedef vector<Bone *>::type BoneList;
     typedef vector<VertexOffset *>::type VertexOffsetList;
-    typedef vector<ShadowObj *>::type ShadowVolumeGenList;
+    typedef vector<ShadowObj *>::type StencilObjList;
     
     typedef vector<GpuBuffer *>::type GpuBufferList;
     typedef vector<IndexBuffer *>::type IndexBufferList;

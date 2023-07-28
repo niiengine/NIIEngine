@@ -440,7 +440,7 @@ namespace NII
         @remark 如果是使用附加型去绘制阴影,越描越黑,所以不合适,仅合适调制型绘制阴影
         @version NIIEngine 3.0.0
         */
-        virtual const Colour & getShadowColour() const;
+        inline const Colour & getShadowColour() const  { return mShadowColour; }
 
         /** 设置阴影投射是否使用后表面,而不是正表面.
         @version NIIEngine 3.0.0
