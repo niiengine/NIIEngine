@@ -47,7 +47,7 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
     #include "NiiLogManager.h"
     #include "NiiResource.h"
     #include "NiiSerializer.h"
-    #include "NiiSharedPtrST.h"
+    #include "NiiSharedPtr.h"
     #include "NiiRenderObj.h"
     #include "NiiLinearSpline.h"
     #include "NiiSingleton.h"

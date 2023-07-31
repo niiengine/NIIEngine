@@ -356,57 +356,21 @@ namespace NII
 
 namespace NII
 {
-    template<typename T> T * NewArray(T * p, NCount count)
+    template<typename T> T * NewArray(T * p, NCount cnt)
     {
-        for (NCount i = 0; i < count; ++i)
+        for (NCount i = 0; i < cnt; ++i)
         {
             new ((void*)(p + i)) T();
         }
         return p;
     }
-#if N_DEBUG
-    #define N_alloc(size) N_Alloc::alloc(size N_MEMTRACK_INVO)
-    #define N_realloc(ptr, olds, news) N_Alloc::realloc(ptr, olds, news N_MEMTRACK_INVO)
-    #define N_alloc_t(T, count) (T *)(N_Alloc::alloc(sizeof(T) * (count) N_MEMTRACK_INVO))
-    #define N_free(ptr) N_Alloc::dealloc((void *)ptr)
-
-    #define N_new_t(T) new (N_Alloc::alloc(sizeof(T) N_MEMTRACK_INVO)) T
-    #define N_new_array_t(T, count) NewArray(static_cast<T *>(N_Alloc::alloc(sizeof(T) * (count) N_MEMTRACK_INVO)), count)
-    #define N_delete_t(ptr, T) if(ptr){(ptr)->~T(); N_Alloc::dealloc((void *)ptr);}
-    #define N_delete_array_t(ptr, T, count) if(ptr){for (NCount b = 0; b < count; ++b) { (ptr)[b].~T();} N_Alloc::dealloc(ptr);}
-
-    /// 分配字节对齐的内存
-    #define N_alloc_align(bytes, align) N_AlignAlloc(align)::alloc(bytes N_MEMTRACK_INVO)
-    /// 从新分配已经分配字节对齐的内存
-    #define N_realloc_align(ptr, os, ns, align) N_AlignAlloc(align)::realloc(ptr, os, ns N_MEMTRACK_INVO)
-    /// 分配字节对齐的内存
-    #define N_alloc_t_align(T, count, align) static_cast<T *>(N_AlignAlloc(align)::alloc(sizeof(T)*(count) N_MEMTRACK_INVO))
-    /// 分配字节对齐的内存N_alloc_align和N_alloc_t_align,还有N_realloc_align
-    #define N_free_align(ptr, align) N_AlignAlloc(align)::dealloc(ptr)
-    /// 分配字节对齐对象
-    #define N_new_t_align(T, align) new (N_AlignAlloc(align)::alloc(sizeof(T) N_MEMTRACK_INVO)) T
-    /// 分配字节对齐对象数组
-    #define N_new_array_t_align(T, count, align) NewArray(static_cast<T*>(N_AlignAlloc(align)::alloc(sizeof(T)*(count) N_MEMTRACK_INVO)), count)
-    /// 释放字节对齐对象
-    #define N_delete_t_align(ptr, T, align) if(ptr){(ptr)->~T(); N_AlignAlloc(align)::dealloc(ptr);}
-    /// 释放字节对齐对象数组
-    #define N_delete_array_t_align(ptr, T, count, align) if(ptr){for (NCount _b = 0; _b < count; ++_b) { (ptr)[_b].~T();} N_AlignAlloc(align)::dealloc(ptr);}
-
-    /// 并行算术内存分配专用
-    #define N_alloc_simd(bytes) N_AlignAlloc(16)::alloc(bytes N_MEMTRACK_INVO)
-    /// 并行算术内存分配专用
-    #define N_alloc_t_simd(T, count) static_cast<T *>(N_AlignAlloc(16)::alloc(sizeof(T)*(count) N_MEMTRACK_INVO))
-    /// 并行算术内存分配专用 N_alloc_simd 和or N_alloc_t_simd
-    #define N_free_simd(ptr) N_AlignAlloc(16)::dealloc(ptr)
-    /// 分配并行算术内存对齐对象
-    #define N_new_t_simd(T) new (N_AlignAlloc(16)::alloc(sizeof(T) N_MEMTRACK_INVO)) T
-    /// 分配多个并行算术内存对齐对象
-    #define N_new_array_t_simd(T, count) NewArray(static_cast<T *>(N_AlignAlloc(16)::alloc(sizeof(T)*(count) N_MEMTRACK_INVO)), count)
-    /// 释放并行算术内存对齐对象
-    #define N_delete_t_simd(ptr, T) if(ptr){(ptr)->~T(); N_AlignAlloc(16)::dealloc(ptr);}
-    /// 释放多个并行算术内存对齐对象
-    #define N_delete_array_t_simd(ptr, T, count) if(ptr){for (NCount b = 0; b < count; ++b) { (ptr)[b].~T();} N_AlignAlloc(16)::dealloc(ptr);}
-#else
+    template<typename T> void DeleteArray(T * p, NCount cnt)
+    {
+        for (NCount i = 0; i < cnt; ++i) 
+        { 
+            (p)[b].~T();
+        }
+    }
     #define N_alloc(size) N_Alloc::alloc(size N_MEMTRACK_INVO)
     #define N_realloc(ptr, olds, news) N_Alloc::realloc(ptr, olds, news N_MEMTRACK_INVO)
     #define N_alloc_t(T, count) static_cast<T *>(N_Alloc::alloc(sizeof(T) * (count) N_MEMTRACK_INVO))
@@ -417,40 +381,30 @@ namespace NII
     #define N_delete_t(ptr, T) if(ptr){(ptr)->~T(); N_Alloc::dealloc(ptr);}
     #define N_delete_array_t(ptr, T, count) if(ptr){for (NCount b = 0; b < count; ++b) { (ptr)[b].~T();} N_Alloc::dealloc(ptr);}
 
-    /// 分配字节对齐的内存
     #define N_alloc_align(bytes, align) N_AlignAlloc(align)::alloc(bytes N_MEMTRACK_INVO)
-    /// 从新分配已经分配字节对齐的内存
-    #define N_realloc_align(ptr, os, ns, align) N_AlignAlloc(align)::realloc(ptr, os, ns N_MEMTRACK_INVO)
-    /// 分配字节对齐的内存
-    #define N_alloc_t_align(T, count, align) static_cast<T *>(N_AlignAlloc(align)::alloc(sizeof(T) * (count N_MEMTRACK_INVO)))
-    /// 分配字节对齐的内存N_alloc_align和N_alloc_t_align还有N_realloc_align
+    #define N_realloc_align(ptr, oldsize, newsize, align) N_AlignAlloc(align)::realloc(ptr, oldsize, newsize N_MEMTRACK_INVO)
+    #define N_alloc_t_align(T, count, align) static_cast<T *>(N_AlignAlloc(align)::alloc(sizeof(T)*(count) N_MEMTRACK_INVO))
     #define N_free_align(ptr, align) N_AlignAlloc(align)::dealloc(ptr)
-    /// 分配字节对齐对象
-    #define N_new_t_align(T, align) new (N_AlignAlloc(align)::alloc(sizeof(T) N_MEMTRACK_INVO)) T
-    /// 分配字节对齐对象数组
-    #define N_new_array_t_align(T, count, align) NewArray(static_cast<T *>(N_AlignAlloc(align)::alloc(sizeof(T)*(count) N_MEMTRACK_INVO)), count)
-    /// 释放字节对齐对象
-    #define N_delete_t_align(ptr, T, align) if(ptr){(ptr)->~T(); N_AlignAlloc(align)::dealloc(ptr);}
-    /// 释放字节对齐对象数组
-    #define N_delete_array_t_align(ptr, T, count, align) if(ptr){for (NCount _b = 0; _b < count; ++_b) { (ptr)[_b].~T();} N_AlignAlloc(align)::dealloc(ptr);}
 
-    /// 并行算术内存分配专用
+    #define N_new_t_align(T, align) new (N_AlignAlloc(align)::alloc(sizeof(T) N_MEMTRACK_INVO)) T
+    #define N_new_array_t_align(T, count, align) NewArray(static_cast<T*>(N_AlignAlloc(align)::alloc(sizeof(T)*(count) N_MEMTRACK_INVO)), count)
+    #define N_delete_t_align(ptr, T, align) if(ptr){(ptr)->~T(); N_AlignAlloc(align)::dealloc(ptr);}
+    #define N_delete_array_t_align(ptr, T, count, align) if(ptr){DeleteArray(ptr, count); N_AlignAlloc(align)::dealloc(ptr);}
+
     #define N_alloc_simd(bytes) N_AlignAlloc(16)::alloc(bytes N_MEMTRACK_INVO)
-    /// 并行算术内存分配专用
     #define N_alloc_t_simd(T, count) static_cast<T *>(N_AlignAlloc(16)::alloc(sizeof(T) * (count) N_MEMTRACK_INVO))
-    /// 并行算术内存分配专用 N_alloc_simd 和 N_alloc_t_simd
     #define N_free_simd(ptr) N_AlignAlloc(16)::dealloc(ptr)
+    
     /// 分配并行算术内存对齐对象
     #define N_new_t_simd(T) new (N_AlignAlloc(16)::alloc(sizeof(T) N_MEMTRACK_INVO)) T
-    /// 分配并行算术内存对齐对象数组
+    /// 分配多个并行算术内存对齐对象
     #define N_new_array_t_simd(T, count) NewArray(static_cast<T *>(N_AlignAlloc(16)::alloc(sizeof(T)*(count) N_MEMTRACK_INVO)), count)
     /// 释放并行算术内存对齐对象
     #define N_delete_t_simd(ptr, T) if(ptr){(ptr)->~T(); N_AlignAlloc(16)::dealloc(ptr);}
-    /// 释放并行算术内存对齐对象数组
-    #define N_delete_array_t_simd(ptr, T, count) if(ptr){for (NCount b = 0; b < count; ++b) { (ptr)[b].~T();} N_AlignAlloc(16)::dealloc(ptr);}
-#endif
-#define N_new new N_MEMTRACK_NewINVO
-#define N_delete delete
+    /// 释放多个并行算术内存对齐对象
+    #define N_delete_array_t_simd(ptr, T, count) if(ptr){DeleteArray(ptr, count); N_AlignAlloc(16)::dealloc(ptr);}
+    #define N_new new N_MEMTRACK_NewINVO
+    #define N_delete delete
 }
 
 #endif

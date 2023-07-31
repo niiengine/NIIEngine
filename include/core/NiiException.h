@@ -71,7 +71,7 @@ namespace NII
         /** 获取错误描述
         @version NIIEngine 3.0.0
         */
-        virtual const String & getVerbose() const;
+        inline const String & getVerbose() const   { return mDescrip; }
 
         /** 返回描述这个错误的一个完整字符串
         @version NIIEngine 3.0.0

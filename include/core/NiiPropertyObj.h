@@ -376,6 +376,11 @@ namespace NII
         @version NIIEngine 3.0.0 adv api
         */
         inline const ExtPropertyList & getExtList() const   { return mExtPropertys; }
+        
+        /** 获取子属性值列表
+        @version NIIEngine 3.0.0 adv api
+        */
+        inline const SubPropertyList & getSubList() const   { return mSubPropertys; }
 
         /** 复制对象
         @note 返回的使用完后使用 N_delete 删除

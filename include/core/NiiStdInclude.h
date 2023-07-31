@@ -642,8 +642,7 @@ namespace NII
     /** 静态数组迭代
     @version NIIEngine 3.0.0
     */
-    template <typename type>
-    class ConstVectorIterator : public VectorContainer<type, typename type::const_iterator>
+    template <typename type> class ConstVectorIterator : public VectorContainer<type, typename type::const_iterator>
     {
     public:
         ConstVectorIterator(typename type::const_iterator begin, typename type::const_iterator end) :
@@ -716,7 +715,6 @@ namespace NII
         typedef T const_iterator;
         typedef iterator_range<T> type;
 #else
-        /// 定义(这个)类型为boost::iterator_range
     public: 
         typedef boost::iterator_range<T> type;
 #endif
@@ -828,5 +826,769 @@ namespace NII
     {
         return std::max(std::min(val, max), min);
     }
+    
+    /// 简版std::vector
+    template <typename T> class vectorL
+    {
+    public:
+        typedef T value_type;
+        typedef T * iterator;
+        typedef const T * const_iterator;
+    public:
+        vectorL() : mData(0), mSize(0), mCapacity(0) {}
+
+        vectorL(const vectorL<T> & o) :
+            mSize(o.mSize),
+            mCapacity(o.mSize)
+        {
+            mData = N_alloc_t(T, mSize);
+            for(size_t i = 0; i < mSize; ++i)
+            {
+                new (&mData[i]) T(o.mData[i]);
+            }
+        }
+
+        vectorL(size_t count) :
+            mSize(0),
+            mCapacity(count)
+        {
+            mData = N_alloc_t(T, count);
+        }
+
+        vectorL(size_t count, const T & value) :
+            mSize(count),
+            mCapacity(count)
+        {
+            mData = N_alloc_t(T, count);
+            for(size_t i = 0; i < count; ++i)
+            {
+                new (&mData[i]) T(value);
+            }
+        }
+
+        ~vectorL()
+        {
+            destroy();
+        }
+        
+        void operator = (const vectorL<T> & o)
+        {
+            if(&o != this)
+            {
+                DeleteArray(mData, mSize);
+                N_free(mData);
+
+                mSize = o.mSize;
+                mCapacity = o.mSize;
+
+                mData = N_alloc_t(T, mSize);
+                for(size_t i = 0; i < mSize; ++i)
+                {
+                    new (&mData[i]) T(o.mData[i]);
+                }
+            }
+        }
+
+        inline size_t size() const              { return mSize; }
+        inline size_t capacity() const          { return mCapacity; }
+
+        void push_back(const T & val)
+        {
+            expand(1);
+            new (&mData[mSize]) T(val);
+            ++mSize;
+        }
+
+        void pop_back()
+        {
+            N_assert1(mSize > 0);
+            --mSize;
+            mData[mSize].~T();
+        }
+
+        iterator insert(iterator where, const T & val)
+        {
+            const size_t idx = (where - mData);
+
+            expand(1);
+
+            memmove(mData + idx + 1, mData + idx, (mSize - idx) *  sizeof(T));
+            new (&mData[idx]) T(val);
+            ++mSize;
+
+            return mData + idx;
+        }
+
+        iterator insert(iterator pos, const_iterator o_begin, const_iterator o_end)
+        {
+            size_t idx = (pos - mData);
+
+            const size_t otherSize = o_end - o_begin;
+
+            expand(otherSize);
+
+            memmove(mData + idx + otherSize, mData + idx, (mSize - idx) *  sizeof(T));
+
+            while(o_begin != o_end)
+                *pos++ = *o_begin++;
+            mSize += otherSize;
+
+            return mData + idx;
+        }
+
+        void append(const_iterator o_begin, const_iterator o_end)
+        {
+            expand(o_end - o_begin);
+
+            memcpy(mData + mSize, o_begin, (o_end - o_begin) *  sizeof(T));
+            mSize += o_end - o_begin;
+        }
+
+        iterator erase(iterator pos, bool destory = true)
+        {
+            size_t idx = (pos - mData);
+            if(destory)
+            {
+                pos->~T();
+            }
+            memmove(mData + idx, mData + idx + 1, (mSize - idx - 1) * sizeof(T));
+            --mSize;
+
+            return mData + idx;
+        }
+
+        iterator erase(iterator first, iterator last, bool destory = true)
+        {
+            N_assert1(first <= last && last <= end());
+
+            const size_t idx      = (first - mData);
+            const size_t idxNext  = (last - mData);
+            if(destory)
+            {
+                while(first != last)
+                {
+                    first->~T();
+                    ++first;
+                }
+            }
+            memmove(mData + idx, mData + idxNext, (mSize - idxNext) * sizeof(T));
+            mSize -= idxNext - idx;
+
+            return mData + idx;
+        }
+
+        void clear(bool destory = true)
+        {
+            if(destory)
+            {
+                DeleteArray(mData, mSize);
+            }
+            mSize = 0;
+        }
+
+        inline bool empty() const               { return mSize == 0; }
+
+        void reserve(size_t cnt)
+        {
+            if(cnt > mCapacity)
+            {
+                mCapacity = cnt;
+                T * data = N_alloc_t(T, mCapacity);
+                memcpy(data, mData, mSize * sizeof(T));
+                N_free(mData);
+                mData = data;
+            }
+        }
+
+        void resize(size_t newSize, const T & value = T(), bool destory = true)
+        {
+            if(newSize > mSize)
+            {
+                expand(newSize - mSize);
+                for(size_t i = mSize; i < newSize; ++i)
+                {
+                    new (&mData[i]) T(value);
+                }
+            }
+            else if(destory)
+            {
+                for(size_t i = newSize; i < mSize; ++i)
+                    mData[i].~T();
+            }
+
+            mSize = newSize;
+        }
+
+        inline T & operator [] (size_t idx)
+        {
+            N_assert1(idx < mSize);
+            return mData[idx];
+        }
+
+        inline const T & operator [] (size_t idx) const
+        {
+            N_assert1(idx < mSize);
+            return mData[idx];
+        }
+
+        inline T & back()
+        {
+            N_assert1(mSize > 0);
+            return mData[mSize - 1];
+        }
+
+        inline const T & back() const
+        {
+            N_assert1(mSize > 0);
+            return mData[mSize - 1];
+        }
+
+        inline T & front()
+        {
+            N_assert1(mSize > 0);
+            return mData[0];
+        }
+
+        inline const T & front() const
+        {
+            N_assert1(mSize > 0);
+            return mData[0];
+        }
+
+        inline iterator begin()                 { return mData; }
+        inline const_iterator begin() const     { return mData; }
+        inline iterator end()                   { return mData + mSize; }
+        inline const_iterator end() const       { return mData + mSize; }
+
+        void swap(vectorL<T> & o)
+        {
+            std::swap(mData, o.mData);
+            std::swap(mSize, o.mSize);
+            std::swap(mCapacity, o.mCapacity);
+        }
+        
+        void destroy()
+        {
+            DeleteArray(mData, mSize);
+            N_free(mData);
+            mSize = 0;
+            mCapacity = 0;
+            mData = 0;
+        }
+    protected:
+        void expand(size_t cnt)
+        {
+            if(mSize + cnt > mCapacity)
+            {
+                mCapacity = std::max<size_t>(mSize + cnt, mCapacity + (mCapacity >> 1u) + 1u);
+                T * data = N_alloc_t(T, mCapacity);
+                if(mData)
+                {
+                    memcpy(data, mData, mSize * sizeof(T));
+                    N_free(mData);
+                }
+                mData = data;
+            }
+        }
+
+        T * mData;
+        size_t mSize;
+        size_t mCapacity;
+    };
+    
+    /// 简版std::array
+    template <typename T, size_t Size> class arrayL
+    {
+    public:
+        typedef T value_type;
+        typedef T * iterator;
+        typedef const T * const_iterator;
+    public:
+        arrayL() : mSize(0) {}
+
+        template <size_t C> arrayL(const arrayL<T, C> & copy) :
+            mSize(copy.mSize)
+        {
+            N_assert1(copy.mSize <= Size);
+            for(size_t i = 0; i < mSize; ++i)
+            {
+                new (&mData[i]) T(copy.mData[i]);
+            }
+        }
+
+        template <size_t C> void operator = (const arrayL<T, C> & copy)
+        {
+            if(copy.data() != this->data())
+            {
+                for(size_t i = 0; i < mSize; ++i)
+                    mData[i] = T();
+
+                N_assert1(copy.size() <= Size);
+                mSize = copy.size();
+
+                const T * srcData = copy.data();
+
+                for(size_t i = 0; i < mSize; ++i)
+                {
+                    new (&mData[i]) T(srcData[i]);
+                }
+            }
+        }
+
+        arrayL(size_t count, const T & value) :
+            mSize(count)
+        {
+            for(size_t i = 0; i < count; ++i)
+                new (&mData[i]) T( value );
+        }
+
+        ~arrayL()
+        {
+            destroy();
+        }
+
+        inline size_t size() const                      { return mSize; }
+        inline size_t capacity() const                  { return Size; }
+        inline T * data()                               { return mData; }
+        inline const T * data() const                   { return mData; }
+
+        inline void push_back( const T& val )
+        {
+            N_assert1(mSize < Size);
+            new (&mData[mSize]) T( val );
+            ++mSize;
+        }
+
+        inline void pop_back()
+        {
+            N_assert1(mSize > 0);
+            --mSize;
+            mData[mSize] = T();
+        }
+
+        iterator insert( iterator pos, const T & val )
+        {
+            size_t idx = (pos - mData);
+
+            N_assert1(mSize < Size);
+
+            memmove( mData + idx + 1, mData + idx, (mSize - idx) *  sizeof(T) );
+            new (&mData[idx]) T( val );
+            ++mSize;
+
+            return mData + idx;
+        }
+
+        iterator insert(iterator pos, const_iterator o_begin, const_iterator o_end)
+        {
+            size_t idx = (pos - mData);
+
+            const size_t otherSize = o_end - o_begin;
+
+            N_assert1(mSize + otherSize <= Size);
+
+            memmove(mData + idx + otherSize, mData + idx, (mSize - idx) *  sizeof(T));
+
+            while(o_begin != o_end )
+                *pos++ = *o_begin++;
+            mSize += otherSize;
+
+            return mData + idx;
+        }
+
+        void append(const_iterator o_begin, const_iterator o_end)
+        {
+            N_assert1(mSize + (o_end - o_begin) <= Size);
+
+            memcpy(mData + mSize, o_begin, (o_end - o_begin) *  sizeof(T));
+            mSize += o_end - o_begin;
+        }
+
+        iterator erase(iterator pos)
+        {
+            size_t idx = (pos - mData);
+            pos = T();
+            memmove( mData + idx, mData + idx + 1, (mSize - idx - 1) * sizeof(T) );
+            --mSize;
+
+            return mData + idx;
+        }
+
+        iterator erase(iterator first, iterator last, bool destory = true)
+        {
+            N_assert1(first <= last && last <= end());
+
+            size_t idx      = (first - mData);
+            size_t idxNext  = (last - mData);
+            if(destory)
+            {
+                while(first != last)
+                {
+                    first = T();
+                    ++first;
+                }
+            }
+            memmove(mData + idx, mData + idxNext, (mSize - idxNext) * sizeof(T));
+            mSize -= idxNext - idx;
+
+            return mData + idx;
+        }
+
+        void clear(bool destory = true)
+        {
+            if(destory)
+            {
+                for(size_t i = 0; i < mSize; ++i)
+                    mData[i] = T();
+            }
+            mSize = 0;
+        }
+
+        inline bool empty() const                      { return mSize == 0; }
+
+        void resize(size_t newSize, const T & value = T(), bool destory = true)
+        {
+            if(newSize > mSize)
+            {
+                N_assert1(newSize <= Size);
+                for(size_t i = mSize; i < newSize; ++i)
+                {
+                    new (&mData[i]) T(value);
+                }
+            }
+            else if(destory)
+            {
+                for(size_t i = newSize; i < mSize; ++i)
+                {
+                    mData[i] = T();
+                }
+            }
+
+            mSize = newSize;
+        }
+
+        inline T & operator [] (size_t idx)
+        {
+            N_assert1(idx < mSize);
+            return mData[idx];
+        }
+
+        inline const T & operator [] (size_t idx) const
+        {
+            N_assert1(idx < mSize);
+            return mData[idx];
+        }
+
+        inline T & back()
+        {
+            N_assert1(mSize > 0);
+            return mData[mSize-1];
+        }
+
+        inline const T & back() const
+        {
+            N_assert1(mSize > 0);
+            return mData[mSize-1];
+        }
+
+        inline T & front()
+        {
+            N_assert1(mSize > 0);
+            return mData[0];
+        }
+
+        inline const T & front() const
+        {
+            N_assert1(mSize > 0);
+            return mData[0];
+        }
+
+        inline iterator begin()                     { return mData; }
+        inline const_iterator begin() const         { return mData; }
+        inline iterator end()                       { return mData + mSize; }
+        inline const_iterator end() const           { return mData + mSize; }
+        
+        inline void destroy()                       { mSize = 0; }
+    protected:
+        T mData[Size];
+        size_t mSize;
+    };
+    
+    /** 双重映射vector
+    @remark 用于优化映射,减少数据移动
+    @version NIIEngine 6.0.0
+    */
+    template <typename T> class DMappingVector
+    {
+    public:
+        typedef T value_type;
+        typedef T * iterator;
+        typedef const T * const_iterator;
+        typedef vectorL<Nidx> Mapping;
+    public:
+        DMappingVector() : mData(0), mSize(0), mCapacity(0) {}
+
+        DMappingVector(const DMappingVector<T> & o) :
+            mSize(o.mSize),
+            mCapacity(o.mSize)
+        {
+            mData = N_alloc_t(T, mSize);
+            for(size_t i = 0; i < mSize; ++i)
+            {
+                new (&mData[i]) T(o.mData[i]);
+            }
+        }
+
+        DMappingVector(size_t count) :
+            mSize(0),
+            mCapacity(count)
+        {
+            mData = N_alloc_t(T, count);
+        }
+
+        DMappingVector(size_t count, const T & value) :
+            mSize(count),
+            mCapacity(count)
+        {
+            mData = N_alloc_t(T, count);
+            for(size_t i = 0; i < count; ++i)
+            {
+                new (&mData[i]) T(value);
+            }
+        }
+
+        ~DMappingVector()
+        {
+            destroy();
+        }
+        
+        void operator = (const DMappingVector<T> & o)
+        {
+            if(&o != this)
+            {
+                for(size_t i = 0; i < mSize; ++i)
+                    mData[i].~T();
+                N_free(mData);
+
+                mSize = o.mSize;
+                mCapacity = o.mSize;
+
+                mData = N_alloc_t(T, mSize);
+                for(size_t i = 0; i < mSize; ++i)
+                {
+                    new (&mData[i]) T(o.mData[i]);
+                }
+            }
+        }
+
+        inline size_t size() const              { return mSize; }
+        inline size_t capacity() const          { return mCapacity; }
+
+        void push_back(const T & val)
+        {
+            expand(1);
+            new (&mData[mSize]) T(val);
+            ++mSize;
+        }
+
+        void pop_back()
+        {
+            N_assert1(mSize > 0);
+            --mSize;
+            mData[mSize].~T();
+        }
+
+        iterator insert(iterator where, const T & val)
+        {
+            const size_t idx = (where - mData);
+
+            expand(1);
+
+            memmove(mData + idx + 1, mData + idx, (mSize - idx) *  sizeof(T));
+            new (&mData[idx]) T(val);
+            ++mSize;
+
+            return mData + idx;
+        }
+
+        iterator insert(iterator pos, const_iterator o_begin, const_iterator o_end)
+        {
+            size_t idx = (pos - mData);
+
+            const size_t otherSize = o_end - o_begin;
+
+            expand(otherSize);
+
+            memmove(mData + idx + otherSize, mData + idx, (mSize - idx) *  sizeof(T));
+
+            while(o_begin != o_end)
+                *pos++ = *o_begin++;
+            mSize += otherSize;
+
+            return mData + idx;
+        }
+
+        void append(const_iterator o_begin, const_iterator o_end)
+        {
+            expand(o_end - o_begin);
+
+            memcpy(mData + mSize, o_begin, (o_end - o_begin) *  sizeof(T));
+            mSize += o_end - o_begin;
+        }
+
+        iterator erase(iterator pos, bool destory = true)
+        {
+            size_t idx = (pos - mData);
+            if(destory)
+            {
+                pos->~T();
+            }
+            memmove(mData + idx, mData + idx + 1, (mSize - idx - 1) * sizeof(T));
+            --mSize;
+
+            return mData + idx;
+        }
+
+        iterator erase(iterator first, iterator last, bool destory = true)
+        {
+            N_assert1(first <= last && last <= end());
+
+            const size_t idx      = (first - mData);
+            const size_t idxNext  = (last - mData);
+            if(destory)
+            {
+                while(first != last)
+                {
+                    first->~T();
+                    ++first;
+                }
+            }
+            memmove(mData + idx, mData + idxNext, (mSize - idxNext) * sizeof(T));
+            mSize -= idxNext - idx;
+
+            return mData + idx;
+        }
+
+        void clear(bool destory = true)
+        {
+            if(destory)
+            {
+                for(size_t i = 0; i < mSize; ++i)
+                    mData[i].~T();
+            }
+            mSize = 0;
+        }
+
+        inline bool empty() const               { return mSize == 0; }
+
+        void reserve(size_t cnt)
+        {
+            if(cnt > mCapacity)
+            {
+                mCapacity = cnt;
+                T * data = N_alloc_t(T, mCapacity);
+                memcpy(data, mData, mSize * sizeof(T));
+                N_free(mData);
+                mData = data;
+            }
+        }
+
+        void resize(size_t newSize, const T & value = T(), bool destory = true)
+        {
+            if(newSize > mSize)
+            {
+                expand(newSize - mSize);
+                for(size_t i = mSize; i < newSize; ++i)
+                {
+                    new (&mData[i]) T(value);
+                }
+            }
+            else if(destory)
+            {
+                for(size_t i = newSize; i < mSize; ++i)
+                    mData[i].~T();
+            }
+
+            mSize = newSize;
+        }
+
+        inline T & operator [] (size_t idx)
+        {
+            N_assert1(idx < mSize);
+            return mData[idx];
+        }
+
+        inline const T & operator [] (size_t idx) const
+        {
+            N_assert1(idx < mSize);
+            return mData[idx];
+        }
+
+        inline T & back()
+        {
+            N_assert1(mSize > 0);
+            return mData[mSize - 1];
+        }
+
+        inline const T & back() const
+        {
+            N_assert1(mSize > 0);
+            return mData[mSize - 1];
+        }
+
+        inline T & front()
+        {
+            N_assert1(mSize > 0);
+            return mData[0];
+        }
+
+        inline const T & front() const
+        {
+            N_assert1(mSize > 0);
+            return mData[0];
+        }
+
+        inline iterator begin()                 { return mData; }
+        inline const_iterator begin() const     { return mData; }
+        inline iterator end()                   { return mData + mSize; }
+        inline const_iterator end() const       { return mData + mSize; }
+
+        void swap(DMappingVector<T> & o)
+        {
+            std::swap(mData, o.mData);
+            std::swap(mSize, o.mSize);
+            std::swap(mCapacity, o.mCapacity);
+        }
+        
+        void destroy()
+        {
+            for(size_t i = 0; i < mSize; ++i)
+                mData[i].~T();
+            N_free(mData);
+            mSize = 0;
+            mCapacity = 0;
+            mData = 0;
+        }
+    protected:
+        void expand(size_t cnt)
+        {
+            if(mSize + cnt > mCapacity)
+            {
+                mCapacity = std::max<size_t>(mSize + cnt, mCapacity + (mCapacity >> 1u) + 1u);
+                T * data = N_alloc_t(T, mCapacity);
+                if(mData)
+                {
+                    memcpy(data, mData, mSize * sizeof(T));
+                    N_free(mData);
+                }
+                mData = data;
+            }
+        }
+
+        T * mData;
+        Mapping mMapping;
+        size_t mSize;
+        size_t mCapacity;
+    };
 }
 #endif
