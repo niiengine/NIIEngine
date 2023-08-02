@@ -822,7 +822,7 @@ namespace NII
     /** 控制范围类
     @version NIIEngine 3.0.0
     */
-    template <typename T> static T Clamp(T val, T min, T max)
+    template <typename T> inline static T Clamp(T val, T min, T max)
     {
         return std::max(std::min(val, max), min);
     }
@@ -842,28 +842,22 @@ namespace NII
             mCapacity(o.mSize)
         {
             mData = N_alloc_t(T, mSize);
-            for(size_t i = 0; i < mSize; ++i)
-            {
-                new (&mData[i]) T(o.mData[i]);
-            }
+            NewArray(mData, o.mData, mSize);
         }
 
-        vectorL(size_t count) :
+        vectorL(size_t cnt) :
             mSize(0),
-            mCapacity(count)
+            mCapacity(cnt)
         {
-            mData = N_alloc_t(T, count);
+            mData = N_alloc_t(T, cnt);
         }
 
-        vectorL(size_t count, const T & value) :
-            mSize(count),
-            mCapacity(count)
+        vectorL(size_t cnt, const T & value) :
+            mSize(cnt),
+            mCapacity(cnt)
         {
-            mData = N_alloc_t(T, count);
-            for(size_t i = 0; i < count; ++i)
-            {
-                new (&mData[i]) T(value);
-            }
+            mData = N_alloc_t(T, cnt);
+            NewArray(mData, value, mSize);
         }
 
         ~vectorL()
@@ -875,17 +869,16 @@ namespace NII
         {
             if(&o != this)
             {
-                DeleteArray(mData, mSize);
-                N_free(mData);
-
+                if(mData)
+                {
+                    DeleteArray(mData, mSize);
+                    N_free(mData);
+                }
                 mSize = o.mSize;
                 mCapacity = o.mSize;
 
                 mData = N_alloc_t(T, mSize);
-                for(size_t i = 0; i < mSize; ++i)
-                {
-                    new (&mData[i]) T(o.mData[i]);
-                }
+                NewArray(mData, o.mData, mSize);
             }
         }
 
@@ -899,16 +892,17 @@ namespace NII
             ++mSize;
         }
 
-        void pop_back()
+        void pop_back(bool destory = true)
         {
             N_assert1(mSize > 0);
             --mSize;
-            mData[mSize].~T();
+            if(destory)
+                mData[mSize].~T();
         }
 
-        iterator insert(iterator where, const T & val)
+        iterator insert(iterator pos, const T & val)
         {
-            const size_t idx = (where - mData);
+            const size_t idx = (pos - mData);
 
             expand(1);
 
@@ -992,11 +986,19 @@ namespace NII
         {
             if(cnt > mCapacity)
             {
-                mCapacity = cnt;
-                T * data = N_alloc_t(T, mCapacity);
-                memcpy(data, mData, mSize * sizeof(T));
-                N_free(mData);
-                mData = data;
+                if(mData)
+                {
+                    mCapacity = cnt;
+                    T * data = N_alloc_t(T, mCapacity);
+                    memcpy(data, mData, mSize * sizeof(T));
+                    N_free(mData);
+                    mData = data;
+                }
+                else  
+                {
+                    mCapacity = cnt;
+                    mData = N_alloc_t(T, mCapacity);
+                }
             }
         }
 
@@ -1067,9 +1069,10 @@ namespace NII
             std::swap(mCapacity, o.mCapacity);
         }
         
-        void destroy()
+        void destroy(bool _destroy = true)
         {
-            DeleteArray(mData, mSize);
+            if(_destroy)
+                DeleteArray(mData, mSize);
             N_free(mData);
             mSize = 0;
             mCapacity = 0;
@@ -1090,7 +1093,7 @@ namespace NII
                 mData = data;
             }
         }
-
+    protected:
         T * mData;
         size_t mSize;
         size_t mCapacity;
@@ -1110,36 +1113,31 @@ namespace NII
             mSize(copy.mSize)
         {
             N_assert1(copy.mSize <= Size);
-            for(size_t i = 0; i < mSize; ++i)
-            {
-                new (&mData[i]) T(copy.mData[i]);
-            }
+            
+            const T * srcData = copy.data();
+            
+            NewArray(mData, srcData, mSize);
         }
 
         template <size_t C> void operator = (const arrayL<T, C> & copy)
         {
             if(copy.data() != this->data())
             {
-                for(size_t i = 0; i < mSize; ++i)
-                    mData[i] = T();
+                DeleteArray(mData, mSize);
 
                 N_assert1(copy.size() <= Size);
                 mSize = copy.size();
 
                 const T * srcData = copy.data();
-
-                for(size_t i = 0; i < mSize; ++i)
-                {
-                    new (&mData[i]) T(srcData[i]);
-                }
+                
+                NewArray(mData, srcData, mSize);
             }
         }
 
-        arrayL(size_t count, const T & value) :
-            mSize(count)
+        arrayL(size_t cnt, const T & value) :
+            mSize(cnt)
         {
-            for(size_t i = 0; i < count; ++i)
-                new (&mData[i]) T( value );
+            NewArray(mData, value, mSize);
         }
 
         ~arrayL()
@@ -1152,28 +1150,29 @@ namespace NII
         inline T * data()                               { return mData; }
         inline const T * data() const                   { return mData; }
 
-        inline void push_back( const T& val )
+        inline void push_back(const T & val)
         {
             N_assert1(mSize < Size);
-            new (&mData[mSize]) T( val );
+            new (&mData[mSize]) T(val);
             ++mSize;
         }
 
-        inline void pop_back()
+        inline void pop_back(bool destroy = true)
         {
             N_assert1(mSize > 0);
             --mSize;
-            mData[mSize] = T();
+            if(destroy)
+                mData[mSize].~T();
         }
 
-        iterator insert( iterator pos, const T & val )
+        iterator insert(iterator pos, const T & val)
         {
             size_t idx = (pos - mData);
 
             N_assert1(mSize < Size);
 
-            memmove( mData + idx + 1, mData + idx, (mSize - idx) *  sizeof(T) );
-            new (&mData[idx]) T( val );
+            memmove(mData + idx + 1, mData + idx, (mSize - idx) *  sizeof(T));
+            new (&mData[idx]) T(val);
             ++mSize;
 
             return mData + idx;
@@ -1204,10 +1203,11 @@ namespace NII
             mSize += o_end - o_begin;
         }
 
-        iterator erase(iterator pos)
+        iterator erase(iterator pos, bool destory = true)
         {
             size_t idx = (pos - mData);
-            pos = T();
+            if(destory)
+                pos->~T();
             memmove( mData + idx, mData + idx + 1, (mSize - idx - 1) * sizeof(T) );
             --mSize;
 
@@ -1224,7 +1224,7 @@ namespace NII
             {
                 while(first != last)
                 {
-                    first = T();
+                    first->~T();
                     ++first;
                 }
             }
@@ -1238,8 +1238,7 @@ namespace NII
         {
             if(destory)
             {
-                for(size_t i = 0; i < mSize; ++i)
-                    mData[i] = T();
+                DeleteArray(mData, mSize);
             }
             mSize = 0;
         }
@@ -1260,7 +1259,7 @@ namespace NII
             {
                 for(size_t i = newSize; i < mSize; ++i)
                 {
-                    mData[i] = T();
+                    mData[i].~T();
                 }
             }
 
@@ -1282,13 +1281,13 @@ namespace NII
         inline T & back()
         {
             N_assert1(mSize > 0);
-            return mData[mSize-1];
+            return mData[mSize - 1];
         }
 
         inline const T & back() const
         {
             N_assert1(mSize > 0);
-            return mData[mSize-1];
+            return mData[mSize - 1];
         }
 
         inline T & front()
@@ -1308,52 +1307,53 @@ namespace NII
         inline iterator end()                       { return mData + mSize; }
         inline const_iterator end() const           { return mData + mSize; }
         
-        inline void destroy()                       { mSize = 0; }
+        inline void destroy(bool _destroy = true)                       
+        { 
+            if(_destroy)
+                DeleteArray(mData, mSize);
+            mSize = 0; 
+        }
     protected:
         T mData[Size];
         size_t mSize;
     };
     
     /** 双重映射vector
-    @remark 用于优化映射,减少数据移动
+    @remark 用于优化映射,减少数据移动,用于大型常移动数据,非连续数据存储的T数组
     @version NIIEngine 6.0.0
     */
     template <typename T> class DMappingVector
     {
     public:
-        typedef T value_type;
-        typedef T * iterator;
-        typedef const T * const_iterator;
-        typedef vectorL<Nidx> Mapping;
+        typedef vectorL<Nidx> ItemMapping;
+        typedef vectorL<T> ItemVector;
     public:
-        DMappingVector() : mData(0), mSize(0), mCapacity(0) {}
+        DMappingVector() {}
 
-        DMappingVector(const DMappingVector<T> & o) :
-            mSize(o.mSize),
-            mCapacity(o.mSize)
+        DMappingVector(const DMappingVector<T> & o)
         {
-            mData = N_alloc_t(T, mSize);
-            for(size_t i = 0; i < mSize; ++i)
-            {
-                new (&mData[i]) T(o.mData[i]);
+            mItemMapping = o.mItemMapping;
+            mFreeMapping = o.mFreeMapping;
+            mItemVector = o.mItemVector;
+        }
+
+        DMappingVector(size_t cnt)
+        {
+            reserve(cnt);
+            for(NCount t = 0; t > cnt; ++t)
+            {// 1 : 1
+                mItemVector.push_back(T());
+                mItemMapping.push_back(t);
             }
         }
 
-        DMappingVector(size_t count) :
-            mSize(0),
-            mCapacity(count)
+        DMappingVector(size_t cnt, const T & value)
         {
-            mData = N_alloc_t(T, count);
-        }
-
-        DMappingVector(size_t count, const T & value) :
-            mSize(count),
-            mCapacity(count)
-        {
-            mData = N_alloc_t(T, count);
-            for(size_t i = 0; i < count; ++i)
-            {
-                new (&mData[i]) T(value);
+            reserve(cnt);
+            for(NCount t = 0; t > cnt; ++t)
+            {// 1 : 1
+                mItemVector.push_back(value);
+                mItemMapping.push_back(t);
             }
         }
 
@@ -1364,231 +1364,145 @@ namespace NII
         
         void operator = (const DMappingVector<T> & o)
         {
-            if(&o != this)
-            {
-                for(size_t i = 0; i < mSize; ++i)
-                    mData[i].~T();
-                N_free(mData);
-
-                mSize = o.mSize;
-                mCapacity = o.mSize;
-
-                mData = N_alloc_t(T, mSize);
-                for(size_t i = 0; i < mSize; ++i)
-                {
-                    new (&mData[i]) T(o.mData[i]);
-                }
-            }
+            mItemMapping = o.mItemMapping;
+            mFreeMapping = o.mFreeMapping;
+            mItemVector = o.mItemVector;
         }
 
-        inline size_t size() const              { return mSize; }
-        inline size_t capacity() const          { return mCapacity; }
+        inline size_t size() const              { return mItemMapping.size(); }
 
         void push_back(const T & val)
         {
-            expand(1);
-            new (&mData[mSize]) T(val);
-            ++mSize;
-        }
-
-        void pop_back()
-        {
-            N_assert1(mSize > 0);
-            --mSize;
-            mData[mSize].~T();
-        }
-
-        iterator insert(iterator where, const T & val)
-        {
-            const size_t idx = (where - mData);
-
-            expand(1);
-
-            memmove(mData + idx + 1, mData + idx, (mSize - idx) *  sizeof(T));
-            new (&mData[idx]) T(val);
-            ++mSize;
-
-            return mData + idx;
-        }
-
-        iterator insert(iterator pos, const_iterator o_begin, const_iterator o_end)
-        {
-            size_t idx = (pos - mData);
-
-            const size_t otherSize = o_end - o_begin;
-
-            expand(otherSize);
-
-            memmove(mData + idx + otherSize, mData + idx, (mSize - idx) *  sizeof(T));
-
-            while(o_begin != o_end)
-                *pos++ = *o_begin++;
-            mSize += otherSize;
-
-            return mData + idx;
-        }
-
-        void append(const_iterator o_begin, const_iterator o_end)
-        {
-            expand(o_end - o_begin);
-
-            memcpy(mData + mSize, o_begin, (o_end - o_begin) *  sizeof(T));
-            mSize += o_end - o_begin;
-        }
-
-        iterator erase(iterator pos, bool destory = true)
-        {
-            size_t idx = (pos - mData);
-            if(destory)
+            if(mFreeMapping.size())
             {
-                pos->~T();
+                Nidx valid = mFreeMapping.back();
+                mFreeMapping.pop_back();
+                mItemMapping.insert(valid);
+                new (&mItemVector[valid]) T(val);
             }
-            memmove(mData + idx, mData + idx + 1, (mSize - idx - 1) * sizeof(T));
-            --mSize;
-
-            return mData + idx;
+            else
+            {
+                mItemVector.push_back(val);
+                mItemMapping.push_back(mItemVector.size() - 1);
+            }
         }
 
-        iterator erase(iterator first, iterator last, bool destory = true)
+        void pop_back(bool destroy = true)
         {
-            N_assert1(first <= last && last <= end());
-
-            const size_t idx      = (first - mData);
-            const size_t idxNext  = (last - mData);
-            if(destory)
+            if(mItemMapping.size())
             {
-                while(first != last)
-                {
-                    first->~T();
-                    ++first;
-                }
+                Nidx last = mItemMapping.back();
+                mItemMapping.pop_back();
+                mFreeMapping.push_back(last);
+                if(destroy)
+                    mItemVector[last].~T();
             }
-            memmove(mData + idx, mData + idxNext, (mSize - idxNext) * sizeof(T));
-            mSize -= idxNext - idx;
+        }
 
-            return mData + idx;
+        void insert(Nidx pos, const T & val)
+        {
+            if(mFreeMapping.size())
+            {
+                Nidx valid = mFreeMapping.back();
+                mFreeMapping.pop_back();
+                ItemMapping::iterator i = mItemMapping.begin();
+                std::advance(i, pos);
+                mItemMapping.insert(i, valid);
+                new (&mItemVector[valid]) T(val);
+            }
+            else
+            {
+                mItemVector.push_back(val);
+                mItemMapping.push_back(mItemVector.size() - 1);
+            }
+        }
+
+        void erase(Nidx pos, bool destory = true)
+        {
+            N_assert1(pos < mItemMapping.size());
+            
+            ItemMapping::iterator i = mItemMapping.begin();
+            std::advance(i, pos);
+            if(destory)
+                mItemVector[*i].~T();
+            mFreeMapping.push_back(*i);
+            mItemMapping.erase(i, false);
+        }
+
+        void erase(Nidx first, Nidx last, bool destory = true)
+        {
+            N_assert1(first < mItemMapping.size() && last < mItemMapping.size());
+            for(NCount t = first; t < last; ++t)
+            {
+                erase(t, destory);
+            }
         }
 
         void clear(bool destory = true)
         {
-            if(destory)
-            {
-                for(size_t i = 0; i < mSize; ++i)
-                    mData[i].~T();
-            }
-            mSize = 0;
+            mItemVector.clear(destory);
+            mItemMapping.clear(false);
+            mFreeMapping.clear(false);
         }
 
-        inline bool empty() const               { return mSize == 0; }
+        inline bool empty() const               { return mItemMapping.empty(); }
 
-        void reserve(size_t cnt)
+        inline void reserve(size_t cnt)
         {
-            if(cnt > mCapacity)
-            {
-                mCapacity = cnt;
-                T * data = N_alloc_t(T, mCapacity);
-                memcpy(data, mData, mSize * sizeof(T));
-                N_free(mData);
-                mData = data;
-            }
+            mItemMapping.reserve(cnt);
+            mItemVector.reserve(cnt);
         }
 
         void resize(size_t newSize, const T & value = T(), bool destory = true)
         {
-            if(newSize > mSize)
+            NCount cnt = mItemMapping.size();
+            if(newSize < cnt)
             {
-                expand(newSize - mSize);
-                for(size_t i = mSize; i < newSize; ++i)
+                cnt = cnt - newSize;
+                for(NCount t = 0; t > cnt; ++t)
                 {
-                    new (&mData[i]) T(value);
+                    pop_back(destory);
                 }
             }
-            else if(destory)
+            else if(newSize > cnt) // non ==
             {
-                for(size_t i = newSize; i < mSize; ++i)
-                    mData[i].~T();
+                cnt = newSize - cnt;
+                for(NCount t = 0; t > cnt; ++t)
+                {
+                    push_back(value);
+                }
             }
-
-            mSize = newSize;
         }
 
         inline T & operator [] (size_t idx)
         {
-            N_assert1(idx < mSize);
-            return mData[idx];
+            N_assert1(idx < mItemMapping.size());
+            return mItemVector[mItemMapping[idx]];
         }
 
         inline const T & operator [] (size_t idx) const
         {
-            N_assert1(idx < mSize);
-            return mData[idx];
+            N_assert1(idx < mItemMapping.size());
+            return mItemVector[mItemMapping[idx]];
         }
-
-        inline T & back()
-        {
-            N_assert1(mSize > 0);
-            return mData[mSize - 1];
-        }
-
-        inline const T & back() const
-        {
-            N_assert1(mSize > 0);
-            return mData[mSize - 1];
-        }
-
-        inline T & front()
-        {
-            N_assert1(mSize > 0);
-            return mData[0];
-        }
-
-        inline const T & front() const
-        {
-            N_assert1(mSize > 0);
-            return mData[0];
-        }
-
-        inline iterator begin()                 { return mData; }
-        inline const_iterator begin() const     { return mData; }
-        inline iterator end()                   { return mData + mSize; }
-        inline const_iterator end() const       { return mData + mSize; }
 
         void swap(DMappingVector<T> & o)
         {
-            std::swap(mData, o.mData);
-            std::swap(mSize, o.mSize);
-            std::swap(mCapacity, o.mCapacity);
+            mItemVector.swap(o.mItemVector);
+            mItemMapping.swap(o.mItemMapping);
+            mFreeMapping.swap(o.mFreeMapping);
         }
         
-        void destroy()
+        void destroy(bool _destroy = true)
         {
-            for(size_t i = 0; i < mSize; ++i)
-                mData[i].~T();
-            N_free(mData);
-            mSize = 0;
-            mCapacity = 0;
-            mData = 0;
+            mItemVector.destory(_destroy);
+            mItemMapping.destroy(false);
+            mFreeMapping.destroy(false);
         }
     protected:
-        void expand(size_t cnt)
-        {
-            if(mSize + cnt > mCapacity)
-            {
-                mCapacity = std::max<size_t>(mSize + cnt, mCapacity + (mCapacity >> 1u) + 1u);
-                T * data = N_alloc_t(T, mCapacity);
-                if(mData)
-                {
-                    memcpy(data, mData, mSize * sizeof(T));
-                    N_free(mData);
-                }
-                mData = data;
-            }
-        }
-
-        T * mData;
-        Mapping mMapping;
-        size_t mSize;
-        size_t mCapacity;
+        ItemMapping mItemMapping;
+        ItemMapping mFreeMapping;
+        ItemVector mItemVector;
     };
 }
 #endif

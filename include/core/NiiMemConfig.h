@@ -364,6 +364,25 @@ namespace NII
         }
         return p;
     }
+
+    template<typename T> T * NewArray(T * src, const T * dst, NCount cnt)
+    {
+        for (NCount i = 0; i < cnt; ++i)
+        {
+            new ((void*)(src + i)) T(dst[i]);
+        }
+        return src;
+    }
+    
+    template<typename T> T * NewArray(T * src, const T & dst, NCount cnt)
+    {
+        for (NCount i = 0; i < cnt; ++i)
+        {
+            new ((void*)(src + i)) T(dst);
+        }
+        return src;
+    }
+    
     template<typename T> void DeleteArray(T * p, NCount cnt)
     {
         for (NCount i = 0; i < cnt; ++i) 
