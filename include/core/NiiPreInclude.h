@@ -328,7 +328,7 @@ namespace NII
     class SubMesh;
     class TagBone;
     class ShaderFusion;
-    class ExtTexture;
+    class TextureFactory;
     class PhysicalObj;
     class PhysicalScope;
     class PhysicalCom;

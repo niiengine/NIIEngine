@@ -197,12 +197,12 @@ namespace NII
         /** 设置生成阴影时使用的摄像机
         @version NIIEngine 3.0.0
         */
-        void setShadowCamera(ShadowSetup * obj);
+        void setCameraSetup(CameraSetup * obj);
 
         /** 设置生成阴影时使用的摄像机
         @version NIIEngine 3.0.0
         */
-        inline const ShadowSetup * getShadowCamera() const { return mShadowCamera; }
+        inline const CameraSetup * getCameraSetup() const   { return mShadowCamera; }
 
         /** 设置灯光排序相对位置
         @version NIIEngine 3.0.0
@@ -415,7 +415,7 @@ namespace NII
         Radian mSpotOuter;
         Radian mSpotInner;
         NIIf mSpotFalloff;
-        ShadowSetup * mShadowCamera;
+        CameraSetup * mShadowCamera;
         NIIf mShadowNearClip;
         NIIf mShadowFarClip;
         NIIf mShadowExtent;

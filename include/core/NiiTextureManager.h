@@ -131,22 +131,22 @@ namespace NII
         /** 设置类型
         @version NIIEngine 5.0.0
         */
-        void setMipmapGen(Texture::MipmapGenType type)              { mMipmapGen = type; }
+        inline void setMipmapGen(Texture::MipmapGenType type)       { mMipmapGen = type; }
 
         /** 获取类型
         @version NIIEngine 5.0.0
         */
-        Texture::MipmapGenType getMipmapGen() const                 { return mMipmapGen; }
+        inline Texture::MipmapGenType getMipmapGen() const          { return mMipmapGen; }
 
         /** 设置类型
         @version NIIEngine 5.0.0
         */
-        void setCubemapMipmapGen(Texture::MipmapGenType type)       { mMipmapGenCube = type; }
+        inline void setCubemapMipmapGen(Texture::MipmapGenType type){ mMipmapGenCube = type; }
 
         /** 获取类型
         @version NIIEngine 5.0.0
         */
-        Texture::MipmapGenType getCubemapMipmapGen() const          { return mMipmapGenCube; }
+        inline Texture::MipmapGenType getCubemapMipmapGen() const   { return mMipmapGenCube; }
 
         /** 更新
         @param sync 等待更新完成
@@ -177,7 +177,7 @@ namespace NII
         /** 获取所有映射池
         @version NIIEngine 5.0.0
         */
-        const MappedPoolList & getMappedPoolList() const            { return mMappedPoolList; }
+        inline const MappedPoolList & getMappedPoolList() const     { return mMappedPoolList; }
 
         /** 创建纹理池
         @version NIIEngine 3.0.0
@@ -197,7 +197,7 @@ namespace NII
         /** 获取纹理池列表
         @version NIIEngine 5.0.0
         */
-        const TexturePoolList & getPoolList() const                 { return mPool; }
+        inline const TexturePoolList & getPoolList() const          { return mPool; }
 
         /** 纹理池中分配纹理
         @version NIIEngine 5.0.0
@@ -297,12 +297,12 @@ namespace NII
         /**
         @version NIIEngine 5.0.0
         */
-        void setMaxProcessSize(NCount size)     { mMaxProcessSize = size; }
+        inline void setMaxProcessSize(NCount size)          { mMaxProcessSize = size; }
         
         /**
         @version NIIEngine 5.0.0
         */
-        NCount getMaxProcessSize() const        { return mMaxProcessSize; }
+        inline NCount getMaxProcessSize() const             { return mMaxProcessSize; }
         
         /**
         @version NIIEngine 5.0.0
@@ -334,19 +334,19 @@ namespace NII
         /** 获取默认纹理位深
         @version NIIEngine 3.0.0
         */
-        inline NCount getBitDepth() const       { return mBitDepth;  }
+        inline NCount getBitDepth() const                   { return mBitDepth;  }
 
         /** 设置默认纹理LOD数量
         @note 默认为 0.
         @param[in] c LOD数量
         @version NIIEngine 3.0.0
         */
-        inline void setMipMapCount(NCount c)    { mMipMapCount = c;  }
+        inline void setMipMapCount(NCount c)                { mMipMapCount = c;  }
 
         /** 获取默认纹理LOD数量
         @version NIIEngine 3.0.0
         */
-        inline NCount getMipMapCount() const    { return mMipMapCount; }
+        inline NCount getMipMapCount() const                { return mMipMapCount; }
         
         /** 创建纹理
         @param[in] rid 资源句柄
@@ -453,7 +453,17 @@ namespace NII
         /** 获取错误加载时使用的纹理
         @version NIIEngine 3.0.0
         */
-        Texture * getWarning() const                { return mWarningTexture; }
+        inline Texture * getWarning() const                 { return mWarningTexture; }
+        
+        void setPlugin(PluginID pid);
+
+        inline TextureFactory * getPlugin() const { return mPlugin; }
+
+        void destroyTexture(PluginID pid, ResourceID rid, GroupID gid = GroupDefault);
+
+        TextureFactory * getPlugin(PluginID pid);
+
+        void setPlugin(PluginID pid, TextureFactory * factory);
     protected:
         /// @copydetails ThreadMain::run
         void run(void * arg); 
@@ -514,8 +524,9 @@ namespace NII
         /**
         @version NIIEngine 5.0.0
         */
-        void processSlice(ImageSlice * slice)
+        void processSlice(ImageSlice * slice);
     protected:
+        typedef map<PluginID, TextureFactory *>::type FactoryList;
         typedef vector<Texture::Task>::type TaskList;
         typedef map<Texture *, TaskList>::type TextureTaskList;
         
@@ -556,6 +567,8 @@ namespace NII
         TextureTaskList mTextureTaskList;
         Texture::Process::ItemList mProcessList;
 
+        TextureFactory * mPlugin;
+        FactoryList mFactoryList;
         
         Nui8 mDummyData[128];
         

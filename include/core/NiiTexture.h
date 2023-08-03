@@ -29,6 +29,7 @@ Licence: commerce(www.niiengine.com/license)(Three kinds)
 #define _NII_TEXTURE_H_
 
 #include "NiiPreInclude.h"
+#include "NiiPlugin.h"
 #include "NiiResource.h"
 #include "NiiRenderSysData.h"
 #include "NiiBuffer.h"
@@ -926,6 +927,105 @@ namespace NII
         bool mDSTexture;
         bool mAutoData;
         bool mInnerValid;
+    };
+    
+    /** 纹理工厂
+    @version NIIEngien 3.0.0
+    */
+    class _EngineAPI TextureFactory : public PropertyCmdObj, public Plugin
+    {
+    public:
+        enum PlayState
+        {
+            PS_Play = 0,
+            PS_Loop = 1,
+            PS_Pause = 2,
+            PS_Stop = 3
+        };
+    public:
+        TextureFactory(PluginID pid, LangID lid = N_PrimaryLang);
+        virtual ~TextureFactory() {}
+
+        /** 
+        @version NIIEngine 3.0.0
+        */
+        virtual void createTexture(ResourceID rid, GroupID gid = GroupDefault) = 0;
+
+        /** 
+        @version NIIEngine 3.0.0
+        */
+        virtual void destroyTexture(ResourceID rid, GroupID gid = GroupDefault) = 0;
+
+        /** 设置输入文件
+        @remark 输入文件
+        @version NIIEngine 3.0.0
+        */
+        inline void setInputName(const String & in) { mInputFileName = in; }
+
+        /** 获取输入文件
+        @version NIIEngine 3.0.0
+        */
+        inline const String & getInputName() const  { return mInputFileName; }
+
+        /** 设置帧每秒
+        @version NIIEngine 3.0.0
+        */
+        inline void setFPS(NIIi fps)                { mFramesPerSecond = fps; }
+
+        /** 获取帧每秒
+        @version NIIEngine 3.0.0
+        */
+        inline const NIIi getFPS() const            { return mFramesPerSecond; }
+
+        /** 设置播放模式
+        @version NIIEngine 3.0.0
+        */
+        inline void setPlayMode(PlayState mode)     { mMode = mode; }
+
+        /** 获取播放模式
+        @version NIIEngine 3.0.0
+        */
+        inline PlayState getPlayMode() const        { return mMode; }
+
+        /** 设置使用的渲染混合
+        @version NIIEngine 3.0.0
+        */
+        inline void setShaderFusion(NIIi fusion)    { mShaderFusion = fusion; }
+        
+        /** 获取使用的渲染混合
+        @version NIIEngine 3.0.0
+        */
+        inline Nid getShaderFusion() const          { return mShaderFusion; }
+
+        /** 设置使用的渲染通道
+        @version NIIEngine 3.0.0
+        */
+        inline void setShaderCh(Nid ch)             { mShaderCh = ch; }
+        
+        /** 获取使用的渲染通道
+        @version NIIEngine 3.0.0
+        */
+        inline Nid getShaderCh() const              { return mShaderCh; }
+
+        /** 设置使用的渲染等级
+        @version NIIEngine 3.0.0
+        */
+        inline void setRenderLevel(Nidx level)      { mRenderLevel = level; }
+
+        /** 获取使用的渲染等级
+        @version NIIEngine 3.0.0
+        */
+        inline Nidx getRenderLevel() const          { return mRenderLevel; }
+    protected:
+        bool initCmd(PropertyCmdSet * dest);
+    protected:
+        String mInputFileName;
+        Nid mShaderFusion;
+        Nid mShaderCh;
+        Nidx mRenderLevel;
+        PlayState mMode;
+        NIIi mFramesPerSecond;
+        bool mPreFrame;
     };
 }
 #endif

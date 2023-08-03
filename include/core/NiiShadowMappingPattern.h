@@ -215,12 +215,12 @@ namespace NII
         /** 阴影呈现摄象机
         @version NIIEngine 3.0.0
         */
-        void setShadowSetup(ShadowSetup * obj);
+        void setCameraSetup(CameraSetup * obj);
 
         /** 阴影呈现摄象机
         @version NIIEngine 3.0.0
         */
-        const ShadowSetup * getShadowSetup() const;
+        const CameraSetup * getCameraSetup() const;
 
         /** 设置监听
         @version NIIEngine

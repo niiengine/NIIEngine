@@ -574,15 +574,15 @@ namespace NII
     /** 阴影投射摄像机设置
     @version NIIEngine 3.0.0
     */
-    class _EngineAPI ShadowSetup : public ShadowAlloc
+    class _EngineAPI CameraSetup : public ShadowAlloc
     {
     public:
-        ShadowSetup();
-        virtual ~ShadowSetup();
+        CameraSetup();
+        virtual ~CameraSetup();
         
         /// 设置阴影投射摄像机
-        virtual void getShadowSetup(Camera * out, const RenderPattern * sm, const Camera * cam, 
-            const Viewport * vp, const Light * light) const = 0;
+        virtual void setupShadow(Camera * out, const RenderPattern * sm, const Camera * cam, 
+            const Light * light, NCount level) const = 0;
     };
 }
 #endif
