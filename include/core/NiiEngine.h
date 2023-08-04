@@ -631,7 +631,6 @@ namespace NII
         HighLevelGpuProgramManager * mHLGPManager;
         ResourceSchemeManager * mResSchemeManager;
         FusionManager * mFusionManager;
-        ExtTextureManager * mExtTextureManager;
         RenderSysManager * mRenderSysManager;
         ScriptCompilerManager * mCompilerManager;
         LodSchemeManager * mLodSchemeManager;

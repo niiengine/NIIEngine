@@ -143,7 +143,6 @@ namespace NII
     class EdgeListBuilder;
     class ErrorDialog;
     class ClipboardData;
-    class ExtTextureManager;
     class Factory;
     class FusionData;
     class FusionNum;

@@ -408,7 +408,7 @@ namespace NII
         /** 获取大小
         @version NIIEngine 3.0.0
         */
-        inline NCount getSize() const                       { return mDefineDataSize; }
+        inline NCount getSize() const                       { return m32bSize; }
 
         /** 保存到文件
         @version NIIEngine 3.0.0
@@ -426,7 +426,7 @@ namespace NII
         void load(DataStream * stream);
     public:
         GpuParamUnitList mDefineList;
-        NCount mDefineDataSize;         ///< 4XByte
+        NCount m32bSize;
     };
     
     /** 着色参数缓存单元
@@ -766,6 +766,12 @@ namespace NII
     public:
         GpuParamValue(const String & name);
         virtual ~GpuParamValue();
+        
+        /** 更新值到程序参数中
+        @param reset 即使值有效也重复设置
+        @version NIIEngine 5.0.0
+        */
+        void update(GpuProgramParam * params, bool reset = true)
 
         /** 集合名字
         @version NIIEngine 3.0.0
