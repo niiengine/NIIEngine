@@ -771,7 +771,7 @@ namespace NII
         @param reset 即使值有效也重复设置
         @version NIIEngine 5.0.0
         */
-        void update(GpuProgramParam * params, bool reset = true)
+        void update(GpuProgramParam * params, bool reset = true);
 
         /** 集合名字
         @version NIIEngine 3.0.0
