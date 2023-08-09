@@ -275,6 +275,13 @@ namespace NII
         SPI_Float   = 2,
         SPI_Double  = 3
     };
+    
+    union SyncParamInputData
+    {
+        Ni32 mInputInt;
+        NIIf mInputFloat;
+        NIId mInputDouble;
+    };
 
     inline bool isFloat(GpuDataType c)      { return c > GDT_Unknow && c < GDT_Int; }
     inline bool isDouble(GpuDataType c)     { return c > GDT_SamplerArray2D && c < GDT_Block; }
@@ -283,15 +290,15 @@ namespace NII
     inline bool isUInt(GpuDataType c)       { return c > GDT_Int4X && c < GDT_Bool; }
     inline bool isBool(GpuDataType c)       { return c > GDT_UInt4X && c < GDT_Sampler1D; }
     inline bool isBlock(GpuDataType c)      { return c == GDT_Block; }
-    
+        
     /** 着程序自定义参数
     @version NIIEngine 3.0.0
     */
     struct _EngineAPI GpuParamUnit
     {
+        GpuParamUnit(const GpuParamUnit & o);
         GpuParamUnit(Nui16 syncParam, Nui32 unitCnt, Nui16 inputType, Nui16 dataType);
-        
-        GpuParamUnit();
+        GpuParamUnit(Nui16 syncParam, Nui32 unitCnt, Nui16 inputType, Nui16 dataType);
 
         inline bool isFloat() const         { return isFloat(mDataType); }
 
@@ -306,6 +313,8 @@ namespace NII
         inline bool isBool() const          { return isBool(mDataType); }
 
         inline bool isBlock() const         { return isBlock(mDataType); }
+        
+        static const GpuParamUnit UnitNone;
 
         Nidx mMemIndex;
         Nui32 mGBTMark;             ///< GpuBindType
@@ -315,7 +324,7 @@ namespace NII
         Nui16 mIndex;               ///< hwbuf idx
         Nui16 mArrayIndex;          ///< 数组索引
         Nui16 mDataType;
-        Nui16 mInputType;
+        Nui16 mInputType;           ///< SyncParamInput
         bool mArrayMode;
         bool mValidValue;           ///< 辅助
     };
@@ -333,11 +342,14 @@ namespace NII
             mIndex(idx), mMemIndex(memidx), mDataType(dataType), mSyncParam(GSP_Null), m32bSize(_32bSize), mGBTMark(gbtMark) {}
 
         GpuParamBlock(Nui16 idx, Nidx memidx, Nui16 syncParam, Ni32 inputInt, Nui32 _32bSize, Nui32 gbtMark) :
-            mIndex(idx), mMemIndex(memidx), mDataType(GDT_Float), mSyncParam(syncParam), m32bSize(_32bSize), mGBTMark(gbtMark), mInputInt(inputInt){}
+            mIndex(idx), mMemIndex(memidx), mDataType(GDT_Float), mSyncParam(syncParam), m32bSize(_32bSize), mGBTMark(gbtMark), mInputData.mInputInt(inputInt){}
 
         GpuParamBlock(Nui16 idx, Nidx memidx, Nui16 syncParam, NIIf inputFloat, Nui32 _32bSize, Nui32 gbtMark) :
-            mIndex(idx),  mMemIndex(memidx), mDataType(GDT_Float), mSyncParam(syncParam), m32bSize(_32bSize), mGBTMark(gbtMark), mInputFloat(inputFloat){}
+            mIndex(idx),  mMemIndex(memidx), mDataType(GDT_Float), mSyncParam(syncParam), m32bSize(_32bSize), mGBTMark(gbtMark), mInputData.mInputFloat(inputFloat){}
 
+        GpuParamBlock(Nui16 idx, Nidx memidx, Nui16 syncParam, NIId inputDouble, Nui32 _32bSize, Nui32 gbtMark) :
+            mIndex(idx),  mMemIndex(memidx), mDataType(GDT_Float), mSyncParam(syncParam), m32bSize(_32bSize), mGBTMark(gbtMark), mInputData.mInputDouble(inputDouble){}
+            
         inline bool isFloat() const         { return isFloat(mDataType); }
 
         inline bool isDouble() const        { return isDouble(mDataType); }
@@ -359,11 +371,7 @@ namespace NII
         Nui16 mDataType;
         Nui16 mSyncParam;
         Nui16 mPadding;
-        union
-        {
-            Ni32 mInputInt;
-            NIIf mInputFloat;
-        };
+        SyncParamInputData mInputData;
     };
     typedef map<Nui32, GpuParamBlock>::type GpuParamBlockMap;
     typedef vector<GpuParamBlock *>::type GpuParamBlockList;
@@ -784,9 +792,10 @@ namespace NII
         void add(const VString & name, GpuDataType type, NCount count = 1);
         
         /** 添加变量
+        @param[in] extData 需要查看
         @version NIIEngine 3.0.0
         */
-        void add(const VString & name, GpuDataType type, GpuSyncParam param, NCount count = 1);
+        void add(const VString & name, GpuSyncParam param, SyncParamInputData extData);
 
         /** 获取变量
         @version NIIEngine 3.0.0
@@ -802,6 +811,11 @@ namespace NII
         @version NIIEngine 3.0.0
         */
         void removeAll();
+        
+        /** 优化存储
+        @version NIIEngine 6.0.0
+        */
+        inline void reserve(NCount size32b)                                     { mBufferData.reserve(size32b); }
 
         /** 设置数据
         @param[in] oft32b 偏移(单位:4字节)
@@ -939,8 +953,11 @@ namespace NII
             src->read(&mBufferData[oft32b], srcoft, size32b * 4);
         }
     protected:
+        typedef map<VString, SyncParamInputData>::type InputDataList;
+    protected:
         String mName;
         GpuParamUnitList mDefines;
+        InputDataList mInputDataList;
         mutable GBufferArray mBufferData; 
         NCount mDataSize;
         NCount mDirtyMark;

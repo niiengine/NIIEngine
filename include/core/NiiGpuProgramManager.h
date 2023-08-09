@@ -233,6 +233,8 @@ namespace NII
         /// 指定参数的专用创建方法
         virtual Resource * createImpl(ResourceID rid, GroupID gid, ResLoadScheme * ls, ResResultScheme * rs,
             GpuProgram::ShaderType type, ShaderLanguage sl);
+            
+        static const GpuParamValue GPVNone;
     protected:
         unordered_map<VString, GpuParamUnit>::type GpuParamUnitList;
         static GpuParamUnitList mSyncParamList;
