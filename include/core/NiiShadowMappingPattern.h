@@ -51,16 +51,6 @@ namespace NII
             void onCast(Light * light, Camera * camera) {}
         };
 
-        /** Œ∆¿ÌΩ◊∂Œ
-        @version NIIEngine 3.0.0
-        */
-        enum StageType
-        {
-            ST_Normal,
-            ST_Texture,
-            ST_Receive
-        };
-
         /** π‚”∞≈≈–Ú
         @version NIIEngine 3.0.0
         */
@@ -268,7 +258,7 @@ namespace NII
         ShaderCh * mSTCRP;
         Listener * mListener;
         Texture * mCurrentTexture;
-        StageType mRenderStage;
+        ShadowType mRenderStage;
         TextureList mTextures;
         CameraList mCameras;
         MaterialList mMaterials;
