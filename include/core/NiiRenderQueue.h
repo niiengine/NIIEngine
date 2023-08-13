@@ -69,9 +69,9 @@ namespace NII
 	{
 		RT_Single,
 		RT_Queue,
-		RT_ArrayQueue
+		RT_QueueArray
 	};
-
+    
     /** 渲染过滤器
     @version NIIEngine 3.0.0 高级api
     */
@@ -127,6 +127,84 @@ namespace NII
 			ST_AlphaSortDescend,
             ST_AlphaSortAscend
 		};
+        
+        /** 排序组
+        @version NIIEngine 3.0.0
+        */
+        class _EngineAPI Group : public RenderAlloc
+        {
+            friend class RenderLevelGroup;
+        public:
+            /** 渲染排序模式
+            @ersion NIIEngine 3.0.0
+            */
+            enum SortMode
+            {
+                SM_View = 0x01,
+                SM_Stable_View = 0x02,
+                SM_Material = 0x03,
+                SM_Material_View = 0x04,
+                SM_Stable_Material_View = 0x08,
+                SM_All = 0x0F
+            };
+        public:
+            Group();
+            ~Group();
+            
+            /** 执行渲染过滤器渲染
+            @version NIIEngine 3.0.0
+            */
+            void render(SortMode rsm, RenderFilter * filter) const;
+
+            /** 添加
+            @version NIIEngine 3.0.0
+            */
+            void add(SpaceObj * sobj, GeometryObj * gobj, ShaderFusion * sf);
+
+            /** 移去
+            @version NIIEngine 3.0.0
+            */
+            void remove(ShaderCh * ch);
+
+            /** 添加排序模式
+            @version NIIEngine 3.0.0
+            */
+            inline void addSort(RenderSortMode om)         { mSortMark |= om; }
+
+            /** 移去排序模式
+            @version NIIEngine 3.0.0
+            */
+            inline void removeSort(RenderSortMode om)      { mSortMark &= ~om; }
+
+            /** 移去所有
+            @version NIIEngine 3.0.0
+            */
+            void clear();
+
+            /** 依照指定摄象机排序渲染对象
+            @version NIIEngine 3.0.0
+            */
+            void sort(const Camera * cam);
+
+            /** 合并渲染排序
+            @version NIIEngine 3.0.0
+            */
+            void merge(const Group & o);
+
+            /** 获取渲染列表
+            @version NIIEngine 5.0.0
+            */
+            inline const RenderItemList & getRenderList() const     { return mRenderList; }
+
+            /** 获取材质集渲染列表
+            @version NIIEngine 5.0.0
+            */
+            inline const RenderItemChList & getChRenderList() const { return mChRenderList; }
+        protected:
+            RenderItemList mRenderList;
+            RenderItemChList mChRenderList;
+            Nmark mSortMark;
+        };
 	public:
         RenderLevelGroup(RenderGroup * parent);
 
@@ -155,7 +233,7 @@ namespace NII
         /** 添加渲染
         @version NIIEngine 3.0.0
         */
-        virtual void add(SpaceObj * sobj, GeometryObj * obj, ShaderFusion * sf);
+        virtual void add(SpaceObj * sobj, GeometryObj * gobj, ShaderFusion * sf);
 
         /** 移去渲染
         @version NIIEngine 3.0.0
@@ -175,22 +253,22 @@ namespace NII
         /** 获取非透明渲染列
         @version NIIEngine 3.0.0
         */
-        inline const RenderItemList & getBasic() const 			{ return mBasic; }
+        inline const RenderItemList & getBasic() const 			{ return mBasic.mRenderList; }
 
         /** 获取透明渲染列
         @version NIIEngine 3.0.0
         */
-        inline const RenderItemList & getAlpha() const 			{ return mAlpha; }
+        inline const RenderItemList & getAlpha() const 			{ return mAlpha.mRenderList; }
         
         /** 获取非透明渲染列
         @version NIIEngine 3.0.0
         */
-        inline const RenderItemChList & getChBasic() const      { return mChBasic; }
+        inline const RenderItemChList & getChBasic() const      { return mBasic.mChRenderList; }
 
         /** 获取透明渲染列
         @version NIIEngine 3.0.0
         */
-        inline const RenderItemChList & getChAlpha() const      { return mChAlpha; }
+        inline const RenderItemChList & getChAlpha() const      { return mAlpha.mChRenderList; }
 
         /** 合并可渲染物群组
         @version NIIEngine 3.0.0
@@ -199,12 +277,8 @@ namespace NII
     protected:
         RenderGroup * mParent;
         DrawCallGroup * mDrawCallList;
-        RenderItemList mBasic;
-        RenderItemList mAlpha;
-		RenderItemChList mChBasic;
-        RenderItemChList mChAlpha;
-        Nmark mBasicMark;
-		Nmark mAlphaMark;
+        Group mBasic;
+        Group mAlpha;
     };
 
     /** 渲染组
@@ -257,7 +331,7 @@ namespace NII
         /** 添加渲染
         @version NIIEngine 3.0.0
         */
-        void add(SpaceObj * sobj, GeometryObj * obj, ShaderFusion * sf, Nui16 level);
+        void add(SpaceObj * sobj, GeometryObj * gobj, ShaderFusion * sf, Nui16 level);
 
         /** 移去渲染
         @param[in] destroy
@@ -437,17 +511,17 @@ namespace NII
         /** 添加指定对象到队列
         @version NIIEngine 3.0.0
         */
-        inline void add(SpaceObj * sobj, GeometryObj * obj) { add(obj, mDefaultGroup, mDefaultLevel); }
+        inline void add(SpaceObj * sobj, GeometryObj * gobj) { add(sobj, gobj, mDefaultGroup, mDefaultLevel); }
 
         /** 添加指定对象到队列
         @version NIIEngine 3.0.0
         */
-        inline void add(SpaceObj * sobj, GeometryObj * obj, RenderGroupType rgt){ add(obj, rgt, mDefaultLevel); }
+        inline void add(SpaceObj * sobj, GeometryObj * gobj, RenderGroupType rgt){ add(sobj, gobj, rgt, mDefaultLevel); }
 
         /** 添加指定对象到队列
         @version NIIEngine 3.0.0
         */
-        void add(SpaceObj * sobj, GeometryObj * obj, RenderGroupType rgt, Nui16 rlg, ShadowType stype);
+        void add(SpaceObj * sobj, GeometryObj * gobj, RenderGroupType rgt, Nui16 rlg, ShadowType stype);
 
         /** 清理队列
         @version NIIEngine 3.0.0
