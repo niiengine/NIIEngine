@@ -183,7 +183,7 @@ namespace NII
         /** 是否深度测试
         @version NIIEngine 3.0.0
         */
-        bool isDepthCheck() const;
+        bool isDepthEnable() const;
 
         /** 是否深度排序
         @version NIIEngine 3.0.0

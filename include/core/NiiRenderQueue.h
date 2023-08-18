@@ -45,7 +45,7 @@ namespace NII
         RenderItem(SpaceObj * sobj, GeometryObj * geo, Nui64 sn) :
             mGeometryObj(geo), mSpaceObj(sobj), mCh(0), mSortNum(sn){}
         RenderItem(SpaceObj * sobj, GeometryObj * geo, ShaderCh * ch) :
-            mGeometryObj(geo), mSpaceObj(sobj), mCh(ch), mSortNum(0){}
+            mGeometryObj(geo), mSpaceObj(sobj), mCh(ch), mSortNum(ch->getIndex()){}
 
         bool operator < (const RenderItem & o) const
         {
@@ -89,7 +89,7 @@ namespace NII
         /** 执行渲染
         @version NIIEngine 3.0.0
         */
-        virtual void render(const RenderItemList & obj) = 0;
+        virtual void render(const RenderItemList & obj, bool reverse = false) = 0;
     };
 
     /** 渲染排序模式
@@ -98,14 +98,14 @@ namespace NII
     enum RenderSortMode
     {
 		RSM_None = 0,
-        RSM_View = 0x01,            ///< 由视口距离排序
-        RSM_Material = 0x02,        ///< 由渲染材质排序
-        RSM_Material_View = 0x04,   ///< 由先渲染材质排序,后视口距离排序
-        RSM_Stable_View = 0x08,     		///< std::stable_sort or std::sort
-        RSM_Stable_Material_View = 0x10,    ///< std::stable_sort or std::sort
-		RSM_Sort_View_OK = 0x100,    ///< 
-        RSM_Sort_Material_OK = 0x200,///< 
-        RSM_Sort_Material_View_OK = 0x400,///< 
+        RSM_View = 0x01,                    ///< 由视口距离排序
+        RSM_Material = 0x02,                ///< 由渲染材质排序
+        RSM_Material_View = 0x04,           ///< 由先渲染材质排序,后视口距离排序
+        RSM_Stable_View = 0x09,     		///< std::stable_sort or std::sort
+        RSM_Stable_Material_View = 0x12,    ///< std::stable_sort or std::sort
+		RSM_Sort_View_OK = 0x100,           ///< 内部标记不使用
+        RSM_Sort_Material_OK = 0x200,       ///< 内部标记不使用
+        RSM_Sort_Material_View_OK = 0x400,  ///< 内部标记不使用
         RSM_All = 0x1F
     };
 
@@ -115,17 +115,23 @@ namespace NII
     class _EngineAPI RenderLevelGroup : public RenderAlloc
     {
     public:
-		/** 排序类型
+		/** 渲染排序类型
 		@version NIIEngine 6.0.0
 		*/
-		enum SortType
+		enum RenderSortType
 		{
-			ST_BasicCh,
-            ST_BasicSortDescend,
-            ST_BasicSortAscend,
-			ST_AlphaCh,
-			ST_AlphaSortDescend,
-            ST_AlphaSortAscend
+			RST_BasicMaterial,
+            RST_BasicMaterialDescend,
+            RST_BasicMaterialAscend,
+            RST_BasicView,
+            RST_BasicViewDescend,
+            RST_BasicViewAscend,
+			RST_AlphaMaterial,
+            RST_AlphaMaterialDescend,
+            RST_AlphaMaterialAscend,
+            RST_AlphaView,
+			RST_AlphaViewDescend,
+            RST_AlphaViewAscend
 		};
         
         /** 排序组
@@ -135,17 +141,14 @@ namespace NII
         {
             friend class RenderLevelGroup;
         public:
-            /** 渲染排序模式
-            @ersion NIIEngine 3.0.0
-            */
-            enum SortMode
+            enum GroupSortType
             {
-                SM_View = 0x01,
-                SM_Stable_View = 0x02,
-                SM_Material = 0x03,
-                SM_Material_View = 0x04,
-                SM_Stable_Material_View = 0x08,
-                SM_All = 0x0F
+                GST_Material,
+                GST_MaterialDescend,
+                GST_MaterialAscend,
+                GST_View,
+                GST_ViewDescend,
+                GST_ViewAscend
             };
         public:
             Group();
@@ -154,8 +157,13 @@ namespace NII
             /** 执行渲染过滤器渲染
             @version NIIEngine 3.0.0
             */
-            void render(SortMode rsm, RenderFilter * filter) const;
+            void render(GroupSortType rsm, RenderFilter * filter) const;
 
+            /** 添加
+            @version NIIEngine 3.0.0
+            */
+            void add(SpaceObj * sobj, GeometryObj * gobj, ShaderCh * sh, bool alpha = false);
+            
             /** 添加
             @version NIIEngine 3.0.0
             */
@@ -213,7 +221,7 @@ namespace NII
 		/**
 		@version NIIEngine 6.0.0
 		*/
-		void render(SortType type, RenderFilter * filter) const;
+		void render(RenderSortType type, RenderFilter * filter) const;
 
         /** 添加排序模式
         @version NIIEngine 3.0.0
