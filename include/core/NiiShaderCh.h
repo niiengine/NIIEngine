@@ -121,41 +121,40 @@ namespace NII
         SB_ColourAlpha          = SB_Colour | SB_Alpha,
         SB_Texture              = 0x800,
         SB_Program              = 0x1000,
-        SB_FogRef               = 0x2000,                       ///< enable() 无效
-        SB_PointRef             = 0x4000,                       ///< enable() 无效
-        SB_ColourRef            = 0x8000,                       ///< enable() 无效
-        SB_BlendRef             = 0x10000,                      ///< enable() 无效
-        SB_DepthRef             = 0x20000,                      ///< enable() 无效
-        SB_AlphaRef             = 0x40000,                      ///< enable() 无效
-        SB_StencilRef           = 0x80000,                      ///< enable() 无效
-        SB_DepthStencilRef      = SB_DepthRef | SB_StencilRef,  ///< enable() 无效
-        SB_ColourAlphaRef       = SB_ColourRef | SB_AlphaRef,   ///< enable() 无效
-        SB_TextureRef           = 0x100000,                     ///< enable() 无效
-        SB_ProgramRef           = 0x200000,                     ///< enable() 无效
-        SB_FogSet               = SB_Fog | SB_FogRef,           ///< enable() 无效
-        SB_PointSet             = SB_Point | SB_PointRef,       ///< enable() 无效
-        SB_ColourSet            = SB_Colour | SB_ColourRef,     ///< enable() 无效
-        SB_BlendSet             = SB_Blend | SB_BlendRef,       ///< enable() 无效
-        SB_DepthSet             = SB_Depth | SB_DepthRef,       ///< enable() 无效
-        SB_AlphaSet             = SB_Alpha | SB_AlphaRef,       ///< enable() 无效
-        SB_StencilSet           = SB_Stencil | SB_StencilRef,   ///< enable() 无效
-        SB_DepthStencilSet      = SB_DepthSet | SB_StencilSet,  ///< enable() 无效
-        SB_ColourAlphaSet       = SB_ColourSet | SB_AlphaSet,   ///< enable() 无效
-        SB_TextureSet           = SB_Texture | SB_TextureRef,   ///< enable() 无效
-        SB_ProgramSet           = SB_Program | SB_ProgramRef,   ///< enable() 无效
-        SB_Frame_Depth          = 0x400000,
-        SB_Frame_Stencil        = 0x800000,
-        SB_Clip                 = 0x1000000,
-        SB_Light                = 0x2000000,
-        SB_FogValid             = 0x4000000,
-        SB_UnitNormals          = 0x8000000,
-        SB_InvertVertexWinding  = 0x10000000,
-        SB_LightClip            = 0x20000000,
-        SB_LightClipPlane       = 0x40000000,
-        SB_DepthWriteDisable    = 0x80000000,
-        SB_DepthCheckDisable    = 0x100000000,
-        // 扩展
-        SB_Fusion               = 0x200000000,                  ///< enable() disbale 无效 64bit enum
+        SB_FogRef               = 0x2000,                       ///< enable() disable()无效
+        SB_PointRef             = 0x4000,                       ///< enable() disable()无效
+        SB_ColourRef            = 0x8000,                       ///< enable() disable()无效
+        SB_BlendRef             = 0x10000,                      ///< enable() disable()无效
+        SB_DepthRef             = 0x20000,                      ///< enable() disable()无效
+        SB_AlphaRef             = 0x40000,                      ///< enable() disable()无效
+        SB_StencilRef           = 0x80000,                      ///< enable() disable()无效
+        SB_DepthStencilRef      = SB_DepthRef | SB_StencilRef,  ///< enable() disable()无效
+        SB_ColourAlphaRef       = SB_ColourRef | SB_AlphaRef,   ///< enable() disable()无效
+        SB_TextureRef           = 0x100000,                     ///< enable() disable()无效
+        SB_ProgramRef           = 0x200000,                     ///< enable() disable()无效
+        SB_FogSet               = SB_Fog | SB_FogRef,           ///< enable() disable()无效
+        SB_PointSet             = SB_Point | SB_PointRef,       ///< enable() disable()无效
+        SB_ColourSet            = SB_Colour | SB_ColourRef,     ///< enable() disable()无效
+        SB_BlendSet             = SB_Blend | SB_BlendRef,       ///< enable() disable()无效
+        SB_DepthSet             = SB_Depth | SB_DepthRef,       ///< enable() disable()无效
+        SB_AlphaSet             = SB_Alpha | SB_AlphaRef,       ///< enable() disable()无效
+        SB_StencilSet           = SB_Stencil | SB_StencilRef,   ///< enable() disable()无效
+        SB_DepthStencilSet      = SB_DepthSet | SB_StencilSet,  ///< enable() disable()无效
+        SB_ColourAlphaSet       = SB_ColourSet | SB_AlphaSet,   ///< enable() disable()无效
+        SB_TextureSet           = SB_Texture | SB_TextureRef,   ///< enable() disable()无效
+        SB_ProgramSet           = SB_Program | SB_ProgramRef,   ///< enable() disable()无效
+        SB_Fusion               = 0x400000,                     ///< enable() disbale()无效
+        SB_Frame_Depth          = 0x800000,
+        SB_Frame_Stencil        = 0x1000000,
+        SB_Clip                 = 0x2000000,
+        SB_Light                = 0x4000000,
+        SB_FogValid             = 0x8000000,
+        SB_UnitNormals          = 0x10000000,
+        SB_InvertVertexWinding  = 0x20000000,
+        SB_LightClip            = 0x40000000,
+        SB_LightClipPlane       = 0x80000000,
+        SB_DepthWriteDisable    = 0x100000000,
+        SB_DepthCheckDisable    = 0x200000000,                  ///< 64bit enum
     };
     
     /**
@@ -164,8 +163,12 @@ namespace NII
     enum ShaderChType
     {
         SCT_Colour,
+        SCT_Alpha,
+        SCT_ColourAlpha,
         SCT_Blend,
+        SCT_Depth,
         SCT_Stencil,
+        SCT_DepthStencil,
         SCT_Fog,
         SCT_Point
     };
@@ -175,6 +178,8 @@ namespace NII
     */
     class _EngineAPI ShaderChBase : public ShaderAlloc
     {
+        friend class ShaderCh;
+        friend class ShaderChMaterial;
     public:
         ShaderChBase(ShaderChType type, Nmark bindmark = 0xFFFFFFFF);
         virtual ~ShaderChBase();
@@ -217,7 +222,7 @@ namespace NII
     class _EngineAPI ShaderChColour : public ShaderChBase
     {
     public:
-        ShaderChColour();
+        ShaderChColour(ShaderChType type);
         ShaderChColour(const ShaderChColour & o);
         ShaderChColour(CmpMode func, Nui8 value, bool alphaCoverage);
         ShaderChColour(const Colour & ambient, const Colour & diffuse, const Colour & specular, NIIf shinin);
@@ -615,7 +620,7 @@ namespace NII
     class _EngineAPI ShaderChStencil : public ShaderChBase
     {
     public:
-        ShaderChStencil();
+        ShaderChStencil(ShaderChType type);
         ShaderChStencil(const ShaderChStencil & o);
         ShaderChStencil(bool depthCheck, CmpMode mode, bool write, NIIf bias = 0.0f, NIIf scaleslopebias = 0.0f);
         ShaderChStencil(bool stencilTwoside, Nui32 mask = 0xFFFFFFFF, Nui32 cmpmask = 0xFFFFFFFF,
@@ -1665,8 +1670,8 @@ namespace NII
         ShadeMode mShaderMode;          ///< 像素着色模式
         ShaderStep mShaderStep;         ///< 渲染阶段
         LightType mOnlyLightType;       ///< 灯光类型,多通道模式只能用着色程序改变状态
-        Nmark mLightMask;               ///< 灯光掩码
-        Nmark mMark;                    ///< 状态掩码
+        Nmark mLightMask;
+        Nmark mMark;
 
         Nui16 mLightBegin;
         Nui16 mMaxLightCount;
@@ -1824,6 +1829,7 @@ namespace NII
         GeometryObjList mRefList;
         ShaderChStencil * mDepth[ST_Count];
         ShaderChBlend * mBlend[ST_Count];
+        Nmark mMark[ST_Count];
         CmpMode mAlphaTestCmp;
         float mShadowConstantBias;
         float mAlphaTestValue;

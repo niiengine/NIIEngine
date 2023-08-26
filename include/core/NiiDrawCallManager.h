@@ -135,25 +135,25 @@ namespace NII
         DrawCallGroup();
         ~DrawCallGroup();
         
+        /** 组id
+        @version NIIEngine 3.0.0
+        */
+        inline DrawCallGroupID getID() const                { return mID; }
+        
         /** 设置操作的渲染系统
         @version NIIEngine 3.0.0
         */
-        void setOpSys(RenderSys * sys)              {mOpSys = sys;}
+        void setRender(RenderSys * sys)                     { mRenderSys = sys; }
         
         /** 获取操作的渲染系统
         @version NIIEngine 3.0.0
         */
-        RenderSys * getOpSys() const                { return mOpSys;}
+        RenderSys * getRender() const                       { return mRenderSys;}
         
         /** 执行调用
         @version NIIEngine 3.0.0
         */
         void run();
-        
-        /** 组id
-        @version NIIEngine 3.0.0
-        */
-        DrawCallGroupID getID() const               { return mID; }
         
         /** 创建调用绘制单元
         @param[in] fence 是否创建一个通知
@@ -164,12 +164,12 @@ namespace NII
         /** 获取索引下标调用绘制单元
         @version NIIEngine 3.0.0
         */
-        DrawCallUnit * get(Nidx idx) const          { N_assert(idx < mUnitList.size(), "");  return mUnitList[idx]; }
+        inline DrawCallUnit * get(Nidx idx) const           { N_assert(idx < mUnitList.size(), "");  return mUnitList[idx]; }
 
         /** 获取最后一个调用绘制单元
         @version NIIEngine 3.0.0
         */
-        DrawCallUnit * getLast() const              { return mUnitList.back();}
+        inline DrawCallUnit * getLast() const               { return mUnitList.back();}
         
         /** 移去调用绘制单元
         @version NIIEngine 3.0.0
@@ -179,9 +179,9 @@ namespace NII
         /** 获取调用绘制单元数量
         @version NIIEngine 3.0.0
         */
-        NCount getCount() const                     { return mUnitList.size();}
+        inline NCount getCount() const                      { return mUnitList.size();}
     private:
-        RenderSys * mOpSys;
+        RenderSys * mRenderSys;
         DrawCallGroupID mID;
         UnitList mUnitList;
     };

@@ -303,17 +303,13 @@ namespace NII
         /** 设置输入控制管理器
         @version NIIEngine 3.0.0
         */
-        inline void setInput(InputManager * obj)           { mControlPatternManager = obj; }
+        inline void setInput(InputManager * obj)                    { mInputManager = obj; }
 
         /** 获取输入控制管理器
         @version NIIEngine 3.0.0
         */
-        inline InputManager * getInput() const             { return mControlPatternManager; }
+        inline InputManager * getInput() const                      { return mInputManager; }
 
-        /** 获取输入控制项管理器
-        @version NIIEngine 3.0.0
-        */
-        InputManager * getInputItem() const;
 
         /** 获取文理管理器
         @version NIIEngine 3.0.0
@@ -611,7 +607,7 @@ namespace NII
         ScriptModuleList mScriptModuleList;
 
         SpaceTypeManager * mSpaceTypeManager;
-        InputManager * mControlPatternManager;
+        InputManager * mInputManager;
         ScriptHelperManager * mScriptHelperManager;
         DynamicModuleManager * mDynamicModuleManager;
         EquationManager * mEquationManager;
