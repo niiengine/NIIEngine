@@ -450,10 +450,10 @@ namespace NII
     typedef vector<ShaderFusion *>::type ShaderFusionList;
     typedef vector<IndexData *>::type IndexDataList;
     typedef vector<ShaderCh *>::type ShaderChList;
-	typedef vector<Thread *>::type ThreadList;
+    typedef vector<Thread *>::type ThreadList;
     typedef vector<PhysicalObj *>::type PhysicalObjList;
     typedef vector<PhysicalCom *>::type PhysicalComList;
-	typedef set<Thread *>::type ThreadSet;
+    typedef set<Thread *>::type ThreadSet;
     typedef vector<ThreadEvent *>::type ThreadEventList;
     typedef vector<ThreadEventGroup *>::type ThreadEventGroupList;
 
@@ -476,7 +476,7 @@ namespace NII
     typedef vector<EventID>::type EventIDList;
     typedef vector<PropertyID>::type PropertyArray;
     typedef vector<void *>::type PtrList;
-	typedef vector<NIIf *>::type FloatPtrList;
+    typedef vector<NIIf *>::type FloatPtrList;
     typedef vector<Nui16>::type BoneIndexList;
     typedef vector<SubMesh *>::type SubMeshList;
     typedef vector<Bone *>::type BoneList;
@@ -518,7 +518,7 @@ namespace NII
     #define N_MAX(type, a, b)           std::max<type>((a), (b))
     #define N_StrBlank                  StrUtil::BLANK
     #define N_ToPixel(x)                NIIf((int)((x)+((x) > 0.0f ? 0.5f : -0.5f)))
-
+    
     #define N_OBJ(p, c, f, v)           const StateID c::f = v + p::ObjCount
     #define N_EVENT(p, c, f, v)         const EventID c::f = v + p::EventCount
     #define N_PROPERTY(p, c, f, v)      const PropertyID c::f = v + p::PropertyCount
@@ -588,8 +588,8 @@ namespace NII
     #define N_Max_Inner_ID              0x07800000
     #define N_Max_Num_Value             0xFFFFFFFF
 
-    #define N_Level_Bit_Escape          16				/// auto id = 前16位parent后16位child
-    #define N_Com_Escape                32				/// auto id = 前16位parent后16位child
+    #define N_Level_Bit_Escape          16              /// auto id = 前16位parent后16位child
+    #define N_Com_Escape                32              /// auto id = 前16位parent后16位child
     #define N_Com_EscapeMark            0xFFFFFFFF                
     #define N_Max_Event_ID              0xffff
     #define N_Max_Property_ID           0xffff
@@ -601,13 +601,16 @@ namespace NII
     #define N_TEX_MIPMAP                10240
     #define N_Null_Obj                  0
     #define N_Parent_Obj                4294967295
-	#define N_ChildID(pid, id)			(pid << N_Level_Bit_Escape) + id
+    #define N_ChildID(pid, id)          (pid << N_Level_Bit_Escape) + id
 
     #define N_Only(mag)                 NII::mag##Manager::getOnly()
     #define N_OnlyPtr(mag)              NII::mag##Manager::getOnlyPtr()
     #define N_Engine()                  NII::Engine::getOnly()
     #define N_EnginePtr()               NII::Engine::getOnlyPtr()
     #define N_Timer()                   NII::Engine::getOnly().getTimer()
+    
+    #define N_Mask(x)                   ((1 << (x)) - 1)
+    #define N_Mask_Num(x, bits, shift)  (Nui64((x) & N_Mask((bits))) << (shift))
     
     #define N_Mark(value, mark)                     (value) |= (mark)
     #define N_MarkOnly(value, flmark, mark)         ((value) ~= (flmark)) |= (mark)

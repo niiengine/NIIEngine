@@ -310,7 +310,6 @@ namespace NII
         */
         inline InputManager * getInput() const                      { return mInputManager; }
 
-
         /** 获取文理管理器
         @version NIIEngine 3.0.0
         */
@@ -458,7 +457,7 @@ namespace NII
         /** 执行脚本函数
         @version NIIEngine 3.0.0
         */
-        int executeScriptFunc(ScriptModuleID smid, const String & function) const;
+        NIIi executeScriptFunc(ScriptModuleID smid, const String & function) const;
 
         /** 执行脚本串
         @version NIIEngine 3.0.0

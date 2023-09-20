@@ -73,7 +73,7 @@ namespace NII
         /** 预分配缓存实现
         @version NIIEngine 5.0.0
         */
-        virtual bool reserveImpl(NCount size, ModeMark newMode = -1, bool oldData = true)= 0;
+        virtual bool reserveImpl(NCount size, BufferModeMark newMode = -1, bool oldData = true)= 0;
         
         /** 复制缓存实现
         @version NIIEngine 5.0.0
@@ -92,6 +92,8 @@ namespace NII
     protected:
         Buffer * mBuffer;
     };
+    
+    typedef Nmark BufferModeMark;
     
     /** 系统资源硬件缓存
     @remark
@@ -413,7 +415,6 @@ namespace NII
             */
             M_EXT35 = 0x10000000000000
         };
-        typedef Nmark ModeMark;
         
         enum OpType
         {
@@ -466,7 +467,7 @@ namespace NII
         @param[in] mode Buffer::Mode 选项
         @version NIIEngine 3.0.0
         */
-        Buffer(BufferManager * mag, NCount unitsize, NCount unitcnt, NCount multi, ModeMark mode, Nui8 * initData, GroupID gid = 0, NCount goft = 0, NCount padSize = 0);
+        Buffer(BufferManager * mag, NCount unitsize, NCount unitcnt, NCount multi, BufferModeMark mode, Nui8 * initData, GroupID gid = 0, NCount goft = 0, NCount padSize = 0);
 
         virtual ~Buffer();
 
@@ -680,19 +681,19 @@ namespace NII
         @param[in] newMode 如果保留原来的设置则值为 -1.
         @version NIIEngine 4.0.0
         */
-        bool resize(NCount newSize, ModeMark newMode = -1, bool paddingUnit = true, bool keeyOldData = true);
+        bool resize(NCount newSize, BufferModeMark newMode = -1, bool paddingUnit = true, bool keeyOldData = true);
 
         /** 分配缓冲区大小(预留)
         @param[in] newMode 如果保留原来的设置则值为 -1.
         @version NIIEngine 4.0.0
         */
-        bool resizeUnit(NCount newUnitCnt, ModeMark newMode = -1, bool paddingUnit = true, bool keeyOldData = true);
+        bool resizeUnit(NCount newUnitCnt, BufferModeMark newMode = -1, bool paddingUnit = true, bool keeyOldData = true);
 
         /** 副本对象
         @param[in] m Buffer::Mode 选项
         @version NIIEngine 3.0.0
         */
-        virtual Buffer * clone(ModeMark m = M_Normal | M_WHOLE) const = 0;
+        virtual Buffer * clone(BufferModeMark m = M_Normal | M_WHOLE) const = 0;
         
         /** 等待所有内部操作完成
         @remark 有些命令在调用线程中立即返回,但内部并没有完成,这个函数阻塞等待直到命令完成
@@ -730,7 +731,7 @@ namespace NII
         /** 返回缓冲创建时使用用法标志
         @version NIIEngine 3.0.0
         */
-        inline ModeMark getModeMark() const         { return mMark;  }
+        inline BufferModeMark getModeMark() const         { return mMark;  }
 
         /** 管理器
         @version NIIEngine 3.0.0
@@ -759,7 +760,7 @@ namespace NII
         @param[in] oldData 是否复制原来的数据
         @version NIIEngine 4.0.0 高级api
         */
-        virtual bool reserveImpl(NCount size, ModeMark newMode = -1, bool oldData = true);
+        virtual bool reserveImpl(NCount size, BufferModeMark newMode = -1, bool oldData = true);
 
         /** 复制实现
         @remark 最好使用机制API复制函数而不使用lock/unlock.
@@ -798,7 +799,7 @@ namespace NII
         NCount mRefCount;
         NCount mCurrentMulti;
         NCount mMultiCount;     ///< totle size = mMultiCount * mReserveSize
-        ModeMark mMark;
+        BufferModeMark mMark;
         bool mMapping;
         bool mShadowRefresh;
         bool mAutoDestroy;
@@ -817,7 +818,7 @@ namespace NII
         write(in, unitOft * mUnitSize, unitCnt * mUnitSize);
     }
 
-    inline bool Buffer::resizeUnit(NCount newUnitSize, ModeMark newMode, bool oldData)
+    inline bool Buffer::resizeUnit(NCount newUnitSize, BufferModeMark newMode, bool oldData)
     { 
         return resize(newUnitSize * mUnitSize, newMode, oldData); 
     }

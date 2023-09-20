@@ -68,7 +68,7 @@ namespace NII
         /**
         @version NIIEngine 6.0.0
         */
-        virtual uint8 wait() = 0;
+        virtual Nui8 wait() = 0;
 
         /** 
         @version NIIEngine 6.0.0
@@ -93,7 +93,7 @@ namespace NII
         /** 添加池
         @version NIIEngine 5.0.0
         */
-        virtual bool addPool(GpuGroupID gid, GpuBuffer::ModeMark mode, StrategyType stype, NCount size);
+        virtual bool addPool(GpuGroupID gid, BufferModeMark mode, StrategyType stype, NCount size);
 
         /** 移去池
         @version NIIEngine 5.0.0
@@ -154,7 +154,7 @@ namespace NII
         /** 请求映射
         @version NIIEngine 5.0.0
         */
-        virtual void request(MappedBuffer *& out, NCount size, ModeMark modemark = M_HOSTWRITE);
+        virtual void request(MappedBuffer *& out, NCount size, BufferModeMark modemark = M_HOSTWRITE);
 
         /** 回收映射
         @version NIIEngine 5.0.0
@@ -184,7 +184,7 @@ namespace NII
         @param[in] pool 是否存在于数据池中的某一连续数据空间,0值则不属于任何一个池
         @version NIIEngine 3.0.0
         */
-        virtual void create(VertexBuffer *& out, NCount usize, NCount ucount, ModeMark mode, NCount multi = 1, void * initData = 0, GpuGroupID pool = 0) = 0;
+        virtual void create(VertexBuffer *& out, NCount usize, NCount ucount, BufferModeMark mode, NCount multi = 1, void * initData = 0, GpuGroupID pool = 0) = 0;
 
         /** 删除顶点缓存
         @version NIIEngine 3.0.0
@@ -199,7 +199,7 @@ namespace NII
         @param[in] pool 是否存在于数据池中的某一连续数据空间,0值则不属于任何一个池
         @version NIIEngine 3.0.0
         */
-        virtual void create(IndexBuffer *& out, NCount usize, NCount ucount, ModeMark mode, NCount multi = 1, void * initData = 0, GpuGroupID pool = 0) = 0;
+        virtual void create(IndexBuffer *& out, NCount usize, NCount ucount, BufferModeMark mode, NCount multi = 1, void * initData = 0, GpuGroupID pool = 0) = 0;
         
         /** 删除索引缓存
         @version NIIEngine 3.0.0
@@ -213,7 +213,7 @@ namespace NII
         @param[in] pool 是否存在于数据池中的某一连续数据空间,0值则不属于任何一个池
         @version NIIEngine 3.0.0
         */
-        virtual void create(CounterBuffer *& out, NCount size, ModeMark mode, NCount multi = 1, void * initData = 0, GpuGroupID pool = 0) = 0;
+        virtual void create(CounterBuffer *& out, NCount size, BufferModeMark mode, NCount multi = 1, void * initData = 0, GpuGroupID pool = 0) = 0;
 
         /** 删除着色程序计数缓存
         @version NIIEngine 3.0.0
@@ -227,7 +227,7 @@ namespace NII
         @param[in] pool 是否存在于数据池中的某一连续数据空间,0值则不属于任何一个池
         @version NIIEngine 3.0.0
         */
-        virtual void create(IndirectBuffer *& out, IndirectBuffer::Type type, NCount size, ModeMark mode, NCount multi = 1, void * initData = 0, GpuGroupID pool = 0) = 0;
+        virtual void create(IndirectBuffer *& out, IndirectBuffer::Type type, NCount size, BufferModeMark mode, NCount multi = 1, void * initData = 0, GpuGroupID pool = 0) = 0;
         
         /** 删除绘制命令缓存
         @version NIIEngine 3.0.0
@@ -241,7 +241,7 @@ namespace NII
         @param[in] pool 是否存在于数据池中的某一连续数据空间,0值则不属于任何一个池
         @version NIIEngine 3.0.0
         */
-        virtual void create(StructBuffer *& out, NCount size, ModeMark mode, NCount multi = 1, void * initData = 0, GpuGroupID pool = 0) = 0;
+        virtual void create(StructBuffer *& out, NCount size, BufferModeMark mode, NCount multi = 1, void * initData = 0, GpuGroupID pool = 0) = 0;
 
         /** 删除着色程序数据结构体缓存
         @version NIIEngine 3.0.0
@@ -252,7 +252,7 @@ namespace NII
 		@param[in] multi 双缓存则为2，离线混合渲染则更高
         @version NIIEngine 3.0.0
         */
-        virtual void create(TextureBuffer *& out, PixelFormat pf, NCount size, ModeMark mode, NCount multi = 1, void * initData = 0, GpuGroupID pool = 0) = 0;
+        virtual void create(TextureBuffer *& out, PixelFormat pf, NCount size, BufferModeMark mode, NCount multi = 1, void * initData = 0, GpuGroupID pool = 0) = 0;
 
         /** 删除纹理缓存(可用于着色程序)
         @version NIIEngine 3.0.0
@@ -445,12 +445,12 @@ namespace NII
         /** 创建映射缓存
         @version NIIEngine 高级api
         */
-        virtual void createImpl(MappedBuffer *& buf, NCount size, ModeMark mode) = 0;
+        virtual void createImpl(MappedBuffer *& buf, NCount size, BufferModeMark mode) = 0;
 
         /** 创建实现
         @version NIIEngine 高级api
         */
-        virtual bool createPoolImpl(GpuGroupID gid, GpuBuffer::ModeMark mode, StrategyType stype, NCount size) = 0;
+        virtual bool createPoolImpl(GpuGroupID gid, BufferModeMark mode, StrategyType stype, NCount size) = 0;
 
         /** 删除实现
         @version NIIEngine 高级api

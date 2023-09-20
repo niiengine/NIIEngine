@@ -59,7 +59,7 @@ namespace NII
     class _EngineAPI GpuBuffer : public Buffer
     {
     public:
-        GpuBuffer(BufferManager * mag, NCount unitsize, NCount unitcount, NCount multi, ModeMark mode, Nui8 * initData, GroupID gid = 0, NCount goft = 0, NCount padSize = 0);
+        GpuBuffer(BufferManager * mag, NCount unitsize, NCount unitcount, NCount multi, BufferModeMark mode, Nui8 * initData, GroupID gid = 0, NCount goft = 0, NCount padSize = 0);
 
         inline void setIdx(Nidx idx)   { mIdx = idx; }
         
@@ -107,11 +107,11 @@ namespace NII
             IRT_Plane = 5           ///< 单一平行面
         };
     public:
-        IndexBuffer(BufferManager * mag, NCount unitsize, NCount unitcount, NCount multi, ModeMark mode, Nui8 * initData, GroupID gid = 0, NCount goft = 0, NCount padSize = 0);
+        IndexBuffer(BufferManager * mag, NCount unitsize, NCount unitcount, NCount multi, BufferModeMark mode, Nui8 * initData, GroupID gid = 0, NCount goft = 0, NCount padSize = 0);
         ~IndexBuffer();
 
         /// @copydetails Buffer::clone
-        Buffer * clone(ModeMark m = M_WRITE | M_WHOLE | M_HOST) const;
+        Buffer * clone(BufferModeMark m = M_WRITE | M_WHOLE | M_HOST) const;
         
         /// @copydetails Buffer::getHostData
         virtual Nui8 * getHostData() const;
@@ -123,11 +123,11 @@ namespace NII
     class _EngineAPI VertexBuffer : public GpuBuffer
     {
     public:
-        VertexBuffer(BufferManager * mag, NCount unitsize, NCount unitcount, NCount multi, ModeMark mode, Nui8 * initData, GroupID gid = 0, NCount goft = 0, NCount padSize = 0);
+        VertexBuffer(BufferManager * mag, NCount unitsize, NCount unitcount, NCount multi, BufferModeMark mode, Nui8 * initData, GroupID gid = 0, NCount goft = 0, NCount padSize = 0);
         ~VertexBuffer();
         
         /// @copydetails Buffer::clone
-        Buffer * clone(ModeMark m = M_WRITE | M_WHOLE | M_HOST) const;
+        Buffer * clone(BufferModeMark m = M_WRITE | M_WHOLE | M_HOST) const;
         
         /// @copydetails Buffer::getHostData
         virtual Nui8 * getHostData() const;
@@ -141,11 +141,11 @@ namespace NII
     class _EngineAPI CounterBuffer : public GpuBuffer
     {
     public:
-        CounterBuffer(BufferManager * mag, NCount size, NCount multi, ModeMark mode, Nui8 * initData, GroupID gid = 0, NCount goft = 0, NCount padSize = 0);
+        CounterBuffer(BufferManager * mag, NCount size, NCount multi, BufferModeMark mode, Nui8 * initData, GroupID gid = 0, NCount goft = 0, NCount padSize = 0);
         ~CounterBuffer();
         
         /// @copydetails Buffer::clone()
-        Buffer * clone(ModeMark m = M_WRITE | M_WHOLE | M_HOST) const;
+        Buffer * clone(BufferModeMark m = M_WRITE | M_WHOLE | M_HOST) const;
 
         /// @copydetails Buffer::getHostData
         virtual Nui8 * getHostData() const;
@@ -158,11 +158,11 @@ namespace NII
     class _EngineAPI StructBuffer : public GpuBuffer
     {
     public:
-        StructBuffer(BufferManager * mag, NCount size, NCount multi, ModeMark mode, Nui8 * initData, GroupID gid = 0, NCount goft = 0, NCount padSize = 0, NCount padSize = 0);
+        StructBuffer(BufferManager * mag, NCount size, NCount multi, BufferModeMark mode, Nui8 * initData, GroupID gid = 0, NCount goft = 0, NCount padSize = 0, NCount padSize = 0);
         ~StructBuffer();
 
         /// @copydetails Buffer::clone
-        Buffer * clone(ModeMark m = M_WRITE | M_WHOLE | M_HOST) const;
+        Buffer * clone(BufferModeMark m = M_WRITE | M_WHOLE | M_HOST) const;
 
         /// @copydetails Buffer::getHostData
         virtual Nui8 * getHostData() const;
@@ -175,7 +175,7 @@ namespace NII
     {
         friend class TextureFrame;
     public:
-        FrameBuffer(BufferManager * mag, NCount w, NCount h, NCount d, PixelFormat pf, NCount multi, ModeMark mode, GroupID gid = 0, NCount goft = 0, NCount padSize = 0);
+        FrameBuffer(BufferManager * mag, NCount w, NCount h, NCount d, PixelFormat pf, NCount multi, BufferModeMark mode, GroupID gid = 0, NCount goft = 0, NCount padSize = 0);
         ~FrameBuffer();
 
         using Buffer::lock;
@@ -287,12 +287,12 @@ namespace NII
             T_Index = 20
         };
     public:
-        IndirectBuffer(BufferManager * mag, Type type, NCount size, NCount multi, ModeMark mode, Nui8 * initData, GroupID gid = 0, NCount goft = 0, NCount padSize = 0);
+        IndirectBuffer(BufferManager * mag, Type type, NCount size, NCount multi, BufferModeMark mode, Nui8 * initData, GroupID gid = 0, NCount goft = 0, NCount padSize = 0);
         
         inline Type getType() const             { return mType; }
         
         /// @copydetails Buffer::clone
-        Buffer * clone(ModeMark m = M_WRITE | M_WHOLE | M_HOST) const;
+        Buffer * clone(BufferModeMark m = M_WRITE | M_WHOLE | M_HOST) const;
 
         /// @copydetails Buffer::getHostData
         virtual Nui8 * getHostData() const;
@@ -307,7 +307,7 @@ namespace NII
     class _EngineAPI TextureBuffer : public GpuBuffer
     {
     public:
-        TextureBuffer(BufferManager * mag, NCount size, PixelFormat pf, NCount multi, ModeMark mode, Nui8 * initData, GroupID gid = 0, NCount goft = 0, NCount padSize = 0);
+        TextureBuffer(BufferManager * mag, NCount size, PixelFormat pf, NCount multi, BufferModeMark mode, Nui8 * initData, GroupID gid = 0, NCount goft = 0, NCount padSize = 0);
         
         /** 获取纹理格式
         @version NIIEngine 5.0.0
@@ -315,7 +315,7 @@ namespace NII
         inline PixelFormat getFormat() const    { return mPixelFormat; }
         
         /// @copydetails Buffer::clone
-        Buffer * clone(ModeMark m = M_WRITE | M_WHOLE | M_HOST) const;
+        Buffer * clone(BufferModeMark m = M_WRITE | M_WHOLE | M_HOST) const;
         
         /// @copydetails Buffer::getHostData
         virtual Nui8 * getHostData() const;
@@ -341,7 +341,7 @@ namespace NII
         };
         typedef BindMark
     public:
-        StorageBuffer(BufferManager * mag, NCount unitsize, NCount unitcount, NCount multi, ModeMark mode, Nui8 * initData, GroupID gid = 0, NCount goft = 0, NCount padSize = 0);
+        StorageBuffer(BufferManager * mag, NCount unitsize, NCount unitcount, NCount multi, BufferModeMark mode, Nui8 * initData, GroupID gid = 0, NCount goft = 0, NCount padSize = 0);
         virtual ~StorageBuffer();
         
         /** 创建索引视图(访问数据模型)
@@ -396,7 +396,7 @@ namespace NII
         void destroyAllView();
         
         /// @copydetails Buffer::clone
-        Buffer * clone(ModeMark m = M_WRITE | M_WHOLE | M_HOST) const;
+        Buffer * clone(BufferModeMark m = M_WRITE | M_WHOLE | M_HOST) const;
         
         /// @copydetails Buffer::getHostData
         virtual Nui8 * getHostData() const;
@@ -479,7 +479,7 @@ namespace NII
 
         typedef vector<Block>::type BlockList;
     public:
-        MappedBuffer(GBufferManager * mag, ModeMark mode, NCount offset, NCount size);
+        MappedBuffer(GBufferManager * mag, BufferModeMark mode, NCount offset, NCount size);
         virtual ~MappedBuffer();
 
         /**
@@ -569,7 +569,7 @@ namespace NII
         virtual void recover(NCount offset, NCount size);
     protected:
         GBufferManager * mMag;
-        ModeMark mMark;
+        BufferModeMark mMark;
         BlockList mFreeBlockList;
         BlockOpType mLastOp;
         NCount mOffset;

@@ -213,7 +213,7 @@ namespace NII
         /** 复制
         @version NIIEngine 3.0.0
         */
-        GeometryRaw * clone(ModeMark vertex = -1, ModeMark index = -1, ModeMark indirect = -1) const;
+        GeometryRaw * clone(BufferModeMark vertex = -1, BufferModeMark index = -1, BufferModeMark indirect = -1) const;
     public:
         VertexData * mVertex;       ///< 顶点数据
         IndexData * mIndex;         ///< 索引数据(mMark & GRT_Index)

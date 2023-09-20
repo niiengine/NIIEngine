@@ -95,7 +95,7 @@ namespace NII
         @param[in] mag 管理器
         @remark 但完成时候,调用者期望 删除和返回 指针
         */
-        IndexData * clone(CopyType ct = CT_Clone, ModeMark mode = -1, GBufferManager * mag = 0) const;
+        IndexData * clone(CopyType ct = CT_Clone, BufferModeMark mode = -1, GBufferManager * mag = 0) const;
     protected:
         IndexData(const IndexData & o) {}
         IndexData & operator=(const IndexData &) { return *this; }
@@ -571,7 +571,7 @@ namespace NII
         @param[in] mag 产生副本的管理器
         @version NIIEngine 3.0.0 高级api
         */
-        VertexData * clone(CopyType ct = CT_Clone, ModeMark mode = -1, GBufferManager * mag = 0) const;
+        VertexData * clone(CopyType ct = CT_Clone, BufferModeMark mode = -1, GBufferManager * mag = 0) const;
 
         /** 结构副本
         @note 仅结构成分,不含数据副本
@@ -770,7 +770,7 @@ namespace NII
         @param[in] mag 管理器
         @remark 但完成时候,调用者期望 删除和返回 指针
         */
-        IndirectData * clone(CopyType ct = CT_Clone, ModeMark mode = -1, GBufferManager * mag = 0) const;
+        IndirectData * clone(CopyType ct = CT_Clone, BufferModeMark mode = -1, GBufferManager * mag = 0) const;
     protected:
         IndirectData();
         IndirectData(const IndirectData & o) {}

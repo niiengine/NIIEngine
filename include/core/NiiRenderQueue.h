@@ -300,6 +300,16 @@ namespace NII
         RenderGroup(RenderQueue * parent);
 
         virtual ~RenderGroup();
+        
+        /** 设置渲染类型
+        @version NIIEngine 3.0.0
+        */
+        inline void setRenderType(RenderType type)          { mRenderType = type; }
+        
+        /** 设置渲染类型
+        @version NIIEngine 3.0.0
+        */
+        inline RenderType getRenderType() const             { return mRenderType; }
 
         /** 设置是否启用阴影
         @version NIIEngine 3.0.0
@@ -363,7 +373,7 @@ namespace NII
         virtual void createImpl(RenderLevelGroup *& out);
     protected:
         RenderQueue * mParent;
-		RenderType mMode;
+		RenderType mRenderType;
         RenderList mRenderList;
         Nmark mSortMark;
         bool mShadowsEnable;
@@ -460,6 +470,16 @@ namespace NII
 		@version NIIEngine 6.0.0
 		*/
         void prepareState(ShadowType type);
+        
+        /** 设置渲染类型
+        @version NIIEngine 3.0.0
+        */
+        void setRenderType(RenderGroupType gtype, RenderType rtype);
+        
+        /** 设置渲染类型
+        @version NIIEngine 3.0.0
+        */
+        RenderType getRenderType(RenderGroupType gtype) const;
 
         /** 设置默认组
         @version NIIEngine 3.0.0
@@ -519,12 +539,12 @@ namespace NII
         /** 添加指定对象到队列
         @version NIIEngine 3.0.0
         */
-        inline void add(SpaceObj * sobj, GeometryObj * gobj) { add(sobj, gobj, mDefaultGroup, mDefaultLevel); }
+        inline void add(SpaceObj * sobj, GeometryObj * gobj, ShadowType stype) { add(sobj, gobj, mDefaultGroup, mDefaultLevel, stype); }
 
         /** 添加指定对象到队列
         @version NIIEngine 3.0.0
         */
-        inline void add(SpaceObj * sobj, GeometryObj * gobj, RenderGroupType rgt){ add(sobj, gobj, rgt, mDefaultLevel); }
+        inline void add(SpaceObj * sobj, GeometryObj * gobj, RenderGroupType rgt, ShadowType stype){ add(sobj, gobj, rgt, mDefaultLevel, stype); }
 
         /** 添加指定对象到队列
         @version NIIEngine 3.0.0
