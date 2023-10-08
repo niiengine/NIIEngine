@@ -58,33 +58,33 @@ namespace NII
         /** 初始数据实现
         @version NIIEngine 5.0.0
         */
-        virtual void initImpl( void * data, NCount oft, NCount size ) = 0；
-    
+        virtual void initImpl(void * data, NCount oft, NCount size) = 0；
+
         /** 映射缓存实现
         @version NIIEngine 5.0.0
         */
         virtual void * lockImpl(MuteMark m, NCount oft, NCount size) = 0;
-        
+
         /** 解除映射缓存实现
         @version NIIEngine 5.0.0
         */
         virtual void unlockImpl(UnlockType type, NCount oft, NCount size)= 0;
-        
+
         /** 预分配缓存实现
         @version NIIEngine 5.0.0
         */
         virtual bool reserveImpl(NCount size, BufferModeMark newMode = -1, bool oldData = true)= 0;
-        
+
         /** 复制缓存实现
         @version NIIEngine 5.0.0
         */
         virtual void memcpyImpl(void * data, NCount oft, NCount size, bool write = true) = 0;
-        
+
         /** 复制缓存实现
         @version NIIEngine 5.0.0
         */
         virtual void memcpyImpl(Buffer * target, NCount targetOft, NCount oft, NCount size)= 0;
-        
+
         /** 等待缓存操作完成实现
         @version NIIEngine 5.0.0
         */
@@ -92,9 +92,9 @@ namespace NII
     protected:
         Buffer * mBuffer;
     };
-    
+
     typedef Nmark BufferModeMark;
-    
+
     /** 系统资源硬件缓存
     @remark
         硬件缓存(声卡/显卡/网卡/etc)和系统使用的缓存可能有所不同,属于另一个处理体系,
@@ -228,12 +228,12 @@ namespace NII
                 可以有更多用在帧缓存混算.
             @version NIIEngine 5.0.0
             */
-            M_Multi                 = 0x8000,
+            M_Multi             = 0x8000,
             
             /** cpu保留副本
             @version NIIEngine 3.0.0
             */
-            M_HostCache             = 0x10000,
+            M_HostCache         = 0x10000,
 
             /** 扩展标记
             @version NIIEngine 3.0.0
@@ -475,7 +475,7 @@ namespace NII
         @version NIIEngine 5.0.0
         */
         inline GroupID getGroupID() const           { return mGroupID; }
-        
+
         /** 获取群组中的偏移
         @version NIIEngine 5.0.0
         */
@@ -505,7 +505,12 @@ namespace NII
         /** 设置是否计数自动删除
         @version NIIEngine 3.0.0
         */
-        inline void setRefDestroy(bool set)         { mAutoDestroy = set; }
+        inline void setAutoDestroy(bool set)        { mAutoDestroy = set; }
+        
+        /** 设置是否计数自动删除
+        @version NIIEngine 3.0.0
+        */
+        inline bool isAutoDestroy() const           { return mAutoDestroy; }
 
         /** 是否支持特性
         @param[in] mode Buffer::Mode选项
@@ -516,7 +521,7 @@ namespace NII
         /** 缓存是否处于锁定状态
         @version NIIEngine 3.0.0
         */
-        inline bool isMute() const                  { return mMapping || (mShadow && mShadow->isMute()); }
+        inline bool isMapping() const               { return mMapping || (mShadow && mShadow->isMapping()); }
 
         /** 设置复合数量
         @version NIIEngine 5.0.0 高级api

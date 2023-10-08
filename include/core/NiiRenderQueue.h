@@ -67,6 +67,7 @@ namespace NII
 	*/
 	enum RenderType
 	{
+        RT_Unknow,
 		RT_Single,
 		RT_Queue,
 		RT_QueueArray
@@ -300,12 +301,12 @@ namespace NII
         RenderGroup(RenderQueue * parent);
 
         virtual ~RenderGroup();
-        
+
         /** 设置渲染类型
         @version NIIEngine 3.0.0
         */
         inline void setRenderType(RenderType type)          { mRenderType = type; }
-        
+
         /** 设置渲染类型
         @version NIIEngine 3.0.0
         */
@@ -320,6 +321,11 @@ namespace NII
         @version NIIEngine 3.0.0
         */
         inline bool isShadowEnable() const 					{ return mShadowsEnable; }
+        
+        /** 设置等级数量
+        @version NIIEngine 6.0.0
+        */
+        void setLevel(NCount cnt);
 
         /** 添加排序模式
         @see RenderSortMode
@@ -386,33 +392,18 @@ namespace NII
     {
         RQG_Unknow      = 0,
         RQG_Bg          = 1,
-        RQG_Sky_First   = 2,
-        RQG_Ext_1       = 3,
-        RQG_Ext_2       = 4,
-        RQG_Ext_3       = 5,
-        RQG_Ext_4       = 6,
-        RQG_Ext_5       = 7,
-        RQG_Geo_1       = 10,
-        RQG_Ext_6       = 11,
-        RQG_Ext_7       = 12,
-        RQG_Ext_8       = 13,
-        RQG_Ext_9       = 14,
-        RQG_Ext_10      = 15,
-        RQG_User        = 20,
-        RQG_Ext_11      = 21,
-        RQG_Ext_12      = 22,
-        RQG_Ext_13      = 23,
-        RQG_Ext_14      = 24,
-        RQG_Ext_15      = 25,
-        RQG_Geo_2       = 30,
-        RQG_Ext_16      = 31,
-        RQG_Ext_17      = 32,
-        RQG_Ext_18      = 33,
-        RQG_Ext_19      = 34,
-        RQG_Ext_20      = 35,
-        RQG_Sky_Last    = 40,
-        RQG_Surface     = 41,
-        RQG_Count       = 42,
+        RQG_Sky         = 2,
+        RQG_FarBegin    = 3,
+        RQG_FarEnd      = 50,
+        RQG_Geo_1       = 51,
+        RQG_UserBegin   = 52,
+        RQG_User        = 102,
+        RQG_UserEnd     = 152,
+        RQG_Geo_2       = 153,
+        RQG_NearBegin   = 154,
+        RQG_NearEnd     = 254,
+        RQG_Overlay     = 255,
+        RQG_Count       = 255,
         RQG_Max         = 256
     };
     
@@ -465,21 +456,21 @@ namespace NII
     public:
         RenderQueue(DrawCallGroup * dcg);
         virtual ~RenderQueue();
-		
+
 		/**
 		@version NIIEngine 6.0.0
 		*/
         void prepareState(ShadowType type);
-        
+
         /** 设置渲染类型
         @version NIIEngine 3.0.0
         */
-        void setRenderType(RenderGroupType gtype, RenderType rtype);
-        
+        void setRenderType(RenderGroupType rgt, RenderType rtype);
+
         /** 设置渲染类型
         @version NIIEngine 3.0.0
         */
-        RenderType getRenderType(RenderGroupType gtype) const;
+        RenderType getRenderType(RenderGroupType rgt) const;
 
         /** 设置默认组
         @version NIIEngine 3.0.0
@@ -599,19 +590,19 @@ namespace NII
         /** 创建主组
         @version NIIEngine 3.0.0
         */
-        void createMainGroup();
+        virtual void createMainGroup();
     protected:
 		DrawCallGroup * mDrawCallList;
+        GroupList mGroups;
         IndirectBufferList mFreeBufferList;
         IndirectBufferList mUsedBufferList;
-        GroupList mGroups;
         RenderStateCacheList mStateList;
 		VertexData * mVertexData;
 		IndexData * mIndexData;
         ShadowType mShadowType;
         RenderGroupType mDefaultGroup;
         Nui32 mRenderMark;
-        uint32 mVaoId;
+        Nui32 mVaoId;
         Nui16 mDefaultLevel;
         bool mRemoveGroupOnClear;
     };

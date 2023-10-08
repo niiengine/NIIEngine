@@ -485,7 +485,7 @@ namespace NII
         /**
         @version NIIEngine 5.0.0
         */
-        inline bool getLockState() const    { return mMapping; }
+        inline bool isMapping() const    { return mMapping; }
 
         /**
         @version NIIEngine 5.0.0
