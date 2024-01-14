@@ -1,0 +1,3 @@
+﻿++ GNOME Sound Recorder
+
+Sound recorder

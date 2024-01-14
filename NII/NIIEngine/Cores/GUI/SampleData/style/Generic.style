@@ -1,0 +1,156 @@
+<?xml version="1.0" ?>
+
+<!--
+    Generic.looknfeel by Lukas E. Meindl
+
+    This looknfeel was created to provide GUIs with generic widgets that don't have a specific skin
+-->
+
+<Style ver="7">
+    <WidgetStyle id="Generic/Label">
+        <PropertyDefine signal_refresh="true" value="FF000000" type="Colour" id="NormalTextColour"/>
+        <PropertyDefine signal_refresh="true" value="FF444444" type="Colour" id="DisabledTextColour"/>
+        <PropertyDefine signal_refresh="true" value="centre" type="VerticalTextFormatting" id="VertFormatting"/>
+        <PropertyDefine signal_refresh="true" value="centre" type="HorizontalTextFormatting" id="HorzFormatting"/>
+        <Property name="Size" value="{{0, 128}, {0, 32}}" />
+        <StyleSection id="Label">
+            <TextCom>
+                <Area>
+                    <Border type="LeftEdge">
+                        <Abs value="0"/>
+                    </Border>
+                    <Border type="TopEdge">
+                        <Abs value="0"/>
+                    </Border>
+                    <Border type="Width">
+                        <Rel scale="1" value="Width"/>
+                    </Border>
+                    <Border type="Height">
+                        <Rel scale="1" value="Height"/>
+                    </Border>
+                </Area>
+                <VertFormatProperty name="VertFormatting"/>
+                <HorzFormatProperty name="HorzFormatting"/>
+            </TextCom>
+        </StyleSection>
+        <StyleLayout name="Enable">
+            <Layer>
+                <Section style_section="Label">
+                    <ColourAttribute name="NormalTextColour"/>
+                </Section>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Disable">
+            <Layer>
+                <Section style_section="Label">
+                    <ColourAttribute name="DisabledTextColour"/>
+                </Section>
+            </Layer>
+        </StyleLayout>
+    </WidgetStyle>
+
+    <WidgetStyle id="Generic/Pixel">
+        <PropertyDefine signal_refresh="true" value="tl:FFFFFFFF tr:FFFFFFFF bl:FFFFFFFF br:FFFFFFFF" type="ColourRect" id="ImageColours"/>
+        <PropertyDefine signal_refresh="true" value="stretch" type="VerticalFormatting" id="VertFormatting"/>
+        <PropertyDefine signal_refresh="true" value="stretch" type="HorizontalFormatting" id="HorzFormatting"/>
+        <PropertyDefine signal_refresh="true" value="" type="Pixel" id="Pixel"/>
+        <Property name="Size" value="{{0, 128}, {0, 128}}" />
+
+        <StyleSection id="imageSection">
+            <ImageryCom>
+                <Area>
+                    <Border type="LeftEdge">
+                        <Abs value="0"/>
+                    </Border>
+                    <Border type="TopEdge">
+                        <Abs value="0"/>
+                    </Border>
+                    <Border type="RightEdge">
+                        <Rel scale="1.0" value="RightEdge"/>
+                    </Border>
+                    <Border type="BottomEdge">
+                        <Rel scale="1.0" value="BottomEdge"/>
+                    </Border>
+                </Area>
+                <ImageProperty name="Pixel"/>
+                <ColourAttribute name="ImageColours"/>
+                <VertFormatProperty name="VertFormatting"/>
+                <HorzFormatProperty name="HorzFormatting"/>
+            </ImageryCom>
+        </StyleSection>
+        <StyleLayout name="Enable">
+            <Layer>
+                <Section style_section="imageSection"/>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Disable">
+            <Layer>
+                <Section style_section="imageSection"/>
+            </Layer>
+        </StyleLayout>
+    </WidgetStyle>
+
+    <WidgetStyle id="Generic/ImageButton">
+        <PropertyDefine signal_refresh="true" value="" type="Pixel" id="NormalImage"/>
+        <PropertyDefine signal_refresh="true" value="" type="Pixel" id="HoverImage"/>
+        <PropertyDefine signal_refresh="true" value="" type="Pixel" id="PushedImage"/>
+        <PropertyDefine signal_refresh="true" value="" type="Pixel" id="DisabledImage"/>
+        <PropertyDefine signal_refresh="true" value="stretch" type="VerticalFormatting" id="VertImageFormatting"/>
+        <PropertyDefine signal_refresh="true" value="stretch" type="HorizontalFormatting" id="HorzImageFormatting"/>
+        <Property name="Size" value="{{0, 96}, {0, 32}}" />
+        <StyleSection id="normal">
+            <ImageryCom>
+                <ImageProperty name="NormalImage"/>
+                <VertFormatProperty name="VertImageFormatting"/>
+                <HorzFormatProperty name="HorzImageFormatting"/>
+            </ImageryCom>
+        </StyleSection>
+        <StyleSection id="hover">
+            <ImageryCom>
+                <ImageProperty name="HoverImage"/>
+                <VertFormatProperty name="VertImageFormatting"/>
+                <HorzFormatProperty name="HorzImageFormatting"/>
+            </ImageryCom>
+        </StyleSection>
+        <StyleSection id="pushed">
+            <ImageryCom>
+                <ImageProperty name="PushedImage"/>
+                <VertFormatProperty name="VertImageFormatting"/>
+                <HorzFormatProperty name="HorzImageFormatting"/>
+            </ImageryCom>
+        </StyleSection>
+        <StyleSection id="disabled">
+            <ImageryCom>
+                <ImageProperty name="DisabledImage"/>
+                <VertFormatProperty name="VertImageFormatting"/>
+                <HorzFormatProperty name="HorzImageFormatting"/>
+            </ImageryCom>
+        </StyleSection>
+        <StyleLayout name="Enable">
+            <Layer>
+                <Section style_section="normal"/>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Hover">
+            <Layer>
+                <Section style_section="hover"/>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Pushed">
+            <Layer>
+                <Section style_section="pushed"/>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="PushedOff">
+            <Layer>
+                <Section style_section="hover"/>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Disable">
+            <Layer>
+                <Section style_section="disabled"/>
+            </Layer>
+        </StyleLayout>
+    </WidgetStyle>
+
+</Style>

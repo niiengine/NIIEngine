@@ -1,0 +1,4158 @@
+<?xml version="1.0" ?>
+<Style ver="7">
+    <!--
+    ***************************************************
+        TaharezLook/Label
+    ***************************************************
+    -->
+    <WidgetStyle id="TaharezLook/Label">
+        <PropertyDefine id="NormalTextColour" value="FFFFFFFF" signal_refresh="true" type="Colour" />
+        <PropertyDefine id="DisabledTextColour" value="FFDDDDDD" signal_refresh="true" type="Colour" />
+        <PropertyDefine id="VertFormatting" value="centre" signal_refresh="true" type="VerticalTextFormatting" />
+        <PropertyDefine id="HorzFormatting" value="centre" signal_refresh="true" type="HorizontalTextFormatting" />
+        <Property name="Size" value="{{0, 128}, {0, 32}}" />
+        <StyleSection id="Label">
+            <TextCom>
+                <Area>
+	            <Border type="LeftEdge"><Abs value="0" /></Border>
+	            <Border type="TopEdge"><Abs value="0" /></Border>
+	            <Border type="Width"><Rel scale="1" value="Width" /></Border>
+	            <Border type="Height"><Rel scale="1" value="Height" /></Border>
+                </Area>
+                <VertFormatProperty name="VertFormatting" />
+                <HorzFormatProperty name="HorzFormatting" />
+            </TextCom>
+        </StyleSection>
+        <StyleLayout name="Enable">
+            <Layer>
+                <Section style_section="Label">
+                    <ColourAttribute name="NormalTextColour" />
+                </Section>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Disable">
+            <Layer>
+                <Section style_section="Label">
+                    <ColourAttribute name="DisabledTextColour" />
+                </Section>
+            </Layer>
+        </StyleLayout>
+    </WidgetStyle>
+
+    <!--
+    ***************************************************
+        TaharezLook/Button
+    ***************************************************
+    -->
+    <WidgetStyle id="TaharezLook/Button">
+        <PropertyDefine id="NormalTextColour" value="FFFFFFFF" signal_refresh="true" type="ColourRect"/>
+        <PropertyDefine id="HoverTextColour" value="FFFFFFFF" signal_refresh="true" type="ColourRect"/>
+        <PropertyDefine id="PushedTextColour" value="FFFFFFFF" signal_refresh="true" type="ColourRect"/>
+        <PropertyDefine id="DisabledTextColour" value="FF7F7F7F" signal_refresh="true" type="ColourRect"/>
+        <PropertyDefine id="VertLabelFormatting" value="centre" type="VerticalTextFormatting"/>
+        <PropertyDefine id="HorzLabelFormatting" value="centre" type="HorizontalTextFormatting"/>
+        <PropertyDefine id="NormalImage" value="" signal_refresh="true"  type="Pixel"/>
+        <PropertyDefine id="HoverImage" value="" signal_refresh="true" type="Pixel"/>
+        <PropertyDefine id="PushedImage" value="" signal_refresh="true" type="Pixel"/>
+        <PropertyDefine id="DisabledImage" value="" signal_refresh="true" type="Pixel"/>
+        <PropertyDefine id="VertImageFormatting" value="stretch" signal_refresh="true" type="VerticalFormatting" />
+        <PropertyDefine id="HorzImageFormatting" value="stretch" signal_refresh="true" type="HorizontalFormatting" />
+        <Property name="Size" value="{{0, 96}, {0, 32}}" />
+        <StyleSection id="label">
+            <TextCom>
+                <VertFormatProperty name="VertLabelFormatting" />
+                <HorzFormatProperty name="HorzLabelFormatting" />
+            </TextCom>
+        </StyleSection>
+        <StyleSection id="normal">
+            <FrameCom>
+                <Com type="LeftEdge" pixel_id="TaharezLook/ButtonLeftNormal" />
+                <Com type="RightEdge" pixel_id="TaharezLook/ButtonRightNormal" />
+                <Com type="Background" pixel_id="TaharezLook/ButtonMiddleNormal" />
+            </FrameCom>
+            <ImageryCom>
+                <ImageProperty name="NormalImage" />
+                <VertFormatProperty name="VertImageFormatting" />
+                <HorzFormatProperty name="HorzImageFormatting" />
+            </ImageryCom>
+        </StyleSection>
+        <StyleSection id="hover">
+            <FrameCom>
+                <Com type="LeftEdge" pixel_id="TaharezLook/ButtonLeftHighlight" />
+                <Com type="RightEdge" pixel_id="TaharezLook/ButtonRightHighlight" />
+                <Com type="Background" pixel_id="TaharezLook/ButtonMiddleHighlight" />
+            </FrameCom>
+            <ImageryCom>
+                <ImageProperty name="HoverImage" />
+                <VertFormatProperty name="VertImageFormatting" />
+                <HorzFormatProperty name="HorzImageFormatting" />
+            </ImageryCom>
+        </StyleSection>
+        <StyleSection id="pushed">
+            <FrameCom>
+                <Com type="LeftEdge" pixel_id="TaharezLook/ButtonLeftPushed" />
+                <Com type="RightEdge" pixel_id="TaharezLook/ButtonRightPushed" />
+                <Com type="Background" pixel_id="TaharezLook/ButtonMiddlePushed" />
+            </FrameCom>
+            <ImageryCom>
+                <ImageProperty name="PushedImage" />
+                <VertFormatProperty name="VertImageFormatting" />
+                <HorzFormatProperty name="HorzImageFormatting" />
+            </ImageryCom>
+        </StyleSection>
+        <StyleSection id="disabled">
+            <FrameCom>
+                <Com type="LeftEdge" pixel_id="TaharezLook/ButtonLeftNormal" />
+                <Com type="RightEdge" pixel_id="TaharezLook/ButtonRightNormal" />
+                <Com type="Background" pixel_id="TaharezLook/ButtonMiddleNormal" />
+            </FrameCom>
+            <ImageryCom>
+                <ImageProperty name="DisabledImage" />
+                <VertFormatProperty name="VertImageFormatting" />
+                <HorzFormatProperty name="HorzImageFormatting" />
+            </ImageryCom>
+        </StyleSection>
+        <StyleLayout name="Enable">
+            <Layer>
+                <Section style_section="normal" />
+                <Section style_section="label">
+                    <ColourAttribute name="NormalTextColour" />
+                </Section>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Hover">
+            <Layer>
+                <Section style_section="hover" />
+                <Section style_section="label">
+                    <ColourAttribute name="HoverTextColour" />
+                </Section>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Pushed">
+            <Layer>
+                <Section style_section="pushed" />
+                <Section style_section="label">
+                    <ColourAttribute name="PushedTextColour" />
+                </Section>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="PushedOff">
+            <Layer>
+                <Section style_section="hover" />
+                <Section style_section="label">
+                    <ColourAttribute name="HoverTextColour" />
+                </Section>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Disable">
+            <Layer>
+                <Section style_section="disabled">
+                    <Colours top_left="FF7F7F7F" top_right="FF7F7F7F" bottom_left="FF7F7F7F" bottom_right="FF7F7F7F" />
+                </Section>
+                <Section style_section="label">
+                    <ColourAttribute name="DisabledTextColour" />
+                </Section>
+            </Layer>
+        </StyleLayout>
+    </WidgetStyle>
+
+    <!--
+    ***************************************************
+        TaharezLook/RadioButton
+    ***************************************************
+    -->
+    <WidgetStyle id="TaharezLook/RadioButton">
+        <PropertyDefine id="NormalTextColour" value="FFFFFFFF" signal_refresh="true" type="ColourRect"/>
+        <PropertyDefine id="HoverTextColour" value="FFFFFFFF" signal_refresh="true" type="ColourRect"/>
+        <PropertyDefine id="PushedTextColour" value="FFFFFFFF" signal_refresh="true" type="ColourRect"/>
+        <PropertyDefine id="DisabledTextColour" value="FF7F7F7F" signal_refresh="true" type="ColourRect"/>
+        <Property name="Size" value="{{0, 256}, {0, 32}}" />
+        <StyleSection id="label">
+            <TextCom>
+                <Area>
+                    <Border type="LeftEdge" >
+                        <Operator type="Add">
+                            <PixelSize pixel_id="TaharezLook/RadioButtonNormal" value="Width"/>
+                            <Abs value="3" />
+                        </Operator>
+                    </Border>
+                </Area>
+                <VLayout type="centre" />
+                <HLayout type="left" />
+            </TextCom>
+        </StyleSection>
+        <StyleSection id="normal">
+            <ImageryCom>
+                <Com pixel_id="TaharezLook/RadioButtonNormal" />
+                <VLayout type="centre" />
+                <HLayout type="left" />
+            </ImageryCom>
+        </StyleSection>
+        <StyleSection id="hover">
+            <ImageryCom>
+                <Com pixel_id="TaharezLook/RadioButtonHover" />
+                <VLayout type="centre" />
+                <HLayout type="left" />
+            </ImageryCom>
+        </StyleSection>
+        <StyleSection id="select_mark">
+            <ImageryCom>
+                <Com pixel_id="TaharezLook/RadioButtonMark" />
+                <VLayout type="centre" />
+                <HLayout type="left" />
+            </ImageryCom>
+        </StyleSection>
+        <StyleLayout name="Enable">
+            <Layer>
+                <Section style_section="normal" />
+                <Section style_section="label">
+                    <ColourAttribute name="NormalTextColour" />
+                </Section>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Hover">
+            <Layer>
+                <Section style_section="hover" />
+                <Section style_section="label">
+                    <ColourAttribute name="HoverTextColour" />
+                </Section>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Disable">
+            <Layer>
+                <Section style_section="normal">
+                    <Colours top_left="FF7F7F7F" top_right="FF7F7F7F" bottom_left="FF7F7F7F" bottom_right="FF7F7F7F" />
+                </Section>
+                <Section style_section="label">
+                    <ColourAttribute name="DisabledTextColour" />
+                </Section>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="SelectedNormal">
+            <Layer>
+                <Section style_section="normal" />
+                <Section style_section="select_mark" />
+                <Section style_section="label">
+                    <ColourAttribute name="NormalTextColour" />
+                </Section>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="SelectedHover">
+            <Layer>
+                <Section style_section="hover" />
+                <Section style_section="select_mark" />
+                <Section style_section="label">
+                    <ColourAttribute name="HoverTextColour" />
+                </Section>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="SelectDisable">
+            <Layer>
+                <Section style_section="normal">
+                    <Colours top_left="FF7F7F7F" top_right="FF7F7F7F" bottom_left="FF7F7F7F" bottom_right="FF7F7F7F" />
+                </Section>
+                <Section style_section="select_mark">
+                    <Colours top_left="FF7F7F7F" top_right="FF7F7F7F" bottom_left="FF7F7F7F" bottom_right="FF7F7F7F" />
+                </Section>
+                <Section style_section="label">
+                    <ColourAttribute name="DisabledTextColour" />
+                </Section>
+            </Layer>
+        </StyleLayout>
+    </WidgetStyle>
+
+    <!--
+    ***************************************************
+        TaharezLook/Checkbox
+    ***************************************************
+    -->
+    <WidgetStyle id="TaharezLook/Checkbox">
+	    <PropertyDefine id="NormalTextColour" value="FFFFFFFF" signal_refresh="true" type="ColourRect"/>
+        <PropertyDefine id="HoverTextColour" value="FFFFFFFF" signal_refresh="true" type="ColourRect"/>
+        <PropertyDefine id="PushedTextColour" value="FFFFFFFF" signal_refresh="true" type="ColourRect"/>
+        <PropertyDefine id="DisabledTextColour" value="FF7F7F7F" signal_refresh="true" type="ColourRect"/>
+        <Property name="Size" value="{{0, 128}, {0, 32}}" />
+        <StyleSection id="label">
+            <TextCom>
+                <Area>
+                    <Border type="LeftEdge" >
+                        <Operator type="Add">
+                            <PixelSize pixel_id="TaharezLook/CheckboxNormal" value="Width"/>
+                            <Abs value="3" />
+                        </Operator>
+                    </Border>
+                </Area>
+                <VLayout type="centre" />
+                <HLayout type="left" />
+            </TextCom>
+        </StyleSection>
+        <StyleSection id="normal">
+            <ImageryCom>
+                <Com pixel_id="TaharezLook/CheckboxNormal" />
+                <VLayout type="centre" />
+                <HLayout type="left" />
+            </ImageryCom>
+        </StyleSection>
+        <StyleSection id="hover">
+            <ImageryCom>
+                <Com pixel_id="TaharezLook/CheckboxHover" />
+                <VLayout type="centre" />
+                <HLayout type="left" />
+            </ImageryCom>
+        </StyleSection>
+        <StyleSection id="select_mark">
+            <ImageryCom>
+                <Com pixel_id="TaharezLook/CheckboxMark" />
+                <VLayout type="centre" />
+                <HLayout type="left" />
+            </ImageryCom>
+        </StyleSection>
+        <StyleLayout name="Enable">
+            <Layer>
+                <Section style_section="normal" />
+                <Section style_section="label">
+                    <ColourAttribute name="NormalTextColour" />
+                </Section>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Hover">
+            <Layer>
+                <Section style_section="hover" />
+                <Section style_section="label">
+                    <ColourAttribute name="HoverTextColour" />
+                </Section>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Disable">
+            <Layer>
+                <Section style_section="normal">
+                    <Colours top_left="FF7F7F7F" top_right="FF7F7F7F" bottom_left="FF7F7F7F" bottom_right="FF7F7F7F" />
+                </Section>
+                <Section style_section="label">
+                    <ColourAttribute name="DisabledTextColour" />
+                </Section>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="SelectedNormal">
+            <Layer>
+                <Section style_section="normal" />
+                <Section style_section="select_mark" />
+                <Section style_section="label">
+                    <ColourAttribute name="NormalTextColour" />
+                </Section>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="SelectedHover">
+            <Layer>
+                <Section style_section="hover" />
+                <Section style_section="select_mark" />
+                <Section style_section="label">
+                    <ColourAttribute name="HoverTextColour" />
+                </Section>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="SelectDisable">
+            <Layer>
+                <Section style_section="normal">
+                    <Colours top_left="FF7F7F7F" top_right="FF7F7F7F" bottom_left="FF7F7F7F" bottom_right="FF7F7F7F" />
+                </Section>
+                <Section style_section="select_mark">
+                    <Colours top_left="FF7F7F7F" top_right="FF7F7F7F" bottom_left="FF7F7F7F" bottom_right="FF7F7F7F" />
+                </Section>
+                <Section style_section="label">
+                    <ColourAttribute name="DisabledTextColour" />
+                </Section>
+            </Layer>
+        </StyleLayout>
+    </WidgetStyle>
+
+    <!--
+    ***************************************************
+        TaharezLook/Editbox
+    ***************************************************
+    -->
+    <WidgetStyle id="TaharezLook/Editbox">
+        <PropertyDefine id="NormalTextColour" value="FFFFFFFF" signal_refresh="true" type="ColourRect"/>
+        <PropertyDefine id="SelectedTextColour" value="FF000000" signal_refresh="true" type="ColourRect"/>
+        <PropertyDefine id="ActiveSelectionColour" value="FF607FFF" signal_refresh="true" type="ColourRect"/>
+        <PropertyDefine id="InactiveSelectionColour" value="FF808080" signal_refresh="true" type="ColourRect"/>
+        <Property name="MouseCursorImage" value="TaharezLook/MouseTextBar" />
+        <Property name="Size" value="{{0, 128}, {0, 32}}" />
+        <Special name="TextArea">
+            <Area>
+                <Border type="LeftEdge" ><Abs value="5" /></Border>
+                <Border type="TopEdge" ><Abs value="5" /></Border>
+                <Border type="RightEdge" ><Rel scale="1.0" offset="-5" value="RightEdge" /></Border>
+                <Border type="BottomEdge" ><Rel scale="1.0" offset="-5" value="BottomEdge" /></Border>
+            </Area>
+        </Special>
+        <StyleSection id="container_normal">
+            <FrameCom>
+                <Com type="LeftEdge" pixel_id="TaharezLook/EditBoxLeft" />
+                <Com type="RightEdge" pixel_id="TaharezLook/EditBoxRight" />
+                <Com type="Background" pixel_id="TaharezLook/EditBoxMiddle" />
+            </FrameCom>
+        </StyleSection>
+        <StyleSection id="selection">
+            <ImageryCom>
+                <Area>
+                    <Border type="LeftEdge" ><Abs value="0" /></Border>
+                    <Border type="TopEdge" ><Abs value="0" /></Border>
+                    <Border type="RightEdge" ><Rel scale="1.0" value="RightEdge" /></Border>
+                    <Border type="BottomEdge" ><Rel scale="1.0" value="BottomEdge" /></Border>
+                </Area>
+                <Com pixel_id="TaharezLook/TextSelectionBrush" />
+                <VLayout type="stretch" />
+                <HLayout type="stretch" />
+            </ImageryCom>
+        </StyleSection>
+        <StyleSection id="Caret">
+            <ImageryCom>
+                <Area>
+                    <Border type="LeftEdge" ><Abs value="0" /></Border>
+                    <Border type="TopEdge" ><Abs value="0" /></Border>
+                    <Border type="Width" ><PixelSize pixel_id="TaharezLook/EditBoxCaret" value="Width" /></Border>
+                    <Border type="BottomEdge" ><Rel scale="1.0" value="BottomEdge" /></Border>
+                </Area>
+                <Com pixel_id="TaharezLook/EditBoxCaret" />
+                <VLayout type="stretch" />
+                <HLayout type="stretch" />
+            </ImageryCom>
+        </StyleSection>
+        <StyleLayout name="Enable">
+            <Layer>
+                <Section style_section="container_normal" />
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="ReadOnly">
+            <Layer>
+                <Section style_section="container_normal" />
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Disable">
+            <Layer>
+                <Section style_section="container_normal">
+                    <Colours top_left="FF7F7F7F" top_right="FF7F7F7F" bottom_left="FF7F7F7F" bottom_right="FF7F7F7F" />
+                </Section>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="SelectColour">
+            <Layer>
+                <Section style_section="selection">
+                    <ColourAttribute name="ActiveSelectionColour" />
+                </Section>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="UnselectColour">
+            <Layer>
+                <Section style_section="selection">
+                    <ColourAttribute name="InactiveSelectionColour" />
+                </Section>
+            </Layer>
+        </StyleLayout>
+    </WidgetStyle>
+
+    <!--
+    ***************************************************
+        TaharezLook/Titlebar
+    ***************************************************
+    -->
+    <WidgetStyle id="TaharezLook/Titlebar">
+        <PropertyDefine id="CaptionColour" value="FFFFFFFF" signal_refresh="true" type="ColourRect"/>
+        <Property name="NonClient" value="True" />
+        <Property name="Size" value="{{0, 256}, {0, 32}}" />
+        <StyleSection id="main">
+            <ImageryCom>
+                <Com pixel_id="TaharezLook/NewTitlebarLeft" />
+                <VLayout type="stretch" />
+            </ImageryCom>
+            <ImageryCom>
+                <Area>
+                    <Border type="RightEdge" >
+                        <Operator type="Subtract">
+                            <Rel scale="1" value="RightEdge"/>
+                            <Operator type="Add">
+                                <PixelSize pixel_id="TaharezLook/SysAreaRight" value="Width"/>
+                                <PixelSize pixel_id="TaharezLook/SysAreaMiddle" value="Width" />
+                            </Operator>
+                        </Operator>
+                    </Border>
+                </Area>
+                <Com pixel_id="TaharezLook/NewTitlebarRight" />
+                <VLayout type="stretch" />
+                <HLayout type="right" />
+            </ImageryCom>
+            <ImageryCom>
+                <Area>
+                    <Border type="RightEdge" >
+                        <Operator type="Subtract">
+                            <Rel scale="1" value="RightEdge"/>
+                            <PixelSize pixel_id="TaharezLook/SysAreaRight" value="Width" />
+                        </Operator>
+                    </Border>
+                </Area>
+                <Com pixel_id="TaharezLook/SysAreaMiddle" />
+                <VLayout type="stretch" />
+                <HLayout type="right" />
+            </ImageryCom>
+            <ImageryCom>
+                <Com pixel_id="TaharezLook/SysAreaRight" />
+                <VLayout type="stretch" />
+                <HLayout type="right" />
+            </ImageryCom>
+            <ImageryCom>
+                <Area>
+                    <Border type="LeftEdge" ><PixelSize pixel_id="TaharezLook/NewTitlebarLeft" value="Width" /></Border>
+                    <Border type="RightEdge" >
+                        <Operator type="Subtract">
+                            <Operator type="Subtract">
+                                <Operator type="Subtract">
+                                    <Rel scale="1" value="RightEdge"/>
+                                    <PixelSize pixel_id="TaharezLook/SysAreaRight" value="Width"/>
+                                </Operator>
+                                <PixelSize pixel_id="TaharezLook/SysAreaMiddle" value="Width"/>
+                            </Operator>
+                            <PixelSize pixel_id="TaharezLook/NewTitlebarRight" value="Width" />
+                        </Operator>
+                    </Border>
+                </Area>
+                <Com pixel_id="TaharezLook/NewTitlebarMiddle" />
+                <VLayout type="stretch" />
+                <HLayout type="stretch" />
+            </ImageryCom>
+        </StyleSection>
+        <StyleSection id="caption">
+            <TextCom>
+                <Area>
+                    <Border type="LeftEdge" ><PixelSize pixel_id="TaharezLook/NewTitlebarLeft" value="Width" /></Border>
+                    <Border type="Width" ><Rel scale="1" offset="-75" value="Width" /></Border>
+                </Area>
+                <ColourAttribute name="CaptionColour" />
+                <VLayout type="centre" />
+            </TextCom>
+        </StyleSection>
+        <StyleLayout name="Active">
+            <Layer>
+                <Section style_section="main" />
+                <Section style_section="caption" />
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Inactive">
+            <Layer>
+                <Section style_section="main" />
+                <Section style_section="caption" />
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Disable">
+            <Layer>
+                <Section style_section="main">
+                    <Colours top_left="FF7F7F7F" top_right="FF7F7F7F" bottom_left="FF7F7F7F" bottom_right="FF7F7F7F" />
+                </Section>
+                <Section style_section="caption">
+                    <Colours top_left="FF7F7F7F" top_right="FF7F7F7F" bottom_left="FF7F7F7F" bottom_right="FF7F7F7F" />
+                </Section>
+            </Layer>
+        </StyleLayout>
+    </WidgetStyle>
+
+    <!--
+    ***************************************************
+        TaharezLook/FrameWindow
+    ***************************************************
+    -->
+    <WidgetStyle id="TaharezLook/FrameWindow">
+        <PropertyDefine id="ClientAreaColour" value="FF141B38" signal_refresh="true" type="ColourRect"/>
+        <PropertyLinkDefinition name="CaptionColour" widget="__auto_titlebar__" targetProperty="CaptionColour" value="FFFFFFFF" type="ColourRect"/>
+        <PropertyLinkDefinition name="TitlebarFont" widget="__auto_titlebar__" targetProperty="Font" type="Font"/>
+        <Property name="NSSizingCursorImage" value="TaharezLook/MouseNoSoCursor" />
+        <Property name="EWSizingCursorImage" value="TaharezLook/MouseEsWeCursor" />
+        <Property name="NWSESizingCursorImage" value="TaharezLook/MouseNwSeCursor" />
+        <Property name="NESWSizingCursorImage" value="TaharezLook/MouseNeSwCursor" />
+        <Property name="MinSize" value="{{0.1,0},{0.1,0}}" />
+        <Property name="AutoRenderingSurface" value="True" />
+        <Property name="Size" value="{{0.3, 0}, {0.3, 0}}" />
+        <Special name="ClientWithTitleWithFrame">
+            <Area>
+                <Border type="LeftEdge" ><PixelSize pixel_id="TaharezLook/WindowTopLeft" value="Width" /></Border>
+                <Border type="TopEdge" ><WidgetSize widget="__auto_titlebar__" value="BottomEdge" /></Border>
+                <Border type="RightEdge" >
+                    <Operator type="Subtract">
+                        <Rel scale="1" value="RightEdge" />
+                        <PixelSize pixel_id="TaharezLook/WindowTopRight" value="Width" />
+                    </Operator>
+                </Border>
+                <Border type="BottomEdge" >
+                    <Operator type="Subtract">
+                        <Rel scale="1" value="BottomEdge" />
+                        <PixelSize pixel_id="TaharezLook/WindowBottomEdge" value="Height" />
+                    </Operator>
+                </Border>
+            </Area>
+        </Special>
+        <Special name="ClientWithTitleNoFrame">
+            <Area>
+                <Border type="LeftEdge" ><Abs value="0" /></Border>
+                <Border type="TopEdge" ><WidgetSize widget="__auto_titlebar__" value="BottomEdge" /></Border>
+                <Border type="Width" ><Rel scale="1" value="Width" /></Border>
+                <Border type="BottomEdge" ><WidgetSize value="BottomEdge" /></Border>
+            </Area>
+        </Special>
+        <Special name="ClientNoTitleWithFrame">
+            <Area>
+                <Border type="LeftEdge" ><PixelSize pixel_id="TaharezLook/WindowTopLeft" value="Width" /></Border>
+                <Border type="TopEdge" ><PixelSize pixel_id="TaharezLook/WindowTopEdge" value="Height" /></Border>
+                <Border type="RightEdge" >
+                    <Operator type="Subtract">
+                        <Rel scale="1" value="RightEdge" />
+                        <PixelSize pixel_id="TaharezLook/WindowTopRight" value="Width" />
+                    </Operator>
+                </Border>
+                <Border type="BottomEdge" >
+                    <Operator type="Subtract">
+                        <Rel scale="1" value="BottomEdge" />
+                        <PixelSize pixel_id="TaharezLook/WindowBottomEdge" value="Height" />
+                    </Operator>
+                </Border>
+            </Area>
+        </Special>
+        <Special name="ClientNoTitleNoFrame" />
+        <Widget style_id="TaharezLook/Titlebar" id="__auto_titlebar__">
+            <Area>
+                <Border type="Width" ><Rel scale="1" value="Width" /></Border>
+                <Border type="Height" ><FontDim type="LineSpacing" padding="8" /></Border>
+            </Area>
+            <Property name="AlwaysOnTop" value="False" />
+        </Widget>
+        <Widget style_id="TaharezLook/ImageButton" id="__auto_closebutton__">
+            <Area>
+                <Border type="LeftEdge" >
+                    <Operator type="Subtract">
+                        <Operator type="Subtract">
+                            <Rel scale="1" value="LeftEdge"/>
+                            <PixelSize pixel_id="TaharezLook/SysAreaRight" value="Width"/>
+                        </Operator>
+                        <PixelSize pixel_id="TaharezLook/SysAreaMiddle" value="Width" />
+                    </Operator>
+                </Border>
+                <Border type="TopEdge" >
+                    <Operator type="Multiply">
+                        <Operator type="Subtract">
+                            <WidgetSize widget="__auto_titlebar__" value="Height" />
+                            <PixelSize pixel_id="TaharezLook/NewCloseButtonNormal" value="Width" />
+                        </Operator>
+                        <Abs value="0.5" />
+                    </Operator>
+                </Border>
+                <Border type="Width" ><PixelSize pixel_id="TaharezLook/NewCloseButtonNormal" value="Width" /></Border>
+                <Border type="Height" ><PixelSize pixel_id="TaharezLook/NewCloseButtonNormal" value="Width" /></Border>
+            </Area>
+            <Property name="AlwaysOnTop" value="True" />
+            <Property name="NormalImage" value="TaharezLook/NewCloseButtonNormal" />
+            <Property name="HoverImage" value="TaharezLook/NewCloseButtonHover" />
+            <Property name="PushedImage" value="TaharezLook/NewCloseButtonPressed" />
+            <Property name="NonClient" value="True" />
+        </Widget>
+        <StyleSection id="withtitle_frame">
+            <FrameCom>
+                <Area>
+                    <Border type="TopEdge" ><WidgetSize widget="__auto_titlebar__" value="BottomEdge" /></Border>
+                </Area>
+                <Com type="BottomLeftCorner" pixel_id="TaharezLook/WindowBottomLeft" />
+                <Com type="BottomRightCorner" pixel_id="TaharezLook/WindowBottomRight" />
+                <Com type="LeftEdge" pixel_id="TaharezLook/WindowLeftEdge" />
+                <Com type="RightEdge" pixel_id="TaharezLook/WindowRightEdge" />
+                <Com type="BottomEdge" pixel_id="TaharezLook/WindowBottomEdge" />
+            </FrameCom>
+            <ImageryCom>
+                <Area>
+                    <Border type="LeftEdge" ><PixelSize pixel_id="TaharezLook/WindowTopLeft" value="Width" /></Border>
+                    <Border type="TopEdge" ><WidgetSize widget="__auto_titlebar__" value="BottomEdge" /></Border>
+                    <Border type="RightEdge" >
+                        <Operator type="Subtract">
+                            <Rel scale="1" value="Width" />
+                            <PixelSize pixel_id="TaharezLook/WindowTopRight" value="Width" />
+                        </Operator>
+                    </Border>
+                    <Border type="BottomEdge" >
+                        <Operator type="Subtract">
+                            <Rel scale="1" value="Height" />
+                            <PixelSize pixel_id="TaharezLook/WindowBottomEdge" value="Height" />
+                        </Operator>
+                    </Border>
+                </Area>
+                <Com pixel_id="TaharezLook/GenericBrush" />
+                <ColourAttribute name="ClientAreaColour" />
+                <VLayout type="stretch" />
+                <HLayout type="stretch" />
+            </ImageryCom>
+        </StyleSection>
+        <StyleSection id="notitle_frame">
+            <FrameCom>
+                <Com type="TopLeftCorner" pixel_id="TaharezLook/WindowTopLeft" />
+                <Com type="TopRightCorner" pixel_id="TaharezLook/WindowTopRight" />
+                <Com type="BottomLeftCorner" pixel_id="TaharezLook/WindowBottomLeft" />
+                <Com type="BottomRightCorner" pixel_id="TaharezLook/WindowBottomRight" />
+                <Com type="LeftEdge" pixel_id="TaharezLook/WindowLeftEdge" />
+                <Com type="RightEdge" pixel_id="TaharezLook/WindowRightEdge" />
+                <Com type="BottomEdge" pixel_id="TaharezLook/WindowBottomEdge" />
+            </FrameCom>
+            <ImageryCom>
+                <Area>
+                    <Border type="LeftEdge" ><PixelSize pixel_id="TaharezLook/WindowTopLeft" value="Width" /></Border>
+                    <Border type="TopEdge" ><PixelSize pixel_id="TaharezLook/WindowTopEdge" value="Width" /></Border>
+                    <Border type="RightEdge" >
+                        <Operator type="Subtract">
+                            <Rel scale="1" value="Width" />
+                            <PixelSize pixel_id="TaharezLook/WindowTopRight" value="Width" />
+                        </Operator>
+                    </Border>
+                    <Border type="BottomEdge" >
+                        <Operator type="Subtract">
+                            <Rel scale="1" value="Height" />
+                            <PixelSize pixel_id="TaharezLook/WindowBottomEdge" value="Height" />
+                        </Operator>
+                    </Border>
+                </Area>
+                <Com pixel_id="TaharezLook/GenericBrush" />
+                <ColourAttribute name="ClientAreaColour" />
+                <VLayout type="stretch" />
+                <HLayout type="stretch" />
+            </ImageryCom>
+        </StyleSection>
+        <StyleSection id="withtitle_noframe_client_area">
+            <ImageryCom>
+                <Area>
+                    <Border type="TopEdge" ><WidgetSize widget="__auto_titlebar__" value="Height" /></Border>
+                </Area>
+                <Com pixel_id="TaharezLook/GenericBrush" />
+                <ColourAttribute name="ClientAreaColour" />
+                <VLayout type="stretch" />
+                <HLayout type="stretch" />
+            </ImageryCom>
+        </StyleSection>
+        <StyleSection id="notitle_noframe_client_area">
+            <ImageryCom>
+                <Com pixel_id="TaharezLook/GenericBrush" />
+                <ColourAttribute name="ClientAreaColour" />
+                <VLayout type="stretch" />
+                <HLayout type="stretch" />
+            </ImageryCom>
+        </StyleSection>
+        <StyleLayout name="ActiveTitleFrame">
+            <Layer>
+                <Section style_section="withtitle_frame" />
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="InactiveTitleFrame">
+            <Layer>
+                <Section style_section="withtitle_frame" />
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="DisableTitleFrame">
+            <Layer>
+                <Section style_section="withtitle_frame">
+                    <Colours top_left="FF7F7F7F" top_right="FF7F7F7F" bottom_left="FF7F7F7F" bottom_right="FF7F7F7F" />
+                </Section>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="ActiveTitle">
+            <Layer>
+                <Section style_section="withtitle_noframe_client_area" />
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="InactiveTitle">
+            <Layer>
+                <Section style_section="withtitle_noframe_client_area" />
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="DisableTitle">
+            <Layer>
+                <Section style_section="withtitle_noframe_client_area">
+                    <Colours top_left="FF7F7F7F" top_right="FF7F7F7F" bottom_left="FF7F7F7F" bottom_right="FF7F7F7F" />
+                </Section>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="ActiveFrame">
+            <Layer>
+                <Section style_section="notitle_frame" />
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="InactiveFrame">
+            <Layer>
+                <Section style_section="notitle_frame" />
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="DisableFrame">
+            <Layer>
+                <Section style_section="notitle_frame">
+                    <Colours top_left="FF7F7F7F" top_right="FF7F7F7F" bottom_left="FF7F7F7F" bottom_right="FF7F7F7F" />
+                </Section>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Active">
+            <Layer>
+                <Section style_section="notitle_noframe_client_area" />
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Inactive">
+            <Layer>
+                <Section style_section="notitle_noframe_client_area" />
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Disable">
+            <Layer>
+                <Section style_section="notitle_noframe_client_area">
+                    <Colours top_left="FF7F7F7F" top_right="FF7F7F7F" bottom_left="FF7F7F7F" bottom_right="FF7F7F7F" />
+                </Section>
+            </Layer>
+        </StyleLayout>
+    </WidgetStyle>
+
+    <!--
+    ***************************************************
+        TaharezLook/GroupBox (DefaultWindow)
+    ***************************************************
+    -->
+    <WidgetStyle id="TaharezLook/GroupBox">
+        <PropertyDefine id="FrameColours" value="tl:FFFFFFFF tr:FFFFFFFF bl:FFFFFFFF br:FFFFFFFF" signal_refresh="true" type="ColourRect"/>
+        <PropertyDefine id="BackgroundColours" value="tl:FFDFDFDF tr:FFDFDFDF bl:FFDFDFDF br:FFDFDFDF" signal_refresh="true" type="ColourRect"/>
+
+        <PropertyDefine id="BackgroundTextColours" value="tl:FF000000 tr:FF000000 bl:FF000000 br:FF000000" signal_refresh="true" type="ColourRect"/>
+
+	    <PropertyDefine id="DisabledTextColour" value="FF888888" signal_refresh="true" type="ColourRect"/>
+        <PropertyDefine id="NormalTextColour" value="FFFFFFFF" signal_refresh="true" type="ColourRect"/>
+        <PropertyDefine id="TextBackground" value="FF888888" signal_refresh="true" type="ColourRect"/>
+        <Property name="Size" value="{{0.3, 0}, {0.3, 0}}" />
+        <Special name="inner_rect" >
+            <Area>
+                <Border type="LeftEdge">
+                    <Abs value="8" />
+                </Border>
+                <Border type="TopEdge">
+                    <Abs value="20" />
+                </Border>
+                <Border type="RightEdge">
+                    <Operator type="Subtract">
+                        <Rel scale="1" offset="0" value="RightEdge" />
+                        <Abs value="8" />
+                    </Operator>
+                </Border>
+                <Border type="BottomEdge">
+                    <Operator type="Subtract">
+                        <Rel scale="1" offset="0" value="BottomEdge" />
+                        <Abs value="8" />
+                    </Operator>
+                </Border>
+            </Area>
+        </Special>
+        <StyleSection id="label">
+            <TextCom>
+                <Area>
+                    <Border type="LeftEdge">
+                        <Abs value="15" />
+                    </Border>
+                </Area>
+                <VLayout type="top" />
+                <HLayout type="left" />
+            </TextCom>
+        </StyleSection>
+        <StyleSection id="frame">
+            <FrameCom>
+                <Area>
+                    <Border type="TopEdge">
+                        <Abs value="11" />
+                    </Border>
+                </Area>
+                <Com type="TopLeftCorner" pixel_id="TaharezLook/StaticTopLeft" />
+                <Com type="TopRightCorner" pixel_id="TaharezLook/StaticTopRight" />
+                <Com type="BottomLeftCorner" pixel_id="TaharezLook/StaticBottomLeft" />
+                <Com type="BottomRightCorner" pixel_id="TaharezLook/StaticBottomRight" />
+                <Com type="LeftEdge" pixel_id="TaharezLook/StaticLeft" />
+                <Com type="TopEdge" pixel_id="TaharezLook/StaticTop" />
+                <Com type="RightEdge" pixel_id="TaharezLook/StaticRight" />
+                <Com type="BottomEdge" pixel_id="TaharezLook/StaticBottom" />
+                <VLayout type="stretch" />
+                <HLayout type="stretch" />
+            </FrameCom>
+        </StyleSection>
+        <StyleSection id="label_bg">
+            <ImageryCom>
+                <Area>
+                    <Border type="LeftEdge" >
+                        <Abs value="13" />
+                    </Border>
+                    <Border type="Width" >
+                        <FontDim type="HorzExtent" padding="5" />
+                    </Border>
+                    <Border type="Height" >
+                        <FontDim type="LineSpacing" />
+                    </Border>
+                </Area>
+                <Com pixel_id="TaharezLook/StaticBackdrop" />
+                <ColourAttribute name="BackgroundTextColours" />
+                <VLayout type="stretch" />
+                <HLayout type="stretch" />
+            </ImageryCom>
+        </StyleSection>
+        <StyleLayout name="Enable">
+            <Layer>
+                <Section style_section="frame" />
+                <Section style_section="label_bg" />
+                <Section style_section="label">
+                    <ColourAttribute name="NormalTextColour" />
+                </Section>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Disable">
+            <Layer>
+                <Section style_section="frame" />
+                    <Section style_section="label_bg" />
+                    <Section style_section="label">
+                    <ColourAttribute name="DisabledTextColour" />
+                </Section>
+            </Layer>
+        </StyleLayout>
+    </WidgetStyle>
+
+    <!--
+    ***************************************************
+        TaharezLook/ProgressBar
+    ***************************************************
+    -->
+    <WidgetStyle id="TaharezLook/ProgressBar">
+        <Property name="Size" value="{{0, 256}, {0, 32}}" />
+        <Special name="ProgressArea">
+            <Area>
+                <Border type="LeftEdge" >
+                    <Operator type="Divide">
+                        <PixelSize pixel_id="TaharezLook/ProgressBarLeft" value="Width" />
+                        <Abs value="2" />
+                    </Operator>
+                </Border>
+                <Border type="RightEdge" >
+                    <Operator type="Subtract">
+                        <Rel scale="1" value="RightEdge" />
+                        <Operator type="Divide">
+                            <PixelSize pixel_id="TaharezLook/ProgressBarRight" value="Width"/>
+                            <Abs value="2" />
+                        </Operator>
+                    </Operator>
+                </Border>
+            </Area>
+        </Special>
+        <StyleSection id="frame">
+            <FrameCom>
+                <Com type="LeftEdge" pixel_id="TaharezLook/ProgressBarLeft" />
+                <Com type="RightEdge" pixel_id="TaharezLook/ProgressBarRight" />
+                <Com type="Background" pixel_id="TaharezLook/ProgressBarMiddle" />
+                <HLayout type="tile" />
+            </FrameCom>
+        </StyleSection>
+        <StyleSection id="progress_lights" >
+            <ImageryCom>
+                <Com pixel_id="TaharezLook/ProgressBarLitSegment" />
+                <VLayout type="stretch" />
+                <HLayout type="tile" />
+            </ImageryCom>
+        </StyleSection>
+        <StyleLayout name="Enable">
+            <Layer>
+                <Section style_section="frame" />
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Disable">
+            <Layer>
+                <Section style_section="frame">
+                    <Colours top_left="FF7F7F7F" top_right="FF7F7F7F" bottom_left="FF7F7F7F" bottom_right="FF7F7F7F" />
+                </Section>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="EnableProgress">
+            <Layer>
+                <Section style_section="progress_lights" />
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="DisableProgress">
+            <Layer>
+                <Section style_section="progress_lights">
+                    <Colours top_left="FF7F7F7F" top_right="FF7F7F7F" bottom_left="FF7F7F7F" bottom_right="FF7F7F7F" />
+                </Section>
+            </Layer>
+        </StyleLayout>
+    </WidgetStyle>
+
+    <!--
+    ***************************************************
+        TaharezLook/AlternateProgressBar
+    ***************************************************
+    -->
+    <WidgetStyle id="TaharezLook/AlternateProgressBar">
+        <Property name="Size" value="{{0, 256}, {0, 32}}" />
+        <Special name="ProgressArea">
+            <Area>
+                <Border type="LeftEdge" ><PixelSize pixel_id="TaharezLook/AltProgressLeft" value="Width" /></Border>
+                <Border type="TopEdge" ><Abs value="2" /></Border>
+                <Border type="RightEdge" >
+                    <Operator type="Subtract">
+                        <Rel scale="1" value="RightEdge" />
+                        <PixelSize pixel_id="TaharezLook/AltProgressRight" value="Width" />
+                    </Operator>
+                </Border>
+                <Border type="Height" ><Rel scale="1" offset="-4" value="Height" /></Border>
+            </Area>
+        </Special>
+        <StyleSection id="frame">
+            <FrameCom>
+                <Com type="LeftEdge" pixel_id="TaharezLook/AltProgressLeft" />
+                <Com type="RightEdge" pixel_id="TaharezLook/AltProgressRight" />
+                <Com type="Background" pixel_id="TaharezLook/AltProgressMiddle" />
+            </FrameCom>
+        </StyleSection>
+        <StyleSection id="progress_lights" >
+            <ImageryCom>
+                <Area>
+                    <Border type="LeftEdge" ><Rel scale="0" value="LeftEdge" /></Border>
+                    <Border type="Width" ><Rel scale="0.1" value="Width" /></Border>
+                </Area>
+                <Com pixel_id="TaharezLook/AltProgressLight1" />
+                <VLayout type="stretch" />
+                <HLayout type="tile" />
+            </ImageryCom>
+            <ImageryCom>
+                <Area>
+                    <Border type="LeftEdge" ><Rel scale="0.1" value="LeftEdge" /></Border>
+                    <Border type="Width" ><Rel scale="0.1" value="Width" /></Border>
+                </Area>
+                <Com pixel_id="TaharezLook/AltProgressLight2" />
+                <VLayout type="stretch" />
+                <HLayout type="tile" />
+            </ImageryCom>
+            <ImageryCom>
+                <Area>
+                    <Border type="LeftEdge" ><Rel scale="0.2" value="LeftEdge" /></Border>
+                    <Border type="Width" ><Rel scale="0.1" value="Width" /></Border>
+                </Area>
+                <Com pixel_id="TaharezLook/AltProgressLight3" />
+                <VLayout type="stretch" />
+                <HLayout type="tile" />
+            </ImageryCom>
+            <ImageryCom>
+                <Area>
+                    <Border type="LeftEdge" ><Rel scale="0.3" value="LeftEdge" /></Border>
+                    <Border type="Width" ><Rel scale="0.1" value="Width" /></Border>
+                </Area>
+                <Com pixel_id="TaharezLook/AltProgressLight4" />
+                <VLayout type="stretch" />
+                <HLayout type="tile" />
+            </ImageryCom>
+            <ImageryCom>
+                <Area>
+                    <Border type="LeftEdge" ><Rel scale="0.4" value="LeftEdge" /></Border>
+                    <Border type="Width" ><Rel scale="0.1" value="Width" /></Border>
+                </Area>
+                <Com pixel_id="TaharezLook/AltProgressLight5" />
+                <VLayout type="stretch" />
+                <HLayout type="tile" />
+            </ImageryCom>
+            <ImageryCom>
+                <Area>
+                    <Border type="LeftEdge" ><Rel scale="0.5" value="LeftEdge" /></Border>
+                    <Border type="Width" ><Rel scale="0.1" value="Width" /></Border>
+                </Area>
+                <Com pixel_id="TaharezLook/AltProgressLight6" />
+                <VLayout type="stretch" />
+                <HLayout type="tile" />
+            </ImageryCom>
+            <ImageryCom>
+                <Area>
+                    <Border type="LeftEdge" ><Rel scale="0.6" value="LeftEdge" /></Border>
+                    <Border type="Width" ><Rel scale="0.1" value="Width" /></Border>
+                </Area>
+                <Com pixel_id="TaharezLook/AltProgressLight7" />
+                <VLayout type="stretch" />
+                <HLayout type="tile" />
+            </ImageryCom>
+            <ImageryCom>
+                <Area>
+                    <Border type="LeftEdge" ><Rel scale="0.7" value="LeftEdge" /></Border>
+                    <Border type="Width" ><Rel scale="0.1" value="Width" /></Border>
+                </Area>
+                <Com pixel_id="TaharezLook/AltProgressLight8" />
+                <VLayout type="stretch" />
+                <HLayout type="tile" />
+            </ImageryCom>
+            <ImageryCom>
+                <Area>
+                    <Border type="LeftEdge" ><Rel scale="0.8" value="LeftEdge" /></Border>
+                    <Border type="Width" ><Rel scale="0.1" value="Width" /></Border>
+                </Area>
+                <Com pixel_id="TaharezLook/AltProgressLight9" />
+                <VLayout type="stretch" />
+                <HLayout type="tile" />
+            </ImageryCom>
+            <ImageryCom>
+                <Area>
+                    <Border type="LeftEdge" ><Rel scale="0.9" value="LeftEdge" /></Border>
+                    <Border type="Width" ><Rel scale="0.1" value="Width" /></Border>
+                </Area>
+                <Com pixel_id="TaharezLook/AltProgressLight10" />
+                <VLayout type="stretch" />
+                <HLayout type="tile" />
+            </ImageryCom>
+        </StyleSection>
+        <StyleLayout name="Enable">
+            <Layer>
+                <Section style_section="frame" />
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Disable">
+            <Layer>
+                <Section style_section="frame">
+                    <Colours top_left="FF7F7F7F" top_right="FF7F7F7F" bottom_left="FF7F7F7F" bottom_right="FF7F7F7F" />
+                </Section>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="EnableProgress">
+            <Layer>
+                <Section style_section="progress_lights" />
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="DisableProgress">
+            <Layer>
+                <Section style_section="progress_lights">
+                    <Colours top_left="FF7F7F7F" top_right="FF7F7F7F" bottom_left="FF7F7F7F" bottom_right="FF7F7F7F" />
+                </Section>
+            </Layer>
+        </StyleLayout>
+    </WidgetStyle>
+
+    <!--
+    ***************************************************
+        TaharezLook/VUMeter (progress bar)
+    ***************************************************
+    -->
+    <WidgetStyle id="TaharezLook/VUMeter">
+        <Property name="VerticalProgress" value="True" />
+        <Property name="Size" value="{{0, 16}, {0, 256}}" />
+        <Special name="ProgressArea" />
+        <StyleSection id="progress_lights" >
+            <ImageryCom>
+                <Area>
+                    <Border type="TopEdge" ><Rel scale="0.5" value="TopEdge" /></Border>
+                    <Border type="Height" ><Rel scale="0.5" value="Height" /></Border>
+                </Area>
+                <Com pixel_id="TaharezLook/TextSelectionBrush" />
+                <Colours top_left="FF00FF00" top_right="FF00FF00" bottom_left="FF00FF00" bottom_right="FF00FF00" />
+                <VLayout type="tile" />
+                <HLayout type="stretch" />
+            </ImageryCom>
+            <ImageryCom>
+                <Area>
+                    <Border type="TopEdge" ><Rel scale="0.2" value="TopEdge" /></Border>
+                    <Border type="Height" ><Rel scale="0.3" value="Height" /></Border>
+                </Area>
+                <Com pixel_id="TaharezLook/TextSelectionBrush" />
+                <Colours top_left="FFFFFF00" top_right="FFFFFF00" bottom_left="FFFFFF00" bottom_right="FFFFFF00" />
+                <VLayout type="tile" />
+                <HLayout type="stretch" />
+            </ImageryCom>
+            <ImageryCom>
+                <Area>
+                    <Border type="TopEdge" ><Rel scale="0" value="TopEdge" /></Border>
+                    <Border type="Height" ><Rel scale="0.2" value="Height" /></Border>
+                </Area>
+                <Com pixel_id="TaharezLook/TextSelectionBrush" />
+                <Colours top_left="FFFF0000" top_right="FFFF0000" bottom_left="FFFF0000" bottom_right="FFFF0000" />
+                <VLayout type="tile" />
+                <HLayout type="stretch" />
+            </ImageryCom>
+        </StyleSection>
+        <StyleLayout name="Enable">
+        </StyleLayout>
+        <StyleLayout name="Disable">
+        </StyleLayout>
+        <StyleLayout name="EnableProgress">
+            <Layer>
+                <Section style_section="progress_lights" />
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="DisableProgress">
+            <Layer>
+                <Section style_section="progress_lights">
+                    <Colours top_left="FF7F7F7F" top_right="FF7F7F7F" bottom_left="FF7F7F7F" bottom_right="FF7F7F7F" />
+                </Section>
+            </Layer>
+        </StyleLayout>
+    </WidgetStyle>
+
+    <!--
+    ***************************************************
+        TaharezLook/SliderThumb
+    ***************************************************
+    -->
+    <WidgetStyle id="TaharezLook/SliderThumb">
+        <Property name="VertFree" value="True" />
+        <Property name="MouseInputPropagationEnabled" value="True" />
+        <StyleSection id="normal">
+            <ImageryCom>
+                <Com pixel_id="TaharezLook/VertSliderThumbNormal" />
+                <VLayout type="stretch" />
+                <HLayout type="stretch" />
+            </ImageryCom>
+        </StyleSection>
+        <StyleSection id="hover">
+            <ImageryCom>
+                <Com pixel_id="TaharezLook/VertSliderThumbHover" />
+                <VLayout type="stretch" />
+                <HLayout type="stretch" />
+            </ImageryCom>
+        </StyleSection>
+        <StyleLayout name="Enable">
+            <Layer>
+                <Section style_section="normal" />
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Hover">
+            <Layer>
+                <Section style_section="hover" />
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Pushed">
+            <Layer>
+                <Section style_section="hover" />
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Disable">
+            <Layer>
+                <Section style_section="normal">
+                    <Colours top_left="FF7F7F7F" top_right="FF7F7F7F" bottom_left="FF7F7F7F" bottom_right="FF7F7F7F" />
+                </Section>
+            </Layer>
+        </StyleLayout>
+    </WidgetStyle>
+
+    <!--
+    ***************************************************
+        TaharezLook/Slider
+    ***************************************************
+    -->
+    <WidgetStyle id="TaharezLook/Slider">
+        <Property name="VerticalSlider" value="True" />
+        <Property name="MouseAutoRepeatEnabled" value="True" />
+        <Property name="WantsMultiClickEvents" value="False" />
+        <Property name="Size" value="{{0, 16}, {0, 256}}" />
+        <Special name="ThumbTrackArea" />
+        <Widget  style_id="TaharezLook/SliderThumb" id="__auto_thumb__">
+            <Area>
+                <Border type="Height" ><PixelSize pixel_id="TaharezLook/VertSliderThumbNormal" value="Height" /></Border>
+            </Area>
+        </Widget>
+        <StyleSection id="main">
+            <ImageryCom>
+                <Area>
+                    <Border type="LeftEdge" ><Abs value="3" /></Border>
+                    <Border type="Width" ><Rel scale="1.0" offset="-6" value="Width" /></Border>
+                </Area>
+                <Com pixel_id="TaharezLook/VertSliderBody" />
+                <VLayout type="stretch" />
+                <HLayout type="stretch" />
+            </ImageryCom>
+        </StyleSection>
+        <StyleLayout name="Enable">
+            <Layer>
+                <Section style_section="main" />
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Disable">
+            <Layer>
+                <Section style_section="main">
+                    <Colours top_left="FF7F7F7F" top_right="FF7F7F7F" bottom_left="FF7F7F7F" bottom_right="FF7F7F7F" />
+                </Section>
+            </Layer>
+        </StyleLayout>
+    </WidgetStyle>
+
+    <!--
+    ***************************************************
+        TaharezLook/HorizontalScrollbarThumb
+    ***************************************************
+    -->
+    <WidgetStyle id="TaharezLook/HorizontalScrollbarThumb">
+        <Property name="HorzFree" value="True" />
+        <Property name="MouseInputPropagationEnabled" value="True" />
+        <Property name="Size" value="{{0, 48}, {0, 16}}" />
+        <StyleSection id="normal">
+            <FrameCom>
+                <Com type="LeftEdge" pixel_id="TaharezLook/MiniHorzScrollThumbLeftNormal" />
+                <Com type="RightEdge" pixel_id="TaharezLook/MiniHorzScrollThumbRightNormal" />
+                <Com type="Background" pixel_id="TaharezLook/MiniHorzScrollThumbMiddleNormal" />
+            </FrameCom>
+        </StyleSection>
+        <StyleSection id="hover">
+            <FrameCom>
+                <Com type="LeftEdge" pixel_id="TaharezLook/MiniHorzScrollThumbLeftHover" />
+                <Com type="RightEdge" pixel_id="TaharezLook/MiniHorzScrollThumbRightHover" />
+                <Com type="Background" pixel_id="TaharezLook/MiniHorzScrollThumbMiddleHover" />
+            </FrameCom>
+        </StyleSection>
+        <StyleLayout name="Enable">
+            <Layer>
+                <Section style_section="normal" />
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Hover">
+            <Layer>
+                <Section style_section="hover" />
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Pushed">
+            <Layer>
+                <Section style_section="normal" />
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Disable">
+            <Layer>
+                <Section style_section="normal">
+                    <Colours top_left="FF7F7F7F" top_right="FF7F7F7F" bottom_left="FF7F7F7F" bottom_right="FF7F7F7F" />
+                </Section>
+            </Layer>
+        </StyleLayout>
+    </WidgetStyle>
+
+    <!--
+    ***************************************************
+        TaharezLook/HorizontalScrollbar
+    ***************************************************
+    -->
+    <WidgetStyle id="TaharezLook/HorizontalScrollbar">
+        <Property name="Size" value="{{1, 0}, {0, 16}}" />
+        <Special name="ThumbTrackArea">
+            <Area>
+                <Border type="LeftEdge" ><PixelSize pixel_id="TaharezLook/MiniHorzScrollLeftNormal" value="Width" /></Border>
+                <Border type="RightEdge" >
+                    <Operator type="Subtract">
+                        <Rel scale="1.0" value="RightEdge" />
+                        <PixelSize pixel_id="TaharezLook/MiniHorzScrollRightNormal" value="Width" />
+                    </Operator>
+                </Border>
+            </Area>
+        </Special>
+        <Widget  style_id="TaharezLook/ImageButton" id="__auto_incbtn__">
+            <Area>
+                <Border type="Width" ><PixelSize pixel_id="TaharezLook/MiniHorzScrollRightNormal" value="Width" /></Border>
+            </Area>
+            <HAlign type="right" />
+            <Property name="NormalImage" value="TaharezLook/MiniHorzScrollRightNormal" />
+            <Property name="HoverImage" value="TaharezLook/MiniHorzScrollRightHover" />
+            <Property name="PushedImage" value="TaharezLook/MiniHorzScrollRightNormal" />
+        </Widget>
+        <Widget  style_id="TaharezLook/ImageButton" id="__auto_decbtn__">
+            <Area>
+                <Border type="Width" ><PixelSize pixel_id="TaharezLook/MiniHorzScrollLeftNormal" value="Width" /></Border>
+            </Area>
+            <Property name="NormalImage" value="TaharezLook/MiniHorzScrollLeftNormal" />
+            <Property name="HoverImage" value="TaharezLook/MiniHorzScrollLeftHover" />
+            <Property name="PushedImage" value="TaharezLook/MiniHorzScrollLeftNormal" />
+        </Widget>
+        <Widget  style_id="TaharezLook/HorizontalScrollbarThumb" id="__auto_thumb__">
+            <Area>
+                <Border type="Width" ><Rel scale="0.1" value="Width" /></Border>
+            </Area>
+            <Property name="MinSize" value="{{0,25},{0,0}}" />
+        </Widget>
+        <StyleSection id="main">
+            <ImageryCom>
+                <Area>
+                    <Border type="LeftEdge" ><PixelSize pixel_id="TaharezLook/MiniHorzScrollLeftNormal" value="Width" /></Border>
+                    <Border type="RightEdge" >
+                        <Operator type="Subtract">
+                            <Rel scale="1.0" value="RightEdge" />
+                            <PixelSize pixel_id="TaharezLook/MiniHorzScrollRightNormal" value="Width" />
+                        </Operator>
+                    </Border>
+                </Area>
+                <Com pixel_id="TaharezLook/MiniHorzScrollBarSegment" />
+                <VLayout type="centre" />
+                <HLayout type="stretch" />
+            </ImageryCom>
+        </StyleSection>
+        <StyleLayout name="Enable">
+            <Layer>
+                <Section style_section="main" />
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Disable">
+            <Layer>
+                <Section style_section="main">
+                    <Colours top_left="FF7F7F7F" top_right="FF7F7F7F" bottom_left="FF7F7F7F" bottom_right="FF7F7F7F" />
+                </Section>
+            </Layer>
+        </StyleLayout>
+    </WidgetStyle>
+
+    <!--
+    ***************************************************
+        TaharezLook/VerticalScrollbarThumb
+    ***************************************************
+    -->
+    <WidgetStyle id="TaharezLook/VerticalScrollbarThumb">
+        <Property name="VertFree" value="True" />
+        <Property name="MouseInputPropagationEnabled" value="True" />
+        <Property name="Size" value="{{0, 16}, {0, 48}}" />
+        <StyleSection id="normal">
+            <FrameCom>
+                <Com type="TopEdge" pixel_id="TaharezLook/MiniVertScrollThumbTopNormal" />
+                <Com type="BottomEdge" pixel_id="TaharezLook/MiniVertScrollThumbBottomNormal" />
+                <Com type="Background" pixel_id="TaharezLook/MiniVertScrollThumbMiddleNormal" />
+            </FrameCom>
+        </StyleSection>
+        <StyleSection id="hover">
+            <FrameCom>
+                <Com type="TopEdge" pixel_id="TaharezLook/MiniVertScrollThumbTopHover" />
+                <Com type="BottomEdge" pixel_id="TaharezLook/MiniVertScrollThumbBottomHover" />
+                <Com type="Background" pixel_id="TaharezLook/MiniVertScrollThumbMiddleHover" />
+            </FrameCom>
+        </StyleSection>
+        <StyleLayout name="Enable">
+            <Layer>
+                <Section style_section="normal" />
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Hover">
+            <Layer>
+                <Section style_section="hover" />
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Pushed">
+            <Layer>
+                <Section style_section="normal" />
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Disable">
+            <Layer>
+                <Section style_section="normal">
+                    <Colours top_left="FF7F7F7F" top_right="FF7F7F7F" bottom_left="FF7F7F7F" bottom_right="FF7F7F7F" />
+                </Section>
+            </Layer>
+        </StyleLayout>
+    </WidgetStyle>
+
+    <!--
+    ***************************************************
+        TaharezLook/VerticalScrollbar
+    ***************************************************
+    -->
+    <WidgetStyle id="TaharezLook/VerticalScrollbar">
+        <Property name="VerticalScrollbar" value="True" />
+        <Property name="Size" value="{{0, 16}, {1, 0}}" />
+        <Special name="ThumbTrackArea">
+            <Area>
+                <Border type="TopEdge" ><PixelSize pixel_id="TaharezLook/MiniVertScrollUpNormal" value="Height" /></Border>
+                <Border type="BottomEdge" >
+                    <Operator type="Subtract">
+                        <Rel scale="1.0" value="BottomEdge" />
+                        <PixelSize pixel_id="TaharezLook/MiniVertScrollDownNormal" value="Height" />
+                    </Operator>
+                </Border>
+            </Area>
+        </Special>
+        <Widget  style_id="TaharezLook/ImageButton" id="__auto_incbtn__">
+            <Area>
+                <Border type="Height" ><PixelSize pixel_id="TaharezLook/MiniVertScrollDownNormal" value="Height" /></Border>
+            </Area>
+            <VAlign type="bottom" />
+            <Property name="NormalImage" value="TaharezLook/MiniVertScrollDownNormal" />
+            <Property name="HoverImage" value="TaharezLook/MiniVertScrollDownHover" />
+            <Property name="PushedImage" value="TaharezLook/MiniVertScrollDownNormal" />
+        </Widget>
+        <Widget  style_id="TaharezLook/ImageButton" id="__auto_decbtn__">
+            <Area>
+                <Border type="Height" ><PixelSize pixel_id="TaharezLook/MiniVertScrollUpNormal" value="Height" /></Border>
+            </Area>
+            <Property name="NormalImage" value="TaharezLook/MiniVertScrollUpNormal" />
+            <Property name="HoverImage" value="TaharezLook/MiniVertScrollUpHover" />
+            <Property name="PushedImage" value="TaharezLook/MiniVertScrollUpNormal" />
+        </Widget>
+        <Widget  style_id="TaharezLook/VerticalScrollbarThumb" id="__auto_thumb__">
+            <Area>
+                <Border type="Height" ><Rel scale="0.1" value="Height" /></Border>
+            </Area>
+            <Property name="MinSize" value="{{0,0},{0,25}}" />
+        </Widget>
+        <StyleSection id="main">
+            <ImageryCom>
+                <Area>
+                    <Border type="TopEdge" ><PixelSize pixel_id="TaharezLook/MiniVertScrollUpNormal" value="Height" /></Border>
+                    <Border type="BottomEdge" >
+                        <Operator type="Subtract">
+                            <Rel scale="1.0" value="BottomEdge" />
+                            <PixelSize pixel_id="TaharezLook/MiniVertScrollDownNormal" value="Height" />
+                        </Operator>
+                    </Border>
+                </Area>
+                <Com pixel_id="TaharezLook/MiniVertScrollBarSegment" />
+                <VLayout type="stretch" />
+                <HLayout type="centre" />
+            </ImageryCom>
+        </StyleSection>
+        <StyleLayout name="Enable">
+            <Layer>
+                <Section style_section="main" />
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Disable">
+            <Layer>
+                <Section style_section="main">
+                    <Colours top_left="FF7F7F7F" top_right="FF7F7F7F" bottom_left="FF7F7F7F" bottom_right="FF7F7F7F" />
+                </Section>
+            </Layer>
+        </StyleLayout>
+    </WidgetStyle>
+
+    <!--
+    ***************************************************
+        TaharezLook/Listbox
+    ***************************************************
+    -->
+    <WidgetStyle id="TaharezLook/Listbox">
+        <Property name="Size" value="{{0, 256}, {0, 256}}" />
+        <Special name="ItemRenderingArea">
+            <Area>
+                <Border type="LeftEdge" >
+                    <PixelSize pixel_id="TaharezLook/ListboxLeft" value="Width" />
+                </Border>
+                <Border type="TopEdge" >
+                    <PixelSize pixel_id="TaharezLook/ListboxTop" value="Height" />
+                </Border>
+                <Border type="RightEdge" >
+                    <Operator type="Subtract">
+                        <Rel scale="1" value="RightEdge" />
+                        <PixelSize pixel_id="TaharezLook/ListboxRight" value="Width" />
+                    </Operator>
+                </Border>
+                <Border type="BottomEdge" >
+                    <Operator type="Subtract">
+                        <Rel scale="1" value="BottomEdge" />
+                        <PixelSize pixel_id="TaharezLook/ListboxBottom" value="Height" />
+                    </Operator>
+                </Border>
+            </Area>
+        </Special>
+        <Special name="ItemRenderingAreaHScroll">
+            <Area>
+                <Border type="LeftEdge" ><PixelSize pixel_id="TaharezLook/ListboxLeft" value="Width" /></Border>
+                <Border type="TopEdge" ><PixelSize pixel_id="TaharezLook/ListboxTop" value="Height" /></Border>
+                <Border type="RightEdge" >
+                    <Operator type="Subtract">
+                        <Rel scale="1" value="RightEdge" />
+                        <PixelSize pixel_id="TaharezLook/ListboxRight" value="Width" />
+                    </Operator>
+                </Border>
+                <Border type="BottomEdge" >
+                    <Operator type="Subtract">
+                        <Rel scale="1" value="BottomEdge" />
+                        <WidgetSize widget="__auto_hscrollbar__" value="Height" />
+                    </Operator>
+                </Border>
+            </Area>
+        </Special>
+        <Special name="ItemRenderingAreaVScroll">
+            <Area>
+                <Border type="LeftEdge" ><PixelSize pixel_id="TaharezLook/ListboxLeft" value="Width" /></Border>
+                <Border type="TopEdge" ><PixelSize pixel_id="TaharezLook/ListboxTop" value="Height" /></Border>
+                <Border type="RightEdge" >
+                    <Operator type="Subtract">
+                        <Rel scale="1" value="RightEdge" />
+                        <WidgetSize widget="__auto_vscrollbar__" value="Width" />
+                    </Operator>
+                </Border>
+                <Border type="BottomEdge" >
+                    <Operator type="Subtract">
+                        <Rel scale="1" value="BottomEdge" />
+                        <PixelSize pixel_id="TaharezLook/ListboxBottom" value="Height" />
+                    </Operator>
+                </Border>
+            </Area>
+        </Special>
+        <Special name="ItemRenderingAreaHVScroll">
+            <Area>
+                <Border type="LeftEdge" ><PixelSize pixel_id="TaharezLook/ListboxLeft" value="Width" /></Border>
+                <Border type="TopEdge" ><PixelSize pixel_id="TaharezLook/ListboxTop" value="Height" /></Border>
+                <Border type="RightEdge" >
+                    <Operator type="Subtract">
+                        <Rel scale="1" value="RightEdge" />
+                        <WidgetSize widget="__auto_vscrollbar__" value="Width" />
+                    </Operator>
+                </Border>
+                <Border type="BottomEdge" >
+                    <Operator type="Subtract">
+                        <Rel scale="1" value="BottomEdge" />
+                        <WidgetSize widget="__auto_hscrollbar__" value="Height" />
+                    </Operator>
+                </Border>
+            </Area>
+        </Special>
+        <Widget  style_id="TaharezLook/HorizontalScrollbar" id="__auto_hscrollbar__">
+            <Area>
+                <Border type="Width" ><Rel scale="1" offset="-12" value="Width" /></Border>
+                <Border type="Height" ><Abs value="12" /></Border>
+            </Area>
+            <VAlign type="bottom" />
+        </Widget>
+        <Widget  style_id="TaharezLook/VerticalScrollbar" id="__auto_vscrollbar__">
+            <Area>
+                <Border type="Width" ><Abs value="12" /></Border>
+                <Border type="Height" ><Rel scale="1" offset="-12" value="Height" /></Border>
+            </Area>
+            <HAlign type="right" />
+        </Widget>
+        <StyleSection id="main">
+            <FrameCom>
+                <Com type="TopLeftCorner" pixel_id="TaharezLook/ListboxTopLeft" />
+                <Com type="TopRightCorner" pixel_id="TaharezLook/ListboxTopRight" />
+                <Com type="BottomLeftCorner" pixel_id="TaharezLook/ListboxBottomLeft" />
+                <Com type="BottomRightCorner" pixel_id="TaharezLook/ListboxBottomRight" />
+                <Com type="LeftEdge" pixel_id="TaharezLook/ListboxLeft" />
+                <Com type="RightEdge" pixel_id="TaharezLook/ListboxRight" />
+                <Com type="TopEdge" pixel_id="TaharezLook/ListboxTop" />
+                <Com type="BottomEdge" pixel_id="TaharezLook/ListboxBottom" />
+                <Com type="Background" pixel_id="TaharezLook/ListboxBackdrop" />
+            </FrameCom>
+        </StyleSection>
+        <StyleLayout name="Enable">
+            <Layer>
+                <Section style_section="main" />
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Disable">
+            <Layer>
+                <Section style_section="main">
+                    <Colours top_left="FF7F7F7F" top_right="FF7F7F7F" bottom_left="FF7F7F7F" bottom_right="FF7F7F7F" />
+                </Section>
+            </Layer>
+        </StyleLayout>
+    </WidgetStyle>
+
+    <!--
+    ***************************************************
+        TaharezLook/ComboDropList
+    ***************************************************
+    -->
+    <WidgetStyle id="TaharezLook/ComboDropList">
+        <Property name="Size" value="{{0, 256}, {0, 256}}" />
+        <Special name="ItemRenderingArea">
+            <Area>
+                <Border type="LeftEdge" >
+                    <PixelSize pixel_id="TaharezLook/ComboboxListLeft" value="Width" />
+                </Border>
+                <Border type="TopEdge" >
+                    <PixelSize pixel_id="TaharezLook/ComboboxListTop" value="Height" />
+                </Border>
+                <Border type="RightEdge" >
+                    <Operator type="Subtract">
+                        <Rel scale="1" value="RightEdge" />
+                        <PixelSize pixel_id="TaharezLook/ComboboxListRight" value="Width" />
+                    </Operator>
+                </Border>
+                <Border type="BottomEdge" >
+                    <Operator type="Subtract">
+                        <Rel scale="1" value="BottomEdge" />
+                        <PixelSize pixel_id="TaharezLook/ComboboxListBottom" value="Height" />
+                    </Operator>
+                </Border>
+            </Area>
+        </Special>
+        <Special name="ItemRenderingAreaHScroll">
+            <Area>
+                <Border type="LeftEdge" ><PixelSize pixel_id="TaharezLook/ComboboxListLeft" value="Width" /></Border>
+                <Border type="TopEdge" ><PixelSize pixel_id="TaharezLook/ComboboxListTop" value="Height" /></Border>
+                <Border type="RightEdge" >
+                    <Operator type="Subtract">
+                        <Rel scale="1" value="RightEdge" />
+                        <PixelSize pixel_id="TaharezLook/ComboboxListRight" value="Width" />
+                    </Operator>
+                </Border>
+                <Border type="BottomEdge" >
+                    <Operator type="Subtract">
+                        <Rel scale="1" value="BottomEdge" />
+                        <WidgetSize widget="__auto_hscrollbar__" value="Height" />
+                    </Operator>
+                </Border>
+            </Area>
+        </Special>
+        <Special name="ItemRenderingAreaVScroll">
+            <Area>
+                <Border type="LeftEdge" ><PixelSize pixel_id="TaharezLook/ComboboxListLeft" value="Width" /></Border>
+                <Border type="TopEdge" ><PixelSize pixel_id="TaharezLook/ComboboxListTop" value="Height" /></Border>
+                <Border type="RightEdge" >
+                    <Operator type="Subtract">
+                        <Rel scale="1" value="RightEdge" />
+                        <WidgetSize widget="__auto_vscrollbar__" value="Width" />
+                    </Operator>
+                </Border>
+                <Border type="BottomEdge" >
+                    <Operator type="Subtract">
+                        <Rel scale="1" value="BottomEdge" />
+                        <PixelSize pixel_id="TaharezLook/ComboboxListBottom" value="Height" />
+                    </Operator>
+                </Border>
+            </Area>
+        </Special>
+        <Special name="ItemRenderingAreaHVScroll">
+            <Area>
+                <Border type="LeftEdge" ><PixelSize pixel_id="TaharezLook/ComboboxListLeft" value="Width" /></Border>
+                <Border type="TopEdge" ><PixelSize pixel_id="TaharezLook/ComboboxListTop" value="Height" /></Border>
+                <Border type="RightEdge" >
+                    <Operator type="Subtract">
+                        <Rel scale="1" value="RightEdge" />
+                        <WidgetSize widget="__auto_vscrollbar__" value="Width" />
+                    </Operator>
+                </Border>
+                <Border type="BottomEdge" >
+                    <Operator type="Subtract">
+                        <Rel scale="1" value="BottomEdge" />
+                        <WidgetSize widget="__auto_hscrollbar__" value="Height" />
+                    </Operator>
+                </Border>
+            </Area>
+        </Special>
+        <Widget  style_id="TaharezLook/HorizontalScrollbar" id="__auto_hscrollbar__">
+            <Area>
+                <Border type="Width" ><Rel scale="1" offset="-12" value="Width" /></Border>
+                <Border type="Height" ><Abs value="12" /></Border>
+            </Area>
+            <VAlign type="bottom" />
+        </Widget>
+        <Widget  style_id="TaharezLook/VerticalScrollbar" id="__auto_vscrollbar__">
+            <Area>
+                <Border type="Width" ><Abs value="12" /></Border>
+                <Border type="Height" ><Rel scale="1" offset="-12" value="Height" /></Border>
+            </Area>
+            <HAlign type="right" />
+        </Widget>
+        <StyleSection id="main">
+            <FrameCom>
+                <Com type="TopLeftCorner" pixel_id="TaharezLook/ComboboxListTopLeft" />
+                <Com type="TopRightCorner" pixel_id="TaharezLook/ComboboxListTopRight" />
+                <Com type="BottomLeftCorner" pixel_id="TaharezLook/ComboboxListBottomLeft" />
+                <Com type="BottomRightCorner" pixel_id="TaharezLook/ComboboxListBottomRight" />
+                <Com type="LeftEdge" pixel_id="TaharezLook/ComboboxListLeft" />
+                <Com type="RightEdge" pixel_id="TaharezLook/ComboboxListRight" />
+                <Com type="TopEdge" pixel_id="TaharezLook/ComboboxListTop" />
+                <Com type="BottomEdge" pixel_id="TaharezLook/ComboboxListBottom" />
+                <Com type="Background" pixel_id="TaharezLook/ComboboxListBackdrop" />
+            </FrameCom>
+        </StyleSection>
+        <StyleLayout name="Enable">
+            <Layer>
+                <Section style_section="main" />
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Disable">
+            <Layer>
+                <Section style_section="main">
+                    <Colours top_left="FF7F7F7F" top_right="FF7F7F7F" bottom_left="FF7F7F7F" bottom_right="FF7F7F7F" />
+                </Section>
+            </Layer>
+        </StyleLayout>
+    </WidgetStyle>
+
+    <!--
+    ***************************************************
+        TaharezLook/ComboEditbox
+    ***************************************************
+    -->
+    <WidgetStyle id="TaharezLook/ComboEditbox">
+        <PropertyDefine id="NormalTextColour" value="FFFFFFFF" signal_refresh="true" type="ColourRect"/>
+        <PropertyDefine id="SelectedTextColour" value="FF000000" signal_refresh="true" type="ColourRect"/>
+        <PropertyDefine id="ActiveSelectionColour" value="FF607FFF" signal_refresh="true" type="ColourRect"/>
+        <PropertyDefine id="InactiveSelectionColour" value="FF808080" signal_refresh="true" type="ColourRect"/>
+        <Property name="MouseCursorImage" value="TaharezLook/MouseTextBar" />
+        <Property name="Size" value="{{0, 256}, {0, 32}}" />
+        <Special name="TextArea">
+            <Area>
+                <Border type="LeftEdge" ><Abs value="5" /></Border>
+                <Border type="TopEdge" ><Abs value="5" /></Border>
+                <Border type="RightEdge" ><Rel scale="1.0" offset="-5" value="RightEdge" /></Border>
+                <Border type="BottomEdge" ><Rel scale="1.0" offset="-5" value="BottomEdge" /></Border>
+            </Area>
+        </Special>
+        <StyleSection id="container_normal">
+            <FrameCom>
+                <Com type="LeftEdge" pixel_id="TaharezLook/ComboboxEditLeft" />
+                <Com type="Background" pixel_id="TaharezLook/ComboboxEditMiddle" />
+            </FrameCom>
+        </StyleSection>
+        <StyleSection id="selection">
+            <ImageryCom>
+                <Com pixel_id="TaharezLook/TextSelectionBrush" />
+                <VLayout type="stretch" />
+                <HLayout type="stretch" />
+            </ImageryCom>
+        </StyleSection>
+        <StyleSection id="Caret">
+            <ImageryCom>
+                <Area>
+                    <Border type="Width" ><PixelSize pixel_id="TaharezLook/EditBoxCaret" value="Width" /></Border>
+                </Area>
+                <Com pixel_id="TaharezLook/EditBoxCaret" />
+                <VLayout type="stretch" />
+                <HLayout type="stretch" />
+            </ImageryCom>
+        </StyleSection>
+        <StyleLayout name="Enable">
+            <Layer>
+                <Section style_section="container_normal" />
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="ReadOnly">
+            <Layer>
+                <Section style_section="container_normal" />
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Disable">
+            <Layer>
+                <Section style_section="container_normal">
+                    <Colours top_left="FF7F7F7F" top_right="FF7F7F7F" bottom_left="FF7F7F7F" bottom_right="FF7F7F7F" />
+                </Section>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="SelectColour">
+            <Layer>
+                <Section style_section="selection">
+                    <ColourAttribute name="ActiveSelectionColour" />
+                </Section>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="UnselectColour">
+            <Layer>
+                <Section style_section="selection">
+                    <ColourAttribute name="InactiveSelectionColour" />
+                </Section>
+            </Layer>
+        </StyleLayout>
+    </WidgetStyle>
+
+    <!--
+    ***************************************************
+        TaharezLook/Combobox
+    ***************************************************
+    -->
+    <WidgetStyle id="TaharezLook/Combobox">
+        <PropertyLinkDefinition name="NormalEditTextColour" widget="__auto_editbox__" targetProperty="NormalTextColour" value="FFFFFFFF" type="ColourRect"/>
+        <PropertyLinkDefinition name="SelectedEditTextColour" widget="__auto_editbox__" targetProperty="SelectedTextColour" value="FF000000" type="ColourRect"/>
+        <PropertyLinkDefinition name="ActiveEditSelectionColour" widget="__auto_editbox__" targetProperty="ActiveSelectionColour" value="FF6060FF" type="ColourRect"/>
+        <PropertyLinkDefinition name="InactiveEditSelectionColour" widget="__auto_editbox__" targetProperty="InactiveSelectionColour" value="FF808080" type="ColourRect"/>
+        <Property name="Size" value="{{0, 256}, {0, 256}}" />
+        <Widget  style_id="TaharezLook/ComboEditbox" id="__auto_editbox__">
+            <Area>
+                <Border type="RightEdge" >
+                    <Operator type="Subtract">
+                        <Rel scale="1" value="RightEdge" />
+                        <FontDim type="LineSpacing" padding="10" />
+                    </Operator>
+                </Border>
+                <Border type="Height" >
+                    <FontDim type="LineSpacing" padding="10" />
+                </Border>
+            </Area>
+        </Widget>
+        <Widget  style_id="TaharezLook/ComboDropList" id="__auto_droplist__">
+            <Area>
+                <Border type="TopEdge" ><WidgetSize widget="__auto_editbox__" value="BottomEdge" /></Border>
+            </Area>
+        </Widget>
+        <Widget  style_id="TaharezLook/ImageButton" id="__auto_button__">
+            <Area>
+                <Border type="Width" ><WidgetSize widget="__auto_editbox__" value="Height" /></Border>
+                <Border type="Height" ><WidgetSize widget="__auto_editbox__" value="Height" /></Border>
+            </Area>
+            <HAlign type="right" />
+            <Property name="NormalImage" value="TaharezLook/ComboboxListButtonNormal" />
+            <Property name="HoverImage" value="TaharezLook/ComboboxListButtonHover" />
+            <Property name="PushedImage" value="TaharezLook/ComboboxListButtonHover" />
+            <Property name="DisabledImage" value="TaharezLook/ComboboxListButtonNormal" />
+        </Widget>
+        <StyleLayout name="Enable" />
+        <StyleLayout name="Disable" />
+    </WidgetStyle>
+
+    <!--
+    ***************************************************
+        TaharezLook/Spinner
+    ***************************************************
+    -->
+    <WidgetStyle id="TaharezLook/Spinner">
+        <Property name="Size" value="{{0, 128}, {0, 32}}" />
+        <Widget  style_id="TaharezLook/Editbox" id="__auto_editbox__">
+            <Area>
+                <Border type="RightEdge" >
+                    <Operator type="Subtract">
+                        <Rel scale="1" value="RightEdge" />
+                        <PixelSize pixel_id="TaharezLook/VertScrollUpNormal" value="Width" />
+                    </Operator>
+                </Border>
+            </Area>
+        </Widget>
+        <Widget  style_id="TaharezLook/ImageButton" id="__auto_incbtn__">
+            <Area>
+                <Border type="Width" ><PixelSize pixel_id="TaharezLook/VertScrollUpNormal" value="Width" /></Border>
+                <Border type="Height" ><Rel scale="0.5" value="Height" /></Border>
+            </Area>
+            <HAlign type="right" />
+            <Property name="NormalImage" value="TaharezLook/VertScrollUpNormal" />
+            <Property name="HoverImage" value="TaharezLook/VertScrollUpHover" />
+            <Property name="PushedImage" value="TaharezLook/VertScrollUpNormal" />
+        </Widget>
+        <Widget  style_id="TaharezLook/ImageButton" id="__auto_decbtn__">
+            <Area>
+                <Border type="LeftEdge" ><Abs value="0" /></Border>
+                <Border type="TopEdge" ><Rel scale="0.5" value="TopEdge" /></Border>
+                <Border type="Width" ><PixelSize pixel_id="TaharezLook/VertScrollUpNormal" value="Width" /></Border>
+                <Border type="Height" ><Rel scale="0.5" value="Height" /></Border>
+            </Area>
+            <HAlign type="right" />
+            <Property name="NormalImage" value="TaharezLook/VertScrollDownNormal" />
+            <Property name="HoverImage" value="TaharezLook/VertScrollDownHover" />
+            <Property name="PushedImage" value="TaharezLook/VertScrollDownNormal" />
+        </Widget>
+        <StyleLayout name="Enable" />
+        <StyleLayout name="Disable" />
+    </WidgetStyle>
+
+    <!--
+    ***************************************************
+        TaharezLook/StaticShared
+        (Shared imagery components for static widgets)
+    ***************************************************
+    -->
+    <WidgetStyle id="TaharezLook/StaticShared">
+        <StyleSection id="frame">
+            <FrameCom>
+                <Com type="TopLeftCorner" pixel_id="TaharezLook/StaticTopLeft" />
+                <Com type="TopRightCorner" pixel_id="TaharezLook/StaticTopRight" />
+                <Com type="BottomLeftCorner" pixel_id="TaharezLook/StaticBottomLeft" />
+                <Com type="BottomRightCorner" pixel_id="TaharezLook/StaticBottomRight" />
+                <Com type="LeftEdge" pixel_id="TaharezLook/StaticLeft" />
+                <Com type="RightEdge" pixel_id="TaharezLook/StaticRight" />
+                <Com type="TopEdge" pixel_id="TaharezLook/StaticTop" />
+                <Com type="BottomEdge" pixel_id="TaharezLook/StaticBottom" />
+                <ColourAttribute name="FrameColours" />
+            </FrameCom>
+        </StyleSection>
+        <StyleSection id="background">
+            <ImageryCom>
+                <Area>
+                    <Border type="LeftEdge" ><PixelSize pixel_id="TaharezLook/StaticLeft" value="Width" /></Border>
+                    <Border type="TopEdge" ><PixelSize pixel_id="TaharezLook/StaticTop" value="Height" /></Border>
+                    <Border type="RightEdge" >
+                        <Operator type="Subtract">
+                            <Rel scale="1" value="RightEdge" />
+                            <PixelSize pixel_id="TaharezLook/StaticRight" value="Width" />
+                        </Operator>
+                    </Border>
+                    <Border type="BottomEdge" >
+                        <Operator type="Subtract">
+                            <Rel scale="1" value="BottomEdge" />
+                            <PixelSize pixel_id="TaharezLook/StaticBottom" value="Height" />
+                        </Operator>
+                    </Border>
+                </Area>
+                <Com pixel_id="TaharezLook/StaticBackdrop" />
+                <!--<ColourAttribute name="BackgroundColours" />-->
+                <Colours top_left="FFFFFFFF" top_right="FFFFFFFF" bottom_left="FFFFFFFF" bottom_right="FFFFFFFF" />
+                <VLayout type="stretch" />
+                <HLayout type="stretch" />
+            </ImageryCom>
+        </StyleSection>
+        <StyleSection id="background_noframe">
+            <ImageryCom>
+                <Com pixel_id="TaharezLook/StaticBackdrop" />
+                <!--<ColourAttribute name="BackgroundColours" />-->
+                <Colours top_left="FFFFFFFF" top_right="FFFFFFFF" bottom_left="FFFFFFFF" bottom_right="FFFFFFFF" />
+                <VLayout type="stretch" />
+                <HLayout type="stretch" />
+            </ImageryCom>
+        </StyleSection>
+    </WidgetStyle>
+
+    <!--
+    ***************************************************
+        TaharezLook/StaticImage
+    ***************************************************
+    -->
+    <WidgetStyle id="TaharezLook/StaticImage">
+        <PropertyDefine id="ImageColours" value="tl:FFFFFFFF tr:FFFFFFFF bl:FFFFFFFF br:FFFFFFFF" signal_refresh="true" type="ColourRect"/>
+        <PropertyDefine id="FrameColours" value="tl:FFFFFFFF tr:FFFFFFFF bl:FFFFFFFF br:FFFFFFFF" signal_refresh="true" type="ColourRect"/>
+        <PropertyDefine id="BackgroundColours" value="tl:FFFFFFFF tr:FFFFFFFF bl:FFFFFFFF br:FFFFFFFF" signal_refresh="true" type="ColourRect"/>
+        <PropertyDefine id="VertFormatting" value="stretch" signal_refresh="true" type="VerticalFormatting"/>
+        <PropertyDefine id="HorzFormatting" value="stretch" signal_refresh="true" type="HorizontalFormatting"/>
+        <Property name="BackgroundEnabled" value="True" />
+        <Property name="FrameEnabled" value="True" />
+        <Property name="Size" value="{{0, 128}, {0, 128}}" />
+        <StyleSection id="image_withframe">
+            <ImageryCom>
+                <Area>
+					<Border type="LeftEdge" ><PixelSize pixel_id="TaharezLook/StaticLeft" value="Width" /></Border>
+					<Border type="TopEdge" ><PixelSize pixel_id="TaharezLook/StaticTop" value="Height" /></Border>
+					<Border type="RightEdge" >
+                        <Operator type="Subtract">
+    						<Rel scale="1" value="RightEdge" />
+	        				<PixelSize pixel_id="TaharezLook/StaticRight" value="Width" />
+						</Operator>
+					</Border>
+					<Border type="BottomEdge" >
+                        <Operator type="Subtract">
+    						<Rel scale="1" value="BottomEdge" />
+	    					<PixelSize pixel_id="TaharezLook/StaticBottom" value="Height" />
+						</Operator>
+					</Border>
+				</Area>
+                <ImageProperty name="Pixel" />
+                <ColourAttribute name="ImageColours" />
+                <VertFormatProperty name="VertFormatting" />
+                <HorzFormatProperty name="HorzFormatting" />
+            </ImageryCom>
+        </StyleSection>
+        <StyleSection id="image_noframe">
+            <ImageryCom>
+                <ImageProperty name="Pixel" />
+                <ColourAttribute name="ImageColours" />
+                <VertFormatProperty name="VertFormatting" />
+                <HorzFormatProperty name="HorzFormatting" />
+            </ImageryCom>
+        </StyleSection>
+        <StyleLayout name="Enable" />
+        <StyleLayout name="Disable" />
+        <StyleLayout name="WithFrame">
+            <Layer>
+                <Section widget_style="TaharezLook/StaticShared" style_section="frame" />
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="NoFrame">
+            <Layer>
+                <Section widget_style="TaharezLook/StaticShared" style_section="frame" />
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="WithFrameAndBg">
+            <Layer>
+                <Section widget_style="TaharezLook/StaticShared" style_section="background" />
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="WithFrameNoBg">
+            <Layer>
+                <Section widget_style="TaharezLook/StaticShared" style_section="background" />
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="WithBgNoFrame">
+            <Layer>
+                <Section widget_style="TaharezLook/StaticShared" style_section="background_noframe" />
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="NoFrameAndBg">
+            <Layer>
+                <Section widget_style="TaharezLook/StaticShared" style_section="background_noframe" />
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="WithFrameImage">
+            <Layer>
+                <Section style_section="image_withframe" />
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="NoFrameImage">
+            <Layer>
+                <Section style_section="image_noframe" />
+            </Layer>
+        </StyleLayout>
+    </WidgetStyle>
+
+    <!--
+    ***************************************************
+        TaharezLook/StaticText
+    ***************************************************
+    -->
+    <WidgetStyle id="TaharezLook/StaticText">
+        <PropertyDefine id="FrameColours" value="tl:FFFFFFFF tr:FFFFFFFF bl:FFFFFFFF br:FFFFFFFF" signal_refresh="true" type="ColourRect"/>
+        <PropertyDefine id="BackgroundColours" value="tl:FFFFFFFF tr:FFFFFFFF bl:FFFFFFFF br:FFFFFFFF" signal_refresh="true" type="ColourRect"/>
+
+        <PropertyLinkDefinition name="HorzScrollPosition" widget="__auto_hscrollbar__" targetProperty="ScrollPosition" type="float" />
+        <PropertyLinkDefinition name="HorzScrollPageSize" widget="__auto_hscrollbar__" targetProperty="PageSize" type="float" />
+        <PropertyLinkDefinition name="HorzScrollDocumentSize" widget="__auto_hscrollbar__" targetProperty="DocumentSize" type="float" />
+
+        <PropertyLinkDefinition name="VertScrollPosition" widget="__auto_vscrollbar__" targetProperty="ScrollPosition" type="float" />
+        <PropertyLinkDefinition name="VertScrollPageSize" widget="__auto_vscrollbar__" targetProperty="PageSize" type="float" />
+        <PropertyLinkDefinition name="VertScrollDocumentSize" widget="__auto_vscrollbar__" targetProperty="DocumentSize" type="float" />
+
+        <Property name="FrameEnabled" value="True" />
+        <Property name="BackgroundEnabled" value="True" />
+        <Property name="Size" value="{{0, 256}, {0, 128}}" />
+        <Special name="WithFrameTextRenderArea">
+            <Area>
+                <Border type="LeftEdge" ><PixelSize pixel_id="TaharezLook/StaticLeft" value="Width" /></Border>
+                <Border type="TopEdge" ><PixelSize pixel_id="TaharezLook/StaticTop" value="Height" /></Border>
+                <Border type="RightEdge" >
+                    <Operator type="Subtract">
+                        <Rel scale="1" value="RightEdge" />
+                        <PixelSize pixel_id="TaharezLook/StaticRight" value="Width" />
+                    </Operator>
+                </Border>
+                <Border type="BottomEdge" >
+                    <Operator type="Subtract">
+                        <Rel scale="1" value="BottomEdge" />
+                        <PixelSize pixel_id="TaharezLook/StaticBottom" value="Height" />
+                    </Operator>
+                </Border>
+            </Area>
+        </Special>
+        <Special name="WithFrameTextRenderAreaHScroll">
+            <Area>
+                <Border type="LeftEdge" ><PixelSize pixel_id="TaharezLook/StaticLeft" value="Width" /></Border>
+                <Border type="TopEdge" ><PixelSize pixel_id="TaharezLook/StaticTop" value="Height" /></Border>
+                <Border type="RightEdge" >
+                    <Operator type="Subtract">
+                        <Rel scale="1" value="RightEdge" />
+                        <PixelSize pixel_id="TaharezLook/StaticRight" value="Width" />
+                    </Operator>
+                </Border>
+                <Border type="BottomEdge" >
+                    <Operator type="Subtract">
+                        <Rel scale="1" value="BottomEdge" />
+                        <WidgetSize widget="__auto_hscrollbar__" value="Height" />
+                    </Operator>
+                </Border>
+            </Area>
+        </Special>
+        <Special name="WithFrameTextRenderAreaVScroll">
+            <Area>
+                <Border type="LeftEdge" ><PixelSize pixel_id="TaharezLook/StaticLeft" value="Width" /></Border>
+                <Border type="TopEdge" ><PixelSize pixel_id="TaharezLook/StaticTop" value="Height" /></Border>
+                <Border type="RightEdge" >
+                    <Operator type="Subtract">
+                        <Rel scale="1" value="RightEdge" />
+                        <WidgetSize widget="__auto_vscrollbar__" value="Width" />
+                    </Operator>
+                </Border>
+                <Border type="BottomEdge" >
+                    <Operator type="Subtract">
+                        <Rel scale="1" value="BottomEdge" />
+                        <PixelSize pixel_id="TaharezLook/StaticBottom" value="Height" />
+                    </Operator>
+                </Border>
+            </Area>
+        </Special>
+        <Special name="WithFrameTextRenderAreaHVScroll">
+            <Area>
+                <Border type="LeftEdge" ><PixelSize pixel_id="TaharezLook/StaticLeft" value="Width" /></Border>
+                <Border type="TopEdge" ><PixelSize pixel_id="TaharezLook/StaticTop" value="Height" /></Border>
+                <Border type="RightEdge" >
+                    <Operator type="Subtract">
+                        <Rel scale="1" value="RightEdge" />
+                        <WidgetSize widget="__auto_vscrollbar__" value="Width" />
+                    </Operator>
+                </Border>
+                <Border type="BottomEdge" >
+                    <Operator type="Subtract">
+                        <Rel scale="1" value="BottomEdge" />
+                        <WidgetSize widget="__auto_hscrollbar__" value="Height" />
+                    </Operator>
+                </Border>
+            </Area>
+        </Special>
+        <Special name="NoFrameTextRenderArea" />
+        <Special name="NoFrameTextRenderAreaHScroll">
+            <Area>
+                <Border type="BottomEdge" >
+                    <Operator type="Subtract">
+                        <Rel scale="1" value="BottomEdge" />
+                        <WidgetSize widget="__auto_hscrollbar__" value="Height" />
+                    </Operator>
+                </Border>
+            </Area>
+        </Special>
+        <Special name="NoFrameTextRenderAreaVScroll">
+            <Area>
+                <Border type="RightEdge" >
+                    <Operator type="Subtract">
+                        <Rel scale="1" value="RightEdge" />
+                        <WidgetSize widget="__auto_vscrollbar__" value="Width" />
+                    </Operator>
+                </Border>
+            </Area>
+        </Special>
+        <Special name="NoFrameTextRenderAreaHVScroll">
+            <Area>
+                <Border type="RightEdge" >
+                    <Operator type="Subtract">
+                        <Rel scale="1" value="RightEdge" />
+                        <WidgetSize widget="__auto_vscrollbar__" value="Width" />
+                    </Operator>
+                </Border>
+                <Border type="BottomEdge" >
+                    <Operator type="Subtract">
+                        <Rel scale="1" value="BottomEdge" />
+                        <WidgetSize widget="__auto_hscrollbar__" value="Height" />
+                    </Operator>
+                </Border>
+            </Area>
+        </Special>
+        <Widget  style_id="TaharezLook/HorizontalScrollbar" id="__auto_hscrollbar__">
+            <Area>
+                <Border type="Width" ><Rel scale="1" offset="-12" value="Width" /></Border>
+                <Border type="Height" ><Abs value="12" /></Border>
+            </Area>
+            <VAlign type="bottom" />
+        </Widget>
+        <Widget  style_id="TaharezLook/VerticalScrollbar" id="__auto_vscrollbar__">
+            <Area>
+                <Border type="Width" ><Abs value="12" /></Border>
+                <Border type="Height" ><Rel scale="1" offset="-12" value="Height" /></Border>
+            </Area>
+            <HAlign type="right" />
+        </Widget>
+        <StyleLayout name="Enable" />
+        <StyleLayout name="Disable" />
+        <StyleLayout name="WithFrame">
+            <Layer>
+                <Section widget_style="TaharezLook/StaticShared" style_section="frame" />
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="NoFrame">
+            <Layer>
+                <Section widget_style="TaharezLook/StaticShared" style_section="frame" />
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="WithFrameAndBg">
+            <Layer>
+                <Section widget_style="TaharezLook/StaticShared" style_section="background" />
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="WithFrameNoBg">
+            <Layer>
+                <Section widget_style="TaharezLook/StaticShared" style_section="background" />
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="WithBgNoFrame">
+            <Layer>
+                <Section widget_style="TaharezLook/StaticShared" style_section="background_noframe" />
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="NoFrameAndBg">
+            <Layer>
+                <Section widget_style="TaharezLook/StaticShared" style_section="background_noframe" />
+            </Layer>
+        </StyleLayout>
+    </WidgetStyle>
+
+    <!--
+    ***************************************************
+        TaharezLook/ListHeaderSegment
+    ***************************************************
+    -->
+    <WidgetStyle id="TaharezLook/ListHeaderSegment">
+        <Property name="SizingCursorImage" value="TaharezLook/MouseEsWeCursor" />
+        <Property name="MovingCursorImage" value="TaharezLook/MouseMoveCursor" />
+        <Property name="MouseInputPropagationEnabled" value="True" />
+        <Property name="Size" value="{{0, 192}, {0, 32}}" />
+        <StyleSection id="segment_normal">
+            <Colours top_left="FFDDDDDD" top_right="FFDDDDDD" bottom_left="FFDDDDDD" bottom_right="FFDDDDDD" />
+            <ImageryCom>
+                <Area>
+                    <Border type="RightEdge" >
+                        <Operator type="Subtract">
+                            <Rel scale="1" value="RightEdge" />
+                            <PixelSize pixel_id="TaharezLook/HeaderBarSplitterNormal" value="Width" />
+                        </Operator>
+                    </Border>
+                </Area>
+                <Com pixel_id="TaharezLook/HeaderBarBackdropNormal" />
+                <VLayout type="stretch" />
+                <HLayout type="stretch" />
+            </ImageryCom>
+        </StyleSection>
+        <StyleSection id="segment_hover">
+            <ImageryCom>
+                <Area>
+                    <Border type="RightEdge" >
+                        <Operator type="Subtract">
+                            <Rel scale="1" value="RightEdge" />
+                            <PixelSize pixel_id="TaharezLook/HeaderBarSplitterNormal" value="Width" />
+                        </Operator>
+                    </Border>
+                </Area>
+                <Com pixel_id="TaharezLook/HeaderBarBackdropHover" />
+                <VLayout type="stretch" />
+                <HLayout type="stretch" />
+            </ImageryCom>
+        </StyleSection>
+        <StyleSection id="splitter_normal">
+            <ImageryCom>
+                <Com pixel_id="TaharezLook/HeaderBarSplitterNormal" />
+                <VLayout type="stretch" />
+                <HLayout type="right" />
+            </ImageryCom>
+        </StyleSection>
+        <StyleSection id="splitter_hover">
+            <ImageryCom>
+                <Com pixel_id="TaharezLook/HeaderBarSplitterHover" />
+                <VLayout type="stretch" />
+                <HLayout type="right" />
+            </ImageryCom>
+        </StyleSection>
+        <StyleSection id="ascend_icon">
+            <ImageryCom>
+                <Area>
+                    <Border type="LeftEdge" ><Abs value="3" /></Border>
+                    <Border type="TopEdge" ><Abs value="3" /></Border>
+                    <Border type="Width" ><PixelSize pixel_id="TaharezLook/HeaderBarSortUp" value="Width" /></Border>
+                    <Border type="Height" ><PixelSize pixel_id="TaharezLook/HeaderBarSortUp" value="Height" /></Border>
+                </Area>
+                <Com pixel_id="TaharezLook/HeaderBarSortDown" />
+            </ImageryCom>
+        </StyleSection>
+        <StyleSection id="descend_icon">
+            <ImageryCom>
+                <Area>
+                    <Border type="LeftEdge" ><Abs value="3" /></Border>
+                    <Border type="TopEdge" ><Abs value="3" /></Border>
+                    <Border type="Width" ><PixelSize pixel_id="TaharezLook/HeaderBarSortDown" value="Width" /></Border>
+                    <Border type="Height" ><PixelSize pixel_id="TaharezLook/HeaderBarSortDown" value="Height" /></Border>
+                </Area>
+                <Com pixel_id="TaharezLook/HeaderBarSortUp" />
+            </ImageryCom>
+        </StyleSection>
+        <StyleSection id="label">
+            <TextCom>
+                <Area>
+                    <Border type="LeftEdge" >
+                        <Operator type="Add">
+                            <PixelSize pixel_id="TaharezLook/HeaderBarSortUp" value="Width" />
+                            <Abs value="5" />
+                        </Operator>
+                    </Border>
+                </Area>
+                <VLayout type="centre" />
+            </TextCom>
+        </StyleSection>
+        <StyleLayout name="Enable">
+            <Layer>
+                <Section style_section="segment_normal" />
+                <Section style_section="splitter_normal" />
+                <Section style_section="label" />
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Hover">
+            <Layer>
+                <Section style_section="segment_hover" />
+                <Section style_section="splitter_normal" />
+                <Section style_section="label" />
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="SplitterHover">
+            <Layer>
+                <Section style_section="segment_normal" />
+                <Section style_section="splitter_hover" />
+                <Section style_section="label" />
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="DragState" clipped="false" >
+            <Layer priority="1" >
+                <Section style_section="segment_normal">
+                    <Colours top_left="90FFFFFF" top_right="90FFFFFF" bottom_left="90FFFFFF" bottom_right="90FFFFFF" />
+                </Section>
+                <Section style_section="splitter_normal">
+                    <Colours top_left="90FFFFFF" top_right="90FFFFFF" bottom_left="90FFFFFF" bottom_right="90FFFFFF" />
+                </Section>
+                <Section style_section="label">
+                    <Colours top_left="90FFFFFF" top_right="90FFFFFF" bottom_left="90FFFFFF" bottom_right="90FFFFFF" />
+                </Section>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="AscIcon">
+            <Layer>
+                <Section style_section="ascend_icon" />
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="DescIcon">
+            <Layer>
+                <Section style_section="descend_icon" />
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="DragAscIcon" clipped="false">
+            <Layer priority="1" >
+                <Section style_section="ascend_icon">
+                    <Colours top_left="90FFFFFF" top_right="90FFFFFF" bottom_left="90FFFFFF" bottom_right="90FFFFFF" />
+                </Section>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="DragDescIcon" clipped="false">
+            <Layer priority="1" >
+                <Section style_section="descend_icon">
+                    <Colours top_left="90FFFFFF" top_right="90FFFFFF" bottom_left="90FFFFFF" bottom_right="90FFFFFF" />
+                </Section>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Disable">
+            <Layer>
+                <Section style_section="segment_normal">
+                    <Colours top_left="FF7F7F7F" top_right="FF7F7F7F" bottom_left="FF7F7F7F" bottom_right="FF7F7F7F" />
+                </Section>
+                <Section style_section="splitter_normal">
+                    <Colours top_left="FF7F7F7F" top_right="FF7F7F7F" bottom_left="FF7F7F7F" bottom_right="FF7F7F7F" />
+                </Section>
+                <Section style_section="label">
+                    <Colours top_left="FF7F7F7F" top_right="FF7F7F7F" bottom_left="FF7F7F7F" bottom_right="FF7F7F7F" />
+                </Section>
+            </Layer>
+        </StyleLayout>
+    </WidgetStyle>
+
+    <!--
+    ***************************************************
+        TaharezLook/ListHeader
+    ***************************************************
+    -->
+    <WidgetStyle id="TaharezLook/ListHeader">
+        <Property name="SegmentWidgetType" value="TaharezLook/ListHeaderSegment" />
+        <Property name="MouseInputPropagationEnabled" value="True" />
+        <Property name="Size" value="{{0, 128}, {0, 32}}" />
+        <StyleLayout name="Enable" />
+        <StyleLayout name="Disable" />
+    </WidgetStyle>
+
+    <!--
+    ***************************************************
+        TaharezLook/MultiColumnList
+    ***************************************************
+    -->
+    <WidgetStyle id="TaharezLook/MultiColumnList">
+        <Special name="ItemRenderingArea">
+            <Area>
+                <Border type="LeftEdge" ><PixelSize pixel_id="TaharezLook/MultiListLeft" value="Width" /></Border>
+                <Border type="TopEdge" ><WidgetSize widget="__auto_listheader__" value="BottomEdge" /></Border>
+                <Border type="RightEdge" >
+                    <Operator type="Subtract">
+                        <Rel scale="1" value="RightEdge" />
+                        <PixelSize pixel_id="TaharezLook/MultiListRight" value="Width" />
+                    </Operator>
+                </Border>
+                <Border type="BottomEdge" >
+                    <Operator type="Subtract">
+                        <Rel scale="1" value="BottomEdge" />
+                        <PixelSize pixel_id="TaharezLook/MultiListBottom" value="Height" />
+                    </Operator>
+                </Border>
+            </Area>
+        </Special>
+        <Special name="ItemRenderingAreaHScroll">
+            <Area>
+                <Border type="LeftEdge" ><PixelSize pixel_id="TaharezLook/MultiListLeft" value="Width" /></Border>
+                <Border type="TopEdge" ><WidgetSize widget="__auto_listheader__" value="BottomEdge" /></Border>
+                <Border type="RightEdge" >
+                    <Operator type="Subtract">
+                        <Rel scale="1" value="RightEdge" />
+                        <PixelSize pixel_id="TaharezLook/MultiListRight" value="Width" />
+                    </Operator>
+                </Border>
+                <Border type="BottomEdge" >
+                    <Operator type="Subtract">
+                        <Rel scale="1" value="BottomEdge" />
+                        <WidgetSize widget="__auto_hscrollbar__" value="Height" />
+                    </Operator>
+                </Border>
+            </Area>
+        </Special>
+        <Special name="ItemRenderingAreaVScroll">
+            <Area>
+                <Border type="LeftEdge" ><PixelSize pixel_id="TaharezLook/MultiListLeft" value="Width" /></Border>
+                <Border type="TopEdge" ><WidgetSize widget="__auto_listheader__" value="BottomEdge" /></Border>
+                <Border type="RightEdge" >
+                    <Operator type="Subtract">
+                        <Rel scale="1" value="RightEdge" />
+                        <WidgetSize widget="__auto_vscrollbar__" value="Width" />
+                    </Operator>
+                </Border>
+                <Border type="BottomEdge" >
+                    <Operator type="Subtract">
+                        <Rel scale="1" value="BottomEdge" />
+                        <PixelSize pixel_id="TaharezLook/MultiListBottom" value="Height" />
+                    </Operator>
+                </Border>
+            </Area>
+        </Special>
+        <Special name="ItemRenderingAreaHVScroll">
+            <Area>
+                <Border type="LeftEdge" ><PixelSize pixel_id="TaharezLook/MultiListLeft" value="Width" /></Border>
+                <Border type="TopEdge" ><WidgetSize widget="__auto_listheader__" value="BottomEdge" /></Border>
+                <Border type="RightEdge" >
+                    <Operator type="Subtract">
+                        <Rel scale="1" value="RightEdge" />
+                        <WidgetSize widget="__auto_vscrollbar__" value="Width" />
+                    </Operator>
+                </Border>
+                <Border type="BottomEdge" >
+                    <Operator type="Subtract">
+                        <Rel scale="1" value="BottomEdge" />
+                        <WidgetSize widget="__auto_hscrollbar__" value="Height" />
+                    </Operator>
+                </Border>
+            </Area>
+        </Special>
+        <Widget  style_id="TaharezLook/ListHeader" id="__auto_listheader__">
+            <Area>
+                <Border type="LeftEdge" ><Abs value="2" /></Border>
+                <Border type="TopEdge" ><Abs value="2" /></Border>
+                <Border type="RightEdge" ><Rel scale="1" offset="-2" value="RightEdge" /></Border>
+                <Border type="Height" >
+                    <Operator type="Multiply">
+                        <FontDim type="LineSpacing" />
+                        <Abs value="1.5" />
+                    </Operator>
+                </Border>
+            </Area>
+        </Widget>
+        <Widget  style_id="TaharezLook/HorizontalScrollbar" id="__auto_hscrollbar__">
+            <Area>
+                <Border type="Width" ><Rel scale="1" offset="-12" value="Width" /></Border>
+                <Border type="Height" ><Abs value="12" /></Border>
+            </Area>
+            <VAlign type="bottom" />
+        </Widget>
+        <Widget  style_id="TaharezLook/VerticalScrollbar" id="__auto_vscrollbar__">
+            <Area>
+                <Border type="TopEdge" ><WidgetSize widget="__auto_listheader__" value="BottomEdge" /></Border>
+                <Border type="Width" ><Abs value="12" /></Border>
+                <Border type="BottomEdge" ><Rel scale="1" offset="-12" value="BottomEdge" /></Border>
+            </Area>
+            <HAlign type="right" />
+        </Widget>
+        <StyleSection id="main">
+            <FrameCom>
+                <Com type="TopLeftCorner" pixel_id="TaharezLook/MultiListTopLeft" />
+                <Com type="TopRightCorner" pixel_id="TaharezLook/MultiListTopRight" />
+                <Com type="BottomLeftCorner" pixel_id="TaharezLook/MultiListBottomLeft" />
+                <Com type="BottomRightCorner" pixel_id="TaharezLook/MultiListBottomRight" />
+                <Com type="LeftEdge" pixel_id="TaharezLook/MultiListLeft" />
+                <Com type="RightEdge" pixel_id="TaharezLook/MultiListRight" />
+                <Com type="TopEdge" pixel_id="TaharezLook/MultiListTop" />
+                <Com type="BottomEdge" pixel_id="TaharezLook/MultiListBottom" />
+                <Com type="Background" pixel_id="TaharezLook/MultiListBackdrop" />
+            </FrameCom>
+        </StyleSection>
+        <StyleLayout name="Enable">
+            <Layer>
+                <Section style_section="main" />
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Disable">
+            <Layer>
+                <Section style_section="main">
+                    <Colours top_left="FF7F7F7F" top_right="FF7F7F7F" bottom_left="FF7F7F7F" bottom_right="FF7F7F7F" />
+                </Section>
+            </Layer>
+        </StyleLayout>
+    </WidgetStyle>
+
+    <!--
+    ***************************************************
+        TaharezLook/MultiLineEditbox
+    ***************************************************
+    -->
+    <WidgetStyle id="TaharezLook/MultiLineEditbox">
+        <PropertyDefine id="NormalTextColour" value="FFFFFFFF" signal_refresh="true" type="ColourRect"/>
+        <PropertyDefine id="SelectedTextColour" value="FF000000" signal_refresh="true" type="ColourRect"/>
+        <PropertyDefine id="ActiveSelectionColour" value="FF607FFF" signal_refresh="true" type="ColourRect"/>
+        <PropertyDefine id="InactiveSelectionColour" value="FF808080" signal_refresh="true" type="ColourRect"/>
+        <Property name="MouseCursorImage" value="TaharezLook/MouseTextBar" />
+        <Property name="SelectionBrushImage" value="TaharezLook/MultiLineEditboxSelectionBrush" />
+        <Property name="Size" value="{{0, 256}, {0, 256}}" />
+        <Special name="TextArea">
+            <Area>
+                <Border type="LeftEdge" ><PixelSize pixel_id="TaharezLook/MultiLineEditboxLeft" value="Width" /></Border>
+                <Border type="TopEdge" ><PixelSize pixel_id="TaharezLook/MultiLineEditboxTop" value="Height" /></Border>
+                <Border type="RightEdge" >
+                    <Operator type="Subtract">
+                        <Rel scale="1" value="RightEdge" />
+                        <PixelSize pixel_id="TaharezLook/MultiLineEditboxRight" value="Width" />
+                    </Operator>
+                </Border>
+                <Border type="BottomEdge" >
+                    <Operator type="Subtract">
+                        <Rel scale="1" value="BottomEdge" />
+                        <PixelSize pixel_id="TaharezLook/MultiLineEditboxBottom" value="Height" />
+                    </Operator>
+                </Border>
+            </Area>
+        </Special>
+        <Special name="TextAreaHScroll">
+            <Area>
+                <Border type="LeftEdge" ><PixelSize pixel_id="TaharezLook/MultiLineEditboxLeft" value="Width" /></Border>
+                <Border type="TopEdge" ><PixelSize pixel_id="TaharezLook/MultiLineEditboxTop" value="Height" /></Border>
+                <Border type="RightEdge" >
+                    <Operator type="Subtract">
+                        <Rel scale="1" value="RightEdge" />
+                        <PixelSize pixel_id="TaharezLook/MultiLineEditboxRight" value="Width" />
+                    </Operator>
+                </Border>
+                <Border type="BottomEdge" >
+                    <Operator type="Subtract">
+                        <Rel scale="1" value="BottomEdge" />
+                        <WidgetSize widget="__auto_hscrollbar__" value="Height" />
+                    </Operator>
+                </Border>
+            </Area>
+        </Special>
+        <Special name="TextAreaVScroll">
+            <Area>
+                <Border type="LeftEdge" ><PixelSize pixel_id="TaharezLook/MultiLineEditboxLeft" value="Width" /></Border>
+                <Border type="TopEdge" ><PixelSize pixel_id="TaharezLook/MultiLineEditboxTop" value="Height" /></Border>
+                <Border type="RightEdge" >
+                    <Operator type="Subtract">
+                        <Rel scale="1" value="RightEdge" />
+                        <WidgetSize widget="__auto_vscrollbar__" value="Width" />
+                    </Operator>
+                </Border>
+                <Border type="BottomEdge" >
+                    <Operator type="Subtract">
+                        <Rel scale="1" value="BottomEdge" />
+                        <PixelSize pixel_id="TaharezLook/MultiLineEditboxBottom" value="Height" />
+                    </Operator>
+                </Border>
+            </Area>
+        </Special>
+        <Special name="TextAreaHVScroll">
+            <Area>
+                <Border type="LeftEdge" ><PixelSize pixel_id="TaharezLook/MultiLineEditboxLeft" value="Width" /></Border>
+                <Border type="TopEdge" ><PixelSize pixel_id="TaharezLook/MultiLineEditboxTop" value="Height" /></Border>
+                <Border type="RightEdge" >
+                    <Operator type="Subtract">
+                        <Rel scale="1" value="RightEdge" />
+                        <WidgetSize widget="__auto_vscrollbar__" value="Width" />
+                    </Operator>
+                </Border>
+                <Border type="BottomEdge" >
+                    <Operator type="Subtract">
+                        <Rel scale="1" value="BottomEdge" />
+                        <WidgetSize widget="__auto_hscrollbar__" value="Height" />
+                    </Operator>
+                </Border>
+            </Area>
+        </Special>
+        <Widget  style_id="TaharezLook/HorizontalScrollbar" id="__auto_hscrollbar__">
+            <Area>
+                <Border type="Width" ><Rel scale="1" offset="-12" value="Width" /></Border>
+                <Border type="Height" ><Abs value="12" /></Border>
+            </Area>
+            <VAlign type="bottom" />
+        </Widget>
+        <Widget  style_id="TaharezLook/VerticalScrollbar" id="__auto_vscrollbar__">
+            <Area>
+                <Border type="Width" ><Abs value="12" /></Border>
+                <Border type="Height" ><Rel scale="1" offset="-12" value="Height" /></Border>
+            </Area>
+            <HAlign type="right" />
+        </Widget>
+        <StyleSection id="main">
+            <FrameCom>
+                <Com type="TopLeftCorner" pixel_id="TaharezLook/MultiLineEditboxTopLeft" />
+                <Com type="TopRightCorner" pixel_id="TaharezLook/MultiLineEditboxTopRight" />
+                <Com type="BottomLeftCorner" pixel_id="TaharezLook/MultiLineEditboxBottomLeft" />
+                <Com type="BottomRightCorner" pixel_id="TaharezLook/MultiLineEditboxBottomRight" />
+                <Com type="LeftEdge" pixel_id="TaharezLook/MultiLineEditboxLeft" />
+                <Com type="RightEdge" pixel_id="TaharezLook/MultiLineEditboxRight" />
+                <Com type="TopEdge" pixel_id="TaharezLook/MultiLineEditboxTop" />
+                <Com type="BottomEdge" pixel_id="TaharezLook/MultiLineEditboxBottom" />
+                <Com type="Background" pixel_id="TaharezLook/MultiLineEditboxBackdrop" />
+            </FrameCom>
+        </StyleSection>
+        <StyleSection id="Caret">
+            <ImageryCom>
+                <Area>
+                    <Border type="Width" ><PixelSize pixel_id="TaharezLook/EditBoxCaret" value="Width" /></Border>
+                </Area>
+                <Com pixel_id="TaharezLook/EditBoxCaret" />
+                <VLayout type="stretch" />
+                <HLayout type="stretch" />
+            </ImageryCom>
+        </StyleSection>
+        <StyleLayout name="Enable">
+            <Layer>
+                <Section style_section="main" />
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="ReadOnly">
+            <Layer>
+                <Section style_section="main" />
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Disable">
+            <Layer>
+                <Section style_section="main">
+                    <Colours top_left="FF7F7F7F" top_right="FF7F7F7F" bottom_left="FF7F7F7F" bottom_right="FF7F7F7F" />
+                </Section>
+            </Layer>
+        </StyleLayout>
+    </WidgetStyle>
+
+    <!--
+    ***************************************************
+        TaharezLook/Tooltip
+    ***************************************************
+    -->
+    <WidgetStyle id="TaharezLook/Tooltip">
+        <Property name="Alpha" value="0" />
+        <Property name="Size" value="{{0, 128}, {0, 32}}" />
+        <Special name="TextArea">
+            <Area>
+                <Border type="LeftEdge" ><PixelSize pixel_id="TaharezLook/TooltipLeftEdge" value="Width" /></Border>
+                <Border type="TopEdge" ><PixelSize pixel_id="TaharezLook/TooltipTopEdge" value="Height" /></Border>
+                <Border type="RightEdge" >
+                    <Operator type="Subtract">
+                        <Rel scale="1" value="RightEdge" />
+                        <PixelSize pixel_id="TaharezLook/TooltipRightEdge" value="Width" />
+                    </Operator>
+                </Border>
+                <Border type="BottomEdge" >
+                    <Operator type="Subtract">
+                        <Rel scale="1" value="BottomEdge" />
+                        <PixelSize pixel_id="TaharezLook/TooltipBottomEdge" value="Height" />
+                    </Operator>
+                </Border>
+            </Area>
+        </Special>
+        <StyleSection id="main">
+            <FrameCom>
+                <Com type="TopLeftCorner" pixel_id="TaharezLook/TooltipTopLeft" />
+                <Com type="TopRightCorner" pixel_id="TaharezLook/TooltipTopRight" />
+                <Com type="BottomLeftCorner" pixel_id="TaharezLook/TooltipBottomLeft" />
+                <Com type="BottomRightCorner" pixel_id="TaharezLook/TooltipBottomRight" />
+                <Com type="LeftEdge" pixel_id="TaharezLook/TooltipLeftEdge" />
+                <Com type="RightEdge" pixel_id="TaharezLook/TooltipRightEdge" />
+                <Com type="TopEdge" pixel_id="TaharezLook/TooltipTopEdge" />
+                <Com type="BottomEdge" pixel_id="TaharezLook/TooltipBottomEdge" />
+                <Com type="Background" pixel_id="TaharezLook/TooltipMiddle" />
+            </FrameCom>
+        </StyleSection>
+        <StyleSection id="label">
+            <TextCom>
+                <Area>
+                    <Border type="LeftEdge" ><PixelSize pixel_id="TaharezLook/TooltipLeftEdge" value="Width" /></Border>
+                    <Border type="TopEdge" ><PixelSize pixel_id="TaharezLook/TooltipTopEdge" value="Height" /></Border>
+                    <Border type="RightEdge" >
+                        <Operator type="Subtract">
+                            <Rel scale="1" value="RightEdge" />
+                            <PixelSize pixel_id="TaharezLook/TooltipRightEdge" value="Width" />
+                        </Operator>
+                    </Border>
+                    <Border type="BottomEdge" >
+                        <Operator type="Subtract">
+                            <Rel scale="1" value="BottomEdge" />
+                            <PixelSize pixel_id="TaharezLook/TooltipBottomEdge" value="Height" />
+                        </Operator>
+                    </Border>
+                </Area>
+                <Colours top_left="FF000000" top_right="FF000000" bottom_left="FF000000" bottom_right="FF000000" />
+                <VLayout type="centre" />
+                <HLayout type="centre" />
+            </TextCom>
+        </StyleSection>
+        <StyleLayout name="Enable">
+            <Layer>
+                <Section style_section="main" />
+                <Section style_section="label" />
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Disable">
+            <Layer>
+                <Section style_section="main" />
+                <Section style_section="label" />
+            </Layer>
+        </StyleLayout>
+
+        <AnimationDefinition name="FadeIn" duration="0.33" replayMode="once">
+            <PropertyIDKeyFrameTrack property="Alpha" interpolator="float">
+                <KeyFrame position="0" sourceProperty="Alpha" />
+                <KeyFrame position="0.33" value="1" progression="linear" />
+            </PropertyIDKeyFrameTrack>
+
+            <Subscription event="TooltipActive" action="Start" />
+        </AnimationDefinition>
+
+        <AnimationDefinition name="FadeOut" duration="0.33" replayMode="once">
+            <PropertyIDKeyFrameTrack property="Alpha" interpolator="float">
+                <KeyFrame position="0" sourceProperty="Alpha" />
+                <KeyFrame position="0.33" value="0" progression="linear" />
+            </PropertyIDKeyFrameTrack>
+            <PropertyIDKeyFrameTrack property="Visible" interpolator="bool">
+                <KeyFrame position="0" sourceProperty="Visible" />
+                <KeyFrame position="0.33" value="false" progression="discrete" />
+            </PropertyIDKeyFrameTrack>
+
+            <Subscription event="TooltipInactive" action="Start" />
+        </AnimationDefinition>
+    </WidgetStyle>
+
+    <!--
+    ***************************************************
+        TaharezLook/ScrollablePane
+    ***************************************************
+    -->
+    <WidgetStyle id="TaharezLook/ScrollablePane">
+        <Special name="ViewableArea" />
+        <Special name="ViewableAreaHScroll">
+            <Area>
+                <Border type="BottomEdge" >
+                    <Operator type="Subtract">
+                        <Rel scale="1" value="BottomEdge" />
+                        <WidgetSize widget="__auto_hscrollbar__" value="Height" />
+                    </Operator>
+                </Border>
+            </Area>
+        </Special>
+        <Special name="ViewableAreaVScroll">
+            <Area>
+                <Border type="RightEdge" >
+                    <Operator type="Subtract">
+                        <Rel scale="1" value="RightEdge" />
+                        <WidgetSize widget="__auto_vscrollbar__" value="Width" />
+                    </Operator>
+                </Border>
+            </Area>
+        </Special>
+        <Special name="ViewableAreaHVScroll">
+            <Area>
+                <Border type="RightEdge" >
+                    <Operator type="Subtract">
+                        <Rel scale="1" value="RightEdge" />
+                        <WidgetSize widget="__auto_vscrollbar__" value="Width" />
+                    </Operator>
+                </Border>
+                <Border type="BottomEdge" >
+                    <Operator type="Subtract">
+                        <Rel scale="1" value="BottomEdge" />
+                        <WidgetSize widget="__auto_hscrollbar__" value="Height" />
+                    </Operator>
+                </Border>
+            </Area>
+        </Special>
+        <Widget  style_id="TaharezLook/HorizontalScrollbar" id="__auto_hscrollbar__">
+            <Area>
+                <Border type="Width" ><Rel scale="1" offset="-12" value="Width" /></Border>
+                <Border type="Height" ><Abs value="12" /></Border>
+            </Area>
+            <VAlign type="bottom" />
+            <Property name="NonClient" value="True" />
+        </Widget>
+        <Widget  style_id="TaharezLook/VerticalScrollbar" id="__auto_vscrollbar__">
+            <Area>
+                <Border type="Width" ><Abs value="12" /></Border>
+                <Border type="Height" ><Rel scale="1" offset="-12" value="Height" /></Border>
+            </Area>
+            <HAlign type="right" />
+            <Property name="NonClient" value="True" />
+        </Widget>
+        <StyleLayout name="Enable" />
+        <StyleLayout name="Disable" />
+    </WidgetStyle>
+
+    <!--
+    ***************************************************
+        TaharezLook/TabButton
+    ***************************************************
+    -->
+    <WidgetStyle id="TaharezLook/TabButton">
+        <PropertyDefine id="NormalTextColour" value="FFC0C0C0" signal_refresh="true" type="ColourRect"/>
+        <PropertyDefine id="HoverTextColour" value="FFE0E0E0" signal_refresh="true" type="ColourRect"/>
+        <PropertyDefine id="PushedTextColour" value="FFFFFFFF" signal_refresh="true" type="ColourRect"/>
+        <PropertyDefine id="SelectedTextColour" value="FFE0E0E0" signal_refresh="true" type="ColourRect"/>
+        <PropertyDefine id="DisabledTextColour" value="FF7F7F7F" signal_refresh="true" type="ColourRect"/>
+        <StyleSection id="label">
+            <TextCom>
+                <VLayout type="centre" />
+                <HLayout type="centre" />
+            </TextCom>
+        </StyleSection>
+        <StyleSection id="top_normal">
+            <FrameCom>
+                <Com type="TopLeftCorner" pixel_id="TaharezLook/TabButtonUpperLeftNormal" />
+                <Com type="TopRightCorner" pixel_id="TaharezLook/TabButtonUpperRightNormal" />
+                <Com type="BottomLeftCorner" pixel_id="TaharezLook/TabButtonLowerLeftNormal" />
+                <Com type="BottomRightCorner" pixel_id="TaharezLook/TabButtonLowerRight2Normal" />
+                <Com type="LeftEdge" pixel_id="TaharezLook/TabButtonLeftNormal" />
+                <Com type="RightEdge" pixel_id="TaharezLook/TabButtonRightNormal" />
+                <Com type="TopEdge" pixel_id="TaharezLook/TabButtonUpperNormal" />
+                <Com type="BottomEdge" pixel_id="TaharezLook/TabButtonLowerNormal" />
+                <Com type="Background" pixel_id="TaharezLook/TabButtonMiddleNormal" />
+            </FrameCom>
+        </StyleSection>
+        <StyleSection id="bot_normal">
+            <FrameCom>
+                <Com type="TopLeftCorner" pixel_id="TaharezLook/TabButtonUpperLeft2Normal" />
+                <Com type="TopRightCorner" pixel_id="TaharezLook/TabButtonUpperRightNormal" />
+                <Com type="BottomLeftCorner" pixel_id="TaharezLook/TabButtonLowerLeftNormal" />
+                <Com type="BottomRightCorner" pixel_id="TaharezLook/TabButtonLowerRightNormal" />
+                <Com type="LeftEdge" pixel_id="TaharezLook/TabButtonLeftNormal" />
+                <Com type="RightEdge" pixel_id="TaharezLook/TabButtonRightNormal" />
+                <Com type="TopEdge" pixel_id="TaharezLook/TabButtonUpperNormal" />
+                <Com type="BottomEdge" pixel_id="TaharezLook/TabButtonLowerNormal" />
+                <Com type="Background" pixel_id="TaharezLook/TabButtonMiddleNormal" />
+            </FrameCom>
+        </StyleSection>
+        <StyleSection id="top_hover">
+            <FrameCom>
+                <Com type="TopLeftCorner" pixel_id="TaharezLook/TabButtonUpperLeftNormal" />
+                <Com type="TopRightCorner" pixel_id="TaharezLook/TabButtonUpperRightNormal" />
+                <Com type="BottomLeftCorner" pixel_id="TaharezLook/TabButtonLowerLeftNormal" />
+                <Com type="BottomRightCorner" pixel_id="TaharezLook/TabButtonLowerRight2Normal" />
+                <Com type="LeftEdge" pixel_id="TaharezLook/TabButtonLeftNormal" />
+                <Com type="RightEdge" pixel_id="TaharezLook/TabButtonRightNormal" />
+                <Com type="TopEdge" pixel_id="TaharezLook/TabButtonUpperNormal" />
+                <Com type="BottomEdge" pixel_id="TaharezLook/TabButtonLowerNormal" />
+                <Com type="Background" pixel_id="TaharezLook/TabButtonMiddleNormal" />
+            </FrameCom>
+        </StyleSection>
+        <StyleSection id="bot_hover">
+            <FrameCom>
+                <Com type="TopLeftCorner" pixel_id="TaharezLook/TabButtonUpperLeft2Normal" />
+                <Com type="TopRightCorner" pixel_id="TaharezLook/TabButtonUpperRightNormal" />
+                <Com type="BottomLeftCorner" pixel_id="TaharezLook/TabButtonLowerLeftNormal" />
+                <Com type="BottomRightCorner" pixel_id="TaharezLook/TabButtonLowerRightNormal" />
+                <Com type="LeftEdge" pixel_id="TaharezLook/TabButtonLeftNormal" />
+                <Com type="RightEdge" pixel_id="TaharezLook/TabButtonRightNormal" />
+                <Com type="TopEdge" pixel_id="TaharezLook/TabButtonUpperNormal" />
+                <Com type="BottomEdge" pixel_id="TaharezLook/TabButtonLowerNormal" />
+                <Com type="Background" pixel_id="TaharezLook/TabButtonMiddleNormal" />
+            </FrameCom>
+        </StyleSection>
+        <StyleSection id="top_selected">
+            <FrameCom>
+                <Com type="TopLeftCorner" pixel_id="TaharezLook/TabButtonUpperLeftSelected" />
+                <Com type="TopEdge" pixel_id="TaharezLook/TabButtonUpperSelected" />
+                <Com type="TopRightCorner" pixel_id="TaharezLook/TabButtonUpperRightSelected" />
+                <Com type="LeftEdge" pixel_id="TaharezLook/TabButtonLeftSelected" />
+                <Com type="Background" pixel_id="TaharezLook/TabButtonMiddleSelected" />
+                <Com type="RightEdge" pixel_id="TaharezLook/TabButtonRightSelected" />
+            </FrameCom>
+        </StyleSection>
+        <StyleSection id="bot_selected">
+            <FrameCom>
+                <Com type="LeftEdge" pixel_id="TaharezLook/TabButtonLeftSelected" />
+                <Com type="Background" pixel_id="TaharezLook/TabButtonMiddleSelected" />
+                <Com type="RightEdge" pixel_id="TaharezLook/TabButtonRightSelected" />
+                <Com type="BottomLeftCorner" pixel_id="TaharezLook/TabButtonLowerLeftNormal" />
+                <Com type="BottomEdge" pixel_id="TaharezLook/TabButtonLowerNormal" />
+                <Com type="BottomRightCorner" pixel_id="TaharezLook/TabButtonLowerRightNormal" />
+            </FrameCom>
+        </StyleSection>
+        <StyleLayout name="TopNormal">
+            <Layer>
+                <Section style_section="top_normal" />
+                <Section style_section="label">
+                    <ColourAttribute name="NormalTextColour" />
+                </Section>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="BottomNormal">
+            <Layer>
+                <Section style_section="bot_normal" />
+                <Section style_section="label">
+                    <ColourAttribute name="NormalTextColour" />
+                </Section>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="TopHover">
+            <Layer>
+                <Section style_section="top_hover" />
+                <Section style_section="label">
+                    <ColourAttribute name="HoverTextColour" />
+                </Section>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="BottomHover">
+            <Layer>
+                <Section style_section="bot_hover" />
+                <Section style_section="label">
+                    <ColourAttribute name="HoverTextColour" />
+                </Section>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="TopSelected">
+            <Layer>
+                <Section style_section="top_selected" />
+                <Section style_section="label">
+                    <ColourAttribute name="SelectedTextColour" />
+                </Section>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="BottomSelected">
+            <Layer>
+                <Section style_section="bot_selected" />
+                <Section style_section="label">
+                    <ColourAttribute name="SelectedTextColour" />
+                </Section>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="TopPushed">
+            <Layer>
+                <Section style_section="top_normal" />
+                <Section style_section="label">
+                    <ColourAttribute name="PushedTextColour" />
+                </Section>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="BottomPushed">
+            <Layer>
+                <Section style_section="bot_normal" />
+                <Section style_section="label">
+                    <ColourAttribute name="PushedTextColour" />
+                </Section>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="TopDisabled">
+            <Layer>
+                <Section style_section="top_normal">
+                    <Colours top_left="FF7F7F7F" top_right="FF7F7F7F" bottom_left="FF7F7F7F" bottom_right="FF7F7F7F" />
+                </Section>
+                <Section style_section="label">
+                    <ColourAttribute name="DisabledTextColour" />
+                </Section>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="BottomDisabled">
+            <Layer>
+                <Section style_section="bot_normal">
+                    <Colours top_left="FF7F7F7F" top_right="FF7F7F7F" bottom_left="FF7F7F7F" bottom_right="FF7F7F7F" />
+                </Section>
+                <Section style_section="label">
+                    <ColourAttribute name="DisabledTextColour" />
+                </Section>
+            </Layer>
+        </StyleLayout>
+    </WidgetStyle>
+
+    <!--
+    ***************************************************
+        TaharezLook/TabContentPane
+    ***************************************************
+    -->
+    <WidgetStyle id="TaharezLook/TabContentPane">
+        <PropertyDefine id="EnableTop" value="0" signal_refresh="true" signal_layout="true" type="uint"/>
+        <PropertyDefine id="EnableBottom" value="0" signal_refresh="true" signal_layout="true" type="uint"/>
+        <StyleSection id="normal">
+            <FrameCom>
+                <Area>
+                    <Border type="BottomEdge" >
+                        <Operator type="Multiply">
+                            <PixelSize pixel_id="TaharezLook/TabContentPaneUpperLeft" value="Height" />
+                            <PropertyDim name="EnableTop" />
+                        </Operator>
+                    </Border>
+                </Area>
+                <Com type="TopLeftCorner" pixel_id="TaharezLook/TabContentPaneUpperLeft" />
+                <Com type="TopEdge" pixel_id="TaharezLook/TabContentPaneUpper" />
+                <Com type="TopRightCorner" pixel_id="TaharezLook/TabContentPaneUpperRight" />
+            </FrameCom>
+            <FrameCom>
+                <Area>
+                    <Border type="TopEdge" >
+                        <Operator type="Multiply">
+                            <PixelSize pixel_id="TaharezLook/TabContentPaneUpperLeft" value="Height" />
+                            <PropertyDim name="EnableTop" />
+                        </Operator>
+                    </Border>
+                    <Border type="BottomEdge" >
+                        <Operator type="Subtract">
+                            <Rel scale="1" value="Height" />
+                            <Operator type="Multiply">
+                                <PixelSize pixel_id="TaharezLook/TabContentPaneLowerLeft" value="Height"/>
+                                <PropertyDim name="EnableBottom" />
+                            </Operator>
+                        </Operator>
+                    </Border>
+                </Area>
+                <Com type="LeftEdge" pixel_id="TaharezLook/TabContentPaneLeft" />
+                <Com type="Background" pixel_id="TaharezLook/TabContentPaneMiddle" />
+                <Com type="RightEdge" pixel_id="TaharezLook/TabContentPaneRight" />
+            </FrameCom>
+            <FrameCom>
+                <Area>
+                    <Border type="TopEdge" >
+                        <Operator type="Subtract">
+                            <Rel scale="1" value="Height" />
+                            <Operator type="Multiply">
+                                <PixelSize pixel_id="TaharezLook/TabContentPaneLowerLeft" value="Height"/>
+                                <PropertyDim name="EnableBottom" />
+                            </Operator>
+                        </Operator>
+                    </Border>
+                </Area>
+                <Com type="BottomLeftCorner" pixel_id="TaharezLook/TabContentPaneLowerLeft" />
+                <Com type="BottomEdge" pixel_id="TaharezLook/TabContentPaneLower" />
+                <Com type="BottomRightCorner" pixel_id="TaharezLook/TabContentPaneLowerRight" />
+            </FrameCom>
+        </StyleSection>
+        <StyleLayout name="Enable">
+            <Layer>
+                <Section style_section="normal" />
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Disable">
+            <Layer>
+                <Section style_section="normal">
+                    <Colours top_left="FF7F7F7F" top_right="FF7F7F7F" bottom_left="FF7F7F7F" bottom_right="FF7F7F7F" />
+                </Section>
+            </Layer>
+        </StyleLayout>
+    </WidgetStyle>
+
+    <!--
+    ***************************************************
+        TaharezLook/TabButtonPane
+    ***************************************************
+    -->
+    <WidgetStyle id="TaharezLook/TabButtonPane">
+        <PropertyDefine id="EnableTop" value="1" signal_refresh="true" signal_layout="true" type="uint"/>
+        <PropertyDefine id="EnableBottom" value="1" signal_refresh="true" signal_layout="true" type="uint"/>
+        <StyleSection id="normal">
+            <FrameCom>
+                <Area>
+                    <Border type="BottomEdge" >
+                        <Operator type="Multiply">
+                            <PixelSize pixel_id="TaharezLook/TabHorizontalFiller" value="Height" />
+                            <PropertyDim name="EnableTop" />
+                        </Operator>
+                    </Border>
+                </Area>
+                <Com type="TopEdge" pixel_id="TaharezLook/TabHorizontalFiller" />
+            </FrameCom>
+            <FrameCom>
+                <Area>
+                    <Border type="TopEdge" >
+                        <Operator type="Multiply">
+                            <PixelSize pixel_id="TaharezLook/TabHorizontalFiller" value="Height" />
+                            <PropertyDim name="EnableTop" />
+                        </Operator>
+                    </Border>
+                    <Border type="BottomEdge" >
+                        <Operator type="Subtract">
+                            <Rel scale="1" value="Height" />
+                            <Operator type="Multiply">
+                                <PixelSize pixel_id="TaharezLook/TabHorizontalFiller" value="Height" />
+                                <PropertyDim name="EnableBottom" />
+                            </Operator>
+                        </Operator>
+                    </Border>
+                </Area>
+            </FrameCom>
+            <FrameCom>
+                <Area>
+                    <Border type="TopEdge" >
+                        <Operator type="Subtract">
+                            <Rel scale="1" value="Height" />
+                            <Operator type="Multiply">
+                                <PixelSize pixel_id="TaharezLook/TabHorizontalFiller" value="Height" />
+                                <PropertyDim name="EnableBottom" />
+                            </Operator>
+                        </Operator>
+                    </Border>
+                </Area>
+                <Com type="BottomEdge" pixel_id="TaharezLook/TabHorizontalFiller" />
+            </FrameCom>
+        </StyleSection>
+        <StyleLayout name="Enable">
+            <Layer>
+                <Section style_section="normal" />
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Disable">
+            <Layer>
+                <Section style_section="normal">
+                    <Colours top_left="FF7F7F7F" top_right="FF7F7F7F" bottom_left="FF7F7F7F" bottom_right="FF7F7F7F" />
+                </Section>
+            </Layer>
+        </StyleLayout>
+    </WidgetStyle>
+
+    <!--
+    ***************************************************
+        TaharezLook/TabControl
+    ***************************************************
+    -->
+    <WidgetStyle id="TaharezLook/TabControl">
+        <Property name="TabButtonType" value="TaharezLook/TabButton" />
+        <Property name="TabTextPadding" value="{0,6}" />
+        <Widget style_id="TaharezLook/TabContentPane" id="__auto_TabPane__">
+            <Area>
+                <Border type="TopEdge">
+                    <Operator type="Multiply">
+                        <PropertyDim widget="__auto_TabPane__" name="EnableBottom" />
+                        <PropertyDim name="TabHeight" type="Height" />
+                    </Operator>
+                </Border>
+                <Border type="Height">
+                    <Operator type="Subtract">
+                        <Rel scale="1" value="Height" />
+                        <PropertyDim name="TabHeight" type="Height" />
+                    </Operator>
+                </Border>
+            </Area>
+        </Widget>
+        <Widget  style_id="TaharezLook/TabButtonPane" id="__auto_TabPane__Buttons">
+            <Area>
+                <Border type="TopEdge">
+                    <Operator type="Multiply">
+                        <PropertyDim widget="__auto_TabPane__Buttons" name="EnableTop"/>
+                        <Operator type="Subtract">
+                            <Rel scale="1" value="Height" />
+                            <PropertyDim name="TabHeight" type="Height" />
+                        </Operator>
+                    </Operator>
+                </Border>
+                <Border type="Height"><PropertyDim name="TabHeight" type="Height" /></Border>
+            </Area>
+        </Widget>
+        <Widget style_id="TaharezLook/Button" id="__auto_TabPane__ScrollLeft">
+            <Area>
+                <Border type="LeftEdge"><Abs value="0" /></Border>
+                <Border type="TopEdge">
+                    <WidgetSize widget="__auto_TabPane__Buttons" value="TopEdge" />
+                </Border>
+                <Border type="Width">
+                    <Operator type="Multiply">
+                        <WidgetSize widget="__auto_TabPane__Buttons" value="Height" />
+                        <Operator type="Divide">
+                            <PixelSize pixel_id="TaharezLook/TabButtonScrollLeftNormal" value="Width" />
+                            <PixelSize pixel_id="TaharezLook/TabButtonScrollLeftNormal" value="Height" />
+                        </Operator>
+                    </Operator>
+                </Border>
+                <Border type="BottomEdge">
+                    <WidgetSize widget="__auto_TabPane__Buttons" value="BottomEdge" />
+                </Border>
+            </Area>
+            <Property name="AlwaysOnTop" value="True" />
+            <Property name="NormalImage" value="TaharezLook/TabButtonScrollLeftNormal" />
+            <Property name="HoverImage" value="TaharezLook/TabButtonScrollLeftHover" />
+            <Property name="PushedImage" value="TaharezLook/TabButtonScrollLeftHover" />
+        </Widget>
+        <Widget style_id="TaharezLook/Button" id="__auto_TabPane__ScrollRight">
+            <Area>
+                <Border type="Width">
+                    <Operator type="Multiply">
+                        <WidgetSize widget="__auto_TabPane__Buttons" value="Height" />
+                        <Operator type="Divide">
+                            <PixelSize pixel_id="TaharezLook/TabButtonScrollRightNormal" value="Width" />
+                            <PixelSize pixel_id="TaharezLook/TabButtonScrollRightNormal" value="Height" />
+                        </Operator>
+                    </Operator>
+                </Border>
+                <Border type="LeftEdge">
+                    <Operator type="Subtract">
+                        <Rel scale="1" value="Width" />
+                        <WidgetSize widget="__auto_TabPane__ScrollRight" value="Width" />
+                    </Operator>
+                </Border>
+                <Border type="TopEdge">
+                    <WidgetSize widget="__auto_TabPane__Buttons" value="TopEdge" />
+                </Border>
+                <Border type="Height">
+                    <WidgetSize widget="__auto_TabPane__Buttons" value="Height" />
+                </Border>
+            </Area>
+            <Property name="AlwaysOnTop" value="True" />
+            <Property name="NormalImage" value="TaharezLook/TabButtonScrollRightNormal" />
+            <Property name="HoverImage" value="TaharezLook/TabButtonScrollRightHover" />
+            <Property name="PushedImage" value="TaharezLook/TabButtonScrollRightHover" />
+        </Widget>
+        <StyleLayout name="Enable" />
+        <StyleLayout name="Disable" />
+    </WidgetStyle>
+
+    <!--
+    ***************************************************
+        TaharezLook/MenuItem
+    ***************************************************
+    -->
+    <WidgetStyle id="TaharezLook/MenuItem">
+        <PropertyDefine id="NormalTextColour" value="FFFFFFFF" signal_refresh="true" type="ColourRect"/>
+        <PropertyDefine id="DisabledTextColour" value="FF7F7F7F" signal_refresh="true" type="ColourRect"/>
+        <PropertyDefine id="HoverColour" value="FFFFFFFF" signal_refresh="true" type="ColourRect"/>
+        <PropertyDefine id="PushedColour" value="FFFFFFFF" signal_refresh="true" type="ColourRect"/>
+        <PropertyDefine id="OpenedColour" value="FFFFFFFF" signal_refresh="true" type="ColourRect"/>
+        <Property name="WantsMultiClickEvents" value="False" />
+        <Property name="Size" value="{{0, 128}, {0, 32}}" />
+        <Special name="ContentSize">
+            <Area>
+                <Border type="Width">
+                    <Operator type="Add">
+                        <FontDim type="HorzExtent" />
+                        <Operator type="Add">
+                            <PixelSize pixel_id="TaharezLook/MenuLeft" value="Width" />
+                            <PixelSize pixel_id="TaharezLook/MenuRight" value="Width" />
+                        </Operator>
+                    </Operator>
+                </Border>
+                <Border type="Height">
+                    <Operator type="Add">
+                        <FontDim type="LineSpacing" />
+                        <Operator type="Add">
+                            <PixelSize pixel_id="TaharezLook/MenuTop" value="Height" />
+                            <PixelSize pixel_id="TaharezLook/MenuBottom" value="Height" />
+                        </Operator>
+                    </Operator>
+                </Border>
+            </Area>
+        </Special>
+        <Special name="HasPopupContentSize">
+            <Area>
+                <Border type="Width">
+                    <Operator type="Add">
+                        <FontDim type="HorzExtent" />
+                        <Operator type="Add">
+                            <PixelSize pixel_id="TaharezLook/MenuLeft" value="Width" />
+                            <Operator type="Add">
+                                <PixelSize pixel_id="TaharezLook/MenuRight" value="Width" />
+                                <Operator type="Multiply">
+                                    <PixelSize pixel_id="TaharezLook/PopupMenuArrowLeft" value="Width" />
+                                    <Abs value="3" />
+                                </Operator>
+                            </Operator>
+                        </Operator>
+                    </Operator>
+                </Border>
+                <Border type="Height">
+                    <Operator type="Add">
+                        <FontDim type="LineSpacing" />
+                        <Operator type="Add">
+                            <PixelSize pixel_id="TaharezLook/MenuTop" value="Height" />
+                            <PixelSize pixel_id="TaharezLook/MenuBottom" value="Height" />
+                        </Operator>
+                    </Operator>
+                </Border>
+            </Area>
+        </Special>
+        <StyleSection id="label">
+            <TextCom>
+                <Area>
+                    <Border type="LeftEdge" ><PixelSize pixel_id="TaharezLook/MenuLeft" value="Width" /></Border>
+                    <Border type="TopEdge" ><PixelSize pixel_id="TaharezLook/MenuTop" value="Height" /></Border>
+                    <Border type="RightEdge" >
+                        <Operator type="Subtract">
+                            <Rel scale="1" value="RightEdge" />
+                            <PixelSize pixel_id="TaharezLook/MenuRight" value="Width" />
+                        </Operator>
+                    </Border>
+                    <Border type="BottomEdge" >
+                        <Operator type="Subtract">
+                            <Rel scale="1" value="BottomEdge" />
+                            <PixelSize pixel_id="TaharezLook/MenuBottom" value="Height" />
+                        </Operator>
+                    </Border>
+                </Area>
+                <VLayout type="centre" />
+                <HLayout type="left" />
+            </TextCom>
+        </StyleSection>
+        <StyleSection id="frame">
+            <FrameCom>
+                <Com type="TopLeftCorner" pixel_id="TaharezLook/MenuTopLeft" />
+                <Com type="TopRightCorner" pixel_id="TaharezLook/MenuTopRight" />
+                <Com type="BottomLeftCorner" pixel_id="TaharezLook/MenuBottomLeft" />
+                <Com type="BottomRightCorner" pixel_id="TaharezLook/MenuBottomRight" />
+                <Com type="LeftEdge" pixel_id="TaharezLook/MenuLeft" />
+                <Com type="RightEdge" pixel_id="TaharezLook/MenuRight" />
+                <Com type="TopEdge" pixel_id="TaharezLook/MenuTop" />
+                <Com type="BottomEdge" pixel_id="TaharezLook/MenuBottom" />
+                <Com type="Background" pixel_id="TaharezLook/MenuMiddle" />
+            </FrameCom>
+        </StyleSection>
+        <StyleSection id="popup_arrow_right">
+            <ImageryCom>
+                <Area>
+                    <Border type="Width" >
+                        <Operator type="Subtract">
+                            <Rel scale="1" value="Width" />
+                            <PixelSize pixel_id="TaharezLook/PopupMenuArrowRight" value="Width" />
+                        </Operator>
+                    </Border>
+                </Area>
+                <Com pixel_id="TaharezLook/PopupMenuArrowRight" />
+                <VLayout type="centre" />
+                <HLayout type="right" />
+            </ImageryCom>
+        </StyleSection>
+        <StyleSection id="popup_arrow_left">
+            <ImageryCom>
+                <Area>
+                    <Border type="Width" >
+                        <Operator type="Subtract">
+                            <Rel scale="1" value="Width" />
+                            <PixelSize pixel_id="TaharezLook/PopupMenuArrowLeft" value="Width" />
+                        </Operator>
+                    </Border>
+                </Area>
+                <Com pixel_id="TaharezLook/PopupMenuArrowLeft" />
+                <VLayout type="centre" />
+                <HLayout type="right" />
+            </ImageryCom>
+        </StyleSection>
+        <StyleLayout name="Enable">
+            <Layer>
+                <Section style_section="label">
+                    <ColourAttribute name="NormalTextColour" />
+                </Section>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="EnableHover">
+            <Layer>
+                <Section style_section="frame">
+                    <ColourAttribute name="HoverColour" />
+                </Section>
+                <Section style_section="label">
+                    <ColourAttribute name="NormalTextColour" />
+                </Section>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="EnablePush">
+            <Layer>
+                <Section style_section="frame">
+                    <ColourAttribute name="PushedColour" />
+                </Section>
+                <Section style_section="label">
+                    <ColourAttribute name="NormalTextColour" />
+                </Section>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="EnablePopupOpen">
+            <Layer>
+                <Section style_section="frame">
+                    <ColourAttribute name="OpenedColour" />
+                </Section>
+                <Section style_section="label">
+                    <ColourAttribute name="NormalTextColour" />
+                </Section>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Disable">
+            <Layer>
+                <Section style_section="label">
+                    <ColourAttribute name="DisabledTextColour" />
+                </Section>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="DisableHover">
+            <Layer>
+                <Section style_section="frame">
+                    <Colours top_left="FF7F7F7F" top_right="FF7F7F7F" bottom_left="FF7F7F7F" bottom_right="FF7F7F7F" />
+                </Section>
+                <Section style_section="label">
+                    <ColourAttribute name="DisabledTextColour" />
+                </Section>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="DisablePush">
+            <Layer>
+                <Section style_section="frame">
+                    <Colours top_left="FF7F7F7F" top_right="FF7F7F7F" bottom_left="FF7F7F7F" bottom_right="FF7F7F7F" />
+                </Section>
+                <Section style_section="label">
+                    <ColourAttribute name="DisabledTextColour" />
+                </Section>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="DisablePopupOpen">
+            <Layer>
+                <Section style_section="frame">
+                    <Colours top_left="FF7F7F7F" top_right="FF7F7F7F" bottom_left="FF7F7F7F" bottom_right="FF7F7F7F" />
+                </Section>
+                <Section style_section="label">
+                    <ColourAttribute name="DisabledTextColour" />
+                </Section>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="PopupCloseIcon">
+            <Layer>
+                <Section style_section="popup_arrow_right" />
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="PopupOpenIcon">
+            <Layer>
+                <Section style_section="popup_arrow_left" />
+            </Layer>
+        </StyleLayout>
+    </WidgetStyle>
+
+    <!--
+    ***************************************************
+        TaharezLook/PopupMenu
+    ***************************************************
+    -->
+    <WidgetStyle id="TaharezLook/PopupMenu">
+        <PropertyDefine id="BackgroundColours" value="tl:FFFFFFFF tr:FFFFFFFF bl:FFFFFFFF br:FFFFFFFF" signal_refresh="true" type="ColourRect"/>
+        <PropertyDefine id="BorderWidth" value="0" signal_layout="true" type="uint"/>
+        <Property name="Size" value="{{0, 128}, {0, 32}}" />
+        <Special name="ItemRenderArea">
+            <Area>
+                <Border type="LeftEdge" >
+                    <Operator type="Add">
+                        <PixelSize pixel_id="TaharezLook/PopupMenuFrameLeft" value="Width" />
+                        <PropertyDim name="BorderWidth" />
+                    </Operator>
+                </Border>
+                <Border type="TopEdge" >
+                    <Operator type="Add">
+                        <PixelSize pixel_id="TaharezLook/PopupMenuFrameTop" value="Height" />
+                        <PropertyDim name="BorderWidth" />
+                    </Operator>
+                </Border>
+                <Border type="RightEdge" >
+                    <Operator type="Subtract">
+                        <Rel scale="1" value="RightEdge" />
+                        <Operator type="Add">
+                            <PixelSize pixel_id="TaharezLook/PopupMenuFrameRight" value="Width" />
+                            <PropertyDim name="BorderWidth" />
+                        </Operator>
+                    </Operator>
+                </Border>
+                <Border type="BottomEdge" >
+                    <Operator type="Subtract">
+                        <Rel scale="1" value="BottomEdge" />
+                        <Operator type="Add">
+                            <PixelSize pixel_id="TaharezLook/PopupMenuFrameBottom" value="Height" />
+                            <PropertyDim name="BorderWidth" />
+                        </Operator>
+                    </Operator>
+                </Border>
+            </Area>
+        </Special>
+        <StyleSection id="frame">
+            <FrameCom>
+                <Com type="TopLeftCorner" pixel_id="TaharezLook/PopupMenuFrameTopLeft" />
+                <Com type="TopRightCorner" pixel_id="TaharezLook/PopupMenuFrameTopRight" />
+                <Com type="BottomLeftCorner" pixel_id="TaharezLook/PopupMenuFrameBottomLeft" />
+                <Com type="BottomRightCorner" pixel_id="TaharezLook/PopupMenuFrameBottomRight" />
+                <Com type="LeftEdge" pixel_id="TaharezLook/PopupMenuFrameLeft" />
+                <Com type="RightEdge" pixel_id="TaharezLook/PopupMenuFrameRight" />
+                <Com type="TopEdge" pixel_id="TaharezLook/PopupMenuFrameTop" />
+                <Com type="BottomEdge" pixel_id="TaharezLook/PopupMenuFrameBottom" />
+                <Com type="Background" pixel_id="TaharezLook/PopupMenuMiddle" />
+            </FrameCom>
+        </StyleSection>
+        <StyleLayout name="Enable">
+            <Layer>
+                <Section style_section="frame">
+                    <ColourAttribute name="BackgroundColours" />
+                </Section>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Disable">
+            <Layer>
+                <Section style_section="frame">
+                    <Colours top_left="FF7F7F7F" top_right="FF7F7F7F" bottom_left="FF7F7F7F" bottom_right="FF7F7F7F" />
+                </Section>
+            </Layer>
+        </StyleLayout>
+    </WidgetStyle>
+
+
+    <!--
+    ***************************************************
+        TaharezLook/Menubar
+    ***************************************************
+    -->
+    <WidgetStyle id="TaharezLook/Menubar">
+        <PropertyDefine id="BackgroundColours" value="tl:FFFFFFFF tr:FFFFFFFF bl:FFFFFFFF br:FFFFFFFF" signal_refresh="true" type="ColourRect"/>
+        <PropertyDefine id="BorderWidth" value="5" signal_layout="true" type="uint"/>
+        <Property name="Size" value="{{1, 0}, {0, 32}}" />
+        <Special name="ItemRenderArea">
+            <Area>
+                <Border type="LeftEdge" >
+                    <Operator type="Add">
+                        <PixelSize pixel_id="TaharezLook/PopupMenuFrameLeft" value="Width" />
+                        <PropertyDim name="BorderWidth" />
+                    </Operator>
+                </Border>
+                <Border type="TopEdge" >
+                    <Operator type="Add">
+                        <PixelSize pixel_id="TaharezLook/PopupMenuFrameTop" value="Height" />
+                        <PropertyDim name="BorderWidth" />
+                    </Operator>
+                </Border>
+                <Border type="RightEdge" >
+                    <Operator type="Subtract">
+                        <Rel scale="1" value="RightEdge" />
+                        <Operator type="Add">
+                            <PixelSize pixel_id="TaharezLook/PopupMenuFrameRight" value="Width" />
+                            <PropertyDim name="BorderWidth" />
+                        </Operator>
+                    </Operator>
+                </Border>
+                <Border type="BottomEdge" >
+                    <Operator type="Subtract">
+                        <Rel scale="1" value="BottomEdge" />
+                        <Operator type="Add">
+                            <PixelSize pixel_id="TaharezLook/PopupMenuFrameBottom" value="Height" />
+                            <PropertyDim name="BorderWidth" />
+                        </Operator>
+                    </Operator>
+                </Border>
+            </Area>
+        </Special>
+        <StyleSection id="frame">
+            <FrameCom>
+                <Com type="TopLeftCorner" pixel_id="TaharezLook/PopupMenuFrameTopLeft" />
+                <Com type="TopRightCorner" pixel_id="TaharezLook/PopupMenuFrameTopRight" />
+                <Com type="BottomLeftCorner" pixel_id="TaharezLook/PopupMenuFrameBottomLeft" />
+                <Com type="BottomRightCorner" pixel_id="TaharezLook/PopupMenuFrameBottomRight" />
+                <Com type="LeftEdge" pixel_id="TaharezLook/PopupMenuFrameLeft" />
+                <Com type="RightEdge" pixel_id="TaharezLook/PopupMenuFrameRight" />
+                <Com type="TopEdge" pixel_id="TaharezLook/PopupMenuFrameTop" />
+                <Com type="BottomEdge" pixel_id="TaharezLook/PopupMenuFrameBottom" />
+                <Com type="Background" pixel_id="TaharezLook/PopupMenuMiddle" />
+            </FrameCom>
+        </StyleSection>
+        <StyleLayout name="Enable">
+            <Layer>
+                <Section style_section="frame">
+                    <ColourAttribute name="BackgroundColours" />
+                </Section>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Disable">
+            <Layer>
+                <Section style_section="frame">
+                    <Colours top_left="FF7F7F7F" top_right="FF7F7F7F" bottom_left="FF7F7F7F" bottom_right="FF7F7F7F" />
+                </Section>
+            </Layer>
+        </StyleLayout>
+    </WidgetStyle>
+
+    <!--
+    ***************************************************
+        TaharezLook/LargeVerticalScrollbarThumb
+    ***************************************************
+    -->
+    <WidgetStyle id="TaharezLook/LargeVerticalScrollbarThumb">
+        <Property name="VertFree" value="True" />
+        <Property name="MouseInputPropagationEnabled" value="True" />
+        <Property name="Size" value="{{0, 10}, {0, 32}}" />
+        <StyleSection id="normal">
+            <ImageryCom>
+                <Com pixel_id="TaharezLook/VertScrollThumbNormal" />
+                <VLayout type="stretch" />
+                <HLayout type="stretch" />
+            </ImageryCom>
+        </StyleSection>
+        <StyleSection id="hover">
+            <ImageryCom>
+                <Com pixel_id="TaharezLook/VertScrollThumbHover" />
+                <VLayout type="stretch" />
+                <HLayout type="stretch" />
+            </ImageryCom>
+        </StyleSection>
+        <StyleLayout name="Enable">
+            <Layer>
+                <Section style_section="normal" />
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Hover">
+            <Layer>
+                <Section style_section="hover" />
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Pushed">
+            <Layer>
+                <Section style_section="normal" />
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Disable">
+            <Layer>
+                <Section style_section="normal">
+                    <Colours top_left="FF7F7F7F" top_right="FF7F7F7F" bottom_left="FF7F7F7F" bottom_right="FF7F7F7F" />
+                </Section>
+            </Layer>
+        </StyleLayout>
+    </WidgetStyle>
+
+    <!--
+    ***************************************************
+        TaharezLook/LargeVerticalScrollbar
+    ***************************************************
+    -->
+    <WidgetStyle id="TaharezLook/LargeVerticalScrollbar">
+        <Property name="VerticalScrollbar" value="True" />
+        <Property name="Size" value="{{0, 16}, {1, 0}}" />
+        <Special name="ThumbTrackArea">
+            <Area>
+                <Border type="LeftEdge" ><Rel scale="0.325" value="LeftEdge" /></Border>
+                <Border type="TopEdge" >
+                    <Operator type="Add">
+                        <WidgetSize widget="__auto_decbtn__" value="Height" />
+                        <Operator type="Multiply">
+                            <PixelSize pixel_id="TaharezLook/VertScrollTop" value="Height" />
+                            <Abs value="0.5" />
+                        </Operator>
+                    </Operator>
+                </Border>
+                <Border type="RightEdge" ><Rel scale="1.0" value="RightEdge" /></Border>
+                <Border type="BottomEdge" >
+                    <Operator type="Subtract">
+                        <Rel scale="1.0" value="BottomEdge" />
+                        <Operator type="Add">
+                            <WidgetSize widget="__auto_decbtn__" value="Height" />
+                            <Operator type="Multiply">
+                                <PixelSize pixel_id="TaharezLook/VertScrollTop" value="Height" />
+                                <Abs value="0.5" />
+                            </Operator>
+                        </Operator>
+                    </Operator>
+                </Border>
+            </Area>
+        </Special>
+        <Widget  style_id="TaharezLook/ImageButton" id="__auto_incbtn__">
+            <Area>
+                <Border type="LeftEdge" ><Rel scale="0.25" value="LeftEdge" /></Border>
+                <Border type="TopEdge" >
+                    <Operator type="Multiply">
+                        <Abs value="-1" />
+                        <Operator type="Multiply">
+                            <PixelSize pixel_id="TaharezLook/VertScrollTop" value="Height" />
+                            <Abs value="0.5" />
+                        </Operator>
+                    </Operator>
+                </Border>
+                <Border type="Width" ><Rel scale="0.6" value="Width" /></Border>
+                <Border type="Height" >
+                    <Operator type="Multiply">
+                        <Rel scale="0.6" value="Width" />
+                        <Operator type="Divide">
+                            <PixelSize pixel_id="TaharezLook/VertScrollUpNormal" value="Width" />
+                            <PixelSize pixel_id="TaharezLook/VertScrollUpNormal" value="Height"/>
+                        </Operator>
+                    </Operator>
+                </Border>
+            </Area>
+            <VAlign type="bottom" />
+            <Property name="NormalImage" value="TaharezLook/VertScrollDownNormal" />
+            <Property name="HoverImage" value="TaharezLook/VertScrollDownHover" />
+            <Property name="PushedImage" value="TaharezLook/VertScrollDownNormal" />
+        </Widget>
+        <Widget  style_id="TaharezLook/ImageButton" id="__auto_decbtn__">
+            <Area>
+                <Border type="LeftEdge" ><Rel scale="0.25" value="LeftEdge" /></Border>
+                <Border type="TopEdge">
+                    <Operator type="Multiply">
+                        <PixelSize pixel_id="TaharezLook/VertScrollTop" value="Height" />
+                        <Abs value="0.5" />
+                    </Operator>
+                </Border>
+                <Border type="Width" ><Rel scale="0.6" value="Width" /></Border>
+                <Border type="Height" >
+                    <Operator type="Multiply">
+                        <Rel scale="0.6" value="Width" />
+                        <Operator type="Divide">
+                            <PixelSize pixel_id="TaharezLook/VertScrollUpNormal" value="Width" />
+                            <PixelSize pixel_id="TaharezLook/VertScrollUpNormal" value="Height"/>
+                        </Operator>
+                    </Operator>
+                </Border>
+            </Area>
+            <Property name="NormalImage" value="TaharezLook/VertScrollUpNormal" />
+            <Property name="HoverImage" value="TaharezLook/VertScrollUpHover" />
+            <Property name="PushedImage" value="TaharezLook/VertScrollUpNormal" />
+        </Widget>
+        <Widget  style_id="TaharezLook/LargeVerticalScrollbarThumb" id="__auto_thumb__">
+            <Area>
+                <Border type="Width" ><Rel scale="0.4" value="Width" /></Border>
+                <Border type="Height" >
+                    <Operator type="Multiply">
+                        <Rel scale="0.4" value="Width" />
+                        <Operator type="Divide">
+                            <PixelSize pixel_id="TaharezLook/VertScrollThumbNormal" value="Height" />
+                            <PixelSize pixel_id="TaharezLook/VertScrollThumbNormal" value="Width"/>
+                        </Operator>
+                    </Operator>
+                </Border>
+            </Area>
+        </Widget>
+        <StyleSection id="main">
+            <FrameCom>
+                <Com type="TopEdge" pixel_id="TaharezLook/VertScrollTop" />
+                <Com type="BottomEdge" pixel_id="TaharezLook/VertScrollBottom" />
+                <Com type="Background" pixel_id="TaharezLook/VertScrollMiddle" />
+            </FrameCom>
+            <ImageryCom>
+                <Area>
+                    <Border type="LeftEdge" ><Rel scale="0.45" value="LeftEdge" /></Border>
+                    <Border type="TopEdge" >
+                        <Operator type="Add">
+                            <WidgetSize widget="__auto_decbtn__" value="Height" />
+                            <Operator type="Multiply">
+                                <PixelSize pixel_id="TaharezLook/VertScrollTop" value="Height" />
+                                <Abs value="0.5" />
+                            </Operator>
+                        </Operator>
+                    </Border>
+                    <Border type="RightEdge" ><Rel scale="1.0" value="RightEdge" /></Border>
+                    <Border type="BottomEdge" >
+                        <Operator type="Subtract">
+                            <Rel scale="1.0" value="BottomEdge" />
+                            <Operator type="Add">
+                                <WidgetSize widget="__auto_decbtn__" value="Height" />
+                                <Operator type="Multiply">
+                                    <PixelSize pixel_id="TaharezLook/VertScrollTop" value="Height" />
+                                    <Abs value="0.5" />
+                                </Operator>
+                            </Operator>
+                        </Operator>
+                    </Border>
+                </Area>
+                <Com pixel_id="TaharezLook/VertScrollBarSegment" />
+                <VLayout type="tile" />
+            </ImageryCom>
+        </StyleSection>
+        <StyleLayout name="Enable">
+            <Layer>
+                <Section style_section="main" />
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Disable">
+            <Layer>
+                <Section style_section="main">
+                    <Colours top_left="FF7F7F7F" top_right="FF7F7F7F" bottom_left="FF7F7F7F" bottom_right="FF7F7F7F" />
+                </Section>
+            </Layer>
+        </StyleLayout>
+    </WidgetStyle>
+
+    <!--
+    ***************************************************
+        TaharezLook/ImageButton
+    ***************************************************
+    -->
+    <WidgetStyle id="TaharezLook/ImageButton">
+        <PropertyDefine id="NormalImageColour" value="FFFFFFFF" signal_refresh="true" type="ColourRect" />
+        <PropertyDefine id="HoverImageColour" value="FFFFFFFF" signal_refresh="true" type="ColourRect" />
+        <PropertyDefine id="PushedImageColour" value="FFFFFFFF" signal_refresh="true" type="ColourRect" />
+        <PropertyDefine id="DisabledImageColour" value="FF7F7F7F" signal_refresh="true" type="ColourRect" />
+        <PropertyDefine id="NormalImage" value="" signal_refresh="true" type="Pixel"/>
+        <PropertyDefine id="HoverImage" value="" signal_refresh="true" type="Pixel"/>
+        <PropertyDefine id="PushedImage" value="" signal_refresh="true" type="Pixel"/>
+        <PropertyDefine id="DisabledImage" value="" signal_refresh="true" type="Pixel"/>
+        <PropertyDefine id="VertImageFormatting" value="stretch" signal_refresh="true" type="VerticalFormatting" />
+        <PropertyDefine id="HorzImageFormatting" value="stretch" signal_refresh="true" type="HorizontalFormatting" />
+        <StyleSection id="normal">
+            <ImageryCom>
+                <ImageProperty name="NormalImage" />
+                <ColourAttribute name="NormalImageColour" />
+                <VertFormatProperty name="VertImageFormatting" />
+                <HorzFormatProperty name="HorzImageFormatting" />
+            </ImageryCom>
+        </StyleSection>
+        <StyleSection id="hover">
+            <ImageryCom>
+                <ImageProperty name="HoverImage" />
+                <ColourAttribute name="HoverImageColour" />
+                <VertFormatProperty name="VertImageFormatting" />
+                <HorzFormatProperty name="HorzImageFormatting" />
+            </ImageryCom>
+        </StyleSection>
+        <StyleSection id="pushed">
+            <ImageryCom>
+                <ImageProperty name="PushedImage" />
+                <ColourAttribute name="PushedImageColour" />
+                <VertFormatProperty name="VertImageFormatting" />
+                <HorzFormatProperty name="HorzImageFormatting" />
+            </ImageryCom>
+        </StyleSection>
+        <StyleSection id="disabled">
+            <ImageryCom>
+                <ImageProperty name="DisabledImage" />
+                <ColourAttribute name="DisabledImageColour" />
+                <VertFormatProperty name="VertImageFormatting" />
+                <HorzFormatProperty name="HorzImageFormatting" />
+            </ImageryCom>
+        </StyleSection>
+        <StyleLayout name="Enable">
+            <Layer>
+                <Section style_section="normal" />
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Hover">
+            <Layer>
+                <Section style_section="hover" />
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Pushed">
+            <Layer>
+                <Section style_section="pushed" />
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="PushedOff">
+            <Layer>
+                <Section style_section="hover" />
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Disable">
+            <Layer>
+                <Section style_section="disabled" />
+            </Layer>
+        </StyleLayout>
+    </WidgetStyle>
+
+    <!--
+    ***************************************************
+        TaharezLook/ItemListbox
+    ***************************************************
+    -->
+    <WidgetStyle id="TaharezLook/ItemListbox">
+        <Property name="Size" value="{{0, 256}, {0, 256}}" />
+        <Special name="ItemRenderArea">
+            <Area>
+                <Border type="LeftEdge" ><PixelSize pixel_id="TaharezLook/ListboxLeft" value="Width" /></Border>
+                <Border type="TopEdge" ><PixelSize pixel_id="TaharezLook/ListboxTop" value="Height" /></Border>
+                <Border type="RightEdge" >
+                    <Operator type="Subtract">
+                        <Rel scale="1" value="RightEdge" />
+                        <PixelSize pixel_id="TaharezLook/ListboxRight" value="Width" />
+                    </Operator>
+                </Border>
+                <Border type="BottomEdge" >
+                    <Operator type="Subtract">
+                        <Rel scale="1" value="BottomEdge" />
+                        <PixelSize pixel_id="TaharezLook/ListboxBottom" value="Height" />
+                    </Operator>
+                </Border>
+            </Area>
+        </Special>
+        <Special name="ItemRenderAreaHScroll">
+            <Area>
+                <Border type="LeftEdge" ><PixelSize pixel_id="TaharezLook/ListboxLeft" value="Width" /></Border>
+                <Border type="TopEdge" ><PixelSize pixel_id="TaharezLook/ListboxTop" value="Height" /></Border>
+                <Border type="RightEdge" >
+                    <Operator type="Subtract">
+                        <Rel scale="1" value="RightEdge" />
+                        <PixelSize pixel_id="TaharezLook/ListboxRight" value="Width" />
+                    </Operator>
+                </Border>
+                <Border type="BottomEdge" >
+                    <Rel scale="1" offset="-12" value="BottomEdge" />
+                </Border>
+            </Area>
+        </Special>
+        <Special name="ItemRenderAreaVScroll">
+            <Area>
+                <Border type="LeftEdge" ><PixelSize pixel_id="TaharezLook/ListboxLeft" value="Width" /></Border>
+                <Border type="TopEdge" ><PixelSize pixel_id="TaharezLook/ListboxTop" value="Height" /></Border>
+                <Border type="RightEdge" >
+                    <Rel scale="1" offset="-12" value="RightEdge" />
+                </Border>
+                <Border type="BottomEdge" >
+                    <Operator type="Subtract">
+                        <Rel scale="1" value="BottomEdge" />
+                        <PixelSize pixel_id="TaharezLook/ListboxBottom" value="Height" />
+                    </Operator>
+                </Border>
+            </Area>
+        </Special>
+        <Special name="ItemRenderAreaHVScroll">
+            <Area>
+                <Border type="LeftEdge" ><PixelSize pixel_id="TaharezLook/ListboxLeft" value="Width" /></Border>
+                <Border type="TopEdge" ><PixelSize pixel_id="TaharezLook/ListboxTop" value="Height" /></Border>
+                <Border type="RightEdge" >
+                    <Rel scale="1" offset="-12" value="RightEdge" />
+                </Border>
+                <Border type="BottomEdge" >
+                    <Rel scale="1" offset="-12" value="BottomEdge" />
+                </Border>
+            </Area>
+        </Special>
+        <Widget  style_id="TaharezLook/HorizontalScrollbar" id="__auto_hscrollbar__">
+            <Area>
+                <Border type="Width" ><Rel scale="1" offset="-12" value="Width" /></Border>
+                <Border type="Height" ><Abs value="12" /></Border>
+            </Area>
+            <VAlign type="bottom" />
+            <Property name="NonClient" value="True" />
+        </Widget>
+        <Widget  style_id="TaharezLook/VerticalScrollbar" id="__auto_vscrollbar__">
+            <Area>
+                <Border type="Width" ><Abs value="12" /></Border>
+                <Border type="Height" ><Rel scale="1" value="Height" /></Border>
+            </Area>
+            <HAlign type="right" />
+            <Property name="NonClient" value="True" />
+        </Widget>
+        <StyleSection id="main">
+            <FrameCom>
+                <Com type="TopLeftCorner" pixel_id="TaharezLook/ListboxTopLeft" />
+                <Com type="TopRightCorner" pixel_id="TaharezLook/ListboxTopRight" />
+                <Com type="BottomLeftCorner" pixel_id="TaharezLook/ListboxBottomLeft" />
+                <Com type="BottomRightCorner" pixel_id="TaharezLook/ListboxBottomRight" />
+                <Com type="LeftEdge" pixel_id="TaharezLook/ListboxLeft" />
+                <Com type="RightEdge" pixel_id="TaharezLook/ListboxRight" />
+                <Com type="TopEdge" pixel_id="TaharezLook/ListboxTop" />
+                <Com type="BottomEdge" pixel_id="TaharezLook/ListboxBottom" />
+                <Com type="Background" pixel_id="TaharezLook/ListboxBackdrop" />
+            </FrameCom>
+        </StyleSection>
+        <StyleLayout name="Enable">
+            <Layer>
+                <Section style_section="main" />
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Disable">
+            <Layer>
+                <Section style_section="main" />
+            </Layer>
+        </StyleLayout>
+    </WidgetStyle>
+
+
+    <!--
+    ***************************************************
+        TaharezLook/ListboxItem
+    ***************************************************
+    -->
+    <WidgetStyle id="TaharezLook/ListboxItem">
+        <PropertyDefine id="TextColour" value="FFFFFFFF" signal_refresh="true" type="ColourRect"/>
+        <PropertyDefine id="SelectedTextColour" value="FFFFFFFF" signal_refresh="true" type="ColourRect"/>
+        <PropertyDefine id="SelectionBrush" value="TaharezLook/ListboxSelectionBrush" signal_refresh="true" type="Pixel"/>
+        <PropertyDefine id="SelectionColour" value="FF4444AA" signal_refresh="true" type="ColourRect"/>
+        <Property name="Selectable" value="True" />
+        <Property name="MouseInputPropagationEnabled" value="True" />
+        <Property name="Size" value="{{0, 128}, {0, 32}}" />
+        <Special name="ContentSize">
+            <Area>
+                <Border type="Width" >
+                    <FontDim type="HorzExtent" padding="6" />
+                </Border>
+                <Border type="Height" >
+                    <FontDim type="LineSpacing" />
+                </Border>
+            </Area>
+        </Special>
+        <StyleSection id="label">
+            <TextCom>
+                <Area>
+                    <Border type="LeftEdge">
+                        <Abs value="3" />
+                    </Border>
+                    <Border type="RightEdge">
+                        <Rel scale="1" offset="-3" value="RightEdge" />
+                    </Border>
+                </Area>
+            </TextCom>
+        </StyleSection>
+        <StyleSection id="selection">
+            <ImageryCom>
+                <ImageProperty name="SelectionBrush" />
+                <ColourAttribute name="SelectionColour" />
+                <VLayout type="stretch" />
+                <HLayout type="stretch" />
+            </ImageryCom>
+        </StyleSection>
+        <StyleLayout name="Enable">
+            <Layer>
+                <Section style_section="label">
+                    <ColourAttribute name="TextColour" />
+                </Section>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Disable">
+            <Layer>
+                <Section style_section="label">
+                    <ColourAttribute name="TextColour" />
+                </Section>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="SelectEnable">
+            <Layer>
+                <Section style_section="selection" />
+                <Section style_section="label">
+                    <ColourAttribute name="SelectedTextColour" />
+                </Section>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="SelectDisable">
+            <Layer>
+                <Section style_section="selection" />
+                <Section style_section="label">
+                    <ColourAttribute name="SelectedTextColour" />
+                </Section>
+            </Layer>
+        </StyleLayout>
+    </WidgetStyle>
+
+<!--
+/**********************************************************************************************************
+	TaharezLook/Tree
+***********************************************************************************************************/
+-->
+<WidgetStyle id="TaharezLook/Tree">
+        <PropertyDefine id="FrameColours" value="tl:FFFFFFFF tr:FFFFFFFF bl:FFFFFFFF br:FFFFFFFF" signal_refresh="true" type="ColourRect"/>
+        <Special name="ItemRenderingArea">
+            <Area>
+                <Border type="LeftEdge" ><PixelSize pixel_id="TaharezLook/WindowLeftEdge" value="Width" /></Border>
+                <Border type="TopEdge" ><PixelSize pixel_id="TaharezLook/WindowTopEdge" value="Height" /></Border>
+                <Border type="RightEdge" >
+                    <Operator type="Subtract">
+                        <Rel scale="1" value="RightEdge" />
+                        <PixelSize pixel_id="TaharezLook/WindowRightEdge" value="Width" />
+                    </Operator>
+                </Border>
+                <Border type="BottomEdge" >
+                    <Operator type="Subtract">
+                        <Rel scale="1" value="BottomEdge" />
+                        <PixelSize pixel_id="TaharezLook/WindowBottomEdge" value="Height" />
+                    </Operator>
+                </Border>
+            </Area>
+        </Special>
+        <Widget  style_id="TaharezLook/HorizontalScrollbar" id="__auto_hscrollbar__">
+            <Area>
+                <Border type="LeftEdge" ><Abs value="5" /></Border>
+                <Border type="TopEdge" ><Abs value="0" /></Border>
+                <Border type="Width" ><Rel scale="1" offset="-25" value="Width" /></Border>
+                <Border type="Height" ><Abs value="10" /></Border>
+            </Area>
+            <VAlign type="bottom" />
+        </Widget>
+        <Widget style_id="TaharezLook/VerticalScrollbar" id="__auto_vscrollbar__">
+            <Area>
+                <Border type="LeftEdge" ><Abs value="-5" /></Border>
+                <Border type="TopEdge" ><Abs value="5" /></Border>
+                <Border type="Width" ><Abs value="10" /></Border>
+                <Border type="Height" ><Rel scale="1" offset="-10" value="Height" /></Border>
+            </Area>
+            <HAlign type="right" />
+        </Widget>
+        <StyleSection id="OpenTreeButton">
+            <ImageryCom>
+                <Com pixel_id="TaharezLook/TreeListClosed" />
+              <!--  <VLayout type="stretch" />
+                <HLayout type="stretch" /> -->
+            </ImageryCom>
+        </StyleSection>
+        <StyleSection id="CloseTreeButton">
+            <ImageryCom>
+                <Com pixel_id="TaharezLook/TreeListOpened" />
+                <VLayout type="stretch" />
+                <HLayout type="stretch" />
+            </ImageryCom>
+        </StyleSection>
+        <StyleLayout name="Enable">
+            <Layer>
+                <Section style_section="frame" widget_style="TaharezLook/StaticShared" >
+                    <Colours top_left="FF7F7F7F" top_right="FF7F7F7F" bottom_left="FF7F7F7F" bottom_right="FF7F7F7F" />
+                </Section>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Disable">
+            <Layer>
+                <Section style_section="frame" widget_style="TaharezLook/StaticShared" >
+                    <Colours top_left="FF7F7F7F" top_right="FF7F7F7F" bottom_left="FF7F7F7F" bottom_right="FF7F7F7F" />
+                </Section>
+            </Layer>
+        </StyleLayout>
+    </WidgetStyle>
+</Style>

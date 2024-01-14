@@ -1,0 +1,151 @@
+<?xml version="1.0" ?>
+
+<!--
+    Generic.looknfeel by Lukas E. Meindl
+
+    This looknfeel was created for the HUDDemo to provide it with a score popup widget, it uses an animation defined
+    in this looknfeel file
+-->
+
+<Style ver="7">
+
+    <WidgetStyle id="HUDDemo/PopupLabel">
+        <PropertyDefine signal_refresh="true" value="FFFF0000" type="Colour" id="NormalTextColour"/>
+        <PropertyDefine signal_refresh="true" value="FFFF0000" type="Colour" id="DisabledTextColour"/>
+        <PropertyDefine signal_refresh="true" value="centre" type="VerticalTextFormatting" id="VertFormatting"/>
+        <PropertyDefine signal_refresh="true" value="left" type="HorizontalTextFormatting" id="HorzFormatting"/>
+        <Property name="Size" value="{{0.1, 0}, {0.08, 0}}" />
+        <Property name="MousePassThroughEnabled" value="true" />
+        <StyleSection id="Label">
+            <TextCom>
+                <Area>
+                    <Border type="LeftEdge">
+                        <Abs value="0"/>
+                    </Border>
+                    <Border type="TopEdge">
+                        <Abs value="0"/>
+                    </Border>
+                    <Border type="Width">
+                        <Rel scale="1" value="Width"/>
+                    </Border>
+                    <Border type="Height">
+                        <Rel scale="1" value="Height"/>
+                    </Border>
+                </Area>
+                <VertFormatProperty name="VertFormatting"/>
+                <HorzFormatProperty name="HorzFormatting"/>
+            </TextCom>
+        </StyleSection>
+        <StyleLayout name="Enable">
+            <Layer>
+                <Section style_section="Label">
+                    <ColourAttribute name="NormalTextColour"/>
+                </Section>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Disable">
+            <Layer>
+                <Section style_section="Label">
+                    <ColourAttribute name="DisabledTextColour"/>
+                </Section>
+            </Layer>
+        </StyleLayout>
+
+
+        <AnimationDefinition autoStart="false" duration="2.5" name="PopupAnimation" replayMode="once">
+            <PropertyIDKeyFrameTrack property="Position" interpolator="UVector2" applicationMethod="relative">
+                <KeyFrame position="0.0" value="{{0, 0}, {0, 0}}" />
+                <KeyFrame position="2.5" progression="linear" value="{{0, 0}, {-0.2, 0}}" />
+            </PropertyIDKeyFrameTrack>
+            <PropertyIDKeyFrameTrack property="Alpha" interpolator="float" applicationMethod="absolute">
+                <KeyFrame position="0.8" value="1.0" />
+                <KeyFrame position="2.5" progression="linear" value="0.0" />
+            </PropertyIDKeyFrameTrack>
+            <Subscription event="StartAnimation" action="Start" />
+        </AnimationDefinition>
+    </WidgetStyle>
+
+
+    <WidgetStyle id="HUDDemo/ProgressBar">
+        <Property name="Size" value="{{0, 256}, {0, 32}}" />
+        <Special name="ProgressArea">
+            <Area>
+                <Border type="LeftEdge">
+                    <Abs value="0"/>
+                </Border>
+                <Border type="TopEdge">
+                    <Abs value="0"/>
+                </Border>
+                <Border type="Width">
+                    <Rel scale="1" value="Width"/>
+                </Border>
+                <Border type="Height">
+                    <Rel scale="1" value="Height"/>
+                </Border>
+            </Area>
+        </Special>
+        <StyleSection id="background">
+            <ImageryCom>
+                <Area>
+                    <Border type="LeftEdge">
+                        <Abs value="0"/>
+                    </Border>
+                    <Border type="TopEdge">
+                        <Abs value="0"/>
+                    </Border>
+                    <Border type="Width">
+                        <Rel scale="1" value="Width"/>
+                    </Border>
+                    <Border type="Height">
+                        <Rel scale="1" value="Height"/>
+                    </Border>
+                </Area>
+                <Com pixel_id="HUDDemo/LifeBarBG"/>
+                <VLayout type="stretch"/>
+                <HLayout type="stretch"/>
+            </ImageryCom>
+        </StyleSection>
+        <StyleSection id="progress">
+            <ImageryCom>
+                <Area>
+                    <Border type="LeftEdge">
+                        <Abs value="0"/>
+                    </Border>
+                    <Border type="TopEdge">
+                        <Abs value="0"/>
+                    </Border>
+                    <Border type="Width">
+                        <Rel scale="1" value="Width"/>
+                    </Border>
+                    <Border type="Height">
+                        <Rel scale="1" value="Height"/>
+                    </Border>
+                </Area>
+                <Com pixel_id="HUDDemo/LifeBarFill"/>
+                <VLayout type="stretch"/>
+                <HLayout type="stretch"/>
+            </ImageryCom>
+        </StyleSection>
+        <StyleLayout name="Enable">
+            <Layer>
+                <Section style_section="background"/>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Disable">
+            <Layer>
+                <Section style_section="background"/>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="EnableProgress">
+            <Layer>
+                <Section style_section="progress"/>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="DisableProgress">
+            <Layer>
+                <Section style_section="progress" />
+            </Layer>
+        </StyleLayout>
+    </WidgetStyle>
+
+</Style>

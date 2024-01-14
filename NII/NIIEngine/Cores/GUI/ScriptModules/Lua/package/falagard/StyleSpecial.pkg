@@ -1,0 +1,14 @@
+/***********************************************************************
+  StyleSpecial
+***********************************************************************/
+class StyleSpecial
+{
+  string getName() const;
+  const ComponentArea& getArea() const;
+  void setArea(ComponentArea area);
+  //void writeXMLToStream(OutStream& out_stream) const;
+
+  StyleSpecial();
+  StyleSpecial(utf8string name);
+};
+

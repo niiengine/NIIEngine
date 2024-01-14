@@ -1,0 +1,77 @@
+<?xml version="1.0" ?>
+<Style ver="7">
+
+    <WidgetStyle id="TaharezLook/InventoryReceiver">
+        <PropertyDefine id="Pixel" value="" signal_refresh="true" type="Pixel"/>
+        <StyleSection id="main">
+            <ImageryCom>
+                <Area>
+					<Border type="LeftEdge" ><Abs value="0" /></Border>
+					<Border type="TopEdge" ><Abs value="0" /></Border>
+					<Border type="Width" ><Rel scale="1" value="Width" /></Border>
+					<Border type="Height" ><Rel scale="1" value="Height" /></Border>
+				</Area>
+                <ImageProperty name="Pixel" />
+            </ImageryCom>
+        </StyleSection>
+        <StyleLayout name="Enable">
+            <Layer>
+                <Section style_section="main" />
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Disable" />
+    </WidgetStyle>
+
+    <WidgetStyle id="TaharezLook/InventoryItem">
+        <PropertyDefine id="Pixel" value="" signal_refresh="true" type="Pixel"/>
+        <StyleSection id="main">
+            <ImageryCom>
+                <Area>
+                    <Border type="LeftEdge"><Abs value="0" /></Border>
+                    <Border type="TopEdge"><Abs value="0" /></Border>
+                    <Border type="RightEdge"><Rel scale="1" value="RightEdge" /></Border>
+                    <Border type="BottomEdge"><Rel scale="1" value="BottomEdge" /></Border>
+                </Area>
+                <ImageProperty name="Pixel" />
+                <VLayout type="stretch" />
+                <HLayout type="stretch" />
+            </ImageryCom>
+        </StyleSection>
+        <StyleSection id="overlay">
+            <ImageryCom>
+                <Area>
+                    <Border type="LeftEdge"><Abs value="0" /></Border>
+                    <Border type="TopEdge"><Abs value="0" /></Border>
+                    <Border type="RightEdge"><Rel scale="1" value="RightEdge" /></Border>
+                    <Border type="BottomEdge"><Rel scale="1" value="BottomEdge" /></Border>
+                </Area>
+                <Com pixel_id="TaharezLook/GenericBrush" />
+                <VLayout type="stretch" />
+                <HLayout type="stretch" />
+            </ImageryCom>
+        </StyleSection>
+        <StyleLayout name="Enable">
+            <Layer>
+                <Section style_section="main" />
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="DraggingValidTarget">
+            <Layer>
+                <Section style_section="main" />
+                <Section style_section="overlay">
+                    <Colours top_left="FF00FF00" top_right="FF00FF00" bottom_left="FF00FF00" bottom_right="FF00FF00" />
+                </Section>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="DraggingInvalidTarget">
+            <Layer>
+                <Section style_section="main" />
+                <Section style_section="overlay">
+                    <Colours top_left="FFFF0000" top_right="FFFF0000" bottom_left="FFFF0000" bottom_right="FFFF0000" />
+                </Section>
+            </Layer>
+        </StyleLayout>
+    </WidgetStyle>
+
+</Style>
+

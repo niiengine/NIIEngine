@@ -1,0 +1,3 @@
+﻿++ GNOME Color Manager
+
+Manage, install and generate color profiles

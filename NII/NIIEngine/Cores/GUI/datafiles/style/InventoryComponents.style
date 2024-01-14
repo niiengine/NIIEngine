@@ -1,0 +1,77 @@
+<?xml version="1.0" ?>
+<Style ver="7">
+
+    <WidgetStyle name="TaharezLook/InventoryReceiver">
+        <StyleProperty name="Image" value="" signal_refresh="true" type="Image"/>
+        <StyleSection name="main">
+            <ImageryCom>
+                <ComArea>
+					<SizeDefine type="LeftEdge" ><AbsSize value="0" /></SizeDefine>
+					<SizeDefine type="TopEdge" ><AbsSize value="0" /></SizeDefine>
+					<SizeDefine type="Width" ><RelSize scale="1" type="Width" /></SizeDefine>
+					<SizeDefine type="Height" ><RelSize scale="1" type="Height" /></SizeDefine>
+				</ComArea>
+                <PixelProperty name="Image" />
+            </ImageryCom>
+        </StyleSection>
+        <StyleLayout name="Enabled">
+            <Layer>
+                <Section id="main" />
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Disabled" />
+    </WidgetStyle>
+
+    <WidgetStyle name="TaharezLook/InventoryItem">
+        <StyleProperty name="Image" value="" signal_refresh="true" type="Image"/>
+        <StyleSection name="main">
+            <ImageryCom>
+                <ComArea>
+                    <SizeDefine type="LeftEdge"><AbsSize value="0" /></SizeDefine>
+                    <SizeDefine type="TopEdge"><AbsSize value="0" /></SizeDefine>
+                    <SizeDefine type="RightEdge"><RelSize scale="1" type="RightEdge" /></SizeDefine>
+                    <SizeDefine type="BottomEdge"><RelSize scale="1" type="BottomEdge" /></SizeDefine>
+                </ComArea>
+                <PixelProperty name="Image" />
+                <VLayout type="Extrude" />
+                <HLayout type="Extrude" />
+            </ImageryCom>
+        </StyleSection>
+        <StyleSection name="overlay">
+            <ImageryCom>
+                <ComArea>
+                    <SizeDefine type="LeftEdge"><AbsSize value="0" /></SizeDefine>
+                    <SizeDefine type="TopEdge"><AbsSize value="0" /></SizeDefine>
+                    <SizeDefine type="RightEdge"><RelSize scale="1" type="RightEdge" /></SizeDefine>
+                    <SizeDefine type="BottomEdge"><RelSize scale="1" type="BottomEdge" /></SizeDefine>
+                </ComArea>
+                <ComPixel pixel_id="TaharezLook/GenericBrush" />
+                <VLayout type="Extrude" />
+                <HLayout type="Extrude" />
+            </ImageryCom>
+        </StyleSection>
+        <StyleLayout name="Normal">
+            <Layer>
+                <Section id="main" />
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="DraggingValidTarget">
+            <Layer>
+                <Section id="main" />
+                <Section id="overlay">
+                    <Colours top_left="FF00FF00" top_right="FF00FF00" bottom_left="FF00FF00" bottom_right="FF00FF00" />
+                </Section>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="DraggingInvalidTarget">
+            <Layer>
+                <Section id="main" />
+                <Section id="overlay">
+                    <Colours top_left="FFFF0000" top_right="FFFF0000" bottom_left="FFFF0000" bottom_right="FFFF0000" />
+                </Section>
+            </Layer>
+        </StyleLayout>
+    </WidgetStyle>
+
+</Style>
+

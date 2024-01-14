@@ -1,0 +1,12 @@
+prefix=@NII_PREFIX_PATH@
+exec_prefix=${prefix}
+libdir=${prefix}/@NII_LIB_DIRECTORY@
+includedir=${prefix}/include
+plugindir=${libdir}/NII
+
+Name: NII (static lib)
+Description: Object-Oriented Graphics Rendering Engine
+Version: @NII_VERSION@
+Requires: freetype2, zziplib, x11, xt, xaw7, gl
+Libs: -L${libdir} -L${plugindir} -lNIIEngine@NII_LIB_SUFFIX@ @NII_ADDITIONAL_LIBS@
+Cflags: -I${includedir} -I${includedir}/NII @NII_CFLAGS@

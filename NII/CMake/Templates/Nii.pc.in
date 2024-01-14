@@ -1,0 +1,11 @@
+prefix=@NII_PREFIX_PATH@
+exec_prefix=${prefix}
+libdir=${prefix}/@NII_LIB_DIRECTORY@
+includedir=${prefix}/include
+plugindir=${libdir}/NII
+
+Name: NII
+Description: 面向思想游戏编程
+Version: @NII_VERSION@
+Libs: -L${libdir} -lNIIEngine@NII_LIB_SUFFIX@ @NII_ADDITIONAL_LIBS@
+Cflags: -I${includedir} -I${includedir}/NII @NII_CFLAGS@

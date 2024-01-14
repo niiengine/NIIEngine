@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="F:\tool\GSGS4.0.0\CodeFormatter\ASBeautifier.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\CodeFormatter\ASEnhancer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\CodeFormatter\ASFormatter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\CodeFormatter\ASLocalizer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\CodeFormatter\ASResource.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\CodeFormatter\PHPFormatterBuffer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\CodeFormatter\astyle_main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\CodeFormatter\clClangFormatLocator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\CodeFormatter\codeformatter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\CodeFormatter\codeformatterdlg.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\CodeFormatter\codeformatterdlg_codeformatter_bitmaps.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\CodeFormatter\codeformatterdlgbase.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\CodeFormatter\formatoptions.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{48CD2966-80B4-3C52-BDF2-A24A35FB3386}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

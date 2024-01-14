@@ -1,0 +1,7 @@
+<?xml version="1.0"?> <resource version="2.3.0.1">
+   <object class="wxBitmap" name="16-connected">bitmaps-dark/16-connected.png</object>
+   <object class="wxBitmap" name="16-folder-users">bitmaps-dark/16-folder-users.png</object>
+   <object class="wxBitmap" name="16-remote-folder">bitmaps-dark/16-remote-folder.png</object>
+   <object class="wxBitmap" name="16-remote-folder@2x">bitmaps-dark/16-remote-folder@2x.png</object>
+   <object class="wxBitmap" name="16-up">bitmaps-dark/16-up.png</object>
+</resource>

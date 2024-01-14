@@ -1,0 +1,99 @@
+﻿++ source 50优秀项目
+
+sourceforge优秀项目介绍之一：PowerFolder 文件同步 
+
+sourceforge优秀项目介绍之二：MindTouch 数据共享 
+
+sourceforge优秀项目介绍之三：Ehcache 分布式缓存 
+
+sourceforge优秀项目介绍之四：Hyperic HQ 企业监管 
+
+sourceforge优秀项目介绍之五：Firebird 数据库引擎 
+
+sourceforge优秀项目介绍之六：Barcode4J 条形码生成器 
+
+sourceforge优秀项目介绍之七：Openbravo 企业项目管理 
+
+sourceforge优秀项目介绍之八：Inkscape向量绘图 
+
+sourceforge优秀项目介绍之九：Scorched 3D 游戏 
+
+sourceforge优秀项目介绍之十： Art of Illusion 图像处理 
+
+sourceforge优秀项目介绍之十一： Zenoss Core 企业IT管理 
+
+sourceforge优秀项目介绍之十二： FreeCol 回合制策略 
+
+sourceforge优秀项目介绍之十三： ICEcore 开放团队协作软件 
+
+sourceforge优秀项目介绍之十四： FreeNAS 操作系统 
+
+sourceforge优秀项目介绍之十五：Pentaho-商务智能 
+
+sourceforge优秀项目介绍之十六：openQRM 开源系统管理 
+
+sourceforge优秀项目介绍之十七：Sahana 赈灾管理系统 
+
+sourceforge优秀项目介绍之十八：Stellarium 模拟星空 
+
+sourceforge优秀项目介绍之十九： FreeMind 思维导图 
+
+sourceforge优秀项目介绍之二十：NSIS “Nullsoft 脚本安装系统” 
+
+sourceforge优秀项目介绍之二十一：FCKeditor 文本编辑器 
+
+sourceforge优秀项目介绍之二十二：NHibernate “.Net的Hibernate实现” 
+
+sourceforge优秀项目介绍之二十三：MediaWiki 维基百科 
+
+sourceforge优秀项目介绍之二十四：MinGW “ GNU工具集合” 
+
+sourceforge优秀项目介绍之二十五：JasperReports 报表制作 
+
+sourceforge优秀项目介绍之二十六：Nagios 监视服务 
+
+sourceforge优秀项目介绍之二十七：WinSCP 文件传输 
+
+sourceforge优秀项目介绍之二十八：phpMyAdmin 数据库管理 
+
+sourceforge优秀项目介绍之二十九：JBoss 服务器 
+
+sourceforge优秀项目介绍之三十：FileZilla“FTP客户端软件” 
+
+sourceforge优秀项目介绍之三十一：OGRE 三维仿真 
+
+sourceforge优秀项目介绍之三十二：Net-SNMP “BSD系统” 
+
+sourceforge优秀项目介绍之三十三：phpBB “论坛系统” 
+
+sourceforge优秀项目介绍之三十四：SugarCRM “关系管理” 
+
+sourceforge优秀项目介绍之三十五：MegaMek “Java游戏” 
+
+sourceforge优秀项目介绍之三十六：TUTOS“生命周期管理” 
+
+sourceforge优秀项目介绍之三十七：Gallery 图片管理 
+
+sourceforge优秀项目介绍之三十八：magento 电子商务系统 
+
+sourceforge优秀项目介绍之三十九：OpenOffice.org 办公软件 
+
+sourceforge优秀项目介绍之四十：Audacity 音频编辑 
+
+sourceforge优秀项目介绍之四十一：TortoiseSVN 
+
+sourceforge优秀项目介绍之四十二： OpenNMS 网络管理 
+
+sourceforge优秀项目介绍之四十三：concrete5 内容管理 
+
+sourceforge优秀项目介绍之四十四：OpenSwing 开源框架 
+
+sourceforge优秀项目介绍之四十五：Notepad++ 代码编辑器 
+
+sourceforge优秀项目介绍之四十六：Shareaza“P2P软件” 
+
+sourceforge优秀项目介绍之四十七：OrangeHRM 人力资源管理 
+
+sourceforge优秀项目介绍之四十八：TinyMCE 编辑器 
+
+sourceforge优秀项目介绍之四十九：ZK Ajax框架

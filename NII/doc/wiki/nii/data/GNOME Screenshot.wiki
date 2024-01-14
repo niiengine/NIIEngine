@@ -1,0 +1,3 @@
+﻿++ GNOME Screenshot
+
+Take screenshots of your desktop

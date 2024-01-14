@@ -1,0 +1,1316 @@
+<?xml version="1.0" ?>
+
+<!--
+    SampleBrowserSkin.looknfeel by Lukas E. Meindl
+
+    This looknfeel is created for the SampleFramework to provide a minimal
+	set of widgets that are specifically designed for it. This also shows
+	how the looknfeel system and imagesets can be customized specifically
+	for a project.
+-->
+
+<Style ver="7">
+    <WidgetStyle name="SampleBrowserSkin/Label">
+        <StyleProperty name="NormalTextColour" value="FF000000" signal_refresh="true" type="Colour" />
+        <StyleProperty name="DisabledTextColour" value="FF444444" signal_refresh="true" type="Colour" />
+        <StyleProperty name="VTLayout1" value="Centre" signal_refresh="true" type="VTextLayout" />
+        <StyleProperty name="HTLayout1" value="Centre" signal_refresh="true" type="HTextLayout" />
+        <StyleSection name="Label">
+            <TextCom>
+                <ComArea>
+                    <SizeDefine type="LeftEdge"><AbsSize value="0" /></SizeDefine>
+                    <SizeDefine type="TopEdge"><AbsSize value="0" /></SizeDefine>
+                    <SizeDefine type="Width"><RelSize scale="1" type="Width" /></SizeDefine>
+                    <SizeDefine type="Height"><RelSize scale="1" type="Height" /></SizeDefine>
+                </ComArea>
+                <VLayoutProperty name="VTLayout1" />
+                <HLayoutProperty name="HTLayout1" />
+            </TextCom>
+        </StyleSection>
+        <StyleLayout name="Enabled">
+            <Layer>
+                <Section id="Label">
+                    <ColourProperty name="NormalTextColour" />
+                </Section>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Disabled">
+            <Layer>
+                <Section id="Label">
+                    <ColourProperty name="DisabledTextColour" />
+                </Section>
+            </Layer>
+        </StyleLayout>
+    </WidgetStyle>
+
+    <!--
+:::: Shared static widget components.
+-->
+    <WidgetStyle name="SampleBrowserSkin/StaticShared">
+        <StyleSection name="frame">
+            <FrameCom>
+                <ComArea>
+                    <SizeDefine type="LeftEdge"><AbsSize value="0" /></SizeDefine>
+                    <SizeDefine type="TopEdge"><AbsSize value="0" /></SizeDefine>
+                    <SizeDefine type="RightEdge"><RelSize scale="1" type="RightEdge" /></SizeDefine>
+                    <SizeDefine type="BottomEdge"><RelSize scale="1" type="BottomEdge" /></SizeDefine>
+                </ComArea>
+                <ComPixel type="TopLeftCorner" pixel_id="SampleBrowserSkin/TextBoxTL" />
+                <ComPixel type="TopRightCorner" pixel_id="SampleBrowserSkin/TextBoxTR" />
+                <ComPixel type="BottomLeftCorner" pixel_id="SampleBrowserSkin/TextBoxBL" />
+                <ComPixel type="BottomRightCorner" pixel_id="SampleBrowserSkin/TextBoxBR" />
+                <ComPixel type="LeftEdge" pixel_id="SampleBrowserSkin/TextBoxL" />
+                <ComPixel type="TopEdge" pixel_id="SampleBrowserSkin/TextBoxT" />
+                <ComPixel type="RightEdge" pixel_id="SampleBrowserSkin/TextBoxR" />
+                <ComPixel type="BottomEdge" pixel_id="SampleBrowserSkin/TextBoxB" />
+            </FrameCom>
+        </StyleSection>
+        <StyleSection name="with_frame_background">
+            <ImageryCom>
+                <ComArea>
+                    <SizeDefine type="LeftEdge" >
+                        <PixelSize name="SampleBrowserSkin/TextBoxL" dimension="Width" />
+                    </SizeDefine>
+                    <SizeDefine type="TopEdge" >
+                        <PixelSize name="SampleBrowserSkin/TextBoxT" dimension="Height" />
+                    </SizeDefine>
+                    <SizeDefine type="RightEdge" >
+                        <SizeOp op="Subtract">
+                            <RelSize scale="1.0" type="RightEdge" />
+                            <PixelSize name="SampleBrowserSkin/TextBoxR" dimension="Width" />
+                        </SizeOp>
+                    </SizeDefine>
+                    <SizeDefine type="BottomEdge" >
+                        <SizeOp op="Subtract">
+                            <RelSize scale="1.0" type="BottomEdge" />
+                            <PixelSize name="SampleBrowserSkin/TextBoxB" dimension="Height" />
+                        </SizeOp>
+                    </SizeDefine>
+                </ComArea>
+                <Pixel id="SampleBrowserSkin/TextBoxM" />
+                <VLayout type="Extrude" />
+                <HLayout type="Extrude" />
+            </ImageryCom>
+        </StyleSection>
+        <StyleSection name="no_frame_background">
+            <ImageryCom>
+                <ComArea>
+                    <SizeDefine type="LeftEdge"><AbsSize value="0" /></SizeDefine>
+                    <SizeDefine type="TopEdge"><AbsSize value="0" /></SizeDefine>
+                    <SizeDefine type="RightEdge"><RelSize scale="1" type="RightEdge" /></SizeDefine>
+                    <SizeDefine type="BottomEdge"><RelSize scale="1" type="BottomEdge" /></SizeDefine>
+                </ComArea>
+                <Pixel id="SampleBrowserSkin/TextBoxM" />
+                <VLayout type="Extrude" />
+                <HLayout type="Extrude" />
+            </ImageryCom>
+        </StyleSection>
+    </WidgetStyle>
+
+
+    <WidgetStyle name="SampleBrowserSkin/Button">
+        <StyleProperty name="NormalTextColour"	value="FFFFFFFF" signal_refresh="true" type="ColourArea" />
+        <StyleProperty name="HoverTextColour" value="FFFFFFFF" signal_refresh="true"  type="ColourArea"/>
+        <StyleProperty name="PushedTextColour" value="FFFFFFFF" signal_refresh="true" type="ColourArea"/>
+        <StyleProperty name="DisabledTextColour" value="FF888888" signal_refresh="true" type="ColourArea"/>
+        <StyleProperty name="UseStandardImagery" value="true" signal_refresh="true" type="bool"/>
+        <StyleProperty name="NormalImage" value="" signal_refresh="true" type="Image"/>
+        <StyleProperty name="HoverImage" value="" signal_refresh="true" type="Image"/>
+        <StyleProperty name="PushedImage" value="" signal_refresh="true" type="Image"/>
+        <StyleProperty name="VLayout1" value="Extrude" signal_refresh="true" type="VLayout"/>
+        <StyleProperty name="HLayout1" value="Extrude" signal_refresh="true" type="HLayout"/>
+
+        <Property name="WantsMultiClickEvents" value="false" />
+        <StyleSection name="label">
+            <TextCom>
+                <ComArea>
+                    <SizeDefine type="LeftEdge"><AbsSize value="0" /></SizeDefine>
+                    <SizeDefine type="TopEdge"><AbsSize value="0" /></SizeDefine>
+                    <SizeDefine type="RightEdge"><RelSize scale="1" type="RightEdge" /></SizeDefine>
+                    <SizeDefine type="BottomEdge"><RelSize scale="1" type="BottomEdge" /></SizeDefine>
+                </ComArea>
+                <VLayout type="Centre" />
+                <HLayout type="WordWrapCentreAligned" />
+            </TextCom>
+        </StyleSection>
+        <StyleSection name="normal_image">
+            <ImageryCom>
+                <ComArea>
+                    <SizeDefine type="LeftEdge" ><AbsSize value="0" /></SizeDefine>
+                    <SizeDefine type="TopEdge" ><AbsSize value="0" /></SizeDefine>
+                    <SizeDefine type="Width" ><RelSize scale="1" type="Width" /></SizeDefine>
+                    <SizeDefine type="Height" ><RelSize scale="1" type="Height" /></SizeDefine>
+                </ComArea>
+                <PixelProperty name="NormalImage" />
+                <VLayoutProperty name="VLayout1" />
+                <HLayoutProperty name="HLayout1" />
+            </ImageryCom>
+        </StyleSection>
+        <StyleSection name="hover_image">
+            <ImageryCom>
+                <ComArea>
+                    <SizeDefine type="LeftEdge" ><AbsSize value="0" /></SizeDefine>
+                    <SizeDefine type="TopEdge" ><AbsSize value="0" /></SizeDefine>
+                    <SizeDefine type="Width" ><RelSize scale="1" type="Width" /></SizeDefine>
+                    <SizeDefine type="Height" ><RelSize scale="1" type="Height" /></SizeDefine>
+                </ComArea>
+                <PixelProperty name="HoverImage" />
+                <VLayoutProperty name="VLayout1" />
+                <HLayoutProperty name="HLayout1" />
+            </ImageryCom>
+        </StyleSection>
+        <StyleSection name="pushed_image">
+            <ImageryCom>
+                <ComArea>
+                    <SizeDefine type="LeftEdge" ><AbsSize value="0" /></SizeDefine>
+                    <SizeDefine type="TopEdge" ><AbsSize value="0" /></SizeDefine>
+                    <SizeDefine type="Width" ><RelSize scale="1" type="Width" /></SizeDefine>
+                    <SizeDefine type="Height" ><RelSize scale="1" type="Height" /></SizeDefine>
+                </ComArea>
+                <PixelProperty name="PushedImage" />
+                <VLayoutProperty name="VLayout1" />
+                <HLayoutProperty name="HLayout1" />
+            </ImageryCom>
+        </StyleSection>
+
+        <StyleLayout name="Normal">
+            <Layer>
+                <Section id="normal_image" />
+                <Section id="label">
+                    <ColourProperty name="NormalTextColour" />
+                </Section>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Hover">
+            <Layer>
+                <Section id="hover_image" />
+                <Section id="label">
+                    <ColourProperty name="HoverTextColour" />
+                </Section>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Pushed">
+            <Layer>
+                <Section id="pushed_image" />
+                <Section id="label">
+                    <ColourProperty name="PushedTextColour" />
+                </Section>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Disabled">
+            <Layer>
+                <Section id="normal_image">
+                    <Colours top_left="FF3F3F3F" top_right="FF3F3F3F" bottom_left="FF3F3F3F" bottom_right="FF3F3F3F" />
+                </Section>
+                <Section id="label">
+                    <ColourProperty name="DisabledTextColour" />
+                </Section>
+            </Layer>
+        </StyleLayout>
+    </WidgetStyle>
+
+    <WidgetStyle name="SampleBrowserSkin/SampleWindow">
+        <StyleProperty name="BackgroundEnabled" value="true" signal_refresh="true" signal_layout="true" type="bool" />
+        <StyleProperty name="ForegroundEnabled" value="true" signal_refresh="true" signal_layout="true" type="bool" />
+        <StyleProperty name="FrameEnabled" value="true" signal_refresh="true" signal_layout="true" type="bool" />
+        <StyleProperty name="FadeEnabled" value="true" signal_refresh="true" signal_layout="true" type="bool" />
+
+        <StyleProperty name="ImageColours" value="tl:FFFFFFFF tr:FFFFFFFF bl:FFFFFFFF br:FFFFFFFF" signal_refresh="true" type="ColourArea"/>
+        <StyleProperty name="FrameColours" value="tl:FFFFFFFF tr:FFFFFFFF bl:FFFFFFFF br:FFFFFFFF" signal_refresh="true" type="ColourArea"/>
+        <StyleProperty name="ForegroundColours" value="tl:FFFFFFFF tr:FFFFFFFF bl:FFFFFFFF br:FFFFFFFF" signal_refresh="true" type="ColourArea"/> 
+        <StyleProperty name="BackgroundColours" value="tl:FF000000 tr:FF000000 bl:FF000000 br:FF000000" signal_refresh="true" type="ColourArea"/> 
+        <StyleProperty name="ForegroundFadeColours" value="tl:CC000000 tr:CC000000 bl:CC000000 br:CC000000" signal_refresh="true" type="ColourArea"/>
+        <StyleProperty name="Image" value="" signal_refresh="true" />
+
+        <Property name="AutoRenderingSurface" value="true" />
+
+
+        <StyleSpecial name="InnerArea">
+            <ComArea>
+                <SizeDefine type="LeftEdge" >
+                    <SizeOp op="Multiply">
+                        <PixelSize name="SampleBrowserSkin/SampleFrameLeft" dimension="Width" />
+                        <SizeProperty name="FrameEnabled" />
+                    </SizeOp>
+                </SizeDefine>
+                <SizeDefine type="TopEdge" >
+                    <SizeOp op="Multiply">
+                        <PixelSize name="SampleBrowserSkin/SampleFrameTop" dimension="Height" />
+                        <SizeProperty name="FrameEnabled" />
+                    </SizeOp>
+                </SizeDefine>
+                <SizeDefine type="RightEdge" >
+                    <SizeOp op="Subtract">
+                        <RelSize scale="1.0" type="RightEdge" />
+                        <SizeOp op="Multiply">
+                            <PixelSize name="SampleBrowserSkin/SampleFrameRight" dimension="Width" />
+                            <SizeProperty name="FrameEnabled" />
+                        </SizeOp>
+                    </SizeOp>
+                </SizeDefine>
+                <SizeDefine type="BottomEdge" >
+                    <SizeOp op="Subtract">
+                        <RelSize scale="1.0" type="BottomEdge" />
+                        <SizeOp op="Multiply">
+                            <PixelSize name="SampleBrowserSkin/SampleFrameBottom" dimension="Height" />
+                            <SizeProperty name="FrameEnabled" />
+                        </SizeOp>
+                    </SizeOp>
+                </SizeDefine>
+            </ComArea>
+        </StyleSpecial>
+
+        <StyleSection name="frame">
+            <FrameCom>
+                <ComArea>
+                    <SizeDefine type="LeftEdge"><AbsSize value="0" /></SizeDefine>
+                    <SizeDefine type="TopEdge"><AbsSize value="0" /></SizeDefine>
+                    <SizeDefine type="RightEdge"><RelSize scale="1" type="RightEdge" /></SizeDefine>
+                    <SizeDefine type="BottomEdge"><RelSize scale="1" type="BottomEdge" /></SizeDefine>
+                </ComArea>
+                <ComPixel type="TopLeftCorner" pixel_id="SampleBrowserSkin/SampleFrameTopLeft" />
+                <ComPixel type="TopRightCorner" pixel_id="SampleBrowserSkin/SampleFrameTopRight" />
+                <ComPixel type="BottomLeftCorner" pixel_id="SampleBrowserSkin/SampleFrameBottomLeft" />
+                <ComPixel type="BottomRightCorner" pixel_id="SampleBrowserSkin/SampleFrameBottomRight" />
+                <ComPixel type="LeftEdge" pixel_id="SampleBrowserSkin/SampleFrameLeft" />
+                <ComPixel type="TopEdge" pixel_id="SampleBrowserSkin/SampleFrameTop" />
+                <ComPixel type="RightEdge" pixel_id="SampleBrowserSkin/SampleFrameRight" />
+                <ComPixel type="BottomEdge" pixel_id="SampleBrowserSkin/SampleFrameBottom" />
+                <ColoursProperty name="FrameColours" />
+            </FrameCom>
+        </StyleSection>
+
+        <StyleSection name="image">
+            <ImageryCom>
+                <ComArea><StyleSpecialProperty id="InnerArea"/></ComArea>
+                <PixelProperty name="Image" />
+                <ColoursProperty name="ImageColours" />
+                <VLayout type="Extrude" />
+                <HLayout type="Extrude" />
+            </ImageryCom>
+        </StyleSection>
+
+        <StyleSection name="fadeForeground">
+            <ImageryCom>
+                <ComArea><StyleSpecialProperty id="InnerArea"/></ComArea>
+                <Pixel id="SampleBrowserSkin/GenericFiller" />
+                <ColoursProperty name="ForegroundFadeColours" />
+                <VLayout type="Extrude" />
+                <HLayout type="Extrude" />
+            </ImageryCom>     
+        </StyleSection>
+
+        <StyleSection name="foreground">
+            <ImageryCom>
+                <ComArea><StyleSpecialProperty id="InnerArea"/></ComArea>
+                <Pixel id="SampleBrowserSkin/SamplesForeground" />
+                <ColoursProperty name="ForegroundColours" />
+                <VLayout type="Extrude" />
+                <HLayout type="Extrude" />
+            </ImageryCom>     
+        </StyleSection>
+
+        <StyleSection name="background">
+            <ImageryCom>
+                <ComArea><StyleSpecialProperty id="InnerArea"/></ComArea>
+                <Pixel id="SampleBrowserSkin/GenericFiller" />
+                <ColoursProperty name="BackgroundColours" />
+                <VLayout type="Extrude" />
+                <HLayout type="Extrude" />
+            </ImageryCom>     
+        </StyleSection>
+
+        <StyleLayout name="Enabled">
+            <Layer priority="4" ><Section id="frame" ctl_property="FrameEnabled" /></Layer> 
+            <Layer priority="3" ><Section id="foreground" ctl_property="ForegroundEnabled" /></Layer>
+            <Layer priority="2" ><Section id="fadeForeground" ctl_property="FadeEnabled" /></Layer>
+            <Layer priority="1" ><Section id="image" /></Layer> 
+            <Layer priority="0" ><Section id="background" ctl_property="BackgroundEnabled" /></Layer>
+        </StyleLayout>
+        <StyleLayout name="Disabled">
+        </StyleLayout>
+
+
+        <Animation name="SamplePreviewFadeIn" duration="0.28" play_mode="once" auto_start="false">
+            <Track property="ForegroundFadeColours" data_type="ColourArea">
+                <KeyFrame position="0" property_value="ForegroundFadeColours" />
+                <KeyFrame position="0.28" value="tl:00000000 tr:00000000 bl:00000000 br:00000000" calc_mode="square_root" />
+            </Track>
+            <Event event="MouseLeavesArea" action="Stop" />
+            <Event event="MouseEntersArea" action="Start" />
+        </Animation>
+
+        <Animation name="SamplePreviewFadeOut" duration="0.39" play_mode="once" auto_start="false">
+            <Track property="ForegroundFadeColours" data_type="ColourArea">
+                <KeyFrame position="0" property_value="ForegroundFadeColours" />
+                <KeyFrame position="0.39" value="tl:CC000000 tr:CC000000 bl:CC000000 br:CC000000" calc_mode="square_root" />
+            </Track>
+            <Event event="MouseEntersArea" action="Stop" />
+            <Event event="MouseLeavesArea" action="Start" />
+        </Animation>
+    </WidgetStyle>
+
+   <WidgetStyle name="SampleBrowserSkin/Light">
+        <StyleProperty name="BackgroundColour" value="FFFFFFFF" signal_refresh="true" type="Colour"/>
+        <StyleProperty name="LightColour" value="FFFFFFFF" signal_refresh="true" type="Colour"/>
+
+        <StyleSpecial name="LightArea">
+            <ComArea>
+                <SizeDefine type="LeftEdge" ><AbsSize value="0" /></SizeDefine>
+                <SizeDefine type="TopEdge" ><AbsSize value="0" /></SizeDefine>
+                <SizeDefine type="Width" ><RelSize scale="1" type="Width" /></SizeDefine>
+                <SizeDefine type="Height" ><RelSize scale="1" type="Height" /></SizeDefine>
+            </ComArea>
+        </StyleSpecial>
+        
+        <StyleSection name="background">
+            <ImageryCom>
+                <ComArea><StyleSpecialProperty id="LightArea"/></ComArea>
+                <Pixel id="SampleBrowserSkin/LightBackground" />
+                <ColourProperty name="BackgroundColour" />
+                <VLayout type="Extrude" />
+                <HLayout type="Extrude" />
+            </ImageryCom>     
+        </StyleSection>
+
+        <StyleSection name="foreground">
+            <ImageryCom>
+                <ComArea><StyleSpecialProperty id="LightArea"/></ComArea>
+                <Pixel id="SampleBrowserSkin/LightOverlay" />
+                <ColourProperty name="LightColour" />
+                <VLayout type="Extrude" />
+                <HLayout type="Extrude" />
+            </ImageryCom>     
+        </StyleSection>
+
+        <StyleLayout name="Enabled">
+            <Layer priority="1" ><Section id="foreground" /></Layer> 
+            <Layer priority="0" ><Section id="background" /></Layer>
+        </StyleLayout>
+        <StyleLayout name="Disabled">
+            <Layer><Section id="background" /></Layer>
+        </StyleLayout>
+
+    </WidgetStyle>
+
+
+    <!--
+    TitleBar
+-->
+    <WidgetStyle name="SampleBrowserSkin/Titlebar">
+        <StyleProperty name="CaptionColour" value="FFe5ffb2" signal_refresh="true" type="ColourArea"/>
+        <StyleProperty name="VTLayout1" value="Centre" type="VTextLayout"/>
+        <StyleProperty name="HTLayout1" value="Centre" type="HTextLayout"/>
+
+        <Property name="NonClient" value="true" />
+
+        <StyleSection name="normal">
+            <FrameCom>
+                <ComArea>
+                    <SizeDefine type="LeftEdge"><AbsSize value="0" /></SizeDefine>
+                    <SizeDefine type="TopEdge"><AbsSize value="0" /></SizeDefine>
+                    <SizeDefine type="RightEdge"><RelSize scale="1" type="RightEdge" /></SizeDefine>
+                    <SizeDefine type="BottomEdge"><RelSize scale="1" type="BottomEdge" /></SizeDefine>
+                </ComArea>
+                <ComPixel type="LeftEdge" pixel_id="SampleBrowserSkin/CaptionL" />
+                <ComPixel type="RightEdge" pixel_id="SampleBrowserSkin/CaptionR" />
+                <ComPixel type="Background" pixel_id="SampleBrowserSkin/CaptionM" />
+            </FrameCom>
+        </StyleSection>
+        <StyleSection name="caption">
+            <TextCom>
+                <ComArea>
+                    <SizeDefine type="LeftEdge"><AbsSize value="0" /></SizeDefine>
+                    <SizeDefine type="TopEdge"><AbsSize value="0" /></SizeDefine>
+                    <SizeDefine type="RightEdge"><RelSize scale="1" type="RightEdge" /></SizeDefine>
+                    <SizeDefine type="BottomEdge"><RelSize scale="1" type="BottomEdge" /></SizeDefine>
+                </ComArea>
+                <ColourProperty name="CaptionColour" />
+                <VLayoutProperty name="VTLayout1" />
+                <HLayoutProperty name="HTLayout1" />
+            </TextCom>
+        </StyleSection>
+        <StyleLayout name="Active">
+            <Layer>
+                <Section id="normal" />
+                <Section id="caption" />
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Inactive">
+            <Layer>
+                <Section id="normal" />
+                <Section id="caption" />
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Disabled">
+            <Layer>
+                <Section id="normal" />
+                <Section id="caption" />
+            </Layer>
+        </StyleLayout>
+    </WidgetStyle>
+
+    <!--
+    FrameWindow
+-->
+
+    <WidgetStyle name="SampleBrowserSkin/FrameWindow">
+        <ListenerProperty name="CaptionColour" widget="__auto_titlebar__" target="CaptionColour" value="FFe5ffb2" type="ColourArea"/>
+        <ListenerProperty name="CaptionFont" widget="__auto_titlebar__" target="Font" type="Font"/>
+        <Property name="NSSizingCursorImage" value="SampleBrowserSkin/MouseArrow" />
+        <Property name="EWSizingCursorImage" value="SampleBrowserSkin/MouseArrow" />
+        <Property name="NWSESizingCursorImage" value="SampleBrowserSkin/MouseArrow" />
+        <Property name="NESWSizingCursorImage" value="SampleBrowserSkin/MouseArrow" />
+        <Property name="AutoRenderingSurface" value="true" />
+        <StyleSpecial name="ClientWithTitleWithFrame">
+            <ComArea>
+                <SizeDefine type="LeftEdge" ><AbsSize value="0" /></SizeDefine>
+                <SizeDefine type="TopEdge" ><WidgetSize widget="__auto_titlebar__" dimension="BottomEdge" /></SizeDefine>
+                <SizeDefine type="RightEdge" ><RelSize scale="1" type="RightEdge" /></SizeDefine>
+                <SizeDefine type="BottomEdge" ><RelSize scale="1" type="BottomEdge" /></SizeDefine>
+            </ComArea>
+        </StyleSpecial>
+        <StyleSpecial name="ClientWithTitleNoFrame">
+            <ComArea>
+                <SizeDefine type="LeftEdge" ><AbsSize value="0" /></SizeDefine>
+                <SizeDefine type="TopEdge" ><WidgetSize widget="__auto_titlebar__" dimension="BottomEdge" /></SizeDefine>
+                <SizeDefine type="RightEdge" ><RelSize scale="1" type="RightEdge" /></SizeDefine>
+                <SizeDefine type="BottomEdge" ><RelSize scale="1" type="BottomEdge" /></SizeDefine>
+            </ComArea>
+        </StyleSpecial>
+        <StyleSpecial name="ClientNoTitleWithFrame">
+            <ComArea>
+                <SizeDefine type="LeftEdge" ><AbsSize value="0" /></SizeDefine>
+                <SizeDefine type="TopEdge" ><WidgetSize widget="__auto_titlebar__" dimension="BottomEdge" /></SizeDefine>
+                <SizeDefine type="RightEdge" ><RelSize scale="1" type="RightEdge" /></SizeDefine>
+                <SizeDefine type="BottomEdge" ><RelSize scale="1" type="BottomEdge" /></SizeDefine>
+            </ComArea>
+        </StyleSpecial>
+        <StyleSpecial name="ClientNoTitleNoFrame">
+            <ComArea>
+                <SizeDefine type="LeftEdge" ><AbsSize value="0" /></SizeDefine>
+                <SizeDefine type="TopEdge" ><AbsSize value="0" /></SizeDefine>
+                <SizeDefine type="RightEdge" ><RelSize scale="1" type="RightEdge" /></SizeDefine>
+                <SizeDefine type="BottomEdge" ><RelSize scale="1" type="BottomEdge" /></SizeDefine>
+            </ComArea>
+        </StyleSpecial>
+        <StyleWidget type="SampleBrowserSkin/Titlebar" nameSuffix="__auto_titlebar__">
+            <ComArea>
+                <SizeDefine type="LeftEdge" >
+                    <SizeOp op="Divide">
+                        <PixelSize name="SampleBrowserSkin/TrayL" dimension="Width" />
+                        <AbsSize value="2" />
+                    </SizeOp>
+                </SizeDefine>
+                <SizeDefine type="TopEdge" >
+                    <SizeOp op="Divide">
+                        <PixelSize name="SampleBrowserSkin/TrayT" dimension="Height" />
+                        <AbsSize value="2" />
+                    </SizeOp>
+                </SizeDefine>
+                <SizeDefine type="Width" >
+                    <SizeOp op="Subtract">
+                        <RelSize scale="1" type="Width" /> 
+                        <PixelSize name="SampleBrowserSkin/TrayL" dimension="Width" />
+                    </SizeOp>
+                </SizeDefine>
+                <SizeDefine type="Height" ><FontSize type="LineSpacing" padding="8" /></SizeDefine>
+            </ComArea>
+            <Property name="AlwaysOnTop" value="false" />
+        </StyleWidget>
+        <!-- here we basically nullify the close button, for now at least -->
+        <StyleWidget type="DefaultWindow" nameSuffix="__auto_closebutton__">
+            <ComArea>
+                <SizeDefine type="LeftEdge" ><AbsSize value="0" /></SizeDefine>
+                <SizeDefine type="TopEdge" ><AbsSize value="0" /></SizeDefine>
+                <SizeDefine type="Width" ><RelSize scale="0" type="Width" /></SizeDefine>
+                <SizeDefine type="Height" ><RelSize scale="0" type="Height" /></SizeDefine>
+            </ComArea>
+            <Property name="NonClient" value="true" />
+        </StyleWidget>
+        <StyleSection name="frame">
+            <FrameCom>
+                <ComArea>
+                    <SizeDefine type="LeftEdge"><AbsSize value="0" /></SizeDefine>
+                    <SizeDefine type="TopEdge"><AbsSize value="0" /></SizeDefine>
+                    <SizeDefine type="RightEdge"><RelSize scale="1" type="RightEdge" /></SizeDefine>
+                    <SizeDefine type="BottomEdge"><RelSize scale="1" type="BottomEdge" /></SizeDefine>
+                </ComArea>
+                <ComPixel type="TopLeftCorner" pixel_id="SampleBrowserSkin/TrayTL" />
+                <ComPixel type="TopRightCorner" pixel_id="SampleBrowserSkin/TrayTR" />
+                <ComPixel type="BottomLeftCorner" pixel_id="SampleBrowserSkin/TrayBL" />
+                <ComPixel type="BottomRightCorner" pixel_id="SampleBrowserSkin/TrayBR" />
+                <ComPixel type="LeftEdge" pixel_id="SampleBrowserSkin/TrayL" />
+                <ComPixel type="TopEdge" pixel_id="SampleBrowserSkin/TrayT" />
+                <ComPixel type="RightEdge" pixel_id="SampleBrowserSkin/TrayR" />
+                <ComPixel type="BottomEdge" pixel_id="SampleBrowserSkin/TrayB" />
+                <ComPixel type="Background" pixel_id="SampleBrowserSkin/TrayM" />
+            </FrameCom>
+        </StyleSection>
+        <StyleSection name="noframe">
+            <ImageryCom>
+                <ComArea>
+                    <SizeDefine type="LeftEdge" ><AbsSize value="0" /></SizeDefine>
+                    <SizeDefine type="TopEdge"><AbsSize value="0" /></SizeDefine>
+                    <SizeDefine type="Width" ><RelSize scale="1" type="Width" /></SizeDefine>
+                    <SizeDefine type="BottomEdge" ><RelSize scale="1" type="BottomEdge" /></SizeDefine>
+                </ComArea>
+                <Pixel id="SampleBrowserSkin/TrayM" />
+                <VLayout type="Extrude" />
+                <HLayout type="Extrude" />
+            </ImageryCom>
+        </StyleSection>
+        <StyleLayout name="ActiveWithTitleWithFrame">
+            <Layer><Section id="frame" /></Layer>
+        </StyleLayout>
+        <StyleLayout name="InactiveWithTitleWithFrame">
+            <Layer><Section id="frame" /></Layer>
+        </StyleLayout>
+        <StyleLayout name="DisabledWithTitleWithFrame">
+            <Layer><Section id="frame" /></Layer>
+        </StyleLayout>
+        <StyleLayout name="ActiveWithTitleNoFrame">
+            <Layer><Section id="noframe" /></Layer>
+        </StyleLayout>
+        <StyleLayout name="InactiveWithTitleNoFrame">
+            <Layer><Section id="noframe" /></Layer>
+        </StyleLayout>
+        <StyleLayout name="DisabledWithTitleNoFrame">
+            <Layer><Section id="noframe" /></Layer>
+        </StyleLayout>
+        <StyleLayout name="ActiveNoTitleWithFrame">
+            <Layer><Section id="frame" /></Layer>
+        </StyleLayout>
+        <StyleLayout name="InactiveNoTitleWithFrame">
+            <Layer><Section id="frame" /></Layer>
+        </StyleLayout>
+        <StyleLayout name="DisabledNoTitleWithFrame">
+            <Layer><Section id="frame" /></Layer>
+        </StyleLayout>
+        <StyleLayout name="ActiveNoTitleNoFrame">
+            <Layer><Section id="noframe" /></Layer>
+        </StyleLayout>
+        <StyleLayout name="InactiveNoTitleNoFrame">
+            <Layer><Section id="noframe" /></Layer>
+        </StyleLayout>
+        <StyleLayout name="DisabledNoTitleNoFrame">
+            <Layer><Section id="noframe" /></Layer>
+        </StyleLayout>
+    </WidgetStyle>
+
+
+
+    <!--
+    StaticText
+-->
+    <WidgetStyle name="SampleBrowserSkin/StaticText">
+        <ListenerProperty target="ScrollPosition" widget="__auto_hscrollbar__" type="float" name="HorzScrollPosition"/>
+        <ListenerProperty target="PageSize" widget="__auto_hscrollbar__" type="float" name="HorzScrollPageSize"/>
+        <ListenerProperty target="DocumentSize" widget="__auto_hscrollbar__" type="float" name="HorzScrollDocumentSize"/>
+        <ListenerProperty target="ScrollPosition" widget="__auto_vscrollbar__" type="float" name="VertScrollPosition"/>
+        <ListenerProperty target="PageSize" widget="__auto_vscrollbar__" type="float" name="VertScrollPageSize"/>
+        <ListenerProperty target="DocumentSize" widget="__auto_vscrollbar__" type="float" name="VertScrollDocumentSize"/>
+        <Property name="BackgroundEnabled" value="true"/>
+        <Property name="FrameEnabled" value="true"/>
+        <Property name="TextColours" value="tl:FF000000 tr:FF000000 bl:FF000000 br:FF000000"/>
+        <Property name="HorzFormatting" value="WordWrapLeftAligned"/>
+        <StyleSpecial name="WithFrameTextRenderArea">
+            <ComArea>
+                <SizeDefine type="LeftEdge">
+                    <PixelSize name="SampleBrowserSkin/TextBoxL" dimension="Width"/>
+                </SizeDefine>
+                <SizeDefine type="TopEdge">
+                    <PixelSize name="SampleBrowserSkin/TextBoxT" dimension="Height"/>
+                </SizeDefine>
+                <SizeDefine type="RightEdge">
+                    <SizeOp op="Subtract">
+                        <RelSize scale="1.0" type="RightEdge"/>
+                        <PixelSize name="SampleBrowserSkin/TextBoxR" dimension="Width"/>
+                    </SizeOp>
+                </SizeDefine>
+                <SizeDefine type="BottomEdge">
+                    <SizeOp op="Subtract">
+                        <RelSize scale="1.0" type="BottomEdge"/>
+                        <PixelSize name="SampleBrowserSkin/TextBoxB" dimension="Height"/>
+                    </SizeOp>
+                </SizeDefine>
+            </ComArea>
+        </StyleSpecial>
+        <StyleSpecial name="WithFrameTextRenderAreaHScroll">
+            <ComArea>
+                <SizeDefine type="LeftEdge">
+                    <PixelSize name="SampleBrowserSkin/TextBoxL" dimension="Width"/>
+                </SizeDefine>
+                <SizeDefine type="TopEdge">
+                    <PixelSize name="SampleBrowserSkin/TextBoxT" dimension="Height"/>
+                </SizeDefine>
+                <SizeDefine type="RightEdge">
+                    <SizeOp op="Subtract">
+                        <RelSize scale="1.0" type="RightEdge"/>
+                        <PixelSize name="SampleBrowserSkin/TextBoxR" dimension="Width"/>
+                    </SizeOp>
+                </SizeDefine>
+                <SizeDefine type="BottomEdge">
+                    <SizeOp op="Subtract">
+                        <RelSize scale="1.0" type="BottomEdge"/>
+                        <SizeOp op="Add">
+                            <PixelSize name="SampleBrowserSkin/TextBoxB" dimension="Height"/>
+                            <PixelSize name="SampleBrowserSkin/Handle" dimension="Height"/>
+                        </SizeOp>
+                    </SizeOp>
+                </SizeDefine>
+            </ComArea>
+        </StyleSpecial>
+        <StyleSpecial name="WithFrameTextRenderAreaVScroll">
+            <ComArea>
+                <SizeDefine type="LeftEdge">
+                    <PixelSize name="SampleBrowserSkin/TextBoxL" dimension="Width"/>
+                </SizeDefine>
+                <SizeDefine type="TopEdge">
+                    <PixelSize name="SampleBrowserSkin/TextBoxT" dimension="Height"/>
+                </SizeDefine>
+                <SizeDefine type="RightEdge">
+                    <SizeOp op="Subtract">
+                        <RelSize scale="1.0" type="RightEdge"/>
+                        <SizeOp op="Add">
+                            <PixelSize name="SampleBrowserSkin/TextBoxR" dimension="Width"/>
+                            <PixelSize name="SampleBrowserSkin/Handle" dimension="Width"/>
+                        </SizeOp>
+                    </SizeOp>
+                </SizeDefine>
+                <SizeDefine type="BottomEdge">
+                    <SizeOp op="Subtract">
+                        <RelSize scale="1.0" type="BottomEdge"/>
+                        <PixelSize name="SampleBrowserSkin/TextBoxB" dimension="Height"/>
+                    </SizeOp>
+                </SizeDefine>
+            </ComArea>
+        </StyleSpecial>
+        <StyleSpecial name="WithFrameTextRenderAreaHVScroll">
+            <ComArea>
+                <SizeDefine type="LeftEdge">
+                    <PixelSize name="SampleBrowserSkin/TextBoxL" dimension="Width"/>
+                </SizeDefine>
+                <SizeDefine type="TopEdge">
+                    <PixelSize name="SampleBrowserSkin/TextBoxT" dimension="Height"/>
+                </SizeDefine>
+                <SizeDefine type="RightEdge">
+                    <SizeOp op="Subtract">
+                        <RelSize scale="1.0" type="RightEdge"/>
+                        <SizeOp op="Add">
+                            <PixelSize name="SampleBrowserSkin/TextBoxR" dimension="Width"/>
+                            <PixelSize name="SampleBrowserSkin/Handle" dimension="Width"/>
+                        </SizeOp>
+                    </SizeOp>
+                </SizeDefine>
+                <SizeDefine type="BottomEdge">
+                    <SizeOp op="Subtract">
+                        <RelSize scale="1.0" type="BottomEdge"/>
+                        <SizeOp op="Add">
+                            <PixelSize name="SampleBrowserSkin/TextBoxB" dimension="Height"/>
+                            <PixelSize name="SampleBrowserSkin/Handle" dimension="Height"/>
+                        </SizeOp>
+                    </SizeOp>
+                </SizeDefine>
+            </ComArea>
+        </StyleSpecial>
+        <StyleSpecial name="NoFrameTextRenderArea">
+            <ComArea>
+                <SizeDefine type="LeftEdge">
+                    <AbsSize value="0"/>
+                </SizeDefine>
+                <SizeDefine type="TopEdge">
+                    <AbsSize value="0"/>
+                </SizeDefine>
+                <SizeDefine type="RightEdge">
+                    <RelSize scale="1.0" type="RightEdge"/>
+                </SizeDefine>
+                <SizeDefine type="BottomEdge">
+                    <RelSize scale="1.0" type="BottomEdge"/>
+                </SizeDefine>
+            </ComArea>
+        </StyleSpecial>
+        <StyleSpecial name="NoFrameTextRenderAreaHScroll">
+            <ComArea>
+                <SizeDefine type="LeftEdge">
+                    <AbsSize value="0"/>
+                </SizeDefine>
+                <SizeDefine type="TopEdge">
+                    <AbsSize value="0"/>
+                </SizeDefine>
+                <SizeDefine type="RightEdge">
+                    <RelSize scale="1.0" type="RightEdge"/>
+                </SizeDefine>
+                <SizeDefine type="BottomEdge">
+                    <SizeOp op="Subtract">
+                        <RelSize scale="1.0" type="BottomEdge"/>
+                        <SizeOp op="Add">
+                            <PixelSize name="SampleBrowserSkin/TextBoxB" dimension="Height"/>
+                            <PixelSize name="SampleBrowserSkin/Handle" dimension="Height"/>
+                        </SizeOp>
+                    </SizeOp>
+                </SizeDefine>
+            </ComArea>
+        </StyleSpecial>
+        <StyleSpecial name="NoFrameTextRenderAreaVScroll">
+            <ComArea>
+                <SizeDefine type="LeftEdge">
+                    <AbsSize value="0"/>
+                </SizeDefine>
+                <SizeDefine type="TopEdge">
+                    <AbsSize value="0"/>
+                </SizeDefine>
+                <SizeDefine type="RightEdge">
+                    <SizeOp op="Subtract">
+                        <RelSize scale="1.0" type="RightEdge"/>
+                        <SizeOp op="Add">
+                            <PixelSize name="SampleBrowserSkin/TextBoxR" dimension="Width"/>
+                            <PixelSize name="SampleBrowserSkin/Handle" dimension="Width"/>
+                        </SizeOp>
+                    </SizeOp>
+                </SizeDefine>
+                <SizeDefine type="BottomEdge">
+                    <RelSize scale="1.0" type="BottomEdge"/>
+                </SizeDefine>
+            </ComArea>
+        </StyleSpecial>
+        <StyleSpecial name="NoFrameTextRenderAreaHVScroll">
+            <ComArea>
+                <SizeDefine type="LeftEdge">
+                    <AbsSize value="0"/>
+                </SizeDefine>
+                <SizeDefine type="TopEdge">
+                    <AbsSize value="0"/>
+                </SizeDefine>
+                <SizeDefine type="RightEdge">
+                    <SizeOp op="Subtract">
+                        <RelSize scale="1.0" type="RightEdge"/>
+                        <SizeOp op="Add">
+                            <PixelSize name="SampleBrowserSkin/TextBoxR" dimension="Width"/>
+                            <PixelSize name="SampleBrowserSkin/Handle" dimension="Width"/>
+                        </SizeOp>
+                    </SizeOp>
+                </SizeDefine>
+                <SizeDefine type="BottomEdge">
+                    <SizeOp op="Subtract">
+                        <RelSize scale="1.0" type="BottomEdge"/>
+                        <SizeOp op="Add">
+                            <PixelSize name="SampleBrowserSkin/TextBoxB" dimension="Height"/>
+                            <PixelSize name="SampleBrowserSkin/Handle" dimension="Height"/>
+                        </SizeOp>
+                    </SizeOp>
+                </SizeDefine>
+            </ComArea>
+        </StyleSpecial>
+        <StyleWidget id="__auto_hscrollbar__" type="SampleBrowserSkin/HorizontalScrollbar">
+            <ComArea>
+                <SizeDefine type="LeftEdge">
+                    <PixelSize name="SampleBrowserSkin/TextBoxL" dimension="Width"/>
+                </SizeDefine>
+                <SizeDefine type="TopEdge">
+                    <SizeOp op="Subtract">
+                        <AbsSize value="0"/>
+                        <PixelSize name="SampleBrowserSkin/TextBoxB" dimension="Height"/>
+                    </SizeOp>
+                </SizeDefine>
+                <SizeDefine type="RightEdge">
+                    <SizeOp op="Subtract">
+                        <RelSize scale="1" type="Width"/>
+                        <SizeOp op="Add">
+                            <PixelSize name="SampleBrowserSkin/TextBoxR" dimension="Width"/>
+                            <PixelSize name="SampleBrowserSkin/Handle" dimension="Width"/>
+                        </SizeOp>
+                    </SizeOp>
+                </SizeDefine>
+                <SizeDefine type="Height">
+                    <PixelSize name="SampleBrowserSkin/Handle" dimension="Height"/>
+                </SizeDefine>
+            </ComArea>
+            <VAlign type="BottomAligned"/>
+            <Property name="NonClient" value="true"/>
+        </StyleWidget>
+        <StyleWidget id="__auto_vscrollbar__" type="SampleBrowserSkin/VerticalScrollbar">
+            <ComArea>
+                <SizeDefine type="LeftEdge">
+                    <SizeOp op="Subtract">
+                        <AbsSize value="0"/>
+                        <PixelSize name="SampleBrowserSkin/TextBoxR" dimension="Width"/>
+                    </SizeOp>
+                </SizeDefine>
+                <SizeDefine type="TopEdge">
+                    <PixelSize name="SampleBrowserSkin/TextBoxT" dimension="Height"/>
+                </SizeDefine>
+                <SizeDefine type="Width">
+                    <PixelSize name="SampleBrowserSkin/Handle" dimension="Width"/>
+                </SizeDefine>
+                <SizeDefine type="BottomEdge">
+                    <SizeOp op="Subtract">
+                        <RelSize scale="1" type="BottomEdge"/>
+                        <PixelSize name="SampleBrowserSkin/TextBoxB" dimension="Height"/>
+                    </SizeOp>
+                </SizeDefine>
+            </ComArea>
+            <HAlign type="RightAligned"/>
+            <Property name="NonClient" value="true"/>
+        </StyleWidget>
+        <StyleLayout name="Enabled"/>
+        <StyleLayout name="Disabled"/>
+        <StyleLayout name="EnabledFrame">
+            <Layer>
+                <Section id="frame" widget_style="SampleBrowserSkin/StaticShared"/>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="DisabledFrame">
+            <Layer>
+                <Section id="frame" widget_style="SampleBrowserSkin/StaticShared"/>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="WithFrameEnabledBackground">
+            <Layer>
+                <Section id="with_frame_background" widget_style="SampleBrowserSkin/StaticShared"/>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="WithFrameDisabledBackground">
+            <Layer>
+                <Section id="with_frame_background" widget_style="SampleBrowserSkin/StaticShared"/>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="NoFrameEnabledBackground">
+            <Layer>
+                <Section id="no_frame_background" widget_style="SampleBrowserSkin/StaticShared"/>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="NoFrameDisabledBackground">
+            <Layer>
+                <Section id="no_frame_background" widget_style="SampleBrowserSkin/StaticShared"/>
+            </Layer>
+        </StyleLayout>
+    </WidgetStyle>
+
+
+
+    <!--
+    Vertical Scrollbar
+-->
+    <WidgetStyle name="SampleBrowserSkin/VerticalScrollbar">
+        <Property name="VerticalScrollbar" value="true" />
+        <Property name="WantsMultiClickEvents" value="false" />
+        <StyleSpecial name="ThumbTrackArea">
+            <ComArea>
+                <SizeDefine type="LeftEdge" ><AbsSize value="0" /></SizeDefine>
+                <SizeDefine type="TopEdge" ><AbsSize value="0" /></SizeDefine>
+                <SizeDefine type="Width" ><RelSize scale="1" type="Width" /></SizeDefine>
+                <SizeDefine type="Height" ><RelSize scale="1" type="Height" /></SizeDefine>
+            </ComArea>
+        </StyleSpecial>
+        <StyleWidget  type="DefaultWindow" nameSuffix="__auto_incbtn__">
+            <ComArea>
+                <SizeDefine type="LeftEdge" ><AbsSize value="0" /></SizeDefine>
+                <SizeDefine type="TopEdge" ><AbsSize value="0" /></SizeDefine>
+                <SizeDefine type="Width" ><RelSize scale="0" type="Width" /></SizeDefine>
+                <SizeDefine type="Height" ><RelSize scale="0" type="Width" /></SizeDefine>
+            </ComArea>
+            <Property name="Visible" value="false" />
+        </StyleWidget>
+        <StyleWidget  type="DefaultWindow" nameSuffix="__auto_decbtn__">
+            <ComArea>
+                <SizeDefine type="LeftEdge" ><AbsSize value="0" /></SizeDefine>
+                <SizeDefine type="TopEdge" ><AbsSize value="0" /></SizeDefine>
+                <SizeDefine type="Width" ><RelSize scale="0" type="Width" /></SizeDefine>
+                <SizeDefine type="Height" ><RelSize scale="0" type="Width" /></SizeDefine>
+            </ComArea>
+            <Property name="Visible" value="false" />
+        </StyleWidget>
+        <StyleWidget  type="SampleBrowserSkin/Thumb" nameSuffix="__auto_thumb__">
+            <ComArea>
+                <SizeDefine type="LeftEdge" ><AbsSize value="0" /></SizeDefine>
+                <SizeDefine type="TopEdge" ><AbsSize value="0" /></SizeDefine>
+                <SizeDefine type="Width" ><RelSize scale="1" type="Width" /></SizeDefine>
+                <SizeDefine type="Height" ><RelSize scale="1" type="Width" /></SizeDefine>
+            </ComArea>
+            <Property name="VertFree" value="true" />
+        </StyleWidget>
+        <StyleSection name="main">
+            <FrameCom>
+                <ComArea>
+                    <SizeDefine type="LeftEdge"><RelSize scale="0.11" type="Width" /></SizeDefine>
+                    <SizeDefine type="TopEdge"><RelSize scale="0.1" type="Width" /></SizeDefine>
+                    <SizeDefine type="Width"><RelSize scale="0.78" type="Width" /></SizeDefine>
+                    <SizeDefine type="BottomEdge">
+                        <SizeOp op="Subtract">
+                            <RelSize scale="1" type="BottomEdge" />
+                            <RelSize scale="0.1" type="Width" />
+                        </SizeOp>
+                    </SizeDefine>
+                </ComArea>
+                <ComPixel type="TopEdge" pixel_id="SampleBrowserSkin/VertTrackT" />
+                <ComPixel type="BottomEdge" pixel_id="SampleBrowserSkin/VertTrackB" />
+                <ComPixel type="Background" pixel_id="SampleBrowserSkin/VertTrackM" />
+            </FrameCom>
+        </StyleSection>
+        <StyleLayout name="Enabled">
+            <Layer><Section id="main" /></Layer>
+        </StyleLayout>
+        <StyleLayout name="Disabled">
+            <Layer><Section id="main" /></Layer>
+        </StyleLayout>
+    </WidgetStyle>
+
+    <!--
+    Horizontal Scrollbar
+-->
+    <WidgetStyle name="SampleBrowserSkin/HorizontalScrollbar">
+        <Property name="VerticalScrollbar" value="false" />
+        <Property name="WantsMultiClickEvents" value="false" />
+        <StyleSpecial name="ThumbTrackArea">
+            <ComArea>
+                <SizeDefine type="LeftEdge" ><AbsSize value="0" /></SizeDefine>
+                <SizeDefine type="TopEdge" ><AbsSize value="0" /></SizeDefine>
+                <SizeDefine type="Width" ><RelSize scale="1" type="Width" /></SizeDefine>
+                <SizeDefine type="Height" ><RelSize scale="1" type="Height" /></SizeDefine>
+            </ComArea>
+        </StyleSpecial>
+        <StyleWidget  type="DefaultWindow" nameSuffix="__auto_incbtn__">
+            <ComArea>
+                <SizeDefine type="LeftEdge" ><AbsSize value="0" /></SizeDefine>
+                <SizeDefine type="TopEdge" ><AbsSize value="0" /></SizeDefine>
+                <SizeDefine type="Width" ><RelSize scale="0" type="Width" /></SizeDefine>
+                <SizeDefine type="Height" ><RelSize scale="0" type="Width" /></SizeDefine>
+            </ComArea>
+            <Property name="Visible" value="false" />
+        </StyleWidget>
+        <StyleWidget  type="DefaultWindow" nameSuffix="__auto_decbtn__">
+            <ComArea>
+                <SizeDefine type="LeftEdge" ><AbsSize value="0" /></SizeDefine>
+                <SizeDefine type="TopEdge" ><AbsSize value="0" /></SizeDefine>
+                <SizeDefine type="Width" ><RelSize scale="0" type="Width" /></SizeDefine>
+                <SizeDefine type="Height" ><RelSize scale="0" type="Width" /></SizeDefine>
+            </ComArea>
+            <Property name="Visible" value="false" />
+        </StyleWidget>
+        <StyleWidget  type="SampleBrowserSkin/Thumb" nameSuffix="__auto_thumb__">
+            <ComArea>
+                <SizeDefine type="LeftEdge" ><AbsSize value="0" /></SizeDefine>
+                <SizeDefine type="TopEdge" ><AbsSize value="0" /></SizeDefine>
+                <SizeDefine type="Width" ><RelSize scale="1" type="Height" /></SizeDefine>
+                <SizeDefine type="Height" ><RelSize scale="1" type="Height" /></SizeDefine>
+            </ComArea>
+            <Property name="HorzFree" value="true" />
+        </StyleWidget>
+        <StyleSection name="main">
+            <FrameCom>
+                <ComArea>
+                    <SizeDefine type="LeftEdge"><RelSize scale="0.1" type="Height" /></SizeDefine>
+                    <SizeDefine type="TopEdge"><RelSize scale="0.11" type="Height" /></SizeDefine>
+                    <SizeDefine type="RightEdge">
+                        <SizeOp op="Subtract">
+                            <RelSize scale="1" type="RightEdge" />
+                            <RelSize scale="0.1" type="Height" />
+                        </SizeOp>
+                    </SizeDefine>
+                    <SizeDefine type="Height"><RelSize scale="0.78" type="Height" /></SizeDefine>
+                </ComArea>
+                <ComPixel type="LeftEdge" pixel_id="SampleBrowserSkin/HorzTrackL" />
+                <ComPixel type="RightEdge" pixel_id="SampleBrowserSkin/HorzTrackR" />
+                <ComPixel type="Background" pixel_id="SampleBrowserSkin/HorzTrackM" />
+            </FrameCom>
+        </StyleSection>
+        <StyleLayout name="Enabled">
+            <Layer><Section id="main" /></Layer>
+        </StyleLayout>
+        <StyleLayout name="Disabled">
+            <Layer><Section id="main" /></Layer>
+        </StyleLayout>
+    </WidgetStyle>
+
+
+    <!--
+    Thumb
+-->
+    <WidgetStyle name="SampleBrowserSkin/Thumb">
+        <StyleSection name="main">
+            <ImageryCom>
+                <ComArea>
+                    <SizeDefine type="LeftEdge" ><AbsSize value="0" /></SizeDefine>
+                    <SizeDefine type="TopEdge" ><AbsSize value="0" /></SizeDefine>
+                    <SizeDefine type="Width" ><RelSize scale="1" type="Width" /></SizeDefine>
+                    <SizeDefine type="Height" ><RelSize scale="1" type="Height" /></SizeDefine>
+                </ComArea>
+                <Pixel id="SampleBrowserSkin/Handle" />
+                <VLayout type="Extrude" />
+                <HLayout type="Extrude" />
+            </ImageryCom>
+        </StyleSection>
+        <StyleLayout name="Normal">
+            <Layer><Section id="main" /></Layer>
+        </StyleLayout>
+        <StyleLayout name="Hover">
+            <Layer><Section id="main" /></Layer>
+        </StyleLayout>
+        <StyleLayout name="Pushed">
+            <Layer><Section id="main" /></Layer>
+        </StyleLayout>
+    </WidgetStyle>
+
+
+    <!--
+    ScrollablePane
+-->
+    <WidgetStyle name="SampleBrowserSkin/ScrollablePane">
+        <StyleSpecial name="ViewableArea">
+            <ComArea>
+                <SizeDefine type="LeftEdge">
+                    <PixelSize name="SampleBrowserSkin/MiniTrayL" dimension="Width"/>
+                </SizeDefine>
+                <SizeDefine type="TopEdge">
+                    <PixelSize name="SampleBrowserSkin/MiniTrayT" dimension="Height"/>
+                </SizeDefine>
+                <SizeDefine type="RightEdge">
+                    <SizeOp op="Subtract">
+                        <RelSize scale="1.0" type="RightEdge"/>
+                        <PixelSize name="SampleBrowserSkin/MiniTrayR" dimension="Width"/>
+                    </SizeOp>
+                </SizeDefine>
+                <SizeDefine type="BottomEdge">
+                    <SizeOp op="Subtract">
+                        <RelSize scale="1.0" type="BottomEdge"/>
+                        <PixelSize name="SampleBrowserSkin/MiniTrayB" dimension="Height"/>
+                    </SizeOp>
+                </SizeDefine>
+            </ComArea>
+        </StyleSpecial>
+        <StyleSpecial name="ViewableAreaHScroll">
+            <ComArea>
+                <SizeDefine type="LeftEdge">
+                    <PixelSize name="SampleBrowserSkin/MiniTrayL" dimension="Width"/>
+                </SizeDefine>
+                <SizeDefine type="TopEdge">
+                    <PixelSize name="SampleBrowserSkin/MiniTrayT" dimension="Height"/>
+                </SizeDefine>
+                <SizeDefine type="RightEdge">
+                    <SizeOp op="Subtract">
+                        <RelSize scale="1.0" type="RightEdge"/>
+                        <PixelSize name="SampleBrowserSkin/MiniTrayR" dimension="Width"/>
+                    </SizeOp>
+                </SizeDefine>
+                <SizeDefine type="BottomEdge">
+                    <SizeOp op="Subtract">
+                        <RelSize scale="1.0" type="BottomEdge"/>
+                        <SizeOp op="Add">
+                            <PixelSize name="SampleBrowserSkin/MiniTrayB" dimension="Height"/>
+                            <PixelSize name="SampleBrowserSkin/Handle" dimension="Height"/>
+                        </SizeOp>
+                    </SizeOp>
+                </SizeDefine>
+            </ComArea>
+        </StyleSpecial>
+        <StyleSpecial name="ViewableAreaVScroll">
+            <ComArea>
+                <SizeDefine type="LeftEdge">
+                    <PixelSize name="SampleBrowserSkin/MiniTrayL" dimension="Width"/>
+                </SizeDefine>
+                <SizeDefine type="TopEdge">
+                    <PixelSize name="SampleBrowserSkin/MiniTrayT" dimension="Height"/>
+                </SizeDefine>
+                <SizeDefine type="RightEdge">
+                    <SizeOp op="Subtract">
+                        <RelSize scale="1.0" type="RightEdge"/>
+                        <SizeOp op="Add">
+                            <PixelSize name="SampleBrowserSkin/MiniTrayR" dimension="Width"/>
+                            <PixelSize name="SampleBrowserSkin/Handle" dimension="Width"/>
+                        </SizeOp>
+                    </SizeOp>
+                </SizeDefine>
+                <SizeDefine type="BottomEdge">
+                    <SizeOp op="Subtract">
+                        <RelSize scale="1.0" type="BottomEdge"/>
+                        <PixelSize name="SampleBrowserSkin/MiniTrayB" dimension="Height"/>
+                    </SizeOp>
+                </SizeDefine>
+            </ComArea>
+        </StyleSpecial>
+        <StyleSpecial name="ViewableAreaHVScroll">
+            <ComArea>
+                <SizeDefine type="LeftEdge">
+                    <PixelSize name="SampleBrowserSkin/MiniTrayL" dimension="Width"/>
+                </SizeDefine>
+                <SizeDefine type="TopEdge">
+                    <PixelSize name="SampleBrowserSkin/MiniTrayT" dimension="Height"/>
+                </SizeDefine>
+                <SizeDefine type="RightEdge">
+                    <SizeOp op="Subtract">
+                        <RelSize scale="1.0" type="RightEdge"/>
+                        <SizeOp op="Add">
+                            <PixelSize name="SampleBrowserSkin/MiniTrayR" dimension="Width"/>
+                            <PixelSize name="SampleBrowserSkin/Handle" dimension="Width"/>
+                        </SizeOp>
+                    </SizeOp>
+                </SizeDefine>
+                <SizeDefine type="BottomEdge">
+                    <SizeOp op="Subtract">
+                        <RelSize scale="1.0" type="BottomEdge"/>
+                        <SizeOp op="Add">
+                            <PixelSize name="SampleBrowserSkin/MiniTrayB" dimension="Height"/>
+                            <PixelSize name="SampleBrowserSkin/Handle" dimension="Height"/>
+                        </SizeOp>
+                    </SizeOp>
+                </SizeDefine>
+            </ComArea>
+        </StyleSpecial>
+        <StyleWidget id="__auto_hscrollbar__" type="SampleBrowserSkin/HorizontalScrollbar">
+            <ComArea>
+                <SizeDefine type="LeftEdge">
+                    <PixelSize name="SampleBrowserSkin/MiniTrayL" dimension="Width"/>
+                </SizeDefine>
+                <SizeDefine type="TopEdge">
+                    <SizeOp op="Subtract">
+                        <AbsSize value="0"/>
+                        <PixelSize name="SampleBrowserSkin/MiniTrayB" dimension="Height"/>
+                    </SizeOp>
+                </SizeDefine>
+                <SizeDefine type="RightEdge">
+                    <SizeOp op="Subtract">
+                        <RelSize scale="1" type="Width"/>
+                        <SizeOp op="Add">
+                            <PixelSize name="SampleBrowserSkin/MiniTrayR" dimension="Width"/>
+                            <PixelSize name="SampleBrowserSkin/Handle" dimension="Width"/>
+                        </SizeOp>
+                    </SizeOp>
+                </SizeDefine>
+                <SizeDefine type="Height">
+                    <PixelSize name="SampleBrowserSkin/Handle" dimension="Height"/>
+                </SizeDefine>
+            </ComArea>
+            <VAlign type="BottomAligned"/>
+            <Property name="NonClient" value="true"/>
+        </StyleWidget>
+        <StyleWidget id="__auto_vscrollbar__" type="SampleBrowserSkin/VerticalScrollbar">
+            <ComArea>
+                <SizeDefine type="LeftEdge">
+                    <SizeOp op="Subtract">
+                        <AbsSize value="0"/>
+                        <PixelSize name="SampleBrowserSkin/MiniTrayR" dimension="Width"/>
+                    </SizeOp>
+                </SizeDefine>
+                <SizeDefine type="TopEdge">
+                    <PixelSize name="SampleBrowserSkin/MiniTrayT" dimension="Height"/>
+                </SizeDefine>
+                <SizeDefine type="Width">
+                    <PixelSize name="SampleBrowserSkin/Handle" dimension="Width"/>
+                </SizeDefine>
+                <SizeDefine type="BottomEdge">
+                    <SizeOp op="Subtract">
+                        <RelSize scale="1" type="BottomEdge"/>
+                        <PixelSize name="SampleBrowserSkin/MiniTrayB" dimension="Height"/>
+                    </SizeOp>
+                </SizeDefine>
+            </ComArea>
+            <HAlign type="RightAligned"/>
+            <Property name="NonClient" value="true"/>
+        </StyleWidget>
+        <StyleLayout name="Enabled"/>
+        <StyleLayout name="Disabled"/>
+    </WidgetStyle>
+
+    
+     <!--
+    Progress Bar
+-->
+    <WidgetStyle name="SampleBrowserSkin/ProgressBar">
+        <StyleSpecial name="ProgressArea">
+            <ComArea>
+                <SizeDefine type="LeftEdge">
+                    <AbsSize value="0"/>
+                </SizeDefine>
+                <SizeDefine type="TopEdge">
+                    <AbsSize value="0"/>
+                </SizeDefine>
+                <SizeDefine type="RightEdge">
+                    <RelSize scale="1" type="RightEdge"/>
+                </SizeDefine>
+                <SizeDefine type="BottomEdge">
+                    <RelSize scale="1" type="BottomEdge"/>
+                </SizeDefine>
+            </ComArea>
+        </StyleSpecial>
+        <StyleSection name="frame">
+            <FrameCom>
+                <ComArea>
+                    <SizeDefine type="LeftEdge">
+                        <AbsSize value="0"/>
+                    </SizeDefine>
+                    <SizeDefine type="TopEdge">
+                        <AbsSize value="0"/>
+                    </SizeDefine>
+                    <SizeDefine type="Width">
+                        <RelSize scale="1" type="Width"/>
+                    </SizeDefine>
+                    <SizeDefine type="Height">
+                        <RelSize scale="1" type="Height"/>
+                    </SizeDefine>
+                </ComArea>
+                <ComPixel type="TopLeftCorner" pixel_id="SampleBrowserSkin/ProgessBarTopLeft"/>
+                <ComPixel type="TopRightCorner" pixel_id="SampleBrowserSkin/ProgessBarTopRight"/>
+                <ComPixel type="BottomLeftCorner" pixel_id="SampleBrowserSkin/ProgessBarBotLeft"/>
+                <ComPixel type="BottomRightCorner" pixel_id="SampleBrowserSkin/ProgessBarBotRight"/>
+                <ComPixel type="LeftEdge" pixel_id="SampleBrowserSkin/ProgessBarLeft"/>
+                <ComPixel type="TopEdge" pixel_id="SampleBrowserSkin/ProgessBarTop"/>
+                <ComPixel type="RightEdge" pixel_id="SampleBrowserSkin/ProgessBarRight"/>
+                <ComPixel type="BottomEdge" pixel_id="SampleBrowserSkin/ProgessBarBot"/>
+                <ComPixel type="Background" pixel_id="SampleBrowserSkin/ProgessBarMiddle"/>
+            </FrameCom>
+        </StyleSection>
+        <StyleSection name="progress">
+            <FrameCom>
+                <ComArea>
+                    <SizeDefine type="LeftEdge">
+                        <AbsSize value="0"/>
+                    </SizeDefine>
+                    <SizeDefine type="TopEdge">
+                        <AbsSize value="0"/>
+                    </SizeDefine>
+                    <SizeDefine type="Width">
+                        <SizeOp op="Multiply">
+                            <RelSize scale="1" type="Width"/>
+                            <SizeProperty name="CurrentProgress"/>
+                        </SizeOp>
+                    </SizeDefine>
+                    <SizeDefine type="Height">
+                        <RelSize scale="1" type="Height"/>
+                    </SizeDefine>
+                </ComArea>
+                <ComPixel type="TopLeftCorner" pixel_id="SampleBrowserSkin/ProgessBarOverTopLeft"/>
+                <ComPixel type="TopRightCorner" pixel_id="SampleBrowserSkin/ProgessBarOverTopRight"/>
+                <ComPixel type="BottomLeftCorner" pixel_id="SampleBrowserSkin/ProgessBarOverBotLeft"/>
+                <ComPixel type="BottomRightCorner" pixel_id="SampleBrowserSkin/ProgessBarOverBotRight"/>
+                <ComPixel type="LeftEdge" pixel_id="SampleBrowserSkin/ProgessBarOverLeft"/>
+                <ComPixel type="TopEdge" pixel_id="SampleBrowserSkin/ProgessBarOverTop"/>
+                <ComPixel type="RightEdge" pixel_id="SampleBrowserSkin/ProgessBarOverRight"/>
+                <ComPixel type="BottomEdge" pixel_id="SampleBrowserSkin/ProgessBarOverBot"/>
+                <ComPixel type="Background" pixel_id="SampleBrowserSkin/ProgessBarOverMiddle"/>
+            </FrameCom>
+        </StyleSection>
+        <StyleLayout name="Enabled">
+            <Layer>
+                <Section id="frame"/>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Disabled">
+            <Layer>
+                <Section id="frame"/>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="EnabledProgress">
+            <Layer>
+                <Section id="progress"/>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="DisabledProgress">
+            <Layer>
+                <Section id="progress"/>
+            </Layer>
+        </StyleLayout>
+    </WidgetStyle>
+
+</Style>
+

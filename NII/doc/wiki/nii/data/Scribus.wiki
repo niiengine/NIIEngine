@@ -1,0 +1,13 @@
+﻿++ Scribus
+
+Replacement for: PageMaker, InDesign, QuarkXPress
+
+Scribus is a desktop publishing application, like Adobe PageMaker or Adobe InDesign from the proprietary software world. It is free software, distributed under the terms of the Gnu General Public License.
+
+Scribus supports many major graphic formats including most all of the standard ones used in DTP in addition to SVG import and export.
+
+[VideoLAN Client (VLC)]
+
+Replacement for: Windows Media Player, PowerDVD
+
+VLC (initially VideoLAN Client) is a highly portable multimedia player for various audio and video formats (MPEG-1, MPEG-2, MPEG-4, DivX, mp3, ogg, ...) as well as DVDs, VCDs, and various streaming protocols. It can also be used as a server to stream in unicast or multicast in IPv4 or IPv6 on a high-bandwidth network.

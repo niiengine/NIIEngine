@@ -1,0 +1,169 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="F:\tool\GSGS4.0.0\sdk\codelite_cppcheck\cli\cmdlineparser.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\sdk\codelite_cppcheck\cli\cppcheckexecutor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\sdk\codelite_cppcheck\cli\filelister.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\sdk\codelite_cppcheck\cli\main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\sdk\codelite_cppcheck\cli\threadexecutor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\sdk\codelite_cppcheck\externals\simplecpp\simplecpp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\sdk\codelite_cppcheck\externals\tinyxml\tinyxml2.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\sdk\codelite_cppcheck\lib\analyzerinfo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\sdk\codelite_cppcheck\lib\astutils.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\sdk\codelite_cppcheck\lib\check.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\sdk\codelite_cppcheck\lib\check64bit.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\sdk\codelite_cppcheck\lib\checkassert.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\sdk\codelite_cppcheck\lib\checkautovariables.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\sdk\codelite_cppcheck\lib\checkbool.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\sdk\codelite_cppcheck\lib\checkboost.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\sdk\codelite_cppcheck\lib\checkbufferoverrun.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\sdk\codelite_cppcheck\lib\checkclass.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\sdk\codelite_cppcheck\lib\checkcondition.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\sdk\codelite_cppcheck\lib\checkexceptionsafety.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\sdk\codelite_cppcheck\lib\checkfunctions.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\sdk\codelite_cppcheck\lib\checkinternal.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\sdk\codelite_cppcheck\lib\checkio.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\sdk\codelite_cppcheck\lib\checkleakautovar.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\sdk\codelite_cppcheck\lib\checkmemoryleak.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\sdk\codelite_cppcheck\lib\checknullpointer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\sdk\codelite_cppcheck\lib\checkother.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\sdk\codelite_cppcheck\lib\checkpostfixoperator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\sdk\codelite_cppcheck\lib\checksizeof.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\sdk\codelite_cppcheck\lib\checkstl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\sdk\codelite_cppcheck\lib\checkstring.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\sdk\codelite_cppcheck\lib\checktype.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\sdk\codelite_cppcheck\lib\checkuninitvar.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\sdk\codelite_cppcheck\lib\checkunusedfunctions.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\sdk\codelite_cppcheck\lib\checkunusedvar.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\sdk\codelite_cppcheck\lib\checkvaarg.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\sdk\codelite_cppcheck\lib\cppcheck.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\sdk\codelite_cppcheck\lib\errorlogger.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\sdk\codelite_cppcheck\lib\importproject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\sdk\codelite_cppcheck\lib\library.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\sdk\codelite_cppcheck\lib\mathlib.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\sdk\codelite_cppcheck\lib\path.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\sdk\codelite_cppcheck\lib\pathmatch.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\sdk\codelite_cppcheck\lib\platform.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\sdk\codelite_cppcheck\lib\preprocessor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\sdk\codelite_cppcheck\lib\settings.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\sdk\codelite_cppcheck\lib\suppressions.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\sdk\codelite_cppcheck\lib\symboldatabase.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\sdk\codelite_cppcheck\lib\templatesimplifier.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\sdk\codelite_cppcheck\lib\timer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\sdk\codelite_cppcheck\lib\token.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\sdk\codelite_cppcheck\lib\tokenize.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\sdk\codelite_cppcheck\lib\tokenlist.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\sdk\codelite_cppcheck\lib\valueflow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{48CD2966-80B4-3C52-BDF2-A24A35FB3386}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

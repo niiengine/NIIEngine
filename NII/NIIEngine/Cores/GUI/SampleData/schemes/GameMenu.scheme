@@ -1,0 +1,12 @@
+<?xml version="1.0" ?>
+<UIDefine version="5" name="GameMenu">
+	<View src="GameMenu.view" />
+    <Font src="Jura-10.font" />
+	<Font src="Jura-13.font" />
+    <Font src="Jura-18.font" />
+	<Style src="GameMenu.style" />
+	<WidgetRenderSrc src="CEGUICoreWindowRendererSet" />
+
+    <WidgetStyle type="Editbox" renderer="Core/Editbox" name="GameMenu/Editbox"/>
+</UIDefine>
+

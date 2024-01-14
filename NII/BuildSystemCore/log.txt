@@ -1,0 +1,3 @@
+cmake 工具是跨平台的
+automake 工具集一般只运行在posix环境下,在win中可以使用msys cywin模拟这种环境
+visualstudio 仅仅运行在

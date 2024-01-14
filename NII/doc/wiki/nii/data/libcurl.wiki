@@ -1,0 +1,3 @@
+﻿++ libcurl
+
+http://curl.haxx.se/libcurl/

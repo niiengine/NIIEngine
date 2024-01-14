@@ -1,0 +1,75 @@
+﻿++ Xorg
+
+
+Render Extension
+
+Render brings anti-aliased alpha blended text and graphics to the X Window System.
+
+The Render extension, already implemented and deployed, needs completion in a number of areas. This was held up by the urgency of getting AA text deployed, and a difficult numerical problem with the formulation of trapezoids that would have required very high precision arithmetic to implement (which would have been big and slow).
+
+The Render extension is discussed on the xorg@lists.freedesktop.org mailing list. It is nearly complete, with the major remaining issues being documentation and test suite. If interested in any of these projects, contact KeithPackard.
+
+
+Fontconfig
+
+Fontconfig is a (non-X dependent) library used for font discovery, name substitution, etc.
+
+While mostly complete, there are a few remaining projects left on its Fontconfig To Do List.
+
+Xft
+
+Xft is a library used for anti-aliased font rendering that does not use the old X core fonts, using the Freetype font rendering library.
+
+While mostly complete, there are a few remaining projects left on its Xft To Do List.
+
+RandR
+
+The X Resize, Rotate and Refresh Rate extension has a few details left. RandR provides facilities for resize, rotation, and refresh rate changing of X screens. This is needed for good support on laptops, for migration of applications, and for dynamic changes of depths. A version without rotation support is in XFree86; kdrive has full support. We hope/expect that only upward compatible changes, if any, will be needed from here on out, but there is insufficient implementation experience to claim that incompatible change would never occur.
+
+Cairo
+
+Cairo is a vector graphics library with cross-device output support. It targets a number of back ends, including the X Window System, Microsoft Windows, Postscript and others are planned. It is well underway and usable for many purposes already. There are many fun projects left to do for those with the interest and talents.
+
+DRI - Direct Rendering Infrastructure and Mesa
+
+If working on display hardware, or working on a free OpenGL 3D graphics library is your cup of tea, there is always fun work to be done on DRI and Mesa.
+
+vaAPI - Video Acceleration API
+
+Proposal for a hardware agnostic interface specification that allows video codec developers to write to a standard set of APIs and supports any common video compression format. The API does not constrain how the actual decode is implemented... decode may be done by CPU, by specialized video decode engines, or by 3D engines. Currently looking for feedback on the specification; see the vaAPI page for the full spec.
+
+X Protocol Libraries
+
+Since the inception of the X Window System, Xlib was the production X Window System protocol and utility library. An older list of Xlib projects is here. However, a newer project known as XCB is well on the way to replacing Xlib, and most Xlib development is currently being done in the context of XCB. There's a great deal of interesting work remaining with XCB, and folks are encouraged to join the effort.
+
+Convert Documentation
+
+Most of the base documentation for the X Window System is written in troff, and occasionally other text formatting systems. Most open source systems are moving to Docbook as a modern unifying representation from which to generate manual pages, manuals, books and other documentation in whatever presentation form is most convenient, from man, to postscript, to html.
+
+The doclifter program makes it feasible to convert most troff documents with little or no manual editing required for most documents. Other formats may require other tools. This is probably done best in collaboration with the maintainer of the particular module; the effort is not much on a per document basis for the mechanical part of the translation, but proofreading is a significant effort, and there is a lot of documentation to convert over all.
+
+Translation
+
+Both program strings and documentation need translation into your favorite language.
+
+Modularization and Autotooling
+
+The X Window System has been split into modular components and converted from Imake to autoconf. The first release under this new system was done in 2005 as X11R7.0 but more work is needed to finish the conversion. Documentation for each module such as AUTHORS, ChangeLog, and COPYING files need to be created and pre-7.0 information incorporated. Linux and Solaris on x86/x64 were fully ported for the 7.0 release, and BSD & Darwin mostly ported, but work needs to be done to ensure the modules build and run on other OS'es/platforms. The X.Org Modular Developers Guide has more info.
+
+Synchronization
+
+The X Window System has had for years facilities for very tight synchronization of multimedia or other X clients using the XSync extension; but the Linux and *BSD implementations have only had real-time counters defined. Linux device driver work, in concert with small amounts of glue in the X implementation would extend this to audio devices and vertical retrace. Alan Cox started on driver framework for Linux during the summer of 2003, and Robert Love is planning to continue this work. JimGettys was one of the original designers of XSync and is happy to consult on this project. The driver framework should not be difficult for an experienced kernel driver person, and minor changes in appropriate drivers will need to be made.
+
+Color
+
+Free desktops need good end to end color management, from input devices, to calibration of screens, to printing. JimGettys is trying to coalesce work in this area. The facilities in Xlib for color management are at best inadequate, and at worse, completely useless. We know the existing CMS is essentially unused by applications, as it was broken for many months in CVS without anyone noticing. [OpenIcc] is a list dedicated to discussing specs and configuration issues.
+
+Oyranos
+
+Oyranos is a Colour Management System (CMS) on operating system level. It allows applications and users to match predictably input device colours to output device colours. To do so in a consistent manner, applications and workflows need to support the Oyranos CMS. Oyranos is based one the well established ICC standard and various other specifications. System wide settings in Oyranos shall enshure consistency in a portable fashion. Oyranos will provide in the future a advanced Colour Matching Module (CMM) framework. Users can then transparently select a desired colour engine.
+
+Development plans and open tasks can be found here. contact: KaiUweBehrmann
+
+Cut and Paste
+
+The http://www.x.org/wiki/CutAndPaste project is intended to tackle and resolve the 20-year-old issues inherent in X Cut and Paste. It is not yet particularly underway, but hopes to be soon. The email list at cut-and-paste@lists.freedesktop.org is one venue for this work. This is a BartMassey inspiration, but he hasn't had much time to work on it since announcing it some time ago.

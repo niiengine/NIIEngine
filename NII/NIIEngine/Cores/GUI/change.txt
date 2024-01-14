@@ -1,0 +1,2639 @@
+//----------------------------------------------------------------------
+类 RenderingSurface 改名 RenderArea OK
+类 GUIContext 改名 UISheet OK
+类 RenderingWindow 改名 UISubSheet OK
+类 NamedElement 融入 Widget 中 OK
+重组 Window 为 Widget Container Window
+重组 Widget 为 Widget Container Window
+类 WidgetLookFeel 改名 Style OK
+类 WindowRenderer 改名 WidgetView OK
+类 EditboxWindowRenderer 改名 EditboxView OK
+类 ListHeaderWindowRenderer 改名 ListHeaderView OK
+类 MultiColumnListWindowRenderer 改名 MultiColumnListView OK
+类 MultiLineEditboxWindowRenderer 改名 MultiEditboxView OK
+类 ScrollContainerWindowRenderer 改名 ScrollContainerWidgetModel OK
+类 ScrollbarWindowRenderer 改名 ScrollbarWidgetModel OK
+类 SliderWindowRenderer 改名 SliderWidgetModel OK
+类 TabControlWindowRenderer 改名 TabControlView OK
+类 TooltipWindowRenderer 改名 TooltipView OK
+类 ItemEntryWindowRenderer 改名 ItemEntryWidgetModel OK
+类 ItemListBaseWindowRenderer 改名 ListContainerView OK
+类 ListboxWindowRenderer 改名 ListboxView OK
+类 FalagardButton 改名 ButtonView OK
+类 FalagardStatic 改名 StaticView OK
+类 FalagardDefault 改名 DefaultView OK
+类 FalagardFrameWindow 改名 FrameWindowView OK
+类 FalagardListHeaderSegment 改名 ListHeaderSegmentWidgetModel OK
+类 FalagardProgressBar 改名 ProgressBarWidgetModel OK
+类 FalagardTabButton 改名 TabButtonView OK
+类 FalagardTitlebar 改名 TitlebarView OK
+类 FalagardTree 改名 TreeView OK
+类 FalagardEditbox 改名 EditboxView OK
+类 FalagardListHeader 改名 ListHeaderView OK
+类 FalagardMultiColumnList 改名 MultiColumnListView OK
+类 FalagardMultiLineEditbox 改名 MultiEditboxView OK
+类 FalagardScrollContainer 改名 ScrollContainerView OK
+类 FalagardScrollbar 改名 ScrollbarView OK
+类 FalagardSlider 改名 SliderView OK
+类 FalagardTabControl 改名 TabControlView OK
+类 FalagardTooltip 改名 TooltipView OK
+类 FalagardItemEntry 改名 DefaultItemEntryWidgetModel OK
+类 FalagardMenuItem 改名 MenuItemView OK
+类 FalagardMenubar 改名 DefaultListContainerView OK
+类 FalagardItemListbox 改名 ItemListboxView OK
+类 FalagardPopupMenu 改名 PopupMenuView OK
+类 FalagardListbox 改名 ListboxView OK
+类 FalagardStaticImage 改名 StaticImageView OK
+类 FalagardStaticText 改名 StaticTextView OK
+类 FalagardToggleButton 改名 ToggleButtonView OK
+类 FalagardComponentBase 改名 StyleSectionUnit OK
+类 WidgetLookManager 改名 StyleManager OK
+类 WindowManager 改名 WidgetManager OK
+类 WindowRendererManager 融入到 WidgetManager OK
+类 ElementEventArgs 改名 WidgetEventArgs OK
+类 ColourRect 改名 ColourArea OK
+类 UDim 改名 RelPos OK
+类 ButtonBase 改名 Button OK
+枚举 HorizontalAlignment 改名 HAlign OK
+枚举 VerticalAlignment 改名 VAlign OK
+类 Falagard_xmlHandler 改名 StyleXmlAnalyze
+类 XMLHandler 改名 XmlAnalyze OK
+类 OperatorDim 改名 OperationSize
+类 ChainedXMLHandler 改名 LinkXmlAnalyze OK
+类 Animation_xmlHandler 改名 AnimationCollectorXmlAnalyze OK
+类 AnimationDefinitionHandler 改名 AnimationXmlAnalyze OK
+类 AnimationAffectorHandler 改名 PropertyIDKeyFrameTrack OK
+类 AnimationSubscriptionHandler 改名 AnimationEventXml OK
+类 Font_xmlHandler 改名 FontXmlAnalyze OK
+类 Config_xmlHandler 改名 ConfigXmlAnalyze OK
+类 GUILayout_xmlHandler 改名 GUILayoutXmlAnalyze OK
+类 Scheme_xmlHandler 改名 SchemeXmlAnalyze OK
+类 StyleSectionFrameUnit 改名 StyleSectionFrameUnit OK
+类 StyleSectionTextUnit 改名 StyleSectionTextUnit OK
+类 StyleSectionImageUnit 改名 StyleSectionImageUnit OK
+类 ImagerySection 改名 StyleSection OK
+类 StyleWidgetponent 改名 StyleWidget OK
+类 StateImagery 改名 StyleLayout OK
+类 SectionSpecification 改名 Section OK
+类 LayerSpecification 改名 Layer OK
+类 BaseDim 改名 SizeBase OK
+类 AbsoluteDim 改名 AbsoluteSize OK
+类 ImageDimBase 改名 ImageSizeBase OK
+类 ImageDim 改名 ImageSize OK
+类 ImagePropertyDim 改名 ImagePropertySize OK
+类 WidgetDim 改名 WidgetSize OK
+类 UnifiedDim 改名 RelationSize OK
+类 FontDim 改名 FontSize OK
+类 Dimension 改名 SizeDefine OK
+类 ComponentArea 改名 StyleArea OK
+类 System 改名 UIManager OK
+类 RenderedString 改名 PixelUnitGrid OK
+类 RenderedStringComponent 改名 PixelUnit OK
+类 RenderedStringImageComponent 改名 ImagePixelUnit OK
+类 RenderedStringTextComponent 改名 TextPixelUnit OK
+类 RenderedStringStyleWidgetponent 改名 WidgetPixelUnit OK
+类 FormattedRenderedString 改名 PixelLayout OK
+类 RightAlignedRenderedString 改名 RightLayout OK
+类 CentredRenderedString 改名 CenterLayout OK
+类 JustifiedRenderedString 改名 JustifyLayout OK
+类 LeftAlignedRenderedString 改名 LeftLayout OK
+类 RenderedStringWordWrapper 改名 WrapLayout OK
+类 RenderedStringParser 改名 TextView OK
+类 BasicRenderedStringParser 改名 BaseTextView OK
+类 DefaultRenderedStringParser 改名 DefaultTextView OK
+类 BidiVisualMapping 改名 BidiText OK
+类 FribidiVisualMapping 改名 FribidiText OK
+类 MinibidiVisualMapping 改名 MinibidiText OK
+类 StringTranscoder 前至 到 NII命名空间和 StrConv 合并 OK
+类 OgreRenderer_impl 改名 RenderSubSys_impl OK 展开到 Renderer OK
+类 Renderer 改名 RenderSubSys OK 迁入 UIManager OK
+类 OgreGUIFrameListener 移去 OK
+类 Texture 改名 SubTexture OK
+类 RenderTarget 改名 SubRenderTarget OK
+类 RawDataContainer 使用 MemStream 代替 OK
+类 WindowTarget 概念被分解到 NII 中
+类 TextureTarget 概念被分解到 NII 中
+类 RenderArea 完全拆解概念到 UISubSheet
+类 RenderArea 完全拆解概念到 UISheet
+类 RenderingContext 改名 SheetContext
+类 SlotFunctorBase 改用 引擎中的 Functor
+类 MemberFunctionSlot 改用 引擎中的 CommandFunctor
+类 FreeFunctionSlot 改用 引擎中的 MethodFunctor
+类 FunctorPointerSlot 改用 引擎中的 PtrFunctor
+类 FunctorReferenceBinder 移去
+类 FunctorReferenceSlot 改用 引擎中的 RefFunctor
+类 FunctorCopySlot 改用 引擎中的 CopyFunctor
+类 GlobalEventSet 移去
+类 SubscriberSlot 融入到 BoundSlot 中
+类 BoundSlot 改用 引擎中的 EventFunctor
+类 EventSet 改用 引擎中的 CommandObj
+类 ScopedConnection 改名 EventSignal
+类 PropertyReceiver 改用 引擎中的 PropertyCmdObj
+类 XMLAttributes 改名 PropertyData 继承 DataCom
+类 PropertyDefinition 改名 StyleProperty
+类 PropertyInitialiser 改名 AssignProperty
+类 XMLParser 改名 XmlPattern
+类 NativeClipboardProvider 改名 ClipboardData
+类 NamedArea 改名 StyleSpecial
+类 AnimationInstance 改名 PropertyIDFusion
+类 EventLinkDefinition 改名 ListenerEvent
+类 RenderQueue 改名 GeometryQueue
+类 SystemKeys 融入到 Sheet 整个类移去
+类 SimpleTimer 整个移去
+类 MouseClickTracker 改名 CursorMultiTouch
+类 GUIContextRenderTargetEventArgs 改名 RenderSheetEventArgs
+类 GUIContextEventArgs 改名 SheetEventArgs
+URect 改名 RelRect
+UVector2 改名 RelVector2
+类 UBox 使用 RelRect 代替
+类 TypeSensitiveZero 移去
+类 TypeSensitiveOne 移去
+类 AnimationKeyFrameHandler 改名 PropertyIDKeyFrameXml
+类 Thumb 改名 PosButton
+类 ClippedContainer 整个移去
+类 GroupBox 整个移去
+类 Spinner 改名 NumSpinner
+类 TplWindowFactoryRegisterer 无用移去
+类 TplWindowFactory 改名 TWidgetFactory
+类 WindowFactory 改名 WidgetFactory
+类 WindowRendererFactory 改名 WidgetViewFactory
+类 TplWidgetModelFactory 改名 TWidgetViewFactory
+类 CoreWindowRendererModule FactoryModule FactoryRegisterer TplWRFactoryRegisterer 移去
+类 EventAction ChildEventAction 移去
+类 FormattingSetting 改名 PropertyType
+enum RenderQueueID 改名 GeometryLevel
+移去 类 TplWindowProperty
+移去 类 TplWindowRendererProperty
+移去 类 TplProperty
+移去 类 TypedProperty
+移去 类 PropertyDefinitionBase
+移去 类 FalagardPropertyBase
+移去 类 PropertySet
+移去 类 Property
+移去 类 TplInterpolatorBase
+类 Image 改名 PixelBuffer
+类 ImageManager 改名 PixelManager
+把 BasicImage 融入 PixelBuffer 中
+移去 类 ImageFactory
+枚举 AutoScaledMode 改名 ScaleMode
+类 PropertyLinkDefinition 改名 ListenerProperty
+类 LinkedEvent 改名 _ListenerEvent
+类 LinkedEventArgs 改名 ListenerEventArgs 移去
+类 NamedDefinitionCollator 移去
+类 RenderQueueEventArgs 改名 GeometryLevelEventArgs
+类 MouseCursorEventArgs 改名 CursorViewArgs
+类 MouseCursor 改名 Cursor
+类 Size 改名 PlaneSize
+类 CachedRectf 改名 CalcRect
+类 SequentialLayoutContainer 改名 IndexLayoutContainer
+类 ScrolledContainer 改名 SizeContainer
+类 ItemEntry 改名 ListItem
+QuadSplitMode TopLeftToBottomRight BottomLeftToTopRight 移去
+类 ScrollablePane 改名 ScrollContainer
+类 DynamicModule 使用 NII 中的代替
+类 ItemListBase 改名 ListContainer
+类 DefaultTextView 改名 NormalTextView
+类 LinkXmlAnalyze 使用 XmlAnalyze 代替
+ASM_Disabled == SM_Unknow OK
+ASM_Vertical == SM_Y OK
+ASM_Horizontal == SM_X OK
+ASM_Min == SM_Min OK
+ASM_Max == SM_Max OK
+ASM_Both == SM_ALL OK
+RQ_USER_0 == GL_Unknow OK
+RQ_BASE == GL_Base OK
+RQ_OVERLAY == GL_Overlay OK
+invalidate == refresh OK
+setPosition == setPos OK
+getPosition == getPos OK
+addChild == add OK
+removeChild == remove OK
+scaleToAspect == scale
+d_type == mType OK
+d_name == mName / d_name == mID OK
+getName == getID OK PropertyData 外 OK
+d_colours == mColour OK
+d_image == mImage OK
+writeXMLToStream == write OK
+handleFontRenderSizeChange == notifyFont OK
+isHovering == isHover OK
+isPushed == isPress OK
+setSelected == select OK
+isSelected == isSelect OK
+setTargetWindow == setDest OK
+getTargetWindow == getDest OK
+d_selected == mSelect OK
+d_dragging == mDrag OK
+d_defaultResourceGroup == mResourceGroup OK
+d_defaultResourceGroups == mResourceGroups OK
+setName == setID OK
+cegui_absdim 融入移去 OK
+cegui_reldim 融入移去 OK
+subscribeEvent == add OK
+getDefaultResourceGroup == getGroup OK
+getSchemaName == getXSD OK
+getXMLParser == getXMLSys OK
+setXMLParser == setXMLSys OK
+onFontChanged == notifyFont OK
+onTextChanged == onText OK
+setDefaultResourceGroup == setGroup OK
+AM_IGNORE == AM_Unknow
+移去整个 ResourceProvider 概念
+移去整个 DefaultResourceProvider
+移去整个 CompositeResourceProvider
+移去整个 ImageCodec 概念
+//----------------------------------------------------------------------
+VerticalFormatting == VLayout OK
+VF_TOP_ALIGNED == VL_Top OK
+VF_CENTRE_ALIGNED == VL_Centre OK
+VF_BOTTOM_ALIGNED == VL_Bottom OK
+VF_STRETCHED == VL_Expand OK
+VF_TILED == VL_Tile OK
+//----------------------------------------------------------------------
+WUM_ALWAYS == RM_Alway OK
+WUM_NEVER == RM_Never OK
+WUM_VISIBLE == RM_Visible OK
+//----------------------------------------------------------------------
+HorizontalFormatting == HLayout OK
+HF_LEFT_ALIGNED == HL_Left OK
+HF_CENTRE_ALIGNED == HL_Centre OK
+HF_RIGHT_ALIGNED == HL_Right OK
+HF_STRETCHED == HL_Expand OK
+HF_TILED == HL_Tile OK
+//----------------------------------------------------------------------
+VerticalTextFormatting == VTextLayout OK
+VTF_TOP_ALIGNED == VTL_Top OK
+VTF_CENTRE_ALIGNED == VTL_Centre OK
+VTF_BOTTOM_ALIGNED == VTL_Bottom OK
+//----------------------------------------------------------------------
+HorizontalTextFormatting == HTextLayout OK
+HTF_LEFT_ALIGNED == HTL_Left OK
+HTF_RIGHT_ALIGNED == HTL_Right OK
+HTF_CENTRE_ALIGNED == HTL_Centre OK
+HTF_JUSTIFIED == HTL_Normal OK
+HTF_WORDWRAP_LEFT_ALIGNED == HTL_Wrap_Left OK
+HTF_WORDWRAP_RIGHT_ALIGNED == HTL_Wrap_Right 0K
+HTF_WORDWRAP_CENTRE_ALIGNED == HTL_Wrap_Centre OK
+HTF_WORDWRAP_JUSTIFIED == HTL_Wrap_Expand OK
+//----------------------------------------------------------------------
+DOP_NOOP == SOT_Unknow OK
+DOP_ADD == SOT_Add OK
+DOP_SUBTRACT == SOT_Subtract OK
+DOP_MULTIPLY == SOT_Multiply OK
+DOP_DIVIDE == SOT_Divide OK
+//----------------------------------------------------------------------
+FontMetricType == FontSizeType OK
+FMT_LINE_SPACING == FST_LineSpace OK
+FMT_BASELINE == FST_BaseLine OK
+FMT_HORZ_EXTENT == FST_TextEntent OK
+//----------------------------------------------------------------------
+DT_INVALID == ST_Unknow OK
+DT_LEFT_EDGE == ST_LeftPadding OK
+DT_TOP_EDGE == ST_TopPadding OK
+DT_RIGHT_EDGE == ST_RightPadding OK
+DT_BOTTOM_EDGE == ST_BottomPadding OK
+DT_WIDTH == ST_Width OK
+DT_HEIGHT == ST_Height OK
+DT_X_POSITION == ST_X OK
+DT_Y_POSITION == ST_Y OK
+DT_X_OFFSET == ST_XOft OK
+DT_Y_OFFSET == ST_YOft OK
+//----------------------------------------------------------------------
+class Rect 改用 TRect OK
+class TRect getWidth == width
+class TRect getHeight == height
+class TRect getIntersect == intersect OK
+class TRect zero 移去 OK
+class TRect constrainSizeMax 移去 OK
+class TRect constrainSizeMin 移去 OK
+class TRect constrainSize 移去 OK
+class TRect getIntersection == getIntersect OK
+//----------------------------------------------------------------------
+class RefCounted 改用 SharedPtr OK
+//----------------------------------------------------------------------
+class Quaternion -> d_w == w
+class Quaternion -> d_x == x
+class Quaternion -> d_y == y
+class Quaternion -> d_z == z
+//----------------------------------------------------------------------
+class RelPos ->
+class RelPos ->
+class RelPos -> d_scale == mScale OK
+class RelPos -> d_offset == mOffset OK
+class RelPos -> px 无效移去 OK
+class RelPos -> zero 无效移去 OK
+class RelPos -> relative 无效移去 OK
+class RelPos -> percent 无效移去 OK
+//----------------------------------------------------------------------
+class PropertyData -> getValue(PropertyID pid) 移去 OK
+class PropertyData -> getValueAsString == getValue OK
+class PropertyData -> getValueAsBool == get(const String &, bool &, bool) OK
+class PropertyData -> getValueAsInteger == get(const String &, NIIi &, NIIi) OK
+class PropertyData -> getValueAsFloat == get(const String &, float &, float) OK
+class PropertyData -> d_attrs == mPropertys OK
+//----------------------------------------------------------------------
+class XmlAnalyze -> handleString == load OK
+class XmlAnalyze -> handleContainer == load OK
+class XmlAnalyze -> handleFile == load OK
+class XmlAnalyze -> elementStart == onBegin OK
+class XmlAnalyze -> elementEnd == onEnd OK
+class XmlAnalyze -> text == onData OK
+//----------------------------------------------------------------------
+class LinkXmlAnalyze -> elementStartLocal == onComBegin OK
+class LinkXmlAnalyze -> elementEndLocal == onComEnd OK
+//----------------------------------------------------------------------
+class SchemeXmlAnalyze -> elementGUISchemeEnd 移去 OK
+class SchemeXmlAnalyze -> validateSchemeFileVersion 融入移去 OK
+//----------------------------------------------------------------------
+GeometryBuffer  === GeometryPixel
+class GeometryPixel -> draw == flush OK
+class GeometryPixel -> reset == clear OK
+class GeometryPixel -> setClippingActive == setClip OK
+class GeometryPixel -> isClippingActive == isClip OK
+class GeometryPixel -> setRenderEffect == apply OK
+class GeometryPixel -> getRenderEffect == get(RenderEffect *&) OK
+class GeometryPixel -> setTexture == apply OK
+class GeometryPixel -> getTexture == get(Texture *&) OK
+class GeometryPixel -> appendVertex == 移去
+class GeometryPixel -> appendGeometry == add OK 第二参数默认为 1 OK
+class GeometryPixel -> setClippingRegion == setClip OK
+class GeometryPixel -> setActiveTexture == setTexture OK
+class GeometryPixel -> getActiveTexture == getTexture OK
+class GeometryPixel -> setTranslation == setOffset OK
+class GeometryPixel -> setPivot == setOrigin OK
+class GeometryPixel -> syncHardwareBuffer 融入移去 OK
+class GeometryPixel -> colourToOgre 融入移去 OK
+class GeometryPixel -> updateMatrix 融入移去 OK
+class GeometryPixel -> initialiseTextureStates 融入移去 OK
+class GeometryPixel -> d_owner 移去迁入 UIManager OK
+class GeometryPixel -> d_renderSystem == mSys OK
+class GeometryPixel -> d_activeTexture == mTexture OK
+class GeometryPixel -> d_clippingActive == mClip OK
+class GeometryPixel -> d_clipRect == mClipArea OK
+class GeometryPixel -> d_translation == mOffset OK
+class GeometryPixel -> d_rotation == mRot OK
+class GeometryPixel -> d_pivot == mOrigin OK
+class GeometryPixel -> d_effect == mEffect OK
+class GeometryPixel -> d_texelOffset == mSkinOffset OK
+class GeometryPixel -> d_matrix == mModelMatrix OK
+class GeometryPixel -> d_matrixValid == mValidModelMatrix 融入 mMark OK
+class GeometryPixel -> d_renderOp == mRenderOp OK
+class GeometryPixel -> d_hwBuffer == mVertexBuffer OK
+class GeometryPixel -> d_sync = mValidVertexBuffer OK
+class GeometryPixel -> d_batches == mBatchList OK
+class GeometryPixel -> d_vertices == mVertexList OK
+class GeometryPixel -> d_blendMode == mMode OK
+//----------------------------------------------------------------------
+class OgreRenderTarget -> d_owner 移去迁入 UIManager OK
+class OgreRenderTarget -> d_renderSystem == mSys OK迁入 UIManager OK
+class OgreRenderTarget -> d_matrix == mProjectMatrix OK
+class OgreRenderTarget -> d_matrixValid == mValidProjectMatrix OK
+//----------------------------------------------------------------------
+
+//----------------------------------------------------------------------
+class EventSet -> subscribeScriptedEvent == addScript 2个函数
+//----------------------------------------------------------------------
+class RenderSubSys_impl -> d_renderSystem == mSys OK
+class RenderSubSys_impl -> d_maxTextureSize 移去 OK
+class RenderSubSys_impl -> d_displayDPI 移去 OK
+class RenderSubSys_impl -> d_displaySize == mViewSize OK 移到 UISheet OK
+class RenderSubSys_impl -> d_defaultTarget == mTarget OK
+class RenderSubSys_impl -> d_textureTargets == mTextureTargets OK
+class RenderSubSys_impl -> d_geometryBuffers == mGeometryBuffers OK
+class RenderSubSys_impl -> d_textures == mTextures OK
+class RenderSubSys_impl -> d_ogreRoot 内部融入 OK
+class RenderSubSys_impl -> d_previousVP == mPreVP OK
+class RenderSubSys_impl -> d_previousProjMatrix == mPreProjMatrix OK
+class RenderSubSys_impl -> d_activeBlendMode == mBlendMode OK
+class RenderSubSys_impl -> d_makeFrameControlCalls == mAloneFrame OK
+class RenderSubSys_impl -> d_useShaders == mShaderEnable OK
+class RenderSubSys_impl -> d_useGLSL == mGLSLEnable OK
+class RenderSubSys_impl -> d_vertexShader == mVP OK
+class RenderSubSys_impl -> d_pixelShader == mFP OK
+class RenderSubSys_impl -> d_vertexShaderParameters == mVPParams OK
+class RenderSubSys_impl -> d_pixelShaderParameters == mFPParams OK
+class RenderSubSys_impl -> d_worldMatrix == mModelMatrix OK
+class RenderSubSys_impl -> d_viewMatrix == mViewMatrix OK
+class RenderSubSys_impl -> d_projectionMatrix == mProjMatrix OK
+class RenderSubSys_impl -> d_worldViewProjMatrix == mSpaceMatrix OK
+class RenderSubSys_impl -> d_combinedMatrixValid == mValidSpaceMatrix OK
+//----------------------------------------------------------------------
+class TreeItem -> d_owner == mParent OK
+class TreeItem ->
+class TreeItem ->
+class TreeItem ->
+class TreeItem ->
+class TreeItem ->
+class TreeItem ->
+class TreeItem ->
+//----------------------------------------------------------------------
+class SubTexture -> getID == 迁 getOrigin OK
+class SubTexture -> getSize == getArea OK --> 迁getWidth --> 迁getHeight OK
+class SubTexture -> getOriginalDataSize == getOriginArea OK --> 迁 getOriginWidth --> 迁 getOriginHeight OK
+class SubTexture -> getTexelScaling == getAreaFactor OK --> 迁 getWidthFactor --> 迁 getHeightFactor 融 OK
+class SubTexture -> loadFromFile == load OK --> 迁 OK
+class SubTexture -> loadFromMemory == load OK --> 迁 OK
+class SubTexture -> blitFromMemory 移去 OK
+class SubTexture -> blitToMemory 移去 OK
+class SubTexture -> isPixelFormatSupported 移去 OK
+class SubTexture -> setOgreTexture  == 移去 OK
+class SubTexture -> getOgreTexture == 移去 OK
+class SubTexture -> fromOgrePixelFormat 移去 OK
+class SubTexture -> toOgrePixelFormat 移去 OK
+class SubTexture -> freeOgreTexture == 移去
+class SubTexture -> getUniqueName == getAutoName OK
+class SubTexture -> updateCachedScaleValues == synAreaFactor OK --> 迁 融 OK
+class SubTexture -> d_texture == mObj OK
+class SubTexture -> d_isLinked == 移去
+class SubTexture -> d_size ==  mArea OK
+class SubTexture -> d_dataSize == mOriginArea OK
+class SubTexture -> d_texelScaling == mAreaFactor 融 OK
+class SubTexture -> d_textureNumber == mNext -> getAutoName OK
+class SubTexture -> PF_RGBA == PF_A8B8G8R8 OK
+class SubTexture -> PF_RGB == PF_B8G8R8UN OK
+class SubTexture -> PF_RGB_565 == PF_R5G6B5 OK
+class SubTexture -> PF_RGBA_4444 == PF_A4R4G4B4 OK
+class SubTexture -> PF_PVRTC2 == PF_PVRTC_RGBA_2BPP OK
+class SubTexture -> PF_PVRTC4 == PF_PVRTC_RGBA_4BPP OK
+class SubTexture -> PF_RGBA_DXT1 == PF_BC1UN OK
+class SubTexture -> PF_RGBA_DXT3 == PF_BC2UN OK
+class SubTexture -> PF_RGBA_DXT5 == PF_BC3UN ok
+//----------------------------------------------------------------------
+class StringTranscoder -> stringToUTF16 == convUTF 返回变第二参数 OK
+class StringTranscoder -> stringToStdWString 移去 OK
+class StringTranscoder -> stringFromUTF16 == fromUTF OK
+class StringTranscoder -> stringFromStdWString 移去 OK
+class StringTranscoder -> deleteUTF16Buffer 移去 OK
+class StringTranscoder 移去 OK
+//----------------------------------------------------------------------
+CEGUI_VERSION_MAJOR 替换 NII_VERSION_MAJOR OK
+CEGUI_VERSION_MINOR 替换 NII_VERSION_MINOR OK
+CEGUI_VERSION_PATCH 替换 NII_VERSION_PATCH OK
+CEGUI_VERSION_ABI   替换 NII_VERSION OK
+//----------------------------------------------------------------------
+class Vertex -> position == mPos OK
+class Vertex -> tex_coords == mTexCoord OK
+class Vertex -> colour_val == mColour OK
+//----------------------------------------------------------------------
+class ColourArea -> isMonochromatic == isOneColour OK
+class ColourArea -> getSubRectangle == get(NIIf left, NIIf right, NIIf top, NIIf bottom)
+    改 const Rectf & 参数 OK
+class ColourArea -> getColourAtPoint == get OK
+class ColourArea -> setColours = set OK
+class ColourArea -> modulateAlpha == setAlphaFactor OK
+class ColourArea -> d_top_left == mTL OK
+class ColourArea -> d_top_right == mTR OK
+class ColourArea -> d_bottom_left == mBL OK
+class ColourArea -> d_bottom_right == mBR OK
+//----------------------------------------------------------------------
+class OgreWindowTarget -> activate == apply OK 概念移到 UISheet OK
+class OgreWindowTarget -> deactivate 无效移去 OK
+class OgreWindowTarget -> affine 概念移到 UISheet OK
+class OgreWindowTarget -> setOgreRenderTarget 概念移到 UISheet OK
+class OgreWindowTarget -> draw 2函数 概念移到 UISheet OK
+class OgreWindowTarget -> updateMatrix 概念移去 OK
+class OgreWindowTarget -> updateViewport 概念移去 OK
+class OgreWindowTarget -> setArea 概念移到 UISheet OK
+class OgreWindowTarget -> getArea 概念移到 UISheet OK
+//----------------------------------------------------------------------
+class OgreTextureTarget -> activate 概念移到 UISubSheet OK
+class OgreTextureTarget -> activate 无效移去 OK
+class OgreTextureTarget -> setArea 概念移到 UISubSheet OK
+class OgreTextureTarget -> getArea 概念移到 UISubSheet OK
+class OgreTextureTarget -> draw 2函数 概念移到 UISubSheet OK
+class OgreTextureTarget -> clear == 融入概念移到 UISubSheet OK
+class OgreTextureTarget -> updateMatrix 概念移到 UISubSheet OK
+class OgreTextureTarget -> updateViewport 概念移到 UISubSheet OK
+class OgreTextureTarget -> affine 概念移到 UISubSheet OK
+class OgreTextureTarget -> declareRenderSize == setNativeSize OK 改
+    const PlaneSizei & 参数概念移到 UISubSheet OK
+//----------------------------------------------------------------------
+class RenderTarget -> activate == onPreRender
+class RenderTarget -> deactivate == onRendering
+
+//----------------------------------------------------------------------
+class GeometryQueue -> draw == flush OK
+class GeometryQueue -> addGeometryBuffer == add OK
+class GeometryQueue -> removeGeometryBuffer == remove OK
+class GeometryQueue -> BufferList == Buffers OK
+class GeometryQueue -> d_buffers == mObjs OK
+class GeometryQueue -> reset == clear OK
+//----------------------------------------------------------------------
+class RenderingContext -> surface == mSheet OK
+class RenderingContext 加入 mFace 概念 属于 UISubSheet
+class RenderingContext -> owner == mRoot OK
+class RenderingContext -> offset == mPosOffset OK
+class RenderingContext -> queue == mQueue OK
+//----------------------------------------------------------------------
+class StyleXmlAnalyze -> FalagardElement == StyleProperty OK
+class StyleXmlAnalyze -> WidgetLookElement == WidgetModelProperty OK
+class StyleXmlAnalyze -> ChildElement == ChildProperty OK
+class StyleXmlAnalyze -> ImagerySectionElement == StyleSectionProperty OK
+class StyleXmlAnalyze -> StateImageryElement == StyleLayoutProperty OK
+class StyleXmlAnalyze -> LayerElement == LayerProperty OK
+class StyleXmlAnalyze -> SectionElement == SectionProperty OK
+class StyleXmlAnalyze -> ImageryComponentElement == ImageryComProperty OK
+class StyleXmlAnalyze -> TextComponentElement == TextComProperty OK
+class StyleXmlAnalyze -> FrameComponentElement == FrameComProperty OK
+class StyleXmlAnalyze -> AreaElement == AreaProperty OK
+class StyleXmlAnalyze -> ImageElement == N_PropertyPixelBuffer_Pixel OK
+class StyleXmlAnalyze -> ColoursElement == ColoursProperty OK
+class StyleXmlAnalyze -> VertFormatElement == VLayoutProperty OK
+class StyleXmlAnalyze -> HorzFormatElement == HLayoutProperty OK
+class StyleXmlAnalyze -> VertAlignmentElement == N_PropertyUIWidget_VAlign OK
+class StyleXmlAnalyze -> HorzAlignmentElement == N_PropertyUIWidget_HAlign OK
+class StyleXmlAnalyze -> PropertyElement == Property OK
+class StyleXmlAnalyze -> DimElement == SizeTypeProperty OK
+class StyleXmlAnalyze -> UnifiedDimElement == UnifiedSizeProperty OK
+class StyleXmlAnalyze -> AbsoluteDimElement == AbsoluteSizeProperty OK
+class StyleXmlAnalyze -> ImageDimElement == PixelSizeProperty OK
+class StyleXmlAnalyze -> ImagePropertyDimElement == PixelIDSizeProperty OK
+class StyleXmlAnalyze -> WidgetDimElement == WidgetSizeProperty OK
+class StyleXmlAnalyze -> FontDimElement == N_PropertyFont_CharSize OK
+class StyleXmlAnalyze -> PropertyDimElement == SizeDefineProperty OK
+class StyleXmlAnalyze -> TextElement == TextProperty OK
+class StyleXmlAnalyze -> ColourPropertyElement == ColourDefineProperty OK
+class StyleXmlAnalyze -> ColourRectPropertyElement == ColourAreaDefineProperty OK
+class StyleXmlAnalyze -> NamedAreaElement == NameAreaProperty OK
+class StyleXmlAnalyze -> PropertyDefinitionElement == PropertyDefineProperty OK
+class StyleXmlAnalyze -> PropertyLinkDefinitionElement == PropertyLinkDefineProperty OK
+class StyleXmlAnalyze -> PropertyLinkTargetElement == PropertyLinkTargetProperty OK
+class StyleXmlAnalyze -> OperatorSizeElement == OperatorSizeProperty OK
+class StyleXmlAnalyze -> VertFormatPropertyElement == VLayoutIDProperty OK
+class StyleXmlAnalyze -> HorzFormatPropertyElement == HLayoutIDProperty OK
+class StyleXmlAnalyze -> AreaPropertyElement == AreaIDProperty OK
+class StyleXmlAnalyze -> ImagePropertyElement == ImageIDProperty OK
+class StyleXmlAnalyze -> TextPropertyElement == TextIDProperty OK
+class StyleXmlAnalyze -> FontPropertyElement == N_PropertyFont_ID OK
+class StyleXmlAnalyze -> ColourElement == ColourProperty OK
+class StyleXmlAnalyze -> EventLinkDefinitionElement == EventLinkDefinePropety OK
+class StyleXmlAnalyze -> EventLinkTargetElement ==  EventLinkTargetPropety OK
+class StyleXmlAnalyze -> NamedAreaSourceElement == NameAreaSourceProperty OK
+class StyleXmlAnalyze -> EventActionElement 移去 OK
+class StyleXmlAnalyze -> registerElementStartHandler 使用 setBeginPrc 代替 OK
+class StyleXmlAnalyze -> registerElementEndHandler 使用 setEndPrc 代替 OK
+class StyleXmlAnalyze -> d_manager == mStyleManager
+class StyleXmlAnalyze -> d_widgetlook == mStyle
+class StyleXmlAnalyze -> d_startHandlersMap d_endHandlersMap 移去
+class StyleXmlAnalyze -> d_namedArea == mStyleSpecial
+class StyleXmlAnalyze -> d_childcomponent == mStyleWidget
+class StyleXmlAnalyze -> d_imagerysection == mStyleSection
+class StyleXmlAnalyze -> d_imagerycomponent == mImageryCom
+class StyleXmlAnalyze -> d_textcomponent == mTextCom
+class StyleXmlAnalyze -> d_framecomponent == mFrameCom
+class StyleXmlAnalyze -> d_area == mComArea
+class StyleXmlAnalyze -> d_dimension == mSizeDefine
+class StyleXmlAnalyze -> d_stateimagery == mStyleLayout
+class StyleXmlAnalyze -> d_layer == mLayer
+class StyleXmlAnalyze -> d_section = mSection
+class StyleXmlAnalyze -> d_dimStack == mSizeList
+class StyleXmlAnalyze -> processEventLinkTarget 融入移去
+class StyleXmlAnalyze -> assignAreaDimension 融入移去
+class StyleXmlAnalyze -> doBaseDimStart 融入移去
+class StyleXmlAnalyze -> d_propertyLink == mListenerProperty
+class StyleXmlAnalyze -> d_eventLink == mListenerEvent
+//----------------------------------------------------------------------
+class ConfigXmlAnalyze -> initialiseLogger 移去 OK
+class ConfigXmlAnalyze -> autoLoadLookNFeels 融入移去 OK
+class ConfigXmlAnalyze -> autoLoadImagesets 融入移去 OK
+class ConfigXmlAnalyze -> initialiseResourceGroupDirectories 移去(DefaultResourceProvider概念的)
+//----------------------------------------------------------------------
+class RenderArea -> addGeometryBuffer ==  add OK
+class RenderArea -> removeGeometryBuffer == remove OK
+class RenderArea -> clearGeometry == clear 2个函数 OK
+class RenderArea -> isInvalidated == isRefresh OK
+class RenderArea -> isRenderingWindow == isContainer OK
+class RenderArea -> createRenderingWindow == create OK
+class RenderArea -> destroyRenderingWindow == destroy OK
+class RenderArea -> transferRenderingWindow == change OK
+class RenderArea -> getRenderTarget == getRender OK 各自融入 OK
+class RenderArea -> attachWindow == attach OK 各自融入 OK
+class RenderArea -> detatchWindow == detatch OK 各自融入 OK
+class RenderArea -> RenderQueueList == Queues OK
+class RenderArea -> RenderingWindowList == Elements OK
+class RenderArea -> d_invalidated == mRefresh OK
+class RenderArea -> d_windows == mChild OK
+class RenderArea -> d_queues == mRenderQueue OK
+class RenderArea -> d_target == mRender OK
+//----------------------------------------------------------------------
+class AssignProperty -> setTargetPropertyName == setProperty
+class AssignProperty -> getTargetPropertyName == getProperty
+class AssignProperty -> setInitialiserValue == setValue
+class AssignProperty -> getInitialiserValue == getValue
+class AssignProperty -> d_propertyName == mProperty
+class AssignProperty -> d_propertyValue == mValue
+//----------------------------------------------------------------------
+class StateImagery -> d_layers == mLayers OK
+class StateImagery -> d_stateName == mName OK
+//----------------------------------------------------------------------
+class UISheet -> getRootWindow == getRoot OK 移去 Root 概念 OK
+class UISheet -> setRootWindow == setRoot OK 移去 Root 概念 OK
+class UISheet -> setModalWindow == setModal OK
+class UISheet -> getModalWindow == getModal OK
+class UISheet -> getWindowContainingMouse == getCursorOver OK
+class UISheet -> getSurfaceSize 融入移去 OK
+class UISheet -> setAreaSize 融入移去 OK
+class UISheet -> getSystemKeys == getWinComKey OK
+class UISheet -> d_current == mWinComKey 来自 getSystemKeys OK
+class UISheet -> d_systemKeys 移去 OK
+class UISheet -> markAsDirty == redraw OK
+class UISheet -> isDirty == isRedraw OK
+class UISheet -> setMouseMoveScalingFactor == setCursorMoveFactor OK
+class UISheet -> getMouseMoveScalingFactor == getCursorMoveFactor OK
+class UISheet -> setMouseButtonClickTimeout == setCursorClickFactor OK
+class UISheet -> getMouseButtonClickTimeout == getCursorClickFactor OK
+class UISheet -> setMouseButtonMultiClickTimeout == setCursorMultiClickFactor OK
+class UISheet -> getMouseButtonMultiClickTimeout == getCursorMultiClickFactor OK
+class UISheet -> setMouseButtonMultiClickTolerance == setCursorArea OK
+class UISheet -> getMouseButtonMultiClickTolerance == getCursorArea OK
+class UISheet -> setMouseClickEventGenerationEnabled == setCursorMultiClick OK
+class UISheet -> isMouseClickEventGenerationEnabled == getCursorMultiClick OK
+class UISheet -> updateWindowContainingMouse == resetCursorOver OK
+class UISheet -> updateWindowContainingMouse_impl == 融入移去 OK
+class UISheet -> notifyCursor 内化 uisheet_notify OK
+class UISheet -> getInputCaptureWindow == getfocus OK
+class UISheet -> setInputCaptureWindow == setfocus OK
+class UISheet -> setDefaultTooltipObject == set OK
+class UISheet -> setDefaultTooltipType 融入移去 OK
+class UISheet -> getDefaultTooltipObject == get
+class UISheet -> setDefaultFont == set OK
+class UISheet -> getDefaultFont == get OK
+class UISheet -> setRenderTarget == setRender OK
+class UISheet -> updateRootWindowAreaRects 融入移去 OK
+class UISheet -> getRender == getWindow OK
+class UISheet -> setRender == setWindow OK
+class UISheet -> isContainer 融入移去 OK
+class UISheet -> drawContent 融入移去 OK
+class UISheet -> drawWindowContentToTarget 移去 OK
+class UISheet -> renderWindowHierarchyToSurfaces 移去 OK
+class UISheet -> createDefaultTooltipWindowInstance 融入移去 OK
+class UISheet -> destroyDefaultTooltipWindowInstance 融入移去 OK
+class UISheet -> draw 2函数 改名 flush 和 onFlush 融入移去 OK
+class UISheet -> mRender 概念已融入无效移去 OK
+class UISheet -> d_areaChangedEventConnection 概念已融入无效移去 OK
+class UISheet -> EventAreaChanged 概念已融入无效移去 OK
+class UISheet -> d_modalWindow == mModal OK
+class UISheet -> d_captureWindow == mFocus OK
+class UISheet -> notifyDefaultFontChanged == FontChangeCB
+class UISheet -> mouseMoveInjection_impl == 融入移去 OK
+class UISheet -> injectCopyRequest == onObjCopy OK
+class UISheet -> injectCutRequest == onObjCut OK
+class UISheet -> injectPasteRequest == onObjPaste OK
+class UISheet -> getKeyboardTargetWindow == getForce OK
+class UISheet -> getCommonAncestor == getAncestor OK
+class UISheet -> notifyMouseTransition == notifyCursor OK 改变函数 OK
+class UISheet -> areaChangedHandler == 概念融入移去 OK
+class UISheet -> windowDestroyedHandler == DestroyCB OK
+class UISheet -> 加入 attach UISubSheet 概念OK
+class UISheet -> updateWindowContainingMouse_impl ==
+class UISheet -> resetWindowContainingMouse 融入移去 OK
+class UISheet -> getMouseCursor == getCursor 2个函数 OK
+class UISheet -> onRootWindowChanged EventRootWindowChanged == 移去 Root 概念 OK
+class UISheet -> injectTimePulse == update OK
+class UISheet -> injectMouseMove == 融入到 injectMousePosition OK
+class UISheet -> injectMousePosition == onCursorMove OK
+class UISheet -> injectMouseButtonDown == onButtonDown OK
+class UISheet -> injectMouseButtonUp == onButtonUp OK
+class UISheet -> injectMouseButtonClick == onCursorTouch OK
+class UISheet -> injectMouseButtonTripleClick 融入到 injectMouseButtonDoubleClick OK
+class UISheet -> injectMouseButtonDoubleClick == onCursorMultiTouch OK
+class UISheet -> injectChar == onChar OK
+class UISheet -> injectKeyDown == onKeyDown OK
+class UISheet -> injectKeyUp == onKeyUp OK
+class UISheet -> injectMouseLeaves 无用移去  OK
+class UISheet -> injectMouseWheelChange == onDrag OK
+class UISheet -> d_area == mArea OK
+class UISheet -> d_surfaceSize 融入移去  OK
+class UISheet -> d_mouseClickTrackers == mCursorTouch OK
+class UISheet -> d_windowContainingMouseIsUpToDate == mValidOverlay OK
+class UISheet -> d_rootWindow = mRoot OK -> mWins 概念
+class UISheet -> d_windowContainingMouse == mOverlay OK
+class UISheet -> d_isDirty == mRedraw OK
+class UISheet -> d_generateMouseClickEvents == mGenCursorMultiClick OK
+class UISheet -> d_mouseCursor == mCursor OK
+class UISheet -> d_mouseMovementScalingFactor == mCursorMoveFactor OK
+class UISheet -> d_mouseButtonClickTimeout == mCursorClickFactor OK
+class UISheet -> d_mouseButtonMultiClickTimeout == mCursorMultiClickFactor OK
+class UISheet -> d_mouseButtonMultiClickTolerance == mCursorArea OK
+class UISheet -> d_defaultTooltipObject == mTooltip OK
+class UISheet -> d_weCreatedTooltipObject == mAutoTooltip OK
+class UISheet -> d_defaultFont == mFont OK
+class UISheet -> EventRenderQueueStarted == PreRenderEvent OK
+class UISheet -> EventRenderQueueEnded == EndRenderEvent OK
+class UISheet -> d_defaultTooltipType 融入移去 OK
+class UISheet -> onMouseMoveScalingFactorChanged == onCursorMoveFactorChange OK
+class UISheet -> DefaultMouseButtonClickTimeout 融入移去 OK
+class UISheet -> DefaultMouseButtonMultiClickTimeout 融入移去 OK
+class UISheet -> DefaultMouseButtonMultiClickTolerance 融入移去 OK
+class UISheet -> mViewSize 概念化到 mArea OK
+class UISheet -> d_windowDestroyedEventConnection 融入移去 OK
+//----------------------------------------------------------------------
+class UISubSheet -> setPivot == setOrigin OK
+class UISubSheet -> getPivot == getOrigin OK
+class UISubSheet -> setRenderEffect == apply OK
+class UISubSheet -> getRenderEffect == get(RenderEffect *&) OK
+class UISubSheet -> unprojectPoint == affine OK
+class UISubSheet -> setClippingRegion == setClip OK
+class UISubSheet -> getTextureTarget 使用 getRender 代替 OK
+class UISubSheet -> getRender 融入概念无效移去 OK
+class UISubSheet -> realiseGeometry 融入移去 OK
+class UISubSheet -> invalidateGeometry == rebuild OK
+class UISubSheet -> realiseGeometry_impl 融入移去 OK
+class UISubSheet -> isContainer 融入移去 OK
+class UISubSheet -> mRender 概念已融入无效移去 OK
+class UISubSheet -> d_position == mPos OK
+class UISubSheet -> d_geometry == mBuffer OK
+class UISubSheet -> d_geometryValid == mValidBuffer OK
+class UISubSheet -> d_owner = mParent OK
+class UISubSheet -> d_rotation == mRot OK
+class UISubSheet -> d_pivot == mOrigin OK
+class UISubSheet -> d_size == mSize OK
+class UISubSheet -> d_renderer 移去迁入 UIManager OK
+class UISubSheet -> d_area == mArea OK
+class UISubSheet -> RenderTexture * mTarget 融入内部
+class UISubSheet -> EventRenderQueueStarted == PreRenderEvent
+class UISubSheet -> EventRenderQueueEnded == EndRenderEvent
+class UISubSheet -> onFlush 融入移去
+//----------------------------------------------------------------------
+class XmlPattern -> initialiseImpl == _init
+class XmlPattern -> cleanupImpl == _end
+class XmlPattern -> getIdentifierString == getPID
+class XmlPattern -> d_identifierString == mPatternID
+class XmlPattern -> d_initialised == mInit
+class XmlPattern -> initialise == startup
+class XmlPattern -> cleanup == shutdown
+//----------------------------------------------------------------------
+class Widget -> 移去EventNonClientChanged OK
+                    setContent OK
+                    isContent OK
+                    onNonClientChanged OK
+                    mContent OK
+class Widget -> 移去 getParentElement(getParent) OK
+class Widget -> setXPosition 使用 setPos(RelVector2(1参数, getPos().y)) 代替 OK
+class Widget -> setYPosition 使用 setPos(RelVector2(getPos().x, 参数1)) 代替 OK
+class Widget -> getXPosition 使用 getPos().x 代替
+class Widget -> getYPosition 使用 getPos().y 代替
+class Widget -> setHorizontalAlignment == setXAlign OK
+class Widget -> getHorizontalAlignment == getXAlign OK
+class Widget -> setVerticalAlignment == setYAlign OK
+class Widget -> getVerticalAlignment == getYAlign OK
+class Widget -> setAspectMode == setScaleMode OK
+class Widget -> getAspectMode == getScaleMode OK
+class Widget -> setAspectRatio == setScaleFactor OK
+class Widget -> getAspectRatio == getScaleFactor OK
+class Widget -> setPixelAligned == setPixelAlign OK
+class Widget -> isPixelAligned == getPixelAlign OK
+class Widget -> getPixelPosition == getPixelPos OK
+class Widget -> calculatePixelSize == calcArea 参数反义 OK
+class Widget -> getParentPixelSize == calcParentArea 参数反义 OK
+class Widget -> getChildElementAtIdx == get OK
+class Widget -> getChildAtIdx 移去概念到 get OK
+class Widget -> getChildCount == getCount OK
+class Widget -> isChild == isExist OK
+class Widget -> isChildRecursive 融合到 isChild 中 OK
+class Widget -> getChildElement == get OK
+class Widget -> getChildElementRecursive 融入 getChildElement OK
+class Widget -> setNonClient == setContent OK 概念相反 OK
+class Widget -> isNonClient == isContent OK 概念相反 OK
+class Widget -> getUnclippedOuterRect == getOuterRect == getArea OK
+class Widget -> getUnclippedInnerRect == getInnerArea OK
+class Widget -> getUnclippedRect == getArea OK
+class Widget -> getArea == getRelArea OK
+class Widget -> getOuterRectClipper == getClipArea OK
+class Widget -> getInnerRectClipper == getInnerClipArea OK
+class Widget -> getClipRect == getClipArea OK 概念相反 OK 移去 OK
+class Widget -> getRootContainerSize == getRenderSize OK
+class Widget -> setClippedByParent == setAutoClip OK
+class Widget -> isClippedByParent == isAutoClip OK
+class Widget -> isDestroyedByParent == isAutoDestroy OK
+class Widget -> setDestroyedByParent == setAutoDestroy OK
+class Widget -> isEffectiveDisabled == isFinalDisable OK
+class Widget -> isEffectiveVisible == isFinalVisible OK
+class Widget -> setEnabled == setEnable OK
+class Widget -> setDisabled == setDisable 使用 setEnabled 代替
+class Widget -> setInheritsAlpha == setEnvAlpha OK
+class Widget -> setWindowRenderer == setWidgetView OK
+class Widget -> getWindowRenderer == getWidgetView OK
+class Widget -> getWindowRendererName 融入移去 OK
+class Widget -> inheritsAlpha == isEnvAlpha OK
+class Widget -> getEffectiveAlpha == getAlphaEffect OK
+class Widget -> setFalagardType 2个参数 == setStyle OK
+class Widget -> isDisabled == isDisable OK
+class Widget -> getGUIContext == getSheet OK 移到 Window 中 OK
+class Widget -> setGUIContext == setSheet OK 移到 Window 中 OK
+class Widget -> addElementProperties == initCmd(PropertyCmdSet * dest) OK
+class Widget -> setArea_impl == setAreaImpl OK 移去第三个参数
+class Widget -> addChild_impl == addImpl OK
+class Widget -> getChildByNamePath_impl == getImpl OK
+class Widget -> getChildByNameRecursive_impl 融入 getChildByNamePath_impl OK
+class Widget -> removeChild_impl == removeImpl OK
+class Widget -> getUnclippedOuterRect_impl == getAreaImpl 参数反义 OK
+class Widget -> getUnclippedInnerRect_impl == getInnerAreaImpl 参数反义 OK
+class Widget -> getOuterRectClipper_impl == getClipAreaImpl OK
+class Widget -> getInnerRectClipper_impl == getClipInnerAreaImpl OK
+class Widget -> getHitTestRect_impl ==  getIntersectAreaImpl OK
+class Widget -> getHitTestRect == getIntersectArea OK
+class Widget -> writePropertiesXML == writeImpl OK
+class Widget -> banPropertiesForAutoWindow == disableWrite OK
+class Widget -> allocateRenderingWindow == allocRenderCtx OK 移到 Window 中 OK
+class Widget -> releaseRenderingWindow == freeRenderCtx OK 移到 Window 中 OK
+class Widget -> isHitTargetWindow == isPos OK
+class Widget -> setUsingAutoRenderingSurface == setAutoRender OK 移到 Window 中 OK
+class Widget -> isUsingAutoRenderingSurface == isAutoRender OK 移到 Window 中 OK
+class Widget -> setRotation 移到 Window 中 OK
+class Widget -> getRotation 移到 Window 中 OK
+class Widget -> isCapturedByThis == isFocus OK
+class Widget -> getCaptureWindow == getFocus 融入移去 OK
+class Widget -> isWritingXMLAllowed == isDataWrite OK
+class Widget -> setWritingXMLAllowed == setDataWrite OK
+class Widget -> getRootWindow == getRoot OK
+class Widget -> isCapturedByAncestor == isAncestorFocus OK
+class Widget -> setRenderingSurface == setRender OK 移到 Window 中 OK
+class Widget -> getRenderingSurface == getRender OK 移到 Window 中 OK
+class Widget -> getTargetRenderingSurface == getTargetRender OK 概念保留到Window 移去 OK
+class Widget -> setMouseInputPropagationEnabled == setCursorSubmitEvent OK
+class Widget -> isMouseInputPropagationEnabled == isCursorSubmitEvent OK
+class Widget -> setWantsMultiClickEvents == setCursorMultiClick OK
+class Widget -> wantsMultiClickEvents == isCursorMultiClick OK
+class Widget -> fireAreaChangeEvents 融合移去 OK
+class Widget -> notifyChildrenOfSizeChange == notifyChildAreaChange OK 移去参数概念 OK
+class Widget -> drawSelf == queue OK 参数融入 OK
+class Widget -> render == 融入到 queue OK(Window 也一样) OK
+class Widget -> setLookNFeel == setStyle OK
+class Widget -> notifyScreenAreaChanged == notifyPosChange OK
+class Widget -> notifyPosChange 移去参数 概念化到 Container
+class Widget -> performChildWindowLayout == layout OK
+class Widget -> layoutLookNFeelChildWidgets 融入 layout 中 OK
+class Widget -> transferChildSurfaces 移去融入到 onSheet OK
+class Widget -> setRestoreOldCapture == setRestorePreFocus OK
+class Widget -> restoresOldCapture == isRestorePreFocus OK
+class Widget -> invalidate_impl == refreshImpl OK
+class Widget -> getUnprojectedPosition == affine OK
+class Widget -> generateAutoRepeatEvent == rise OK
+class Widget -> updateSelf == updateImpl OK
+class Widget -> bufferGeometry 移去 OK
+class Widget -> queueGeometry 移去 OK
+class Widget -> captureInput == focus OK
+class Widget -> releaseInput == lost OK
+class Widget -> populateGeometryBuffer == renderImpl OK
+class Widget -> notifyClippingChanged == notifyClipChange OK
+class Widget -> getRenderingContext == getRenderContext OK
+class Widget -> getRenderingContext_impl == getRenderContextImpl OK
+class Widget -> updateGeometryRenderSettings == updateImpl OK 加入 RenderingContext * 参数 OK
+class Widget -> initialiseClippers 融入 updateImpl OK RenderingContext * 参数 OK
+class Widget -> invalidateRenderingSurface == refreshFaceImpl OK
+class Widget -> addWindowProperties 移去概念化到 PropertyCmdObj 中
+class Widget -> clonePropertiesTo 移去到融合到clone中 OK
+class Widget -> 添加 cloneImpl OK
+class Widget -> banPropertyFromXML == disableWrite 2个函数 OK
+class Widget -> unbanPropertyFromXML == enableWrite 2个函数 OK
+class Widget -> isPropertyBannedFromXML == isWrite 意义相反 OK 2个函数 OK
+class Widget -> syncTargetSurface 融入移去 OK
+class Widget -> onWindowRendererAttached == onViewAttach OK
+class Widget -> onWindowRendererDetached == onViewDetach OK
+class Widget -> setTextParsingEnabled == setTextLayout OK
+class Widget -> isTextParsingEnabled == isTextLayout OK
+class Widget -> EventFontChanged == FontEvent OK
+class Widget -> EventTextChanged == TextEvent OK
+class Widget -> EventTextParsingChanged == TextParseChangeEvent OK
+class Widget -> onFontChanged == onFont OK
+class Widget -> onTextParsingChanged == onTextParseChange OK
+class Widget -> mBasicTextParser 移动到 UIManager OK
+class Widget -> mDefaultTextParser 移动到 UIManager OK
+class Widget -> d_font == mFont OK
+class Widget -> getTextVisual == getVisualText OK
+class Widget -> getRenderedString == getRenderText OK
+class Widget -> getBidiVisualMapping == getBidiText OK
+class Widget -> setCustomRenderedStringParser == setTextView OK
+class Widget -> getCustomRenderedStringParser == getTextView OK
+class Widget -> getRenderedStringParser == getRenderTextView OK
+class Widget -> performCopy == onCopyData OK
+class Widget -> performCut == onCutData OK
+class Widget -> performPaste == onPasteData OK
+class Widget -> mCustomTextParser == mTextView OK
+class Widget -> property_getFont 融入移去 OK
+
+class Widget -> 分离出 DragDropWindow 概念     OK
+                isDragDropTarget                OK
+                setDragDropTarget               OK
+                notifyDragDropItemEnters        OK
+                notifyDragDropItemLeaves        OK
+                notifyDragDropItemDropped       OK
+                onDragDropItemEnters            OK
+                onDragDropItemLeaves            OK
+                onDragDropItemDropped           OK
+                mDragDropTarget                 OK
+                EventDragDropItemEnters         OK
+                EventDragDropItemLeaves         OK
+                EventDragDropItemDropped        OK
+class Widget -> 分离出 TooltipWidgetAide 概念 OK
+                setTooltipType                  OK
+                getTooltipType                  OK
+                inheritsTooltipText             OK
+                setInheritsTooltipText          OK
+                setTooltip                      OK
+                getTooltip                      OK
+                setTooltipText                  OK
+                getTooltipText                  OK
+                isUsingDefaultTooltip           OK
+
+                mTipsText                        OK
+                mCustomTip                      OK
+                mGenTip                         OK
+                mParentTipsText                 OK
+class Widget -> 分离出 CursorWidgetAide 概念 OK
+                getMouseCursor                  OK
+                setMouseCursor 2个函数          OK
+                property_getMouseCursor         OK
+                d_mouseCursor                   OK
+class Widget -> beginInitialisation == onBeginInit OK
+class Widget -> endInitialisation == onEndInit OK
+class Widget -> onMouseEnters == onCursorEnter OK
+class Widget -> onMouseLeaves == onCursorLeave OK
+class Widget -> onMouseMove == onCursorMove OK
+class Widget -> onMouseWheel == onCursorDrag OK
+class Widget -> onMouseButtonDown == onButtonDown OK
+class Widget -> onMouseButtonUp == onButtonUp OK
+class Widget -> onMouseClicked == onCursorTouch OK
+class Widget -> onMouseDoubleClicked == onCursorMultiTouch OK
+class Widget -> onMouseTripleClicked == 融入 onCursorMultiTouch 概念中 OK
+class Widget -> onCharacter == onChar OK
+class Widget -> 分离出 WidgetMouseControlItem / WidgetTouchControlItem OK
+                //setClickThreshold                    OK
+                //getClickThreshold                    OK
+                //getClickRate                         OK
+                //setClickRate                         OK
+                //isClickAutoEvent                     OK
+                //seClicktAutoEvent                    OK
+                rise                            OK
+                mAutoEvent                      OK
+                mThreshold                      OK
+                mRate                           OK
+                mRepeatButton                   OK
+                mRepeat                         OK
+                mRepeatElapse                   OK
+class Widget -> EventIDChanged                  -> IDEvent OK
+class Widget -> EventNameChanged                -> NameEvent OK
+class Widget -> EventUpdated                    -> UpdataEvent OK
+class Widget -> EventSized                      -> SizeEvent OK
+class Widget -> EventParentSized                -> ParentSizeEvent OK
+class Widget -> EventMoved                      -> MoveEvent OK
+class Widget -> EventHorizontalAlignmentChanged -> HAlignModeEvent OK
+class Widget -> EventVerticalAlignmentChanged   -> VAlignModeEvent OK
+class Widget -> EventAlphaChanged               -> AlphaEvent OK
+class Widget -> EventRotated                    -> RotateEvent OK
+class Widget -> EventActivated                  -> ActivateEvent OK
+class Widget -> EventDeactivated                -> DeactivateEvent OK
+class Widget -> EventShown                      -> ShowEvent OK
+class Widget -> EventHidden                     -> HideEvent OK
+class Widget -> EventEnabled                    -> EnableEvent OK
+class Widget -> EventDisabled                   -> DisableEvent OK
+class Widget -> EventClippedByParentChanged     -> AutoClipModeEvent OK
+class Widget -> EventDestroyedByParentChanged   -> AutoDestroyModeEvent OK
+class Widget -> EventInheritsAlphaChanged       -> EnvAlphaEvent OK
+class Widget -> EventInputCaptureGained         -> FocusEvent OK
+class Widget -> EventInputCaptureLost           -> LostEvent OK
+class Widget -> EventInvalidated                -> InvalidEvent OK
+class Widget -> EventRenderingStarted           -> RenderBeginEvent OK
+class Widget -> EventRenderingEnded             -> RenderEndEvent OK
+class Widget -> EventDestructionStarted         -> DestroyStartEvent OK
+class Widget -> EventWindowRendererAttached     -> ViewAttachEvent OK
+class Widget -> EventWindowRendererDetached     -> ViewDetachEvent OK
+class Widget -> EventMouseEntersSurface         -> CursorEnterEvent OK
+class Widget -> EventMouseLeavesSurface         -> CursorLeaveEvent OK
+class Widget -> EventMouseMove                  -> CursorMoveEvent OK
+class Widget -> EventMouseWheel                 -> CursorDragEvent OK
+class Widget -> EventMouseButtonDown            -> ButtonDownEvent OK
+class Widget -> EventMouseButtonUp              -> ButtonUpEvent OK
+class Widget -> EventMouseClick                 -> CursorClickEvent OK
+class Widget -> EventMouseDoubleClick           -> CursorDoubleClickEvent OK
+class Widget -> EventMouseTripleClick           -> CursorTripleClickEvent OK
+class Widget -> EventKeyDown                    -> KeyDownEvent OK
+class Widget -> EventKeyUp                      -> KeyUpEvent OK
+class Widget -> EventCharacterKey               -> CharEvent OK
+class Widget -> EventRenderContextChange        -> RenderCtxEvent OK
+class Widget -> 加入 onStyleAttach OK
+class Widget -> 加入 onStyleDetach OK
+class Widget -> onIDChanged == onID OK
+class Widget -> onSized == onSize OK
+class Widget -> onParentSized == onParentSize OK
+class Widget -> onNameChanged == onName OK
+class Widget -> onShown == onShow OK
+class Widget -> onHidden == onHide OK
+class Widget -> onMoved == onMove OK
+class Widget -> onRotated == onRotate OK 移到 Window 中 OK
+class Widget -> onEnabled == onEnable OK
+class Widget -> onDisabled == onDisable OK
+class Widget -> onParentDestroyChanged == onAutoDestroyMode OK
+class Widget -> onHorizontalAlignmentChanged == onHAlignMode OK
+class Widget -> onVerticalAlignmentChanged == onVAlignMode OK
+class Widget -> onClippingChanged == onClipMode OK
+class Widget -> onAlphaChanged == onAlpha OK
+class Widget -> onInheritsAlphaChanged == onEnvAlpha OK
+class Widget -> onCaptureGained == onFocus OK
+class Widget -> onCaptureLost == onLost OK
+class Widget -> onInvalidated == onRefresh OK
+class Widget -> onRenderingStarted == onPreRender OK
+class Widget -> onRenderingEnded == onRenderEnd OK
+class Widget -> onDestructionStarted == onDestroy OK
+class Widget -> onActivated == onActivate OK
+class Widget -> onDeactivated == onInactivate OK
+class Widget -> onMarginChanged == onMargin OK
+
+class Widget -> d_area == mArea OK
+class Widget -> d_ID == mID OK
+class Widget -> d_rotation == mRot OK
+class Widget -> ChildList == Childs OK
+class Widget -> d_parent == mParent OK
+class Widget -> d_children == mChilds OK
+class Widget -> d_horizontalAlignment == mHAlign OK
+class Widget -> d_verticalAlignment == mVAlign OK
+class Widget -> d_aspectMode == mScaleMode OK
+class Widget -> d_aspectRatio == mScaleFactor OK
+class Widget -> d_nonClient == mContent 概念相反 OK
+class Widget -> d_minSize == mMinSize OK
+class Widget -> d_maxSize == mMaxSize OK
+class Widget -> d_pixelSize = mPixelSize OK
+class Widget -> d_pixelAligned == mPixelAlign
+class Widget -> d_unclippedOuterRect == mRect OK
+class Widget -> d_unclippedInnerRect == mInnerRect OK
+class Widget -> d_lookName == mStyleID OK
+class Widget -> d_allowWriteXML == mDataWrite OK
+class Widget -> d_destructionStarted == mDestroy OK
+class Widget -> d_inheritsAlpha == mEnvAlpha OK
+class Widget -> setArea 移去两个保留2参数的 改名 setRelArea OK
+class Widget -> d_userStrings d_userData isUserStringDefined setUserString
+    getUserString setUserData getUserData 使用 继承 ExtData
+class Widget -> isPropertyAtDefault == isDefault OK
+class Widget -> disableWrite == setWrite(XXXX, false)
+class Widget -> enableWrite == setWrite(XXXX, true)
+class Widget -> BannedXMLPropertySet == NonSerlProperty OK
+class Widget -> d_bannedXMLProperties == mNonSerlProperty OK
+class Widget -> handleFontRenderSizeChange d_fontRenderSizeChangeConnection == onFont OK
+//----------------------------------------------------------------------
+class CachedRectf -> isCacheValid == isIntCache OK
+class CachedRectf -> DataGenerator == CalcMethod OK
+class CachedRectf -> d_cacheValid == mValidCache OK
+class CachedRectf -> d_cachedData == mCacheData OK
+class CachedRectf -> d_generator == mDataMethod OK
+class CachedRectf -> regenerateCache 融入移去 OK
+class CachedRectf -> getFresh == getCalc 参数反义 OK
+class CachedRectf -> get == getAlignCache OK
+class CachedRectf -> invalidateCache == resetCached OK
+class CachedRectf -> d_element == mObj OK
+//----------------------------------------------------------------------
+class StyleWidget -> getWidgetLookName 无效移去 OK
+class StyleWidget -> setWidgetLookName 无效移去 OK
+class StyleWidget -> getWindowRendererType 无效移去 OK
+class StyleWidget -> setWindowRendererType 无效移去 OK
+class StyleWidget -> getWidgetName == getID OK
+class StyleWidget -> setWidgetName == setID OK
+class StyleWidget -> create 改名 attach OK
+class StyleWidget -> cleanup 改名 detach OK
+class StyleWidget -> d_autoWindow == mAutoGen OK
+class StyleWidget -> d_rendererType 重复概念移去 OK
+class StyleWidget -> d_imageryName 重复概念移去 OK
+class StyleWidget -> 移去所有 EventAction 概念
+class StyleWidget -> getPropertyIterator == getPropertyList
+class StyleWidget -> d_baseType == mFactoryID
+class StyleWidget -> d_vertAlign == mVAlign
+class StyleWidget -> d_horzAlign == mHAlign
+class StyleWidget -> d_properties == mPropertyList
+class StyleWidget -> d_area == mArea
+class StyleWidget -> removePropertyInitialiser == removeAssignProperty
+class StyleWidget -> findPropertyInitialiser == getAssignProperty
+class StyleWidget -> clearPropertyInitialisers == removeAllAssignProperty
+class StyleWidget -> notifyFont 移去
+class StyleWidget -> setComponentArea == setArea
+class StyleWidget -> getComponentArea == getArea
+class StyleWidget -> setBaseWidgetType == setFactoryID
+class StyleWidget -> getBaseWidgetType == getFactoryID
+class StyleWidget -> setVerticalWidgetAlignment == setVAlign
+class StyleWidget -> getVerticalWidgetAlignment == getVAlign
+class StyleWidget -> setHorizontalWidgetAlignment == setHAlign
+class StyleWidget -> getHorizontalWidgetAlignment == getHAlign
+//----------------------------------------------------------------------
+
+//----------------------------------------------------------------------
+class TabButton -> d_targetWindow == mDest OK
+class TabButton -> EventClicked == ClickEvent OK
+class TabButton -> EventDragged == DragEvent OK
+class TabButton -> EventScrolled == ScrollEvent OK
+class TabButton -> onClicked == onClick OK
+//----------------------------------------------------------------------
+class ToggleButton -> setSelected == on OK
+class ToggleButton -> isSelected == isOn OK
+class ToggleButton -> d_selected == mOn OK
+class ToggleButton -> onSelectStateChange == onStateOn OK
+class ToggleButton -> addToggleButtonProperties 变为 initCmd(PropertyCmdSet * dest) OK
+class ToggleButton 不再是 RadioButton的基类 OK getPostClickSelectState 移去 OK
+class ToggleButton -> EventSelectStateChanged == StateOnEvent OK
+//----------------------------------------------------------------------
+class RadioButton -> addRadioButtonProperties 变为 initCmd(PropertyCmdSet * dest) OK
+class RadioButton -> setGroupID == setGroup OK
+class RadioButton -> getGroupID == getGroup OK
+class RadioButton -> d_groupID == mGID OK
+class RadioButton -> getSelectedButtonInGroup == getGroupSelect OK
+class RadioButton -> onSelectStateChange == onSelect OK
+class RadioButton -> deselectSiblingRadioButtonsInGroup == verify OK
+class RadioButton -> EventSelectStateChanged == SelectChangeEvent OK
+//----------------------------------------------------------------------
+class Button -> d_hovering == mOver OK
+class Button -> d_pushed == mPress OK
+class Button -> setPushedState == press OK
+class Button -> updateInternalState == update OK
+class Button -> calculateCurrentHoverState 移去 融入到 update 中 OK
+//----------------------------------------------------------------------
+class PushButton -> EventClicked == PushEvent OK
+class PushButton -> onClicked == onPush OK
+//----------------------------------------------------------------------
+class Thumb -> setHotTracked == setPosEvent OK
+class Thumb -> isHotTracked == isPosEvent OK
+class Thumb -> setVertFree == setYMove OK
+class Thumb -> isVertFree == isYMove OK
+class Thumb -> setHorzFree == setXMove OK
+class Thumb -> isHorzFree == isXMove OK
+class Thumb -> setVertRange == setYRange 2函数 OK
+class Thumb -> getVertRange == getYRange(NIIf & min, NIIf & max) OK
+class Thumb -> setHorzRange == setXRange 2函数 OK
+class Thumb -> getHorzRange == getXRange OK
+class Thumb -> onThumbPositionChanged == onPosChange OK
+class Thumb -> onThumbTrackStarted == onMoveBegin OK
+class Thumb -> onThumbTrackEnded == onMoveEnd OK
+class Thumb -> d_hotTrack == mSynEvent OK
+class Thumb -> d_vertFree == mYMove OK
+class Thumb -> d_horzFree == mXMove OK
+class Thumb -> d_vertMin == mVMin OK
+class Thumb -> d_vertMax == mVMax OK
+class Thumb -> d_horzMin == mHMin OK
+class Thumb -> d_horzMax == mHMax OK
+class Thumb -> d_beingDragged == mDrag OK
+class Thumb -> d_dragPoint == mDragPos OK
+class Thumb -> EventThumbPositionChanged == PosChangeEvent OK
+class Thumb -> EventThumbTrackStarted == MoveBeginEvent OK
+class Thumb -> EventThumbTrackEnded == MoveEndEvent OK
+class Thumb -> addThumbProperties 变为 initCmd(PropertyCmdSet * dest) OK
+//----------------------------------------------------------------------
+class Editbox -> hasInputFocus 移去 改变为 isFinalActive OK
+class Editbox -> isTextMasked == isSelectAll OK
+class Editbox -> setTextMasked == setMarkMode OK
+class Editbox -> clearSelection 移去 OK
+class Editbox -> getTextMatchState 移去 OK
+class Editbox -> setValidationString == setRegexString OK
+class Editbox -> getValidationString == getRegexString OK
+class Editbox -> setCaretIndex == setInput OK
+class Editbox -> getCaretIndex == getInput OK
+class Editbox -> getSelectionStartIndex == getSelectBegin OK
+class Editbox -> getSelectionEndIndex == getSelectEnd OK
+class Editbox -> getSelectionLength == getSelectLength OK
+class Editbox -> setValidator == setRegex OK
+class Editbox -> setMaskCodePoint == setMarkChar OK
+class Editbox -> getMaskCodePoint == getMarkChar OK
+class Editbox -> setSelection == setSelect OK
+class Editbox -> setSelectionStart == setSelectBegin OK
+class Editbox -> setSelectionLength == setSelectLength OK
+class Editbox -> setMaxTextLength == setMaxLength OK
+class Editbox -> getMaxTextLength == getMaxLength OK
+class Editbox -> onReadOnlyChanged == onReadOnlyMode OK
+class Editbox -> onMaskedRenderingModeChanged == onMarkMode OK
+class Editbox -> onMaskCodePointChanged == onMarkChar OK
+class Editbox -> onValidationStringChanged == onRegexString OK
+class Editbox -> onMaximumTextLengthChanged == onMaxLength OK
+class Editbox -> onTextValidityChanged == onTextValid OK
+class Editbox -> onCaretMoved == onInputPos OK
+class Editbox -> onTextSelectionChanged == onSelect OK
+class Editbox -> onEditboxFullEvent == onTextFull OK
+class Editbox -> onTextAcceptedEvent == onTextAccept OK
+class Editbox -> EventReadOnlyModeChanged == ReadOnlyModeEvent OK
+class Editbox -> EventMaskedRenderingModeChanged == MarkModeEvent OK
+class Editbox -> EventMaskCodePointChanged == MarkCharChangeEvent OK
+class Editbox -> EventValidationStringChanged == RegexStringEvent OK
+class Editbox -> EventMaximumTextLengthChanged == MaxLengthEvent OK
+class Editbox -> EventTextValidityChanged == TextValidChangeEvent OK
+class Editbox -> EventCaretMoved == InputPosEvent OK
+class Editbox -> EventTextSelectionChanged == SelectChangeEvent OK
+class Editbox -> EventEditboxFull == InputFullEvent OK
+class Editbox -> EventTextAccepted == InputAcceptEvent OK
+class Editbox -> d_maskCodePoint == mMarkChar OK
+class Editbox -> d_maxTextLen == mMaxTextLength OK
+class Editbox -> d_caretPos == mInputPos OK
+class Editbox -> d_selectionStart == mSelectBegin OK
+class Editbox -> d_selectionEnd ==  mSelectEnd OK
+class Editbox -> d_weOwnValidator == mCreateRegex OK
+class Editbox -> d_dragAnchorIdx == mDragBeginPos OK
+class Editbox -> d_validatorMatchState == mRegexState OK
+class Editbox -> d_previousValidityChangeResponse == mPreStateChangeResponse OK
+class Editbox -> addEditboxProperties 变为 initCmd(PropertyCmdSet * dest) OK
+class Editbox -> d_readOnly == mReadOnly OK
+class Editbox -> d_maskText == mSelectAll OK
+class Editbox -> d_validator == mRegex OK
+class Editbox -> d_validationString == mString OK
+//----------------------------------------------------------------------
+class StyleLayout -> addLayer == add OK
+class StyleLayout -> clearLayers == remove OK == removeAll
+class StyleLayout -> isClippedToDisplay == isClip OK
+class StyleLayout -> setClippedToDisplay == setClip OK
+class StyleLayout -> d_clipToDisplay == mClip OK
+class StyleLayout -> getLayerIterator 无效移去 OK
+//----------------------------------------------------------------------
+class Layer -> addSectionSpecification == add OK
+class Layer -> clearSectionSpecifications == remove OK == removeAll
+class Layer -> getSectionIterator 无效移去 OK
+class Layer -> setLayerPriority == setLevel OK
+class Layer -> getLayerPriority == getLevel OK
+class Layer -> d_sections == mSections OK
+class Layer -> d_layerPriority == mLevel OK
+//----------------------------------------------------------------------
+class Section -> getOwnerWidgetLookFeel == getStyle OK
+class Section -> setOwnerWidgetLookFeel == setStyle OK
+class Section -> getSectionName == getStyleSection OK
+class Section -> setSectionName == setStyleSection OK
+class Section -> setOverrideColours == setColour OK
+class Section -> getOverrideColours == getColour OK
+class Section -> setOverrideColoursPropertySource == setColourID OK
+class Section -> getOverrideColoursPropertySource == getColourID OK
+class Section -> setRenderControlPropertySource == setVisibleCtrlProperty OK
+class Section -> getRenderControlPropertySource == getVisibleCtrlProperty OK
+class Section -> setRenderControlValue == setValidRenderMatch OK
+class Section -> getRenderControlValue == getValidRenderMatch OK
+class Section -> setRenderControlWidget == setVisibleCtrlWidget OK
+class Section -> getRenderControlWidget == getVisibleCtrlWidget OK
+class Section -> initColourRectForOverride 融入移去 OK
+class Section -> shouldBeDrawn 融入移去
+class Section -> d_owner == mStyle OK
+class Section -> d_sectionName ==  mID OK
+class Section -> d_coloursOverride == mColour OK
+class Section -> d_renderControlProperty == mCtlProperty OK
+class Section -> d_renderControlValue getValidRenderMatch setValidRenderMatch 无用移去 OK
+class Section -> d_renderControlWidget == mCtlWidget OK
+class Section -> d_usingColourOverride setUsingOverrideColours isUsingOverrideColours 融入移去 OK
+
+//----------------------------------------------------------------------
+class Combobox -> getTextMatchState 移去 OK
+class Combobox -> addComboboxProperties 改为 initCmd(PropertyCmdSet * dest)
+//----------------------------------------------------------------------
+class MenuItem -> addImpl(add)(调用了setPopupMenu_impl(,false)) 移去概念 OK
+class MenuItem -> d_hovering == mOver OK
+class MenuItem -> d_pushed == mPress OK
+class MenuItem -> setPopupMenu == setDest OK
+class MenuItem -> getPopupMenu == getDest OK
+class MenuItem -> startPopupOpening == toggleOpen OK
+class MenuItem -> startPopupClosing == toggleClose OK
+class MenuItem -> isOpened == isOpen OK
+class MenuItem -> setPopupMenu_impl == setDestImpl OK
+class MenuItem -> addMenuItemProperties == initCmd(PropertyCmdSet * dest) OK
+class MenuItem -> d_ownerList 从 ListItem 中继承所以依旧 OK
+class MenuItem -> d_opened == mOpen OK
+class MenuItem -> d_popup == mDest OK
+class MenuItem -> EventClicked == ClickEvent OK
+class MenuItem -> onClicked == onClick OK
+//----------------------------------------------------------------------
+class FontXmlAnalyze -> elementFontEnd 移去 OK
+class FontXmlAnalyze -> createFreeTypeFont 融入移去 OK
+class FontXmlAnalyze -> createPixmapFont 融入移去 OK
+class FontXmlAnalyze -> validateFontFileVersion 融入移去 OK
+//----------------------------------------------------------------------
+class ListboxItem -> isDisabled == isDisable OK
+class ListboxItem ->
+//----------------------------------------------------------------------
+
+//----------------------------------------------------------------------
+class TreeItem -> isDisabled == isDisable OK
+//----------------------------------------------------------------------
+class _ListenerEvent -> addLinkedTarget == add OK
+class _ListenerEvent -> LinkedConnections == Signals OK
+class _ListenerEvent -> d_connections == mSignalList OK
+//----------------------------------------------------------------------
+class CursorWidgetAide -> getMouseCursor == getImage OK
+class CursorWidgetAide -> property_getMouseCursor == _getImage OK
+class CursorWidgetAide -> d_mouseCursor = mImage OK
+//----------------------------------------------------------------------
+class TooltipWidgetAide -> isUsingDefaultTooltip == isDefault
+class TooltipWidgetAide -> setInheritsTooltipText == setParentTipsText
+class TooltipWidgetAide -> inheritsTooltipText == isParentTooltipText
+class TooltipWidgetAide -> TooltipNameSuffix == AutoSuffix
+//----------------------------------------------------------------------
+class FrameWindow -> addFrameWindowProperties == initCmd(PropertyCmdSet * dest)
+class FrameWindow -> SizingLocation == ResizeType
+class FrameWindow -> SizingTop == RT_Top
+class FrameWindow -> SizingTopLeft == RT_TopLeft
+class FrameWindow -> SizingLeft == RT_Left
+class FrameWindow -> SizingTopRight == RT_TopRight
+class FrameWindow -> SizingBottom == RT_Bottom
+class FrameWindow -> SizingBottomLeft == RT_BottomLeft
+class FrameWindow -> SizingRight == RT_Right
+class FrameWindow -> SizingBottomRight == RT_BottomRight
+class FrameWindow -> SizingNone == RT_None
+class FrameWindow -> setTitleBarEnabled == setTitleBarEnable
+class FrameWindow -> isTitleBarEnabled == isTitleBarEnable
+class FrameWindow -> setSizingEnabled == setDragResize
+class FrameWindow -> isSizingEnabled == isDragResize
+class FrameWindow -> setFrameEnabled == setFrameEnable
+class FrameWindow -> isFrameEnabled == isFrameEnable
+class FrameWindow -> setCloseButtonEnabled == setCloseButtonEnable
+class FrameWindow -> isCloseButtonEnabled == isCloseButtonEnable
+class FrameWindow -> setDragMovingEnabled == setDragMove
+class FrameWindow -> isDragMovingEnabled == isDragMove
+class FrameWindow -> setRolledup == setRollUp
+class FrameWindow -> isRolledup == isRollUp
+class FrameWindow -> setRollupEnabled == setRollUpEnable
+class FrameWindow -> isRollupEnabled == isRollUpEnable
+class FrameWindow -> toggleRollup == rollup
+class FrameWindow -> setSizingBorderThickness == setBorderSize
+class FrameWindow -> getSizingBorderThickness == getBorderSize
+class FrameWindow -> offsetPixelPosition 融入移去
+class FrameWindow -> setNSSizingCursorImage getNSSizingCursorImage
+    getEWSizingCursorImage getNWSESizingCursorImage getNESWSizingCursorImage
+    setEWSizingCursorImage setNWSESizingCursorImage setNESWSizingCursorImage
+     == setCursor(ResizeType, const PixelBuffer *) getCursor(ResizeType)
+class FrameWindow -> getSizingRect 融入移去
+class FrameWindow -> isLeftSizingLocation isRightSizingLocation isTopSizingLocation
+    isBottomSizingLocation 融入移去
+class FrameWindow -> d_borderSize == mBorderSize
+class FrameWindow -> d_dragPoint == mDragPos
+class FrameWindow -> d_nsSizingCursor == mResizeCursor[0]
+class FrameWindow -> d_ewSizingCursor == mResizeCursor[1]
+class FrameWindow -> d_nwseSizingCursor == mResizeCursor[2]
+class FrameWindow -> d_neswSizingCursor == mResizeCursor[3]
+class FrameWindow -> setCursorForPoint == alterCursor
+class FrameWindow -> getSizingBorderAtPoint == getBorderResizeType
+class FrameWindow -> closeClickHandler 融入移去
+class FrameWindow -> moveLeftEdge == resizeLeft
+class FrameWindow -> moveRightEdge == resizeRight
+class FrameWindow -> moveTopEdge == resizeTop
+class FrameWindow -> moveBottomEdge == resizeBottom
+class FrameWindow -> d_dragMovable == mDragTitleBarMove
+class FrameWindow -> d_frameEnabled == mFrameEnable
+class FrameWindow -> d_rollupEnabled == mRollUpEnable
+class FrameWindow -> d_rolledup == mRollUp
+class FrameWindow -> d_sizingEnabled == mResizeEnable
+class FrameWindow -> d_beingSized == mSizing
+//----------------------------------------------------------------------
+class Editbox -> addEditboxProperties == initCmd(PropertyCmdSet * dest)
+//----------------------------------------------------------------------
+class FreeTypeFont -> addFreeTypeFontProperties == initCmd(PropertyCmdSet * dest)
+class FreeTypeFont -> initialiseFontGlyph 融入移去
+class FreeTypeFont -> initialiseGlyphMap 融入移去
+class FreeTypeFont -> d_ptSize == mPointSize
+class FreeTypeFont -> 加入 mDIP
+class FreeTypeFont -> setAntiAliased == setAntiAliasing
+class FreeTypeFont -> isAntiAliased == isAntiAliasing
+class FreeTypeFont -> d_antiAliased == mAntiAliasing
+class FreeTypeFont -> d_fontData == mFontStream
+class FreeTypeFont -> d_fontFace == mFontFace
+class FreeTypeFont -> d_glyphTextures 概念融入 mTextureGlyphList
+class FreeTypeFont -> d_glyphImages 概念融入到 FontGlyph
+class FreeTypeFont -> drawGlyphToBuffer == genCodePointGlyph
+class FreeTypeFont -> setAntialiasColour == setAlphaAsColour
+class FreeTypeFont -> getAntialiasColour == isAlphaAsColour
+class FreeTypeFont -> d_specificLineSpacing == mLineSpace
+class FreeTypeFont -> mAntialiasColour == mAlphaAsColour
+//----------------------------------------------------------------------
+class PixmapFont -> addFreeTypeFontProperties == initCmd(PropertyCmdSet * dest)
+class PixmapFont -> d_imageNamePrefix == mTextureID
+class PixmapFont -> setImageNamePrefix == setTextureID
+class PixmapFont -> getImageNamePrefix == getTextureID
+class PixmapFont -> defineMapping == defineCodePoint
+class PixmapFont -> reinit 融入移去
+class PixmapFont -> d_origHorzScaling == mLastXScale
+//----------------------------------------------------------------------
+class FontGlyph -> setImage 移去概念
+class FontGlyph -> getImage 移去概念
+class FontGlyph -> setAdvance getAdvance d_advance == setHoriAdvance getHoriAdvance mHoriAdvance
+class FontGlyph -> setImage getImage setValid isValid 概念融并 setState(LS_OK
+class FontGlyph -> getWidth getHeight getRenderedAdvance 概念融并
+class FontGlyph -> setPixelOffset == setOffset
+class FontGlyph -> getPixelOffset == getOffset
+class FontGlyph -> 
+class FontGlyph -> 
+class FontGlyph -> 
+//----------------------------------------------------------------------
+class Font -> addFontProperties == initCmd(PropertyCmdSet * dest)
+class Font -> setAutoScaled == setScaleMode
+class Font -> getAutoScaled == getScaleMode
+class Font -> d_cp_map == mTextureGlyphList 改变概念
+class Font -> d_horzScaling == mXScale
+class Font -> d_vertScaling == mYScale
+class Font -> d_maxCodepoint == mMaxCodePoint
+class Font -> d_nativeResolution == mNativeRes
+class Font -> setNativeResolution == setNativeRes
+class Font -> getNativeResolution == getNativeRes
+class Font -> isCodepointAvailable == isCodePointExist
+class Font -> getGlyphData == getCodePoint
+class Font -> notifyDisplaySizeChanged == setViewRes
+class Font -> d_ascender == mAscLine
+class Font -> d_descender == mDesLine
+class Font -> d_glyphPageLoaded 移去概念
+class Font -> findFontGlyph == getCodePointImpl
+class Font -> rasterise == rasterCodePointImpl
+class Font -> updateFont == reflushCodePointImpl
+class Font -> setMaxCodepoint 融入移去
+//----------------------------------------------------------------------
+class FontManager -> notifyDisplaySizeChanged == notifyView
+//----------------------------------------------------------------------
+class Tree -> handle_scrollChange == ScrollChangeMFunc
+class Tree -> VertScrollbarName == VScrollbarID
+class Tree -> HorzScrollbarName == HScrollbarID
+//----------------------------------------------------------------------
+class Tooltip -> addTooltipProperties == initCmd(PropertyCmdSet * dest)
+//----------------------------------------------------------------------
+class Titlebar -> addTitlebarProperties == initCmd(PropertyCmdSet * dest)
+class Titlebar -> setDraggingEnabled == setDragEnable
+class Titlebar -> isDraggingEnabled == isDragEnable
+class Titlebar -> isDragged == isDragging
+class Titlebar -> getDragPoint == getDragStartPos
+class Titlebar -> onDraggingModeChanged 无用移去
+class Titlebar -> d_dragPoint == mDragPos
+class Titlebar -> d_oldCursorArea == mDragArea
+class Titlebar -> d_dragEnabled == mDragEnable
+//----------------------------------------------------------------------
+class ProgressBar -> addProgressBarProperties == initCmd(PropertyCmdSet * dest)
+class ProgressBar -> onProgressChanged == onPrcChange OK
+class ProgressBar -> onProgressDone == onPrcDone OK
+class ProgressBar -> EventProgressChanged == PrcChangeEvent OK
+class ProgressBar -> EventProgressDone == PrcDoneEvent OK
+class ProgressBar -> adjustProgress == adjust OK
+class ProgressBar -> d_progress == mProgress OK
+class ProgressBar -> d_step == mStep OK
+class ProgressBar -> setStepSize == setStep
+class ProgressBar -> getStepSize == getStep
+//----------------------------------------------------------------------
+
+//----------------------------------------------------------------------
+class ItemListbox -> addItemListboxProperties == initCmd(PropertyCmdSet * dest)
+//----------------------------------------------------------------------
+class ScrolledListContainer -> addScrolledListContainerProperties == initCmd(PropertyCmdSet * dest)
+class ScrolledListContainer -> ContentPaneName 移去
+class ScrolledListContainer ->
+class ScrolledListContainer ->
+class ScrolledListContainer ->
+//----------------------------------------------------------------------
+class MenuBase -> addMenuBaseProperties == initCmd(PropertyCmdSet * dest)
+//----------------------------------------------------------------------
+class PopupMenu -> addPopupMenuProperties == initCmd(PropertyCmdSet * dest)
+//----------------------------------------------------------------------
+SliderWidgetModel 融入到 SliderView
+//----------------------------------------------------------------------
+ScrollContainerWidgetModel 融入到 ScrollContainerView
+//----------------------------------------------------------------------
+class Slider -> addSliderProperties == initCmd(PropertyCmdSet * dest)
+class Slider -> setCurrentValue == setCurrent
+class Slider -> getCurrentValue == getCurrent
+class Slider -> setClickStep == setStepValue
+class Slider -> getClickStep == getStepValue
+class Slider -> updateThumb 融入移去
+class Slider -> getValueFromThumb 融入移去
+class Slider -> getAdjustDirectionFromPoint 融入移去
+class Slider -> handleThumbMoved == ThumbMoveMFunc
+class Slider -> handleThumbTrackStarted == ThumbBeginMFunc
+class Slider -> handleThumbTrackEnded == ThumbEndMFunc
+class Slider -> d_value == mCurrentValue
+class Slider -> d_maxValue == mMaxValue
+class Slider -> d_step == mStepValue
+class Slider -> addSliderProperties 融入移去
+//----------------------------------------------------------------------
+class Scrollbar -> addScrollbarProperties == initCmd(PropertyCmdSet * dest)
+class Scrollbar -> setDocumentSize == setDocSize
+class Scrollbar -> getDocumentSize == getDocSize
+class Scrollbar -> setOverlapSize == setOverlapSize
+class Scrollbar -> getOverlapSize == getOverlapSize
+class Scrollbar -> setScrollPosition == setCurrent
+class Scrollbar -> getScrollPosition == getCurrent
+class Scrollbar -> setUnitIntervalScrollPosition == setCurrentUnit
+class Scrollbar -> getUnitIntervalScrollPosition == getCurrentPositionUnit
+class Scrollbar -> getDecreaseButton == getNegative
+class Scrollbar -> getIncreaseButton == getPositive
+class Scrollbar -> setEndLockEnabled == setAutoEndPos
+class Scrollbar -> isEndLockEnabled == isAutoEndPos
+class Scrollbar -> scrollForwardsByStep == posStep
+class Scrollbar -> scrollBackwardsByStep == negStep
+class Scrollbar -> scrollForwardsByPage == posPage
+class Scrollbar -> scrollBackwardsByPage == negPage
+class Scrollbar -> updateThumb 融入移去
+class Scrollbar -> getValueFromThumb 融入移去
+class Scrollbar -> getAdjustDirectionFromPoint 融入移去
+class Scrollbar -> setScrollPosition_impl == setCurrentImpl
+class Scrollbar -> isAtEnd == isCurrentEnd
+class Scrollbar -> getMaxScrollPosition == getCurrentMax
+class Scrollbar -> handleThumbMoved == ThumbMoveMFunc
+class Scrollbar -> handleIncreaseClicked == PositiveMFunc
+class Scrollbar -> handleDecreaseClicked == NegativeMFunc
+class Scrollbar -> handleThumbTrackStarted == ThumbBeginMFunc
+class Scrollbar -> handleThumbTrackEnded == ThumbEndMFunc
+class Scrollbar -> d_documentSize == mDocSize
+class Scrollbar -> d_pageSize == mPageSize
+class Scrollbar -> d_stepSize == mStepSize
+class Scrollbar -> d_overlapSize == mPageRemian
+class Scrollbar -> d_position == mCurrentPos
+class Scrollbar -> d_endLockPosition == mAutoEnd
+class Scrollbar -> addScrollbarProperties
+//----------------------------------------------------------------------
+class MultiEditbox -> addMultiLineEditboxProperties == initCmd(PropertyCmdSet * dest)
+//----------------------------------------------------------------------
+class ListHeader -> addHeaderProperties == initCmd(PropertyCmdSet * dest)
+//----------------------------------------------------------------------
+
+//----------------------------------------------------------------------
+class DragContainer -> addDragContainerProperties == initCmd(PropertyCmdSet * dest)
+class DragContainer -> setDraggingEnabled == setDragEnable
+class DragContainer -> isDraggingEnabled == isDragEnable
+class DragContainer -> setDragCursorImage == setDragCursor
+class DragContainer -> getDragCursorImage == getDragCursor
+class DragContainer -> setPixelDragThreshold == setDragThreshold
+class DragContainer -> getPixelDragThreshold == getDragThreshold
+class DragContainer -> isBeingDragged == isDragging
+class DragContainer -> d_draggingEnabled == mDragEnable
+class DragContainer -> d_leftMouseDown == mDragButtomDown
+class DragContainer -> setStickyModeEnabled == setStickyMode
+class DragContainer -> isStickyModeEnabled == isStickyMode
+class DragContainer -> d_pickedUp == mPick
+class DragContainer -> d_stickyMode == mStickyMode
+class DragContainer -> pickUp 第一参数改 true 加入 Vector2f 概念
+class DragContainer -> getCurrentDropTarget 无用移去
+class DragContainer -> d_dragCursorImage == mDragCursor
+class DragContainer -> initialiseDragging == _notifyDrag
+class DragContainer -> d_dragPoint == mDragBeginPos
+class DragContainer -> d_dropTarget == mCurrentTarget
+class DragContainer -> d_storedAlpha == mPreAlpha
+class DragContainer -> d_dragAlpha == mDragAlpha
+class DragContainer -> d_dragThreshold == mDragThreshold
+class DragContainer -> doDragging == dragging
+class DragContainer -> d_startPosition == mBeginPos
+class DragContainer -> EventDragStarted == DragBeginEvent
+class DragContainer -> EventDragEnded == DragEndEvent
+class DragContainer -> EventDragPositionChanged == DragPosEvent
+class DragContainer -> EventDragEnabledChanged == DragEnableEvent
+class DragContainer -> EventDragAlphaChanged == DragAlphaEvent
+class DragContainer -> EventDragMouseCursorChanged == DragCursorEvent
+class DragContainer -> EventDragThresholdChanged == DragThresholdEvent
+class DragContainer -> EventDragDropTargetChanged == DragDropWindowEvent
+class DragContainer -> isDraggingThresholdExceeded == isReachDrag
+class DragContainer -> d_storedClipState == mPreClip
+class DragContainer -> onDragStarted == onDragBegin
+class DragContainer -> onDragEnded == onDragEnd
+class DragContainer -> onDragPositionChanged == onDragPosChange
+class DragContainer -> onDragEnabledChanged == onDragEnableChange
+class DragContainer -> onDragAlphaChanged == onDragAlphaChange
+class DragContainer -> onDragMouseCursorChanged == onDragCursorChange
+class DragContainer -> onDragThresholdChanged == DragThresholdChange
+class DragContainer -> onDragDropTargetChanged == onDragDropItemChange
+class DragContainer -> d_fixedDragOffset d_usingFixedDragOffset
+    setFixedDragOffset getFixedDragOffset setUsingFixedDragOffset
+    isUsingFixedDragOffset 无用概念
+class DragContainer -> d_dropflag == 使用 mDrag 代替
+class DragContainer -> updateActiveMouseCursor 融入移去
+//----------------------------------------------------------------------
+class ListHeaderItem -> addHeaderSegmentProperties == initCmd(PropertyCmdSet * dest)
+
+//----------------------------------------------------------------------
+class MultiColumnList -> addMultiColumnListProperties == initCmd(PropertyCmdSet * dest)
+//----------------------------------------------------------------------
+class NumSpinner -> addSpinnerProperties == initCmd(PropertyCmdSet * dest)
+class NumSpinner -> TextInputMode == NumMode
+class NumSpinner -> FloatingPoint == NM_Float
+class NumSpinner -> Integer == NM_Int
+class NumSpinner -> Hexadecimal == NM_Hex
+class NumSpinner -> Octal == NM_Octal
+class NumSpinner -> setCurrentValue == setCurrent
+class NumSpinner -> getCurrentValue == getCurrent
+class NumSpinner -> setStepSize == setStepValue
+class NumSpinner -> getStepSize == getStepValue
+class NumSpinner -> setMaximumValue == setMaxValue
+class NumSpinner -> getMaximumValue == getMaxValue
+class NumSpinner -> setMinimumValue == setMinValue
+class NumSpinner -> getMinimumValue == getMinValue
+class NumSpinner -> setTextInputMode == setNumMode
+class NumSpinner -> getTextInputMode == getNumMode
+class NumSpinner -> d_inputMode == mNumMode
+class NumSpinner -> d_stepSize == mStepValue
+class NumSpinner -> d_currentValue == mCurrentValue
+class NumSpinner -> d_maxValue == mMaxValue
+class NumSpinner -> d_minValue == mMinValue
+class NumSpinner -> getIncreaseButton == getIncrease
+class NumSpinner -> getDecreaseButton == getDecrease
+class NumSpinner -> getEditbox == getTextArea
+class NumSpinner -> getValueFromText == getAreaValue
+class NumSpinner -> getTextFromValue == getValueText
+//----------------------------------------------------------------------
+class AbsoluteSize -> d_val == mValue
+//----------------------------------------------------------------------
+class RelationSize -> d_value == mValue OK
+//---------------------------------------------------------------------
+class UISubSheet -> d_what == mRel OK
+//----------------------------------------------------------------------
+class PropertyType -> setPropertySource == setSrcFetch
+class PropertyType -> isFetchedFromProperty == isSrcFetch
+class PropertyType -> writeXMLTagToStream == writeTag
+class PropertyType -> writeXMLAttributesToStream == writeValue
+//----------------------------------------------------------------------
+class ScrollContainer -> addScrollablePaneProperties == initCmd(PropertyCmdSet * dest) OK
+class ScrollContainer -> getViewableArea 融入移去
+class ScrollContainer -> setContentPaneAutoSized == setContentAutoSize
+class ScrollContainer -> isContentPaneAutoSized == isContentAutoSize
+class ScrollContainer -> setContentPaneArea == setContentArea
+class ScrollContainer -> getContentPaneArea == getContentArea
+class ScrollContainer -> setShowVertScrollbar == setForceVScrollbar
+class ScrollContainer -> isVertScrollbarAlwaysShown == isForceVScrollbar
+class ScrollContainer -> setShowHorzScrollbar == setForceHScrollbar
+class ScrollContainer -> isHorzScrollbarAlwaysShown == isForceHScrollbar
+class ScrollContainer -> setHorizontalStepSize == setHStepSize
+class ScrollContainer -> getHorizontalStepSize == getHStepSize
+class ScrollContainer -> setHorizontalOverlapSize == setHPageRemain
+class ScrollContainer -> getHorizontalOverlapSize == getHPageRemain
+class ScrollContainer -> setVerticalStepSize == setVStepSize
+class ScrollContainer -> getVerticalStepSize == getVStepSize
+class ScrollContainer -> setVerticalOverlapSize == setVPageRemain
+class ScrollContainer -> getVerticalOverlapSize == getVPageRemain
+class ScrollContainer -> setHorizontalScrollPosition == setHScrollPos
+class ScrollContainer -> getHorizontalScrollPosition == getHScrollPos
+class ScrollContainer -> setVerticalScrollPosition == setVScrollPos
+class ScrollContainer -> getVerticalScrollPosition == getVScrollPos
+class ScrollContainer -> getContentPane == getContentContainer
+class ScrollContainer -> getScrolledContainer 使用 getContentArea 代替
+class ScrollContainer -> getVertScrollbar == getVScrollbar
+class ScrollContainer -> getHorzScrollbar == getHScrollbar
+class ScrollContainer -> configureScrollbars == updateScrollbar
+class ScrollContainer -> updateContainerPosition == updateContentArea
+class ScrollContainer -> isVertScrollbarNeeded 融入移去
+class ScrollContainer -> isHorzScrollbarNeeded 融入移去
+class ScrollContainer -> handleScrollChange 融入移去
+class ScrollContainer -> handleContentAreaChange == ContentAreaMFunc
+class ScrollContainer -> handleAutoSizePaneChanged 融入移去
+class ScrollContainer -> d_contentRect == mContentRect
+class ScrollContainer -> d_vertStep == mVScrollStep
+class ScrollContainer -> d_horzStep == mHScrollStep
+class ScrollContainer -> d_vertOverlap == mVScrollRemain
+class ScrollContainer -> d_horzOverlap == mHScrollRemain
+class ScrollContainer -> d_contentChangedConn == mContentChangeSingal
+class ScrollContainer -> d_autoSizeChangedConn == mAutoSizeChangeSingal
+class ScrollContainer -> d_forceVertScroll == mForceVScroll
+class ScrollContainer -> d_forceHorzScroll == mForceHScroll
+//----------------------------------------------------------------------
+class SizeContainer -> addScrolledContainerProperties == initCmd(PropertyCmdSet * dest) OK
+class SizeContainer -> setContentPaneAutoSized == setAutoSize OK
+class SizeContainer -> isContentPaneAutoSized == isAutoSize OK
+class SizeContainer -> getChildExtentsArea == getAutoContentArea OK
+class SizeContainer -> getClientChildContentArea_impl == getChildAreaImpl OK
+class SizeContainer -> handleChildMoved == ChildMoveMFunc OK
+class SizeContainer -> onContentChanged == onContentArea OK
+class SizeContainer -> onAutoSizeSettingChanged == onAutoSizeChange OK
+class SizeContainer -> d_eventConnections == mSignalList
+class SizeContainer -> d_contentArea == mChildArea
+class SizeContainer -> d_clientChildContentArea == mClientChildArea
+class SizeContainer -> d_autosizePane == mAutoSize
+//----------------------------------------------------------------------
+WindowFactoryManager 融入到 WidgetManager 中
+StyleView d_windowType == mFactory
+StyleView d_lookName == mStyle
+StyleView d_baseType == mGroup
+StyleView d_rendererType == mWidgetView
+StyleView d_effectName == mEffect
+class WidgetManager -> FalagardWindowMapping == StyleView
+class WidgetManager -> isAlive == isExist OK
+class WidgetManager -> isDeadPoolEmpty 无用移去 OK
+class WidgetManager -> cleanDeadPool == recover
+class WidgetManager -> AliasTargetStack d_aliasRegistry addWindowTypeAlias
+    removeWindowTypeAlias removeAllWindowTypeAliases getDereferencedAliasType
+        getAliasIterator 移去
+class WidgetManager -> isFactoryPresent == isFactoryExist
+class WidgetManager -> removeAllFactories == removeAllFactory
+class WidgetManager -> getMappedLookForType 无用移去
+class WidgetManager -> getMappedRendererForType 无用移去
+class WidgetManager -> addFalagardWindowMapping == addStyleView
+class WidgetManager -> removeFalagardWindowMapping == removeStyleView
+class WidgetManager -> removeAllFalagardWindowMappings == removeAllStyleView
+class WidgetManager -> isFalagardMappedType == isStyleViewExist
+class WidgetManager -> getFalagardMappingForType == getStyleView
+class WidgetManager -> d_factoryRegistry == mWidgetFactoryList
+class WidgetManager -> d_falagardRegistry == mStyleViewList
+class WidgetManager -> addFactory  addWindowType 移去函数
+class WidgetManager -> getIterator 移去函数
+class WidgetManager -> getFalagardMappingIterator 移去函数
+class WidgetManager -> d_ownedFactories 无用移去
+class WidgetManager -> isFactoryPresent == isModelFactoryExist
+class WidgetManager -> getFactory == getViewFactory
+class WidgetManager -> addFactory == addViewFactory
+class WidgetManager -> removeFactory == removeModelFactory
+class WidgetManager -> createWindowRenderer == createWindow
+class WidgetManager -> destroyWindowRenderer == destroyView
+class WidgetManager -> d_wrReg == mWidgetModelList
+class WidgetManager -> addFactory addWindowRendererType 移去函数
+class WidgetManager -> OwnedFactoryList d_ownedFactories 无用移去
+
+class WidgetManager -> initEffect 融入移去
+class WidgetManager -> lock unlock isLocked mLockCount 移去
+class WidgetManager -> DEBUG_dumpWindowNames 无用移去
+class WidgetManager -> getLayoutAsString 融入移去
+class WidgetManager -> getIterator 无用移去
+class WidgetManager -> writeLayoutToStream == writeWidget
+class WidgetManager -> saveLayoutToFile == writeWidget
+
+WidgetManager::EventWindowCreated WidgetManager::EventWindowDestroyed
+UISheet::mWidgetDestroyCB UISheet::DestroyCB 概念融并 为 onCreate onDestroy
+
+//----------------------------------------------------------------------
+class TabControl -> addTabControlProperties == initCmd(PropertyCmdSet * dest)
+//----------------------------------------------------------------------
+class Container -> createChild == create OK
+class Container -> destroyChild == destroy 2个函数 OK
+class Container -> isCapturedByChild == isChildFocus OK
+class Container -> isMouseContainedInArea == isCursorEnter OK
+class Container -> getNonClientChildContentArea == getChildArea OK
+class Container -> getClientChildContentArea == getChildInnerArea OK
+class Container -> getChildContentArea == 概念相反 OK getChildArea OK
+class Container -> setDistributesCapturedInputs == setTransmitCursorEvent OK
+class Container -> distributesCapturedInputs == isTransmitCursorEvent OK
+class Container -> cloneChildWidgetsTo 融入到 cloneImpl OK
+class Container -> initialiseComponents == init OK
+class Container -> writeChildWindowsXML 概念化到 writeImpl OK
+class Container -> writeAutoChildWindowXML == writeChild OK
+class Container -> onMouseEntersArea == onCursorEnterArea OK
+class Container -> onMouseLeavesArea == onCursorLeaveArea OK
+class Container -> EventChildAdded == AddEvent OK
+class Container -> EventChildRemoved == RemoveEvent OK
+class Container -> EventMouseEntersArea == CursorEnterAreaEvent OK
+class Container -> EventMouseLeavesArea == CursorLeaveAreaEvent OK
+class Container -> onChildAdded == onAdd OK
+class Container -> onChildRemoved == onRemove OK
+class Container -> cleanupChildren == clearChild OK 存在疑问
+class Container -> addWindowToDrawList 概念化到 类Window moveChildFront/Back 中 OK
+class Container -> removeWindowFromDrawList 概念化到 类Window moveChildFront/Back 中 OK
+class Container -> d_distCapturedInputs == mTransmitCursorEvent OK
+class Container -> ChildDrawList 同化到 Childs OK
+class container -> d_drawList 同化到 mChilds OK
+//----------------------------------------------------------------------
+class DragDropWindow -> setDragDropTarget == setDragDropEnable
+class DragDropWindow -> isDragDropTarget == isDragDropEnable
+class DragDropWindow -> notifyDragDropItemEnters == notifyEnter
+class DragDropWindow -> notifyDragDropItemLeaves == notifyLeave
+class DragDropWindow -> notifyDragDropItemDropped == notifyDrop
+class DragDropWindow -> onDragDropItemEnters == onEnter
+class DragDropWindow -> onDragDropItemLeaves == onLeave
+class DragDropWindow -> onDragDropItemDropped == onDrop
+class DragDropWindow -> EventDragDropItemEnters == EnterEvent
+class DragDropWindow -> EventDragDropItemLeaves == LeaveEvent
+class DragDropWindow -> EventDragDropItemDropped == DropEvent
+class DragDropWindow -> mDragDropTarget == mDragDropEnable
+//----------------------------------------------------------------------
+class Window -> isInFront == isFront OK
+class Window -> setAlwaysOnTop == setTop OK
+class Window -> isAlwaysOnTop == isTop OK
+class Window -> isTopOfZOrder == isTopPos OK
+class Window -> getZIndex == getPosLevel OK
+class Window -> moveInFront == moveFront OK 一参数
+class Window -> moveBehind == moveBack OK 一参数
+class Window -> moveToFront == moveFront OK
+class Window -> moveToBack == moveBack OK
+class Window -> setMousePassThroughEnabled == setOvergo OK
+class Window -> isMousePassThroughEnabled == isOvergo OK
+class Window -> setRiseOnClickEnabled == setZOrderClick OK
+class Window -> isRiseOnClickEnabled == isZOrderClick OK
+class Window -> setModalState == setModal OK
+class Window -> getModalState == isModal OK
+class Window -> setZOrderingEnabled == setZOrder OK
+class Window -> isZOrderingEnabled == isZorder OK
+class Window -> getWindowAttachedToCommonAncestor == getCommonAncestor OK
+class Window -> onZChange_impl == ZOrderImpl OK 回归 Widget
+class Window -> onZChanged == onZOrder OK 回归 Widget
+class Window -> onAlwaysOnTopChanged == onTopMode OK
+class Window -> moveToFront_impl == moveFrontImpl OK
+class Window -> EventZOrderChanged == ZOrderEvent OK 回归 Widget
+class Window -> EventAlwaysOnTopChanged == TopModeEvent OK
+class Window -> d_alwaysOnTop == mTop OK
+class Window -> d_mousePassThroughEnabled == mOvergo OK
+class Window -> d_riseOnClick == mZOrderClick OK
+class Window -> d_zOrderingEnabled == mZOrder OK
+//----------------------------------------------------------------------
+class ListenerProperty -> addLinkTarget == add OK
+class ListenerProperty -> clearLinkTargets == removeAll OK
+class ListenerProperty -> isTargetProperty == isExist OK
+class ListenerProperty -> LinkTargetCollection == Listeners OK
+class ListenerProperty -> d_targets == mListeners OK
+//----------------------------------------------------------------------
+class StyleProperty ->
+//----------------------------------------------------------------------
+class Widget -> WindowUpdateMode == RefreshMode OK
+class Widget -> 移去 getParent
+class Widget -> isVisible ==
+class Widget -> isChild == isExist OK
+class Widget -> isChildRecursive 合并到 isChild 中 OK
+class Widget -> getChildRecursive 合并到 getChild 中 OK
+class Widget -> getChild == (第二参数默认false)移去概念到 get OK
+class Widget -> getChildAtPosition == get OK 2个函数
+class Widget -> getTargetChildAtPosition == getTarget OK
+class Widget -> isHit == intersects OK
+
+class Widget -> getGeometryBuffer == getPixelData OK
+class Widget -> getLookNFeel == getStyle OK
+
+class Widget -> validateWindowRenderer == validImpl OK
+class Widget -> getParentElementClipIntersection 融入移去 OK
+class Widget -> markCachedWindowRectsInvalid 移去 OK
+
+class Widget -> d_falagardType == mStyleType OK 移去概念 OK
+class Widget -> d_autoWindow == mAutoGen OK
+class Widget -> d_initialising == mInit OK
+class Widget -> d_active == mActive OK
+class Widget -> d_enabled == mEnable OK
+class Widget -> d_visible == mVisible OK
+class Widget -> d_alpha == mAlpha OK
+class Widget -> d_oldCapture == mPreFocus OK
+class Widget -> d_restoreOldCapture == mRestorePreFocus OK
+class Widget -> d_textLogical == mText OK
+class Widget -> d_bidiVisualMapping == mBidiText OK
+class Widget -> d_bidiDataValid == mValidBidi OK
+class Widget -> d_renderedString == mRenderText OK
+class Widget -> d_basicStringParser == mBasicTextParser OK
+class Widget -> d_defaultStringParser == mDefaultTextParser OK
+class Widget -> d_customStringParser == mCustomTextParser OK
+class Widget -> d_textParsingEnabled == mTextLayout OK
+class Widget -> d_margin == mMargin OK
+class Widget -> d_wantsMultiClicks == mMultiClickEventEnable OK
+class Widget -> d_autoRepeat == mAutoEvent OK
+class Widget -> d_repeatDelay == mThreshold OK
+class Widget -> d_repeatRate == mRate OK
+class Widget -> d_repeatButton == mRepeatButton OK
+class Widget -> d_repeating == mRepeat OK
+class Widget -> d_repeatElapsed == mRepeatElapse OK
+class Widget -> d_dragDropTarget == mDragDropTarget OK
+class Widget -> d_tooltipText == mTipsText OK
+class Widget -> d_customTip == mCustomTip OK
+class Widget -> d_weOwnTip == mGenTip OK
+class Widget -> d_inheritsTipText == mParentTipsText OK
+calss Widget -> d_renderedStringValid == mValidText OK
+class Widget -> d_destroyedByParent == mAutoDestroy OK
+class Widget -> d_clippedByParent == mAutoClip OK
+class Widget -> d_windowRenderer == mWidgetView OK
+class Widget -> d_geometry == mPixelData OK
+class Widget -> d_surface == mRender OK 仅 Window 类保留此概念OK
+class Widget -> d_needsRedraw == mRedraw OK
+class Widget -> d_autoRenderingWindow == mAutoCtx OK 仅 Window 类保留此概念OK
+class Widget -> d_outerRectClipper == mClipRect OK
+class Widget -> d_innerRectClipper == mClipInnerRect OK
+class Widget -> d_hitTestRect == mIntersectRect OK
+class Widget -> d_outerRectClipperValid == mValidClipRect OK
+class Widget -> d_innerRectClipperValid == mValidClipInnerRect OK
+class Widget -> d_hitTestRectValid == mValidIntersectRect
+class Widget -> d_guiContext == mSheet OK
+class Widget -> d_updateMode == mRefreshMode OK
+class Widget -> d_propagateMouseInputs == mCursorSubmitEvent OK
+class Widget -> d_containsMouse == mCursorEnter OK
+//----------------------------------------------------------------------
+class PixelBuffer -> render 概念移到 GeometryPixel 为 add OK
+class PixelBuffer -> render 移去剩下的函数 OK
+class PixelBuffer -> setAutoScaled == setMode OK
+class PixelBuffer -> setOffset == setPixelOffset OK
+class PixelBuffer -> getRenderedOffset == getOffset OK
+class PixelBuffer -> computeScalingFactors == calc OK
+class PixelBuffer -> notifyDisplaySizeChanged == notifyView OK
+class PixelBuffer -> setNativeResolution == setOrigin OK
+class PixelBuffer -> getRenderedSize == getSize OK
+class PixelBuffer -> d_nativeResolution == mNativeRes OK
+class PixelBuffer -> d_texture == mTexture OK
+class PixelBuffer -> d_pixelSize == mPixel OK 使用 mArea.getSize() 代替
+class PixelBuffer -> d_scaledSize == mSize OK
+class PixelBuffer -> d_scaledOffset == mOffset OK
+class PixelBuffer -> d_pixelOffset == mPixelOffset OK
+class PixelBuffer -> d_autoScaled == mMode OK
+class PixelBuffer -> d_area == mArea OK
+class PixelBuffer -> mName == mID OK
+//----------------------------------------------------------------------
+class ListItem -> d_ownerList 使用 mParent 代替结构 OK
+class ListItem -> getOwnerList 移去 OK
+class ListItem -> d_selectable == mSelectable OK
+class ListItem -> addItemEntryProperties 改用 initCmd(PropertyCmdSet) OK
+class ListItem -> setSelected_impl == select OK
+class ListItem -> EventSelectionChanged == SelectChangeEvent OK
+class ListItem -> onSelectionChanged == onSelect OK
+//----------------------------------------------------------------------
+class GridLayoutContainer -> addGridLayoutContainerProperties == initCmd(PropertyCmdSet * dest)
+class GridLayoutContainer -> AutoPositioning == LayoutType
+class GridLayoutContainer -> AP_Disabled == LT_None
+class GridLayoutContainer -> AP_LeftToRight == LT_LeftToRight
+class GridLayoutContainer -> AP_TopToBottom == LT_TopToBottom
+class GridLayoutContainer -> setGridDimensions == setGrid
+class GridLayoutContainer -> setAutoPositioning == setLayoutType
+class GridLayoutContainer -> getAutoPositioning == getLayoutType
+class GridLayoutContainer -> getChildAtPosition == get OK
+class GridLayoutContainer -> removeChildFromPosition == remove OK
+class GridLayoutContainer -> swapChildPositions == swap
+class GridLayoutContainer -> swapChildren == swap
+class GridLayoutContainer -> moveChildToPosition == move
+class GridLayoutContainer -> addChildToPosition == add
+class GridLayoutContainer -> autoPositioningSkipCells 无用移去
+class GridLayoutContainer -> setNextAutoPositioningIdx == setNextLayoutIndex
+class GridLayoutContainer -> getNextAutoPositioningIdx == getNextLayoutIndex
+class GridLayoutContainer -> mapFromGridToIdx == getGridIndex
+class GridLayoutContainer -> translateAPToGridIdx == getGridIndex
+class GridLayoutContainer -> mapFromIdxToGrid == getGridPos
+class GridLayoutContainer -> isDummy 融入移去
+class GridLayoutContainer -> d_autoPositioning == mLayoutType
+class GridLayoutContainer -> d_gridWidth == mGridWidth
+class GridLayoutContainer -> d_gridHeight == mGridHeight
+class GridLayoutContainer -> d_nextAutoPositioningIdx == mNextIndex
+class GridLayoutContainer -> d_nextGridX == mNextGridX
+class GridLayoutContainer -> d_nextGridY == mNextGridY
+class GridLayoutContainer -> onChildOrderChanged == onChildOrderChange
+class GridLayoutContainer -> EventChildOrderChanged == ChildOrderChangeEvent
+class GridLayoutContainer -> d_nextDummyIdx 无用移去
+class GridLayoutContainer -> getGridCellOffset 融入移去
+class GridLayoutContainer -> getGridSize 融入移去
+//----------------------------------------------------------------------
+class StyleSpecial -> d_area == mArea
+class StyleSpecial -> mName == mID
+class StyleSpecial -> notifyFont 移去概念
+//----------------------------------------------------------------------
+class ClipboardData -> sendToClipboard == set OK
+class ClipboardData -> retrieveFromClipboard == get OK
+//----------------------------------------------------------------------
+class LayoutCell -> d_eventConnections 无用移去
+class LayoutCell -> d_clientChildContentArea == mChildInnerArea
+class LayoutCell -> handleChildAdded handleChildSized handleChildRemoved 无用移去
+class LayoutCell -> getClientChildContentArea_impl == getChildAreaImpl 参数反义
+//----------------------------------------------------------------------
+//----------------------------------------------------------------------
+class Cursor -> offsetPosition 融入移去 OK
+class Cursor -> cacheGeometry 融入移去 OK
+class Cursor -> calculateCustomOffset 融入移去 OK
+class Cursor -> setImage setDefaultImage const String & 参数的移去 OK
+class Cursor -> setConstraintArea == setMoveArea OK
+class Cursor -> getConstraintArea == getMoveArea OK
+class Cursor -> setUnifiedConstraintArea == setEvnMoveArea OK
+class Cursor -> getUnifiedConstraintArea == getEvnMoveArea OK
+class Cursor -> getDisplayIndependantPosition 无用移去 OK
+class Cursor -> notifyDisplaySizeChanged == notifyView OK
+class Cursor -> setExplicitRenderSize == setRenderSize OK
+class Cursor -> getExplicitRenderSize == getRenderSize OK
+class Cursor -> setInitialMousePosition s_initialPositionSet(无用移去)
+    s_initialPosition == UIManager setCursorInitPos getCursorInitPos
+        mCursorInitPos
+class Cursor -> d_geometry == mBuffer
+class Cursor -> d_customSize == mSize
+class Cursor -> d_constraints == mMoveArea
+class Cursor -> d_cachedGeometryValid == mBufferValid
+class Cursor -> d_customOffset 融入
+class Cursor -> constrainPosition == clampMoveArea
+class Cursor ->
+class Cursor ->
+//----------------------------------------------------------------------
+class OperatorSize -> setLeftOperand == setFirst
+class OperatorSize -> getLeftOperand == getFirst
+class OperatorSize -> setRightOperand == setSecond
+class OperatorSize -> getRightOperand == getSecond
+class OperatorSize -> setOperator == setOpType
+class OperatorSize -> getOperator == getOpType
+//----------------------------------------------------------------------
+class SizeDefine -> d_value = mBase
+class SizeDefine -> notifyFont 仅保留 SizeBase中 的FontSize
+//----------------------------------------------------------------------
+class WidgetView -> getLookNFeel == getStyle OK
+class WidgetView -> getWindow 融入移去 OK
+class WidgetView -> getRenderingContext == getRenderContext OK
+class WidgetView -> registerProperty 移去单参数 OK
+class WidgetView -> registerProperty == add OK 第2参数反意思OK
+class WidgetView -> getUnclippedInnerRect == getArea OK
+class WidgetView -> onLookNFeelAssigned == onStyleAttach OK
+class WidgetView -> onLookNFeelUnassigned == onStyleDetach OK
+class WidgetView -> d_window == mSrc OK
+class WidgetView -> d_name == mID OK
+class WidgetView -> performChildWindowLayout == layout OK
+class WidgetView -> d_properties == mAPs OK
+class WidgetView -> d_class == mType OK
+class WidgetView -> getClass == getType OK
+class WidgetView -> render == flush OK
+//----------------------------------------------------------------------
+class UIManager -> 合并 RenderSubSys OK
+class UIManager -> bootstrapSystem 2个函数无效果移去 OK
+class UIManager -> destroySystem 无效果移去 OK
+class UIManager -> d_ourLogger 移去 OK
+class UIManager -> create(UIManager * ) 移去 OK
+class UIManager -> destroy(RenderSubSys) 移去 OK
+class UIManager -> 构造函数 UIManager 最后参数 移去 OK
+class UIManager -> d_stringTranscoder 移去 OK
+class UIManager -> getStringTranscoder 移去 OK
+class UIManager -> performVersionTest 移去 OK
+class UIManager -> d_renderer 融入迁移 OK
+class UIManager -> getRenderer 移去 OK
+class UIManager -> renderAllGUIContexts == render OK
+class UIManager -> destroyGeometryBuffer == destroy OK 移动到 BufferManager OK
+class UIManager -> bootstrapSystem 移到 UIManager 中 2函数 OK
+class UIManager -> destroySystem 移到 UIManager 中 OK
+class UIManager -> throwIfNameExists 融入移去 OK
+class UIManager -> createOgreResourceProvider 移去 OK
+class UIManager -> destroyOgreResourceProvider 移去 OK
+class UIManager -> createOgreImageCodec 移去 OK
+class UIManager -> destroyOgreImageCodec 移去 OK
+class UIManager -> setRenderingEnabled == setEnable OK
+class UIManager -> isRenderingEnabled == isEnable OK
+class UIManager -> setFrameControlExecutionEnabled 无用移去 OK
+class UIManager -> isFrameControlExecutionEnabled 无用移去 OK
+class UIManager -> setUsingShaders == setShaderEnable OK
+class UIManager -> isUsingShaders == isShaderEnable OK
+class UIManager -> setupRenderingBlendMode == apply OK
+class UIManager -> initialiseRenderStateSettings 移去 OK
+class UIManager -> setDefaultRootRenderTarget == set OK
+class UIManager -> getDefaultRenderTarget == get OK
+class UIManager -> destroyTexture == destroy(SubTexture *) OK
+class UIManager -> getWorldViewProjMatrix == getSpaceMatrix OK
+class UIManager -> bindShaders 融入移去 OK
+class UIManager -> updateShaderParams == syn OK
+class UIManager -> createGeometryBuffer == create(GeometryPixel *& obj) OK 移动到 BufferManager OK
+class UIManager -> createTextureTarget == create(TextureTarget *& obj) OK
+class UIManager -> destroyTextureTarget == destroy(TextureTarget) OK
+class UIManager -> beginRendering == onBegin OK 融入移去 OK
+class UIManager -> endRendering == onEnd OK 融入移去  OK
+class UIManager -> getDisplayDPI 移去 OK
+class UIManager -> getMaxTextureSize 移去 OK
+class UIManager -> getIdentifierString 移去 OK
+class UIManager -> checkOgreInitialised 移去 OK
+class UIManager -> logTextureCreation 移去 OK
+class UIManager -> logTextureDestruction 移去 OK
+class UIManager -> constructor_impl 移去 OK
+class UIManager -> cleanupShaders 移去 OK
+class UIManager -> setProjectionMatrix == setProjMatrix OK
+class UIManager -> getProjectionMatrix == getProjMatrix OK
+class UIManager -> d_pimpl 展开 OK
+class UIManager -> create 来源于OgreRenderer 2个函数移去 OK
+class UIManager -> destroyAllGeometryBuffers 融入移去 OK
+class UIManager -> destroyAllTextureTargets 融入移去 OK
+class UIManager -> destroyAllTextures 融入移去 OK
+class UIManager -> setWorldMatrix == setModelMatrix OK
+class UIManager -> getWorldMatrix == getModelMatrix OK
+class UIManager -> destroy UIMnanger 移去 OK
+class UIManager -> getDefaultCustomRenderedStringParser == get(TextView *) OK
+class UIManager -> setDefaultCustomRenderedStringParser == set(TextView *) OK
+class UIManager -> isTextureDefined == isExist OK
+class UIManager -> mTarget 改变多窗体概念移去 OK
+class UIManager -> outputLogHeader 移去 OK
+class UIManager -> getResourceProvider 移去 OK
+class UIManager -> notifyDisplaySizeChanged == notifyView == setViewSize OK
+class UIManager -> createGUIContext == create(OgreTextureTarget *, UISheet *&) OK 移去概念 OK
+class UIManager -> destroyGUIContext == destroy OK 移去概念 OK
+class UIManager -> mTextureTargets == mFrames OK
+class UIManager -> mGeometryBuffers == mBuffers OK
+class UIManager -> d_guiContexts == mSheets OK
+class UIManager -> d_customRenderedStringParser == mTextView OK
+class UIManager -> d_clipboard == mClipboard OK 移入 Engine OK
+class UIManager -> d_ourImageCodec 移入 OK
+class UIManager -> d_imageCodecModule 移去 OK
+class UIManager -> d_imageCodec 移去 OK
+class UIManager -> setImageCodec 2 函数 移去 OK
+class UIManager -> cleanupImageCodec 移去 OK
+class UIManager -> setupImageCodec 移去 OK
+class UIManager -> getImageCodec 移去 OK
+class UIManager -> d_defaultImageCodecName 移去 OK
+class UIManager -> setDefaultImageCodecName 移去 OK
+class UIManager -> getDefaultImageCodecName 移去 OK
+class UIManager -> getClipboard 移入 Engine OK
+class UIManager -> invalidateAllWindows 融入移去 OK
+class UIManager -> invalidateAllCachedRendering 无效移去 OK
+class UIManager -> createRegexMatcher == create(RegexMatcher *&) 移到 RegexManager OK
+class UIManager -> destroyRegexMatcher == destroy 移到 RegexManager OK
+class UIManager -> injectTimePulse == update(TimeDurMS) OK
+class UIManager -> d_resourceProvider 移去 OK
+class UIManager -> addStandardWindowFactories 融入移去 OK
+class UIManager -> getMajorVersion getMinorVersion getPatchVersion 概念混合 移去
+class UIManager -> getVersion getVerboseVersion 概念混合 移去
+class UIManager -> createTexture 4个函数迁移到 TextureManager
+class UIManager -> getTexture 迁移到 TextureManager
+class UIManager -> destroyTexture 迁移到 TextureManager
+class UIManager -> destroy(SubTexture *) 迁移到 TextureManager
+class UIManager -> isExist 迁移到 TextureManager
+class UIManager -> getDefaultGUIContext == getSheet 加入 RenderTarget 参数概念 OK
+class UIManager -> 加入 getCurrentSheet 概念 OK
+class UIManager -> d_ourResourceProvider 移去
+class UIManager -> update 融入移去
+class UIManager -> setScriptingModule getScriptingModule executeScriptFile
+    executeScriptGlobal executeScriptString setXmlPattern getXmlPattern
+    setDefaultXMLParserName  getDefaultXMLParserName setupXMLParser
+    cleanupXMLParser d_scriptModule d_xmlParser d_parserModule
+    d_defaultXMLParserName d_ourXmlParser
+       移动到 Root
+class UIManager -> d_termScriptName 无用移去
+class UIManager -> mBasicTextParser == TextView1
+class UIManager -> mDefaultTextParser == TextView
+//----------------------------------------------------------------------
+class SchemeManager -> getIterator == getList
+//----------------------------------------------------------------------
+class PixelBlendMode -> BM_INVALID == PBM_Unknow
+class PixelBlendMode -> BM_NORMAL == PBM_Normal
+class PixelBlendMode -> BM_RTT_PREMULTIPLIED == PBM_Average
+//----------------------------------------------------------------------
+class StyleManager -> parseLookNFeelSpecificationFromContainer == loadStyle OK
+class StyleManager -> parseLookNFeelSpecificationFromFile == loadStyle OK
+class StyleManager -> parseLookNFeelSpecificationFromString == loadStyle(char * str OK
+class StyleManager -> isWidgetLookAvailable == isStyleExist OK
+class StyleManager -> writeWidgetLookToStream == writeStyle OK
+class StyleManager -> writeWidgetLookSeriesToStream == writeStyleList OK
+class StyleManager -> eraseWidgetLook == removeStyle OK
+class StyleManager -> eraseAllWidgetLooks == removeAllStyle OK
+class StyleManager -> addWidgetLook == addStyle OK
+class StyleManager -> getWidgetLook == getStyle OK
+class StyleManager -> WidgetLookList == Styles OK
+class StyleManager -> d_widgetLooks == mStyles OK
+class StyleManager -> FalagardSchemaName 融入移去 OK
+//----------------------------------------------------------------------
+class Clipboard -> setNativeProvider == set OK
+class Clipboard -> getNativeProvider == get(ClipboardData *&) OK
+class Clipboard -> d_nativeProvider == mData OK
+class Clipboard -> d_mimeType == mMimeType OK
+class Clipboard -> d_buffer == mBuffer OK
+class Clipboard -> d_bufferSize == mCount OK
+//----------------------------------------------------------------------
+class StyleSection -> addImageryComponent == add OK
+class StyleSection -> removeImageryComponent == remove OK
+class StyleSection -> clearImageryComponents == clearImagery OK
+class StyleSection -> addTextComponent == add OK
+class StyleSection -> removeTextComponent == remove OK
+class StyleSection -> clearTextComponents == clearText OK
+class StyleSection -> clearFrameComponents == clearFrame OK
+class StyleSection -> addFrameComponent == add OK
+class StyleSection -> removeFrameComponent == remove OK
+class StyleSection -> initMasterColourRect 融入移去 OK
+class StyleSection -> d_masterColours == mColour OK
+class StyleSection -> d_frames == mFrames OK
+class StyleSection -> d_images == mImages OK
+class StyleSection -> d_texts == mTexts OK
+class StyleSection -> d_colourPropertyName == mColourID OK
+class StyleSection -> getImageryComponentIterator == 无效移去 OK
+class StyleSection -> getTextComponentIterator == 无效移去 OK
+class StyleSection -> getFrameComponentIterator == 无效移去 OK
+//----------------------------------------------------------------------
+class LayoutContainer -> markNeedsLayouting 融入移去
+class LayoutContainer -> needsLayouting 融入移去
+class LayoutContainer -> layoutIfNecessary 融入移去
+class LayoutContainer -> handleChildSized handleChildMarginChanged
+    handleChildAdded handleChildRemoved == LayoutPrc
+class LayoutContainer -> ConnectionTracker == SignalList
+class LayoutContainer -> d_eventConnections = mSignalList
+class LayoutContainer -> getClientChildContentArea_impl == getChildAreaImpl
+class LayoutContainer -> getIdxOfChild == getIndex 移动到 Container
+class LayoutContainer -> d_needsLayouting == mLayout
+class LayoutContainer -> d_clientChildContentArea == mChildInnerArea
+class LayoutContainer -> getOffsetForWindow == getMarginOft 移动到 Widget
+class LayoutContainer -> getBoundingSizeForWindow == getMarginSize Widget
+//----------------------------------------------------------------------
+class IndexLayoutContainer -> getPositionOfChild 融入移去
+class IndexLayoutContainer -> getChildAtPosition 融入移去
+class IndexLayoutContainer -> swapChildPositions == swap
+class IndexLayoutContainer -> swapChildren == swap
+class IndexLayoutContainer -> moveChildToPosition == move
+class IndexLayoutContainer -> moveChild == forward
+class IndexLayoutContainer -> addChildToPosition == add
+class IndexLayoutContainer -> removeChildFromPosition == remove
+class IndexLayoutContainer -> EventChildOrderChanged == ChildOrderChangeEvent
+class IndexLayoutContainer -> onChildOrderChanged == onChildOrderChange
+//----------------------------------------------------------------------
+class ScrollbarWidgetModel 融入到 ScrollbarView OK
+//-----------------------------------------------------------------------
+class SectionSpecification -> d_colourPropertyName == mColourID OK
+//----------------------------------------------------------------------
+BidiCharType == BidiType
+BCT_RIGHT_TO_LEFT == BT_RTL
+BCT_LEFT_TO_RIGHT == BT_LTR
+BCT_NEUTRAL == BT_Normal
+class BidiText -> reorderFromLogicalToVisual == reorder 最后两个参数融入移去
+class BidiText -> updateVisual == setSrc OK
+class BidiText -> getTextVisual == getDst OK
+class BidiText -> getL2vMapping == getLogicalToVisual
+class BidiText -> getV2lMapping == getVisualToLogical
+class BidiText -> d_l2vMapping == mLTV
+class BidiText -> d_v2lMapping == mVTL
+class BidiText -> d_textVisual == mDst
+class BidiText -> getBidiCharType == getBidiType
+//----------------------------------------------------------------------
+class PixelManager 继承 ResourceManager OK
+class PixelManager -> addImageType 移去 OK
+class PixelManager -> removeImageType 移去 OK
+class PixelManager -> isImageTypeAvailable 移去 OK
+class PixelManager -> getImageCount == getCount OK
+class PixelManager -> loadImageset == load OK
+class PixelManager -> isDefined == isExist OK
+class PixelManager -> create 2个参数的函数 去掉第一参数 OK
+class PixelManager -> destroyImageCollection == destroy OK 第二参数无默认值 OK
+class PixelManager -> addFromImageFile == load OK
+class PixelManager -> setImagesetDefaultResourceGroup == setResourceGroup OK
+class PixelManager -> getImagesetDefaultResourceGroup == getResourceGroup OK
+class PixelManager -> loadImagesetFromString == load(const char *) OK
+class PixelManager -> notifyDisplaySizeChanged == notifyView OK
+class PixelManager -> d_images == mPixelBuffers 继承原因移去
+class PixelManager -> d_imagesetDefaultResourceGroup == mResourceGroup OK
+class PixelManager -> getIterator 移去 OK
+class PixelManager -> d_factories 移去 OK
+class PixelManager -> validateImagesetFileVersion 融入移去 OK
+class PixelManager -> ImagePrefixMatchPred 无用移去 OK
+//----------------------------------------------------------------------
+class StyleSectionUnit -> initColoursRect == getColourImpl OK
+class StyleSectionUnit -> d_colourPropertyName == mColourID OK
+class StyleSectionUnit -> d_area == mArea OK
+class StyleSectionUnit -> setComponentArea == setArea OK
+class StyleSectionUnit -> getComponentArea == getArea OK
+class StyleSectionUnit -> setColoursPropertySource == setColour OK
+class StyleSectionUnit -> notifyFont 无用移去 OK
+class StyleSectionUnit -> render_impl == renderImpl OK
+class StyleSectionUnit -> writeColoursXML == writeColour OK
+//----------------------------------------------------------------------
+class FormattingSetting -> d_propertySource == mPropertyID
+class FormattingSetting -> d_value == mValue
+class FormattingSetting -> writeXMLTagToStream == writeTag
+class FormattingSetting -> writeXMLAttributesToStream == write
+//----------------------------------------------------------------------
+class ListContainer -> addListContainerProperties == initCmd(PropertyCmdSet * dest)
+class ListContainer -> layoutItemWidgets == layoutContent
+class ListContainer -> getItemFromIndex == getItem
+class ListContainer -> isItemInList == isItemExist
+class ListContainer -> findItemWithText == findItem
+class ListContainer -> resetList == removeAllItem
+class ListContainer -> setAutoResizeEnabled == setAutoResize
+class ListContainer -> isAutoResizeEnabled == isAutoResize
+class ListContainer -> setSortEnabled == setSortEnable
+class ListContainer -> isSortEnabled == isSortEnable
+class ListContainer -> setSortCallback == setSortFunc
+class ListContainer -> getSortCallback == getSortFunc
+class ListContainer -> getRealSortCallback 融入移去
+class ListContainer -> d_listItems == mItemList
+class ListContainer -> d_pane == mContainerArea
+class ListContainer -> d_sortMode == mSortMode
+class ListContainer -> d_sortCallback == mSortFunc
+class ListContainer -> d_autoResize == mAutoResize
+class ListContainer -> d_resort == mResort
+class ListContainer -> d_sortEnabled == mSortEnable
+class ListContainer -> sizeToContent 融入移去
+class ListContainer -> getContentPane == getContentArea
+class ListContainer -> getItemRenderArea == getItemArea
+class ListContainer -> handleUpdatedItemData == notifyItemUpdate
+class ListContainer -> notifyItemClicked == notifyItemClick
+class ListContainer -> notifyItemSelectState == notifyItemSelect
+class ListContainer -> sizeToContent_impl == autoResizeImpl
+class ListContainer -> resetList_impl == removeAllImpl
+class ListContainer -> onListContentsChanged == onItemList
+class ListContainer -> onSortModeChanged == onSortMode
+class ListContainer -> onSortEnabledChanged == onSortEnableMode
+class ListContainer -> handle_PaneChildRemoved == onItemRmove
+class ListContainer -> SortMode Ascending == SM_Ascend
+class ListContainer -> SortMode Descending == SM_Descend
+class ListContainer -> SortMode UserSort == SM_Custom
+//--------------------------------------------------------------------------
+class Menubar 融入到 MenuBase == MenuBase 改名 Menubar
+class Menubar -> changePopupMenuItem == setPopupItem
+class Menubar -> getPopupMenuItem == getPopupItem
+class Menubar -> getItemSpacing == getItemSpace
+class Menubar -> setItemSpacing == setItemSpace
+class Menubar -> setAllowMultiplePopups == setMultiPopup
+class Menubar -> isMultiplePopupsAllowed == isMultiPopup
+class Menubar -> setAutoCloseNestedPopups == setAutoClosePopup
+class Menubar -> getAutoCloseNestedPopups == isAutoClosePopup
+class Menubar -> setPopupMenuItemClosing 融入移去
+class Menubar -> d_popupItem == mPopupItem
+class Menubar -> d_itemSpacing == mItemSpace
+class Menubar -> d_allowMultiplePopups == mMultiPopups
+class Menubar -> d_autoCloseNestedPopups == mAutoClosePopups
+//----------------------------------------------------------------------
+class PopupMenu -> isPopupMenuOpen == isOpenState
+class PopupMenu -> d_fadeElapsed == mFadeCost
+class PopupMenu -> d_fadeOutTime == mPopupFadeOut
+class PopupMenu -> d_fadeInTime == mPopupFadeIn
+class PopupMenu -> d_origAlpha == mOrgAlpha
+class PopupMenu -> d_fading == mFading
+class PopupMenu -> d_fadingOut == mFadeOut
+class PopupMenu -> d_isOpen == mOpenState
+class PopupMenu -> openPopupMenu == toggleOpen
+class PopupMenu -> closePopupMenu == toggleclose
+//----------------------------------------------------------------------
+class StyleSectionFrameUnit -> setLeftEdgeFormatting == setLeftLayout OK
+class StyleSectionFrameUnit -> setRightEdgeFormatting == setRightLayout OK
+class StyleSectionFrameUnit -> setTopEdgeFormatting == setTopLayout OK
+class StyleSectionFrameUnit -> setBottomEdgeFormatting == setBottomLayout OK
+class StyleSectionFrameUnit -> setBackgroundVerticalFormatting == setBgVLayout OK
+class StyleSectionFrameUnit -> setBackgroundHorizontalFormatting == setBgHLayout OK
+class StyleSectionFrameUnit -> setLeftEdgeFormattingPropertySource == setLeftLayoutSrc OK
+class StyleSectionFrameUnit -> setRightEdgeFormattingPropertySource == setRightLayoutSrc OK
+class StyleSectionFrameUnit -> setTopEdgeFormattingPropertySource == setTopLayoutSrc OK
+class StyleSectionFrameUnit -> setBottomEdgeFormattingPropertySource == setBottomLayoutSrc OK
+class StyleSectionFrameUnit -> setBackgroundVerticalFormattingPropertySource == setBgVLayoutSrc OK
+class StyleSectionFrameUnit -> setBackgroundHorizontalFormattingPropertySource == setBgHLayoutSrc OK
+class StyleSectionFrameUnit -> getLeftEdgeFormatting == getLeftLayout OK
+class StyleSectionFrameUnit -> getRightEdgeFormatting == getRightLayout OK
+class StyleSectionFrameUnit -> getTopEdgeFormatting == getTopLayout OK
+class StyleSectionFrameUnit -> getBottomEdgeFormatting == getBottomLayout OK
+class StyleSectionFrameUnit -> getBackgroundVerticalFormatting == getBgVLayout OK
+class StyleSectionFrameUnit -> getBackgroundHorizontalFormatting == getBgHLayout OK
+class StyleSectionFrameUnit -> setImagePropertySource == setImageSrc OK
+class StyleSectionFrameUnit -> isImageSpecified == isFrameExist OK
+class StyleSectionFrameUnit -> isImageFetchedFromProperty == isFetchSrc OK
+class StyleSectionFrameUnit -> getImagePropertySource == getImageSrc OK
+class StyleSectionFrameUnit -> d_leftEdgeFormatting == mLeftLayout OK
+class StyleSectionFrameUnit -> d_rightEdgeFormatting == mRightLayout OK
+class StyleSectionFrameUnit -> d_topEdgeFormatting == mTopLayout OK
+class StyleSectionFrameUnit -> d_bottomEdgeFormatting == mBottomLayout OK
+class StyleSectionFrameUnit -> d_backgroundVertFormatting == mBgVLayout OK
+class StyleSectionFrameUnit -> d_backgroundHorzFormatting == mBgHLayout OK
+class StyleSectionFrameUnit -> d_frameImages == mFrames OK
+
+//----------------------------------------------------------------------
+FrameImageSource == FrameComSrc
+FrameComType -> FIC_TOP_LEFT_CORNER == FCT_TL
+FrameComType -> FIC_TOP_RIGHT_CORNER == FCT_TR
+FrameComType -> FIC_BOTTOM_LEFT_CORNER == FCT_BL
+FrameComType -> FIC_BOTTOM_RIGHT_CORNER == FCT_BR
+FrameComType -> FIC_LEFT_EDGE == FCT_Left
+FrameComType -> FIC_RIGHT_EDGE == FCT_Right
+FrameComType -> FIC_TOP_EDGE == FCT_Top
+FrameComType -> FIC_BOTTOM_EDGE == FCT_Bottom
+FrameComType -> FIC_BACKGROUND == FCT_Bg
+FrameComType -> FIC_FRAME_IMAGE_COUNT == FCT_Count
+//----------------------------------------------------------------------
+class StyleSectionImageUnit -> getVerticalFormatting == getVLayout OK
+class StyleSectionImageUnit -> setVerticalFormatting == setVLayout OK
+class StyleSectionImageUnit -> getHorizontalFormatting == getHLayout OK
+class StyleSectionImageUnit -> setHorizontalFormatting == setHLayout OK
+class StyleSectionImageUnit -> setHorizontalFormattingPropertySource == setHLayoutID OK
+class StyleSectionImageUnit -> setVerticalFormattingPropertySource == setVLayoutID OK
+class StyleSectionImageUnit -> isImageFetchedFromProperty 融入移去 OK
+class StyleSectionImageUnit -> getImagePropertySource == getImageSrc OK
+class StyleSectionImageUnit -> setImagePropertySource == setImageSrc OK
+class StyleSectionImageUnit -> d_vertFormatting == mVLayout OK
+class StyleSectionImageUnit -> d_horzFormatting == mHLayout OK
+class StyleSectionImageUnit -> d_imagePropertyName == mImageID OK
+//----------------------------------------------------------------------
+class StyleSectionTextUnit -> getVerticalFormatting == getVLayout OK
+class StyleSectionTextUnit -> setVerticalFormatting == setVLayout OK
+class StyleSectionTextUnit -> getHorizontalFormatting == getHLayout OK
+class StyleSectionTextUnit -> setHorizontalFormatting == setHLayout OK
+class StyleSectionTextUnit -> setHorizontalFormattingPropertySource == setHLayoutID OK
+class StyleSectionTextUnit -> setVerticalFormattingPropertySource == setVLayoutID OK
+class StyleSectionTextUnit -> isTextFetchedFromProperty == 融入移去 OK
+class StyleSectionTextUnit -> getTextPropertySource == getTextID OK
+class StyleSectionTextUnit -> setTextPropertySource == setTextID OK
+class StyleSectionTextUnit -> isFontFetchedFromProperty == 融入移去 OK
+class StyleSectionTextUnit -> getFontPropertySource == getFontID OK
+class StyleSectionTextUnit -> setFontPropertySource == setFontID OK
+class StyleSectionTextUnit -> getHorizontalTextExtent == getHTextExtent OK
+class StyleSectionTextUnit -> getVerticalTextExtent == getVTextExtent OK
+class StyleSectionTextUnit -> getFontObject == getFont OK
+class StyleSectionTextUnit -> d_textLogical == mText OK
+class StyleSectionTextUnit -> d_bidiVisualMapping == mBidiText OK
+class StyleSectionTextUnit -> d_bidiDataValid == mValidBidi OK
+class StyleSectionTextUnit -> d_renderedString == mRenderText OK
+class StyleSectionTextUnit -> d_formattedRenderedString == mFormatText OK
+class StyleSectionTextUnit -> d_lastHorzFormatting == mLastHLayout OK
+class StyleSectionTextUnit -> d_font == mFont OK
+class StyleSectionTextUnit -> d_vertFormatting == mVLayout OK
+class StyleSectionTextUnit -> d_horzFormatting == mHLayout OK
+class StyleSectionTextUnit -> d_textPropertyName == mTextID OK
+class StyleSectionTextUnit -> d_fontPropertyName == mFontID OK
+//----------------------------------------------------------------------
+class Style -> getStateImagery == getLayout OK
+class Style -> getNamedArea == getSpecial OK
+class Style -> getImagerySection == getDesign OK
+class Style -> addImagerySection == add OK
+class Style -> renameImagerySection == 无效移去 OK
+class Style -> renameNamedArea == 无效移去 OK
+class Style -> addStyleWidgetponent == add OK
+class Style -> addStateSpecification == add OK
+class Style -> addPropertyInitialiser == add OK
+class Style -> initialiseWidget == attach OK
+class Style -> cleanUpWidget == detach OK
+class Style -> isStateImageryPresent == isStateExist OK
+class Style -> addNamedArea == add OK
+class Style -> isNamedAreaDefined == isSpecialExist OK
+class Style -> layoutChildWidgets == layout OK
+class Style -> addPropertyDefinition == add OK
+class Style -> addPropertyLinkDefinition == add OK
+class Style -> addEventLinkDefinition == add OK
+class Style -> getStateIterator 无效移去 OK
+class Style -> getImageryIterator 无效移去 OK
+class Style -> getNamedAreaIterator 无效移去 OK
+class Style -> getStateNames 无效移去 OK
+class Style -> getImageryNames 无效移去 OK
+class Style -> getNamedAreaNames 无效移去 OK
+class Style -> clearNamedAreas 无效移去 OK
+class Style -> clearImagerySections 无效移去 OK
+class Style -> clearStyleWidgetponents 无效移去 OK
+class Style -> clearStateSpecifications 无效移去 OK
+class Style -> clearPropertyInitialisers 无效移去 OK
+class Style -> clearPropertyDefinitions 无效移去 OK
+class Style -> clearPropertyLinkDefinitions 无效移去 OK
+class Style -> clearEventLinkDefinitions 无效移去 OK
+class Style -> getWidgetNames 无效移去 OK
+class Style -> getPropertyLinkDefinitionNames 无效移去 OK
+class Style -> getPropertyInitialiserNames 无效移去 OK
+class Style -> getEventLinkDefinitionNames 无效移去 OK
+class Style -> getAnimationNames 无效移去 OK
+class Style -> getStyleWidgetponentIterator 无效移去 OK
+class Style -> getPropertyDefinitionIterator 无效移去 OK
+class Style -> getPropertyLinkDefinitionIterator 无效移去 OK
+class Style -> getPropertyInitialiserIterator 无效移去 OK
+class Style -> getEventLinkDefinitionIterator 无效移去 OK
+class Style -> getAnimationNameIterator 无效移去 OK
+class Style -> appendChildStyleWidgetponents == get(WidgetMap & out) OK
+class Style -> appendPropertyDefinitions == get(StylePropertyMap & out) OK
+class Style -> appendPropertyLinkDefinitions == get(ListenerPropertyMap & out) OK
+class Style -> appendPropertyInitialisers == get(AssignPropertyMap & out) OK
+class Style -> appendEventLinkDefinitions == get(ListenerEventMap & out) OK
+class Style -> appendAnimationNames == get(AnimationList & out) OK
+class Style -> getPropertyLinkDefinitions 融入移去 OK
+class Style -> getPropertyDefinitions 无效移去 OK
+class Style -> getProperties 无效移去 OK
+class Style -> swap 融入移去 OK
+class Style -> findPropertyInitialiser == getAssign OK
+class Style -> findStyleWidgetponent == getWidget OK
+class Style -> addAnimationName == add OK
+class Style -> PropertyList == AssignPropertyList OK
+class Style -> PropertyDefinitionList == StylePropertyList OK
+class Style -> PropertyLinkDefinitionList == ListenerPropertyList OK
+class Style -> d_lookName == mID OK
+class Style -> d_inheritedLookName == mInheritID OK
+class Style -> d_imagerySections == mDesigns OK
+class Style -> d_childWidgets == mWidgets OK
+class Style -> d_stateImagery == mModes OK
+class Style -> d_namedAreas == mSpecials OK
+class Style -> d_properties == mAssignPropertyList OK
+class Style -> d_propertyDefinitions == mStylePropertyList OK
+class Style -> d_propertyLinkDefinitions == mListenerPropertyList OK
+class Style -> d_animations == mAnimations OK
+class Style -> AnimationInstanceMap == AnimationObj OK
+class Style -> d_animationInstances == mAnimationObj OK
+class Style -> EventLinkDefinitionList == ListenerEvents OK
+class Style -> d_eventLinkDefinitions == mListenerEvents OK
+class Style ->
+//----------------------------------------------------------------------
+class KeyFrame -> d_position == mTime OK
+class KeyFrame -> d_progression == mMode OK
+class KeyFrame -> setProgression == setMode OK
+class KeyFrame -> getProgression == getMode OK
+class KeyFrame -> notifyPositionChanged == setPos OK
+class KeyFrame -> moveToPosition 使用 setPos 代替 OK
+class KeyFrame -> getIdxInParent 无效移去 OK
+class KeyFrame -> d_value == mValue OK
+class KeyFrame -> d_sourceProperty == mSrcProperty OK
+class KeyFrame -> savePropertyValue == setValue OK
+class KeyFrame -> getValueForAnimation == getValue OK
+class KeyFrame -> setSourceProperty == setProperty OK
+class KeyFrame -> getSourceProperty == getProperty OK
+class KeyFrame -> alterInterpolationPosition == getFactor OK
+class KeyFrame -> Progression == Mode OK
+class KeyFrame -> P_Linear == M_Constant OK
+class KeyFrame -> P_QuadraticAccelerating == M_Square OK
+class KeyFrame -> P_QuadraticDecelerating == M_SquareRoot OK
+class KeyFrame -> P_Discrete == M_Point OK
+//----------------------------------------------------------------------
+class PropertyIDKeyFrameTrack -> apply == update OK
+class PropertyIDKeyFrameTrack -> savePropertyValues == setValue OK
+class PropertyIDKeyFrameTrack -> setInterpolator(const String &) 无效移去 OK
+class PropertyIDKeyFrameTrack -> getTargetProperty == getTarget OK
+class PropertyIDKeyFrameTrack -> setTargetProperty == setTarget OK
+class PropertyIDKeyFrameTrack -> getIdxInParent 无效移去 OK
+class PropertyIDKeyFrameTrack -> setApplicationMethod == setMode OK
+class PropertyIDKeyFrameTrack -> getApplicationMethod == getMode OK
+class PropertyIDKeyFrameTrack -> ApplicationMethod == Mode OK
+class PropertyIDKeyFrameTrack -> d_interpolator == Function OK
+class PropertyIDKeyFrameTrack -> d_applicationMethod == mMode OK
+class PropertyIDKeyFrameTrack -> d_targetProperty == mDst OK
+class PropertyIDKeyFrameTrack -> d_keyFrames == mKeyFrames OK
+//----------------------------------------------------------------------
+class PropertyIDFusion -> addAutoConnection == addSignal OK
+class PropertyIDFusion -> unsubscribeAutoConnections == removeSignal OK
+class PropertyIDFusion -> ConnectionTracker == Events OK
+class PropertyIDFusion -> d_autoConnections == mEvents OK
+class PropertyIDFusion -> d_skipNextStep == mSkipStep OK
+class PropertyIDFusion -> d_target == mDst OK
+class PropertyIDFusion -> d_maxStepDeltaSkip == mMaxCostLimit OK
+class PropertyIDFusion -> d_autoSteppingEnabled == mAutoUpdata OK
+class PropertyIDFusion -> setMaxStepDeltaSkip == setMaxCostLimit OK
+class PropertyIDFusion -> getMaxStepDeltaSkip == getMaxCostLimit OK
+class PropertyIDFusion -> setMaxStepDeltaClamp == setMinCostLimit OK
+class PropertyIDFusion -> getMaxStepDeltaClamp == getMinCostLimit OK
+class PropertyIDFusion -> setAutoSteppingEnabled == setAutoUpdate OK
+class PropertyIDFusion -> isAutoSteppingEnabled == isAutoUpdate OK
+class PropertyIDFusion -> setSkipNextStep == setSkipStep OK
+class PropertyIDFusion -> getSkipNextStep == getSkipStep OK
+class PropertyIDFusion -> d_eventReceiver == mCommand OK
+class PropertyIDFusion -> d_eventSender == mEvent OK
+class PropertyIDFusion -> savePropertyValue == setBaseValue OK
+class PropertyIDFusion -> getSavedPropertyValue == getBaseValue OK
+class PropertyIDFusion -> setEventReceiver == setCommand OK
+class PropertyIDFusion -> getEventReceiver == getCommand OK
+class PropertyIDFusion -> setEventSender == setEvent OK
+class PropertyIDFusion -> getEventSender == getEvent OK
+
+getBaseValue(getBaseXValue) -- getActualPosX
+getBaseValue(getBaseYValue) -- getActualPosY
+//----------------------------------------------------------------------
+class Animation -> apply == update OK
+class Animation -> getAffectorAtIdx 无效移去 OK
+class Animation -> getNumAffectors 无效移去 OK
+class Animation -> defineAutoSubscription == add OK
+class Animation -> undefineAutoSubscription == remove OK
+class Animation -> autoSubscribe == connect OK
+class Animation -> autoUnsubscribe == disconnect OK
+class Animation -> savePropertyValues == setValue OK
+class Animation -> undefineAllAutoSubscriptions 无效移去 OK
+class Animation -> d_duration == mLength OK
+class Animation -> d_replayMode == mMode OK
+class Animation -> d_autoStart == mAuto OK
+class Animation -> d_affectors == mEffects OK
+class Animation -> d_autoSubscriptions == mEvents OK
+//----------------------------------------------------------------------
+class PropertyIDFusion -> step == update OK
+class PropertyIDFusion ->
+class PropertyIDFusion ->
+class PropertyIDFusion ->
+class PropertyIDFusion -> purgeSavedPropertyValues 融入移去 OK
+class PropertyIDFusion ->
+class PropertyIDFusion ->
+class PropertyIDFusion ->
+class PropertyIDFusion ->
+class PropertyIDFusion ->
+class PropertyIDFusion -> d_definition == mSrc OK
+class PropertyIDFusion -> d_running == mEnable OK
+class PropertyIDFusion -> d_position == mTimePos OK
+class PropertyIDFusion -> d_speed == mFactor OK
+class PropertyIDFusion -> d_bounceBackwards == mReplayback OK
+class PropertyIDFusion -> d_maxStepDeltaClamp == mMinCostLimit OK
+class PropertyIDFusion -> d_savedPropertyValues == mBaseValue OK
+class PropertyIDFusion -> d_autoConnections ==
+//----------------------------------------------------------------------
+class AnimationManager -> isAnimationPresent == isExist
+class AnimationManager -> getNumAnimations == getCount
+class AnimationManager ->
+class AnimationManager ->
+class AnimationManager ->
+class AnimationManager ->
+class AnimationManager ->
+class AnimationManager ->
+class AnimationManager ->
+class AnimationManager ->
+class AnimationManager ->
+class AnimationManager ->
+class AnimationManager ->
+class AnimationManager ->
+class AnimationManager ->
+class AnimationManager ->
+//----------------------------------------------------------------------
+class PlaneSize -> zero == 无效移去
+class PlaneSize -> one == 无效移去
+class PlaneSize -> one_width 无效移去
+class PlaneSize -> one_height 无效移去
+//----------------------------------------------------------------------
+class ListenerEvent -> initialiseWidget == attach OK
+class ListenerEvent -> cleanUpWidget == detach OK
+class ListenerEvent -> addLinkTarget == add OK
+class ListenerEvent -> clearLinkTargets == removeAll OK
+class ListenerEvent -> LinkTargetCollection == Listeners OK
+class ListenerEvent -> d_eventName == mEventID OK
+class ListenerEvent -> d_targets == mListeners OK
+class ListenerEvent -> getDest == 融入移去 OK
+//----------------------------------------------------------------------
+//----------------------------------------------------------------------
+class XMLSerializer -> openTag == begin OK
+class XMLSerializer -> closeTag == end OK
+//----------------------------------------------------------------------
+
+//----------------------------------------------------------------------
+class WidgetManager -> createWindow == create OK
+class WidgetManager -> destroyWindow == destroy OK
+class WidgetManager -> destroyAllWindows == destroyAll OK
+class WidgetManager -> loadLayoutFromContainer == load OK
+class WidgetManager -> loadLayoutFromFile == load OK
+class WidgetManager -> loadLayoutFromString == load(char * str OK
+class WidgetManager -> generateUniqueWindowName == genValidID OK
+class WidgetManager -> initialiseRenderEffect == initEffect OK
+class WidgetManager -> WindowVector == Widgets OK
+class WidgetManager -> d_windowRegistry == mCreateWidgets OK
+class WidgetManager -> d_deathrow == mDestroyWidgets OK
+class WidgetManager -> d_uid_counter == mIDMark OK
+class WidgetManager -> d_lockCount == mLockCount OK
+//----------------------------------------------------------------------
+class WindowFactory -> createWindow == create OK
+class WindowFactory -> destroyWindow == destroy OK
+//----------------------------------------------------------------------
+class PixelUnit -> getVerticalFormatting == getVLayout OK
+class PixelUnit -> setVerticalFormatting == setVLayout OK
+class PixelUnit -> setLeftPadding getLeftPadding setRightPadding getRightPadding
+    setTopPadding getTopPadding setBottomPadding getBottomPadding 无用移去
+class PixelUnit -> d_verticalFormatting == mVLayout
+class PixelUnit -> 加入 setHLayout getHLayout mHLayout
+class PixelUnit -> d_padding == mPadding
+class PixelUnit -> setAspectLock == setFixedAspect
+class PixelUnit -> getAspectLock == getFixedAspect
+class PixelUnit -> d_aspectLock == mFixedAspect
+class PixelUnit -> canSplit == isMultiUnit
+class PixelUnit -> setSelection == setSelect
+class PixelUnit -> draw(const Widget *, GeometryPixel &, const Vector2f &,
+    const ColourArea *, const Rectf *, NIIf, NIIf) ==
+        render(GeometryPixel *, const Widget *, const Rectf *, const Vector2f &, NIIf, NIIf, const ColourArea *)
+class PixelUnit -> d_selectionImage == mSelectPixel
+class PixelUnit -> getSpaceCount == getBlankCount
+//----------------------------------------------------------------------
+class StaticTextView -> onSized == onSize OK
+class StaticTextView -> getVerticalFormatting == getVLayout OK
+class StaticTextView -> setVerticalFormatting == setVLayout OK
+class StaticTextView -> getHorizontalFormatting == getHLayout OK
+class StaticTextView -> setHorizontalFormatting == setHLayout OK
+class StaticTextView -> d_vertFormatting == mVLayout OK
+class StaticTextView -> d_horzFormatting == mHLayout OK
+class StaticTextView -> getHorizontalTextExtent == getHTextExtent OK
+class StaticTextView -> getVerticalTextExtent == getVTextExtent OK
+//----------------------------------------------------------------------
+

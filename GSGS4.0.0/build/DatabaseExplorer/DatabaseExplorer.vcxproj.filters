@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="F:\tool\GSGS4.0.0\DatabaseExplorer\AdapterSelectDlg.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\DatabaseExplorer\ClassGenerateDialog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\DatabaseExplorer\CodePreviewDialog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\DatabaseExplorer\CreateForeignKey.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\DatabaseExplorer\DbExplorerFrame.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\DatabaseExplorer\DbSettingDialog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\DatabaseExplorer\DbViewerPanel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\DatabaseExplorer\DnDTableShape.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\DatabaseExplorer\ErdCommitWizard.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\DatabaseExplorer\ErdForeignKey.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\DatabaseExplorer\ErdPanel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\DatabaseExplorer\ErdTable.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\DatabaseExplorer\ErdView.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\DatabaseExplorer\FrameCanvas.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\DatabaseExplorer\GUI.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\DatabaseExplorer\GUI_databaseexplorer_bitmaps.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\DatabaseExplorer\IDbItem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\DatabaseExplorer\Ids.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\DatabaseExplorer\LogDialog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\DatabaseExplorer\MySqlDbAdapter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\DatabaseExplorer\MySqlType.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\DatabaseExplorer\NArrow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\DatabaseExplorer\OneArrow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\DatabaseExplorer\PostgreSqlDbAdapter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\DatabaseExplorer\PostgreSqlType.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\DatabaseExplorer\SqlCommandPanel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\DatabaseExplorer\SqliteDbAdapter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\DatabaseExplorer\SqliteType.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\DatabaseExplorer\TableSettings.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\DatabaseExplorer\ViewSettings.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\DatabaseExplorer\column.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\DatabaseExplorer\constraint.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\DatabaseExplorer\database.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\DatabaseExplorer\databaseexplorer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\DatabaseExplorer\db_explorer_settings.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\DatabaseExplorer\dbconnection.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\DatabaseExplorer\dbeclasstype.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\DatabaseExplorer\dbitem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\DatabaseExplorer\dumpclass.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\DatabaseExplorer\imageexportdialog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\DatabaseExplorer\table.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\DatabaseExplorer\view.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\DatabaseExplorer\wx_pch.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{48CD2966-80B4-3C52-BDF2-A24A35FB3386}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

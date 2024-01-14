@@ -1,0 +1,3 @@
+Dsound-window only
+
+Alsa - linux only

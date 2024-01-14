@@ -1,0 +1,16 @@
+﻿++ Mokoi Gaming
+
+http://sourceforge.net/projects/mokoi
+
+
+Description
+
+Mokoi Gaming is a Game Creation Tool. Mokoi Games are platform neutral, if a compatible player is available for OS or Device, you can play games with no troubles. We're also have projects to help with creating and sharing platform neutral games.
+
+Features
+
+Creates platform neutral games.
+Easy to use Game Editor.
+Content Sharing and Basic Game Frameworks.
+Multiple Audio/Text Languages Support for Games.
+Multiple Display Layers with Independent Movement.

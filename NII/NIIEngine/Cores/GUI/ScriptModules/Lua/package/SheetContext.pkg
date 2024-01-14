@@ -1,0 +1,10 @@
+/***********************************************************************
+    SheetContext
+***********************************************************************/
+struct SheetContext
+{
+    UISheet * mSheet;
+    UIInstance * mFace;
+    const Window * mRoot;
+    Vector2<float> mPosOffset;
+};

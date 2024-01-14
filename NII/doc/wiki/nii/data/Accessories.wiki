@@ -1,0 +1,6 @@
+﻿++ Accessories
+
+Conduit Synchronizer	Photo/music/notes/files etc. synchronization
+Getting Things GNOME!	Personal tasks management software
+Planner	Project management software
+Tomboy	Note-taking software

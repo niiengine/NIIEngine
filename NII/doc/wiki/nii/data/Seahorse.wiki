@@ -1,0 +1,3 @@
+﻿++ Seahorse
+
+PGP and SSH key manager

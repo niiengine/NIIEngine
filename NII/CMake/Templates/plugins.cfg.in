@@ -1,0 +1,17 @@
+# Defines plugins to load
+
+# Define plugin folder
+PluginFolder=@NII_PLUGIN_DIR_REL@
+
+# Define plugins
+@NII_COMMENT_RENDERSYSTEM_D3D9@ Plugin=RenderSystem_Direct3D9
+@NII_COMMENT_RENDERSYSTEM_D3D11@ Plugin=RenderSystem_Direct3D11
+@NII_COMMENT_RENDERSYSTEM_GL@ Plugin=RenderSystem_GL
+@NII_COMMENT_RENDERSYSTEM_GLES@ Plugin=RenderSystem_GLES
+@NII_COMMENT_RENDERSYSTEM_GLES2@ Plugin=RenderSystem_GLES2
+@NII_COMMENT_PLUGIN_PARTICLEFX@ Plugin=Plugin_ParticleFX
+@NII_COMMENT_PLUGIN_BSP@ Plugin=Plugin_BSPSceneManager
+@NII_COMMENT_PLUGIN_CG@ Plugin=Plugin_CgProgramManager
+@NII_COMMENT_PLUGIN_PCZ@ Plugin=Plugin_PCZSceneManager
+@NII_COMMENT_PLUGIN_PCZ@ Plugin=Plugin_OctreeZone
+@NII_COMMENT_PLUGIN_OCTREE@ Plugin=Plugin_OctreeSceneManager

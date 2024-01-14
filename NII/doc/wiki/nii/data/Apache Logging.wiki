@@ -1,0 +1,4 @@
+﻿++ Apache Logging
+
+a cross-language logging services for purposes of application debugging and auditing
+[log4j]

@@ -1,0 +1,694 @@
+﻿Send == send 2个参数 OK
+GetConnectionList == getConnect OK
+SendList == send OK
+Receive == recevie OK
+CloseConnection == close OK
+GetSocket == getSocket OK
+GetSockets == getSockets OK
+ApplyNetworkSimulator ==  setDebugSimulator OK
+IsNetworkSimulatorActive == isDebugSimulator OK
+GetStatistics == getReport OK
+GetStatisticsList == getReport OK
+SendOutOfBand == sendExpedite OK
+systemAddress == mAddress OK
+systemAddress 局部变量改成 address OK
+peer == mPeer OK
+SendImmediate == sendRapid OK
+DeallocRNS2RecvStruct == dealloc OK
+AllocRNS2RecvStruct == alloc(SocketMessageData **) OK
+reliability == mPacketType OK
+reliability 局部变量改成 ptype OK
+priority == mPacketLevel OK
+priority 局部变量改成 plevel OK
+numberOfBitsToSend == mBitCount OK
+numberOfBitsToSend 局部变量改成 bitcount OK
+orderingChannel == mPacketCh OK
+orderingChannel 局部变量改成 pchannel OK
+rakPeer == mLink OK
+rakPeer 局部变量改成 link OK
+rakPeerInterface == mPrc2 OK
+rakPeerInterface 局部变量改成 linkbase OK
+Serialize == export OK
+Deserialize == inport OK
+guid == mID OK
+rakNetGUID == mID OK
+guid 局部变量改成 id OK
+rakNetGUID 局部变量改成 id OK
+data == mData OK
+length == mLength OK
+bitSize == mBitCount OK
+bitSize 局部变量改成 bitcount OK
+NUMBER_OF_ORDERED_STREAMS == N_NET_CH OK
+refCount == mRefCount OK
+nextActionTime == mLastAction OK
+nextActionTime 局部变量改成 lastact OK
+packet == mMsg OK
+BYTES_TO_BITS == N_b_TO_B OK
+BITS_TO_BYTES == N_B_TO_b OK
+GetInstance 移去 OK
+DestroyInstance 移去 OK
+stackData == mStackData OK
+Write == write OK
+OnClosedConnection == onConnectClose OK
+OnNewConnection == onConnect OK
+Read == read OK
+Write == write OK
+Update == update OK
+remoteSystems == mRemotes OK
+remoteSystems 局部变量改成 remotes OK
+MessageID == Token OK
+GetTimeMS 使用 getMS OK
+GetTimeUS 使用 getUS OK
+Deserialize == write OK
+systemIndex == mIndex OK
+类 BytePool 移去 OK
+类 MemoryPool 移去 OK
+GetMyIP == getLocalHost OK -> SocketManager OK
+remotePortRakNetWasStartedOn_PS3 移去 OK
+remotePortRakNetWasStartedOn_PS3_PSP2 移去 OK
+remotePortRakNetWasStartedOn_PS3_PS4_PSP2 移去 OK
+PingAndClockDifferential 改名 PingTimeEquation OK
+//----------------------------------------------------------------------
+CONTINUE_SOCKET_DATA_PARSE_LOOP == JUMP_TO_NEXT_PACKET OK
+//----------------------------------------------------------------------
+accept__ == N_net_accept OK
+connect__ == N_net_connect OK
+closesocket__ == N_net_close OK
+socket__ == N_net_socket OK
+bind__ == N_net_bind OK
+getsockname__ == N_net_getsockname OK
+getsockopt__ == N_net_getsockopt OK
+inet_addr__ == N_net_inet_addr OK
+ioctlsocket__ == N_net_ioctl OK
+listen__ == N_net_listen OK
+recv__ == N_net_recv OK
+recvfrom__ N_net_recvfrom OK
+select__ == N_net_select OK
+send__ == N_net_send OK
+sendto__ == N_net_sendto OK
+setsockopt__ == N_net_setsockopt OK
+shutdown__ == N_net_shutdown OK
+WSASendTo__ 移去 OK
+//----------------------------------------------------------------------
+类 SystemAddress 改名 Address OK IPV4Address IPV6Address
+类 RakNetGUID 改名 GUID OK
+类 AddressOrGUID 改名 UniqueAddress OK
+结构 RemoteSystemStruct 改名 Remote OK
+类 RakPeer 改名 NetworkSys OK
+类 RakPeerInterface 改名 LinkBase OK
+结构 RequestedConnectionStruct 改名 ConnectRequest OK
+枚举 PacketPriority 改名 PacketLevel OK
+枚举 PacketReliability 改名 PacketType OK
+结构 SocketDescriptor 改名 HostPeer OK
+类 ReliabilityLayer 改名 PacketPrc OK
+结构 Packet 改名 SocketMessage OK
+结构 InternalPacketFixedSizeTransmissionHeader 改名 PacketHeader OK
+结构 InternalPacket 改名 Packet OK
+结构 InternalPacketRefCountedData 改名 PacketDataRef OK
+类 PluginInterface2 改名 Plugin OK
+类 BitStream 改名 NetSerializer OK
+类 CommandParserInterface 改名 CmdBase OK
+类 RakNetCommandParser 改名 Cmd OK
+类 LogCommandParser 改名 LogCmd OK
+类 TwoWayAuthentication 改名 AuthFilter OK
+类 FullyConnectedMesh2 改名 FullyConnected OK
+类 MessageFilter 改名 MsgFilter OK
+类 HTTPConnection2 改名 HTTP OK
+类 NatPunchthroughClient 改名 RouterMapClient OK
+类 NatPunchthroughServer 改名 RouterMapServer OK
+类 RPC4 改名 RPC OK
+类 ConnectionGraph2 改名 LinkState OK
+类 IncrementalReadInterface 改名 BufferReadBase OK
+类 RakNetSocket2Allocator 融入到 SocketManager OK
+类 BufferedCommandStruct 改名 OutMessage OK
+类 RNS2_BerkleyBindParameters 改名 BSDSocketParam
+枚举 PluginReceiveResult == ConnectReceiveType
+枚举 ConnectCloseType == ConnectCloseType
+枚举 PI2_FailedConnectionAttemptReason == ConnectFailType
+//----------------------------------------------------------------------
+class Address -> toNum == operator Nul
+class Address -> GetIPVersion == getVersion
+class Address -> GetIPPROTO == getProto
+class Address -> SetToLoopback == setLocalHost
+class Address -> IsLoopback == isLocalHost
+class Address -> ToString == read
+class Address -> FromString == write
+class Address -> FromStringExplicitPort == write
+class Address -> CopyPort == copyPort
+class Address -> EqualsExcludingPort == equalsNonPort
+class Address -> GetPort == getHSBPort
+class Address -> GetPortNetworkOrder == getNSBPort
+class Address -> SetPortHostOrder == setHSBPort
+class Address -> SetPortNetworkOrder == setNSBPort
+class Address -> IsLANAddress == isLan
+class Address -> SetBinaryAddress 移去
+class Address -> FixForIPVersion 移去
+class Areress -> debugPort 移去
+//----------------------------------------------------------------------
+class RNS2EventHandler -> receive == receive
+//----------------------------------------------------------------------
+class GUID -> ToString == read
+class GUID -> FromString == write
+//----------------------------------------------------------------------
+class UniqueAddress -> ToString == read
+class UniqueAddress -> GetSystemIndex 无效移去 OK
+class UniqueAddress -> IsUndefined == isValid 反义 OK
+class UniqueAddress -> SetUndefined 无效移去 OK
+//----------------------------------------------------------------------
+class SocketObj -> GetUserConnectionSocketIndex 融入移去 OK
+class SocketObj -> SetUserConnectionSocketIndex 融入移去 OK
+class SocketObj -> userConnectionSocketIndex 融入移去 OK
+class SocketObj ->
+class SocketObj ->
+class SocketObj ->
+class SocketObj ->
+//----------------------------------------------------------------------
+RAKNET_VERSION 移去 OK
+RAKNET_VERSION_NUMBER 移去 OK
+RAKNET_VERSION_NUMBER_INT 移去 OK
+RAKNET_DATE 移去 OK
+//----------------------------------------------------------------------
+class NetworkSys(LinkBase) -> Startup == init == listen OK
+class NetworkSys(LinkBase) -> InitializeSecurity == init OK
+class NetworkSys -> DisableSecurity == setSecure OK 改变形式 OK
+class NetworkSys(LinkBase) -> GetMaximumIncomingConnections == getMaxRemoteCount OK
+class NetworkSys(LinkBase) -> SetMaximumIncomingConnections == setMaxRemoteCount OK
+class NetworkSys -> GetNumberOfRemoteInitiatedConnections == 融入移去 OK
+class NetworkSys -> AddToSecurityExceptionList == add OK
+class NetworkSys -> RemoveFromSecurityExceptionList == remove OK
+class NetworkSys -> IsInSecurityExceptionList == isExist OK
+class NetworkSys(LinkBase) -> NumberOfConnections == getActiveRemoteCount OK
+class NetworkSys(LinkBase) -> SetIncomingPassword == setEnterPassword OK
+class NetworkSys(LinkBase) -> GetIncomingPassword == getEnterPassword OK
+class NetworkSys(LinkBase) -> Connect == connect(1 2,3 4参数合并) OK
+class NetworkSys(LinkBase) -> ConnectWithSocket == connect(1 2,3 4参数合并) OK
+class NetworkSys(LinkBase) -> Shutdown == shutdown OK
+class NetworkSys(LinkBase) -> IsActive == isActive OK
+class NetworkSys(LinkBase) -> GetNextSendReceipt 移去 OK
+class NetworkSys(LinkBase) -> SendLoopback == send OK
+class NetworkSys(LinkBase) -> GetMaximumNumberOfPeers == getRemoteCount OK
+class NetworkSys(LinkBase) -> CancelConnectionAttempt == cancelRequest OK
+class NetworkSys(LinkBase) -> GetConnectionState == getState OK
+class NetworkSys(LinkBase) -> GetIndexFromSystemAddress== getRemoteIndex OK
+class NetworkSys(LinkBase) -> GetSystemAddressFromIndex == getAddress OK
+class NetworkSys(LinkBase) -> GetGUIDFromIndex == getGUID OK
+class NetworkSys(LinkBase) -> GetSystemList == getActive OK
+class NetworkSys(LinkBase) -> AddToBanList == add OK
+class NetworkSys(LinkBase) -> RemoveFromBanList == remove OK
+class NetworkSys(LinkBase) -> ClearBanList == removeAll OK
+class NetworkSys(LinkBase) -> IsBanned == isExist OK
+class NetworkSys(LinkBase) -> SetLimitIPConnectionFrequency == setConnectTimeLimit OK
+class NetworkSys(LinkBase) -> Ping == ping 2函数 OK
+class NetworkSys(LinkBase) -> GetAveragePing == getAvgPing OK
+class NetworkSys(LinkBase) -> GetLastPing == getLastPing OK
+class NetworkSys -> 加入 getBestPing OK
+class NetworkSys(LinkBase) -> GetLowestPing == getWorstPing OK
+class NetworkSys(LinkBase) -> SetOccasionalPing == setOftenPing OK
+class NetworkSys(LinkBase) -> GetClockDifferential == getTimeEquation OK
+class NetworkSys(LinkBase) -> SetOfflinePingResponse == setTempPing OK
+class NetworkSys(LinkBase) -> GetOfflinePingResponse == getTempPing OK
+class NetworkSys(LinkBase) -> GetInternalID == getLAN 参数换位 OK
+class NetworkSys(LinkBase) -> SetInternalID == addLocalHost概念 OK
+class NetworkSys(LinkBase) -> GetExternalID == getConnectTo OK
+class NetworkSys -> getGUID == getGUID OK
+class NetworkSys(LinkBase) -> GetSystemAddressFromGuid == getAddress OK
+class NetworkSys -> GetClientPublicKeyFromSystemAddress ==无用移去 OK
+class NetworkSys -> SetTimeoutTime == setTimeOut OK
+class NetworkSys -> GetTimeoutTime == getTimeOut OK
+class NetworkSys(LinkBase) -> GetMTUSize == getMTU OK
+class NetworkSys(LinkBase) -> GetLocalIP == getLocalHost OK
+class NetworkSys(LinkBase) -> GetNumberOfAddresses == getLocalHostCount OK
+class NetworkSys(LinkBase) -> IsLocalIP == isNetIP OK
+class NetworkSys(LinkBase) -> AllowConnectionResponseIPMigration == setAlterIP OK
+class NetworkSys(LinkBase) -> AdvertiseSystem == send OK
+class NetworkSys(LinkBase) -> SetSplitMessageProgressInterval == setSplitFactor OK
+class NetworkSys(LinkBase) -> GetSplitMessageProgressInterval == getSplitFactor OK
+class NetworkSys(LinkBase) -> SetUnreliableTimeout == setMessageTimeOut OK
+class NetworkSys(LinkBase) -> SendTTL == sendTTL OK
+class NetworkSys(LinkBase) -> AttachPlugin == attach OK
+class NetworkSys(LinkBase) -> DetachPlugin == detach OK
+class NetworkSys(LinkBase) -> ChangeSystemAddress == swap OK
+class NetworkSys(LinkBase) -> AllocatePacket == createMessage OK
+class NetworkSys(LinkBase) -> WriteOutOfBandHeader == 融入移去 OK
+class NetworkSys(LinkBase) -> SetUserUpdateThread == 无用移去 OK
+class NetworkSys(LinkBase) -> SetIncomingDatagramEventHandler == 无用移去 OK
+class NetworkSys(LinkBase) -> SetPerConnectionOutgoingBandwidthLimit == setSendSize OK
+class NetworkSys(LinkBase) -> GetReceiveBufferSize == 无用移去 OK
+class NetworkSys(LinkBase) -> RunUpdateCycle == updateImpl OK
+class NetworkSys -> UpdateNetworkLoop == update OK
+class NetworkSys -> ProcessOfflineNetworkPacket == process OK
+class NetworkSys -> ProcessNetworkPacket == process 2函数 OK
+class NetworkSys -> GetIndexFromGuid == getRemoteIndex OK
+class NetworkSys -> SendConnectionRequest == connectImpl 2函数 (1 2,3 4函数合并) OK
+class NetworkSys -> GetRemoteSystemFromSystemAddress == getRemoteSystem OK
+class NetworkSys -> GetRemoteSystem == getRemoteSystem 2函数 OK
+class NetworkSys -> GetRemoteSystemIndex == getIndexImpl OK
+class NetworkSys -> GetRemoteSystemFromGUID == getRemoteSystem OK
+class NetworkSys -> AllocPacket == createMessage 1参数 OK 覆盖 AllocatePacket OK 融入 OK
+class NetworkSys -> AllocPacket == createMessage 2参数 OK 融入 OK
+class NetworkSys -> ValidateRemoteSystemLookup 移去 OK
+class NetworkSys -> ParseConnectionRequestPacket == analyzeConnectRequest OK
+class NetworkSys -> SetupBufferedPackets 移去 OK
+class NetworkSys -> NotifyAndFlagForShutdown == sendShutdown OK
+class NetworkSys -> AssignSystemAddressToRemoteSystemList == createConnect 移去第二参数 OK
+class NetworkSys -> ShiftIncomingTimestamp 移去 OK
+class NetworkSys -> GetBestClockDifferential == getTimeEquation OK
+class NetworkSys -> IsLoopbackAddress == isLocalHost OK
+class NetworkSys -> GetLoopbackAddress == 融入移去 OK
+class NetworkSys -> RemoteSystemLookupHashIndex == 融入移去 OK
+class NetworkSys -> ReferenceRemoteSystem == attach OK
+class NetworkSys -> DereferenceRemoteSystem == detach OK
+class NetworkSys -> ClearRemoteSystemLookup == 融入移去 OK
+class NetworkSys -> AddToActiveSystemList 移去 OK
+class NetworkSys -> RemoveFromActiveSystemList 移去 OK
+class NetworkSys -> AllowIncomingConnections 移去 OK
+class NetworkSys -> PingInternal == pingImpl OK
+class NetworkSys -> CloseConnectionInternal == closeImpl OK
+class NetworkSys -> GetClockDifferentialInt 融入移去 OK
+class NetworkSys -> SendBuffered == sendImpl OK
+class NetworkSys -> myGuid == mLocalHostID OK
+class NetworkSys -> packetReturnMutex == mmReceiveMute
+class NetworkSys -> socketList == mSockets
+class NetworkSys -> packetReturnQueue == mReceive OK
+class NetworkSys -> validationInteger 无效移去 OK
+class NetworkSys -> incomingQueueMutex 无效移去 OK
+class NetworkSys -> updateCycleIsRunning 无效移去 OK
+class NetworkSys -> occasionalPing == mPingTest OK
+class NetworkSys -> SendBufferedList == sendImpl OK
+class NetworkSys -> ClearBufferedCommands == 融入移去 OK
+class NetworkSys -> ClearBufferedPackets == 融入移去 OK
+class NetworkSys -> ClearSocketQueryOutput 移去 OK
+class NetworkSys -> ClearRequestedConnectionList == 融入移去 OK
+class NetworkSys -> AddPacketToProducer == receive OK
+class NetworkSys -> GenerateSeedFromGuid 移去 OK
+class NetworkSys -> GenerateGUID 移去 OK
+class NetworkSys -> GetSystemIndexFromGuid 融入移去 OK
+class NetworkSys -> bufferedCommands == mOut OK
+class NetworkSys -> PushBackPacket == addMessage OK
+class NetworkSys -> PushBufferedPacket 移去 OK
+class NetworkSys -> PopBufferedPacket 移去 OK
+class NetworkSys -> DerefAllSockets == releaseSocket OK
+class NetworkSys -> CallPluginCallbacks == process OK
+class NetworkSys -> ResetSendReceipt 移去 OK
+class NetworkSys -> GetRakNetSocketFromUserConnectionSocketIndex 融入移去 OK
+class NetworkSys -> packetAllocationPool 重组移去 OK
+class NetworkSys -> remoteSystemIndexPool 重组移去 OK
+class NetworkSys -> banList == mBans 使用 vector OK
+class NetworkSys -> pluginListTS = mPluginList 使用 vector OK
+class NetworkSys -> pluginListNTS = mPluginList 使用 vector OK
+class NetworkSys -> DeallocatePacket 融入移去
+class NetworkSys -> activeSystemList activeSystemListSize == mActiveRemote(RemoteList类型)
+class NetworkSys -> incomingPassword incomingPasswordLength == mPassword;
+class NetworkSys -> bytesSentPerSecond 无效移去 OK
+class NetworkSys -> bytesReceivedPerSecond 无效移去 OK
+class NetworkSys -> replyFromTargetPlayer 无效移去 OK
+class NetworkSys -> replyFromTargetBroadcast 无效移去 OK
+class NetworkSys -> replyFromTargetBS 无效移去 OK
+class NetworkSys -> receive(SocketMessage *) 融入移去 OK
+class NetworkSys -> firstExternalID 融入到 mLocalHost OK
+class NetworkSys -> splitMessageProgressInterval == mSplitMessageFactor OK
+class NetworkSys -> unreliableTimeout == mMessageTimeOut oK
+class NetworkSys -> remoteSystemList == mRemote OK
+class NetworkSys -> defaultTimeoutTime == mTimeOut OK
+class NetworkSys -> allowConnectionResponseIPMigration == mAlterIP OK
+class NetworkSys -> ipList == mNetIP OK 改 AddressList 类型 OK
+class NetworkSys -> limitConnectionFrequencyFromTheSameIP == mConnectTimeLimit OK
+class NetworkSys -> maximumNumberOfPeers == mRemoteCount OK
+class NetworkSys -> mRemote mRemoteCount 改 RemoteList 类型 OK
+class NetworkSys -> maximumIncomingConnections == mMaxRemoteCount OK
+class NetworkSys -> allowInternalRouting 无效移去 OK
+class NetworkSys -> releaseSocket 融入移去 OK
+class NetworkSys -> trackFrequencyTable 无效移去 OK
+class NetworkSys -> _packetloss _minExtraPing _extraPingVariance 无效移去 OK
+class NetworkSys -> setDebugSimulator 无效移去 OK
+class NetworkSys -> isDebugSimulator 无效移去 OK
+class NetworkSys -> defaultMTUSize == mMTUSize OK
+class NetworkSys -> cancelRequest == cancel OK
+//----------------------------------------------------------------------
+class PacketPrc -> minExtraPing extraPingVariance packetloss DataAndTime delayList 无效移去 OK
+class PacketPrc -> setDebugSimulator 无效移去 OK
+//----------------------------------------------------------------------
+class PacketPrc -> SetTimeoutTime == setTimeOut OK
+class PacketPrc -> GetTimeoutTime == getTimeOut OK
+class PacketPrc -> SetSplitMessageProgressInterval == setSplitFactor OK
+class PacketPrc -> GetSplitMessageProgressInterval == getSplitFactor OK
+class PacketPrc -> HandleSocketReceiveFromConnectedPlayer == process OK 3参放到1参 OK
+class PacketPrc -> Reset == reset OK
+class PacketPrc -> Update == process OK
+class PacketPrc -> IsDeadConnection == isTimeOut OK
+class PacketPrc -> KillConnection == setTimeout OK
+class PacketPrc -> IsOutgoingDataWaiting == isUpload OK
+class PacketPrc -> AreAcksWaiting == isResponse OK
+class PacketPrc -> AckTimeout == isTimeOut OK
+class PacketPrc -> GetNextSendTime 移去 OK
+class PacketPrc -> GetTimeBetweenPackets 移去 OK
+class PacketPrc -> GetAckPing 移去 OK
+class PacketPrc -> GetTimeLastDatagramArrived 移去 OK
+class PacketPrc -> SendBitStream == send OK
+class PacketPrc -> WriteToBitStreamFromInternalPacket == read OK 2参放到1参 OK 去 3参 OK-> Packet OK
+class PacketPrc -> CreateInternalPacketFromBitStream == create OK -> Packet OK
+class PacketPrc -> RemovePacketFromResendListAndDeleteOlderReliableSequenced  == removeResend OK
+class PacketPrc -> SendAcknowledgementPacket == sendACK OK
+class PacketPrc -> IsSendThrottled 移去 OK
+class PacketPrc -> UpdateWindowFromPacketloss 移去 OK
+class PacketPrc -> UpdateWindowFromAck 移去 OK
+class PacketPrc -> GetMaxMessageHeaderLengthBits 衍生出 getMaxContentSize OK
+class PacketPrc -> GetMessageHeaderLengthBits == getHeaderSize -> Packet OK
+class PacketPrc -> GetSHA1 移去 OK
+class PacketPrc -> CheckSHA1 移去 OK
+class PacketPrc -> IsOlderOrderedPacket == isValid OK 转义 OK
+class PacketPrc -> SplitPacket == split->Packet OK
+class PacketPrc -> InsertIntoSplitPacketList == merge OK
+class PacketPrc -> BuildPacketFromSplitPacketList == combine 2函数 OK
+class PacketPrc -> CreateInternalPacketCopy == create OK -> Packet OK
+class PacketPrc -> InsertPacketIntoResendList == addResend OK
+class PacketPrc -> FreeMemory == free -> cleanup OK
+class PacketPrc -> FreeThreadSafeMemory == freeTS OK 融入移去
+class PacketPrc -> InitializeVariables == reset OK
+class PacketPrc -> IsExpiredTime 无效移去 OK
+class PacketPrc -> UpdateNextActionTime 移去 OK
+class PacketPrc -> GetResendListDataSize 移去 OK
+class PacketPrc -> UpdateThreadedMemory 移去 OK
+class PacketPrc -> CalculateHistogramAckSize 移去 OK
+class PacketPrc -> RemoveFromDatagramHistory == removeMessageNode OK
+class PacketPrc -> GetMessageNumberNodeByDatagramIndex == getMessageNode OK
+class PacketPrc -> AddFirstToDatagramHistory == addMessage 2个函数 OK
+class PacketPrc -> AddSubsequentToDatagramHistory == addMessageNode OK
+class PacketPrc -> InitHeapWeights 融入 OK 移去 OK
+class PacketPrc -> GetNextWeight == getNextWeigth OK
+class PacketPrc -> AddToUnreliableLinkedList == addWillLost OK
+class PacketPrc -> RemoveFromUnreliableLinkedList == removeWillLost OK
+class PacketPrc -> ResendBufferOverflow == isResendModeValid OK
+class PacketPrc -> ValidateResendList 移去 OK
+class PacketPrc -> ResetPacketsAndDatagrams 融入移去 OK
+class PacketPrc -> PushPacket == addSend OK
+class PacketPrc -> PushDatagram == addFragment OK
+class PacketPrc -> ClearPacketsAndDatagrams == removeFragment OK
+class PacketPrc -> TagMostRecentPushAsSecondOfPacketPair 无效移去 OK
+class PacketPrc -> MoveToListHead == moveSend OK
+class PacketPrc -> RemoveFromList == removeSend OK
+class PacketPrc -> AddToListTail 融入移去 OK
+class PacketPrc -> PopListHead 融入移去 OK
+class PacketPrc -> IsResendQueueEmpty == 融入移去 OK
+class PacketPrc -> SortSplitPacketList 无效移去 OK
+class PacketPrc -> SendACKs == sendACK OK
+class PacketPrc -> AllocateFromInternalPacketPool 融入移去->Packet OK
+class PacketPrc -> ReleaseToInternalPacketPool == 融入移去->Packet OK
+class PacketPrc -> AllocInternalPacketData == 融入移去->Packet OK
+class PacketPrc -> FreeInternalPacketData == 融入移去->Packet OK
+class PacketPrc -> GetMaxDatagramSizeExcludingMessageHeaderBytes 概念融合 OK 移去 OK
+class PacketPrc -> GetMaxDatagramSizeExcludingMessageHeaderBits 移去 OK
+class PacketPrc -> GetNumberOfBitsAllocated 移去 OK
+class PacketPrc -> PadWithZeroToByteLength == writeOAlign OK
+class PacketPrc -> GetNumberOfBytesUsed == getSize OK
+class PacketPrc -> ackPingSum 无用移去 OK
+class PacketPrc -> nextAllowedThroughputSample 无用移去 OK
+class PacketPrc -> unacknowledgedBytes == mCheckACK OK
+class PacketPrc -> allDatagramSizesSoFar == mCongestionRemain OK
+class PacketPrc -> datagramSizeSoFar == mUploadRemain OK
+class PacketPrc -> datagramsToSendThisUpdateIsPair == mSendPairQueue OK
+class PacketPrc -> datagramSizesInBytes == mUploadSizeQueue OK
+class PacketPrc -> packetsToSendThisUpdateDatagramBoundaries == mUploadCountQueue OK
+class PacketPrc -> outgoingPacketBufferNextWeights == mUploadWeight OK
+class PacketPrc -> outputQueue == mDownload OK
+class PacketPrc -> datagramHistoryMessagePool 重组移去 OK
+class PacketPrc -> datagramHistory == mDatagram OK
+class PacketPrc -> resendBuffer == mResend OK
+class PacketPrc -> internalPacketPool 重组移去 OK
+class PacketPrc -> timeLastDatagramArrived == mLastRecevie OK
+class PacketPrc -> ackPing 移去 OK
+class PacketPrc -> nextSendTime 移去 OK
+class PacketPrc -> timeBetweenPackets 移去 OK
+class PacketPrc -> SetUnreliableTimeout == setMessageTimeOut OK
+class PacketPrc -> outgoingPacketBuffer == mUploadBuffer OK
+class PacketPrc -> timeoutTime == mTimeOut OK
+class PacketPrc -> deadConnection == mTimeOutValid OK
+class PacketPrc -> orderedWriteIndex == mOrderExport OK
+class PacketPrc -> orderedReadIndex == mOrderImport OK
+class PacketPrc -> sequencedWriteIndex == mSequenceExport OK
+class PacketPrc -> highestSequencedReadIndex == mSequenceImport OK
+class PacketPrc -> packetsToSendThisUpdate == mSend OK
+class PacketPrc -> packetsToDeallocThisUpdate == mFree OK
+class PacketPrc -> acknowlegements == mACK OK
+class PacketPrc -> NAKs == mNAK OK
+class PacketPrc -> incomingAcks == mTempACK OK
+class PacketPrc -> congestionManager == mCongestion OK
+class PacketPrc -> sendReliableMessageNumberIndex == mACKSendMark OK
+class PacketPrc -> splitPacketId == mNextSplitID OK
+class PacketPrc -> sendReceiptSerial == mNextReceipt OK
+class PacketPrc -> sendReceiptSerialMutex == mNextReceiptMutex OK
+class PacketPrc -> refCountedDataPool == 重组移去 OK
+class PacketPrc -> bpsMetrics == mBSP OK
+class PacketPrc -> lastBpsClear == mResetBSPTime OK
+class PacketPrc -> statistics == mProfile OK
+class PacketPrc -> resendLinkedListHead == mResendHead OK
+class PacketPrc -> unreliableLinkedListHead == mWillLostHead OK
+class PacketPrc -> unreliableTimeout == mMessageTimeOut oK
+class PacketPrc -> unreliableWithAckReceiptHistory == mWillLostReceipt OK
+class PacketPrc -> splitPacketChannelList == mSplitPackets OK
+class PacketPrc -> splitMessageProgressInterval == mSplitMessageFactor OK
+class PacketPrc -> datagramHistoryPopCount == mSendMark OK
+class PacketPrc -> cheater 移去 OK
+class PacketPrc -> internalOrderIndex == mDebugSendMark OK
+class PacketPrc -> orderingHeaps == mOrderQueue OK
+class PacketPrc -> heapIndexOffsets == mOrderQueueMark OK
+class PacketPrc ->
+class PacketPrc ->
+class PacketPrc ->
+class PacketPrc ->
+class PacketPrc -> UnreliableWithAckReceiptNode -> sendReceiptSerial == mReceipt OK
+class PacketPrc -> MessageNumberNode -> messageNumber == mACKMark OK
+class PacketPrc -> MessageNumberNode -> next == mNext OK
+class PacketPrc -> DatagramHistoryNode -> head == mHead OK
+class PacketPrc -> DatagramHistoryNode -> timeSent == mSendTime OK
+class PacketPrc -> UnreliableWithAckReceiptNode -> datagramNumber == mMark OK
+//----------------------------------------------------------------------
+class NetSerializer -> numberOfBitsUsed == mBitWrite OK
+class NetSerializer -> numberOfBitsAllocated == mBitAlloc OK
+class NetSerializer -> readOffset == mBitRead OK
+class NetSerializer -> copyData == mAutoData OK
+class NetSerializer -> PrintBits 2函数 移去 OK
+class NetSerializer -> PrintHex 2函数 移去 OK
+class NetSerializer -> AssertStreamEmpty 移去 OK
+class NetSerializer -> CopyData 移去 OK
+class NetSerializer -> SetNumberOfBitsAllocated 移去 OK
+class NetSerializer -> Reset = seekWrite(0) seekRead(0) OK
+class NetSerializer -> ResetReadPointer 使用 seekRead(0) OK
+class NetSerializer -> ResetWritePointer 使用 seekWrite(0) OK
+class NetSerializer -> AlignWriteToByteBoundary == writeAlign OK
+class NetSerializer -> AlignReadToByteBoundary == readAlign OK
+class NetSerializer -> WriteAlignedBytes 在新机制里无效果 OK == write OK
+class NetSerializer -> ReadAlignedBytes 在新机制里无效果 OK == read OK
+class NetSerializer -> ReverseBytesInPlace == mirror OK
+class NetSerializer -> EndianSwapBytes 在新机制里无效果 OK
+class NetSerializer -> WriteAlignedBytesSafe 在新机制里无效果 OK
+class NetSerializer -> ReadAlignedBytesSafe 2个函数 在新机制里无效果 OK
+class NetSerializer -> ReadAlignedBytesSafeAlloc 2个函数 在新机制里无效果 OK
+class NetSerializer -> SetData 在新机制里无效果 OK
+class NetSerializer -> IsBigEndian == isNetEndian OK
+class NetSerializer -> DoEndianSwap 使用 mFlipEndian 概念 加入 isFlipData OK
+class NetSerializer -> IsNetworkOrder 融入移去
+class NetSerializer -> WriteCompressed(const Nui8 *, Nui32, bool) == writeCompress OK
+class NetSerializer -> WriteCompressed == writeCompress OK
+class NetSerializer -> Write0 == write0 OK
+class NetSerializer -> Write1 == write1 OK
+class NetSerializer -> ReadBit 使用 read(bool &)代替 OK
+class NetSerializer -> WriteBits == writeBit OK
+class NetSerializer -> ReadBits == readBit OK
+class NetSerializer -> ReadCompressed(Nui8 *, Nui32, bool) == readValid OK
+class NetSerializer -> ReadCompressed == readCompress OK
+class NetSerializer -> AddBitsAndReallocate == enlargeBit OK
+class NetSerializer -> PadWithZeroToByteLength == writeOAlign OK
+class NetSerializer -> NumberOfLeadingZeroes 8个函数移去 OK
+class NetSerializer -> WriteBitsFromIntegerRange 2个函数移去 OK
+class NetSerializer -> ReadBitsFromIntegerRange 2个函数移去 OK
+class NetSerializer -> SerializeBitsFromIntegerRange 2个函数移去 OK
+class NetSerializer -> AssertCopyData 移去 OK
+class NetSerializer -> CopyData 融入移去 OK
+class NetSerializer -> IgnoreBits 改 skipWrite OK
+class NetSerializer -> IgnoreBytes 改 skipWrite OK
+class NetSerializer -> SerializeBits == readBits writeBit
+class NetSerializer -> GetNumberOfBitsUsed 移去 OK
+class NetSerializer -> GetWriteOffset == getWriteOffset OK
+class NetSerializer -> GetReadOffset == getReadOffset OK
+class NetSerializer -> GetNumberOfUnreadBits == getRemainCount OK
+class NetSerializer -> GetData == getData OK
+class NetSerializer -> SetWriteOffset == seekWrite 2函数 OK
+class NetSerializer -> SetReadOffset == seekRead 2函数 OK
+class NetSerializer -> IsNetworkOrderInternal 移去 OK
+class NetSerializer -> ReverseBytes == mirror OK
+class NetSerializer -> WriteAlignedVar8 == write(Nui8) OK
+class NetSerializer -> ReadAlignedVar8 == read(Nui8 &) OK
+class NetSerializer -> WriteAlignedVar16 == write(Nui16) OK
+class NetSerializer -> ReadAlignedVar16 == read(Nui16 &) OK
+class NetSerializer -> WriteAlignedVar32 == write(Nui32) OK
+class NetSerializer -> ReadAlignedVar32 == read(Nui32 &) OK
+class NetSerializer -> SerializeNormVector 移去 OK
+class NetSerializer -> ReadNormVector 移去 OK
+class NetSerializer -> ReadFloat16 移去 OK
+class NetSerializer -> SerializeFloat16 移去 OK
+class NetSerializer -> WriteFloat16 移去 OK
+class NetSerializer -> WriteNormVector 移去 OK
+class NetSerializer -> SerializeVector 移去 OK
+class NetSerializer -> WriteVector 移去 OK
+class NetSerializer -> ReadVector 移去 OK
+class NetSerializer -> SerializeNormQuat 移去 OK
+class NetSerializer -> ReadNormQuat 移去 OK
+class NetSerializer -> WriteNormQuat 移去 OK
+class NetSerializer -> SerializeOrthMatrix 移去 OK
+class NetSerializer -> ReadOrthMatrix 移去 OK
+class NetSerializer -> WriteOrthMatrix 移去 OK
+class NetSerializer -> SerializeCompressedDelta 2函数 移去 OK
+class NetSerializer -> ReadCompressedDelta 多函数 移去 OK
+class NetSerializer -> WriteCompressedDelta 多函数 移去 OK
+class NetSerializer -> SerializeDelta 2函数 移去 OK
+class NetSerializer -> WriteDelta 多个函数 移去 OK
+class NetSerializer -> ReadDelta 多个函数 移去 OK
+class NetSerializer -> stackData == mStackData OK 融入内部
+class NetSerializer -> SerializeCasted 移去 OK
+class NetSerializer -> SerializeCompressed 移去 OK
+class NetSerializer -> WriteCasted 改用普通的
+class NetSerializer -> ReadCasted 改用普通的
+//----------------------------------------------------------------------
+struct DatagramHeaderFormat -> datagramNumber == mMark OK
+//----------------------------------------------------------------------
+enum PacketLevel -> IMMEDIATE_PRIORITY == PL_RAPID OK
+enum PacketLevel -> HIGH_PRIORITY == PL_HIGH OK
+enum PacketLevel -> MEDIUM_PRIORITY == PL_MEDIUM OK
+enum PacketLevel -> LOW_PRIORITY == PL_LOW OK
+enum PacketLevel -> NUMBER_OF_PRIORITIES == PL_COUNT OK
+//----------------------------------------------------------------------
+enum PacketType -> UNRELIABLE == PT_WILL_LOST OK
+enum PacketType -> UNRELIABLE_SEQUENCED == PT_ONE_WILL_LOST OK
+enum PacketType -> RELIABLE == PT_BE_SURE OK
+enum PacketType -> RELIABLE_ORDERED == PT_ORDER_MAKE_SURE OK
+enum PacketType -> RELIABLE_SEQUENCED == PT_ONE_MAKE_SURE OK
+enum PacketType -> UNRELIABLE_WITH_ACK_RECEIPT == PT_RECEIPT_WILL_LOST OK
+enum PacketType -> RELIABLE_WITH_ACK_RECEIPT == PT_RECEIPT_MAKE_SURE OK
+enum PacketType -> RELIABLE_ORDERED_WITH_ACK_RECEIPT == PT_ORDER_RECEIPT_MAKE_SURE OK
+enum PacketType -> NUMBER_OF_RELIABILITIES == PT_COUNT OK
+//----------------------------------------------------------------------
+class NetworkObj -> messageHandlerList == mPlugins OK
+//----------------------------------------------------------------------
+struct ConnectRequest -> timeoutTime == mTimeOut OK
+//----------------------------------------------------------------------
+struct NetStats -> isLimitedByOutgoingBandwidthLimit == mUploadLimit OK
+struct NetStats -> BPSLimitByOutgoingBandwidthLimit == mUploadLimitValue OK
+//----------------------------------------------------------------------
+struct OutMessage -> networkID 移去 OK
+struct OutMessage -> systemIdentifier == mUniquePeer OK
+struct OutMessage -> numberOfBitsToSend == mBitCount OK
+struct OutMessage -> priority == mPacketLevel OK
+struct OutMessage -> reliability == mPacketType OK
+struct OutMessage -> broadcast == mBroadcast OK
+struct OutMessage -> connectionMode == mMode OK
+struct OutMessage -> blockingCommand ==
+struct OutMessage -> data ==
+struct OutMessage -> haveRakNetCloseSocket ==
+struct OutMessage -> connectionSocketIndex ==
+struct OutMessage -> extraSocketOptions 无用移去 OK
+struct OutMessage -> socket == mSocket OK
+struct OutMessage -> port 无用移去 OK
+struct OutMessage -> receipt == mReceipt OK
+struct OutMessage -> command == mType OK
+//----------------------------------------------------------------------
+class NetworkObj -> AttachPlugin == attach OK
+class NetworkObj -> DetachPlugin == detach OK
+class NetworkObj -> AllocatePacket == createMessage OK
+//----------------------------------------------------------------------
+struct Remote -> isActive == mActive OK
+struct Remote -> systemAddress == mAddress OK
+struct Remote -> myExternalSystemAddress == mHostAddress OK
+struct Remote -> theirInternalSystemAddress == mLocalHost OK
+struct Remote -> reliabilityLayer == mPacketPrc OK
+struct Remote -> weInitiatedTheConnection == connectMode 概念 OK
+struct Remote -> pingAndClockDifferential == mTimeEquation OK
+struct Remote -> connectMode == mMode OK
+struct Remote -> lastReliableSend == mLastSure OK
+struct Remote -> rakNetSocket == mSocket OK
+struct Remote -> remoteSystemIndex == mIndex OK
+struct Remote -> pingAndClockDifferentialWriteIndex == mNetTimeEquationIndex OK
+struct Remote -> connectionTime == mConnect OK
+struct Remote -> nextPingTime == mNextPing OK
+struct Remote -> lowestPing == mLowPing OK
+struct Remote -> MTUSize == mMTU OK
+struct Remote ->
+struct Remote ->
+struct Remote ->
+struct Remote -> ConnectMode CM_None == 转移到 NetworkSys OK
+struct Remote -> ConnectMode CM_ShutDown == 转移到 NetworkSys OK
+struct Remote -> ConnectMode CM_Close == 转移到 NetworkSys OK
+struct Remote -> ConnectMode CM_CloseNotify == 转移到 NetworkSys OK
+struct Remote -> ConnectMode CM_Request == 转移到 NetworkSys OK
+struct Remote -> ConnectMode CM_Process == 转移到 NetworkSys OK
+struct Remote -> ConnectMode CM_Identify == 转移到 NetworkSys OK
+struct Remote -> ConnectMode CONNECTED == 转移到 NetworkSys OK
+//----------------------------------------------------------------------
+struct SocketIO -> isActive == mActive OK
+//----------------------------------------------------------------------
+class NatPunchthroughClient -> SendTTL == sendTTL OK
+//----------------------------------------------------------------------
+class SocketMessage -> deleteData == mAutoDestroy OK
+class SocketMessage -> wasGeneratedLocally == mLocal OK
+//----------------------------------------------------------------------
+struct PacketHeader -> reliableMessageNumber == mACKMark OK
+struct PacketHeader -> orderingIndex == mOrder OK
+struct PacketHeader -> sequencingIndex == mSequence OK
+struct PacketHeader -> splitPacketId == mSplitID OK
+struct PacketHeader -> splitPacketIndex == mSplitIndex OK
+struct PacketHeader -> splitPacketCount == mSplitCount OK
+struct PacketHeader -> dataBitLength == mBitCount OK
+struct PacketHeader -------> Packet 融入 OK
+//----------------------------------------------------------------------
+struct Packet -> messageInternalOrder == mDebugMark OK
+struct Packet -> messageNumberAssigned == mMakeSureInit OK 调试使用
+struct Packet -> creationTime == mCreate OK
+struct Packet -> retransmissionTime == mResendTime OK
+struct Packet -> headerLength == mExtCount OK
+struct Packet -> allocationScheme == mAllocType OK
+struct Packet -> refCountedData == mRefData OK
+struct Packet -> timesSent == mSendCount OK
+struct Packet -> sendReceiptSerial == mReceipt OK
+struct Packet -> resendPrev == mPreMakeSure OK
+struct Packet -> resendNext == mNextMakeSure OK
+struct Packet -> unreliablePrev == mPreWillLost OK
+struct Packet -> unreliableNext == mNextWillLost OK
+struct Packet -> AllocationScheme == AllocType OK
+//----------------------------------------------------------------------
+struct InternalPacketRefCountedData -> sharedDataBlock == mShare OK
+//----------------------------------------------------------------------
+class Plugin -> OnAttach == onAttach OK
+class Plugin -> OnDetach == onDetach OK
+class Plugin -> OnReceive == onMessage OK
+class Plugin -> OnRakPeerStartup == init OK
+class Plugin -> OnRakPeerShutdown == shutdown OK
+class Plugin -> OnDirectSocketSend == onRawSend OK
+class Plugin -> OnDirectSocketReceive == onRawReceive OK
+class Plugin -> OnFailedConnectionAttempt == onConnectFail OK
+class Plugin -> OnReliabilityLayerNotification == onReport OK
+class Plugin -> OnInternalPacket == onReceivePacket OK
+class Plugin -> OnAck == onReceiveAck OK
+class Plugin -> OnPushBackPacket == onReceiveLocal OK
+class Plugin -> GetRakPeerInterface == getPrc OK
+class Plugin -> SetRakPeerInterface == setPrc OK
+class Plugin -> GetMyGUIDUnified == getID OK
+class Plugin -> SetTCPInterface == setPrc OK
+class Plugin -> UsesReliabilityLayer == isRawProcess OK
+class Plugin -> AllocatePacketUnified == createMessage OK
+class Plugin -> DeallocPacketUnified == N_delete  OK
+class Plugin -> SendUnified == send 2个函数 OK
+class Plugin -> SendListUnified == send OK
+class Plugin -> PushBackPacketUnified == addMessage OK
+//----------------------------------------------------------------------
+//----------------------------------------------------------------------
+//----------------------------------------------------------------------
+//----------------------------------------------------------------------
+//----------------------------------------------------------------------
+//----------------------------------------------------------------------
+//----------------------------------------------------------------------
+//----------------------------------------------------------------------
+//----------------------------------------------------------------------
+//----------------------------------------------------------------------
+//----------------------------------------------------------------------
+//----------------------------------------------------------------------
+

@@ -1,0 +1,3 @@
+* Boost: http://www.boost.org (+)
+* POCO: http://pocoproject.org (+)
+* TBB: http://www.threadingbuildingblocks.org (+)

@@ -1,0 +1,4 @@
+﻿++ XML
+
+[Batik] a pure Java library for SVG content manipulation
+[FOP] a Java print formatter driven by XSL formatting objects (XSL-FO); supported output formats include PDF, PS, PCL, AFP, XML (area tree representation), Print, AWT and PNG, and to a lesser extent, RTF and TXT

@@ -1,0 +1,4 @@
+﻿++ Games
+
+gbrainy	Brain teaser game
+PyChess	Chess game

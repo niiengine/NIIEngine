@@ -1,0 +1,50 @@
+﻿++ 例子
+
+[:rel: parents]
+MyWiki
+WikidPad简明教程
+[:rel: children]
+Frank Chen
+TreeIcons
+TreeNodeColors
+WikiSettings
+等宽字体
+开源
+张三
+[:rel: children;existingonly;columns 2]
+Frank Chen	WikiSettings
+等宽字体	开源
+张三	
+
+[:savedsearch: 例子; columns 4] (all pages containing "例子")
+ 
+[:toc:]
+WikidPad简明教程
+前言
+目录
+说明
+软件的特点
+软件的缺点
+软件简明使用教程
+编辑模式和预览模式
+什么是词条？
+URL链接
+网页锚和脚注
+词条树的图标和颜色
+WikidPad中的一些格式化语法
+取消格式化
+取消一段文字的格式化
+一段预定义的文字
+Escaping characters
+表格
+HTML标签和特殊字符
+项目符号
+属性标记
+Todo项目
+动态插入
+语法
+例子
+模板
+
+[:eval:"5+6*3"]
+5 + 6 * 3 == 23

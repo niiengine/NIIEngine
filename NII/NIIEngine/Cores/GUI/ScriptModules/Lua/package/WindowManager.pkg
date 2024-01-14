@@ -1,0 +1,67 @@
+/***********************************************************************
+	WidgetManager
+***********************************************************************/
+class FalagardWindowMapping
+{
+    string d_windowType @ windowType;
+    string d_lookName @ lookName;
+    string d_baseType @ baseType;
+    string d_rendererType @ rendererType;
+    string d_effectName @ effectName;
+};
+class WidgetFactory
+{
+    FactoryID getID() const;
+};
+class WidgetManager : public EventSet
+{
+	static WidgetManager& getSingleton();
+
+	tolua_throws|CEGUI::AlreadyExistsException,nil|CEGUI::InvalidRequestException,nil| UIElement* createWindow(utf8string type, utf8string name="");
+
+    //tolua_throws|CEGUI::Exception,error|std::exception,error|any,error| UIElement* loadLayoutFromContainer(const RawDataContainer& source);
+	tolua_throws|CEGUI::Exception,error|std::exception,error|any,error| UIElement*	loadLayoutFromFile(utf8string filename, utf8string resourceGroup = "");
+    tolua_throws|CEGUI::Exception,error|std::exception,error|any,error| UIElement* loadLayoutFromString(utf8string source);
+
+    void writeLayoutToStream(const UIElement& window, OutStream& out) const;
+    string getLayoutAsString(const UIElement& window) const;
+    void saveLayoutToFile(const UIElement& window, utf8string filename) const;
+
+	void destroyWindow(UIElement* window);
+	void destroyAllWindows();
+
+	bool isAlive(UIElement* window) const;
+
+    static WindowFactoryManager& getSingleton();
+
+    bool isFactoryPresent(utf8string name) const;
+    void addWindowTypeAlias(utf8string aliasName, utf8string targetType);
+    void removeWindowTypeAlias(utf8string aliasName, utf8string targetType);
+    void addFalagardWindowMapping(utf8string newType, utf8string targetType, utf8string lookName, utf8string renderer, utf8string effectName = "");
+    void removeFalagardWindowMapping(utf8string type);
+    bool isFalagardMappedType(utf8string type) const;
+    string getMappedLookForType(utf8string type) const;
+    string getMappedRendererForType(utf8string type) const;
+    String getDereferencedAliasType(utf8string type) const;
+    const FalagardWindowMapping& getFalagardMappingForType(utf8string type) const;
+
+    void removeAllWindowTypeAliases();
+    void removeAllFalagardWindowMappings();
+
+    WindowFactoryIterator getIterator() const;
+    FalagardMappingIterator getFalagardMappingIterator() const;
+    
+	bool isDeadPoolEmpty() const;
+	void cleanDeadPool();
+
+    WindowIterator getIterator() const;
+
+    static void setDefaultResourceGroup(utf8string resourceGroup);
+    static string& getDefaultResourceGroup();
+
+    void lock();
+    void unlock();
+    bool isLocked() const;
+
+    tolua_outside EventIterator ceguiLua_getEventIterator @ getEventIterator() const;
+};

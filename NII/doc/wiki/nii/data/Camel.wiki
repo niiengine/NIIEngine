@@ -1,0 +1,3 @@
+﻿++ Camel
+
+a declarative routing and mediation rules engine which implements the Enterprise Integration Patterns using a Java based domain specific language

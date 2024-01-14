@@ -1,0 +1,166 @@
+<?xml version="1.0" ?>
+<ViewPixel version="2" name="WindowsLook" tex_src="WindowsLook.png" native_res_x="800" native_res_y="600" auto_res="vertical">
+	<Pixel name="Background" pos_x="9" pos_y="9" width="2" height="2" />
+	<Pixel name="WindowFrameLeft" pos_x="2" pos_y="9" width="4" height="2" />
+	<Pixel name="WindowFrameRight" pos_x="14" pos_y="9" width="4" height="2" />
+	<Pixel name="WindowFrameTop" pos_x="9" pos_y="2" width="2" height="4" />
+	<Pixel name="WindowFrameBottom" pos_x="9" pos_y="14" width="2" height="4" />
+	<Pixel name="WindowFrameTopLeft" pos_x="2" pos_y="2" width="4" height="4" />
+	<Pixel name="WindowFrameTopRight" pos_x="14" pos_y="2" width="4" height="4" />
+	<Pixel name="WindowFrameBottomLeft" pos_x="2" pos_y="14" width="4" height="4" />
+	<Pixel name="WindowFrameBottomRight" pos_x="14" pos_y="14" width="4" height="4" />
+	<Pixel name="ButtonNormalLeft" pos_x="20" pos_y="9" width="2" height="2" />
+	<Pixel name="ButtonNormalRight" pos_x="34" pos_y="9" width="2" height="2" />
+	<Pixel name="ButtonNormalTop" pos_x="27" pos_y="2" width="2" height="2" />
+	<Pixel name="ButtonNormalBottom" pos_x="27" pos_y="16" width="2" height="2" />
+	<Pixel name="ButtonNormalTopLeft" pos_x="20" pos_y="2" width="3" height="3" />
+	<Pixel name="ButtonNormalTopRight" pos_x="33" pos_y="2" width="3" height="3" />
+	<Pixel name="ButtonNormalBottomLeft" pos_x="20" pos_y="15" width="3" height="3" />
+	<Pixel name="ButtonNormalBottomRight" pos_x="33" pos_y="15" width="3" height="3" />
+	<Pixel name="ButtonPushedLeft" pos_x="38" pos_y="9" width="2" height="2" />
+	<Pixel name="ButtonPushedRight" pos_x="52" pos_y="9" width="2" height="2" />
+	<Pixel name="ButtonPushedTop" pos_x="45" pos_y="2" width="2" height="2" />
+	<Pixel name="ButtonPushedBottom" pos_x="45" pos_y="16" width="2" height="2" />
+	<Pixel name="ButtonPushedTopLeft" pos_x="38" pos_y="2" width="3" height="3" />
+	<Pixel name="ButtonPushedTopRight" pos_x="51" pos_y="2" width="3" height="3" />
+	<Pixel name="ButtonPushedBottomLeft" pos_x="38" pos_y="15" width="3" height="3" />
+	<Pixel name="ButtonPushedBottomRight" pos_x="51" pos_y="15" width="3" height="3" />
+	<Pixel name="ButtonHoverLeft" pos_x="56" pos_y="9" width="2" height="2" />
+	<Pixel name="ButtonHoverRight" pos_x="70" pos_y="9" width="2" height="2" />
+	<Pixel name="ButtonHoverTop" pos_x="63" pos_y="2" width="2" height="2" />
+	<Pixel name="ButtonHoverBottom" pos_x="63" pos_y="16" width="2" height="2" />
+	<Pixel name="ButtonHoverTopLeft" pos_x="56" pos_y="2" width="3" height="3" />
+	<Pixel name="ButtonHoverTopRight" pos_x="69" pos_y="2" width="3" height="3" />
+	<Pixel name="ButtonHoverBottomLeft" pos_x="56" pos_y="15" width="3" height="3" />
+	<Pixel name="ButtonHoverBottomRight" pos_x="69" pos_y="15" width="3" height="3" />
+	<Pixel name="EditFrameLeft" pos_x="74" pos_y="9" width="3" height="2" />
+	<Pixel name="EditFrameRight" pos_x="87" pos_y="9" width="3" height="2" />
+	<Pixel name="EditFrameTop" pos_x="81" pos_y="2" width="2" height="3" />
+	<Pixel name="EditFrameBottom" pos_x="81" pos_y="15" width="2" height="3" />
+	<Pixel name="EditFrameTopLeft" pos_x="74" pos_y="2" width="3" height="3" />
+	<Pixel name="EditFrameTopRight" pos_x="87" pos_y="2" width="3" height="3" />
+	<Pixel name="EditFrameBottomLeft" pos_x="74" pos_y="15" width="3" height="3" />
+	<Pixel name="EditFrameBottomRight" pos_x="87" pos_y="15" width="3" height="3" />
+	<Pixel name="StaticFrameLeft" pos_x="92" pos_y="9" width="2" height="2" />
+	<Pixel name="StaticFrameRight" pos_x="106" pos_y="9" width="2" height="2" />
+	<Pixel name="StaticFrameTop" pos_x="99" pos_y="2" width="2" height="2" />
+	<Pixel name="StaticFrameBottom" pos_x="99" pos_y="16" width="2" height="2" />
+	<Pixel name="StaticFrameTopLeft" pos_x="92" pos_y="2" width="3" height="3" />
+	<Pixel name="StaticFrameTopRight" pos_x="105" pos_y="2" width="3" height="3" />
+	<Pixel name="StaticFrameBottomLeft" pos_x="92" pos_y="15" width="3" height="3" />
+	<Pixel name="StaticFrameBottomRight" pos_x="105" pos_y="15" width="3" height="3" />
+	<Pixel name="CloseButtonNormal" pos_x="2" pos_y="20" width="13" height="13" />
+	<Pixel name="CloseButtonHover" pos_x="2" pos_y="35" width="13" height="13" />
+	<Pixel name="CloseButtonPushed" pos_x="2" pos_y="50" width="13" height="13" />
+	<Pixel name="TitlebarTopLeft" pos_x="87" pos_y="103" width="8" height="4" />
+	<Pixel name="TitlebarTopRight" pos_x="109" pos_y="103" width="8" height="4" />
+	<Pixel name="TitlebarBottomLeft" pos_x="87" pos_y="123" width="8" height="2" />
+	<Pixel name="TitlebarBottomRight" pos_x="109" pos_y="123" width="8" height="2" />
+	<Pixel name="TitlebarLeft" pos_x="87" pos_y="110" width="8" height="10" />
+	<Pixel name="TitlebarRight" pos_x="109" pos_y="110" width="8" height="10" />
+	<Pixel name="TitlebarTop" pos_x="98" pos_y="103" width="8" height="4" />
+	<Pixel name="TitlebarBottom" pos_x="98" pos_y="123" width="8" height="2" />
+	<Pixel name="TitlebarFill" pos_x="98" pos_y="110" width="8" height="10" />
+	<Pixel name="CheckboxNormal" pos_x="17" pos_y="37" width="10" height="10" />
+	<Pixel name="CheckboxHover" pos_x="17" pos_y="49" width="10" height="10" />
+	<Pixel name="CheckboxMark" pos_x="17" pos_y="61" width="10" height="10" />
+	<Pixel name="RadioButtonNormal" pos_x="29" pos_y="37" width="10" height="10" />
+	<Pixel name="RadioButtonHover" pos_x="29" pos_y="49" width="10" height="10" />
+	<Pixel name="RadioButtonMark" pos_x="29" pos_y="61" width="10" height="10" />
+	<Pixel name="SliderThumbNormal" pos_x="47" pos_y="20" width="7" height="10" />
+	<Pixel name="SliderThumbHover" pos_x="47" pos_y="32" width="7" height="10" />
+	<Pixel name="SliderTrackLeft" pos_x="56" pos_y="20" width="3" height="4" />
+	<Pixel name="SlidertrackMiddle" pos_x="63" pos_y="20" width="2" height="4" />
+	<Pixel name="SliderTrackRight" pos_x="69" pos_y="20" width="3" height="4" />
+	<Pixel name="SliderTick" pos_x="56" pos_y="26" width="1" height="4" />
+	<Pixel name="HeaderMainBrush" pos_x="53" pos_y="45" width="2" height="2" />
+	<Pixel name="HeaderBottomEdge" pos_x="53" pos_y="50" width="2" height="4" />
+	<Pixel name="HeaderSplitter" pos_x="47" pos_y="44" width="3" height="15" />
+	<Pixel name="VertScrollbarGrip" pos_x="41" pos_y="68" width="5" height="8" />
+	<Pixel name="HorzScrollbarGrip" pos_x="41" pos_y="61" width="8" height="5" />
+	<Pixel name="LargeLeftArrow" pos_x="2" pos_y="65" width="5" height="9" />
+	<Pixel name="LargeRightArrow" pos_x="9" pos_y="65" width="5" height="9" />
+	<Pixel name="LargeUpArrow" pos_x="2" pos_y="76" width="9" height="5" />
+	<Pixel name="LargeDownArrow" pos_x="2" pos_y="83" width="9" height="5" />
+	<Pixel name="SmallLeftArrow" pos_x="17" pos_y="73" width="5" height="5" />
+	<Pixel name="SmallRightArrow" pos_x="24" pos_y="73" width="5" height="5" />
+	<Pixel name="SmallUpArrow" pos_x="17" pos_y="80" width="5" height="5" />
+	<Pixel name="SmallDownArrow" pos_x="24" pos_y="80" width="5" height="5" />
+	<Pixel name="EditBoxCaret" pos_x="29" pos_y="118" width="2" height="8" />
+	<Pixel name="MouseArrow" pos_x="2" pos_y="90" width="10" height="19" pos_x_offset="0" pos_y_offset="0" />
+	<Pixel name="MouseMoveCursor" pos_x="14" pos_y="90" width="22" height="22" pos_x_offset="-10" pos_y_offset="-10" />
+	<Pixel name="MouseNoSoCursor" pos_x="38" pos_y="89" width="11" height="19" pos_x_offset="-4" pos_y_offset="-9" />
+	<Pixel name="MouseEsWeCursor" pos_x="2" pos_y="116" width="19" height="8" pos_x_offset="-9" pos_y_offset="-4" />
+	<Pixel name="MouseNeSwCursor" pos_x="51" pos_y="90" width="15" height="15" pos_x_offset="-7" pos_y_offset="-6" />
+	<Pixel name="MouseNwSeCursor" pos_x="68" pos_y="90" width="15" height="15" pos_x_offset="-6" pos_y_offset="-7" />
+	<Pixel name="MouseTextBar" pos_x="73" pos_y="107" width="11" height="20" pos_x_offset="-5" pos_y_offset="-10" />
+	
+	<Pixel name="TabHorizontalTopFiller" pos_x="81" pos_y="20" width="2" height="2" />
+	<Pixel name="TabHorizontalBottomFiller" pos_x="81" pos_y="34" width="2" height="2" />
+	<Pixel name="TabContentPaneUpperLeft" pos_x="92" pos_y="2" width="3" height="3" />
+	<Pixel name="TabContentPaneTop" pos_x="99" pos_y="2" width="2" height="3" />
+	<Pixel name="TabContentPaneUpperRight" pos_x="105" pos_y="2" width="3" height="3" />
+	<Pixel name="TabContentPaneLeft" pos_x="92" pos_y="9" width="2" height="2" />
+	<Pixel name="TabContentPaneMiddle" pos_x="9" pos_y="9" width="2" height="2" />
+	<Pixel name="TabContentPaneRight" pos_x="106" pos_y="9" width="2" height="2" />
+	<Pixel name="TabContentPaneLower" pos_x="99" pos_y="15" width="2" height="3" />
+	<Pixel name="TabContentPaneLowerLeft" pos_x="92" pos_y="15" width="3" height="3" />
+	<Pixel name="TabContentPaneLowerRight" pos_x="105" pos_y="15" width="3" height="3" />
+
+	<Pixel name="TabButtonUpperLeftNormal" pos_x="74" pos_y="20" width="3" height="3" />
+	<Pixel name="TabButtonUpperNormal" pos_x="81" pos_y="20" width="2" height="3" />
+	<Pixel name="TabButtonUpperRightNormal" pos_x="87" pos_y="20" width="3" height="3" />
+	<Pixel name="TabButtonLeftNormal" pos_x="74" pos_y="27" width="2" height="2" />
+	<Pixel name="TabButtonMiddleNormal" pos_x="9" pos_y="9" width="2" height="2" />
+	<Pixel name="TabButtonRightNormal" pos_x="88" pos_y="27" width="2" height="2" />
+	<Pixel name="TabButtonLowerLeftNormal" pos_x="74" pos_y="33" width="3" height="3" />
+	<Pixel name="TabButtonLowerNormal" pos_x="81" pos_y="33" width="2" height="3" />
+	<Pixel name="TabButtonLowerRightNormal" pos_x="87" pos_y="33" width="3" height="3" />
+
+	<Pixel name="TabButtonUpperLeftSelected" pos_x="92" pos_y="20" width="3" height="3" />
+	<Pixel name="TabButtonUpperSelected" pos_x="99" pos_y="20" width="2" height="3" />
+	<Pixel name="TabButtonUpperRightSelected" pos_x="105" pos_y="20" width="3" height="3" />
+	<Pixel name="TabButtonLeftSelected" pos_x="92" pos_y="27" width="2" height="2" />
+	<Pixel name="TabButtonMiddleSelected" pos_x="9" pos_y="9" width="2" height="2" />
+	<Pixel name="TabButtonRightSelected" pos_x="106" pos_y="27" width="2" height="2" />
+	<Pixel name="TabButtonLowerLeftSelected" pos_x="92" pos_y="33" width="3" height="3" />
+	<Pixel name="TabButtonLowerSelected" pos_x="99" pos_y="33" width="2" height="3" />
+	<Pixel name="TabButtonLowerRightSelected" pos_x="105" pos_y="33" width="3" height="3" />
+
+	<Pixel name="TabButtonScrollLeftNormal" pos_x="75" pos_y="75" width="13" height="13" />
+	<Pixel name="TabButtonScrollRightNormal" pos_x="87" pos_y="75" width="13" height="13" />
+	<Pixel name="TabButtonScrollLeftHover" pos_x="99" pos_y="75" width="13" height="13" />
+	<Pixel name="TabButtonScrollRightHover" pos_x="111" pos_y="75" width="13" height="13" />
+
+	<Pixel name="TooltipTopLeft" pos_x="74" pos_y="38" width="3" height="3" />
+	<Pixel name="TooltipTopRight" pos_x="87" pos_y="38" width="4" height="3" />
+	<Pixel name="TooltipBottomLeft" pos_x="74" pos_y="51" width="3" height="4" />
+	<Pixel name="TooltipBottomRight" pos_x="87" pos_y="51" width="4" height="4" />
+	<Pixel name="TooltipLeftEdge" pos_x="74" pos_y="45" width="3" height="2" />
+	<Pixel name="TooltipRightEdge" pos_x="87" pos_y="45" width="4" height="2" />
+	<Pixel name="TooltipTopEdge" pos_x="81" pos_y="38" width="2" height="3" />
+	<Pixel name="TooltipBottomEdge" pos_x="81" pos_y="51" width="2" height="4" />
+	<Pixel name="TooltipMiddle" pos_x="81" pos_y="45" width="2" height="2" />
+
+	<Pixel name="MenuTopLeft" pos_x="61" pos_y="57" width="2" height="2" />
+	<Pixel name="MenuTopRight" pos_x="70" pos_y="57" width="2" height="2" />
+	<Pixel name="MenuBottomLeft" pos_x="61" pos_y="66" width="2" height="2" />
+	<Pixel name="MenuBottomRight" pos_x="70" pos_y="66" width="2" height="2" />
+	<Pixel name="MenuLeft" pos_x="61" pos_y="62" width="2" height="1" />
+	<Pixel name="MenuRight" pos_x="70" pos_y="62" width="2" height="1" />
+	<Pixel name="MenuTop" pos_x="66" pos_y="57" width="1" height="2" />
+	<Pixel name="MenuBottom" pos_x="66" pos_y="66" width="1" height="2" />
+	
+	<Pixel name="PopupMenuFrameTopLeft" pos_x="74" pos_y="57" width="3" height="3" />
+	<Pixel name="PopupMenuFrameTopRight" pos_x="87" pos_y="57" width="3" height="3" />
+	<Pixel name="PopupMenuFrameBottomLeft" pos_x="74" pos_y="70" width="3" height="3" />
+	<Pixel name="PopupMenuFrameBottomRight" pos_x="87" pos_y="70" width="3" height="3" />
+	<Pixel name="PopupMenuFrameLeft" pos_x="74" pos_y="64" width="3" height="2" />
+	<Pixel name="PopupMenuFrameRight" pos_x="87" pos_y="64" width="3" height="2" />
+	<Pixel name="PopupMenuFrameTop" pos_x="81" pos_y="57" width="2" height="3" />
+	<Pixel name="PopupMenuFrameBottom" pos_x="81" pos_y="70" width="2" height="3" />
+	<Pixel name="PopupMenuArrowRight" pos_x="61" pos_y="75" width="5" height="9" />
+	<Pixel name="PopupMenuArrowLeft" pos_x="68" pos_y="75" width="5" height="9" />
+
+	<Pixel name="MultiListSelectionBrush" pos_x="9" pos_y="71" width="14" height="14" />
+</ViewPixel>

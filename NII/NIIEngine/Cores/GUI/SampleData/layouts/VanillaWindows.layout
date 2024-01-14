@@ -1,0 +1,83 @@
+<?xml version="1.0" ?>
+<Layout ver="4">
+    <Widget name="root" type="Vanilla/StaticImage">
+        <Property name="Position" value="{{0,0},{0,0}}" />
+        <Property name="Size" value="{{1,0},{1,0}}" />
+        <Property name="FrameEnabled" value="False" />
+        <Property name="BackgroundEnabled" value="False" />
+
+        <Widget name="NewNode" type="Vanilla/FrameWindow">
+            <Property name="MinSize" value="{{0.2,0},{0.2,0}}" />
+            <Property name="MaxSize" value="{{0.8,0},{0.8,0}}" />
+            <Property name="Position" value="{{0.6,0},{0.1,0}}" />
+            <Property name="Size" value="{{0.3,0},{0.5,0}}" />
+            <Property name="Text" value="New Node" />
+            <Property name="CloseButtonEnabled" value="False" />
+
+            <Widget name="Listbox" type="Vanilla/Listbox">
+                <Property name="MaxSize" value="{{1.0,0},{1.0,0}}" />
+                <Property name="Position" value="{{0,7},{0,7}}" />
+                <Property name="Size" value="{{1,-14},{1,-80}}" />
+            </Widget>
+
+            <Widget name="label1" type="Vanilla/StaticText">
+                <Property name="BackgroundEnabled" value="False" />
+                <Property name="FrameEnabled" value="False" />
+                <Property name="VerticalAlignment" value="Bottom" />
+                <Property name="MaxSize" value="{{1.0,0},{1.0,0}}" />
+                <Property name="Position" value="{{0,7},{0,-45}}" />
+                <Property name="Size" value="{{0,60},{0,30}}" />
+                <Property name="Text" value="Name:" />
+            </Widget>
+
+            <Widget name="Editbox" type="Vanilla/Editbox">
+                <Property name="VerticalAlignment" value="Bottom" />
+                <Property name="HorizontalAlignment" value="Right" />
+                <Property name="MaxSize" value="{{1.0,0},{1.0,0}}" />
+                <Property name="Position" value="{{0,-7},{0,-40}}" />
+                <Property name="Size" value="{{1,-74},{0,30}}" />
+                <Property name="Text" value="" />
+            </Widget>
+
+            <Widget name="Okay" type="Vanilla/Button">
+                <Property name="VerticalAlignment" value="Bottom" />
+                <Property name="MaxSize" value="{{1.0,0},{1.0,0}}" />
+                <Property name="Position" value="{{0,7},{0,-7}}" />
+                <Property name="Size" value="{{0,60},{0,30}}" />
+                <Property name="Text" value="Okay" />
+            </Widget>
+
+            <Widget name="Cancel" type="Vanilla/Button">
+                <Property name="VerticalAlignment" value="Bottom" />
+                <Property name="HorizontalAlignment" value="Right" />
+                <Property name="MaxSize" value="{{1.0,0},{1.0,0}}" />
+                <Property name="Position" value="{{0,-7},{0,-7}}" />
+                <Property name="Size" value="{{0,60},{0,30}}" />
+                <Property name="Text" value="Cancel" />
+            </Widget>
+
+        </Widget>
+
+        <Widget name="NamespaceViewer" type="Vanilla/FrameWindow">
+            <Property name="MinSize" value="{{0.2,0},{0.2,0}}" />
+            <Property name="MaxSize" value="{{0.8,0},{0.8,0}}" />
+            <Property name="Position" value="{{0.25,0},{0.48,0}}" />
+            <Property name="Size" value="{{0.5,0},{0.5,0}}" />
+            <Property name="Text" value="Namespace Viewer" />
+            <Property name="CloseButtonEnabled" value="False" />
+
+            <Widget name="area1" type="Vanilla/StaticText">
+                <Property name="MaxSize" value="{{1.0,0},{1.0,0}}" />
+                <Property name="Position" value="{{0,7},{0,7}}" />
+                <Property name="Size" value="{{1,-14},{0,93}}" />
+            </Widget>
+
+            <Widget name="area2" type="Vanilla/Listbox">
+                <Property name="VerticalAlignment" value="Bottom" />
+                <Property name="MaxSize" value="{{1.0,0},{1.0,0}}" />
+                <Property name="Position" value="{{0,7},{0,-7}}" />
+                <Property name="Size" value="{{1,-14},{1,-110}}" />
+            </Widget>
+        </Widget>
+    </Widget>
+</Layout>

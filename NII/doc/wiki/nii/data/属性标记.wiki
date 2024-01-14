@@ -1,0 +1,35 @@
+﻿++ 属性标记
+
+属性标记有两个目的，一是除了用词条之外还可以用属性标记来索引你的数据，二是属性标记可能会有一些特殊的格式化功能。
+在词条树的“Views”节点上可以看到一些属性标记以及对应信息。
+具体用法请参考WikidPad帮助中的“Wiki Document Attributes”词条。
+下面对一些常用的进行举例说明。
+ 
+[联系人: 工作]
+[联系人: 私人]，用来给张三这样的词条做标记
+[工作相关: true]，标记某词条是与工作相关的
+[联系人.私人.小孩子: ture] 
+[importance: high]
+如果同一个属性标记有多个值，例如：
+[alias: 别名1]
+[alias: 别名2]
+[alias: 别名3]
+可以这样写：
+[alias: 别名1; 别名2; 别名3]
+可以用英文双引号把含有特殊字符的指括起来
+[contact: Carl [Home]]
+三种特殊的属性标记，用来控制节点的外观。
+[icon: heli]
+[color: red]
+[bold: true]
+全局属性标记
+[global.联系人.color: blue]
+当创建新wiki的时候，会自动添加“WikiSettings”词条。
+另外一些特殊的属性标记
+[priority: 3]
+[font: Verdana]
+[global.font: Consolas]
+[alias: jmjc]
+[html.bgcolor: #b9d2ff]
+[short_hint: 提示]
+WikidPad支持语法的错误检测。

@@ -1,0 +1,19 @@
+﻿++ 其他
+
+[wiki书写工具]
+
+[source 50优秀项目]
+
+[gnu基金中的软件]
+
+[gnu中的window方案代替品]
+
+[apache基金中中的软件]
+
+[freedesktop中列举的软件]
+
+[gnome基金中的软件]
+
+[KDE组织中的软件]
+
+[android中的第三方库介绍]

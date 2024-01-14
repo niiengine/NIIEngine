@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="F:\tool\GSGS4.0.0\codelite_vim\VIM.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\codelite_vim\VIM_codelite_vim_bitmaps.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\codelite_vim\VimSettings.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\codelite_vim\VimSettingsDlg.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\codelite_vim\codelite_vim.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\codelite_vim\vimCommands.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\codelite_vim\vim_manager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{48CD2966-80B4-3C52-BDF2-A24A35FB3386}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

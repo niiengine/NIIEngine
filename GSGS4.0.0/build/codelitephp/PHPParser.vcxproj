@@ -1,0 +1,253 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="MinSizeRel|Win32">
+      <Configuration>MinSizeRel</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="RelWithDebInfo|Win32">
+      <Configuration>RelWithDebInfo</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{B1D4B3FF-1759-383F-BFEB-E2FC21EC9161}</ProjectGuid>
+    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
+    <Keyword>Win32Proj</Keyword>
+    <Platform>Win32</Platform>
+    <ProjectName>PHPParser</ProjectName>
+    <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">/lib/Debug/</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">PHPParser.dir\Debug\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">PHPParser</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.lib</TargetExt>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">\lib\Release\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">PHPParser.dir\Release\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">PHPParser</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.lib</TargetExt>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">\lib\MinSizeRel\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">PHPParser.dir\MinSizeRel\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">PHPParser</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">.lib</TargetExt>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">\lib\RelWithDebInfo\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">PHPParser.dir\RelWithDebInfo\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">PHPParser</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">.lib</TargetExt>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>F:\tool\GSGS4.0.0\sdk\libssh\include;F:\tool\GSGS4.0.0\Plugin;F:\tool\GSGS4.0.0\sdk\wxsqlite3\include;F:\tool\GSGS4.0.0\Core;F:\tool\GSGS4.0.0\Editor_Scene;F:\tool\GSGS4.0.0\Editor_Code;F:\tool\GSGS4.0.0\PCH;F:\tool\GSGS4.0.0\Interfaces;F:\tool\GSGS4.0.0\codelitephp\PHPParser;F:\tool\GSGS4.0.0\codelitephp\php-plugin;F:\tool\GSGS4.0.0\codelitephp\PHPParserUnitTests;F:\wxWidgets-3.1.2\lib\vc_dll\mswud;F:\wxWidgets-3.1.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>Debug/</AssemblerListingLocation>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <CppLanguageStandard>c++11</CppLanguageStandard>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <Optimization>Disabled</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <SuppressStartupBanner>
+      </SuppressStartupBanner>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;YY_NEVER_INTERACTIVE=1;wxUSE_GUI=1;INSTALL_DIR="/usr/share/codelite";PLUGINS_DIR="/usr/lib/codelite";USE_AUI_NOTEBOOK=0;NDEBUG;USE_SFTP=1;WXUSINGDLL;UNICODE;_UNICODE;WXUSINGDLL_WXSQLITE3;WXUSINGDLL_CL;WXUSINGDLL_SDK;_DEBUG;__WXDEBUG__;CMAKE_INTDIR="Debug";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;YY_NEVER_INTERACTIVE=1;wxUSE_GUI=1;INSTALL_DIR=\"/usr/share/codelite\";PLUGINS_DIR=\"/usr/lib/codelite\";USE_AUI_NOTEBOOK=0;NDEBUG;USE_SFTP=1;WXUSINGDLL;UNICODE;_UNICODE;WXUSINGDLL_WXSQLITE3;WXUSINGDLL_CL;WXUSINGDLL_SDK;__WXDEBUG__;CMAKE_INTDIR=\"Debug\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>F:\tool\GSGS4.0.0\sdk\libssh\include;F:\tool\GSGS4.0.0\Plugin;F:\tool\GSGS4.0.0\sdk\wxsqlite3\include;F:\tool\GSGS4.0.0\CodeLite;F:\tool\GSGS4.0.0\PCH;F:\tool\GSGS4.0.0\Interfaces;F:\tool\GSGS4.0.0\codelitephp\PHPParser;F:\tool\GSGS4.0.0\codelitephp\php-plugin;F:\tool\GSGS4.0.0\codelitephp\PHPParserUnitTests;F:\wxWidgets-3.1.2\lib\vc_dll\mswud;F:\wxWidgets-3.1.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>F:\tool\GSGS4.0.0\sdk\libssh\include;F:\tool\GSGS4.0.0\Plugin;F:\tool\GSGS4.0.0\sdk\wxsqlite3\include;F:\tool\GSGS4.0.0\CodeLite;F:\tool\GSGS4.0.0\PCH;F:\tool\GSGS4.0.0\Interfaces;F:\tool\GSGS4.0.0\codelitephp\PHPParser;F:\tool\GSGS4.0.0\codelitephp\php-plugin;F:\tool\GSGS4.0.0\codelitephp\PHPParserUnitTests;F:\wxWidgets-3.1.2\lib\vc_dll\mswud;F:\wxWidgets-3.1.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions) /machine:X86</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>F:\tool\GSGS4.0.0\sdk\libssh\include;F:\tool\GSGS4.0.0\Plugin;F:\tool\GSGS4.0.0\sdk\wxsqlite3\include;F:\tool\GSGS4.0.0\CodeLite;F:\tool\GSGS4.0.0\PCH;F:\tool\GSGS4.0.0\Interfaces;F:\tool\GSGS4.0.0\codelitephp\PHPParser;F:\tool\GSGS4.0.0\codelitephp\php-plugin;F:\tool\GSGS4.0.0\codelitephp\PHPParserUnitTests;F:\wxWidgets-3.1.2\lib\vc_dll\mswud;F:\wxWidgets-3.1.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>Release/</AssemblerListingLocation>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <CppLanguageStandard>c++11</CppLanguageStandard>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <SuppressStartupBanner>
+      </SuppressStartupBanner>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;YY_NEVER_INTERACTIVE=1;wxUSE_GUI=1;INSTALL_DIR="/usr/share/codelite";PLUGINS_DIR="/usr/lib/codelite";USE_AUI_NOTEBOOK=0;USE_SFTP=1;WXUSINGDLL;UNICODE;_UNICODE;WXUSINGDLL_WXSQLITE3;WXUSINGDLL_CL;WXUSINGDLL_SDK;CMAKE_INTDIR="Release";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;YY_NEVER_INTERACTIVE=1;wxUSE_GUI=1;INSTALL_DIR=\"/usr/share/codelite\";PLUGINS_DIR=\"/usr/lib/codelite\";USE_AUI_NOTEBOOK=0;USE_SFTP=1;WXUSINGDLL;UNICODE;_UNICODE;WXUSINGDLL_WXSQLITE3;WXUSINGDLL_CL;WXUSINGDLL_SDK;CMAKE_INTDIR=\"Release\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>F:\tool\GSGS4.0.0\sdk\libssh\include;F:\tool\GSGS4.0.0\Plugin;F:\tool\GSGS4.0.0\sdk\wxsqlite3\include;F:\tool\GSGS4.0.0\CodeLite;F:\tool\GSGS4.0.0\PCH;F:\tool\GSGS4.0.0\Interfaces;F:\tool\GSGS4.0.0\codelitephp\PHPParser;F:\tool\GSGS4.0.0\codelitephp\php-plugin;F:\tool\GSGS4.0.0\codelitephp\PHPParserUnitTests;F:\wxWidgets-3.1.2\lib\vc_dll\mswud;F:\wxWidgets-3.1.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>F:\tool\GSGS4.0.0\sdk\libssh\include;F:\tool\GSGS4.0.0\Plugin;F:\tool\GSGS4.0.0\sdk\wxsqlite3\include;F:\tool\GSGS4.0.0\CodeLite;F:\tool\GSGS4.0.0\PCH;F:\tool\GSGS4.0.0\Interfaces;F:\tool\GSGS4.0.0\codelitephp\PHPParser;F:\tool\GSGS4.0.0\codelitephp\php-plugin;F:\tool\GSGS4.0.0\codelitephp\PHPParserUnitTests;F:\wxWidgets-3.1.2\lib\vc_dll\mswud;F:\wxWidgets-3.1.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions) /machine:X86</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>F:\tool\GSGS4.0.0\sdk\libssh\include;F:\tool\GSGS4.0.0\Plugin;F:\tool\GSGS4.0.0\sdk\wxsqlite3\include;F:\tool\GSGS4.0.0\CodeLite;F:\tool\GSGS4.0.0\PCH;F:\tool\GSGS4.0.0\Interfaces;F:\tool\GSGS4.0.0\codelitephp\PHPParser;F:\tool\GSGS4.0.0\codelitephp\php-plugin;F:\tool\GSGS4.0.0\codelitephp\PHPParserUnitTests;F:\wxWidgets-3.1.2\lib\vc_dll\mswud;F:\wxWidgets-3.1.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>MinSizeRel/</AssemblerListingLocation>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <CppLanguageStandard>c++11</CppLanguageStandard>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <Optimization>MinSpace</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <SuppressStartupBanner>
+      </SuppressStartupBanner>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;YY_NEVER_INTERACTIVE=1;wxUSE_GUI=1;INSTALL_DIR="/usr/share/codelite";PLUGINS_DIR="/usr/lib/codelite";USE_AUI_NOTEBOOK=0;USE_SFTP=1;WXUSINGDLL;UNICODE;_UNICODE;WXUSINGDLL_WXSQLITE3;WXUSINGDLL_CL;WXUSINGDLL_SDK;CMAKE_INTDIR="MinSizeRel";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;YY_NEVER_INTERACTIVE=1;wxUSE_GUI=1;INSTALL_DIR=\"/usr/share/codelite\";PLUGINS_DIR=\"/usr/lib/codelite\";USE_AUI_NOTEBOOK=0;USE_SFTP=1;WXUSINGDLL;UNICODE;_UNICODE;WXUSINGDLL_WXSQLITE3;WXUSINGDLL_CL;WXUSINGDLL_SDK;CMAKE_INTDIR=\"MinSizeRel\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>F:\tool\GSGS4.0.0\sdk\libssh\include;F:\tool\GSGS4.0.0\Plugin;F:\tool\GSGS4.0.0\sdk\wxsqlite3\include;F:\tool\GSGS4.0.0\CodeLite;F:\tool\GSGS4.0.0\PCH;F:\tool\GSGS4.0.0\Interfaces;F:\tool\GSGS4.0.0\codelitephp\PHPParser;F:\tool\GSGS4.0.0\codelitephp\php-plugin;F:\tool\GSGS4.0.0\codelitephp\PHPParserUnitTests;F:\wxWidgets-3.1.2\lib\vc_dll\mswud;F:\wxWidgets-3.1.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>F:\tool\GSGS4.0.0\sdk\libssh\include;F:\tool\GSGS4.0.0\Plugin;F:\tool\GSGS4.0.0\sdk\wxsqlite3\include;F:\tool\GSGS4.0.0\CodeLite;F:\tool\GSGS4.0.0\PCH;F:\tool\GSGS4.0.0\Interfaces;F:\tool\GSGS4.0.0\codelitephp\PHPParser;F:\tool\GSGS4.0.0\codelitephp\php-plugin;F:\tool\GSGS4.0.0\codelitephp\PHPParserUnitTests;F:\wxWidgets-3.1.2\lib\vc_dll\mswud;F:\wxWidgets-3.1.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions) /machine:X86</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>F:\tool\GSGS4.0.0\sdk\libssh\include;F:\tool\GSGS4.0.0\Plugin;F:\tool\GSGS4.0.0\sdk\wxsqlite3\include;F:\tool\GSGS4.0.0\CodeLite;F:\tool\GSGS4.0.0\PCH;F:\tool\GSGS4.0.0\Interfaces;F:\tool\GSGS4.0.0\codelitephp\PHPParser;F:\tool\GSGS4.0.0\codelitephp\php-plugin;F:\tool\GSGS4.0.0\codelitephp\PHPParserUnitTests;F:\wxWidgets-3.1.2\lib\vc_dll\mswud;F:\wxWidgets-3.1.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>RelWithDebInfo/</AssemblerListingLocation>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <CppLanguageStandard>c++11</CppLanguageStandard>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <SuppressStartupBanner>
+      </SuppressStartupBanner>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;YY_NEVER_INTERACTIVE=1;wxUSE_GUI=1;INSTALL_DIR="/usr/share/codelite";PLUGINS_DIR="/usr/lib/codelite";USE_AUI_NOTEBOOK=0;USE_SFTP=1;WXUSINGDLL;UNICODE;_UNICODE;WXUSINGDLL_WXSQLITE3;WXUSINGDLL_CL;WXUSINGDLL_SDK;CMAKE_INTDIR="RelWithDebInfo";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;YY_NEVER_INTERACTIVE=1;wxUSE_GUI=1;INSTALL_DIR=\"/usr/share/codelite\";PLUGINS_DIR=\"/usr/lib/codelite\";USE_AUI_NOTEBOOK=0;USE_SFTP=1;WXUSINGDLL;UNICODE;_UNICODE;WXUSINGDLL_WXSQLITE3;WXUSINGDLL_CL;WXUSINGDLL_SDK;CMAKE_INTDIR=\"RelWithDebInfo\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>F:\tool\GSGS4.0.0\sdk\libssh\include;F:\tool\GSGS4.0.0\Plugin;F:\tool\GSGS4.0.0\sdk\wxsqlite3\include;F:\tool\GSGS4.0.0\CodeLite;F:\tool\GSGS4.0.0\PCH;F:\tool\GSGS4.0.0\Interfaces;F:\tool\GSGS4.0.0\codelitephp\PHPParser;F:\tool\GSGS4.0.0\codelitephp\php-plugin;F:\tool\GSGS4.0.0\codelitephp\PHPParserUnitTests;F:\wxWidgets-3.1.2\lib\vc_dll\mswud;F:\wxWidgets-3.1.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>F:\tool\GSGS4.0.0\sdk\libssh\include;F:\tool\GSGS4.0.0\Plugin;F:\tool\GSGS4.0.0\sdk\wxsqlite3\include;F:\tool\GSGS4.0.0\CodeLite;F:\tool\GSGS4.0.0\PCH;F:\tool\GSGS4.0.0\Interfaces;F:\tool\GSGS4.0.0\codelitephp\PHPParser;F:\tool\GSGS4.0.0\codelitephp\php-plugin;F:\tool\GSGS4.0.0\codelitephp\PHPParserUnitTests;F:\wxWidgets-3.1.2\lib\vc_dll\mswud;F:\wxWidgets-3.1.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions) /machine:X86</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="F:\tool\GSGS4.0.0\codelitephp\PHPParser\FilesCollector.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\codelitephp\PHPParser\PHPRefactoring.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\codelitephp\PHPParser\PHPSetterGetterEntry.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\codelitephp\PHPParser\PHPSymbolsCacher.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\codelitephp\PHPParser\PHPTerminal.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\codelitephp\PHPParser\PHPUserWorkspace.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\codelitephp\PHPParser\XDebugBreakpoint.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\codelitephp\PHPParser\clplatform.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\codelitephp\PHPParser\php_code_completion.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\codelitephp\PHPParser\php_configuration_data.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\codelitephp\PHPParser\php_event.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\codelitephp\PHPParser\php_parser_thread.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\codelitephp\PHPParser\php_project.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\codelitephp\PHPParser\php_project_settings_data.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\codelitephp\PHPParser\php_utils.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\codelitephp\PHPParser\php_workspace.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\codelitephp\PHPParser\phpexecutor.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="F:\tool\GSGS4.0.0\build\ZERO_CHECK.vcxproj">
+      <Project>{DD030B4A-B93D-3988-8F89-3086A2673373}</Project>
+      <Name>ZERO_CHECK</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

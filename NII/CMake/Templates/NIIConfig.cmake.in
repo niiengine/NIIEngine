@@ -1,0 +1,28 @@
+#-------------------------------------------------------------------
+# This file is part of the CMake build system for NII
+#     (Object-oriented Graphics Rendering Engine)
+# For the latest info, see http://www.ogre3d.org/
+#
+# The contents of this file are placed in the public domain. Feel
+# free to make use of it in any way you like.
+#-------------------------------------------------------------------
+
+# Find NII includes and library
+#
+# This module defines
+#  NII_INCLUDE_DIRS
+#  NII_LIBRARIES, the libraries to link against to use NII.
+#  NII_LIBRARY_DIRS, the location of the libraries
+#  NII_FOUND, If false, do not try to use NII
+#
+
+include(FindPackageMessage)
+
+set(NII_PREFIX_DIR "@CMAKE_INSTALL_PREFIX@")
+get_filename_component(NII_LIBRARY_DIRS "${NII_PREFIX_DIR}/lib" ABSOLUTE)
+get_filename_component(NII_INCLUDE_DIRS "${NII_PREFIX_DIR}/include/NII" ABSOLUTE)
+set(NII_LIBRARIES "NIIEngine")
+
+message(STATUS "Found NII")
+message(STATUS "  libraries : '${NII_LIBRARIES}' from ${NII_LIBRARY_DIRS}")
+message(STATUS "  includes  : ${NII_INCLUDE_DIRS}")

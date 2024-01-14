@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AnimationCollector>
+    <Animation auto_start="false" duration="1.4" name="StartButtonPulsating" play_mode="loop">
+        <Track calc_mode="absolute" data_type="float" property="Alpha">
+            <KeyFrame position="0" calc_mode="constant" value="0.5" />
+            <KeyFrame position="0.7" calc_mode="square_root" value="1.0" />
+            <KeyFrame position="1.4" calc_mode="square" value="0.5" />
+        </Track>
+    </Animation>
+    <Animation auto_start="false" duration="3" name="InsideImage1Pulsating" play_mode="bounce">
+        <Track calc_mode="absolute" data_type="float" property="Alpha">
+            <KeyFrame position="0" calc_mode="constant" value="0.5" />
+            <KeyFrame position="2.7" calc_mode="constant" value="1.0" />
+        </Track>
+    </Animation>
+    <Animation auto_start="false" duration="2.0" name="BotBarMoveInAnimation" play_mode="once">
+        <Track calc_mode="absolute" data_type="RelVector2" property="Position">
+            <KeyFrame position="0.5" calc_mode="constant" value="(0, 0),(0.4, 0)" />
+            <KeyFrame position="1.15" calc_mode="square_root" value="(0, 0),(-0.02, 0)" />
+            <KeyFrame position="1.27" calc_mode="constant" value="(0, 0), (0, 0)" />
+        </Track>
+    </Animation>
+    <Animation auto_start="false" duration="2.0" name="TopBarMoveInAnimation" play_mode="once">
+        <Track calc_mode="absolute" data_type="RelVector2" property="Position">
+            <KeyFrame position="0.5" calc_mode="constant" value="(0, 0), (-0.4, 0)" />
+            <KeyFrame position="1.15" calc_mode="square_root" value="(0, 0), (0.02, 0)" />
+            <KeyFrame position="1.27" calc_mode="constant" value="(0, 0), (0, 0)" />
+        </Track>
+    </Animation>
+    <Animation auto_start="false" duration="3" name="InsideBlendIn" play_mode="once">
+        <Track calc_mode="absolute" data_type="float" property="Alpha">
+            <KeyFrame position="0.0" calc_mode="constant" value="0.0" />
+            <KeyFrame position="0.5" calc_mode="constant" value="0.0" />
+            <KeyFrame position="2.0" calc_mode="square" value="1.0" />
+        </Track>
+    </Animation>
+    <Animation auto_start="false" duration="12.0" name="InsideImage4RotateIn" play_mode="once">
+        <Track property="Rotation" data_type="Quaternion" calc_mode="absolute">
+            <KeyFrame position="0.0" calc_mode="constant" value="0 0 0" />
+            <KeyFrame position="2.0" calc_mode="constant" value="0 0 0" />
+            <KeyFrame position="3.0" calc_mode="constant" value="0 0 -180" />
+            <KeyFrame position="4.0" calc_mode="constant" value="0 0 -360" />
+            <KeyFrame position="4.000001" calc_mode="constant" value="0 0 0" />
+            <KeyFrame position="5.6" calc_mode="constant" value="0 0 -180" />
+            <KeyFrame position="8.0" calc_mode="square_root" value="0 0 -360" />
+        </Track>
+    </Animation>
+    <Animation auto_start="false" duration="12.0" name="InsideImage3RotateIn" play_mode="once">
+        <Track property="Rotation" data_type="Quaternion" calc_mode="absolute">
+            <KeyFrame position="0.0" calc_mode="constant" value="0 0 0" />
+            <KeyFrame position="2.0" calc_mode="constant" value="0 0 0" />
+            <KeyFrame position="2.5" calc_mode="constant" value="0 0 180" />
+            <KeyFrame position="3.0" calc_mode="constant" value="0 0 360" />
+            <KeyFrame position="3.000001" calc_mode="constant" value="0 0 0" />
+            <KeyFrame position="3.5" calc_mode="constant" value="0 0 180" />
+            <KeyFrame position="4.0" calc_mode="constant" value="0 0 360" />
+            <KeyFrame position="4.000001" calc_mode="constant" value="0 0 0" />
+            <KeyFrame position="4.5" calc_mode="constant" value="0 0 180" />
+            <KeyFrame position="5.0" calc_mode="constant" value="0 0 360" />
+            <KeyFrame position="5.000001" calc_mode="constant" value="0 0 0" />
+            <KeyFrame position="6.3" calc_mode="constant" value="0 0 180" />
+            <KeyFrame position="8.0" calc_mode="square_root" value="0 0 360" />
+        </Track>
+    </Animation>
+    <Animation auto_start="false" duration="6.0" name="RingsContainerSizeIn" play_mode="once">
+        <Track property="Size" data_type="RelPlaneSize" calc_mode="absolute">
+            <KeyFrame position="0.0" value="(0.0, 0), (0.0, 0)" />
+            <KeyFrame position="2.0" calc_mode="square_root" value="(0.0, 0), (0.0, 0)" />
+            <KeyFrame position="4.78" calc_mode="square_root" value="(1.0, 0), (1.0, 0)" />
+        </Track>
+    </Animation>
+    <Animation auto_start="false" duration="8.0" name="ButtonFadeIn" play_mode="once">
+        <Track property="Position" data_type="RelVector2" calc_mode="absolute">
+            <KeyFrame position="0.0" calc_mode="constant" value="(0, 0), (0, 0)" />
+            <KeyFrame position="1.0" calc_mode="square" value="(0, 0), (0, 0)" />
+            <KeyFrame position="5.0" calc_mode="square" property_value="Position" />
+        </Track>
+
+        <Track property="Size" data_type="RelPlaneSize" calc_mode="absolute">
+            <KeyFrame position="0.0" calc_mode="constant" value="(0, 0), (0, 0)" />
+            <KeyFrame position="1.0" calc_mode="constant" value="(0, 0), (0, 0)" />
+            <KeyFrame position="5.0" calc_mode="constant" property_value="Size" />
+        </Track>
+        <Track property="Alpha" data_type="float" calc_mode="absolute">
+            <KeyFrame position="0.0" calc_mode="constant" value="0.0" />
+            <KeyFrame position="1.0" calc_mode="constant" value="0.0" />
+            <KeyFrame position="5.0" calc_mode="constant" value="1.0" />
+        </Track>
+    </Animation>
+
+    <Animation auto_start="false" duration="0.723" name="LoginMoveIn" play_mode="once">
+        <Track property="Visible" data_type="bool" calc_mode="absolute">
+            <KeyFrame position="0.0" value="True" />
+        </Track>
+        <Track property="Position" data_type="RelVector2" calc_mode="absolute">
+            <KeyFrame position="0.0" calc_mode="constant" value="(0.3, 0), (0, 0)" />
+            <KeyFrame position="0.723" calc_mode="square_root" value="(0, 0), (0, 0)" />
+        </Track>
+    </Animation>
+
+    <Animation auto_start="false" duration="0.22" name="LoginMoveOut" play_mode="once">
+        <Track property="Position" data_type="RelVector2" calc_mode="absolute">
+            <KeyFrame position="0.0" calc_mode="constant" value="(0, 0), (0, 0)" />
+            <KeyFrame position="0.14" calc_mode="constant" value="(-0.02, 0), (0, 0)" />
+            <KeyFrame position="0.22" calc_mode="square_root" value="(0.3, 0), (0, 0)" />
+        </Track>
+    </Animation>
+
+
+    <Animation auto_start="false" duration="10.0" name="NaviButtonLeftMoveIn" play_mode="once">
+        <Track property="Position" data_type="RelVector2" calc_mode="absolute">
+            <KeyFrame position="0.0" calc_mode="constant" value="(-0.510625, 0), (0.885278, 0)" />
+            <KeyFrame position="7.3" calc_mode="square_root" value="(-0.510625, 0), (0.885278, 0)" />
+            <KeyFrame position="9.6" calc_mode="square_root" property_value="Position" />
+        </Track>
+    </Animation>
+
+    <Animation auto_start="false" duration="10.0" name="NaviButtonRightMoveIn" play_mode="once">
+        <Track property="Position" data_type="RelVector2" calc_mode="absolute">
+            <KeyFrame position="0.0" calc_mode="constant" value="(0.510625, 0), (0.885278, 0)" />
+            <KeyFrame position="7.3" calc_mode="square_root" value="(0.510625, 0), (0.885278, 0)" />
+            <KeyFrame position="9.6" calc_mode="square_root" property_value="Position" />
+        </Track>
+    </Animation>
+
+    <Animation auto_start="false" duration="12.0" name="NaviBotCenterMoveIn" play_mode="once">
+        <Track property="Position" data_type="RelVector2" calc_mode="absolute">
+            <KeyFrame position="0.0" calc_mode="constant" value="(0, 0), (0.5, 0)" />
+            <KeyFrame position="7.3" calc_mode="square_root" value="(0, 0), (0.5, 0)" />
+            <KeyFrame position="9.6" calc_mode="square_root" property_value="Position" />
+        </Track>
+    </Animation>
+
+    <Animation auto_start="false" duration="2.0" name="BlendIn" play_mode="once">
+        <Track property="Visible" data_type="bool" calc_mode="absolute">
+            <KeyFrame position="0.0" value="True" />
+        </Track>
+        <Track property="Alpha" data_type="float" calc_mode="absolute">
+            <KeyFrame position="0.0" property_value="Alpha" />
+            <KeyFrame position="2.0" calc_mode="square_root" value="1.0" />
+        </Track>
+    </Animation>
+
+
+    <Animation auto_start="false" duration="2.0" name="PartialBlendOut" play_mode="once">
+        <Track property="Alpha" data_type="float" calc_mode="absolute">
+            <KeyFrame position="0.0" property_value="Alpha" />
+            <KeyFrame position="0.6" calc_mode="square_root" value="0.33" />
+        </Track>
+    </Animation>
+
+    <Animation auto_start="false" duration="0.6" name="FullBlendOut" play_mode="once">
+        <Track property="Alpha" data_type="float" calc_mode="absolute">
+            <KeyFrame position="0.0" property_value="Alpha" />
+            <KeyFrame position="0.6" calc_mode="square_root" value="0.0" />
+        </Track>
+    </Animation>
+
+    <Animation auto_start="false" duration="0.4" name="TravelRotateIn" play_mode="once">
+        <Track property="Rotation" data_type="Quaternion" calc_mode="absolute">
+            <KeyFrame position="0.0" calc_mode="constant" property_value="Rotation" />
+            <KeyFrame position="0.4" calc_mode="constant" value="0 0 20" />
+        </Track>
+        <Event event="StopRotate" action="Stop" />
+        <Event event="StartRotate" action="Start" />
+    </Animation>
+
+
+    <Animation auto_start="false" duration="0.4" name="TravelRotateOut" play_mode="once">
+        <Track property="Rotation" data_type="Quaternion" calc_mode="absolute">
+            <KeyFrame position="0.0" calc_mode="constant" property_value="Rotation" />
+            <KeyFrame position="0.4" calc_mode="constant" value="0 0 0" />
+        </Track>
+        <Event event="StartRotate" action="Stop" />
+        <Event event="StopRotate" action="Start" />
+    </Animation>
+
+
+    <Animation name="LoopRotateRight" duration="0.8" play_mode="loop">
+        <Track property="Rotation" data_type="Quaternion" calc_mode="absolute">
+            <KeyFrame position="0.0" calc_mode="constant" value="0 0 0" />
+            <KeyFrame position="0.4" calc_mode="constant" value="0 0 180" />
+            <KeyFrame position="0.8" calc_mode="constant" value="0 0 360" />
+        </Track>
+        <Event event="StopRotate" action="Pause" />
+        <Event event="StartRotate" action="Start" />
+    </Animation>
+
+    <Animation name="StopRotate" duration="0.6" play_mode="once">
+        <Track property="Rotation" data_type="Quaternion" calc_mode="absolute">
+            <KeyFrame position="0.0" calc_mode="constant" property_value="Rotation" />
+            <KeyFrame position="0.6" calc_mode="constant" value="0 0 0" />
+        </Track>
+        <Event event="StartRotate" action="Pause" />
+        <Event event="StopRotate" action="Start" />
+    </Animation>
+
+
+    <Animation name="NaviArrowRightTwitch" duration="0.8" play_mode="loop">
+        <Track property="Position" data_type="RelVector2" calc_mode="absolute">
+            <KeyFrame position="0.0" value="(0.12, 0), (0.82, 0)" />
+            <KeyFrame position="0.3" calc_mode="square_root" value="(0.13, 0),(0.82, 0)" />
+            <KeyFrame position="0.8" calc_mode="constant" value="(0.12, 0), (0.82, 0)" />
+        </Track>
+        <Event event="EndTwitching" action="Stop" />
+        <Event event="StartTwitching" action="Start" />
+    </Animation>
+
+    <Animation name="NaviArrowRightReturn" duration="0.2" play_mode="once">
+        <Track property="Position" data_type="RelVector2" calc_mode="absolute">
+            <KeyFrame position="0.0" property_value="Position" />
+            <KeyFrame position="0.2" calc_mode="square_root" value="(0.13, 0), (0.82, 0)" />
+        </Track>
+        <Event event="StartTwitching" action="Stop" />
+        <Event event="EndTwitching" action="Start" />
+    </Animation>
+
+    <Animation name="NaviArrowLeftTwitch" duration="0.8" play_mode="loop">
+        <Track property="Position" data_type="RelVector2" calc_mode="absolute">
+            <KeyFrame position="0.0" value="(-0.12, 0), (0.82, 0)" />
+            <KeyFrame position="0.3" calc_mode="square_root" value="(-0.13, 0), (0.82, 0)" />
+            <KeyFrame position="0.8" calc_mode="constant" value="(-0.12, 0), (0.82, 0)" />
+        </Track>
+        <Event event="EndTwitching" action="Stop" />
+        <Event event="StartTwitching" action="Start" />
+    </Animation>
+
+    <Animation name="NaviArrowLeftReturn" duration="0.2" play_mode="once">
+        <Track property="Position" data_type="RelVector2" calc_mode="absolute">
+            <KeyFrame position="0.0" property_value="Position" />
+            <KeyFrame position="0.2" calc_mode="constant" value="(-0.13, 0), (0.82, 0)" />
+        </Track>
+        <Event event="StartTwitching" action="Stop" />
+        <Event event="EndTwitching" action="Start" />
+    </Animation>
+
+
+    <Animation name="SizeGrowth" duration="1.7" play_mode="once">
+        <Track property="Size" data_type="RelPlaneSize" calc_mode="relative multiply">
+            <KeyFrame position="0.0" value="0.0" />
+            <KeyFrame position="1.7" calc_mode="constant" value="1.0" />
+        </Track>
+
+        <Track property="Visible" data_type="bool" calc_mode="absolute">
+            <KeyFrame position="0.0" value="True" />
+        </Track>
+    </Animation>
+</AnimationCollector>

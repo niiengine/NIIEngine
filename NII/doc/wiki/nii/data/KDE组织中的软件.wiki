@@ -1,0 +1,312 @@
+﻿++ KDE组织中的软件
+
+Development
+
+[edit]Software Development
+Cervisia - CVS Frontend
+KAppTemplate - KDE Template Generator
+KBugBuster - KDE Bug Management
+KCachegrind - Profiler Frontend
+KDbg - An graphical front-end for the GNU Debugger.
+KDESvn - Graphical Subversion client.
+KDevelop - Integrated development environment for multiple languages.
+KDiff3 - Diff/Patch Frontend
+Kommander - Dynamic Dialog Editor
+Kompare - Diff/Patch Frontend
+KUIViewer - Qt Designer UI File Viewer
+Lokalize - Computer-aided translation system
+Massif Visualizer - Visualizer for Valgrind Massif data files[2]
+Umbrello - UML diagram application
+See also: Kdesdk
+[edit]Web Development
+KImageMapEditor - HTML Image Map Editor
+KLinkStatus - Link Checker
+KXSLDbg - XSLT Debugger
+Quanta Plus - IDE for XML-based languages
+See also: Kdewebdev
+[edit]Education
+
+blinKen - computerised version of the game, Simon Says.
+Cantor -worksheet view to other Free Software Math packages. GUI frontend to Sage, Maxima, R and KAlgebra .
+KAlgebra - A mathematical calculator based content markup MathML language
+Kalzium - Displays information about the periodic table of elements.
+Kanagram - customizable anagram game.
+KBruch - Program for generating tasks with vulgar fractions.
+KGeography - a geography learning program.
+KHangMan - classic hangman game.
+Kig - Program for exploring geometric constructions.
+Kiten - Japanese reference/learning tool.
+KLettres - Helps to learn the alphabet and then to read some syllables in different languages.
+KmPlot - Mathematical function plotter.
+KTouch - Program for learning touch typing.
+KTurtle - Educational programming environment using turtle graphics.
+KStars - Planetarium program.
+KWordQuiz
+Marble - geographical map program
+Parley - A vocabulary trainer based on the Leitner system
+Step - An interactive physics simulator
+See also: KDE Education Project
+[edit]Science
+Cirkuit - An application to generate publication-ready figures[3]
+KBibTeX - An application to manage bibliography databases in the BibTeX format
+Semantik - A mindmapping-like tool for document generation[4][5]
+Kst, a plotting and data viewing program.
+RKWard - An easy to use, transparent frontend to R.
+[edit]Games
+
+Bomber - Arcade Bombing Game
+Bovo - Five-in-a-row Board Game
+Granatier - Bomberman clone
+Kajongg
+Kapman - Pac-Man Clone
+KAtomic - A clone of the early 1990s commercial game Atomix
+KBattleship - Battleship for KDE
+KBlackbox - Black-box logic game. Shoot rays into a black box to find some balls.
+KBlocks - A Tetris clone
+KBounce - A JezzBall clone for KDE
+KBreakout - A Breakout type game
+KDiamond - A Bejeweled type game
+KFourInLine - Four-in-a-row Board Game
+KGoldrunner - Hunt Gold, Dodge Enemies and Solve Puzzles
+Kigo - A Go Board Game
+Kiriki - A Yahtzee game
+KJumpingCube - A board game where players make boxes change color and try to succeed in taking over the board
+KLines - A clone of Lines
+KMahjongg- Mahjong solitaire
+KMines - Minesweeper game
+KNetWalk - A puzzle game. The player must arrange sections of wire to connect the computers.
+Knights - Chess board program[6]
+Kolf - Golf game
+Kollision - A game of dexterity
+Konquest - Galactic Strategy Game
+KPatience - Patience Card Game
+KReversi - Othello/Reversi game
+KSame
+KShisen
+KsirK
+KSpaceDuel
+KSquares
+KSudoku
+KTron
+KTuberling
+Kubrick
+LsKat
+Palapeli
+See also: Kdegames
+[edit]Toys
+AMOR - Amusing Misuse Of Resources. Desktop creature.
+KTeaTime - Tea cooking timer.
+KTux
+KWeather
+[edit]Graphics
+
+DigiKam - Digital photo management
+Gwenview - Image viewer
+Karbon14 - Scalable Graphics
+KColorChooser - Color Chooser
+KColorEdit - KDE Color Palette Editor
+KFax - Fax Viewer
+KGrab - Screen Grabbing Program
+KGraphViewer - A Graphviz dot graph viewer
+KIconEdit - Icon Editor
+Kolourpaint - Small bitmap graphics editor (Very similar to MSPaint)
+Konstruktor - LEGO CAD[7]
+KPhotoAlbum - Digital Photo and Image Manager
+KPovModeler - Modeling and composition program for creating POV-Ray scenes
+Krita - Digital painting and illustration suite
+KRuler - Screen Ruler
+KSnapshot - Screenshot tool
+Kuickshow - Image viewer
+Okular - Universal document viewer
+Skanlite - Image Scanning Application
+See also: Kdegraphics
+[edit]Internet
+
+Aki - a IRC Client[8]
+Akregator - RSS Feed reader
+Arora - Web browser
+Blogilo - A KDE Blogging Client[9]
+ChoqoK - Microblogging application
+KFTPGrabber - Graphical FTP client
+KGet - Download manager
+KMail - Email client
+KMess - Instant messaging[10]
+KMLDonkey - A graphical frontend for MLDonkey
+KNemo - Network Monitor
+KNetworkManager - A GUI for NetworkManager and supports both wired and wireless devices
+KNode - Usenet newsreader
+Konqueror - File manager and web browser
+Konversation - Dedicated IRC client
+Kopete - Instant messaging
+KPPP - Internet Dial-Up Tool
+KRDC - Remote Desktop Client
+KTorrent - BitTorrent client
+KVIrc - a graphical IRC client
+KVpnc - A GUI for various Virtual Private Network (VPN) clients
+Kwlan - Wireless Lan Manager
+ownCloud - An open personal cloud[11]
+Quassel IRC
+Rekonq - Lean web browser based on Webkit
+Smb4k - SMB/CIFS share browser.
+See also: Kdenetwork
+[edit]Multimedia
+
+Amarok - Audio player and music manager with numerous integrated features
+Audex - An easy to use audio CD ripping application
+Bangarang - A media player for KDE SC 4[12]
+Clementine - A music player based on Amarok
+Dragon Player - A simple and usability-focused multimedia player (formerly known as Codeine)
+JuK - Jukebox and music manager
+K3b - CD and DVD burning application
+k3bISO - ISO manager for KDE
+K9Copy - A DVD authoring program, similar to DVD Shrink
+Kaffeine - Multimedia player
+Kamoso - an application to take pictures and videos from webcam[13]
+KAudioCreator - CD ripping and encoding[14]
+Kdenlive - Video editor
+Kid3 - An MP3, Ogg/Vorbis and FLAC tag editor[15]
+KMediaFactory - A template based DVD authoring tool[16]
+KMid - MIDI and karaoke file (*.kar) player[17]
+KMix - Sound Mixer
+KMPlayer - Video player plugin for Konqueror
+KoverArtist - a program for the fast creation of covers for cd/DVD cases and boxes.[18]
+KPlayer - Multimedia player and library
+KRadio - an internet and AM/FM radio application[19]
+KsCD - CD Player
+Kubeplayer - A video player dedicated to play online videos.[20]
+RecordItNow - Record desktop[21]
+Rosegarden - a digital audio workstation program
+soundKonverter - a frontend to various audio converters
+See also: Kdemultimedia
+[edit]Office
+
+Flow - Flowchart & Diagram Editing
+KEuroCalc - A currency converter and calculator
+Kexi - Integrated Environment for Managing Data
+Kile - integrated LaTeX environment
+KMyMoney - Personal finance manager
+Kraft - Document creation for Small Businesses[22]
+Skrooge - Personal finances manager for KDE SC 4[23]
+Plan - Powerful project management tool
+Stage - Presentation application
+LabPlot - A data plotting and analysis tool
+LemonPOS - A point of sales application for small and mid-size business[24]
+Calligra Sheets - Spreadsheet
+Tellico - collection organizer
+Words - Word processor
+See also: Calligra Suite
+[edit]Personal Information Management
+KAddressBook - Contact Manager
+Kontact - Personal information manager and groupware
+KonsoleKalendar - an application to administer a calendar
+KOrganizer - Calendar and scheduling
+See also: KDE Personal Information Management
+[edit]System
+
+Dolphin - File manager
+Filelight - Shows how the disk space is being used, drawing it as a set of concentric pie-charts
+KAppfinder - Menu Updating Tool
+katimon - an unofficial ATI graphics card temperature monitor
+KBluetooth - Bluetooth connections.
+KCron - An application for scheduling programs to run in the background using cron
+KDE Partition Manager - Partition editor
+KDE System Guard - Enhanced task manager and system monitor
+KDM - Login manager
+KDiskFree - Disk space information
+KDirStat - Graphical disk usage utility
+Kinfocenter - Information about your computer
+Konsole - Terminal emulator
+Krfb - Desktop Sharing
+Krusader
+KPackageKit - Package Manager with support for several formats (e.g. .deb, rpm)
+KSystemLog - System Log Viewer
+KUser - User Manager
+KWallet - Secure password manager
+Printer Applet - System tray icon for managing print jobs
+System Settings
+Yakuake - Quake-style terminal emulator
+See also: kdeadmin
+[edit]Utilities
+
+Ark - Archiving tool
+BasKet Note Pads - Advanced multi-purpose note-taking application
+KAlarm - Personal Alarm Scheduler
+Kate - Advanced Text editor for programmers
+KBarcode4-light - A simple barcode generator
+KCalc - Calculator
+KCharSelect - Character tool
+KFileReplace - Search & Replace Tool
+KFind - Find Files/Folders
+KFloppy - Floppy Formatter
+KGPG - Graphical frontend for GnuPG
+Kjots - Simple tool for taking notes
+Kleopatra - Certificate Manager and Unified Crypto GUI
+KNotes - Popup Notes
+KRename - Batch renaming of files
+KRecipes - Cooking Book
+KRemoteControl - Remote Controls
+Krusader - A twin panel file manager
+KSaoLaJi - Advanced System Cleaner[25]
+KTimer - Countdown Launcher
+KTimeTracker - Personal Time Tracker
+KWrite - Text editor
+Okteta - Hex Editor
+RSIBreak - Makes sure you rest now and then
+SuperKaramba - Desktop applets program.
+Sweeper - System Cleaner
+See also: Kdeutils
+[edit]Accessibility
+KMag - Screen Magnifier
+KMouseTool - Automatic Mouse Click
+KMouth - Speech Synthesizer Frontend
+Jovie - KDE Text To Speech Daemon
+See also: KDE Accessibility Project
+[edit]Discontinued
+
+Apollon
+KFoulEggs - Puyo Puyo game
+Klickety - Puzzle game
+KSirtet - Tetris game
+KGhostView - pdf/ps files viewer
+KPDF - a PDF viewer
+KView - Image viewer
+ShowImg - Image viewer
+KMyFirewall - Firewall configuration frontend
+KNetLoad - Network load graph viewer
+KNC - a graphical orthodox file manager
+ARts Builder - Application for building custom mixers, synthesizers, etc.
+kdetv - TV viewer
+KSubtile - Subtitle editor
+Noatun - Multimedia player
+TaskJuggler - Powerful project management tool
+KDissert - mindmapping-like application to aid in creating general purpose documents
+KNoda - Integrated Environment for Managing Data
+KMobileTools - Mobile Phones manager
+KDE Control Center - Centralised system configuration tool
+KlamAV - ClamAV anti virus for KDE
+KWorldClock - Displays the time anywhere on earth.
+Kodo - Measure how far you move your mouse.
+KHexEdit - A Hex Editor
+Kooka - Scanner utility
+Ktnef - A utility for opening "winmail.dat" attachments generated by Microsoft Outlook
+KBarcode - barcode and label printing tool
+KXML Editor - XML editor
+KDict - Advanced graphical client for the DICT protocol.
+KNetStats - Network device monitor.
+KLogWatch - Netfilter log file monitor.
+Knmap - KDE frontend to nmap.
+KEdit - A simple text editor with few features, similar to Windows' Notepad
+KLibido - a news client
+KLAid - Study tool that pops up flashcards while you're using the PC.
+Konjue - Tool to conjugate and deconjugate French verbs.
+Kuake - a terminal emulator
+Komposé, a fullscreen task switcher.
+Katapult, a free application launcher.
+KTechlab, an IDE for electronic and PIC microcontroller circuit design and simulation.
+KEduca, a educational software
+Mailody, an e-mail client
+KXDocker, an application launcher.
+KBFX, an application launcher.
+QtParted - Partiton editor
+KVerbos - Application specially designed to study Spanish verb forms.
+This list is incomplete; you can help by expanding it.

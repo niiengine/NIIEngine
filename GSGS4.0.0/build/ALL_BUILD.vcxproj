@@ -1,0 +1,485 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="MinSizeRel|Win32">
+      <Configuration>MinSizeRel</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="RelWithDebInfo|Win32">
+      <Configuration>RelWithDebInfo</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{4565A70A-9C18-39DD-92CE-C95C1F91B609}</ProjectGuid>
+    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
+    <Keyword>Win32Proj</Keyword>
+    <Platform>Win32</Platform>
+    <ProjectName>ALL_BUILD</ProjectName>
+    <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Midl>
+      <AdditionalIncludeDirectories>F:\tool\GSGS4.0.0\sdk\libssh\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Midl>
+      <AdditionalIncludeDirectories>F:\tool\GSGS4.0.0\sdk\libssh\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">
+    <Midl>
+      <AdditionalIncludeDirectories>F:\tool\GSGS4.0.0\sdk\libssh\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">
+    <Midl>
+      <AdditionalIncludeDirectories>F:\tool\GSGS4.0.0\sdk\libssh\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="F:\tool\GSGS4.0.0\CMakeLists.txt">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Building Custom Rule F:/tool/GSGS4.0.0/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">setlocal
+"D:\Program Files\CMake\bin\cmake.exe" -SF:/tool/GSGS4.0.0 -BF:/tool/GSGS4.0.0/build --check-stamp-file F:/tool/GSGS4.0.0/build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">F:/tool/GSGS4.0.0/CMakeLists.txt;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakeCInformation.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakeCXXInformation.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakeCommonLanguageInclude.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakeGenericSystem.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakeInitializeConfigs.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakeLanguageInformation.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakeRCInformation.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakeSystemSpecificInformation.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakeSystemSpecificInitialize.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\CMakeCommonCompilerMacros.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\MSVC-C.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\MSVC-CXX.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Platform\Windows-MSVC-C.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Platform\Windows-MSVC-CXX.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Platform\Windows-MSVC.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Platform\Windows.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Platform\WindowsPaths.cmake;F:\tool\GSGS4.0.0\CMakeLists.txt;F:\tool\GSGS4.0.0\build\CMakeFiles\3.13.2\CMakeCCompiler.cmake;F:\tool\GSGS4.0.0\build\CMakeFiles\3.13.2\CMakeCXXCompiler.cmake;F:\tool\GSGS4.0.0\build\CMakeFiles\3.13.2\CMakeRCCompiler.cmake;F:\tool\GSGS4.0.0\build\CMakeFiles\3.13.2\CMakeSystem.cmake;F:\tool\GSGS4.0.0\cmake\Modules\FindSqlite3.cmake;F:\tool\GSGS4.0.0\cmake\Modules\OSXInstall.cmake;F:\tool\GSGS4.0.0\cmake\Modules\plugin.cmake;F:\tool\GSGS4.0.0\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">F:\tool\GSGS4.0.0\build\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Building Custom Rule F:/tool/GSGS4.0.0/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">setlocal
+"D:\Program Files\CMake\bin\cmake.exe" -SF:/tool/GSGS4.0.0 -BF:/tool/GSGS4.0.0/build --check-stamp-file F:/tool/GSGS4.0.0/build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">F:/tool/GSGS4.0.0/CMakeLists.txt;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakeCInformation.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakeCXXInformation.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakeCommonLanguageInclude.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakeGenericSystem.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakeInitializeConfigs.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakeLanguageInformation.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakeRCInformation.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakeSystemSpecificInformation.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakeSystemSpecificInitialize.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\CMakeCommonCompilerMacros.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\MSVC-C.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\MSVC-CXX.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Platform\Windows-MSVC-C.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Platform\Windows-MSVC-CXX.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Platform\Windows-MSVC.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Platform\Windows.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Platform\WindowsPaths.cmake;F:\tool\GSGS4.0.0\CMakeLists.txt;F:\tool\GSGS4.0.0\build\CMakeFiles\3.13.2\CMakeCCompiler.cmake;F:\tool\GSGS4.0.0\build\CMakeFiles\3.13.2\CMakeCXXCompiler.cmake;F:\tool\GSGS4.0.0\build\CMakeFiles\3.13.2\CMakeRCCompiler.cmake;F:\tool\GSGS4.0.0\build\CMakeFiles\3.13.2\CMakeSystem.cmake;F:\tool\GSGS4.0.0\cmake\Modules\FindSqlite3.cmake;F:\tool\GSGS4.0.0\cmake\Modules\OSXInstall.cmake;F:\tool\GSGS4.0.0\cmake\Modules\plugin.cmake;F:\tool\GSGS4.0.0\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">F:\tool\GSGS4.0.0\build\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">Building Custom Rule F:/tool/GSGS4.0.0/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">setlocal
+"D:\Program Files\CMake\bin\cmake.exe" -SF:/tool/GSGS4.0.0 -BF:/tool/GSGS4.0.0/build --check-stamp-file F:/tool/GSGS4.0.0/build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">F:/tool/GSGS4.0.0/CMakeLists.txt;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakeCInformation.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakeCXXInformation.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakeCommonLanguageInclude.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakeGenericSystem.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakeInitializeConfigs.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakeLanguageInformation.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakeRCInformation.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakeSystemSpecificInformation.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakeSystemSpecificInitialize.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\CMakeCommonCompilerMacros.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\MSVC-C.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\MSVC-CXX.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Platform\Windows-MSVC-C.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Platform\Windows-MSVC-CXX.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Platform\Windows-MSVC.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Platform\Windows.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Platform\WindowsPaths.cmake;F:\tool\GSGS4.0.0\CMakeLists.txt;F:\tool\GSGS4.0.0\build\CMakeFiles\3.13.2\CMakeCCompiler.cmake;F:\tool\GSGS4.0.0\build\CMakeFiles\3.13.2\CMakeCXXCompiler.cmake;F:\tool\GSGS4.0.0\build\CMakeFiles\3.13.2\CMakeRCCompiler.cmake;F:\tool\GSGS4.0.0\build\CMakeFiles\3.13.2\CMakeSystem.cmake;F:\tool\GSGS4.0.0\cmake\Modules\FindSqlite3.cmake;F:\tool\GSGS4.0.0\cmake\Modules\OSXInstall.cmake;F:\tool\GSGS4.0.0\cmake\Modules\plugin.cmake;F:\tool\GSGS4.0.0\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">F:\tool\GSGS4.0.0\build\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">Building Custom Rule F:/tool/GSGS4.0.0/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">setlocal
+"D:\Program Files\CMake\bin\cmake.exe" -SF:/tool/GSGS4.0.0 -BF:/tool/GSGS4.0.0/build --check-stamp-file F:/tool/GSGS4.0.0/build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">F:/tool/GSGS4.0.0/CMakeLists.txt;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakeCInformation.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakeCXXInformation.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakeCommonLanguageInclude.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakeGenericSystem.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakeInitializeConfigs.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakeLanguageInformation.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakeRCInformation.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakeSystemSpecificInformation.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\CMakeSystemSpecificInitialize.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\CMakeCommonCompilerMacros.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\MSVC-C.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Compiler\MSVC-CXX.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Platform\Windows-MSVC-C.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Platform\Windows-MSVC-CXX.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Platform\Windows-MSVC.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Platform\Windows.cmake;D:\Program Files\CMake\share\cmake-3.13\Modules\Platform\WindowsPaths.cmake;F:\tool\GSGS4.0.0\CMakeLists.txt;F:\tool\GSGS4.0.0\build\CMakeFiles\3.13.2\CMakeCCompiler.cmake;F:\tool\GSGS4.0.0\build\CMakeFiles\3.13.2\CMakeCXXCompiler.cmake;F:\tool\GSGS4.0.0\build\CMakeFiles\3.13.2\CMakeRCCompiler.cmake;F:\tool\GSGS4.0.0\build\CMakeFiles\3.13.2\CMakeSystem.cmake;F:\tool\GSGS4.0.0\cmake\Modules\FindSqlite3.cmake;F:\tool\GSGS4.0.0\cmake\Modules\OSXInstall.cmake;F:\tool\GSGS4.0.0\cmake\Modules\plugin.cmake;F:\tool\GSGS4.0.0\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">F:\tool\GSGS4.0.0\build\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="F:\tool\GSGS4.0.0\build\ZERO_CHECK.vcxproj">
+      <Project>{DD030B4A-B93D-3988-8F89-3086A2673373}</Project>
+      <Name>ZERO_CHECK</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="F:\tool\GSGS4.0.0\build\AutoSave\AutoSave.vcxproj">
+      <Project>{9D30FF17-D2CE-35F4-9EE7-47E2EBFF4AB2}</Project>
+      <Name>AutoSave</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="F:\tool\GSGS4.0.0\build\CMakePlugin\CMakePlugin.vcxproj">
+      <Project>{356F401B-4A2D-374B-9F84-6C6DC8337454}</Project>
+      <Name>CMakePlugin</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="F:\tool\GSGS4.0.0\build\CallGraph\CallGraph.vcxproj">
+      <Project>{13915B35-ADFD-301C-B091-C66D42C6651E}</Project>
+      <Name>CallGraph</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="F:\tool\GSGS4.0.0\build\CodeFormatter\CodeFormatter.vcxproj">
+      <Project>{4C4F0EFA-8788-37BD-BD53-12AB554F0190}</Project>
+      <Name>CodeFormatter</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="F:\tool\GSGS4.0.0\build\CodeLiteDiff\CodeLiteDiff.vcxproj">
+      <Project>{AF588863-1671-3532-8D7E-F797EDC27C59}</Project>
+      <Name>CodeLiteDiff</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="F:\tool\GSGS4.0.0\build\ContinuousBuild\ContinuousBuild.vcxproj">
+      <Project>{FB1D673E-BDC9-3A2E-9B35-E06928825930}</Project>
+      <Name>ContinuousBuild</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="F:\tool\GSGS4.0.0\build\Copyright\Copyright.vcxproj">
+      <Project>{6AF3C8C8-A229-3487-A97B-F9D8F091A6A6}</Project>
+      <Name>Copyright</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="F:\tool\GSGS4.0.0\build\DatabaseExplorer\DatabaseExplorer.vcxproj">
+      <Project>{F5AA3593-5350-3238-B520-894B61945991}</Project>
+      <Name>DatabaseExplorer</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="F:\tool\GSGS4.0.0\build\Debugger\DebuggerGDB.vcxproj">
+      <Project>{4DCAE202-36E8-311F-84B2-298041616921}</Project>
+      <Name>DebuggerGDB</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="F:\tool\GSGS4.0.0\build\Docker\Docker.vcxproj">
+      <Project>{0FBA3924-7ACF-31BD-80EA-3E666EFF8E87}</Project>
+      <Name>Docker</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="F:\tool\GSGS4.0.0\build\EOSWiki\EOSWiki.vcxproj">
+      <Project>{1EF66C4D-30DF-34EA-ADE4-3092D11F7AAF}</Project>
+      <Name>EOSWiki</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="F:\tool\GSGS4.0.0\build\EditorConfigPlugin\EditorConfigPlugin.vcxproj">
+      <Project>{D9EABB44-855F-3F11-990B-970E363B797C}</Project>
+      <Name>EditorConfigPlugin</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="F:\tool\GSGS4.0.0\build\ExternalTools\ExternalTools.vcxproj">
+      <Project>{BDB2F29F-7E20-3490-94B9-CF225B530BCE}</Project>
+      <Name>ExternalTools</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="F:\tool\GSGS4.0.0\build\HelpPlugin\HelpPlugin.vcxproj">
+      <Project>{7B9597B9-A94A-30CE-B040-89A298E8DEA2}</Project>
+      <Name>HelpPlugin</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="F:\tool\GSGS4.0.0\build\LanguageServer\LanguageServer.vcxproj">
+      <Project>{D398C31C-3B2E-32C0-8A1F-50022F11DD12}</Project>
+      <Name>LanguageServer</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="F:\tool\GSGS4.0.0\build\Outline\Outline.vcxproj">
+      <Project>{E8FD11E2-7132-3A69-B496-55291C1F38F1}</Project>
+      <Name>Outline</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="F:\tool\GSGS4.0.0\build\PHPLint\PHPLint.vcxproj">
+      <Project>{7E3DF694-2B07-3DBB-8662-979FA5CCC9B2}</Project>
+      <Name>PHPLint</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="F:\tool\GSGS4.0.0\build\codelitephp\PHPParser.vcxproj">
+      <Project>{B1D4B3FF-1759-383F-BFEB-E2FC21EC9161}</Project>
+      <Name>PHPParser</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="F:\tool\GSGS4.0.0\build\PHPRefactoring\PHPRefactoring.vcxproj">
+      <Project>{FA0862B6-1C7E-3D5A-B9AF-E0C7E3CEEAA0}</Project>
+      <Name>PHPRefactoring</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="F:\tool\GSGS4.0.0\build\codelitephp\PHPUnitTests.vcxproj">
+      <Project>{4626E95D-2061-3854-9E31-BF5A04F014AB}</Project>
+      <Name>PHPUnitTests</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="F:\tool\GSGS4.0.0\build\QmakePlugin\QMakePlugin.vcxproj">
+      <Project>{AFF39B0D-F9B1-3B3B-8F3E-6AC02F39A849}</Project>
+      <Name>QMakePlugin</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="F:\tool\GSGS4.0.0\build\SFTP\SFTP.vcxproj">
+      <Project>{07DAED07-EAE0-3CA4-B452-D79DE9D9E9BE}</Project>
+      <Name>SFTP</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="F:\tool\GSGS4.0.0\build\SmartCompletion\SmartCompletion.vcxproj">
+      <Project>{EE9294D0-365D-3736-A8E2-A7384B125986}</Project>
+      <Name>SmartCompletion</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="F:\tool\GSGS4.0.0\build\SnipWiz\SnipWiz.vcxproj">
+      <Project>{D8601622-DF00-3854-9C52-F9C09C0E5F95}</Project>
+      <Name>SnipWiz</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="F:\tool\GSGS4.0.0\build\Subversion2\Subversion.vcxproj">
+      <Project>{4FEB78E8-CDBF-30BC-9248-51FE10157340}</Project>
+      <Name>Subversion</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="F:\tool\GSGS4.0.0\build\Tail\Tail.vcxproj">
+      <Project>{206028EA-D7F2-3A43-AF9B-E5AE9C2001A8}</Project>
+      <Name>Tail</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="F:\tool\GSGS4.0.0\build\UnitTestCPP\UnitTestsPP.vcxproj">
+      <Project>{2D9BE59A-D617-350A-9F93-688FDDB104BF}</Project>
+      <Name>UnitTestsPP</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="F:\tool\GSGS4.0.0\build\WebTools\WebTools.vcxproj">
+      <Project>{2B35E625-3672-3806-9C3E-D573B385AF39}</Project>
+      <Name>WebTools</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="F:\tool\GSGS4.0.0\build\Gizmos\Wizards.vcxproj">
+      <Project>{3B78D6FE-0082-383A-B168-16846F8B4CAE}</Project>
+      <Name>Wizards</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="F:\tool\GSGS4.0.0\build\WordCompletion\WordCompletion.vcxproj">
+      <Project>{C5C12EFB-7D70-3378-AF8A-481F5C33DEE7}</Project>
+      <Name>WordCompletion</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="F:\tool\GSGS4.0.0\build\ZoomNavigator\ZoomNavigator.vcxproj">
+      <Project>{159E4EF9-3129-3E7E-8E03-9B18628636C8}</Project>
+      <Name>ZoomNavigator</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="F:\tool\GSGS4.0.0\build\abbreviation\abbreviation.vcxproj">
+      <Project>{5BD632C3-2CF5-327C-9372-483ACE1AE532}</Project>
+      <Name>abbreviation</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="F:\tool\GSGS4.0.0\build\LiteEditor\codelite.vcxproj">
+      <Project>{B2F46F10-51B3-3CFC-9EC6-0C846326F46B}</Project>
+      <Name>codelite</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="F:\tool\GSGS4.0.0\build\codelitegcc\codelite-cc.vcxproj">
+      <Project>{8586190F-FC25-3454-A042-58507AD86740}</Project>
+      <Name>codelite-cc</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="F:\tool\GSGS4.0.0\build\codelite_echo\codelite-echo.vcxproj">
+      <Project>{95CCD95C-458E-3A65-8B7B-3A56FC914266}</Project>
+      <Name>codelite-echo</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="F:\tool\GSGS4.0.0\build\codelite_make\codelite-make.vcxproj">
+      <Project>{1EF63643-8C25-3E5B-A3D3-35F7C4B091EE}</Project>
+      <Name>codelite-make</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="F:\tool\GSGS4.0.0\build\codelite_terminal\codelite-terminal.vcxproj">
+      <Project>{72B213C9-49A3-3558-A177-C2B2727C189D}</Project>
+      <Name>codelite-terminal</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="F:\tool\GSGS4.0.0\build\sdk\codelite_cppcheck\codelite_cppcheck.vcxproj">
+      <Project>{8F99DD2D-E814-3E7B-9329-09DF8182E54A}</Project>
+      <Name>codelite_cppcheck</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="F:\tool\GSGS4.0.0\build\sdk\codelite_indexer\codelite_indexer.vcxproj">
+      <Project>{5890F6A8-FA05-36C5-B352-6C15C411C561}</Project>
+      <Name>codelite_indexer</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="F:\tool\GSGS4.0.0\build\codelite_vim\codelite_vim.vcxproj">
+      <Project>{2F128FA4-A85A-3781-A21B-EB53B41F4196}</Project>
+      <Name>codelite_vim</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="F:\tool\GSGS4.0.0\build\codelitephp\codelitephp.vcxproj">
+      <Project>{E7AB5D98-10A7-3DCE-ACDE-E18F65B5131F}</Project>
+      <Name>codelitephp</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="F:\tool\GSGS4.0.0\build\cppchecker\cppchecker.vcxproj">
+      <Project>{7883B42A-0423-3D41-9A9B-312FF785B2EB}</Project>
+      <Name>cppchecker</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="F:\tool\GSGS4.0.0\build\cscope\cscope.vcxproj">
+      <Project>{6B5DF743-41A2-3D1B-9A66-9EF1A3749ECB}</Project>
+      <Name>cscope</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="F:\tool\GSGS4.0.0\build\sdk\databaselayer\databaselayersqlite.vcxproj">
+      <Project>{5B0E4E56-0A16-36BC-921B-81902143E20B}</Project>
+      <Name>databaselayersqlite</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="F:\tool\GSGS4.0.0\build\git\git.vcxproj">
+      <Project>{435CC446-78D4-3BCA-8DA7-A82C8F2C7AFC}</Project>
+      <Name>git</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="F:\tool\GSGS4.0.0\build\CodeLite\libcodelite.vcxproj">
+      <Project>{05C7600E-767B-3729-A0F1-61BCDEA7813E}</Project>
+      <Name>libcodelite</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="F:\tool\GSGS4.0.0\build\Plugin\plugin.vcxproj">
+      <Project>{007730CF-1C31-368F-872B-72CEAB795142}</Project>
+      <Name>plugin</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="F:\tool\GSGS4.0.0\build\wxcrafter\wxCrafter.vcxproj">
+      <Project>{68C4611E-ABB5-39A8-90EB-0956B7AA4947}</Project>
+      <Name>wxCrafter</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="F:\tool\GSGS4.0.0\build\wxformbuilder\wxFormBuilder.vcxproj">
+      <Project>{47611A20-53C7-301C-BDD8-211CB3A32926}</Project>
+      <Name>wxFormBuilder</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="F:\tool\GSGS4.0.0\build\wxcrafter\wxcLib.vcxproj">
+      <Project>{2612A08A-E739-3C0C-9CFF-9FA180A10F6F}</Project>
+      <Name>wxcLib</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="F:\tool\GSGS4.0.0\build\sdk\wxshapeframework\wxshapeframework.vcxproj">
+      <Project>{FAD98D31-BE13-3280-94DE-851E4671AD90}</Project>
+      <Name>wxshapeframework</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="F:\tool\GSGS4.0.0\build\sdk\wxsqlite3\wxsqlite3.vcxproj">
+      <Project>{A49EC5B3-7136-3D6C-ADB7-45E34A56E050}</Project>
+      <Name>wxsqlite3</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

@@ -1,0 +1,5 @@
+﻿++ Tribler
+
+Replacement for: BitTorrent
+
+Tribler is an application that enables its users to find, enjoy and share video, audio, pictures, and other things.

@@ -1,0 +1,11 @@
+﻿++ Graphics
+
+F-Spot	Photo manager
+GNOME Paint	Simple paint program
+gThumb	Image viewer
+GIMP	The GNU Image Manipulation Program
+Inkscape	A vector drawing application.
+MyPaint	Application for digital painters
+Pinta	Image editor
+Shotwell	Photo manager
+Viewnior	Fast and simple image viewer

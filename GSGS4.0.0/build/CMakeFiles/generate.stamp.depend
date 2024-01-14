@@ -1,0 +1,26 @@
+# CMake generation dependency list for this directory.
+D:/Program Files/CMake/share/cmake-3.13/Modules/CMakeCInformation.cmake
+D:/Program Files/CMake/share/cmake-3.13/Modules/CMakeCXXInformation.cmake
+D:/Program Files/CMake/share/cmake-3.13/Modules/CMakeCommonLanguageInclude.cmake
+D:/Program Files/CMake/share/cmake-3.13/Modules/CMakeGenericSystem.cmake
+D:/Program Files/CMake/share/cmake-3.13/Modules/CMakeInitializeConfigs.cmake
+D:/Program Files/CMake/share/cmake-3.13/Modules/CMakeLanguageInformation.cmake
+D:/Program Files/CMake/share/cmake-3.13/Modules/CMakeRCInformation.cmake
+D:/Program Files/CMake/share/cmake-3.13/Modules/CMakeSystemSpecificInformation.cmake
+D:/Program Files/CMake/share/cmake-3.13/Modules/CMakeSystemSpecificInitialize.cmake
+D:/Program Files/CMake/share/cmake-3.13/Modules/Compiler/CMakeCommonCompilerMacros.cmake
+D:/Program Files/CMake/share/cmake-3.13/Modules/Compiler/MSVC-C.cmake
+D:/Program Files/CMake/share/cmake-3.13/Modules/Compiler/MSVC-CXX.cmake
+D:/Program Files/CMake/share/cmake-3.13/Modules/Platform/Windows-MSVC-C.cmake
+D:/Program Files/CMake/share/cmake-3.13/Modules/Platform/Windows-MSVC-CXX.cmake
+D:/Program Files/CMake/share/cmake-3.13/Modules/Platform/Windows-MSVC.cmake
+D:/Program Files/CMake/share/cmake-3.13/Modules/Platform/Windows.cmake
+D:/Program Files/CMake/share/cmake-3.13/Modules/Platform/WindowsPaths.cmake
+F:/tool/GSGS4.0.0/CMakeLists.txt
+F:/tool/GSGS4.0.0/build/CMakeFiles/3.13.2/CMakeCCompiler.cmake
+F:/tool/GSGS4.0.0/build/CMakeFiles/3.13.2/CMakeCXXCompiler.cmake
+F:/tool/GSGS4.0.0/build/CMakeFiles/3.13.2/CMakeRCCompiler.cmake
+F:/tool/GSGS4.0.0/build/CMakeFiles/3.13.2/CMakeSystem.cmake
+F:/tool/GSGS4.0.0/cmake/Modules/FindSqlite3.cmake
+F:/tool/GSGS4.0.0/cmake/Modules/OSXInstall.cmake
+F:/tool/GSGS4.0.0/cmake/Modules/plugin.cmake

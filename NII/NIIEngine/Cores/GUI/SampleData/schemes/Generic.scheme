@@ -1,0 +1,10 @@
+<?xml version="1.0" ?>
+<UIDefine version="5" name="Generic">
+	<Style src="Generic.style" />
+	<WidgetRenderSrc src="CEGUICoreWindowRendererSet" />
+
+	<WidgetStyle type="DefaultWindow" renderer="Core/Default" name="Generic/Label" />
+    <WidgetStyle type="DefaultWindow" renderer="Core/Default" name="Generic/Image" />
+    <WidgetStyle type="PushButton" renderer="Core/Button" name="Generic/ImageButton" />
+
+</UIDefine>

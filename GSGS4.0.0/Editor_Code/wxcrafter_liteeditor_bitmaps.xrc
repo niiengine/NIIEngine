@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resource xmlns="http://www.wxwidgets.org/wxxrc">
+  <!-- Handler Generation is ON -->
+  <object class="wxBitmap" name="16-clean">..\bitmaps-light\16-clean.png</object>
+  <object class="wxBitmap" name="16-clean@2x">..\bitmaps-light\16-clean@2x.png</object>
+  <object class="wxBitmap" name="16-clear">..\bitmaps-light\16-clear.png</object>
+  <object class="wxBitmap" name="16-clear@2x">..\bitmaps-light\16-clear@2x.png</object>
+  <object class="wxBitmap" name="target-200">res\target-200.png</object>
+</resource>

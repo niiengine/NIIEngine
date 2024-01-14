@@ -1,0 +1,4 @@
+mdl 文件分为好几种
+
+
+1 cs1.6 half-live2 使用的mdl文件

@@ -1,0 +1,3 @@
+﻿++ GNOME Keyring Manager
+
+Password manager

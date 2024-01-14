@@ -1,0 +1,294 @@
+//----------------------------------------------------------------------
+IAE 类 改名 SoundSystem
+IAESound 类 改名 Sound
+IAEStream 类 改名 SoundStream
+CAEStreamInfo 类改名 SoundUnit
+AEChannel 改名 AudioChannelType
+
+AEStdChLayout 枚举 改名 AudioLayoutType
+
+CAEChannelInfo 类 改名 AudioChannel
+AEAudioFormat 枚举 改名 VoiceFormat
+CAERemap 类 改名 AudioChConvert
+AEDataFormat 改名 SampleFormat
+
+迁移 IAESink 到 SoundSystem
+
+CAESinkALSA 类 改名 AlsaSoundSystem
+CAESinkDirectSound 类 改名 DirectSoundSoundSystem
+CAESinkWASAPI 类 改名 WASAPISoundSystem
+CAESinkAUDIOTRACK 类 改名 AUDIOTRACKSoundSystem
+CAESinkOSS 类 改名 OSSSoundSystem
+CAESinkNULL 类 改名 DummySoundSystem
+CAESinkProfiler 类 改名 ProfilerSoundSystem
+//----------------------------------------------------------------------
+AudioChannelType AE_CH_NULL == ACT_Unknow
+AudioChannelType AE_CH_RAW == ACT_RAW
+AudioChannelType AE_CH_FL == ACT_FL
+AudioChannelType AE_CH_FR == ACT_FR
+AudioChannelType AE_CH_FC == ACT_FC
+AudioChannelType AE_CH_LFE == ACT_LEF
+AudioChannelType AE_CH_BL == ACT_BL
+AudioChannelType AE_CH_BR == ACT_BR
+AudioChannelType AE_CH_FLOC == ACT_FLOC
+AudioChannelType AE_CH_FROC == ACT_FROC
+AudioChannelType AE_CH_BC == ACT_BC
+AudioChannelType AE_CH_SL == ACT_SL
+AudioChannelType AE_CH_SR == ACT_SR
+AudioChannelType AE_CH_TFL == ACT_TFL
+AudioChannelType AE_CH_TFR == ACT_TFR
+AudioChannelType AE_CH_TFC == ACT_TFC
+AudioChannelType AE_CH_TC == ACT_TC
+AudioChannelType AE_CH_TBL == ACT_TBL
+AudioChannelType AE_CH_TBR == ACT_TBR
+AudioChannelType AE_CH_TBC == ACT_TBC
+AudioChannelType AE_CH_BLOC == ACT_BLOC
+AudioChannelType AE_CH_BROC == ACT_BROC
+AudioChannelType AE_CH_UNKNOWN1 == ACT_Unknow1
+AudioChannelType AE_CH_UNKNOWN2 == ACT_Unknow2
+AudioChannelType AE_CH_UNKNOWN3 == ACT_Unknow3
+AudioChannelType AE_CH_UNKNOWN4 == ACT_Unknow4
+AudioChannelType AE_CH_UNKNOWN5 == ACT_Unknow5
+AudioChannelType AE_CH_UNKNOWN6 == ACT_Unknow6
+AudioChannelType AE_CH_UNKNOWN7 == ACT_Unknow7
+AudioChannelType AE_CH_UNKNOWN8 == ACT_Unknow8
+AudioChannelType AE_CH_MAX == ACT_MAX 移去
+//----------------------------------------------------------------------
+AudioLayoutType AE_CH_LAYOUT_INVALID == ALT_Unknow
+AudioLayoutType AE_CH_LAYOUT_1_0 == ALT_1_0
+AudioLayoutType AE_CH_LAYOUT_2_0 == ALT_2_0
+AudioLayoutType AE_CH_LAYOUT_2_1 == ALT_2_1
+AudioLayoutType AE_CH_LAYOUT_3_0 == ALT_3_0
+AudioLayoutType AE_CH_LAYOUT_3_1 == ALT_3_1
+AudioLayoutType AE_CH_LAYOUT_4_0 == ALT_4_0
+AudioLayoutType AE_CH_LAYOUT_4_1 == ALT_4_1
+AudioLayoutType AE_CH_LAYOUT_5_0 == ALT_5_0
+AudioLayoutType AE_CH_LAYOUT_5_1 == ALT_5_1
+AudioLayoutType AE_CH_LAYOUT_7_0 == ALT_7_0
+AudioLayoutType AE_CH_LAYOUT_7_1 == ALT_7_1
+//----------------------------------------------------------------------
+class AudioChannel -> m_channelCount = mCount
+//----------------------------------------------------------------------
+AEDataFormat AE_FMT_INVALID == SF_Unknow
+AEDataFormat AE_FMT_U8 == SF_U8
+AEDataFormat AE_FMT_S8 == SF_S8
+AEDataFormat AE_FMT_S16BE == SF_S16B
+AEDataFormat AE_FMT_S16LE == SF_S16L
+AEDataFormat AE_FMT_S16NE == SF_S16
+AEDataFormat AE_FMT_S32BE == SF_S32B
+AEDataFormat AE_FMT_S32LE == SF_S32L
+AEDataFormat AE_FMT_S32NE == SF_S32
+AEDataFormat AE_FMT_S24BE4 == SF_S24W4B
+AEDataFormat AE_FMT_S24LE4 == SF_S24W4L
+AEDataFormat AE_FMT_S24NE4 == SF_S24
+AEDataFormat AE_FMT_S24BE3 == SF_S24W3B
+AEDataFormat AE_FMT_S24LE3 == SF_S24W3L
+AEDataFormat AE_FMT_S24NE3 == SF_S24W3
+AEDataFormat AE_FMT_DOUBLE == SF_D
+AEDataFormat AE_FMT_FLOAT == SF_F
+AEDataFormat AE_FMT_DOUBLEP == SF_DP
+AEDataFormat AE_FMT_FLOATP == SF_FP
+AEDataFormat AE_FMT_AAC == SFE_AAC
+AEDataFormat AE_FMT_AC3 == SFE_AC3
+AEDataFormat AE_FMT_DTS == SFE_DTS
+AEDataFormat AE_FMT_EAC3 == SFE_EAC3
+AEDataFormat AE_FMT_TRUEHD == SFE_TRUEHD
+AEDataFormat AE_FMT_DTSHD == SFE_DTSHD
+AEDataFormat AE_FMT_LPCM == SFE_LPCM
+//----------------------------------------------------------------------
+--class AudioChConvert -> mOutCh == mOutCh
+--class AudioChConvert -> m_inChannels == mInChCount
+--class AudioChConvert -> m_outChannels == mOutChCount
+--class AudioChConvert -> m_mixInfo == mMix
+//----------------------------------------------------------------------
+class IAESink -> Initialize == startup
+class IAESink -> Deinitialize == shutdown
+//----------------------------------------------------------------------
+class SoundSystem -> Initialize == startup 加入2参数
+class SoundSystem -> Shutdown == shutdown
+class SoundSystem -> Suspend == pause
+class SoundSystem -> Resume == resume
+class SoundSystem -> IsSuspended = isPause
+class SoundSystem -> GetVolume == getVolume
+class SoundSystem -> SetVolume == setVolume
+class SoundSystem -> IsMuted == isMute
+class SoundSystem -> SetMute == setMute
+class SoundSystem -> SetSoundMode == setMode
+class SoundSystem -> MakeStream == createStream
+class SoundSystem -> FreeStream == destroy
+class SoundSystem -> MakeSound == create
+class SoundSystem -> FreeSound == destroy
+class SoundSystem -> GarbageCollect == update
+class SoundSystem -> EnumerateOutputDevices == enumDev
+class SoundSystem -> GetDefaultDevice == getDefaultDev
+class SoundSystem -> enumDev 加入,由EnumerateDevicesEx 修改
+class SoundSystem -> CanInit 移去
+//----------------------------------------------------------------------
+class Sound -> Play == play
+class Sound -> Stop == stop
+class Sound -> IsPlaying == isPlay
+class Sound -> GetVolume == getVol
+class Sound -> SetVolume == setVol
+//----------------------------------------------------------------------
+class SoundStream -> Resume == resume
+class SoundStream -> GetVolume == getVol
+class SoundStream -> SetVolume == setVol
+class SoundStream -> AddData == add
+class SoundStream -> Pause == pause
+class SoundStream -> Drain == stop
+class SoundStream -> GetSpace == getValidSize
+class SoundStream -> GetDelay = getDataWait
+class SoundStream -> IsBuffering == isDataIn
+class SoundStream -> IsDrained == isStop
+class SoundStream -> GetCacheTime == getRemainTime
+class SoundStream -> GetCacheTotal == getCapacityTime
+class SoundStream -> Flush == clear
+class SoundStream -> GetFrameSize == getFrameSize
+class SoundStream -> GetChannelCount == getChannelCount
+class SoundStream -> GetSampleRate == getSampleRate
+class SoundStream -> GetEncodedSampleRate == getEncodeSampleRate
+class SoundStream -> GetDataFormat == getSampleFormat
+class SoundStream -> SetResampleRatio == setResampleFactor
+class SoundStream -> GetResampleRatio == getResampleFactor
+class SoundStream -> RegisterAudioCallback == add 改多个回调
+class SoundStream -> UnRegisterAudioCallback == remove 改多个回调
+class SoundStream -> FadeVolume == rollOff
+class SoundStream -> IsFading == isRollOff
+class SoundStream -> RegisterSlave == setNext
+//----------------------------------------------------------------------
+类 CPulseAE 改名 PulseSoundSystem
+类 CPulseAESound 改名 PulseSound
+类 CPulseAEStream 改名 PulseSoundStream
+class PulseSoundSysteam -> m_lock == mLock
+class PulseSoundSysteam -> m_streams == mStreams
+class PulseSoundSysteam -> m_sounds == mSounds
+class PulseSoundSysteam -> m_Context == mContext
+class PulseSoundSysteam -> m_MainLoop == mMain
+class PulseSoundSysteam -> m_Volume == mVol
+class PulseSoundSysteam -> m_muted == mMute
+class PulseSound -> m_pulseName == mPulse
+class PulseSound -> m_filename == mFile
+class PulseSound -> m_wavLoader == mWavLoader
+class PulseSound -> m_dataSent == mSend
+class PulseSound -> m_context == mContext
+class PulseSound -> m_mainLoop == mMain
+class PulseSound -> m_stream == mStream
+class PulseSound -> m_sampleSpec == mSampleFormat
+class PulseSound -> m_chVolume == mChVol
+class PulseSound -> m_op == mOP
+class PulseSound -> m_maxVolume == mMaxVol
+class PulseSound -> m_volume == mVol
+class PulseSoundStream -> m_Destroyed == mDestroy
+class PulseSoundStream -> m_Initialized == mInit
+class PulseSoundStream -> m_Paused == mPause
+class PulseSoundStream -> m_ResumeCallback == mResumeCB
+class PulseSoundStream -> m_Stream == mStream
+class PulseSoundStream -> m_SampleSpec == mSampleFormat
+class PulseSoundStream -> m_MaxVolume == mMaxVol
+class PulseSoundStream -> m_Volume == mVol
+class PulseSoundStream -> m_ChVolume == mChVol
+class PulseSoundStream -> m_Context == mContext
+class PulseSoundStream -> m_MainLoop == mMain
+class PulseSoundStream -> m_AudioCallback == mAudioCB
+class PulseSoundStream -> m_format == mFormat
+class PulseSoundStream -> m_sampleRate == mSampleRate
+class PulseSoundStream -> m_channelLayout == mChLayout
+class PulseSoundStream -> m_options == mOptions
+class PulseSoundStream -> m_frameSize == mFrameSize
+class PulseSoundStream -> m_cacheSize == mCacheSize
+class PulseSoundStream -> m_DrainOperation == mDrainOP
+class PulseSoundStream -> m_slave == mNext
+class PulseSoundStream -> m_fader == mFader
+class CLinearFader -> m_stream == mStream
+class CLinearFader -> m_from == mSrc
+class CLinearFader -> m_target == mDest
+class CLinearFader -> m_time == mTime
+class CLinearFader -> m_isRunning == mRun
+//----------------------------------------------------------------------
+类 CCoreAudioAE 改名 CoreAudioSoundSystem
+类 CCoreAudioAESound 改名 CoreAudioSound
+类 CCoreAudioAEStream 改名 CoreAudioSoundStream
+class CoreAudioSoundSystem -> PlaySound == play
+class CoreAudioSoundSystem -> StopSound == stop
+class CoreAudioSoundSystem -> MixSounds == softMixer
+//----------------------------------------------------------------------
+类 CSoftAE 改名 DefaultSoundSystem
+类 CSoftAESound 改名 DefaultSound
+类 CSoftAEStream 改名 DefaultSoundStream
+
+class DefaultSound -> m_critSection == mLock
+class DefaultSound -> m_filename == mFile
+class DefaultSound -> m_wavLoader == mWavLoader
+class DefaultSound -> m_volume == mVol
+class DefaultSound -> m_inUse == mUse
+
+class DefaultSoundSystem -> StreamList == Streams
+class DefaultSoundSystem -> SoundList == Sounds
+class DefaultSoundSystem -> SoundStateList == SoundStates
+class DefaultSoundSystem -> m_thread == mMain
+class DefaultSoundSystem -> m_stdChLayout == mStdChLayout
+class DefaultSoundSystem -> m_device == mDevice
+class DefaultSoundSystem -> m_passthroughDevice ==
+class DefaultSoundSystem -> m_deviceFriendlyName ==
+class DefaultSoundSystem -> m_audiophile ==
+class DefaultSoundSystem -> m_stereoUpmix ==
+class DefaultSoundSystem -> m_running == mRun
+class DefaultSoundSystem -> m_reOpen ==
+class DefaultSoundSystem -> m_sinkIsSuspended
+class DefaultSoundSystem -> m_isSuspended
+class DefaultSoundSystem -> m_softSuspend
+class DefaultSoundSystem -> m_softSuspendTimer
+class DefaultSoundSystem -> m_reOpenEvent
+class DefaultSoundSystem -> m_wake
+class DefaultSoundSystem -> m_saveSuspend
+class DefaultSoundSystem -> m_runningLock
+class DefaultSoundSystem -> m_streamLock
+class DefaultSoundSystem -> m_soundLock
+class DefaultSoundSystem -> m_soundSampleLock
+class DefaultSoundSystem -> m_sinkLock
+class DefaultSoundSystem -> m_threadLock
+class DefaultSoundSystem -> m_volume
+class DefaultSoundSystem -> m_muted
+class DefaultSoundSystem -> m_chLayout
+class DefaultSoundSystem -> m_frameSize
+class DefaultSoundSystem -> m_sinkInfoList
+class DefaultSoundSystem -> m_sink
+class DefaultSoundSystem -> m_sinkFormat
+class DefaultSoundSystem -> m_sinkFormatSampleRateMul
+class DefaultSoundSystem -> m_sinkFormatFrameSizeMul
+class DefaultSoundSystem -> m_sinkBlockSize
+class DefaultSoundSystem -> m_sinkHandlesVolume
+class DefaultSoundSystem -> m_encoderFormat
+class DefaultSoundSystem -> m_encoderFrameSizeMul
+class DefaultSoundSystem -> m_encoderInitSampleRateMul
+class DefaultSoundSystem -> m_encoderInitFrameSizeMul
+class DefaultSoundSystem -> m_bytesPerSample
+class DefaultSoundSystem -> m_convertFn
+class DefaultSoundSystem -> m_transcode
+class DefaultSoundSystem -> m_rawPassthrough
+class DefaultSoundSystem -> m_newStreams
+class DefaultSoundSystem -> m_streams
+class DefaultSoundSystem -> m_playingStreams
+class DefaultSoundSystem -> m_playing_sounds
+class DefaultSoundSystem -> m_soundMode
+class DefaultSoundSystem -> m_streamsPlaying
+class DefaultSoundSystem -> m_buffer
+class DefaultSoundSystem -> m_encoder
+class DefaultSoundSystem -> m_encodedBuffer
+class DefaultSoundSystem -> m_converted
+class DefaultSoundSystem -> m_convertedSize
+class DefaultSoundSystem -> m_masterStream
+
+class DefaultSoundSystem -> PlaySound == play
+class DefaultSoundSystem -> StopSound == stop
+class DefaultSoundSystem -> PauseStream == pause
+class DefaultSoundSystem -> ResumeStream == resume
+
+class DefaultSoundSystem -> GetSampleRate == getSampleRate
+class DefaultSoundSystem -> GetChannelCount == getChCount
+class DefaultSoundSystem -> GetChannelLayout == getChannel
+class DefaultSoundSystem -> GetStdChLayout == getChLayout
+
+class DefaultSoundSystem -> MixSounds == softMixer
+class DefaultSoundSystem -> FinalizeSamples == output
+//----------------------------------------------------------------------

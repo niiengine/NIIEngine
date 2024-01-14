@@ -1,0 +1,5 @@
+﻿++ stl
+
+[PTypes]
+[stlport]
+[boost]

@@ -1,0 +1,20 @@
+﻿++ Todo项目
+
+用下面这些特殊的关键词跟踪一些重要事项，可以在“Views”节点中看到。
+ 
+todo: I have to do this.
+done: I have done this.
+action: I have action items
+track: I am tracking this
+issue: I am tracking this
+question: This is a question
+project: This is my project
+可以用反斜杠取消这些特殊关键词的特殊含义。
+例如：
+Interesting CD track: loud music
+和
+Interesting CD track: loud music
+ 
+ 
+这些关键词可以和其它一些词语嵌套。
+todo.系统.bug.严重: 关于系统的严重bug

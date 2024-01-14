@@ -1,0 +1,21 @@
+基属id:对象name,对象属性1,对象属性2,对象属性3,对象属性4,对象属性5,对象属性6,对象属性7,对象属性8
+
+基属id:对象id|对象name(辅助)
+{
+   parent:值1	
+   child:值1|值2|值3|值4|值5
+   子属1_id:值1
+   子属2_id:值2
+   子属3_id:值3
+   子属4_id:值4
+   子属5_id:值5
+   子属6_id:值6
+   子属7_id:值7
+   子属8_id:值8
+}
+		TypeID
+SpaceObj 	0x02
+Light 		0x09
+Frustum 		0x10
+Camera 		0x11
+MovablePlane	0x12

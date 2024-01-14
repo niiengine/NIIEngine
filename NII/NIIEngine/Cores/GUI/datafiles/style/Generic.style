@@ -1,0 +1,280 @@
+<?xml version="1.0" ?>
+
+<!--
+    Generic.looknfeel by Lukas E. Meindl
+
+    This looknfeel was created to provide GUIs with generic widgets that don't have a specific skin
+-->
+
+<Style ver="7">
+
+    <WidgetStyle name="Generic/Label">
+        <StyleProperty signal_refresh="true" value="FF000000" type="Colour" name="NormalTextColour"/>
+        <StyleProperty signal_refresh="true" value="FF444444" type="Colour" name="DisabledTextColour"/>
+        <StyleProperty signal_refresh="true" value="Centre" type="VTextLayout" name="VTLayout1"/>
+        <StyleProperty signal_refresh="true" value="Centre" type="HTextLayout" name="HTLayout1"/>
+        <Property name="Size" value="{{0, 128}, {0, 32}}" />
+        <StyleSection name="Label">
+            <TextCom>
+                <ComArea>
+                    <SizeDefine type="LeftEdge">
+                        <AbsSize value="0"/>
+                    </SizeDefine>
+                    <SizeDefine type="TopEdge">
+                        <AbsSize value="0"/>
+                    </SizeDefine>
+                    <SizeDefine type="Width">
+                        <RelSize scale="1" type="Width"/>
+                    </SizeDefine>
+                    <SizeDefine type="Height">
+                        <RelSize scale="1" type="Height"/>
+                    </SizeDefine>
+                </ComArea>
+                <VLayoutProperty name="VTLayout1"/>
+                <HLayoutProperty name="HTLayout1"/>
+            </TextCom>
+        </StyleSection>
+        <StyleLayout name="Enabled">
+            <Layer>
+                <Section id="Label">
+                    <ColourProperty name="NormalTextColour"/>
+                </Section>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Disabled">
+            <Layer>
+                <Section id="Label">
+                    <ColourProperty name="DisabledTextColour"/>
+                </Section>
+            </Layer>
+        </StyleLayout>
+    </WidgetStyle>
+
+    <WidgetStyle name="Generic/LabelWithOutline">
+        <StyleProperty signal_refresh="true" value="FFFFFFFF" type="Colour" name="NormalTextColour"/>
+        <StyleProperty signal_refresh="true" value="FF000000" type="Colour" name="NormalOutlineColour"/>
+        <StyleProperty signal_refresh="true" value="FFCCCCCC" type="Colour" name="DisabledTextColour"/>
+        <StyleProperty signal_refresh="true" value="FF000000" type="Colour" name="DisabledOutlineColour"/>
+        <StyleProperty signal_refresh="true" value="Centre" type="VTextLayout" name="VTLayout1"/>
+        <StyleProperty signal_refresh="true" value="Centre" type="HTextLayout" name="HTLayout1"/>
+        <Property name="Size" value="{{0, 128}, {0, 32}}" />
+        <StyleSection name="Outline">
+            <TextCom> <!-- -1, -1 -->
+                <ComArea>
+                    <SizeDefine type="LeftEdge">
+                        <AbsSize value="0"/>
+                    </SizeDefine>
+                    <SizeDefine type="TopEdge">
+                        <AbsSize value="0"/>
+                    </SizeDefine>
+                    <SizeDefine type="Width">
+                        <RelSize scale="1" offset="-2" type="Width"/>
+                    </SizeDefine>
+                    <SizeDefine type="Height">
+                        <RelSize scale="1" offset="-2" type="Height"/>
+                    </SizeDefine>
+                </ComArea>
+                <VLayoutProperty name="VTLayout1"/>
+                <HLayoutProperty name="HTLayout1"/>
+            </TextCom>
+            <TextCom> <!-- +1, -1 -->
+                <ComArea>
+                    <SizeDefine type="LeftEdge">
+                        <AbsSize value="2"/>
+                    </SizeDefine>
+                    <SizeDefine type="TopEdge">
+                        <AbsSize value="0"/>
+                    </SizeDefine>
+                    <SizeDefine type="Width">
+                        <RelSize scale="1" offset="-2" type="Width"/>
+                    </SizeDefine>
+                    <SizeDefine type="Height">
+                        <RelSize scale="1" offset="-2" type="Height"/>
+                    </SizeDefine>
+                </ComArea>
+                <VLayoutProperty name="VTLayout1"/>
+                <HLayoutProperty name="HTLayout1"/>
+            </TextCom>
+            <TextCom> <!-- +1, +1 -->
+                <ComArea>
+                    <SizeDefine type="LeftEdge">
+                        <AbsSize value="2"/>
+                    </SizeDefine>
+                    <SizeDefine type="TopEdge">
+                        <AbsSize value="2"/>
+                    </SizeDefine>
+                    <SizeDefine type="Width">
+                        <RelSize scale="1" offset="-2" type="Width"/>
+                    </SizeDefine>
+                    <SizeDefine type="Height">
+                        <RelSize scale="1" offset="-2" type="Height"/>
+                    </SizeDefine>
+                </ComArea>
+                <VLayoutProperty name="VTLayout1"/>
+                <HLayoutProperty name="HTLayout1"/>
+            </TextCom>
+            <TextCom> <!-- -1, +1 -->
+                <ComArea>
+                    <SizeDefine type="LeftEdge">
+                        <AbsSize value="0"/>
+                    </SizeDefine>
+                    <SizeDefine type="TopEdge">
+                        <AbsSize value="2"/>
+                    </SizeDefine>
+                    <SizeDefine type="Width">
+                        <RelSize scale="1" offset="-2" type="Width"/>
+                    </SizeDefine>
+                    <SizeDefine type="Height">
+                        <RelSize scale="1" offset="-2" type="Height"/>
+                    </SizeDefine>
+                </ComArea>
+                <VLayoutProperty name="VTLayout1"/>
+                <HLayoutProperty name="HTLayout1"/>
+            </TextCom>
+        </StyleSection>
+        <StyleSection name="Label">
+            <TextCom>
+                <ComArea>
+                    <SizeDefine type="LeftEdge">
+                        <AbsSize value="1"/>
+                    </SizeDefine>
+                    <SizeDefine type="TopEdge">
+                        <AbsSize value="1"/>
+                    </SizeDefine>
+                    <SizeDefine type="Width">
+                        <RelSize scale="1" offset="-2" type="Width"/>
+                    </SizeDefine>
+                    <SizeDefine type="Height">
+                        <RelSize scale="1" offset="-2" type="Height"/>
+                    </SizeDefine>
+                </ComArea>
+                <VLayoutProperty name="VTLayout1"/>
+                <HLayoutProperty name="HTLayout1"/>
+            </TextCom>
+        </StyleSection>
+        <StyleLayout name="Enabled">
+            <Layer>
+                <Section id="Outline">
+                    <ColourProperty name="NormalOutlineColour"/>
+                </Section>
+                <Section id="Label">
+                    <ColourProperty name="NormalTextColour"/>
+                </Section>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Disabled">
+            <Layer>
+                <Section id="Outline">
+                    <ColourProperty name="DisabledOutlineColour"/>
+                </Section>
+                <Section id="Label">
+                    <ColourProperty name="DisabledTextColour"/>
+                </Section>
+            </Layer>
+        </StyleLayout>
+    </WidgetStyle>
+
+    <WidgetStyle name="Generic/Image">
+        <StyleProperty signal_refresh="true" value="tl:FFFFFFFF tr:FFFFFFFF bl:FFFFFFFF br:FFFFFFFF" type="ColourArea" name="ImageColours"/>
+        <StyleProperty signal_refresh="true" value="Extrude" type="VLayout" name="VTLayout1"/>
+        <StyleProperty signal_refresh="true" value="Extrude" type="HLayout" name="HTLayout1"/>
+        <StyleProperty signal_refresh="true" value="" type="Image" name="Image"/>
+        <Property name="Size" value="{{0, 128}, {0, 128}}" />
+
+        <StyleSection name="imageSection">
+            <ImageryCom>
+                <ComArea>
+                    <SizeDefine type="LeftEdge">
+                        <AbsSize value="0"/>
+                    </SizeDefine>
+                    <SizeDefine type="TopEdge">
+                        <AbsSize value="0"/>
+                    </SizeDefine>
+                    <SizeDefine type="RightEdge">
+                        <RelSize scale="1.0" type="RightEdge"/>
+                    </SizeDefine>
+                    <SizeDefine type="BottomEdge">
+                        <RelSize scale="1.0" type="BottomEdge"/>
+                    </SizeDefine>
+                </ComArea>
+                <PixelProperty name="Image"/>
+                <ColoursProperty name="ImageColours"/>
+                <VLayoutProperty name="VTLayout1"/>
+                <HLayoutProperty name="HTLayout1"/>
+            </ImageryCom>
+        </StyleSection>
+        <StyleLayout name="Enabled">
+            <Layer>
+                <Section id="imageSection"/>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Disabled">
+            <Layer>
+                <Section id="imageSection"/>
+            </Layer>
+        </StyleLayout>
+    </WidgetStyle>
+
+    <WidgetStyle name="Generic/ImageButton">
+        <StyleProperty signal_refresh="true" value="" type="Image" name="NormalImage"/>
+        <StyleProperty signal_refresh="true" value="" type="Image" name="HoverImage"/>
+        <StyleProperty signal_refresh="true" value="" type="Image" name="PushedImage"/>
+        <StyleProperty signal_refresh="true" value="" type="Image" name="DisabledImage"/>
+        <StyleProperty signal_refresh="true" value="Extrude" type="VLayout" name="VLayout1"/>
+        <StyleProperty signal_refresh="true" value="Extrude" type="HLayout" name="HLayout1"/>
+        <Property name="Size" value="{{0, 96}, {0, 32}}" />
+        <StyleSection name="normal">
+            <ImageryCom>
+                <PixelProperty name="NormalImage"/>
+                <VLayoutProperty name="VLayout1"/>
+                <HLayoutProperty name="HLayout1"/>
+            </ImageryCom>
+        </StyleSection>
+        <StyleSection name="hover">
+            <ImageryCom>
+                <PixelProperty name="HoverImage"/>
+                <VLayoutProperty name="VLayout1"/>
+                <HLayoutProperty name="HLayout1"/>
+            </ImageryCom>
+        </StyleSection>
+        <StyleSection name="pushed">
+            <ImageryCom>
+                <PixelProperty name="PushedImage"/>
+                <VLayoutProperty name="VLayout1"/>
+                <HLayoutProperty name="HLayout1"/>
+            </ImageryCom>
+        </StyleSection>
+        <StyleSection name="disabled">
+            <ImageryCom>
+                <PixelProperty name="DisabledImage"/>
+                <VLayoutProperty name="VLayout1"/>
+                <HLayoutProperty name="HLayout1"/>
+            </ImageryCom>
+        </StyleSection>
+        <StyleLayout name="Normal">
+            <Layer>
+                <Section id="normal"/>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Hover">
+            <Layer>
+                <Section id="hover"/>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Pushed">
+            <Layer>
+                <Section id="pushed"/>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="PushedOff">
+            <Layer>
+                <Section id="hover"/>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Disabled">
+            <Layer>
+                <Section id="disabled"/>
+            </Layer>
+        </StyleLayout>
+    </WidgetStyle>
+</Style>

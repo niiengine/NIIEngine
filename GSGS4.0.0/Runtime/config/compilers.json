@@ -1,0 +1,10 @@
+{
+    "Compilers": {
+        "MinGW": [
+            {
+                "Name": "MinGW-w64 latest",
+                "URL": "https://sourceforge.net/projects/mingw-w64/"
+            }
+        ]
+    }
+}

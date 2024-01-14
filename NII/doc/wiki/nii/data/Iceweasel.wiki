@@ -1,0 +1,7 @@
+﻿++ Iceweasel
+
+Replacement for: Mozilla Firefox
+
+Iceweasel is a fork (from Firefox) with the following purpose : backporting of security fixes to declared Debian stable version and no inclusion of trademarked Mozilla artwork.
+
+This is a selection of the more common free software applications available for the Microsoft Windows platform, and is nothing like a comprehensive list.

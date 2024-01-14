@@ -1,0 +1,11 @@
+<?xml version="1.0" ?>
+<UIDefine version="5" name="HUDDemo">
+    <View src="HUDDemo.view" />
+    <Font src="GreatVibes-22.font" />
+    <Font src="GreatVibes-16.font" />
+    <Style src="HUDDemo.style" />
+
+    <WidgetStyle type="DefaultWindow" renderer="Core/Default" name="HUDDemo/PopupLabel" />
+    <WidgetStyle type="ProgressBar" renderer="Core/ProgressBar" name="HUDDemo/ProgressBar" />
+</UIDefine>
+

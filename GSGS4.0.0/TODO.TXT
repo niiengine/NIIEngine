@@ -1,0 +1,7 @@
+LSP:
+====
+Display diagnostic messages
+
+Project View:
+=============
+Support pinned projects

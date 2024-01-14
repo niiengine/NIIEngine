@@ -1,0 +1,11 @@
+prefix=@NII_PREFIX_PATH@
+exec_prefix=${prefix}
+libdir=${prefix}/@NII_LIB_DIRECTORY@
+includedir=${prefix}/include
+
+Name: NII-Terrain
+Description: Outdoor terrain component for NII
+Version: @NII_VERSION@
+Requires: NII = @NII_VERSION@ @NII_PAGING_ADDITIONAL_PACKAGES@
+Libs: -L${libdir} -lNiiTerrain@NII_LIB_SUFFIX@
+Cflags: -I${includedir}/NII/Terrain @NII_CFLAGS@

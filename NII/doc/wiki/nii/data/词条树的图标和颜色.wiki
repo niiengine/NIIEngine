@@ -1,0 +1,4 @@
+﻿++ 词条树的图标和颜色
+
+WikidPad中可以给词条树加图标和颜色。软件自带了很多图标，自定义了很多颜色。
+具体请参考WikidPad帮助中的“TreeIcons”和“TreeNodeColors”词条。

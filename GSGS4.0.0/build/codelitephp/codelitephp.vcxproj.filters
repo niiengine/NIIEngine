@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="F:\tool\GSGS4.0.0\codelitephp\php-plugin\FileMappingDlg.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\codelitephp\php-plugin\NewPHPClass.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\codelitephp\php-plugin\NewPHPProjectWizard.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\codelitephp\php-plugin\PHPDebugPane.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\codelitephp\php-plugin\PHPDebugStartDlg.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\codelitephp\php-plugin\PHPSettersGettersDialog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\codelitephp\php-plugin\PHPXDebugSetupWizard.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\codelitephp\php-plugin\PhpSFTPHandler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\codelitephp\php-plugin\XDebugBreakpointCmdHandler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\codelitephp\php-plugin\XDebugCommThread.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\codelitephp\php-plugin\XDebugCommandHandler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\codelitephp\php-plugin\XDebugContextGetCmdHandler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\codelitephp\php-plugin\XDebugEvalCmdHandler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\codelitephp\php-plugin\XDebugManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\codelitephp\php-plugin\XDebugPropertyGetHandler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\codelitephp\php-plugin\XDebugRunCmdHandler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\codelitephp\php-plugin\XDebugStackGetCmdHandler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\codelitephp\php-plugin\XDebugStopCmdHandler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\codelitephp\php-plugin\XDebugTester.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\codelitephp\php-plugin\XDebugUnknownCommand.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\codelitephp\php-plugin\XVariable.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\codelitephp\php-plugin\evalpane.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\codelitephp\php-plugin\localsview.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\codelitephp\php-plugin\my_tree_view.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\codelitephp\php-plugin\new_class.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\codelitephp\php-plugin\new_class_php-plugin_bitmaps.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\codelitephp\php-plugin\new_file_dlg.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\codelitephp\php-plugin\new_php_workspace_dlg.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\codelitephp\php-plugin\php.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\codelitephp\php-plugin\php_editor_context_menu.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\codelitephp\php-plugin\php_file_layout_tree.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\codelitephp\php-plugin\php_open_resource_dlg.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\codelitephp\php-plugin\php_project_settings_dlg.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\codelitephp\php-plugin\php_settings_dlg.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\codelitephp\php-plugin\php_ui.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\codelitephp\php-plugin\php_ui_php-plugin_bitmaps.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\codelitephp\php-plugin\php_workspace_view.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\codelitephp\php-plugin\plugin_settings.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\codelitephp\php-plugin\quick_outline_dlg.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\codelitephp\php-plugin\ssh_workspace_settings.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\codelitephp\php-plugin\xdebugbreakpointsmgr.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\codelitephp\php-plugin\xdebugevent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F:\tool\GSGS4.0.0\codelitephp\php-plugin\xdebuglocalsviewmodel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{48CD2966-80B4-3C52-BDF2-A24A35FB3386}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

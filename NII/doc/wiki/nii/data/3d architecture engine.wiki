@@ -1,0 +1,167 @@
+﻿++ 3d architecture engine
+
+*游戏*
+[aedra]                     *****
+[prydevserver]              ********
+[worldforge]                *****
+[openmw]                    ******      ogre
+[nwshader]                  *******
+[cursedearth]               *****
+[cityscape3d]               *****
+[sumwars]                   ?           ogre 
+[dungeonhack]               *******
+[eclipse-game]              ..
+[eisenstern]                is a game  cube2
+[wotlk-fr]                  ..         
+[openfrag]                  ********* ?????
+[alt-ernative]              *******
+[vegastrike]                ********  a game
+[deepwood]                  *******
+[ryzom]                     **********
+[xmultiverse]               ********
+[interactiveopen]           ???????????
+[timebreach]                ???????????
+[nacturnalonline]           is a game
+[mmorpgmaker]               ???????????
+[zenworlds]                 ****
+[aglelibrary]               *****
+[openwowengine]             not ative
+[yeti3dpro]                 ***
+[zhockon]                   ******
+[rxbuilder]                 *****
+[sfml]                      *****
+[wme]                       *****
+[glestae]                   ******
+[springrts]                 *******
+[megaglest]                 ******
+[alderman]                  is a game
+[skfans]                    *******
+[actiongame]                *******
+[gmodes]                    is a game
+[vavoom]                    ********
+[lightfeather]              ********
+[mg3d]                      ******
+[voxelstein3d]              *******
+[kge]                       ****
+[glest]                     *****
+
+*网游框架*
+[indiezen]                  ********
+[edunetgames]               *******
+[firecell]                  *******
+[corevekortrinity]          ********
+[shadowdota]                *******
+[awoe]                      *******
+[shadow-core]               *******
+[wowarea]                   *******
+[windviki-tc]               *******
+
+*游戏引擎*
+[delt3d]
+[crystalspace]
+[ogre] *衍生程序*[nagine3d] [mgep] [oge][jgge]
+[osg]
+[irrcht]
+[gd3]
+[cube2]
+[trinrtycore]
+[clanlib]
+[plib]
+[Allegro] 
+[panda3d]
+[brick engine]
+
+
+[Quake3 viewer]
+*其他能用的3D游戏引擎*
+[cafu]  这里有声音系统
+[zfxce]
+[dragengine]
+[brume] c#代码
+[raydium]  lower
+[NeL Engine] 比较完整
+[BlendELF]
+[neoengine]
+[horde3d]
+[lightfeather]
+[softpixelengine]  比较完整
+[muli3d]
+[lilith]
+[linderdaum]   .
+[apocalyx]   比较完整
+[netgore]
+[quakeforge]
+[genesis3d]
+[scengine]
+[SDL]
+[sylphis3d] .
+[yage3d]   java代码
+[qubesoft]
+[reactor3d] ??
+[aeon3d]
+[mcore3d]  有openal 代码
+[tubras]
+[mako-engine]
+[renderengine] javascript
+[u-nebula]
+[realityfactory]
+[bajaengine]
+[soya3d]
+[xith]
+
+
+[PSP 3D Game Engine]
+
+*声音*
+[openal]
+[VDMSound]
+[portaudio]
+[audiality]
+[audacity]
+[SoundTouch]
+[Freeverb3]
+
+*物理系统*
+[bullet]
+[ode]
+
+*其他建模资源*
+[engine_other]
+[blender3d]
+
+*软模拟*
+[mesa3d]
+
+*网络*
+[opentnl]
+[ACE]
+[mangos]
+[libcurl]
+
+*用户界面*
+[cegui]
+[mygui]
+[LibUFO]
+[Agar]
+[aedGUI]
+[AntTweakBar]
+[GiGi]
+[guichan]
+
+
+*图象*
+[DEVIL]
+[OpenCV]
+[FreeImage]
+[CImg]
+[CxImage]
+
+[图象_工具]
+
+字体
+[BMF_Font]
+
+*着色程序工具*
+[ShaderGen]
+[NVSG]
+[CG_GL]

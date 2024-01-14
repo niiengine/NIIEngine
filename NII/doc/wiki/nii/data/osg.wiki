@@ -1,0 +1,5 @@
+﻿++ osg
+
+
+这是一个外扩展系统，可以这么说opengl+osg =direct
+ [engine]

@@ -1,0 +1,1315 @@
+<?xml version="1.0" ?>
+
+<!--
+    SampleBrowserSkin.looknfeel by Lukas E. Meindl
+
+    This looknfeel is created for the SampleFramework to provide a minimal
+	set of widgets that are specifically designed for it. This also shows
+	how the looknfeel system and imagesets can be customized specifically
+	for a project.
+-->
+
+<Style ver="7">
+    <WidgetStyle id="SampleBrowserSkin/Label">
+        <PropertyDefine id="NormalTextColour" value="FF000000" signal_refresh="true" type="Colour" />
+        <PropertyDefine id="DisabledTextColour" value="FF444444" signal_refresh="true" type="Colour" />
+        <PropertyDefine id="VertFormatting" value="centre" signal_refresh="true" type="VerticalTextFormatting" />
+        <PropertyDefine id="HorzFormatting" value="centre" signal_refresh="true" type="HorizontalTextFormatting" />
+        <StyleSection id="Label">
+            <TextCom>
+                <Area>
+                    <Border type="LeftEdge"><Abs value="0" /></Border>
+                    <Border type="TopEdge"><Abs value="0" /></Border>
+                    <Border type="Width"><Rel scale="1" value="Width" /></Border>
+                    <Border type="Height"><Rel scale="1" value="Height" /></Border>
+                </Area>
+                <VertFormatProperty name="VertFormatting" />
+                <HorzFormatProperty name="HorzFormatting" />
+            </TextCom>
+        </StyleSection>
+        <StyleLayout name="Enable">
+            <Layer>
+                <Section style_section="Label">
+                    <ColourAttribute name="NormalTextColour" />
+                </Section>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Disable">
+            <Layer>
+                <Section style_section="Label">
+                    <ColourAttribute name="DisabledTextColour" />
+                </Section>
+            </Layer>
+        </StyleLayout>
+    </WidgetStyle>
+
+    <!--
+:::: Shared static widget components.
+-->
+    <WidgetStyle id="SampleBrowserSkin/StaticShared">
+        <StyleSection id="frame">
+            <FrameCom>
+                <Area>
+                    <Border type="LeftEdge"><Abs value="0" /></Border>
+                    <Border type="TopEdge"><Abs value="0" /></Border>
+                    <Border type="RightEdge"><Rel scale="1" value="RightEdge" /></Border>
+                    <Border type="BottomEdge"><Rel scale="1" value="BottomEdge" /></Border>
+                </Area>
+                <Com type="TopLeftCorner" pixel_id="SampleBrowserSkin/TextBoxTL" />
+                <Com type="TopRightCorner" pixel_id="SampleBrowserSkin/TextBoxTR" />
+                <Com type="BottomLeftCorner" pixel_id="SampleBrowserSkin/TextBoxBL" />
+                <Com type="BottomRightCorner" pixel_id="SampleBrowserSkin/TextBoxBR" />
+                <Com type="LeftEdge" pixel_id="SampleBrowserSkin/TextBoxL" />
+                <Com type="TopEdge" pixel_id="SampleBrowserSkin/TextBoxT" />
+                <Com type="RightEdge" pixel_id="SampleBrowserSkin/TextBoxR" />
+                <Com type="BottomEdge" pixel_id="SampleBrowserSkin/TextBoxB" />
+            </FrameCom>
+        </StyleSection>
+        <StyleSection id="with_frame_background">
+            <ImageryCom>
+                <Area>
+                    <Border type="LeftEdge" >
+                        <PixelSize pixel_id="SampleBrowserSkin/TextBoxL" value="Width" />
+                    </Border>
+                    <Border type="TopEdge" >
+                        <PixelSize pixel_id="SampleBrowserSkin/TextBoxT" value="Height" />
+                    </Border>
+                    <Border type="RightEdge" >
+                        <Operator type="Subtract">
+                            <Rel scale="1.0" value="RightEdge" />
+                            <PixelSize pixel_id="SampleBrowserSkin/TextBoxR" value="Width" />
+                        </Operator>
+                    </Border>
+                    <Border type="BottomEdge" >
+                        <Operator type="Subtract">
+                            <Rel scale="1.0" value="BottomEdge" />
+                            <PixelSize pixel_id="SampleBrowserSkin/TextBoxB" value="Height" />
+                        </Operator>
+                    </Border>
+                </Area>
+                <Com pixel_id="SampleBrowserSkin/TextBoxM" />
+                <VLayout type="stretch" />
+                <HLayout type="stretch" />
+            </ImageryCom>
+        </StyleSection>
+        <StyleSection id="no_frame_background">
+            <ImageryCom>
+                <Area>
+                    <Border type="LeftEdge"><Abs value="0" /></Border>
+                    <Border type="TopEdge"><Abs value="0" /></Border>
+                    <Border type="RightEdge"><Rel scale="1" value="RightEdge" /></Border>
+                    <Border type="BottomEdge"><Rel scale="1" value="BottomEdge" /></Border>
+                </Area>
+                <Com pixel_id="SampleBrowserSkin/TextBoxM" />
+                <VLayout type="stretch" />
+                <HLayout type="stretch" />
+            </ImageryCom>
+        </StyleSection>
+    </WidgetStyle>
+
+    <WidgetStyle id="SampleBrowserSkin/Button">
+        <PropertyDefine id="NormalTextColour" value="FFFFFFFF" signal_refresh="true" type="ColourRect" />
+        <PropertyDefine id="HoverTextColour" value="FFFFFFFF" signal_refresh="true"  type="ColourRect"/>
+        <PropertyDefine id="PushedTextColour" value="FFFFFFFF" signal_refresh="true" type="ColourRect"/>
+        <PropertyDefine id="DisabledTextColour" value="FF888888" signal_refresh="true" type="ColourRect"/>
+        <PropertyDefine id="UseStandardImagery" value="True" signal_refresh="true" type="bool"/>
+        <PropertyDefine id="NormalImage" value="" signal_refresh="true" type="Pixel"/>
+        <PropertyDefine id="HoverImage" value="" signal_refresh="true" type="Pixel"/>
+        <PropertyDefine id="PushedImage" value="" signal_refresh="true" type="Pixel"/>
+        <PropertyDefine id="VertImageFormatting" value="stretch" signal_refresh="true" type="VerticalFormatting"/>
+        <PropertyDefine id="HorzImageFormatting" value="stretch" signal_refresh="true" type="HorizontalFormatting"/>
+
+        <Property name="WantsMultiClickEvents" value="False" />
+        <StyleSection id="label">
+            <TextCom>
+                <Area>
+                    <Border type="LeftEdge"><Abs value="0" /></Border>
+                    <Border type="TopEdge"><Abs value="0" /></Border>
+                    <Border type="RightEdge"><Rel scale="1" value="RightEdge" /></Border>
+                    <Border type="BottomEdge"><Rel scale="1" value="BottomEdge" /></Border>
+                </Area>
+                <VLayout type="centre" />
+                <HLayout type="WordWrapCentreAligned" />
+            </TextCom>
+        </StyleSection>
+        <StyleSection id="normal_image">
+            <ImageryCom>
+                <Area>
+                    <Border type="LeftEdge" ><Abs value="0" /></Border>
+                    <Border type="TopEdge" ><Abs value="0" /></Border>
+                    <Border type="Width" ><Rel scale="1" value="Width" /></Border>
+                    <Border type="Height" ><Rel scale="1" value="Height" /></Border>
+                </Area>
+                <ImageProperty name="NormalImage" />
+                <VertFormatProperty name="VertImageFormatting" />
+                <HorzFormatProperty name="HorzImageFormatting" />
+            </ImageryCom>
+        </StyleSection>
+        <StyleSection id="hover_image">
+            <ImageryCom>
+                <Area>
+                    <Border type="LeftEdge" ><Abs value="0" /></Border>
+                    <Border type="TopEdge" ><Abs value="0" /></Border>
+                    <Border type="Width" ><Rel scale="1" value="Width" /></Border>
+                    <Border type="Height" ><Rel scale="1" value="Height" /></Border>
+                </Area>
+                <ImageProperty name="HoverImage" />
+                <VertFormatProperty name="VertImageFormatting" />
+                <HorzFormatProperty name="HorzImageFormatting" />
+            </ImageryCom>
+        </StyleSection>
+        <StyleSection id="pushed_image">
+            <ImageryCom>
+                <Area>
+                    <Border type="LeftEdge" ><Abs value="0" /></Border>
+                    <Border type="TopEdge" ><Abs value="0" /></Border>
+                    <Border type="Width" ><Rel scale="1" value="Width" /></Border>
+                    <Border type="Height" ><Rel scale="1" value="Height" /></Border>
+                </Area>
+                <ImageProperty name="PushedImage" />
+                <VertFormatProperty name="VertImageFormatting" />
+                <HorzFormatProperty name="HorzImageFormatting" />
+            </ImageryCom>
+        </StyleSection>
+
+        <StyleLayout name="Enable">
+            <Layer>
+                <Section style_section="normal_image" />
+                <Section style_section="label">
+                    <ColourAttribute name="NormalTextColour" />
+                </Section>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Hover">
+            <Layer>
+                <Section style_section="hover_image" />
+                <Section style_section="label">
+                    <ColourAttribute name="HoverTextColour" />
+                </Section>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Pushed">
+            <Layer>
+                <Section style_section="pushed_image" />
+                <Section style_section="label">
+                    <ColourAttribute name="PushedTextColour" />
+                </Section>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Disable">
+            <Layer>
+                <Section style_section="normal_image">
+                    <Colours top_left="FF3F3F3F" top_right="FF3F3F3F" bottom_left="FF3F3F3F" bottom_right="FF3F3F3F" />
+                </Section>
+                <Section style_section="label">
+                    <ColourAttribute name="DisabledTextColour" />
+                </Section>
+            </Layer>
+        </StyleLayout>
+    </WidgetStyle>
+
+    <WidgetStyle id="SampleBrowserSkin/SampleWindow">
+        <PropertyDefine id="BackgroundEnabled" value="true" signal_refresh="true" signal_layout="true" type="bool" />
+        <PropertyDefine id="ForegroundEnabled" value="true" signal_refresh="true" signal_layout="true" type="bool" />
+        <PropertyDefine id="FrameEnabled" value="true" signal_refresh="true" signal_layout="true" type="bool" />
+        <PropertyDefine id="FadeEnabled" value="true" signal_refresh="true" signal_layout="true" type="bool" />
+
+        <PropertyDefine id="ImageColours" value="tl:FFFFFFFF tr:FFFFFFFF bl:FFFFFFFF br:FFFFFFFF" signal_refresh="true" type="ColourRect"/>
+        <PropertyDefine id="FrameColours" value="tl:FFFFFFFF tr:FFFFFFFF bl:FFFFFFFF br:FFFFFFFF" signal_refresh="true" type="ColourRect"/>
+        <PropertyDefine id="ForegroundColours" value="tl:FFFFFFFF tr:FFFFFFFF bl:FFFFFFFF br:FFFFFFFF" signal_refresh="true" type="ColourRect"/>
+        <PropertyDefine id="BackgroundColours" value="tl:FF000000 tr:FF000000 bl:FF000000 br:FF000000" signal_refresh="true" type="ColourRect"/>
+        <PropertyDefine id="ForegroundFadeColours" value="tl:CC000000 tr:CC000000 bl:CC000000 br:CC000000" signal_refresh="true" type="ColourRect"/>
+        <PropertyDefine id="Pixel" value="" signal_refresh="true" />
+
+        <Property name="AutoRenderingSurface" value="True" />
+
+
+        <Special name="InnerArea">
+            <Area>
+                <Border type="LeftEdge" >
+                    <Operator type="Multiply">
+                        <PixelSize pixel_id="SampleBrowserSkin/SampleFrameLeft" value="Width" />
+                        <PropertyDim name="FrameEnabled" />
+                    </Operator>
+                </Border>
+                <Border type="TopEdge" >
+                    <Operator type="Multiply">
+                        <PixelSize pixel_id="SampleBrowserSkin/SampleFrameTop" value="Height" />
+                        <PropertyDim name="FrameEnabled" />
+                    </Operator>
+                </Border>
+                <Border type="RightEdge" >
+                    <Operator type="Subtract">
+                        <Rel scale="1.0" value="RightEdge" />
+                        <Operator type="Multiply">
+                            <PixelSize pixel_id="SampleBrowserSkin/SampleFrameRight" value="Width" />
+                            <PropertyDim name="FrameEnabled" />
+                        </Operator>
+                    </Operator>
+                </Border>
+                <Border type="BottomEdge" >
+                    <Operator type="Subtract">
+                        <Rel scale="1.0" value="BottomEdge" />
+                        <Operator type="Multiply">
+                            <PixelSize pixel_id="SampleBrowserSkin/SampleFrameBottom" value="Height" />
+                            <PropertyDim name="FrameEnabled" />
+                        </Operator>
+                    </Operator>
+                </Border>
+            </Area>
+        </Special>
+
+        <StyleSection id="frame">
+            <FrameCom>
+                <Area>
+                    <Border type="LeftEdge"><Abs value="0" /></Border>
+                    <Border type="TopEdge"><Abs value="0" /></Border>
+                    <Border type="RightEdge"><Rel scale="1" value="RightEdge" /></Border>
+                    <Border type="BottomEdge"><Rel scale="1" value="BottomEdge" /></Border>
+                </Area>
+                <Com type="TopLeftCorner" pixel_id="SampleBrowserSkin/SampleFrameTopLeft" />
+                <Com type="TopRightCorner" pixel_id="SampleBrowserSkin/SampleFrameTopRight" />
+                <Com type="BottomLeftCorner" pixel_id="SampleBrowserSkin/SampleFrameBottomLeft" />
+                <Com type="BottomRightCorner" pixel_id="SampleBrowserSkin/SampleFrameBottomRight" />
+                <Com type="LeftEdge" pixel_id="SampleBrowserSkin/SampleFrameLeft" />
+                <Com type="TopEdge" pixel_id="SampleBrowserSkin/SampleFrameTop" />
+                <Com type="RightEdge" pixel_id="SampleBrowserSkin/SampleFrameRight" />
+                <Com type="BottomEdge" pixel_id="SampleBrowserSkin/SampleFrameBottom" />
+                <ColourAttribute name="FrameColours" />
+            </FrameCom>
+        </StyleSection>
+
+        <StyleSection id="image">
+            <ImageryCom>
+                <Area><NamedAreaSource name="InnerArea"/></Area>
+                <ImageProperty name="Pixel" />
+                <ColourAttribute name="ImageColours" />
+                <VLayout type="stretch" />
+                <HLayout type="stretch" />
+            </ImageryCom>
+        </StyleSection>
+
+        <StyleSection id="fadeForeground">
+            <ImageryCom>
+                <Area><NamedAreaSource name="InnerArea"/></Area>
+                <Com pixel_id="SampleBrowserSkin/GenericFiller" />
+                <ColourAttribute name="ForegroundFadeColours" />
+                <VLayout type="stretch" />
+                <HLayout type="stretch" />
+            </ImageryCom>
+        </StyleSection>
+
+        <StyleSection id="foreground">
+            <ImageryCom>
+                <Area><NamedAreaSource name="InnerArea"/></Area>
+                <Com pixel_id="SampleBrowserSkin/SamplesForeground" />
+                <ColourAttribute name="ForegroundColours" />
+                <VLayout type="stretch" />
+                <HLayout type="stretch" />
+            </ImageryCom>
+        </StyleSection>
+
+        <StyleSection id="background">
+            <ImageryCom>
+                <Area><NamedAreaSource name="InnerArea"/></Area>
+                <Com pixel_id="SampleBrowserSkin/GenericFiller" />
+                <ColourAttribute name="BackgroundColours" />
+                <VLayout type="stretch" />
+                <HLayout type="stretch" />
+            </ImageryCom>
+        </StyleSection>
+
+        <StyleLayout name="Enable">
+            <Layer priority="4" ><Section style_section="frame" ctl_property="FrameEnabled" /></Layer>
+            <Layer priority="3" ><Section style_section="foreground" ctl_property="ForegroundEnabled" /></Layer>
+            <Layer priority="2" ><Section style_section="fadeForeground" ctl_property="FadeEnabled" /></Layer>
+            <Layer priority="1" ><Section style_section="image" /></Layer>
+            <Layer priority="0" ><Section style_section="background" ctl_property="BackgroundEnabled" /></Layer>
+        </StyleLayout>
+        <StyleLayout name="Disable">
+        </StyleLayout>
+
+
+        <AnimationDefinition name="SamplePreviewFadeIn" duration="0.28" replayMode="once" autoStart="false">
+            <PropertyIDKeyFrameTrack property="ForegroundFadeColours" interpolator="ColourRect">
+                <KeyFrame position="0" sourceProperty="ForegroundFadeColours" />
+                <KeyFrame position="0.28" value="tl:00000000 tr:00000000 bl:00000000 br:00000000" progression="quadratic decelerating" />
+            </PropertyIDKeyFrameTrack>
+            <Subscription event="MouseLeavesArea" action="Stop" />
+            <Subscription event="MouseEntersArea" action="Start" />
+        </AnimationDefinition>
+
+        <AnimationDefinition name="SamplePreviewFadeOut" duration="0.39" replayMode="once" autoStart="false">
+            <PropertyIDKeyFrameTrack property="ForegroundFadeColours" interpolator="ColourRect">
+                <KeyFrame position="0" sourceProperty="ForegroundFadeColours" />
+                <KeyFrame position="0.39" value="tl:CC000000 tr:CC000000 bl:CC000000 br:CC000000" progression="quadratic decelerating" />
+            </PropertyIDKeyFrameTrack>
+            <Subscription event="MouseEntersArea" action="Stop" />
+            <Subscription event="MouseLeavesArea" action="Start" />
+        </AnimationDefinition>
+    </WidgetStyle>
+
+   <WidgetStyle id="SampleBrowserSkin/Light">
+        <PropertyDefine id="BackgroundColour" value="FFFFFFFF" signal_refresh="true" type="Colour"/>
+        <PropertyDefine id="LightColour" value="FFFFFFFF" signal_refresh="true" type="Colour"/>
+
+        <Special name="LightArea">
+            <Area>
+                <Border type="LeftEdge" ><Abs value="0" /></Border>
+                <Border type="TopEdge" ><Abs value="0" /></Border>
+                <Border type="Width" ><Rel scale="1" value="Width" /></Border>
+                <Border type="Height" ><Rel scale="1" value="Height" /></Border>
+            </Area>
+        </Special>
+
+        <StyleSection id="background">
+            <ImageryCom>
+                <Area><NamedAreaSource name="LightArea"/></Area>
+                <Com pixel_id="SampleBrowserSkin/LightBackground" />
+                <ColourAttribute name="BackgroundColour" />
+                <VLayout type="stretch" />
+                <HLayout type="stretch" />
+            </ImageryCom>
+        </StyleSection>
+
+        <StyleSection id="foreground">
+            <ImageryCom>
+                <Area><NamedAreaSource name="LightArea"/></Area>
+                <Com pixel_id="SampleBrowserSkin/LightOverlay" />
+                <ColourAttribute name="LightColour" />
+                <VLayout type="stretch" />
+                <HLayout type="stretch" />
+            </ImageryCom>
+        </StyleSection>
+
+        <StyleLayout name="Enable">
+            <Layer priority="1" ><Section style_section="foreground" /></Layer>
+            <Layer priority="0" ><Section style_section="background" /></Layer>
+        </StyleLayout>
+        <StyleLayout name="Disable">
+            <Layer><Section style_section="background" /></Layer>
+        </StyleLayout>
+
+    </WidgetStyle>
+
+
+    <!--
+    TitleBar
+-->
+    <WidgetStyle id="SampleBrowserSkin/Titlebar">
+        <PropertyDefine id="CaptionColour" value="FFe5ffb2" signal_refresh="true" type="ColourRect"/>
+        <PropertyDefine id="VertFormatting" value="centre" type="VerticalTextFormatting"/>
+        <PropertyDefine id="HorzFormatting" value="centre" type="HorizontalTextFormatting"/>
+
+        <Property name="NonClient" value="True" />
+
+        <StyleSection id="normal">
+            <FrameCom>
+                <Area>
+                    <Border type="LeftEdge"><Abs value="0" /></Border>
+                    <Border type="TopEdge"><Abs value="0" /></Border>
+                    <Border type="RightEdge"><Rel scale="1" value="RightEdge" /></Border>
+                    <Border type="BottomEdge"><Rel scale="1" value="BottomEdge" /></Border>
+                </Area>
+                <Com type="LeftEdge" pixel_id="SampleBrowserSkin/CaptionL" />
+                <Com type="RightEdge" pixel_id="SampleBrowserSkin/CaptionR" />
+                <Com type="Background" pixel_id="SampleBrowserSkin/CaptionM" />
+            </FrameCom>
+        </StyleSection>
+        <StyleSection id="caption">
+            <TextCom>
+                <Area>
+                    <Border type="LeftEdge"><Abs value="0" /></Border>
+                    <Border type="TopEdge"><Abs value="0" /></Border>
+                    <Border type="RightEdge"><Rel scale="1" value="RightEdge" /></Border>
+                    <Border type="BottomEdge"><Rel scale="1" value="BottomEdge" /></Border>
+                </Area>
+                <ColourAttribute name="CaptionColour" />
+                <VertFormatProperty name="VertFormatting" />
+                <HorzFormatProperty name="HorzFormatting" />
+            </TextCom>
+        </StyleSection>
+        <StyleLayout name="Active">
+            <Layer>
+                <Section style_section="normal" />
+                <Section style_section="caption" />
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Inactive">
+            <Layer>
+                <Section style_section="normal" />
+                <Section style_section="caption" />
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Disable">
+            <Layer>
+                <Section style_section="normal" />
+                <Section style_section="caption" />
+            </Layer>
+        </StyleLayout>
+    </WidgetStyle>
+
+    <!--
+    FrameWindow
+-->
+
+    <WidgetStyle id="SampleBrowserSkin/FrameWindow">
+        <PropertyLinkDefinition name="CaptionColour" widget="__auto_titlebar__" targetProperty="CaptionColour" value="FFe5ffb2" type="ColourRect"/>
+        <PropertyLinkDefinition name="CaptionFont" widget="__auto_titlebar__" targetProperty="Font" type="Font"/>
+        <Property name="NSSizingCursorImage" value="SampleBrowserSkin/MouseArrow" />
+        <Property name="EWSizingCursorImage" value="SampleBrowserSkin/MouseArrow" />
+        <Property name="NWSESizingCursorImage" value="SampleBrowserSkin/MouseArrow" />
+        <Property name="NESWSizingCursorImage" value="SampleBrowserSkin/MouseArrow" />
+        <Property name="AutoRenderingSurface" value="True" />
+        <Special name="ClientWithTitleWithFrame">
+            <Area>
+                <Border type="LeftEdge" ><Abs value="0" /></Border>
+                <Border type="TopEdge" ><WidgetSize widget="__auto_titlebar__" value="BottomEdge" /></Border>
+                <Border type="RightEdge" ><Rel scale="1" value="RightEdge" /></Border>
+                <Border type="BottomEdge" ><Rel scale="1" value="BottomEdge" /></Border>
+            </Area>
+        </Special>
+        <Special name="ClientWithTitleNoFrame">
+            <Area>
+                <Border type="LeftEdge" ><Abs value="0" /></Border>
+                <Border type="TopEdge" ><WidgetSize widget="__auto_titlebar__" value="BottomEdge" /></Border>
+                <Border type="RightEdge" ><Rel scale="1" value="RightEdge" /></Border>
+                <Border type="BottomEdge" ><Rel scale="1" value="BottomEdge" /></Border>
+            </Area>
+        </Special>
+        <Special name="ClientNoTitleWithFrame">
+            <Area>
+                <Border type="LeftEdge" ><Abs value="0" /></Border>
+                <Border type="TopEdge" ><WidgetSize widget="__auto_titlebar__" value="BottomEdge" /></Border>
+                <Border type="RightEdge" ><Rel scale="1" value="RightEdge" /></Border>
+                <Border type="BottomEdge" ><Rel scale="1" value="BottomEdge" /></Border>
+            </Area>
+        </Special>
+        <Special name="ClientNoTitleNoFrame">
+            <Area>
+                <Border type="LeftEdge" ><Abs value="0" /></Border>
+                <Border type="TopEdge" ><Abs value="0" /></Border>
+                <Border type="RightEdge" ><Rel scale="1" value="RightEdge" /></Border>
+                <Border type="BottomEdge" ><Rel scale="1" value="BottomEdge" /></Border>
+            </Area>
+        </Special>
+        <Widget style_id="SampleBrowserSkin/Titlebar" id="__auto_titlebar__">
+            <Area>
+                <Border type="LeftEdge" >
+                    <Operator type="Divide">
+                        <PixelSize pixel_id="SampleBrowserSkin/TrayL" value="Width" />
+                        <Abs value="2" />
+                    </Operator>
+                </Border>
+                <Border type="TopEdge" >
+                    <Operator type="Divide">
+                        <PixelSize pixel_id="SampleBrowserSkin/TrayT" value="Height" />
+                        <Abs value="2" />
+                    </Operator>
+                </Border>
+                <Border type="Width" >
+                    <Operator type="Subtract">
+                        <Rel scale="1" value="Width" />
+                        <PixelSize pixel_id="SampleBrowserSkin/TrayL" value="Width" />
+                    </Operator>
+                </Border>
+                <Border type="Height" ><FontDim type="LineSpacing" padding="8" /></Border>
+            </Area>
+            <Property name="AlwaysOnTop" value="False" />
+        </Widget>
+        <!-- here we basically nullify the close button, for now at least -->
+        <Widget style_id="DefaultWindow" id="__auto_closebutton__">
+            <Area>
+                <Border type="LeftEdge" ><Abs value="0" /></Border>
+                <Border type="TopEdge" ><Abs value="0" /></Border>
+                <Border type="Width" ><Rel scale="0" value="Width" /></Border>
+                <Border type="Height" ><Rel scale="0" value="Height" /></Border>
+            </Area>
+            <Property name="NonClient" value="True" />
+        </Widget>
+        <StyleSection id="frame">
+            <FrameCom>
+                <Area>
+                    <Border type="LeftEdge"><Abs value="0" /></Border>
+                    <Border type="TopEdge"><Abs value="0" /></Border>
+                    <Border type="RightEdge"><Rel scale="1" value="RightEdge" /></Border>
+                    <Border type="BottomEdge"><Rel scale="1" value="BottomEdge" /></Border>
+                </Area>
+                <Com type="TopLeftCorner" pixel_id="SampleBrowserSkin/TrayTL" />
+                <Com type="TopRightCorner" pixel_id="SampleBrowserSkin/TrayTR" />
+                <Com type="BottomLeftCorner" pixel_id="SampleBrowserSkin/TrayBL" />
+                <Com type="BottomRightCorner" pixel_id="SampleBrowserSkin/TrayBR" />
+                <Com type="LeftEdge" pixel_id="SampleBrowserSkin/TrayL" />
+                <Com type="TopEdge" pixel_id="SampleBrowserSkin/TrayT" />
+                <Com type="RightEdge" pixel_id="SampleBrowserSkin/TrayR" />
+                <Com type="BottomEdge" pixel_id="SampleBrowserSkin/TrayB" />
+                <Com type="Background" pixel_id="SampleBrowserSkin/TrayM" />
+            </FrameCom>
+        </StyleSection>
+        <StyleSection id="noframe">
+            <ImageryCom>
+                <Area>
+                    <Border type="LeftEdge" ><Abs value="0" /></Border>
+                    <Border type="TopEdge"><Abs value="0" /></Border>
+                    <Border type="Width" ><Rel scale="1" value="Width" /></Border>
+                    <Border type="BottomEdge" ><Rel scale="1" value="BottomEdge" /></Border>
+                </Area>
+                <Com pixel_id="SampleBrowserSkin/TrayM" />
+                <VLayout type="stretch" />
+                <HLayout type="stretch" />
+            </ImageryCom>
+        </StyleSection>
+        <StyleLayout name="ActiveTitleFrame">
+            <Layer><Section style_section="frame" /></Layer>
+        </StyleLayout>
+        <StyleLayout name="InactiveTitleFrame">
+            <Layer><Section style_section="frame" /></Layer>
+        </StyleLayout>
+        <StyleLayout name="DisableTitleFrame">
+            <Layer><Section style_section="frame" /></Layer>
+        </StyleLayout>
+        <StyleLayout name="ActiveTitle">
+            <Layer><Section style_section="noframe" /></Layer>
+        </StyleLayout>
+        <StyleLayout name="InactiveTitle">
+            <Layer><Section style_section="noframe" /></Layer>
+        </StyleLayout>
+        <StyleLayout name="DisableTitle">
+            <Layer><Section style_section="noframe" /></Layer>
+        </StyleLayout>
+        <StyleLayout name="ActiveFrame">
+            <Layer><Section style_section="frame" /></Layer>
+        </StyleLayout>
+        <StyleLayout name="InactiveFrame">
+            <Layer><Section style_section="frame" /></Layer>
+        </StyleLayout>
+        <StyleLayout name="DisableFrame">
+            <Layer><Section style_section="frame" /></Layer>
+        </StyleLayout>
+        <StyleLayout name="Active">
+            <Layer><Section style_section="noframe" /></Layer>
+        </StyleLayout>
+        <StyleLayout name="Inactive">
+            <Layer><Section style_section="noframe" /></Layer>
+        </StyleLayout>
+        <StyleLayout name="Disable">
+            <Layer><Section style_section="noframe" /></Layer>
+        </StyleLayout>
+    </WidgetStyle>
+
+
+
+    <!--
+    StaticText
+-->
+    <WidgetStyle id="SampleBrowserSkin/StaticText">
+        <PropertyLinkDefinition targetProperty="ScrollPosition" widget="__auto_hscrollbar__" type="float" name="HorzScrollPosition"/>
+        <PropertyLinkDefinition targetProperty="PageSize" widget="__auto_hscrollbar__" type="float" name="HorzScrollPageSize"/>
+        <PropertyLinkDefinition targetProperty="DocumentSize" widget="__auto_hscrollbar__" type="float" name="HorzScrollDocumentSize"/>
+        <PropertyLinkDefinition targetProperty="ScrollPosition" widget="__auto_vscrollbar__" type="float" name="VertScrollPosition"/>
+        <PropertyLinkDefinition targetProperty="PageSize" widget="__auto_vscrollbar__" type="float" name="VertScrollPageSize"/>
+        <PropertyLinkDefinition targetProperty="DocumentSize" widget="__auto_vscrollbar__" type="float" name="VertScrollDocumentSize"/>
+        <Property name="BackgroundEnabled" value="True"/>
+        <Property name="FrameEnabled" value="True"/>
+        <Property name="TextColours" value="tl:FF000000 tr:FF000000 bl:FF000000 br:FF000000"/>
+        <Property name="HorzFormatting" value="WordWrapLeftAligned"/>
+        <Special name="WithFrameTextRenderArea">
+            <Area>
+                <Border type="LeftEdge">
+                    <PixelSize pixel_id="SampleBrowserSkin/TextBoxL" value="Width"/>
+                </Border>
+                <Border type="TopEdge">
+                    <PixelSize pixel_id="SampleBrowserSkin/TextBoxT" value="Height"/>
+                </Border>
+                <Border type="RightEdge">
+                    <Operator type="Subtract">
+                        <Rel scale="1.0" value="RightEdge"/>
+                        <PixelSize pixel_id="SampleBrowserSkin/TextBoxR" value="Width"/>
+                    </Operator>
+                </Border>
+                <Border type="BottomEdge">
+                    <Operator type="Subtract">
+                        <Rel scale="1.0" value="BottomEdge"/>
+                        <PixelSize pixel_id="SampleBrowserSkin/TextBoxB" value="Height"/>
+                    </Operator>
+                </Border>
+            </Area>
+        </Special>
+        <Special name="WithFrameTextRenderAreaHScroll">
+            <Area>
+                <Border type="LeftEdge">
+                    <PixelSize pixel_id="SampleBrowserSkin/TextBoxL" value="Width"/>
+                </Border>
+                <Border type="TopEdge">
+                    <PixelSize pixel_id="SampleBrowserSkin/TextBoxT" value="Height"/>
+                </Border>
+                <Border type="RightEdge">
+                    <Operator type="Subtract">
+                        <Rel scale="1.0" value="RightEdge"/>
+                        <PixelSize pixel_id="SampleBrowserSkin/TextBoxR" value="Width"/>
+                    </Operator>
+                </Border>
+                <Border type="BottomEdge">
+                    <Operator type="Subtract">
+                        <Rel scale="1.0" value="BottomEdge"/>
+                        <Operator type="Add">
+                            <PixelSize pixel_id="SampleBrowserSkin/TextBoxB" value="Height"/>
+                            <PixelSize pixel_id="SampleBrowserSkin/Handle" value="Height"/>
+                        </Operator>
+                    </Operator>
+                </Border>
+            </Area>
+        </Special>
+        <Special name="WithFrameTextRenderAreaVScroll">
+            <Area>
+                <Border type="LeftEdge">
+                    <PixelSize pixel_id="SampleBrowserSkin/TextBoxL" value="Width"/>
+                </Border>
+                <Border type="TopEdge">
+                    <PixelSize pixel_id="SampleBrowserSkin/TextBoxT" value="Height"/>
+                </Border>
+                <Border type="RightEdge">
+                    <Operator type="Subtract">
+                        <Rel scale="1.0" value="RightEdge"/>
+                        <Operator type="Add">
+                            <PixelSize pixel_id="SampleBrowserSkin/TextBoxR" value="Width"/>
+                            <PixelSize pixel_id="SampleBrowserSkin/Handle" value="Width"/>
+                        </Operator>
+                    </Operator>
+                </Border>
+                <Border type="BottomEdge">
+                    <Operator type="Subtract">
+                        <Rel scale="1.0" value="BottomEdge"/>
+                        <PixelSize pixel_id="SampleBrowserSkin/TextBoxB" value="Height"/>
+                    </Operator>
+                </Border>
+            </Area>
+        </Special>
+        <Special name="WithFrameTextRenderAreaHVScroll">
+            <Area>
+                <Border type="LeftEdge">
+                    <PixelSize pixel_id="SampleBrowserSkin/TextBoxL" value="Width"/>
+                </Border>
+                <Border type="TopEdge">
+                    <PixelSize pixel_id="SampleBrowserSkin/TextBoxT" value="Height"/>
+                </Border>
+                <Border type="RightEdge">
+                    <Operator type="Subtract">
+                        <Rel scale="1.0" value="RightEdge"/>
+                        <Operator type="Add">
+                            <PixelSize pixel_id="SampleBrowserSkin/TextBoxR" value="Width"/>
+                            <PixelSize pixel_id="SampleBrowserSkin/Handle" value="Width"/>
+                        </Operator>
+                    </Operator>
+                </Border>
+                <Border type="BottomEdge">
+                    <Operator type="Subtract">
+                        <Rel scale="1.0" value="BottomEdge"/>
+                        <Operator type="Add">
+                            <PixelSize pixel_id="SampleBrowserSkin/TextBoxB" value="Height"/>
+                            <PixelSize pixel_id="SampleBrowserSkin/Handle" value="Height"/>
+                        </Operator>
+                    </Operator>
+                </Border>
+            </Area>
+        </Special>
+        <Special name="NoFrameTextRenderArea">
+            <Area>
+                <Border type="LeftEdge">
+                    <Abs value="0"/>
+                </Border>
+                <Border type="TopEdge">
+                    <Abs value="0"/>
+                </Border>
+                <Border type="RightEdge">
+                    <Rel scale="1.0" value="RightEdge"/>
+                </Border>
+                <Border type="BottomEdge">
+                    <Rel scale="1.0" value="BottomEdge"/>
+                </Border>
+            </Area>
+        </Special>
+        <Special name="NoFrameTextRenderAreaHScroll">
+            <Area>
+                <Border type="LeftEdge">
+                    <Abs value="0"/>
+                </Border>
+                <Border type="TopEdge">
+                    <Abs value="0"/>
+                </Border>
+                <Border type="RightEdge">
+                    <Rel scale="1.0" value="RightEdge"/>
+                </Border>
+                <Border type="BottomEdge">
+                    <Operator type="Subtract">
+                        <Rel scale="1.0" value="BottomEdge"/>
+                        <Operator type="Add">
+                            <PixelSize pixel_id="SampleBrowserSkin/TextBoxB" value="Height"/>
+                            <PixelSize pixel_id="SampleBrowserSkin/Handle" value="Height"/>
+                        </Operator>
+                    </Operator>
+                </Border>
+            </Area>
+        </Special>
+        <Special name="NoFrameTextRenderAreaVScroll">
+            <Area>
+                <Border type="LeftEdge">
+                    <Abs value="0"/>
+                </Border>
+                <Border type="TopEdge">
+                    <Abs value="0"/>
+                </Border>
+                <Border type="RightEdge">
+                    <Operator type="Subtract">
+                        <Rel scale="1.0" value="RightEdge"/>
+                        <Operator type="Add">
+                            <PixelSize pixel_id="SampleBrowserSkin/TextBoxR" value="Width"/>
+                            <PixelSize pixel_id="SampleBrowserSkin/Handle" value="Width"/>
+                        </Operator>
+                    </Operator>
+                </Border>
+                <Border type="BottomEdge">
+                    <Rel scale="1.0" value="BottomEdge"/>
+                </Border>
+            </Area>
+        </Special>
+        <Special name="NoFrameTextRenderAreaHVScroll">
+            <Area>
+                <Border type="LeftEdge">
+                    <Abs value="0"/>
+                </Border>
+                <Border type="TopEdge">
+                    <Abs value="0"/>
+                </Border>
+                <Border type="RightEdge">
+                    <Operator type="Subtract">
+                        <Rel scale="1.0" value="RightEdge"/>
+                        <Operator type="Add">
+                            <PixelSize pixel_id="SampleBrowserSkin/TextBoxR" value="Width"/>
+                            <PixelSize pixel_id="SampleBrowserSkin/Handle" value="Width"/>
+                        </Operator>
+                    </Operator>
+                </Border>
+                <Border type="BottomEdge">
+                    <Operator type="Subtract">
+                        <Rel scale="1.0" value="BottomEdge"/>
+                        <Operator type="Add">
+                            <PixelSize pixel_id="SampleBrowserSkin/TextBoxB" value="Height"/>
+                            <PixelSize pixel_id="SampleBrowserSkin/Handle" value="Height"/>
+                        </Operator>
+                    </Operator>
+                </Border>
+            </Area>
+        </Special>
+        <Widget id="__auto_hscrollbar__" style_id="SampleBrowserSkin/HorizontalScrollbar">
+            <Area>
+                <Border type="LeftEdge">
+                    <PixelSize pixel_id="SampleBrowserSkin/TextBoxL" value="Width"/>
+                </Border>
+                <Border type="TopEdge">
+                    <Operator type="Subtract">
+                        <Abs value="0"/>
+                        <PixelSize pixel_id="SampleBrowserSkin/TextBoxB" value="Height"/>
+                    </Operator>
+                </Border>
+                <Border type="RightEdge">
+                    <Operator type="Subtract">
+                        <Rel scale="1" value="Width"/>
+                        <Operator type="Add">
+                            <PixelSize pixel_id="SampleBrowserSkin/TextBoxR" value="Width"/>
+                            <PixelSize pixel_id="SampleBrowserSkin/Handle" value="Width"/>
+                        </Operator>
+                    </Operator>
+                </Border>
+                <Border type="Height">
+                    <PixelSize pixel_id="SampleBrowserSkin/Handle" value="Height"/>
+                </Border>
+            </Area>
+            <VAlign type="bottom"/>
+            <Property name="NonClient" value="True"/>
+        </Widget>
+        <Widget id="__auto_vscrollbar__" style_id="SampleBrowserSkin/VerticalScrollbar">
+            <Area>
+                <Border type="LeftEdge">
+                    <Operator type="Subtract">
+                        <Abs value="0"/>
+                        <PixelSize pixel_id="SampleBrowserSkin/TextBoxR" value="Width"/>
+                    </Operator>
+                </Border>
+                <Border type="TopEdge">
+                    <PixelSize pixel_id="SampleBrowserSkin/TextBoxT" value="Height"/>
+                </Border>
+                <Border type="Width">
+                    <PixelSize pixel_id="SampleBrowserSkin/Handle" value="Width"/>
+                </Border>
+                <Border type="BottomEdge">
+                    <Operator type="Subtract">
+                        <Rel scale="1" value="BottomEdge"/>
+                        <PixelSize pixel_id="SampleBrowserSkin/TextBoxB" value="Height"/>
+                    </Operator>
+                </Border>
+            </Area>
+            <HAlign type="right"/>
+            <Property name="NonClient" value="True"/>
+        </Widget>
+        <StyleLayout name="Enable"/>
+        <StyleLayout name="Disable"/>
+        <StyleLayout name="WithFrame">
+            <Layer>
+                <Section style_section="frame" widget_style="SampleBrowserSkin/StaticShared"/>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="NoFrame">
+            <Layer>
+                <Section style_section="frame" widget_style="SampleBrowserSkin/StaticShared"/>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="WithFrameAndBg">
+            <Layer>
+                <Section style_section="with_frame_background" widget_style="SampleBrowserSkin/StaticShared"/>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="WithFrameNoBg">
+            <Layer>
+                <Section style_section="with_frame_background" widget_style="SampleBrowserSkin/StaticShared"/>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="WithBgNoFrame">
+            <Layer>
+                <Section style_section="no_frame_background" widget_style="SampleBrowserSkin/StaticShared"/>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="NoFrameAndBg">
+            <Layer>
+                <Section style_section="no_frame_background" widget_style="SampleBrowserSkin/StaticShared"/>
+            </Layer>
+        </StyleLayout>
+    </WidgetStyle>
+
+
+
+    <!--
+    Vertical Scrollbar
+-->
+    <WidgetStyle id="SampleBrowserSkin/VerticalScrollbar">
+        <Property name="VerticalScrollbar" value="True" />
+        <Property name="WantsMultiClickEvents" value="False" />
+        <Special name="ThumbTrackArea">
+            <Area>
+                <Border type="LeftEdge" ><Abs value="0" /></Border>
+                <Border type="TopEdge" ><Abs value="0" /></Border>
+                <Border type="Width" ><Rel scale="1" value="Width" /></Border>
+                <Border type="Height" ><Rel scale="1" value="Height" /></Border>
+            </Area>
+        </Special>
+        <Widget  style_id="DefaultWindow" id="__auto_incbtn__">
+            <Area>
+                <Border type="LeftEdge" ><Abs value="0" /></Border>
+                <Border type="TopEdge" ><Abs value="0" /></Border>
+                <Border type="Width" ><Rel scale="0" value="Width" /></Border>
+                <Border type="Height" ><Rel scale="0" value="Width" /></Border>
+            </Area>
+            <Property name="Visible" value="False" />
+        </Widget>
+        <Widget  style_id="DefaultWindow" id="__auto_decbtn__">
+            <Area>
+                <Border type="LeftEdge" ><Abs value="0" /></Border>
+                <Border type="TopEdge" ><Abs value="0" /></Border>
+                <Border type="Width" ><Rel scale="0" value="Width" /></Border>
+                <Border type="Height" ><Rel scale="0" value="Width" /></Border>
+            </Area>
+            <Property name="Visible" value="False" />
+        </Widget>
+        <Widget  style_id="SampleBrowserSkin/Thumb" id="__auto_thumb__">
+            <Area>
+                <Border type="LeftEdge" ><Abs value="0" /></Border>
+                <Border type="TopEdge" ><Abs value="0" /></Border>
+                <Border type="Width" ><Rel scale="1" value="Width" /></Border>
+                <Border type="Height" ><Rel scale="1" value="Width" /></Border>
+            </Area>
+            <Property name="VertFree" value="True" />
+        </Widget>
+        <StyleSection id="main">
+            <FrameCom>
+                <Area>
+                    <Border type="LeftEdge"><Rel scale="0.11" value="Width" /></Border>
+                    <Border type="TopEdge"><Rel scale="0.1" value="Width" /></Border>
+                    <Border type="Width"><Rel scale="0.78" value="Width" /></Border>
+                    <Border type="BottomEdge">
+                        <Operator type="Subtract">
+                            <Rel scale="1" value="BottomEdge" />
+                            <Rel scale="0.1" value="Width" />
+                        </Operator>
+                    </Border>
+                </Area>
+                <Com type="TopEdge" pixel_id="SampleBrowserSkin/VertTrackT" />
+                <Com type="BottomEdge" pixel_id="SampleBrowserSkin/VertTrackB" />
+                <Com type="Background" pixel_id="SampleBrowserSkin/VertTrackM" />
+            </FrameCom>
+        </StyleSection>
+        <StyleLayout name="Enable">
+            <Layer><Section style_section="main" /></Layer>
+        </StyleLayout>
+        <StyleLayout name="Disable">
+            <Layer><Section style_section="main" /></Layer>
+        </StyleLayout>
+    </WidgetStyle>
+
+    <!--
+    Horizontal Scrollbar
+-->
+    <WidgetStyle id="SampleBrowserSkin/HorizontalScrollbar">
+        <Property name="VerticalScrollbar" value="False" />
+        <Property name="WantsMultiClickEvents" value="False" />
+        <Special name="ThumbTrackArea">
+            <Area>
+                <Border type="LeftEdge" ><Abs value="0" /></Border>
+                <Border type="TopEdge" ><Abs value="0" /></Border>
+                <Border type="Width" ><Rel scale="1" value="Width" /></Border>
+                <Border type="Height" ><Rel scale="1" value="Height" /></Border>
+            </Area>
+        </Special>
+        <Widget  style_id="DefaultWindow" id="__auto_incbtn__">
+            <Area>
+                <Border type="LeftEdge" ><Abs value="0" /></Border>
+                <Border type="TopEdge" ><Abs value="0" /></Border>
+                <Border type="Width" ><Rel scale="0" value="Width" /></Border>
+                <Border type="Height" ><Rel scale="0" value="Width" /></Border>
+            </Area>
+            <Property name="Visible" value="False" />
+        </Widget>
+        <Widget  style_id="DefaultWindow" id="__auto_decbtn__">
+            <Area>
+                <Border type="LeftEdge" ><Abs value="0" /></Border>
+                <Border type="TopEdge" ><Abs value="0" /></Border>
+                <Border type="Width" ><Rel scale="0" value="Width" /></Border>
+                <Border type="Height" ><Rel scale="0" value="Width" /></Border>
+            </Area>
+            <Property name="Visible" value="False" />
+        </Widget>
+        <Widget  style_id="SampleBrowserSkin/Thumb" id="__auto_thumb__">
+            <Area>
+                <Border type="LeftEdge" ><Abs value="0" /></Border>
+                <Border type="TopEdge" ><Abs value="0" /></Border>
+                <Border type="Width" ><Rel scale="1" value="Height" /></Border>
+                <Border type="Height" ><Rel scale="1" value="Height" /></Border>
+            </Area>
+            <Property name="HorzFree" value="True" />
+        </Widget>
+        <StyleSection id="main">
+            <FrameCom>
+                <Area>
+                    <Border type="LeftEdge"><Rel scale="0.1" value="Height" /></Border>
+                    <Border type="TopEdge"><Rel scale="0.11" value="Height" /></Border>
+                    <Border type="RightEdge">
+                        <Operator type="Subtract">
+                            <Rel scale="1" value="RightEdge" />
+                            <Rel scale="0.1" value="Height" />
+                        </Operator>
+                    </Border>
+                    <Border type="Height"><Rel scale="0.78" value="Height" /></Border>
+                </Area>
+                <Com type="LeftEdge" pixel_id="SampleBrowserSkin/HorzTrackL" />
+                <Com type="RightEdge" pixel_id="SampleBrowserSkin/HorzTrackR" />
+                <Com type="Background" pixel_id="SampleBrowserSkin/HorzTrackM" />
+            </FrameCom>
+        </StyleSection>
+        <StyleLayout name="Enable">
+            <Layer><Section style_section="main" /></Layer>
+        </StyleLayout>
+        <StyleLayout name="Disable">
+            <Layer><Section style_section="main" /></Layer>
+        </StyleLayout>
+    </WidgetStyle>
+
+
+    <!--
+    Thumb
+-->
+    <WidgetStyle id="SampleBrowserSkin/Thumb">
+        <StyleSection id="main">
+            <ImageryCom>
+                <Area>
+                    <Border type="LeftEdge" ><Abs value="0" /></Border>
+                    <Border type="TopEdge" ><Abs value="0" /></Border>
+                    <Border type="Width" ><Rel scale="1" value="Width" /></Border>
+                    <Border type="Height" ><Rel scale="1" value="Height" /></Border>
+                </Area>
+                <Com pixel_id="SampleBrowserSkin/Handle" />
+                <VLayout type="stretch" />
+                <HLayout type="stretch" />
+            </ImageryCom>
+        </StyleSection>
+        <StyleLayout name="Enable">
+            <Layer><Section style_section="main" /></Layer>
+        </StyleLayout>
+        <StyleLayout name="Hover">
+            <Layer><Section style_section="main" /></Layer>
+        </StyleLayout>
+        <StyleLayout name="Pushed">
+            <Layer><Section style_section="main" /></Layer>
+        </StyleLayout>
+    </WidgetStyle>
+
+
+    <!--
+    ScrollablePane
+-->
+    <WidgetStyle id="SampleBrowserSkin/ScrollablePane">
+        <Special name="ViewableArea">
+            <Area>
+                <Border type="LeftEdge">
+                    <PixelSize pixel_id="SampleBrowserSkin/MiniTrayL" value="Width"/>
+                </Border>
+                <Border type="TopEdge">
+                    <PixelSize pixel_id="SampleBrowserSkin/MiniTrayT" value="Height"/>
+                </Border>
+                <Border type="RightEdge">
+                    <Operator type="Subtract">
+                        <Rel scale="1.0" value="RightEdge"/>
+                        <PixelSize pixel_id="SampleBrowserSkin/MiniTrayR" value="Width"/>
+                    </Operator>
+                </Border>
+                <Border type="BottomEdge">
+                    <Operator type="Subtract">
+                        <Rel scale="1.0" value="BottomEdge"/>
+                        <PixelSize pixel_id="SampleBrowserSkin/MiniTrayB" value="Height"/>
+                    </Operator>
+                </Border>
+            </Area>
+        </Special>
+        <Special name="ViewableAreaHScroll">
+            <Area>
+                <Border type="LeftEdge">
+                    <PixelSize pixel_id="SampleBrowserSkin/MiniTrayL" value="Width"/>
+                </Border>
+                <Border type="TopEdge">
+                    <PixelSize pixel_id="SampleBrowserSkin/MiniTrayT" value="Height"/>
+                </Border>
+                <Border type="RightEdge">
+                    <Operator type="Subtract">
+                        <Rel scale="1.0" value="RightEdge"/>
+                        <PixelSize pixel_id="SampleBrowserSkin/MiniTrayR" value="Width"/>
+                    </Operator>
+                </Border>
+                <Border type="BottomEdge">
+                    <Operator type="Subtract">
+                        <Rel scale="1.0" value="BottomEdge"/>
+                        <Operator type="Add">
+                            <PixelSize pixel_id="SampleBrowserSkin/MiniTrayB" value="Height"/>
+                            <PixelSize pixel_id="SampleBrowserSkin/Handle" value="Height"/>
+                        </Operator>
+                    </Operator>
+                </Border>
+            </Area>
+        </Special>
+        <Special name="ViewableAreaVScroll">
+            <Area>
+                <Border type="LeftEdge">
+                    <PixelSize pixel_id="SampleBrowserSkin/MiniTrayL" value="Width"/>
+                </Border>
+                <Border type="TopEdge">
+                    <PixelSize pixel_id="SampleBrowserSkin/MiniTrayT" value="Height"/>
+                </Border>
+                <Border type="RightEdge">
+                    <Operator type="Subtract">
+                        <Rel scale="1.0" value="RightEdge"/>
+                        <Operator type="Add">
+                            <PixelSize pixel_id="SampleBrowserSkin/MiniTrayR" value="Width"/>
+                            <PixelSize pixel_id="SampleBrowserSkin/Handle" value="Width"/>
+                        </Operator>
+                    </Operator>
+                </Border>
+                <Border type="BottomEdge">
+                    <Operator type="Subtract">
+                        <Rel scale="1.0" value="BottomEdge"/>
+                        <PixelSize pixel_id="SampleBrowserSkin/MiniTrayB" value="Height"/>
+                    </Operator>
+                </Border>
+            </Area>
+        </Special>
+        <Special name="ViewableAreaHVScroll">
+            <Area>
+                <Border type="LeftEdge">
+                    <PixelSize pixel_id="SampleBrowserSkin/MiniTrayL" value="Width"/>
+                </Border>
+                <Border type="TopEdge">
+                    <PixelSize pixel_id="SampleBrowserSkin/MiniTrayT" value="Height"/>
+                </Border>
+                <Border type="RightEdge">
+                    <Operator type="Subtract">
+                        <Rel scale="1.0" value="RightEdge"/>
+                        <Operator type="Add">
+                            <PixelSize pixel_id="SampleBrowserSkin/MiniTrayR" value="Width"/>
+                            <PixelSize pixel_id="SampleBrowserSkin/Handle" value="Width"/>
+                        </Operator>
+                    </Operator>
+                </Border>
+                <Border type="BottomEdge">
+                    <Operator type="Subtract">
+                        <Rel scale="1.0" value="BottomEdge"/>
+                        <Operator type="Add">
+                            <PixelSize pixel_id="SampleBrowserSkin/MiniTrayB" value="Height"/>
+                            <PixelSize pixel_id="SampleBrowserSkin/Handle" value="Height"/>
+                        </Operator>
+                    </Operator>
+                </Border>
+            </Area>
+        </Special>
+        <Widget id="__auto_hscrollbar__" style_id="SampleBrowserSkin/HorizontalScrollbar">
+            <Area>
+                <Border type="LeftEdge">
+                    <PixelSize pixel_id="SampleBrowserSkin/MiniTrayL" value="Width"/>
+                </Border>
+                <Border type="TopEdge">
+                    <Operator type="Subtract">
+                        <Abs value="0"/>
+                        <PixelSize pixel_id="SampleBrowserSkin/MiniTrayB" value="Height"/>
+                    </Operator>
+                </Border>
+                <Border type="RightEdge">
+                    <Operator type="Subtract">
+                        <Rel scale="1" value="Width"/>
+                        <Operator type="Add">
+                            <PixelSize pixel_id="SampleBrowserSkin/MiniTrayR" value="Width"/>
+                            <PixelSize pixel_id="SampleBrowserSkin/Handle" value="Width"/>
+                        </Operator>
+                    </Operator>
+                </Border>
+                <Border type="Height">
+                    <PixelSize pixel_id="SampleBrowserSkin/Handle" value="Height"/>
+                </Border>
+            </Area>
+            <VAlign type="bottom"/>
+            <Property name="NonClient" value="True"/>
+        </Widget>
+        <Widget id="__auto_vscrollbar__" style_id="SampleBrowserSkin/VerticalScrollbar">
+            <Area>
+                <Border type="LeftEdge">
+                    <Operator type="Subtract">
+                        <Abs value="0"/>
+                        <PixelSize pixel_id="SampleBrowserSkin/MiniTrayR" value="Width"/>
+                    </Operator>
+                </Border>
+                <Border type="TopEdge">
+                    <PixelSize pixel_id="SampleBrowserSkin/MiniTrayT" value="Height"/>
+                </Border>
+                <Border type="Width">
+                    <PixelSize pixel_id="SampleBrowserSkin/Handle" value="Width"/>
+                </Border>
+                <Border type="BottomEdge">
+                    <Operator type="Subtract">
+                        <Rel scale="1" value="BottomEdge"/>
+                        <PixelSize pixel_id="SampleBrowserSkin/MiniTrayB" value="Height"/>
+                    </Operator>
+                </Border>
+            </Area>
+            <HAlign type="right"/>
+            <Property name="NonClient" value="True"/>
+        </Widget>
+        <StyleLayout name="Enable"/>
+        <StyleLayout name="Disable"/>
+    </WidgetStyle>
+
+
+     <!--
+    Progress Bar
+-->
+    <WidgetStyle id="SampleBrowserSkin/ProgressBar">
+        <Special name="ProgressArea">
+            <Area>
+                <Border type="LeftEdge">
+                    <Abs value="0"/>
+                </Border>
+                <Border type="TopEdge">
+                    <Abs value="0"/>
+                </Border>
+                <Border type="RightEdge">
+                    <Rel scale="1" value="RightEdge"/>
+                </Border>
+                <Border type="BottomEdge">
+                    <Rel scale="1" value="BottomEdge"/>
+                </Border>
+            </Area>
+        </Special>
+        <StyleSection id="frame">
+            <FrameCom>
+                <Area>
+                    <Border type="LeftEdge">
+                        <Abs value="0"/>
+                    </Border>
+                    <Border type="TopEdge">
+                        <Abs value="0"/>
+                    </Border>
+                    <Border type="Width">
+                        <Rel scale="1" value="Width"/>
+                    </Border>
+                    <Border type="Height">
+                        <Rel scale="1" value="Height"/>
+                    </Border>
+                </Area>
+                <Com type="TopLeftCorner" pixel_id="SampleBrowserSkin/ProgessBarTopLeft"/>
+                <Com type="TopRightCorner" pixel_id="SampleBrowserSkin/ProgessBarTopRight"/>
+                <Com type="BottomLeftCorner" pixel_id="SampleBrowserSkin/ProgessBarBotLeft"/>
+                <Com type="BottomRightCorner" pixel_id="SampleBrowserSkin/ProgessBarBotRight"/>
+                <Com type="LeftEdge" pixel_id="SampleBrowserSkin/ProgessBarLeft"/>
+                <Com type="TopEdge" pixel_id="SampleBrowserSkin/ProgessBarTop"/>
+                <Com type="RightEdge" pixel_id="SampleBrowserSkin/ProgessBarRight"/>
+                <Com type="BottomEdge" pixel_id="SampleBrowserSkin/ProgessBarBot"/>
+                <Com type="Background" pixel_id="SampleBrowserSkin/ProgessBarMiddle"/>
+            </FrameCom>
+        </StyleSection>
+        <StyleSection id="progress">
+            <FrameCom>
+                <Area>
+                    <Border type="LeftEdge">
+                        <Abs value="0"/>
+                    </Border>
+                    <Border type="TopEdge">
+                        <Abs value="0"/>
+                    </Border>
+                    <Border type="Width">
+                        <Operator type="Multiply">
+                            <Rel scale="1" value="Width"/>
+                            <PropertyDim name="CurrentProgress"/>
+                        </Operator>
+                    </Border>
+                    <Border type="Height">
+                        <Rel scale="1" value="Height"/>
+                    </Border>
+                </Area>
+                <Com type="TopLeftCorner" pixel_id="SampleBrowserSkin/ProgessBarOverTopLeft"/>
+                <Com type="TopRightCorner" pixel_id="SampleBrowserSkin/ProgessBarOverTopRight"/>
+                <Com type="BottomLeftCorner" pixel_id="SampleBrowserSkin/ProgessBarOverBotLeft"/>
+                <Com type="BottomRightCorner" pixel_id="SampleBrowserSkin/ProgessBarOverBotRight"/>
+                <Com type="LeftEdge" pixel_id="SampleBrowserSkin/ProgessBarOverLeft"/>
+                <Com type="TopEdge" pixel_id="SampleBrowserSkin/ProgessBarOverTop"/>
+                <Com type="RightEdge" pixel_id="SampleBrowserSkin/ProgessBarOverRight"/>
+                <Com type="BottomEdge" pixel_id="SampleBrowserSkin/ProgessBarOverBot"/>
+                <Com type="Background" pixel_id="SampleBrowserSkin/ProgessBarOverMiddle"/>
+            </FrameCom>
+        </StyleSection>
+        <StyleLayout name="Enable">
+            <Layer>
+                <Section style_section="frame"/>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Disable">
+            <Layer>
+                <Section style_section="frame"/>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="EnableProgress">
+            <Layer>
+                <Section style_section="progress"/>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="DisableProgress">
+            <Layer>
+                <Section style_section="progress"/>
+            </Layer>
+        </StyleLayout>
+    </WidgetStyle>
+
+</Style>
+

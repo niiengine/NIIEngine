@@ -1,0 +1,5 @@
+﻿++ Libre Office
+
+Replacement for: Microsoft Office
+
+LibreOffice is a multi-platform office productivity suite compatible with all major file formats.

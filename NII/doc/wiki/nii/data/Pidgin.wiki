@@ -1,0 +1,16 @@
+﻿++ Pidgin
+
+Replacement for: Trillian, AIM, MSN, Yahoo and ICQ chat clients
+
+Pidgin (gaim) is a multi-protocol instant messaging client, with support for:
+
+AIM (Oscar and TOC protocols),
+ICQ,
+MSN Messenger,
+Yahoo,
+IRC,
+Jabber,
+Novell,
+Gadu-Gadu, and
+Zephyr networks.
+Pidgin also supports plugins, for additional functionality.

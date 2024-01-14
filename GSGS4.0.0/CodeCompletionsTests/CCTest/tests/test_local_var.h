@@ -1,0 +1,2 @@
+const ClassWithMembers& path;
+path.

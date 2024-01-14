@@ -1,0 +1,21 @@
+﻿++ 2d engine
+
+[antigrain]
+[Mokoi Gaming]
+[LOVE]
+[ptk]
+[PPTactical Engine ]
+[Daimonin]
+[tamy]
+[scummvm]
+[Orx]
+[mage]
+[stardust-particle-engine]
+[HGE]
+[eepp]
+[proto] *javascript*
+[mofe] *Multiplayer Online Fighting Engine*
+[nostalgia]
+[arclib]
+[angel-engine]
+[ethanon]

@@ -1,0 +1,17 @@
+/** NiiEngine代码分布式管理脚本,这个脚本需要在cmake2.8.x以上版本中运行
+*/
+
+闽登科技项目核心:
+    NiiEngine
+闽登科技项目平台:
+    Win32
+    Linux
+    Android
+    OSX
+    IOS
+    NaCl
+闽登科技项目模块:
+    
+    
+闽登科技项目插件:
+    

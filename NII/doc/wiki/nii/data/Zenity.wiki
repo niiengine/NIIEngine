@@ -1,0 +1,3 @@
+﻿++ Zenity
+
+Show GUI dialogs from scripts

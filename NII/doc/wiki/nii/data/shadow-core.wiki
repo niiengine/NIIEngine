@@ -1,0 +1,3 @@
+﻿++ shadow-core
+
+http://code.google.com/p/shadow-core/

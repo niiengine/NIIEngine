@@ -1,0 +1,29 @@
+NII_Document
+    zziplib
+    libarchive
+    file
+NII_Document_END
+
+NII_ALL
+NIIINCLUDE
+    NiiVFSManager.h
+    NiiVFS.h
+NIISOURCE
+    NiiVFSManager.cpp
+    NiiVFS.cpp
+NII_ALL_END
+
+NII_WIN32
+NIIINCLUDE
+NIISOURCE
+NII_WIN32_END
+
+NII_LINUX
+NIIINCLUDE
+NIISOURCE
+NII_LINUX_END
+
+NII_OSX
+NIIINCLUDE
+NIISOURCE
+NII_OSX_END

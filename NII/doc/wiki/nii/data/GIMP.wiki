@@ -1,0 +1,9 @@
+﻿++ GIMP
+
+Replacement for: Photoshop, Paint Shop Pro
+
+GIMP is an acronym for GNU Image Manipulation Program. It can be used as a simple paint program, an expert quality photo retouching program, an online batch processing system, a mass production image renderer, an image format converter, etc.
+
+GIMP is expandable and extensible. It is designed to be augmented with plug-ins and extensions to do just about anything.
+
+Anyone who is familiar with the GNU/Linux operating system has probably seen/used the GIMP at some stage. In terms of compatibility, GIMP can open/manipulate the PhotoShop PSD format and the Paint Shop Pro PSP format.

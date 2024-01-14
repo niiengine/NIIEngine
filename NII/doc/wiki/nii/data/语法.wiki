@@ -1,0 +1,25 @@
+﻿++ 语法
+
+一些可以用的引号如下：
+"
+'''
+//
+/////
+\
+因此，”开源“词条也可以这样插入。
+[:page: "开源"]
+[:page: '''开源''']
+[:page: //开源//]
+[:page: /////开源/////]
+[:page: \\开源\\]
+一些WikidPad自带的插入标记：
+page 例如上面的例子
+rel 插入有关的列表：
+parents: 父词条
+children: 子词条
+parentless: 孤儿词条
+undefined: 没定义的词条
+back: 回到历史记录中的上一个
+savedsearch 已保存的搜索
+toc 目录
+eval Python动态演算

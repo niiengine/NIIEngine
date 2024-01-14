@@ -1,0 +1,34 @@
+<?xml version="1.0" ?>
+<Layout ver="4">
+
+<Widget name="" type="DefaultWindow">
+    <Widget name="Text" type="TaharezLook/StaticText">
+        <Property name="FrameEnabled" value="False" />
+        <Property name="HorzFormatting" value="WordWrapCentreAligned" />
+        <Property name="VertFormatting" value="CentreAligned" />
+        <Property name="Area" value="{{0.5,0},{0.1,0},{0.9,0},{0.4,0}}" />
+        <Property name="BackgroundEnabled" value="False" />
+    </Widget>
+
+    <Widget name="Button1" type="TaharezLook/Button">
+        <Property name="Text" value="- One -" />
+        <Property name="Area" value="{{0.1,0},{0.1,0},{0.3,0},{0.2,0}}" />
+    </Widget>
+
+    <Widget name="Button2" type="TaharezLook/Button">
+        <Property name="Text" value="- Two -" />
+        <Property name="Area" value="{{0.3,0},{0.3,0},{0.5,0},{0.4,0}}" />
+    </Widget>
+
+    <Widget name="Button3" type="TaharezLook/Button">
+        <Property name="Text" value="- Three -" />
+        <Property name="Area" value="{{0.5,0},{0.5,0},{0.7,0},{0.6,0}}" />
+    </Widget>
+
+    <Widget name="Button4" type="TaharezLook/Button">
+        <Property name="Text" value="- Four -" />
+        <Property name="Area" value="{{0.7,0},{0.7,0},{0.9,0},{0.8,0}}" />
+    </Widget>
+</Widget>
+
+</Layout>

@@ -1,0 +1,13 @@
+﻿++ Min GW
+
+Replacement for: Microsoft Visual C++
+
+MinGW (Minimalist GNU for Windows) provides many of the GNU programming utilities on Windows. It includes the GNU Compiler Collection (GCC), Binutils, Gnu Debugger (GDB), make, and more.
+
+Application:
+
+Mozilla Thunderbird
+
+Replacement for: Outlook, Outlook Express
+
+Versatile and modular e-mail client. Supports themes and extensions to customise and increase its functionality. Has integrated "smart" spam filter, to cut down significantly on spam mail. Also integrates (via EnigMail extension) seamlessly with GNU GPG.

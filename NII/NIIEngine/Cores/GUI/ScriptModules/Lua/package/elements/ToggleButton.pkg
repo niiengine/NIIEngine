@@ -1,0 +1,5 @@
+class ToggleButton : public Button
+{
+	bool isOn() const;
+	void on(bool set);
+};

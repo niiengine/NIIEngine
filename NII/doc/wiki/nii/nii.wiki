@@ -1,0 +1,37 @@
+[wiki_db]
+data_dir = data
+
+[main]
+footnotes_as_wikiwords = False
+tree_expandednodes_rememberduration = 2
+last_wiki_word = 其他
+hotkey_showhide_bywiki = 
+log_window_autoshow = Gray
+export_default_dir = 
+filestorage_identity_filenamemustmatch = False
+tabs_maxcharacters = 0
+wiki_icon = 
+headingsasaliases_depth = 0
+wiki_name = nii
+wikipagetitle_creationmode = 1
+wikipagetitleprefix = ++
+wikipagetitle_fromlinktitle = False
+wiki_lastactivetabno = 0
+first_wiki_word = 
+wikipagefiles_gracefuloutsideaddandremove = True
+versioning_storagelocation = 0
+wiki_lasttabssubctrls = textedit
+tree_expandednodes_descriptorpathes_main = wikipage/nii,wikipage/项目构建系统;wikipage/nii,wikipage/其他,wikipage/apache基金中中的软件;wikipage/nii,wikipage/代码调试工具;wikipage/nii;wikipage/nii,wikipage/代码管理器;wikipage/nii,wikipage/其他,wikipage/gnu中的window方案代替品;wikipage/nii,wikipage/其他,wikipage/gnome基金中的软件;wikipage/nii,wikipage/2d engine;wikipage/nii,wikipage/其他,wikipage/freedesktop中列举的软件;wikipage/nii,wikipage/其他,wikipage/gnome基金中的软件,wikipage/Official applications
+wiki_wikilanguage = wikidpad_default_2_0
+tree_force_scratchpad_visibility = True
+further_wiki_words = 
+tree_expandednodes_descriptorpathes_views = 
+tree_last_root_wiki_word = nii
+db_pagefile_suffix = .wiki
+filestorage_identity_moddatemustmatch = False
+filestorage_identity_moddateisenough = False
+wiki_database_type = original_sqlite
+wikipagefiles_asciionly = False
+versioning_completesteps = 10
+wiki_readonly = False
+

@@ -1,0 +1,3 @@
+﻿++ APR
+
+Apache Portable Runtime, a portability library written in C

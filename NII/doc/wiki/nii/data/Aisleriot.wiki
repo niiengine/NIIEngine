@@ -1,0 +1,3 @@
+﻿++ Aisleriot
+
+A collection of solitaire card games

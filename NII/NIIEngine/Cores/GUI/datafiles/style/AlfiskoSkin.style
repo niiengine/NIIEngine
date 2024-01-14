@@ -1,0 +1,2487 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Style ver="7">
+    <WidgetStyle name="AlfiskoSkin/Label">
+        <StyleProperty signal_refresh="true" value="FFFFFFFF" type="Colour" name="NormalTextColour"/>
+        <StyleProperty signal_refresh="true" value="FFDDDDDD" type="Colour" name="DisabledTextColour"/>
+        <StyleProperty signal_refresh="true" value="Centre" type="VTextLayout" name="VTLayout1"/>
+        <StyleProperty signal_refresh="true" value="Centre" type="HTextLayout" name="HTLayout1"/>
+        <Property name="Size" value="{{0, 128}, {0, 32}}" />
+        <StyleSection name="Label">
+            <TextCom>
+                <ComArea>
+                    <SizeDefine type="LeftEdge">
+                        <AbsSize value="0"/>
+                    </SizeDefine>
+                    <SizeDefine type="TopEdge">
+                        <AbsSize value="0"/>
+                    </SizeDefine>
+                    <SizeDefine type="Width">
+                        <RelSize scale="1" type="Width"/>
+                    </SizeDefine>
+                    <SizeDefine type="Height">
+                        <RelSize scale="1" type="Height"/>
+                    </SizeDefine>
+                </ComArea>
+                <VLayoutProperty name="VTLayout1"/>
+                <HLayoutProperty name="HTLayout1"/>
+            </TextCom>
+        </StyleSection>
+        <StyleLayout name="Enabled">
+            <Layer>
+                <Section id="Label">
+                    <ColourProperty name="NormalTextColour"/>
+                </Section>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Disabled">
+            <Layer>
+                <Section id="Label">
+                    <ColourProperty name="DisabledTextColour"/>
+                </Section>
+            </Layer>
+        </StyleLayout>
+    </WidgetStyle>
+    <WidgetStyle name="AlfiskoSkin/Button">
+        <StyleProperty value="Centre" type="VTextLayout" name="VLayout1"/>
+        <StyleProperty value="Centre" type="HTextLayout" name="HLayout1"/>
+        <Property name="Size" value="{{0, 96}, {0, 32}}" />
+        <StyleSection name="label">
+            <TextCom>
+                <ComArea>
+                    <SizeDefine type="LeftEdge">
+                        <AbsSize value="2"/>
+                    </SizeDefine>
+                    <SizeDefine type="TopEdge">
+                        <AbsSize value="2"/>
+                    </SizeDefine>
+                </ComArea>
+                <Colours top_left="FF000000" bottom_left="FF000000" top_right="FF000000" bottom_right="FF000000"/>
+                <VLayoutProperty name="VLayout1"/>
+                <HLayoutProperty name="HLayout1"/>
+            </TextCom>
+            <TextCom>
+                <VLayoutProperty name="VLayout1"/>
+                <HLayoutProperty name="HLayout1"/>
+            </TextCom>
+        </StyleSection>
+        <StyleSection name="normal">
+            <FrameCom>
+                <ComPixel type="TopLeftCorner" pixel_id="AlfiskoSkin/ButtonNormalTL"/>
+                <ComPixel type="TopRightCorner" pixel_id="AlfiskoSkin/ButtonNormalTR"/>
+                <ComPixel type="BottomLeftCorner" pixel_id="AlfiskoSkin/ButtonNormalBL"/>
+                <ComPixel type="BottomRightCorner" pixel_id="AlfiskoSkin/ButtonNormalBR"/>
+                <ComPixel type="LeftEdge" pixel_id="AlfiskoSkin/ButtonNormalL"/>
+                <ComPixel type="RightEdge" pixel_id="AlfiskoSkin/ButtonNormalR"/>
+                <ComPixel type="TopEdge" pixel_id="AlfiskoSkin/ButtonNormalT"/>
+                <ComPixel type="BottomEdge" pixel_id="AlfiskoSkin/ButtonNormalB"/>
+            </FrameCom>
+            <ImageryCom>
+                <ComArea>
+                    <SizeDefine type="LeftEdge">
+                        <PixelSize name="AlfiskoSkin/ButtonNormalL" dimension="Width"/>
+                    </SizeDefine>
+                    <SizeDefine type="TopEdge">
+                        <PixelSize name="AlfiskoSkin/ButtonNormalT" dimension="Height"/>
+                    </SizeDefine>
+                    <SizeDefine type="RightEdge">
+                        <SizeOp op="Subtract">
+                            <RelSize scale="1" type="Width"/>
+                            <PixelSize name="AlfiskoSkin/ButtonNormalR" dimension="Width"/>
+                        </SizeOp>
+                    </SizeDefine>
+                    <SizeDefine type="BottomEdge">
+                        <RelSize scale=".5" type="Height"/>
+                    </SizeDefine>
+                </ComArea>
+                <ComPixel pixel_id="AlfiskoSkin/ButtonNormalFill1"/>
+                <VLayout type="Extrude"/>
+                <HLayout type="Extrude"/>
+            </ImageryCom>
+            <ImageryCom>
+                <ComArea>
+                    <SizeDefine type="LeftEdge">
+                        <PixelSize name="AlfiskoSkin/ButtonNormalL" dimension="Width"/>
+                    </SizeDefine>
+                    <SizeDefine type="TopEdge">
+                        <RelSize scale=".5" type="Height"/>
+                    </SizeDefine>
+                    <SizeDefine type="RightEdge">
+                        <SizeOp op="Subtract">
+                            <RelSize scale="1" type="Width"/>
+                            <PixelSize name="AlfiskoSkin/ButtonNormalR" dimension="Width"/>
+                        </SizeOp>
+                    </SizeDefine>
+                    <SizeDefine type="BottomEdge">
+                        <SizeOp op="Subtract">
+                            <RelSize scale="1" type="Height"/>
+                            <PixelSize name="AlfiskoSkin/ButtonNormalB" dimension="Height"/>
+                        </SizeOp>
+                    </SizeDefine>
+                </ComArea>
+                <ComPixel pixel_id="AlfiskoSkin/ButtonNormalFill2"/>
+                <VLayout type="Extrude"/>
+                <HLayout type="Extrude"/>
+            </ImageryCom>
+        </StyleSection>
+        <StyleSection name="hover">
+            <FrameCom>
+                <ComPixel type="TopLeftCorner" pixel_id="AlfiskoSkin/ButtonHoverTL"/>
+                <ComPixel type="TopRightCorner" pixel_id="AlfiskoSkin/ButtonHoverTR"/>
+                <ComPixel type="BottomLeftCorner" pixel_id="AlfiskoSkin/ButtonHoverBL"/>
+                <ComPixel type="BottomRightCorner" pixel_id="AlfiskoSkin/ButtonHoverBR"/>
+                <ComPixel type="LeftEdge" pixel_id="AlfiskoSkin/ButtonHoverL"/>
+                <ComPixel type="RightEdge" pixel_id="AlfiskoSkin/ButtonHoverR"/>
+                <ComPixel type="TopEdge" pixel_id="AlfiskoSkin/ButtonHoverT"/>
+                <ComPixel type="BottomEdge" pixel_id="AlfiskoSkin/ButtonHoverB"/>
+            </FrameCom>
+            <ImageryCom>
+                <ComArea>
+                    <SizeDefine type="LeftEdge">
+                        <PixelSize name="AlfiskoSkin/ButtonHoverL" dimension="Width"/>
+                    </SizeDefine>
+                    <SizeDefine type="TopEdge">
+                        <PixelSize name="AlfiskoSkin/ButtonHoverT" dimension="Height"/>
+                    </SizeDefine>
+                    <SizeDefine type="RightEdge">
+                        <SizeOp op="Subtract">
+                            <RelSize scale="1" type="Width"/>
+                            <PixelSize name="AlfiskoSkin/ButtonHoverR" dimension="Width"/>
+                        </SizeOp>
+                    </SizeDefine>
+                    <SizeDefine type="BottomEdge">
+                        <RelSize scale=".5" type="Height"/>
+                    </SizeDefine>
+                </ComArea>
+                <ComPixel pixel_id="AlfiskoSkin/ButtonHoverFill1"/>
+                <VLayout type="Extrude"/>
+                <HLayout type="Extrude"/>
+            </ImageryCom>
+            <ImageryCom>
+                <ComArea>
+                    <SizeDefine type="LeftEdge">
+                        <PixelSize name="AlfiskoSkin/ButtonHoverL" dimension="Width"/>
+                    </SizeDefine>
+                    <SizeDefine type="TopEdge">
+                        <RelSize scale=".5" type="Height"/>
+                    </SizeDefine>
+                    <SizeDefine type="RightEdge">
+                        <SizeOp op="Subtract">
+                            <RelSize scale="1" type="Width"/>
+                            <PixelSize name="AlfiskoSkin/ButtonHoverR" dimension="Width"/>
+                        </SizeOp>
+                    </SizeDefine>
+                    <SizeDefine type="BottomEdge">
+                        <SizeOp op="Subtract">
+                            <RelSize scale="1" type="Height"/>
+                            <PixelSize name="AlfiskoSkin/ButtonHoverB" dimension="Height"/>
+                        </SizeOp>
+                    </SizeDefine>
+                </ComArea>
+                <ComPixel pixel_id="AlfiskoSkin/ButtonHoverFill2"/>
+                <VLayout type="Extrude"/>
+                <HLayout type="Extrude"/>
+            </ImageryCom>
+        </StyleSection>
+        <StyleSection name="pushed">
+            <FrameCom>
+                <ComPixel type="TopLeftCorner" pixel_id="AlfiskoSkin/ButtonPushedTL"/>
+                <ComPixel type="TopRightCorner" pixel_id="AlfiskoSkin/ButtonPushedTR"/>
+                <ComPixel type="BottomLeftCorner" pixel_id="AlfiskoSkin/ButtonPushedBL"/>
+                <ComPixel type="BottomRightCorner" pixel_id="AlfiskoSkin/ButtonPushedBR"/>
+                <ComPixel type="LeftEdge" pixel_id="AlfiskoSkin/ButtonPushedL"/>
+                <ComPixel type="RightEdge" pixel_id="AlfiskoSkin/ButtonPushedR"/>
+                <ComPixel type="TopEdge" pixel_id="AlfiskoSkin/ButtonPushedT"/>
+                <ComPixel type="BottomEdge" pixel_id="AlfiskoSkin/ButtonPushedB"/>
+            </FrameCom>
+            <ImageryCom>
+                <ComArea>
+                    <SizeDefine type="LeftEdge">
+                        <PixelSize name="AlfiskoSkin/ButtonPushedL" dimension="Width"/>
+                    </SizeDefine>
+                    <SizeDefine type="TopEdge">
+                        <PixelSize name="AlfiskoSkin/ButtonPushedT" dimension="Height"/>
+                    </SizeDefine>
+                    <SizeDefine type="RightEdge">
+                        <SizeOp op="Subtract">
+                            <RelSize scale="1" type="Width"/>
+                            <PixelSize name="AlfiskoSkin/ButtonPushedR" dimension="Width"/>
+                        </SizeOp>
+                    </SizeDefine>
+                    <SizeDefine type="BottomEdge">
+                        <RelSize scale=".5" type="Height"/>
+                    </SizeDefine>
+                </ComArea>
+                <ComPixel pixel_id="AlfiskoSkin/ButtonPushedFill1"/>
+                <VLayout type="Extrude"/>
+                <HLayout type="Extrude"/>
+            </ImageryCom>
+            <ImageryCom>
+                <ComArea>
+                    <SizeDefine type="LeftEdge">
+                        <PixelSize name="AlfiskoSkin/ButtonPushedL" dimension="Width"/>
+                    </SizeDefine>
+                    <SizeDefine type="TopEdge">
+                        <RelSize scale=".5" type="Height"/>
+                    </SizeDefine>
+                    <SizeDefine type="RightEdge">
+                        <SizeOp op="Subtract">
+                            <RelSize scale="1" type="Width"/>
+                            <PixelSize name="AlfiskoSkin/ButtonPushedR" dimension="Width"/>
+                        </SizeOp>
+                    </SizeDefine>
+                    <SizeDefine type="BottomEdge">
+                        <SizeOp op="Subtract">
+                            <RelSize scale="1" type="Height"/>
+                            <PixelSize name="AlfiskoSkin/ButtonPushedB" dimension="Height"/>
+                        </SizeOp>
+                    </SizeDefine>
+                </ComArea>
+                <ComPixel pixel_id="AlfiskoSkin/ButtonPushedFill2"/>
+                <VLayout type="Extrude"/>
+                <HLayout type="Extrude"/>
+            </ImageryCom>
+        </StyleSection>
+        <StyleLayout name="Normal">
+            <Layer>
+                <Section id="normal"/>
+                <Section id="label"/>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Hover">
+            <Layer>
+                <Section id="hover"/>
+                <Section id="label"/>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Pushed">
+            <Layer>
+                <Section id="pushed"/>
+                <Section id="label"/>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="PushedOff">
+            <Layer>
+                <Section id="normal"/>
+                <Section id="label"/>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Disabled">
+            <Layer>
+                <Section id="normal"/>
+                <Section id="label"/>
+            </Layer>
+        </StyleLayout>
+    </WidgetStyle>
+    <WidgetStyle name="AlfiskoSkin/ImageButton">
+        <StyleProperty signal_refresh="true" value="" type="Image" name="NormalImage"/>
+        <StyleProperty signal_refresh="true" value="" type="Image" name="HoverImage"/>
+        <StyleProperty signal_refresh="true" value="" type="Image" name="PushedImage"/>
+        <StyleProperty signal_refresh="true" value="" type="Image" name="DisabledImage"/>
+        <StyleProperty signal_refresh="true" value="Extrude" type="VLayout" name="VLayout1"/>
+        <StyleProperty signal_refresh="true" value="Extrude" type="HLayout" name="HLayout1"/>
+        <Property name="Size" value="{{0, 96}, {0, 32}}" />
+        <StyleSection name="normal">
+            <ImageryCom>
+                <PixelProperty name="NormalImage"/>
+                <VLayoutProperty name="VLayout1"/>
+                <HLayoutProperty name="HLayout1"/>
+            </ImageryCom>
+        </StyleSection>
+        <StyleSection name="hover">
+            <ImageryCom>
+                <PixelProperty name="HoverImage"/>
+                <VLayoutProperty name="VLayout1"/>
+                <HLayoutProperty name="HLayout1"/>
+            </ImageryCom>
+        </StyleSection>
+        <StyleSection name="pushed">
+            <ImageryCom>
+                <PixelProperty name="PushedImage"/>
+                <VLayoutProperty name="VLayout1"/>
+                <HLayoutProperty name="HLayout1"/>
+            </ImageryCom>
+        </StyleSection>
+        <StyleSection name="disabled">
+            <ImageryCom>
+                <PixelProperty name="DisabledImage"/>
+                <VLayoutProperty name="VLayout1"/>
+                <HLayoutProperty name="HLayout1"/>
+            </ImageryCom>
+        </StyleSection>
+        <StyleLayout name="Normal">
+            <Layer>
+                <Section id="normal"/>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Hover">
+            <Layer>
+                <Section id="hover"/>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Pushed">
+            <Layer>
+                <Section id="pushed"/>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="PushedOff">
+            <Layer>
+                <Section id="hover"/>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Disabled">
+            <Layer>
+                <Section id="disabled"/>
+            </Layer>
+        </StyleLayout>
+    </WidgetStyle>
+    <WidgetStyle name="AlfiskoSkin/RadioButton">
+        <StyleProperty signal_refresh="true" value="FFFFFFFF" type="ColourArea" name="LabelColour"/>
+        <Property name="Size" value="{{0, 256}, {0, 32}}" />
+        <StyleSection name="label">
+            <TextCom>
+                <ComArea>
+                    <SizeDefine type="LeftEdge">
+                        <SizeOp op="Add">
+                            <PixelSize name="AlfiskoSkin/RadioButtonNormal" dimension="Width"/>
+                            <AbsSize value="3"/>
+                        </SizeOp>
+                    </SizeDefine>
+                </ComArea>
+                <ColourProperty name="LabelColour"/>
+                <VLayout type="Centre"/>
+                <HLayout type="LeftAligned"/>
+            </TextCom>
+        </StyleSection>
+        <StyleSection name="normal">
+            <ImageryCom>
+                <ComPixel pixel_id="AlfiskoSkin/RadioButtonNormal"/>
+                <VLayout type="Centre"/>
+                <HLayout type="LeftAligned"/>
+            </ImageryCom>
+        </StyleSection>
+        <StyleSection name="hover">
+            <ImageryCom>
+                <ComPixel pixel_id="AlfiskoSkin/RadioButtonHover"/>
+                <VLayout type="Centre"/>
+                <HLayout type="LeftAligned"/>
+            </ImageryCom>
+        </StyleSection>
+        <StyleSection name="selected">
+            <ImageryCom>
+                <ComPixel pixel_id="AlfiskoSkin/RadioButtonChecked"/>
+                <VLayout type="Centre"/>
+                <HLayout type="LeftAligned"/>
+            </ImageryCom>
+        </StyleSection>
+        <StyleLayout name="Normal">
+            <Layer>
+                <Section id="normal"/>
+                <Section id="label"/>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Hover">
+            <Layer>
+                <Section id="hover"/>
+                <Section id="label"/>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Pushed">
+            <Layer>
+                <Section id="selected"/>
+                <Section id="label"/>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Disabled">
+            <Layer>
+                <Section id="normal">
+                    <Colours top_left="FF7F7F7F" bottom_left="FF7F7F7F" top_right="FF7F7F7F" bottom_right="FF7F7F7F"/>
+                </Section>
+                <Section id="label">
+                    <Colours top_left="FF7F7F7F" bottom_left="FF7F7F7F" top_right="FF7F7F7F" bottom_right="FF7F7F7F"/>
+                </Section>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="SelectedNormal">
+            <Layer>
+                <Section id="selected"/>
+                <Section id="label"/>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="SelectedHover">
+            <Layer>
+                <Section id="hover"/>
+                <Section id="label"/>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="SelectedPushed">
+            <Layer>
+                <Section id="normal"/>
+                <Section id="label"/>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="SelectedDisabled">
+            <Layer>
+                <Section id="selected">
+                    <Colours top_left="FF7F7F7F" bottom_left="FF7F7F7F" top_right="FF7F7F7F" bottom_right="FF7F7F7F"/>
+                </Section>
+                <Section id="label">
+                    <Colours top_left="FF7F7F7F" bottom_left="FF7F7F7F" top_right="FF7F7F7F" bottom_right="FF7F7F7F"/>
+                </Section>
+            </Layer>
+        </StyleLayout>
+    </WidgetStyle>
+    <WidgetStyle name="AlfiskoSkin/Checkbox">
+        <StyleProperty signal_refresh="true" value="FFFFFFFF" type="ColourArea" name="LabelColour"/>
+        <Property name="Size" value="{{0, 128}, {0, 32}}" />
+        <StyleSection name="label">
+            <TextCom>
+                <ComArea>
+                    <SizeDefine type="LeftEdge">
+                        <SizeOp op="Add">
+                            <PixelSize name="AlfiskoSkin/CheckboxNormal" dimension="Width"/>
+                            <AbsSize value="3"/>
+                        </SizeOp>
+                    </SizeDefine>
+                </ComArea>
+                <ColourProperty name="LabelColour"/>
+                <VLayout type="Centre"/>
+                <HLayout type="LeftAligned"/>
+            </TextCom>
+        </StyleSection>
+        <StyleSection name="normal">
+            <ImageryCom>
+                <ComPixel pixel_id="AlfiskoSkin/CheckboxNormal"/>
+                <VLayout type="Centre"/>
+                <HLayout type="LeftAligned"/>
+            </ImageryCom>
+        </StyleSection>
+        <StyleSection name="hover">
+            <ImageryCom>
+                <ComPixel pixel_id="AlfiskoSkin/CheckboxHover"/>
+                <VLayout type="Centre"/>
+                <HLayout type="LeftAligned"/>
+            </ImageryCom>
+        </StyleSection>
+        <StyleSection name="selected">
+            <ImageryCom>
+                <ComPixel pixel_id="AlfiskoSkin/CheckboxChecked"/>
+                <VLayout type="Centre"/>
+                <HLayout type="LeftAligned"/>
+            </ImageryCom>
+        </StyleSection>
+        <StyleLayout name="Normal">
+            <Layer>
+                <Section id="normal"/>
+                <Section id="label"/>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Hover">
+            <Layer>
+                <Section id="hover"/>
+                <Section id="label"/>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Pushed">
+            <Layer>
+                <Section id="selected"/>
+                <Section id="label"/>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Disabled">
+            <Layer>
+                <Section id="normal">
+                    <Colours top_left="FF7F7F7F" bottom_left="FF7F7F7F" top_right="FF7F7F7F" bottom_right="FF7F7F7F"/>
+                </Section>
+                <Section id="label">
+                    <Colours top_left="FF7F7F7F" bottom_left="FF7F7F7F" top_right="FF7F7F7F" bottom_right="FF7F7F7F"/>
+                </Section>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="SelectedNormal">
+            <Layer>
+                <Section id="selected"/>
+                <Section id="label"/>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="SelectedHover">
+            <Layer>
+                <Section id="hover"/>
+                <Section id="label"/>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="SelectedPushed">
+            <Layer>
+                <Section id="normal"/>
+                <Section id="label"/>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="SelectedDisabled">
+            <Layer>
+                <Section id="selected">
+                    <Colours top_left="FF7F7F7F" bottom_left="FF7F7F7F" top_right="FF7F7F7F" bottom_right="FF7F7F7F"/>
+                </Section>
+                <Section id="label">
+                    <Colours top_left="FF7F7F7F" bottom_left="FF7F7F7F" top_right="FF7F7F7F" bottom_right="FF7F7F7F"/>
+                </Section>
+            </Layer>
+        </StyleLayout>
+    </WidgetStyle>
+    <WidgetStyle name="AlfiskoSkin/Titlebar">
+        <StyleProperty signal_refresh="true" value="FFFFFFFF" type="ColourArea" name="CaptionColour"/>
+        <Property name="Size" value="{{0, 256}, {0, 32}}" />
+        <StyleSection name="active">
+            <FrameCom>
+                <ComPixel type="TopLeftCorner" pixel_id="AlfiskoSkin/TitlebarActiveTL"/>
+                <ComPixel type="TopRightCorner" pixel_id="AlfiskoSkin/TitlebarActiveTR"/>
+                <ComPixel type="BottomLeftCorner" pixel_id="AlfiskoSkin/TitlebarActiveBL"/>
+                <ComPixel type="BottomRightCorner" pixel_id="AlfiskoSkin/TitlebarActiveBR"/>
+                <ComPixel type="LeftEdge" pixel_id="AlfiskoSkin/TitlebarActiveL"/>
+                <ComPixel type="RightEdge" pixel_id="AlfiskoSkin/TitlebarActiveR"/>
+                <ComPixel type="TopEdge" pixel_id="AlfiskoSkin/TitlebarActiveT"/>
+                <ComPixel type="BottomEdge" pixel_id="AlfiskoSkin/TitlebarActiveB"/>
+            </FrameCom>
+            <ImageryCom>
+                <ComArea>
+                    <SizeDefine type="LeftEdge">
+                        <PixelSize name="AlfiskoSkin/TitlebarActiveL" dimension="Width"/>
+                    </SizeDefine>
+                    <SizeDefine type="TopEdge">
+                        <PixelSize name="AlfiskoSkin/TitlebarActiveT" dimension="Height"/>
+                    </SizeDefine>
+                    <SizeDefine type="RightEdge">
+                        <SizeOp op="Subtract">
+                            <RelSize scale="1" type="Width"/>
+                            <PixelSize name="AlfiskoSkin/TitlebarActiveR" dimension="Width"/>
+                        </SizeOp>
+                    </SizeDefine>
+                    <SizeDefine type="BottomEdge">
+                        <RelSize scale=".5" type="Height"/>
+                    </SizeDefine>
+                </ComArea>
+                <ComPixel pixel_id="AlfiskoSkin/TitlebarActiveFill1"/>
+                <VLayout type="Extrude"/>
+                <HLayout type="Extrude"/>
+            </ImageryCom>
+            <ImageryCom>
+                <ComArea>
+                    <SizeDefine type="LeftEdge">
+                        <PixelSize name="AlfiskoSkin/TitlebarActiveL" dimension="Width"/>
+                    </SizeDefine>
+                    <SizeDefine type="TopEdge">
+                        <RelSize scale=".5" type="Height"/>
+                    </SizeDefine>
+                    <SizeDefine type="RightEdge">
+                        <SizeOp op="Subtract">
+                            <RelSize scale="1" type="Width"/>
+                            <PixelSize name="AlfiskoSkin/TitlebarActiveR" dimension="Width"/>
+                        </SizeOp>
+                    </SizeDefine>
+                    <SizeDefine type="BottomEdge">
+                        <SizeOp op="Subtract">
+                            <RelSize scale="1" type="Height"/>
+                            <PixelSize name="AlfiskoSkin/TitlebarActiveB" dimension="Height"/>
+                        </SizeOp>
+                    </SizeDefine>
+                </ComArea>
+                <ComPixel pixel_id="AlfiskoSkin/TitlebarActiveFill2"/>
+                <VLayout type="Extrude"/>
+                <HLayout type="Extrude"/>
+            </ImageryCom>
+        </StyleSection>
+        <StyleSection name="inactive">
+            <FrameCom>
+                <ComPixel type="TopLeftCorner" pixel_id="AlfiskoSkin/TitlebarInactiveTL"/>
+                <ComPixel type="TopRightCorner" pixel_id="AlfiskoSkin/TitlebarInactiveTR"/>
+                <ComPixel type="BottomLeftCorner" pixel_id="AlfiskoSkin/TitlebarInactiveBL"/>
+                <ComPixel type="BottomRightCorner" pixel_id="AlfiskoSkin/TitlebarInactiveBR"/>
+                <ComPixel type="LeftEdge" pixel_id="AlfiskoSkin/TitlebarInactiveL"/>
+                <ComPixel type="RightEdge" pixel_id="AlfiskoSkin/TitlebarInactiveR"/>
+                <ComPixel type="TopEdge" pixel_id="AlfiskoSkin/TitlebarInactiveT"/>
+                <ComPixel type="BottomEdge" pixel_id="AlfiskoSkin/TitlebarInactiveB"/>
+            </FrameCom>
+            <ImageryCom>
+                <ComArea>
+                    <SizeDefine type="LeftEdge">
+                        <PixelSize name="AlfiskoSkin/TitlebarInactiveL" dimension="Width"/>
+                    </SizeDefine>
+                    <SizeDefine type="TopEdge">
+                        <PixelSize name="AlfiskoSkin/TitlebarInactiveT" dimension="Height"/>
+                    </SizeDefine>
+                    <SizeDefine type="RightEdge">
+                        <SizeOp op="Subtract">
+                            <RelSize scale="1" type="Width"/>
+                            <PixelSize name="AlfiskoSkin/TitlebarInactiveR" dimension="Width"/>
+                        </SizeOp>
+                    </SizeDefine>
+                    <SizeDefine type="BottomEdge">
+                        <RelSize scale=".5" type="Height"/>
+                    </SizeDefine>
+                </ComArea>
+                <ComPixel pixel_id="AlfiskoSkin/TitlebarInactiveFill1"/>
+                <VLayout type="Extrude"/>
+                <HLayout type="Extrude"/>
+            </ImageryCom>
+            <ImageryCom>
+                <ComArea>
+                    <SizeDefine type="LeftEdge">
+                        <PixelSize name="AlfiskoSkin/TitlebarInactiveL" dimension="Width"/>
+                    </SizeDefine>
+                    <SizeDefine type="TopEdge">
+                        <RelSize scale=".5" type="Height"/>
+                    </SizeDefine>
+                    <SizeDefine type="RightEdge">
+                        <SizeOp op="Subtract">
+                            <RelSize scale="1" type="Width"/>
+                            <PixelSize name="AlfiskoSkin/TitlebarInactiveR" dimension="Width"/>
+                        </SizeOp>
+                    </SizeDefine>
+                    <SizeDefine type="BottomEdge">
+                        <SizeOp op="Subtract">
+                            <RelSize scale="1" type="Height"/>
+                            <PixelSize name="AlfiskoSkin/TitlebarInactiveB" dimension="Height"/>
+                        </SizeOp>
+                    </SizeDefine>
+                </ComArea>
+                <ComPixel pixel_id="AlfiskoSkin/TitlebarInactiveFill2"/>
+                <VLayout type="Extrude"/>
+                <HLayout type="Extrude"/>
+            </ImageryCom>
+        </StyleSection>
+        <StyleSection name="caption">
+            <TextCom>
+                <ComArea>
+                    <SizeDefine type="LeftEdge">
+                        <SizeOp op="Add">
+                            <PixelSize name="AlfiskoSkin/TitlebarDummy1" dimension="Width"/>
+                            <AbsSize value="1"/>
+                        </SizeOp>
+                    </SizeDefine>
+                    <SizeDefine type="TopEdge">
+                        <AbsSize value="2"/>
+                    </SizeDefine>
+                </ComArea>
+                <Colours top_left="FF000000" bottom_left="FF000000" top_right="FF000000" bottom_right="FF000000"/>
+                <VLayout type="Centre"/>
+            </TextCom>
+            <TextCom>
+                <ComArea>
+                    <SizeDefine type="LeftEdge">
+                        <PixelSize name="AlfiskoSkin/TitlebarDummy1" dimension="Width"/>
+                    </SizeDefine>
+                </ComArea>
+                <ColourProperty name="CaptionColour"/>
+                <VLayout type="Centre"/>
+            </TextCom>
+        </StyleSection>
+        <StyleLayout name="Active">
+            <Layer>
+                <Section id="active"/>
+                <Section id="caption"/>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Inactive">
+            <Layer>
+                <Section id="inactive"/>
+                <Section id="caption"/>
+            </Layer>
+        </StyleLayout>
+    </WidgetStyle>
+    <WidgetStyle name="AlfiskoSkin/FrameWindow">
+        <ListenerProperty target="CaptionColour" widget="__auto_titlebar__" value="FFFFFFFF" type="ColourArea" name="CaptionColour"/>
+        <ListenerProperty target="Font" widget="__auto_titlebar__" type="Font" name="TitlebarFont"/>
+        <Property name="AutoRenderingSurface" value="true"/>
+        <Property name="Size" value="{{0.3, 0}, {0.3, 0}}" />
+        <StyleSpecial name="ClientWithTitleWithFrame">
+            <ComArea>
+                <SizeDefine type="LeftEdge">
+                    <PixelSize name="AlfiskoSkin/WindowClipL" dimension="Width"/>
+                </SizeDefine>
+                <SizeDefine type="TopEdge">
+                    <WidgetSize widget="__auto_titlebar__" dimension="BottomEdge"/>
+                </SizeDefine>
+                <SizeDefine type="RightEdge">
+                    <SizeOp op="Subtract">
+                        <RelSize scale="1" type="RightEdge"/>
+                        <PixelSize name="AlfiskoSkin/WindowClipR" dimension="Width"/>
+                    </SizeOp>
+                </SizeDefine>
+                <SizeDefine type="BottomEdge">
+                    <SizeOp op="Subtract">
+                        <RelSize scale="1" type="BottomEdge"/>
+                        <PixelSize name="AlfiskoSkin/WindowClipB" dimension="Height"/>
+                    </SizeOp>
+                </SizeDefine>
+            </ComArea>
+        </StyleSpecial>
+        <StyleSpecial name="ClientWithTitleNoFrame">
+            <ComArea>
+                <SizeDefine type="TopEdge">
+                    <WidgetSize widget="__auto_titlebar__" dimension="BottomEdge"/>
+                </SizeDefine>
+            </ComArea>
+        </StyleSpecial>
+        <StyleSpecial name="ClientNoTitleWithFrame">
+            <ComArea>
+                <SizeDefine type="LeftEdge">
+                    <PixelSize name="AlfiskoSkin/WindowClipL" dimension="Width"/>
+                </SizeDefine>
+                <SizeDefine type="TopEdge">
+                    <PixelSize name="AlfiskoSkin/WindowClipT" dimension="Height"/>
+                </SizeDefine>
+                <SizeDefine type="RightEdge">
+                    <SizeOp op="Subtract">
+                        <RelSize scale="1" type="RightEdge"/>
+                        <PixelSize name="AlfiskoSkin/WindowClipR" dimension="Width"/>
+                    </SizeOp>
+                </SizeDefine>
+                <SizeDefine type="BottomEdge">
+                    <SizeOp op="Subtract">
+                        <RelSize scale="1" type="BottomEdge"/>
+                        <PixelSize name="AlfiskoSkin/WindowClipB" dimension="Height"/>
+                    </SizeOp>
+                </SizeDefine>
+            </ComArea>
+        </StyleSpecial>
+        <StyleSpecial name="ClientNoTitleNoFrame"/>
+        <StyleWidget id="__auto_titlebar__" type="AlfiskoSkin/Titlebar">
+            <ComArea>
+                <SizeDefine type="Height">
+                    <FontSize padding="16" type="LineSpacing"/>
+                </SizeDefine>
+            </ComArea>
+            <Property name="AlwaysOnTop" value="False"/>
+            <Property name="NonClient" value="true"/>
+        </StyleWidget>
+        <StyleWidget id="__auto_closebutton__" type="AlfiskoSkin/ImageButton">
+            <ComArea>
+                <SizeDefine type="LeftEdge">
+                    <SizeOp op="Subtract">
+                        <AbsSize value="0"/>
+                        <PixelSize name="AlfiskoSkin/TitlebarActiveTR" dimension="Width"/>
+                    </SizeOp>
+                </SizeDefine>
+                <SizeDefine type="TopEdge">
+                    <SizeOp op="Multiply">
+                        <AbsSize value="0.5"/>
+                        <SizeOp op="Subtract">
+                            <WidgetSize widget="__auto_titlebar__" dimension="Height"/>
+                            <PixelSize name="AlfiskoSkin/CloseButtonNormal" dimension="Height"/>
+                        </SizeOp>
+                    </SizeOp>
+                </SizeDefine>
+                <SizeDefine type="Width">
+                    <PixelSize name="AlfiskoSkin/CloseButtonNormal" dimension="Width"/>
+                </SizeDefine>
+                <SizeDefine type="Height">
+                    <PixelSize name="AlfiskoSkin/CloseButtonNormal" dimension="Height"/>
+                </SizeDefine>
+            </ComArea>
+            <HAlign type="RightAligned"/>
+            <Property name="AlwaysOnTop" value="true"/>
+            <Property name="NonClient" value="true"/>
+            <Property name="NormalImage" value="AlfiskoSkin/CloseButtonNormal"/>
+            <Property name="HoverImage" value="AlfiskoSkin/CloseButtonNormal"/>
+            <Property name="PushedImage" value="AlfiskoSkin/CloseButtonPushed"/>
+        </StyleWidget>
+        <StyleSection name="withtitle_frame">
+            <FrameCom>
+                <ComArea>
+                    <SizeDefine type="TopEdge">
+                        <WidgetSize widget="__auto_titlebar__" dimension="BottomEdge"/>
+                    </SizeDefine>
+                </ComArea>
+                <ComPixel type="BottomLeftCorner" pixel_id="AlfiskoSkin/WindowBL"/>
+                <ComPixel type="BottomRightCorner" pixel_id="AlfiskoSkin/WindowBR"/>
+                <ComPixel type="LeftEdge" pixel_id="AlfiskoSkin/WindowL"/>
+                <ComPixel type="RightEdge" pixel_id="AlfiskoSkin/WindowR"/>
+                <ComPixel type="BottomEdge" pixel_id="AlfiskoSkin/WindowB"/>
+                <ComPixel type="Background" pixel_id="AlfiskoSkin/WindowFill"/>
+            </FrameCom>
+        </StyleSection>
+        <StyleSection name="notitle_frame">
+            <FrameCom>
+                <ComPixel type="TopLeftCorner" pixel_id="AlfiskoSkin/WindowTL"/>
+                <ComPixel type="TopRightCorner" pixel_id="AlfiskoSkin/WindowTR"/>
+                <ComPixel type="BottomLeftCorner" pixel_id="AlfiskoSkin/WindowBL"/>
+                <ComPixel type="BottomRightCorner" pixel_id="AlfiskoSkin/WindowBR"/>
+                <ComPixel type="LeftEdge" pixel_id="AlfiskoSkin/WindowL"/>
+                <ComPixel type="RightEdge" pixel_id="AlfiskoSkin/WindowR"/>
+                <ComPixel type="TopEdge" pixel_id="AlfiskoSkin/WindowT"/>
+                <ComPixel type="BottomEdge" pixel_id="AlfiskoSkin/WindowB"/>
+                <ComPixel type="Background" pixel_id="AlfiskoSkin/WindowFill"/>
+            </FrameCom>
+        </StyleSection>
+        <StyleSection name="withtitle_noframe_client_area">
+            <ImageryCom>
+                <ComArea>
+                    <SizeDefine type="TopEdge">
+                        <WidgetSize widget="__auto_titlebar__" dimension="Height"/>
+                    </SizeDefine>
+                </ComArea>
+                <ComPixel pixel_id="AlfiskoSkin/WindowFill"/>
+                <VLayout type="Extrude"/>
+                <HLayout type="Extrude"/>
+            </ImageryCom>
+        </StyleSection>
+        <StyleSection name="notitle_noframe_client_area">
+            <ImageryCom>
+                <ComPixel pixel_id="AlfiskoSkin/WindowFill"/>
+                <VLayout type="Extrude"/>
+                <HLayout type="Extrude"/>
+            </ImageryCom>
+        </StyleSection>
+        <StyleLayout name="ActiveWithTitleWithFrame">
+            <Layer>
+                <Section id="withtitle_frame"/>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="InactiveWithTitleWithFrame">
+            <Layer>
+                <Section id="withtitle_frame"/>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="DisabledWithTitleWithFrame">
+            <Layer>
+                <Section id="withtitle_frame">
+                    <Colours top_left="FF7F7F7F" bottom_left="FF7F7F7F" top_right="FF7F7F7F" bottom_right="FF7F7F7F"/>
+                </Section>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="ActiveWithTitleNoFrame">
+            <Layer>
+                <Section id="withtitle_noframe_client_area"/>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="InactiveWithTitleNoFrame">
+            <Layer>
+                <Section id="withtitle_noframe_client_area"/>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="DisabledWithTitleNoFrame">
+            <Layer>
+                <Section id="withtitle_noframe_client_area">
+                    <Colours top_left="FF7F7F7F" bottom_left="FF7F7F7F" top_right="FF7F7F7F" bottom_right="FF7F7F7F"/>
+                </Section>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="ActiveNoTitleWithFrame">
+            <Layer>
+                <Section id="notitle_frame"/>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="InactiveNoTitleWithFrame">
+            <Layer>
+                <Section id="notitle_frame"/>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="DisabledNoTitleWithFrame">
+            <Layer>
+                <Section id="notitle_frame">
+                    <Colours top_left="FF7F7F7F" bottom_left="FF7F7F7F" top_right="FF7F7F7F" bottom_right="FF7F7F7F"/>
+                </Section>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="ActiveNoTitleNoFrame">
+            <Layer>
+                <Section id="notitle_noframe_client_area"/>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="InactiveNoTitleNoFrame">
+            <Layer>
+                <Section id="notitle_noframe_client_area"/>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="DisabledNoTitleNoFrame">
+            <Layer>
+                <Section id="notitle_noframe_client_area">
+                    <Colours top_left="FF7F7F7F" bottom_left="FF7F7F7F" top_right="FF7F7F7F" bottom_right="FF7F7F7F"/>
+                </Section>
+            </Layer>
+        </StyleLayout>
+    </WidgetStyle>
+    <WidgetStyle name="AlfiskoSkin/Editbox">
+        <StyleProperty signal_refresh="true" value="FFFFFFFF" type="ColourArea" name="NormalTextColour"/>
+        <StyleProperty signal_refresh="true" value="FF000000" type="ColourArea" name="SelectedTextColour"/>
+        <StyleProperty signal_refresh="true" value="FFB6D142" type="ColourArea" name="ActiveSelectionColour"/>
+        <StyleProperty signal_refresh="true" value="FF808080" type="ColourArea" name="InactiveSelectionColour"/>
+        <Property name="MouseCursorImage" value="AlfiskoSkin/MouseTextBar"/>
+        <Property name="Size" value="{{0, 256}, {0, 32}}" />
+        <StyleSpecial name="TextArea">
+            <ComArea>
+                <SizeDefine type="LeftEdge">
+                    <PixelSize name="AlfiskoSkin/EditboxL" dimension="Width"/>
+                </SizeDefine>
+                <SizeDefine type="TopEdge">
+                    <PixelSize name="AlfiskoSkin/EditboxT" dimension="Height"/>
+                </SizeDefine>
+                <SizeDefine type="RightEdge">
+                    <SizeOp op="Subtract">
+                        <RelSize scale="1" type="RightEdge"/>
+                        <PixelSize name="AlfiskoSkin/EditboxR" dimension="Width"/>
+                    </SizeOp>
+                </SizeDefine>
+                <SizeDefine type="BottomEdge">
+                    <SizeOp op="Subtract">
+                        <RelSize scale="1" type="BottomEdge"/>
+                        <PixelSize name="AlfiskoSkin/EditboxB" dimension="Height"/>
+                    </SizeOp>
+                </SizeDefine>
+            </ComArea>
+        </StyleSpecial>
+        <StyleSection name="container_normal">
+            <FrameCom>
+                <ComPixel type="TopLeftCorner" pixel_id="AlfiskoSkin/EditboxTL"/>
+                <ComPixel type="TopRightCorner" pixel_id="AlfiskoSkin/EditboxTR"/>
+                <ComPixel type="BottomLeftCorner" pixel_id="AlfiskoSkin/EditboxBL"/>
+                <ComPixel type="BottomRightCorner" pixel_id="AlfiskoSkin/EditboxBR"/>
+                <ComPixel type="LeftEdge" pixel_id="AlfiskoSkin/EditboxL"/>
+                <ComPixel type="RightEdge" pixel_id="AlfiskoSkin/EditboxR"/>
+                <ComPixel type="TopEdge" pixel_id="AlfiskoSkin/EditboxT"/>
+                <ComPixel type="BottomEdge" pixel_id="AlfiskoSkin/EditboxB"/>
+                <ComPixel type="Background" pixel_id="AlfiskoSkin/EditboxFill"/>
+            </FrameCom>
+        </StyleSection>
+        <StyleSection name="selection">
+            <ImageryCom>
+                <ComPixel pixel_id="AlfiskoSkin/GenericBrush"/>
+                <VLayout type="Extrude"/>
+                <HLayout type="Extrude"/>
+            </ImageryCom>
+        </StyleSection>
+        <StyleSection name="Caret">
+            <ImageryCom>
+                <ComArea>
+                    <SizeDefine type="Width">
+                        <AbsSize value="3"/>
+                    </SizeDefine>
+                </ComArea>
+                <ComPixel pixel_id="AlfiskoSkin/GenericBrush"/>
+                <VLayout type="Extrude"/>
+                <HLayout type="Extrude"/>
+            </ImageryCom>
+        </StyleSection>
+        <StyleLayout name="Enabled">
+            <Layer>
+                <Section id="container_normal"/>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="ReadOnly">
+            <Layer>
+                <Section id="container_normal"/>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Disabled">
+            <Layer>
+                <Section id="container_normal">
+                    <Colours top_left="FF7F7F7F" bottom_left="FF7F7F7F" top_right="FF7F7F7F" bottom_right="FF7F7F7F"/>
+                </Section>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="ActiveSelection">
+            <Layer>
+                <Section id="selection">
+                    <ColourProperty name="ActiveSelectionColour"/>
+                </Section>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="InactiveSelection">
+            <Layer>
+                <Section id="selection">
+                    <ColourProperty name="InactiveSelectionColour"/>
+                </Section>
+            </Layer>
+        </StyleLayout>
+    </WidgetStyle>
+    <WidgetStyle name="AlfiskoSkin/HorizontalScrollbarThumb">
+        <Property name="HorzFree" value="true"/>
+        <Property name="MouseInputPropagationEnabled" value="true"/>
+        <Property name="Size" value="{{0, 32}, {0, 32}}" />
+        <StyleSection name="normal">
+            <ImageryCom>
+                <ComArea>
+                    <SizeDefine type="BottomEdge">
+                        <RelSize scale=".5" type="Height"/>
+                    </SizeDefine>
+                </ComArea>
+                <ComPixel pixel_id="AlfiskoSkin/HorzThumbNormalTR"/>
+                <VLayout type="Extrude"/>
+                <HLayout type="RightAligned"/>
+            </ImageryCom>
+            <ImageryCom>
+                <ComArea>
+                    <SizeDefine type="TopEdge">
+                        <RelSize scale=".5" type="Height"/>
+                    </SizeDefine>
+                </ComArea>
+                <ComPixel pixel_id="AlfiskoSkin/HorzThumbNormalBR"/>
+                <VLayout type="Extrude"/>
+                <HLayout type="RightAligned"/>
+            </ImageryCom>
+            <ImageryCom>
+                <ComArea>
+                    <SizeDefine type="BottomEdge">
+                        <RelSize scale=".5" type="Height"/>
+                    </SizeDefine>
+                </ComArea>
+                <ComPixel pixel_id="AlfiskoSkin/HorzThumbNormalTL"/>
+                <VLayout type="Extrude"/>
+            </ImageryCom>
+            <ImageryCom>
+                <ComArea>
+                    <SizeDefine type="TopEdge">
+                        <RelSize scale=".5" type="Height"/>
+                    </SizeDefine>
+                </ComArea>
+                <ComPixel pixel_id="AlfiskoSkin/HorzThumbNormalBL"/>
+                <VLayout type="Extrude"/>
+            </ImageryCom>
+            <ImageryCom>
+                <ComArea>
+                    <SizeDefine type="LeftEdge">
+                        <PixelSize name="AlfiskoSkin/HorzThumbNormalTL" dimension="Width"/>
+                    </SizeDefine>
+                    <SizeDefine type="RightEdge">
+                        <SizeOp op="Subtract">
+                            <RelSize scale="1" type="Width"/>
+                            <PixelSize name="AlfiskoSkin/HorzThumbNormalTR" dimension="Width"/>
+                        </SizeOp>
+                    </SizeDefine>
+                    <SizeDefine type="BottomEdge">
+                        <RelSize scale=".5" type="Height"/>
+                    </SizeDefine>
+                </ComArea>
+                <ComPixel pixel_id="AlfiskoSkin/HorzThumbNormalT"/>
+                <VLayout type="Extrude"/>
+                <HLayout type="Extrude"/>
+            </ImageryCom>
+            <ImageryCom>
+                <ComArea>
+                    <SizeDefine type="LeftEdge">
+                        <PixelSize name="AlfiskoSkin/HorzThumbNormalBL" dimension="Width"/>
+                    </SizeDefine>
+                    <SizeDefine type="TopEdge">
+                        <RelSize scale=".5" type="Height"/>
+                    </SizeDefine>
+                    <SizeDefine type="RightEdge">
+                        <SizeOp op="Subtract">
+                            <RelSize scale="1" type="Width"/>
+                            <PixelSize name="AlfiskoSkin/HorzThumbNormalBR" dimension="Width"/>
+                        </SizeOp>
+                    </SizeDefine>
+                </ComArea>
+                <ComPixel pixel_id="AlfiskoSkin/HorzThumbNormalB"/>
+                <VLayout type="Extrude"/>
+                <HLayout type="Extrude"/>
+            </ImageryCom>
+        </StyleSection>
+        <StyleSection name="hover">
+            <ImageryCom>
+                <ComArea>
+                    <SizeDefine type="BottomEdge">
+                        <RelSize scale=".5" type="Height"/>
+                    </SizeDefine>
+                </ComArea>
+                <ComPixel pixel_id="AlfiskoSkin/HorzThumbHoverTR"/>
+                <VLayout type="Extrude"/>
+                <HLayout type="RightAligned"/>
+            </ImageryCom>
+            <ImageryCom>
+                <ComArea>
+                    <SizeDefine type="TopEdge">
+                        <RelSize scale=".5" type="Height"/>
+                    </SizeDefine>
+                </ComArea>
+                <ComPixel pixel_id="AlfiskoSkin/HorzThumbHoverBR"/>
+                <VLayout type="Extrude"/>
+                <HLayout type="RightAligned"/>
+            </ImageryCom>
+            <ImageryCom>
+                <ComArea>
+                    <SizeDefine type="BottomEdge">
+                        <RelSize scale=".5" type="Height"/>
+                    </SizeDefine>
+                </ComArea>
+                <ComPixel pixel_id="AlfiskoSkin/HorzThumbHoverTL"/>
+                <VLayout type="Extrude"/>
+            </ImageryCom>
+            <ImageryCom>
+                <ComArea>
+                    <SizeDefine type="TopEdge">
+                        <RelSize scale=".5" type="Height"/>
+                    </SizeDefine>
+                </ComArea>
+                <ComPixel pixel_id="AlfiskoSkin/HorzThumbHoverBL"/>
+                <VLayout type="Extrude"/>
+            </ImageryCom>
+            <ImageryCom>
+                <ComArea>
+                    <SizeDefine type="LeftEdge">
+                        <PixelSize name="AlfiskoSkin/HorzThumbHoverTL" dimension="Width"/>
+                    </SizeDefine>
+                    <SizeDefine type="RightEdge">
+                        <SizeOp op="Subtract">
+                            <RelSize scale="1" type="Width"/>
+                            <PixelSize name="AlfiskoSkin/HorzThumbHoverTR" dimension="Width"/>
+                        </SizeOp>
+                    </SizeDefine>
+                    <SizeDefine type="BottomEdge">
+                        <RelSize scale=".5" type="Height"/>
+                    </SizeDefine>
+                </ComArea>
+                <ComPixel pixel_id="AlfiskoSkin/HorzThumbHoverT"/>
+                <VLayout type="Extrude"/>
+                <HLayout type="Extrude"/>
+            </ImageryCom>
+            <ImageryCom>
+                <ComArea>
+                    <SizeDefine type="LeftEdge">
+                        <PixelSize name="AlfiskoSkin/HorzThumbHoverBL" dimension="Width"/>
+                    </SizeDefine>
+                    <SizeDefine type="TopEdge">
+                        <RelSize scale=".5" type="Height"/>
+                    </SizeDefine>
+                    <SizeDefine type="RightEdge">
+                        <SizeOp op="Subtract">
+                            <RelSize scale="1" type="Width"/>
+                            <PixelSize name="AlfiskoSkin/HorzThumbHoverBR" dimension="Width"/>
+                        </SizeOp>
+                    </SizeDefine>
+                </ComArea>
+                <ComPixel pixel_id="AlfiskoSkin/HorzThumbHoverB"/>
+                <VLayout type="Extrude"/>
+                <HLayout type="Extrude"/>
+            </ImageryCom>
+        </StyleSection>
+        <StyleSection name="pushed">
+            <ImageryCom>
+                <ComArea>
+                    <SizeDefine type="BottomEdge">
+                        <RelSize scale=".5" type="Height"/>
+                    </SizeDefine>
+                </ComArea>
+                <ComPixel pixel_id="AlfiskoSkin/HorzThumbPushedTR"/>
+                <VLayout type="Extrude"/>
+                <HLayout type="RightAligned"/>
+            </ImageryCom>
+            <ImageryCom>
+                <ComArea>
+                    <SizeDefine type="TopEdge">
+                        <RelSize scale=".5" type="Height"/>
+                    </SizeDefine>
+                </ComArea>
+                <ComPixel pixel_id="AlfiskoSkin/HorzThumbPushedBR"/>
+                <VLayout type="Extrude"/>
+                <HLayout type="RightAligned"/>
+            </ImageryCom>
+            <ImageryCom>
+                <ComArea>
+                    <SizeDefine type="BottomEdge">
+                        <RelSize scale=".5" type="Height"/>
+                    </SizeDefine>
+                </ComArea>
+                <ComPixel pixel_id="AlfiskoSkin/HorzThumbPushedTL"/>
+                <VLayout type="Extrude"/>
+            </ImageryCom>
+            <ImageryCom>
+                <ComArea>
+                    <SizeDefine type="TopEdge">
+                        <RelSize scale=".5" type="Height"/>
+                    </SizeDefine>
+                </ComArea>
+                <ComPixel pixel_id="AlfiskoSkin/HorzThumbPushedBL"/>
+                <VLayout type="Extrude"/>
+            </ImageryCom>
+            <ImageryCom>
+                <ComArea>
+                    <SizeDefine type="LeftEdge">
+                        <PixelSize name="AlfiskoSkin/HorzThumbPushedTL" dimension="Width"/>
+                    </SizeDefine>
+                    <SizeDefine type="RightEdge">
+                        <SizeOp op="Subtract">
+                            <RelSize scale="1" type="Width"/>
+                            <PixelSize name="AlfiskoSkin/HorzThumbPushedTR" dimension="Width"/>
+                        </SizeOp>
+                    </SizeDefine>
+                    <SizeDefine type="BottomEdge">
+                        <RelSize scale=".5" type="Height"/>
+                    </SizeDefine>
+                </ComArea>
+                <ComPixel pixel_id="AlfiskoSkin/HorzThumbPushedT"/>
+                <VLayout type="Extrude"/>
+                <HLayout type="Extrude"/>
+            </ImageryCom>
+            <ImageryCom>
+                <ComArea>
+                    <SizeDefine type="LeftEdge">
+                        <PixelSize name="AlfiskoSkin/HorzThumbPushedBL" dimension="Width"/>
+                    </SizeDefine>
+                    <SizeDefine type="TopEdge">
+                        <RelSize scale=".5" type="Height"/>
+                    </SizeDefine>
+                    <SizeDefine type="RightEdge">
+                        <SizeOp op="Subtract">
+                            <RelSize scale="1" type="Width"/>
+                            <PixelSize name="AlfiskoSkin/HorzThumbPushedBR" dimension="Width"/>
+                        </SizeOp>
+                    </SizeDefine>
+                </ComArea>
+                <ComPixel pixel_id="AlfiskoSkin/HorzThumbPushedB"/>
+                <VLayout type="Extrude"/>
+                <HLayout type="Extrude"/>
+            </ImageryCom>
+        </StyleSection>
+        <StyleLayout name="Normal">
+            <Layer>
+                <Section id="normal"/>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Hover">
+            <Layer>
+                <Section id="hover"/>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Pushed">
+            <Layer>
+                <Section id="pushed"/>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Disabled">
+            <Layer>
+                <Section id="normal">
+                    <Colours top_left="FF7F7F7F" bottom_left="FF7F7F7F" top_right="FF7F7F7F" bottom_right="FF7F7F7F"/>
+                </Section>
+            </Layer>
+        </StyleLayout>
+    </WidgetStyle>
+    <WidgetStyle name="AlfiskoSkin/HorizontalScrollbar">
+        <Property name="Size" value="{{1, 0}, {0, 32}}" />
+        <StyleSpecial name="ThumbTrackArea">
+            <ComArea>
+                <SizeDefine type="TopEdge">
+                    <PixelSize name="AlfiskoSkin/HorzScrollbarT" dimension="Height"/>
+                </SizeDefine>
+                <SizeDefine type="BottomEdge">
+                    <SizeOp op="Subtract">
+                        <RelSize scale="1" type="Height"/>
+                        <PixelSize name="AlfiskoSkin/HorzScrollbarB" dimension="Height"/>
+                    </SizeOp>
+                </SizeDefine>
+                <SizeDefine type="LeftEdge">
+                    <PixelSize name="AlfiskoSkin/ScrollLeftNormal" dimension="Width"/>
+                </SizeDefine>
+                <SizeDefine type="RightEdge">
+                    <SizeOp op="Subtract">
+                        <RelSize scale="1.0" type="RightEdge"/>
+                        <PixelSize name="AlfiskoSkin/ScrollRightNormal" dimension="Width"/>
+                    </SizeOp>
+                </SizeDefine>
+            </ComArea>
+        </StyleSpecial>
+        <StyleWidget id="__auto_incbtn__" type="AlfiskoSkin/ImageButton">
+            <ComArea>
+                <SizeDefine type="Width">
+                    <PixelSize name="AlfiskoSkin/ScrollRightNormal" dimension="Width"/>
+                </SizeDefine>
+            </ComArea>
+            <HAlign type="RightAligned"/>
+            <Property name="NormalImage" value="AlfiskoSkin/ScrollRightNormal"/>
+            <Property name="HoverImage" value="AlfiskoSkin/ScrollRightHover"/>
+            <Property name="PushedImage" value="AlfiskoSkin/ScrollRightPushed"/>
+        </StyleWidget>
+        <StyleWidget id="__auto_decbtn__" type="AlfiskoSkin/ImageButton">
+            <ComArea>
+                <SizeDefine type="Width">
+                    <PixelSize name="AlfiskoSkin/ScrollLeftNormal" dimension="Width"/>
+                </SizeDefine>
+            </ComArea>
+            <Property name="NormalImage" value="AlfiskoSkin/ScrollLeftNormal"/>
+            <Property name="HoverImage" value="AlfiskoSkin/ScrollLeftHover"/>
+            <Property name="PushedImage" value="AlfiskoSkin/ScrollLeftNormal"/>
+        </StyleWidget>
+        <StyleWidget id="__auto_thumb__" type="AlfiskoSkin/HorizontalScrollbarThumb">
+            <ComArea>
+                <SizeDefine type="TopEdge">
+                    <PixelSize name="AlfiskoSkin/HorzScrollbarT" dimension="Height"/>
+                </SizeDefine>
+                <SizeDefine type="BottomEdge">
+                    <SizeOp op="Subtract">
+                        <RelSize scale="1" type="Height"/>
+                        <PixelSize name="AlfiskoSkin/HorzScrollbarB" dimension="Height"/>
+                    </SizeOp>
+                </SizeDefine>
+                <SizeDefine type="Width">
+                    <RelSize scale="0.1" type="Width"/>
+                </SizeDefine>
+            </ComArea>
+            <Property name="MinSize" value="{{0,25},{0,0}}"/>
+        </StyleWidget>
+        <StyleSection name="main">
+            <FrameCom>
+                <ComArea>
+                    <SizeDefine type="LeftEdge">
+                        <PixelSize name="AlfiskoSkin/ScrollLeftNormal" dimension="Width"/>
+                    </SizeDefine>
+                    <SizeDefine type="RightEdge">
+                        <SizeOp op="Subtract">
+                            <RelSize scale="1.0" type="RightEdge"/>
+                            <PixelSize name="AlfiskoSkin/ScrollRightNormal" dimension="Width"/>
+                        </SizeOp>
+                    </SizeDefine>
+                </ComArea>
+                <ComPixel type="TopEdge" pixel_id="AlfiskoSkin/HorzScrollbarT"/>
+                <ComPixel type="BottomEdge" pixel_id="AlfiskoSkin/HorzScrollbarB"/>
+            </FrameCom>
+            <ImageryCom>
+                <ComArea>
+                    <SizeDefine type="TopEdge">
+                        <PixelSize name="AlfiskoSkin/HorzScrollbarT" dimension="Height"/>
+                    </SizeDefine>
+                    <SizeDefine type="BottomEdge">
+                        <RelSize scale=".5" type="Height"/>
+                    </SizeDefine>
+                    <SizeDefine type="LeftEdge">
+                        <PixelSize name="AlfiskoSkin/ScrollLeftNormal" dimension="Width"/>
+                    </SizeDefine>
+                    <SizeDefine type="RightEdge">
+                        <SizeOp op="Subtract">
+                            <RelSize scale="1.0" type="RightEdge"/>
+                            <PixelSize name="AlfiskoSkin/ScrollRightNormal" dimension="Width"/>
+                        </SizeOp>
+                    </SizeDefine>
+                </ComArea>
+                <ComPixel pixel_id="AlfiskoSkin/HorzScrollbarFill1"/>
+                <VLayout type="Extrude"/>
+                <HLayout type="Extrude"/>
+            </ImageryCom>
+            <ImageryCom>
+                <ComArea>
+                    <SizeDefine type="TopEdge">
+                        <RelSize scale=".5" type="Height"/>
+                    </SizeDefine>
+                    <SizeDefine type="BottomEdge">
+                        <SizeOp op="Subtract">
+                            <RelSize scale="1" type="Height"/>
+                            <PixelSize name="AlfiskoSkin/HorzScrollbarB" dimension="Height"/>
+                        </SizeOp>
+                    </SizeDefine>
+                    <SizeDefine type="LeftEdge">
+                        <PixelSize name="AlfiskoSkin/ScrollLeftNormal" dimension="Width"/>
+                    </SizeDefine>
+                    <SizeDefine type="RightEdge">
+                        <SizeOp op="Subtract">
+                            <RelSize scale="1.0" type="RightEdge"/>
+                            <PixelSize name="AlfiskoSkin/ScrollRightNormal" dimension="Width"/>
+                        </SizeOp>
+                    </SizeDefine>
+                </ComArea>
+                <ComPixel pixel_id="AlfiskoSkin/HorzScrollbarFill2"/>
+                <VLayout type="Extrude"/>
+                <HLayout type="Extrude"/>
+            </ImageryCom>
+            <ImageryCom>
+                <ComArea>
+                    <SizeDefine type="TopEdge">
+                        <PixelSize name="AlfiskoSkin/HorzScrollbarT" dimension="Height"/>
+                    </SizeDefine>
+                    <SizeDefine type="BottomEdge">
+                        <SizeOp op="Subtract">
+                            <RelSize scale="1" type="Height"/>
+                            <PixelSize name="AlfiskoSkin/HorzScrollbarB" dimension="Height"/>
+                        </SizeOp>
+                    </SizeDefine>
+                    <SizeDefine type="LeftEdge">
+                        <PixelSize name="AlfiskoSkin/ScrollLeftNormal" dimension="Width"/>
+                    </SizeDefine>
+                    <SizeDefine type="RightEdge">
+                        <WidgetSize widget="__auto_thumb__" dimension="LeftEdge"/>
+                    </SizeDefine>
+                </ComArea>
+                <ComPixel pixel_id="AlfiskoSkin/HorzThumbShadowL"/>
+                <VLayout type="Extrude"/>
+                <HLayout type="RightAligned"/>
+            </ImageryCom>
+            <ImageryCom>
+                <ComArea>
+                    <SizeDefine type="TopEdge">
+                        <PixelSize name="AlfiskoSkin/HorzScrollbarT" dimension="Height"/>
+                    </SizeDefine>
+                    <SizeDefine type="BottomEdge">
+                        <SizeOp op="Subtract">
+                            <RelSize scale="1" type="Height"/>
+                            <PixelSize name="AlfiskoSkin/HorzScrollbarB" dimension="Height"/>
+                        </SizeOp>
+                    </SizeDefine>
+                    <SizeDefine type="LeftEdge">
+                        <WidgetSize widget="__auto_thumb__" dimension="RightEdge"/>
+                    </SizeDefine>
+                    <SizeDefine type="RightEdge">
+                        <SizeOp op="Subtract">
+                            <RelSize scale="1.0" type="RightEdge"/>
+                            <PixelSize name="AlfiskoSkin/ScrollRightNormal" dimension="Width"/>
+                        </SizeOp>
+                    </SizeDefine>
+                </ComArea>
+                <ComPixel pixel_id="AlfiskoSkin/HorzThumbShadowR"/>
+                <VLayout type="Extrude"/>
+            </ImageryCom>
+        </StyleSection>
+        <StyleLayout name="Enabled">
+            <Layer>
+                <Section id="main"/>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Disabled">
+            <Layer>
+                <Section id="main">
+                    <Colours top_left="FF7F7F7F" bottom_left="FF7F7F7F" top_right="FF7F7F7F" bottom_right="FF7F7F7F"/>
+                </Section>
+            </Layer>
+        </StyleLayout>
+    </WidgetStyle>
+    <WidgetStyle name="AlfiskoSkin/VerticalScrollbarThumb">
+        <Property name="VertFree" value="true"/>
+        <Property name="MouseInputPropagationEnabled" value="true"/>
+        <Property name="Size" value="{{0, 32}, {0, 32}}" />
+        <StyleSection name="normal">
+            <ImageryCom>
+                <ComArea>
+                    <SizeDefine type="RightEdge">
+                        <RelSize scale=".5" type="Width"/>
+                    </SizeDefine>
+                </ComArea>
+                <ComPixel pixel_id="AlfiskoSkin/VertThumbNormalBL"/>
+                <VLayout type="BottomAligned"/>
+                <HLayout type="Extrude"/>
+            </ImageryCom>
+            <ImageryCom>
+                <ComArea>
+                    <SizeDefine type="LeftEdge">
+                        <RelSize scale=".5" type="Width"/>
+                    </SizeDefine>
+                </ComArea>
+                <ComPixel pixel_id="AlfiskoSkin/VertThumbNormalBR"/>
+                <VLayout type="BottomAligned"/>
+                <HLayout type="Extrude"/>
+            </ImageryCom>
+            <ImageryCom>
+                <ComArea>
+                    <SizeDefine type="RightEdge">
+                        <RelSize scale=".5" type="Width"/>
+                    </SizeDefine>
+                </ComArea>
+                <ComPixel pixel_id="AlfiskoSkin/VertThumbNormalTL"/>
+                <HLayout type="Extrude"/>
+            </ImageryCom>
+            <ImageryCom>
+                <ComArea>
+                    <SizeDefine type="LeftEdge">
+                        <RelSize scale=".5" type="Width"/>
+                    </SizeDefine>
+                </ComArea>
+                <ComPixel pixel_id="AlfiskoSkin/VertThumbNormalTR"/>
+                <HLayout type="Extrude"/>
+            </ImageryCom>
+            <ImageryCom>
+                <ComArea>
+                    <SizeDefine type="TopEdge">
+                        <PixelSize name="AlfiskoSkin/VertThumbNormalTL" dimension="Height"/>
+                    </SizeDefine>
+                    <SizeDefine type="BottomEdge">
+                        <SizeOp op="Subtract">
+                            <RelSize scale="1" type="Height"/>
+                            <PixelSize name="AlfiskoSkin/VertThumbNormalBL" dimension="Height"/>
+                        </SizeOp>
+                    </SizeDefine>
+                    <SizeDefine type="RightEdge">
+                        <RelSize scale=".5" type="Width"/>
+                    </SizeDefine>
+                </ComArea>
+                <ComPixel pixel_id="AlfiskoSkin/VertThumbNormalL"/>
+                <VLayout type="Extrude"/>
+                <HLayout type="Extrude"/>
+            </ImageryCom>
+            <ImageryCom>
+                <ComArea>
+                    <SizeDefine type="TopEdge">
+                        <PixelSize name="AlfiskoSkin/VertThumbNormalTR" dimension="Height"/>
+                    </SizeDefine>
+                    <SizeDefine type="LeftEdge">
+                        <RelSize scale=".5" type="Width"/>
+                    </SizeDefine>
+                    <SizeDefine type="BottomEdge">
+                        <SizeOp op="Subtract">
+                            <RelSize scale="1" type="Height"/>
+                            <PixelSize name="AlfiskoSkin/VertThumbNormalBR" dimension="Height"/>
+                        </SizeOp>
+                    </SizeDefine>
+                </ComArea>
+                <ComPixel pixel_id="AlfiskoSkin/VertThumbNormalR"/>
+                <VLayout type="Extrude"/>
+                <HLayout type="Extrude"/>
+            </ImageryCom>
+        </StyleSection>
+        <StyleSection name="hover">
+            <ImageryCom>
+                <ComArea>
+                    <SizeDefine type="RightEdge">
+                        <RelSize scale=".5" type="Width"/>
+                    </SizeDefine>
+                </ComArea>
+                <ComPixel pixel_id="AlfiskoSkin/VertThumbHoverBL"/>
+                <VLayout type="BottomAligned"/>
+                <HLayout type="Extrude"/>
+            </ImageryCom>
+            <ImageryCom>
+                <ComArea>
+                    <SizeDefine type="LeftEdge">
+                        <RelSize scale=".5" type="Width"/>
+                    </SizeDefine>
+                </ComArea>
+                <ComPixel pixel_id="AlfiskoSkin/VertThumbHoverBR"/>
+                <VLayout type="BottomAligned"/>
+                <HLayout type="Extrude"/>
+            </ImageryCom>
+            <ImageryCom>
+                <ComArea>
+                    <SizeDefine type="RightEdge">
+                        <RelSize scale=".5" type="Width"/>
+                    </SizeDefine>
+                </ComArea>
+                <ComPixel pixel_id="AlfiskoSkin/VertThumbHoverTL"/>
+                <HLayout type="Extrude"/>
+            </ImageryCom>
+            <ImageryCom>
+                <ComArea>
+                    <SizeDefine type="LeftEdge">
+                        <RelSize scale=".5" type="Width"/>
+                    </SizeDefine>
+                </ComArea>
+                <ComPixel pixel_id="AlfiskoSkin/VertThumbHoverTR"/>
+                <HLayout type="Extrude"/>
+            </ImageryCom>
+            <ImageryCom>
+                <ComArea>
+                    <SizeDefine type="TopEdge">
+                        <PixelSize name="AlfiskoSkin/VertThumbHoverTL" dimension="Height"/>
+                    </SizeDefine>
+                    <SizeDefine type="BottomEdge">
+                        <SizeOp op="Subtract">
+                            <RelSize scale="1" type="Height"/>
+                            <PixelSize name="AlfiskoSkin/VertThumbHoverBL" dimension="Height"/>
+                        </SizeOp>
+                    </SizeDefine>
+                    <SizeDefine type="RightEdge">
+                        <RelSize scale=".5" type="Width"/>
+                    </SizeDefine>
+                </ComArea>
+                <ComPixel pixel_id="AlfiskoSkin/VertThumbHoverL"/>
+                <VLayout type="Extrude"/>
+                <HLayout type="Extrude"/>
+            </ImageryCom>
+            <ImageryCom>
+                <ComArea>
+                    <SizeDefine type="TopEdge">
+                        <PixelSize name="AlfiskoSkin/VertThumbHoverTR" dimension="Height"/>
+                    </SizeDefine>
+                    <SizeDefine type="LeftEdge">
+                        <RelSize scale=".5" type="Width"/>
+                    </SizeDefine>
+                    <SizeDefine type="BottomEdge">
+                        <SizeOp op="Subtract">
+                            <RelSize scale="1" type="Height"/>
+                            <PixelSize name="AlfiskoSkin/VertThumbHoverBR" dimension="Height"/>
+                        </SizeOp>
+                    </SizeDefine>
+                </ComArea>
+                <ComPixel pixel_id="AlfiskoSkin/VertThumbHoverR"/>
+                <VLayout type="Extrude"/>
+                <HLayout type="Extrude"/>
+            </ImageryCom>
+        </StyleSection>
+        <StyleSection name="pushed">
+            <ImageryCom>
+                <ComArea>
+                    <SizeDefine type="RightEdge">
+                        <RelSize scale=".5" type="Width"/>
+                    </SizeDefine>
+                </ComArea>
+                <ComPixel pixel_id="AlfiskoSkin/VertThumbPushedBL"/>
+                <VLayout type="BottomAligned"/>
+                <HLayout type="Extrude"/>
+            </ImageryCom>
+            <ImageryCom>
+                <ComArea>
+                    <SizeDefine type="LeftEdge">
+                        <RelSize scale=".5" type="Width"/>
+                    </SizeDefine>
+                </ComArea>
+                <ComPixel pixel_id="AlfiskoSkin/VertThumbPushedBR"/>
+                <VLayout type="BottomAligned"/>
+                <HLayout type="Extrude"/>
+            </ImageryCom>
+            <ImageryCom>
+                <ComArea>
+                    <SizeDefine type="RightEdge">
+                        <RelSize scale=".5" type="Width"/>
+                    </SizeDefine>
+                </ComArea>
+                <ComPixel pixel_id="AlfiskoSkin/VertThumbPushedTL"/>
+                <HLayout type="Extrude"/>
+            </ImageryCom>
+            <ImageryCom>
+                <ComArea>
+                    <SizeDefine type="LeftEdge">
+                        <RelSize scale=".5" type="Width"/>
+                    </SizeDefine>
+                </ComArea>
+                <ComPixel pixel_id="AlfiskoSkin/VertThumbPushedTR"/>
+                <HLayout type="Extrude"/>
+            </ImageryCom>
+            <ImageryCom>
+                <ComArea>
+                    <SizeDefine type="TopEdge">
+                        <PixelSize name="AlfiskoSkin/VertThumbPushedTL" dimension="Height"/>
+                    </SizeDefine>
+                    <SizeDefine type="BottomEdge">
+                        <SizeOp op="Subtract">
+                            <RelSize scale="1" type="Height"/>
+                            <PixelSize name="AlfiskoSkin/VertThumbPushedBL" dimension="Height"/>
+                        </SizeOp>
+                    </SizeDefine>
+                    <SizeDefine type="RightEdge">
+                        <RelSize scale=".5" type="Width"/>
+                    </SizeDefine>
+                </ComArea>
+                <ComPixel pixel_id="AlfiskoSkin/VertThumbPushedL"/>
+                <VLayout type="Extrude"/>
+                <HLayout type="Extrude"/>
+            </ImageryCom>
+            <ImageryCom>
+                <ComArea>
+                    <SizeDefine type="TopEdge">
+                        <PixelSize name="AlfiskoSkin/VertThumbPushedTR" dimension="Height"/>
+                    </SizeDefine>
+                    <SizeDefine type="LeftEdge">
+                        <RelSize scale=".5" type="Width"/>
+                    </SizeDefine>
+                    <SizeDefine type="BottomEdge">
+                        <SizeOp op="Subtract">
+                            <RelSize scale="1" type="Height"/>
+                            <PixelSize name="AlfiskoSkin/VertThumbPushedBR" dimension="Height"/>
+                        </SizeOp>
+                    </SizeDefine>
+                </ComArea>
+                <ComPixel pixel_id="AlfiskoSkin/VertThumbPushedR"/>
+                <VLayout type="Extrude"/>
+                <HLayout type="Extrude"/>
+            </ImageryCom>
+        </StyleSection>
+        <StyleLayout name="Normal">
+            <Layer>
+                <Section id="normal"/>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Hover">
+            <Layer>
+                <Section id="hover"/>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Pushed">
+            <Layer>
+                <Section id="pushed"/>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Disabled">
+            <Layer>
+                <Section id="normal">
+                    <Colours top_left="FF7F7F7F" bottom_left="FF7F7F7F" top_right="FF7F7F7F" bottom_right="FF7F7F7F"/>
+                </Section>
+            </Layer>
+        </StyleLayout>
+    </WidgetStyle>
+    <WidgetStyle name="AlfiskoSkin/VerticalScrollbar">
+        <Property name="VerticalScrollbar" value="true"/>
+        <Property name="Size" value="{{0, 32}, {1, 0}}" />
+        <StyleSpecial name="ThumbTrackArea">
+            <ComArea>
+                <SizeDefine type="LeftEdge">
+                    <PixelSize name="AlfiskoSkin/VertScrollbarL" dimension="Width"/>
+                </SizeDefine>
+                <SizeDefine type="RightEdge">
+                    <SizeOp op="Subtract">
+                        <RelSize scale="1" type="Width"/>
+                        <PixelSize name="AlfiskoSkin/VertScrollbarR" dimension="Width"/>
+                    </SizeOp>
+                </SizeDefine>
+                <SizeDefine type="TopEdge">
+                    <PixelSize name="AlfiskoSkin/ScrollUpNormal" dimension="Height"/>
+                </SizeDefine>
+                <SizeDefine type="BottomEdge">
+                    <SizeOp op="Subtract">
+                        <RelSize scale="1.0" type="BottomEdge"/>
+                        <PixelSize name="AlfiskoSkin/ScrollDownNormal" dimension="Height"/>
+                    </SizeOp>
+                </SizeDefine>
+            </ComArea>
+        </StyleSpecial>
+        <StyleWidget id="__auto_incbtn__" type="AlfiskoSkin/ImageButton">
+            <ComArea>
+                <SizeDefine type="Height">
+                    <PixelSize name="AlfiskoSkin/ScrollDownNormal" dimension="Height"/>
+                </SizeDefine>
+            </ComArea>
+            <VAlign type="BottomAligned"/>
+            <Property name="NormalImage" value="AlfiskoSkin/ScrollDownNormal"/>
+            <Property name="HoverImage" value="AlfiskoSkin/ScrollDownHover"/>
+            <Property name="PushedImage" value="AlfiskoSkin/ScrollDownPushed"/>
+        </StyleWidget>
+        <StyleWidget id="__auto_decbtn__" type="AlfiskoSkin/ImageButton">
+            <ComArea>
+                <SizeDefine type="Height">
+                    <PixelSize name="AlfiskoSkin/ScrollUpNormal" dimension="Height"/>
+                </SizeDefine>
+            </ComArea>
+            <Property name="NormalImage" value="AlfiskoSkin/ScrollUpNormal"/>
+            <Property name="HoverImage" value="AlfiskoSkin/ScrollUpHover"/>
+            <Property name="PushedImage" value="AlfiskoSkin/ScrollUpNormal"/>
+        </StyleWidget>
+        <StyleWidget id="__auto_thumb__" type="AlfiskoSkin/VerticalScrollbarThumb">
+            <ComArea>
+                <SizeDefine type="LeftEdge">
+                    <PixelSize name="AlfiskoSkin/VertScrollbarL" dimension="Width"/>
+                </SizeDefine>
+                <SizeDefine type="RightEdge">
+                    <SizeOp op="Subtract">
+                        <RelSize scale="1" type="Width"/>
+                        <PixelSize name="AlfiskoSkin/VertScrollbarR" dimension="Width"/>
+                    </SizeOp>
+                </SizeDefine>
+                <SizeDefine type="Height">
+                    <RelSize scale="0.1" type="Height"/>
+                </SizeDefine>
+            </ComArea>
+            <Property name="MinSize" value="{{0,0},{0,25}}"/>
+        </StyleWidget>
+        <StyleSection name="main">
+            <FrameCom>
+                <ComArea>
+                    <SizeDefine type="TopEdge">
+                        <PixelSize name="AlfiskoSkin/ScrollUpNormal" dimension="Height"/>
+                    </SizeDefine>
+                    <SizeDefine type="BottomEdge">
+                        <SizeOp op="Subtract">
+                            <RelSize scale="1.0" type="BottomEdge"/>
+                            <PixelSize name="AlfiskoSkin/ScrollDownNormal" dimension="Height"/>
+                        </SizeOp>
+                    </SizeDefine>
+                </ComArea>
+                <ComPixel type="LeftEdge" pixel_id="AlfiskoSkin/VertScrollbarL"/>
+                <ComPixel type="RightEdge" pixel_id="AlfiskoSkin/VertScrollbarR"/>
+            </FrameCom>
+            <ImageryCom>
+                <ComArea>
+                    <SizeDefine type="LeftEdge">
+                        <PixelSize name="AlfiskoSkin/VertScrollbarL" dimension="Width"/>
+                    </SizeDefine>
+                    <SizeDefine type="RightEdge">
+                        <RelSize scale=".5" type="Width"/>
+                    </SizeDefine>
+                    <SizeDefine type="TopEdge">
+                        <PixelSize name="AlfiskoSkin/ScrollUpNormal" dimension="Height"/>
+                    </SizeDefine>
+                    <SizeDefine type="BottomEdge">
+                        <SizeOp op="Subtract">
+                            <RelSize scale="1.0" type="BottomEdge"/>
+                            <PixelSize name="AlfiskoSkin/ScrollDownNormal" dimension="Height"/>
+                        </SizeOp>
+                    </SizeDefine>
+                </ComArea>
+                <ComPixel pixel_id="AlfiskoSkin/VertScrollbarFill1"/>
+                <VLayout type="Extrude"/>
+                <HLayout type="Extrude"/>
+            </ImageryCom>
+            <ImageryCom>
+                <ComArea>
+                    <SizeDefine type="LeftEdge">
+                        <RelSize scale=".5" type="Width"/>
+                    </SizeDefine>
+                    <SizeDefine type="RightEdge">
+                        <SizeOp op="Subtract">
+                            <RelSize scale="1" type="Width"/>
+                            <PixelSize name="AlfiskoSkin/VertScrollbarR" dimension="Width"/>
+                        </SizeOp>
+                    </SizeDefine>
+                    <SizeDefine type="TopEdge">
+                        <PixelSize name="AlfiskoSkin/ScrollUpNormal" dimension="Height"/>
+                    </SizeDefine>
+                    <SizeDefine type="BottomEdge">
+                        <SizeOp op="Subtract">
+                            <RelSize scale="1.0" type="BottomEdge"/>
+                            <PixelSize name="AlfiskoSkin/ScrollDownNormal" dimension="Height"/>
+                        </SizeOp>
+                    </SizeDefine>
+                </ComArea>
+                <ComPixel pixel_id="AlfiskoSkin/VertScrollbarFill2"/>
+                <VLayout type="Extrude"/>
+                <HLayout type="Extrude"/>
+            </ImageryCom>
+            <ImageryCom>
+                <ComArea>
+                    <SizeDefine type="LeftEdge">
+                        <PixelSize name="AlfiskoSkin/VertScrollbarL" dimension="Width"/>
+                    </SizeDefine>
+                    <SizeDefine type="RightEdge">
+                        <SizeOp op="Subtract">
+                            <RelSize scale="1" type="Width"/>
+                            <PixelSize name="AlfiskoSkin/VertScrollbarR" dimension="Width"/>
+                        </SizeOp>
+                    </SizeDefine>
+                    <SizeDefine type="TopEdge">
+                        <PixelSize name="AlfiskoSkin/ScrollUpNormal" dimension="Height"/>
+                    </SizeDefine>
+                    <SizeDefine type="BottomEdge">
+                        <WidgetSize widget="__auto_thumb__" dimension="TopEdge"/>
+                    </SizeDefine>
+                </ComArea>
+                <ComPixel pixel_id="AlfiskoSkin/VertThumbShadowT"/>
+                <VLayout type="BottomAligned"/>
+                <HLayout type="Extrude"/>
+            </ImageryCom>
+            <ImageryCom>
+                <ComArea>
+                    <SizeDefine type="LeftEdge">
+                        <PixelSize name="AlfiskoSkin/VertScrollbarL" dimension="Width"/>
+                    </SizeDefine>
+                    <SizeDefine type="RightEdge">
+                        <SizeOp op="Subtract">
+                            <RelSize scale="1" type="Width"/>
+                            <PixelSize name="AlfiskoSkin/VertScrollbarR" dimension="Width"/>
+                        </SizeOp>
+                    </SizeDefine>
+                    <SizeDefine type="TopEdge">
+                        <WidgetSize widget="__auto_thumb__" dimension="BottomEdge"/>
+                    </SizeDefine>
+                    <SizeDefine type="BottomEdge">
+                        <SizeOp op="Subtract">
+                            <RelSize scale="1.0" type="BottomEdge"/>
+                            <PixelSize name="AlfiskoSkin/ScrollDownNormal" dimension="Height"/>
+                        </SizeOp>
+                    </SizeDefine>
+                </ComArea>
+                <ComPixel pixel_id="AlfiskoSkin/VertThumbShadowB"/>
+                <HLayout type="Extrude"/>
+            </ImageryCom>
+        </StyleSection>
+        <StyleLayout name="Enabled">
+            <Layer>
+                <Section id="main"/>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Disabled">
+            <Layer>
+                <Section id="main">
+                    <Colours top_left="FF7F7F7F" bottom_left="FF7F7F7F" top_right="FF7F7F7F" bottom_right="FF7F7F7F"/>
+                </Section>
+            </Layer>
+        </StyleLayout>
+    </WidgetStyle>
+    <WidgetStyle name="AlfiskoSkin/MultiLineEditbox">
+        <StyleProperty signal_refresh="true" value="FFFFFFFF" type="ColourArea" name="NormalTextColour"/>
+        <StyleProperty signal_refresh="true" value="FF000000" type="ColourArea" name="SelectedTextColour"/>
+        <StyleProperty signal_refresh="true" value="FFB6D142" type="ColourArea" name="ActiveSelectionColour"/>
+        <StyleProperty signal_refresh="true" value="FF808080" type="ColourArea" name="InactiveSelectionColour"/>
+        <Property name="MouseCursorImage" value="AlfiskoSkin/MouseTextBar"/>
+        <Property name="SelectionBrushImage" value="AlfiskoSkin/GenericBrush"/>
+        <Property name="Size" value="{{0, 256}, {0, 256}}" />
+        <StyleSpecial name="TextArea">
+            <ComArea>
+                <SizeDefine type="LeftEdge">
+                    <PixelSize name="AlfiskoSkin/EditboxL" dimension="Width"/>
+                </SizeDefine>
+                <SizeDefine type="TopEdge">
+                    <PixelSize name="AlfiskoSkin/EditboxT" dimension="Height"/>
+                </SizeDefine>
+                <SizeDefine type="RightEdge">
+                    <SizeOp op="Subtract">
+                        <RelSize scale="1" type="RightEdge"/>
+                        <PixelSize name="AlfiskoSkin/EditboxR" dimension="Width"/>
+                    </SizeOp>
+                </SizeDefine>
+                <SizeDefine type="BottomEdge">
+                    <SizeOp op="Subtract">
+                        <RelSize scale="1" type="BottomEdge"/>
+                        <PixelSize name="AlfiskoSkin/EditboxB" dimension="Height"/>
+                    </SizeOp>
+                </SizeDefine>
+            </ComArea>
+        </StyleSpecial>
+        <StyleSpecial name="TextAreaHScroll">
+            <ComArea>
+                <SizeDefine type="LeftEdge">
+                    <PixelSize name="AlfiskoSkin/EditboxL" dimension="Width"/>
+                </SizeDefine>
+                <SizeDefine type="TopEdge">
+                    <PixelSize name="AlfiskoSkin/EditboxT" dimension="Height"/>
+                </SizeDefine>
+                <SizeDefine type="RightEdge">
+                    <SizeOp op="Subtract">
+                        <RelSize scale="1" type="RightEdge"/>
+                        <PixelSize name="AlfiskoSkin/EditboxR" dimension="Width"/>
+                    </SizeOp>
+                </SizeDefine>
+                <SizeDefine type="BottomEdge">
+                    <SizeOp op="Subtract">
+                        <RelSize scale="1" type="BottomEdge"/>
+                        <WidgetSize widget="__auto_hscrollbar__" dimension="Height"/>
+                    </SizeOp>
+                </SizeDefine>
+            </ComArea>
+        </StyleSpecial>
+        <StyleSpecial name="TextAreaVScroll">
+            <ComArea>
+                <SizeDefine type="LeftEdge">
+                    <PixelSize name="AlfiskoSkin/EditboxL" dimension="Width"/>
+                </SizeDefine>
+                <SizeDefine type="TopEdge">
+                    <PixelSize name="AlfiskoSkin/EditboxT" dimension="Height"/>
+                </SizeDefine>
+                <SizeDefine type="RightEdge">
+                    <SizeOp op="Subtract">
+                        <RelSize scale="1" type="RightEdge"/>
+                        <WidgetSize widget="__auto_vscrollbar__" dimension="Width"/>
+                    </SizeOp>
+                </SizeDefine>
+                <SizeDefine type="BottomEdge">
+                    <SizeOp op="Subtract">
+                        <RelSize scale="1" type="BottomEdge"/>
+                        <PixelSize name="AlfiskoSkin/EditboxB" dimension="Height"/>
+                    </SizeOp>
+                </SizeDefine>
+            </ComArea>
+        </StyleSpecial>
+        <StyleSpecial name="TextAreaHVScroll">
+            <ComArea>
+                <SizeDefine type="LeftEdge">
+                    <PixelSize name="AlfiskoSkin/EditboxL" dimension="Width"/>
+                </SizeDefine>
+                <SizeDefine type="TopEdge">
+                    <PixelSize name="AlfiskoSkin/EditboxT" dimension="Height"/>
+                </SizeDefine>
+                <SizeDefine type="RightEdge">
+                    <SizeOp op="Subtract">
+                        <RelSize scale="1" type="RightEdge"/>
+                        <WidgetSize widget="__auto_vscrollbar__" dimension="Width"/>
+                    </SizeOp>
+                </SizeDefine>
+                <SizeDefine type="BottomEdge">
+                    <SizeOp op="Subtract">
+                        <RelSize scale="1" type="BottomEdge"/>
+                        <WidgetSize widget="__auto_hscrollbar__" dimension="Height"/>
+                    </SizeOp>
+                </SizeDefine>
+            </ComArea>
+        </StyleSpecial>
+        <StyleWidget id="__auto_hscrollbar__" type="AlfiskoSkin/HorizontalScrollbar">
+            <ComArea>
+                <SizeDefine type="Width">
+                    <RelSize scale="1" type="Width" offset="-15"/>
+                </SizeDefine>
+                <SizeDefine type="Height">
+                    <AbsSize value="15"/>
+                </SizeDefine>
+            </ComArea>
+            <VAlign type="BottomAligned"/>
+        </StyleWidget>
+        <StyleWidget id="__auto_vscrollbar__" type="AlfiskoSkin/VerticalScrollbar">
+            <ComArea>
+                <SizeDefine type="Width">
+                    <AbsSize value="15"/>
+                </SizeDefine>
+                <SizeDefine type="Height">
+                    <RelSize scale="1" type="Height" offset="-15"/>
+                </SizeDefine>
+            </ComArea>
+            <HAlign type="RightAligned"/>
+        </StyleWidget>
+        <StyleSection name="main">
+            <FrameCom>
+                <ComPixel type="TopLeftCorner" pixel_id="AlfiskoSkin/EditboxTL"/>
+                <ComPixel type="TopRightCorner" pixel_id="AlfiskoSkin/EditboxTR"/>
+                <ComPixel type="BottomLeftCorner" pixel_id="AlfiskoSkin/EditboxBL"/>
+                <ComPixel type="BottomRightCorner" pixel_id="AlfiskoSkin/EditboxBR"/>
+                <ComPixel type="LeftEdge" pixel_id="AlfiskoSkin/EditboxL"/>
+                <ComPixel type="RightEdge" pixel_id="AlfiskoSkin/EditboxR"/>
+                <ComPixel type="TopEdge" pixel_id="AlfiskoSkin/EditboxT"/>
+                <ComPixel type="BottomEdge" pixel_id="AlfiskoSkin/EditboxB"/>
+                <ComPixel type="Background" pixel_id="AlfiskoSkin/EditboxFill"/>
+            </FrameCom>
+        </StyleSection>
+        <StyleSection name="Caret">
+            <ImageryCom>
+                <ComArea>
+                    <SizeDefine type="Width">
+                        <AbsSize value="2"/>
+                    </SizeDefine>
+                </ComArea>
+                <ComPixel pixel_id="AlfiskoSkin/GenericBrush"/>
+                <VLayout type="Extrude"/>
+                <HLayout type="Extrude"/>
+            </ImageryCom>
+        </StyleSection>
+        <StyleLayout name="Enabled">
+            <Layer>
+                <Section id="main"/>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="ReadOnly">
+            <Layer>
+                <Section id="main"/>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Disabled">
+            <Layer>
+                <Section id="main">
+                    <Colours top_left="FF7F7F7F" bottom_left="FF7F7F7F" top_right="FF7F7F7F" bottom_right="FF7F7F7F"/>
+                </Section>
+            </Layer>
+        </StyleLayout>
+    </WidgetStyle>
+    <WidgetStyle name="AlfiskoSkin/ProgressBar">
+        <Property name="CurrentProgress" value=".01"/>
+        <Property name="Size" value="{{0, 256}, {0, 32}}" />
+        <StyleSpecial name="ProgressArea"/>
+        <StyleSection name="progress_empty">
+            <FrameCom>
+                <ComPixel type="TopLeftCorner" pixel_id="AlfiskoSkin/ProgressEmptyTL"/>
+                <ComPixel type="TopRightCorner" pixel_id="AlfiskoSkin/ProgressEmptyTR"/>
+                <ComPixel type="BottomLeftCorner" pixel_id="AlfiskoSkin/ProgressEmptyBL"/>
+                <ComPixel type="BottomRightCorner" pixel_id="AlfiskoSkin/ProgressEmptyBR"/>
+                <ComPixel type="LeftEdge" pixel_id="AlfiskoSkin/ProgressEmptyL"/>
+                <ComPixel type="RightEdge" pixel_id="AlfiskoSkin/ProgressEmptyR"/>
+                <ComPixel type="TopEdge" pixel_id="AlfiskoSkin/ProgressEmptyT"/>
+                <ComPixel type="BottomEdge" pixel_id="AlfiskoSkin/ProgressEmptyB"/>
+                <ComPixel type="Background" pixel_id="AlfiskoSkin/ProgressEmptyFill"/>
+            </FrameCom>
+        </StyleSection>
+        <StyleSection name="progress_full">
+            <FrameCom>
+                <ComPixel type="TopLeftCorner" pixel_id="AlfiskoSkin/ProgressFullTL"/>
+                <ComPixel type="TopRightCorner" pixel_id="AlfiskoSkin/ProgressFullTR"/>
+                <ComPixel type="BottomLeftCorner" pixel_id="AlfiskoSkin/ProgressFullBL"/>
+                <ComPixel type="BottomRightCorner" pixel_id="AlfiskoSkin/ProgressFullBR"/>
+                <ComPixel type="LeftEdge" pixel_id="AlfiskoSkin/ProgressFullL"/>
+                <ComPixel type="RightEdge" pixel_id="AlfiskoSkin/ProgressFullR"/>
+                <ComPixel type="TopEdge" pixel_id="AlfiskoSkin/ProgressFullT"/>
+                <ComPixel type="BottomEdge" pixel_id="AlfiskoSkin/ProgressFullB"/>
+                <ComPixel type="Background" pixel_id="AlfiskoSkin/ProgressFullFill"/>
+            </FrameCom>
+        </StyleSection>
+        <StyleSection name="progress_shadow">
+            <ImageryCom>
+                <ComArea>
+                    <SizeDefine type="LeftEdge">
+                        <SizeOp op="Multiply">
+                            <RelSize scale="1" type="Width"/>
+                            <SizeProperty name="CurrentProgress"/>
+                        </SizeOp>
+                    </SizeDefine>
+                    <SizeDefine type="RightEdge">
+                        <SizeOp op="Subtract">
+                            <RelSize scale="1" type="Width"/>
+                            <AbsSize value="5"/>
+                        </SizeOp>
+                    </SizeDefine>
+                </ComArea>
+                <ComPixel pixel_id="AlfiskoSkin/ProgressShadow"/>
+                <VLayout type="Extrude"/>
+            </ImageryCom>
+        </StyleSection>
+        <StyleLayout name="Enabled">
+            <Layer>
+                <Section id="progress_empty"/>
+                <Section id="progress_shadow"/>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Disabled">
+            <Layer>
+                <Section id="progress_empty">
+                    <Colours top_left="FF7F7F7F" bottom_left="FF7F7F7F" top_right="FF7F7F7F" bottom_right="FF7F7F7F"/>
+                </Section>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="EnabledProgress">
+            <Layer>
+                <Section id="progress_full"/>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="DisabledProgress">
+            <Layer>
+                <Section id="progress_full">
+                    <Colours top_left="FF7F7F7F" bottom_left="FF7F7F7F" top_right="FF7F7F7F" bottom_right="FF7F7F7F"/>
+                </Section>
+            </Layer>
+        </StyleLayout>
+    </WidgetStyle>
+    <WidgetStyle name="AlfiskoSkin/HorizontalSliderThumb">
+        <Property name="HorzFree" value="true"/>
+        <Property name="MouseInputPropagationEnabled" value="true"/>
+        <Property name="Size" value="{{0, 32}, {0, 32}}" />
+        <StyleSection name="normal">
+            <ImageryCom>
+                <ComPixel pixel_id="AlfiskoSkin/HorzSliderThumbNormal"/>
+                <VLayout type="Extrude"/>
+                <HLayout type="Extrude"/>
+            </ImageryCom>
+        </StyleSection>
+        <StyleSection name="hover">
+            <ImageryCom>
+                <ComPixel pixel_id="AlfiskoSkin/HorzSliderThumbHover"/>
+                <VLayout type="Extrude"/>
+                <HLayout type="Extrude"/>
+            </ImageryCom>
+        </StyleSection>
+        <StyleSection name="pushed">
+            <ImageryCom>
+                <ComPixel pixel_id="AlfiskoSkin/HorzSliderThumbPushed"/>
+                <VLayout type="Extrude"/>
+                <HLayout type="Extrude"/>
+            </ImageryCom>
+        </StyleSection>
+        <StyleLayout name="Normal">
+            <Layer>
+                <Section id="normal"/>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Hover">
+            <Layer>
+                <Section id="hover"/>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Pushed">
+            <Layer>
+                <Section id="pushed"/>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Disabled">
+            <Layer>
+                <Section id="normal">
+                    <Colours top_left="FF7F7F7F" bottom_left="FF7F7F7F" top_right="FF7F7F7F" bottom_right="FF7F7F7F"/>
+                </Section>
+            </Layer>
+        </StyleLayout>
+    </WidgetStyle>
+    <WidgetStyle name="AlfiskoSkin/HorizontalSlider">
+        <Property name="MouseAutoRepeatEnabled" value="true"/>
+        <Property name="WantsMultiClickEvents" value="false"/>
+        <Property name="Size" value="{{0, 256}, {0, 32}}" />
+        <StyleSpecial name="ThumbTrackArea"/>
+        <StyleWidget id="__auto_thumb__" type="AlfiskoSkin/HorizontalSliderThumb">
+            <ComArea>
+                <SizeDefine type="LeftEdge">
+                    <AbsSize value="0"/>
+                </SizeDefine>
+                <SizeDefine type="TopEdge">
+                    <AbsSize value="0"/>
+                </SizeDefine>
+                <SizeDefine type="Width">
+                    <PixelSize name="AlfiskoSkin/HorzSliderThumbNormal" dimension="Width"/>
+                </SizeDefine>
+                <SizeDefine type="Height">
+                    <PixelSize name="AlfiskoSkin/HorzSliderThumbNormal" dimension="Height"/>
+                </SizeDefine>
+            </ComArea>
+            <VAlign type="Centre"/>
+        </StyleWidget>
+        <StyleSection name="track">
+            <ImageryCom>
+                <ComPixel pixel_id="AlfiskoSkin/HorzSliderTrackL"/>
+                <VLayout type="Centre"/>
+            </ImageryCom>
+            <ImageryCom>
+                <ComPixel pixel_id="AlfiskoSkin/HorzSliderTrackR"/>
+                <VLayout type="Centre"/>
+                <HLayout type="RightAligned"/>
+            </ImageryCom>
+            <ImageryCom>
+                <ComArea>
+                    <SizeDefine type="LeftEdge">
+                        <PixelSize name="AlfiskoSkin/HorzSliderTrackL" dimension="Width"/>
+                    </SizeDefine>
+                    <SizeDefine type="RightEdge">
+                        <SizeOp op="Subtract">
+                            <RelSize scale="1" type="Width"/>
+                            <PixelSize name="AlfiskoSkin/HorzSliderTrackR" dimension="Width"/>
+                        </SizeOp>
+                    </SizeDefine>
+                </ComArea>
+                <ComPixel pixel_id="AlfiskoSkin/HorzSliderTrackFill"/>
+                <VLayout type="Centre"/>
+                <HLayout type="Extrude"/>
+            </ImageryCom>
+            <ImageryCom>
+                <ComArea>
+                    <SizeDefine type="RightEdge">
+                        <WidgetSize widget="__auto_thumb__" dimension="LeftEdge"/>
+                    </SizeDefine>
+                </ComArea>
+                <ComPixel pixel_id="AlfiskoSkin/HorzSliderShadowL"/>
+                <VLayout type="Centre"/>
+                <HLayout type="RightAligned"/>
+            </ImageryCom>
+            <ImageryCom>
+                <ComArea>
+                    <SizeDefine type="LeftEdge">
+                        <WidgetSize widget="__auto_thumb__" dimension="RightEdge"/>
+                    </SizeDefine>
+                </ComArea>
+                <ComPixel pixel_id="AlfiskoSkin/HorzSliderShadowR"/>
+                <VLayout type="Centre"/>
+            </ImageryCom>
+        </StyleSection>
+        <StyleLayout name="Enabled">
+            <Layer>
+                <Section id="track"/>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Disabled">
+            <Layer>
+                <Section id="track"/>
+            </Layer>
+        </StyleLayout>
+    </WidgetStyle>
+    <WidgetStyle name="AlfiskoSkin/VerticalSliderThumb">
+        <Property name="VertFree" value="true"/>
+        <Property name="MouseInputPropagationEnabled" value="true"/>
+        <Property name="Size" value="{{0, 32}, {0, 32}}" />
+        <StyleSection name="normal">
+            <ImageryCom>
+                <ComPixel pixel_id="AlfiskoSkin/VertSliderThumbNormal"/>
+                <VLayout type="Extrude"/>
+                <HLayout type="Extrude"/>
+            </ImageryCom>
+        </StyleSection>
+        <StyleSection name="hover">
+            <ImageryCom>
+                <ComPixel pixel_id="AlfiskoSkin/VertSliderThumbHover"/>
+                <VLayout type="Extrude"/>
+                <HLayout type="Extrude"/>
+            </ImageryCom>
+        </StyleSection>
+        <StyleSection name="pushed">
+            <ImageryCom>
+                <ComPixel pixel_id="AlfiskoSkin/VertSliderThumbPushed"/>
+                <VLayout type="Extrude"/>
+                <HLayout type="Extrude"/>
+            </ImageryCom>
+        </StyleSection>
+        <StyleLayout name="Normal">
+            <Layer>
+                <Section id="normal"/>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Hover">
+            <Layer>
+                <Section id="hover"/>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Pushed">
+            <Layer>
+                <Section id="pushed"/>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Disabled">
+            <Layer>
+                <Section id="normal">
+                    <Colours top_left="FF7F7F7F" bottom_left="FF7F7F7F" top_right="FF7F7F7F" bottom_right="FF7F7F7F"/>
+                </Section>
+            </Layer>
+        </StyleLayout>
+    </WidgetStyle>
+    <WidgetStyle name="AlfiskoSkin/VerticalSlider">
+        <Property name="VerticalSlider" value="true"/>
+        <Property name="MouseAutoRepeatEnabled" value="true"/>
+        <Property name="WantsMultiClickEvents" value="false"/>
+        <Property name="Size" value="{{0, 32}, {0, 256}}" />
+        <StyleSpecial name="ThumbTrackArea"/>
+        <StyleWidget id="__auto_thumb__" type="AlfiskoSkin/VerticalSliderThumb">
+            <ComArea>
+                <SizeDefine type="LeftEdge">
+                    <AbsSize value="0"/>
+                </SizeDefine>
+                <SizeDefine type="TopEdge">
+                    <AbsSize value="0"/>
+                </SizeDefine>
+                <SizeDefine type="Width">
+                    <PixelSize name="AlfiskoSkin/VertSliderThumbNormal" dimension="Width"/>
+                </SizeDefine>
+                <SizeDefine type="Height">
+                    <PixelSize name="AlfiskoSkin/VertSliderThumbNormal" dimension="Height"/>
+                </SizeDefine>
+            </ComArea>
+            <HAlign type="Centre"/>
+        </StyleWidget>
+        <StyleSection name="track">
+            <ImageryCom>
+                <ComPixel pixel_id="AlfiskoSkin/VertSliderTrackT"/>
+                <HLayout type="Centre"/>
+            </ImageryCom>
+            <ImageryCom>
+                <ComPixel pixel_id="AlfiskoSkin/VertSliderTrackB"/>
+                <VLayout type="BottomAligned"/>
+                <HLayout type="Centre"/>
+            </ImageryCom>
+            <ImageryCom>
+                <ComArea>
+                    <SizeDefine type="TopEdge">
+                        <PixelSize name="AlfiskoSkin/VertSliderTrackT" dimension="Height"/>
+                    </SizeDefine>
+                    <SizeDefine type="BottomEdge">
+                        <SizeOp op="Subtract">
+                            <RelSize scale="1" type="Height"/>
+                            <PixelSize name="AlfiskoSkin/VertSliderTrackB" dimension="Height"/>
+                        </SizeOp>
+                    </SizeDefine>
+                </ComArea>
+                <ComPixel pixel_id="AlfiskoSkin/VertSliderTrackFill"/>
+                <VLayout type="Extrude"/>
+                <HLayout type="Centre"/>
+            </ImageryCom>
+            <ImageryCom>
+                <ComArea>
+                    <SizeDefine type="BottomEdge">
+                        <WidgetSize widget="__auto_thumb__" dimension="TopEdge"/>
+                    </SizeDefine>
+                </ComArea>
+                <ComPixel pixel_id="AlfiskoSkin/VertSliderShadowT"/>
+                <VLayout type="BottomAligned"/>
+                <HLayout type="Centre"/>
+            </ImageryCom>
+            <ImageryCom>
+                <ComArea>
+                    <SizeDefine type="TopEdge">
+                        <WidgetSize widget="__auto_thumb__" dimension="BottomEdge"/>
+                    </SizeDefine>
+                </ComArea>
+                <ComPixel pixel_id="AlfiskoSkin/VertSliderShadowB"/>
+                <HLayout type="Centre"/>
+            </ImageryCom>
+        </StyleSection>
+        <StyleLayout name="Enabled">
+            <Layer>
+                <Section id="track"/>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Disabled">
+            <Layer>
+                <Section id="track"/>
+            </Layer>
+        </StyleLayout>
+    </WidgetStyle>
+    <WidgetStyle name="AlfiskoSkin/MenuItem">
+        <StyleProperty signal_refresh="true" value="FFFFFFFF" type="ColourArea" name="LabelTextColour"/>
+        <Property name="WantsMultiClickEvents" value="false"/>
+        <Property name="Size" value="{{0, 128}, {0, 32}}" />
+        <StyleSpecial name="ContentSize">
+            <ComArea>
+                <SizeDefine type="Width">
+                    <FontSize type="HorzExtent"/>
+                </SizeDefine>
+                <SizeDefine type="Height">
+                    <FontSize type="LineSpacing"/>
+                </SizeDefine>
+            </ComArea>
+        </StyleSpecial>
+        <StyleSpecial name="HasPopupContentSize">
+            <ComArea>
+                <SizeDefine type="Width">
+                    <FontSize type="HorzExtent"/>
+                </SizeDefine>
+                <SizeDefine type="Height">
+                    <FontSize type="LineSpacing"/>
+                </SizeDefine>
+            </ComArea>
+        </StyleSpecial>
+        <StyleSection name="label">
+            <TextCom>
+                <VLayout type="Centre"/>
+                <HLayout type="LeftAligned"/>
+            </TextCom>
+        </StyleSection>
+        <StyleSection name="frame">
+        </StyleSection>
+        <StyleSection name="popup_arrow">
+        </StyleSection>
+        <StyleLayout name="EnabledNormal">
+            <Layer>
+                <Section id="label">
+                    <ColourProperty name="LabelTextColour"/>
+                </Section>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="EnabledHover">
+            <Layer>
+                <Section id="frame"/>
+                <Section id="label">
+                    <ColourProperty name="LabelTextColour"/>
+                </Section>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="EnabledPushed">
+            <Layer>
+                <Section id="frame"/>
+                <Section id="label">
+                    <ColourProperty name="LabelTextColour"/>
+                </Section>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="EnabledPopupOpen">
+            <Layer>
+                <Section id="frame"/>
+                <Section id="label">
+                    <ColourProperty name="LabelTextColour"/>
+                </Section>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="DisabledNormal">
+            <Layer>
+                <Section id="label">
+                    <ColourProperty name="LabelTextColour"/>
+                </Section>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="DisabledHover">
+            <Layer>
+                <Section id="frame"/>
+                <Section id="label">
+                    <ColourProperty name="LabelTextColour"/>
+                </Section>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="DisabledPushed">
+            <Layer>
+                <Section id="frame"/>
+                <Section id="label">
+                    <ColourProperty name="LabelTextColour"/>
+                </Section>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="DisabledPopupOpen">
+            <Layer>
+                <Section id="frame"/>
+                <Section id="label">
+                    <ColourProperty name="LabelTextColour"/>
+                </Section>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="PopupClosedIcon">
+            <Layer>
+                <Section id="popup_arrow"/>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="PopupOpenIcon">
+            <Layer>
+                <Section id="popup_arrow"/>
+            </Layer>
+        </StyleLayout>
+    </WidgetStyle>
+</Style>

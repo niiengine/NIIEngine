@@ -1,0 +1,13 @@
+﻿++ gnu中的window方案代替品
+
+[Blender 3D]
+[Dia]
+[Pidgin]
+[GIMP]
+[GNUnet]
+[Inkscape]
+[MinGW]
+[LibreOffice]
+[Scribus]
+[Tribler]
+[Iceweasel]

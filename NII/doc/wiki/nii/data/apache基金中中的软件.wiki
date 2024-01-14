@@ -1,0 +1,78 @@
+﻿++ apache基金中中的软件
+
+[HTTP Server] Web server[1]
+[Abdera] implementation of the Atom Syndication Format and Atom Publishing Protocol
+[ActiveMQ] Java Message Service 1.1 (JMS) message broker
+[Ant] Java-based build tool[1]
+[Apache Archiva] The Build Artifact Repository Manager
+[APR]
+[Apache POI] - library for reading and writing Microsoft Office formats
+[Beehive] a Java visual object model
+[Bloodhound] a defect tracker based on Trac[2]
+[Camel] 
+[Cocoon] XML publishing framework[1]
+[Commons] Reusable Java libraries and utilities too small to merit their own project
+[Continuum] a continuous integration server
+[CXF] web services framework
+[DB]
+
+[Directory] a directory server supporting LDAP and other protocols
+[Excalibur] Inversion of Control container named Fortress and related components
+[Felix] Implementation of the OSGi Release 4 core framework specification
+[Flex] a cross-platform SDK for developing and deploying rich Internet applications.
+[Forrest] documentation framework based upon Cocoon
+[Apache Flume] a large scale log aggregation framework
+[Geronimo] a Java EE server
+[Gump] integration, dependencies, and versioning management
+[Harmony] a Java implementation
+[Hadoop] Java software framework that supports data intensive distributed applications
+[Apache ZooKeeper] Co-ordination service for distributed applications
+[HiveMind] Services and configuration microkernel
+[iBATIS] Persistence framework which enables mapping sql queries to POJOs
+[Incubator] for aspiring ASF projects
+[Jackrabbit] implementation of the Java Content Repository API
+[Jakarta] server side Java, including its own set of subprojects[1]
+[James] Java email and news server
+[Apache Labs] a place for innovation where committees of the foundation can experiment with new ideas
+[Lenya] content management system
+[Apache Logging] 
+[Lucene] text search engine library written entirely in Java
+
+[Lucy] A loose port of the Lucene search engine library, written in C and targeted at dynamic language users.
+[mahout]:A machine learning and data mining solution.
+[Maven] Java project management and comprehension tool
+[Mina] Multipurpose Infrastructure for Network Application
+
+[mod_perl] module that integrates the Perl interpreter into Apache server
+[mod_python] module that integrates the Python interpreter into Apache server. Deprecated in favour of mod_wsgi.
+[MyFaces] JavaServer Faces implementation
+[OFBiz] Open for Business: enterprise automation software
+[Oozie] Oozie is a workflow scheduler system to manage Apache Hadoop jobs.
+[OpenJPA] Java Object Persistence
+[OpenOffice] Office suite, as of June 2011.[3]
+Object Oriented Data Technology (OODT): data management framework for capturing and sharing data
+[PDFBox] a Java based PDF library (reading, text extraction, manipulation, viewer)
+[Pivot] a platform for building rich internet applications in Java
+[Portals] web portal related software
+[Santuario] XML Security in Java and C++
+[ServiceMix] enterprise service bus that supports JBI and OSGi
+[Shale] Web application framework based on JavaServer Faces
+[SpamAssassin] email filter used to identify spam
+[Stanbol] extend traditional content management systems with semantic services
+[Struts] Java web applications framework[1]
+[Apache Stonehenge] SOA interoperability
+[Subversion] an open source version control (client/server) system
+[Tapestry] Component-based Java web framework
+[Tcl] Originally "Tool Command Language", a dynamic GUI scripting language
+[Tomcat] a web container for serving servlets and JSP[1]
+[Apache Traffic Server] an HTTP/1.1 compliant caching proxy server.
+[UIMA] an unstructured content analytics framework
+[Velocity] a Java template creation engine
+[Wave] online real-time collaborative editing
+[Web services] Web service related systems
+
+[Wicket] Component-based Java web framework
+[Xalan] XSLT processors in Java and C++
+[Xerces] a validating XML parser
+[XMLBeans] XML-Java binding tool
+[XML] Graphics: conversion of XML formats to graphical output

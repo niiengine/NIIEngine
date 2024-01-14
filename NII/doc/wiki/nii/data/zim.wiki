@@ -1,0 +1,5 @@
+﻿++ zim
+
+
+支持图象
+http://zim-wiki.org

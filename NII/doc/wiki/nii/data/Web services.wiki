@@ -1,0 +1,6 @@
+﻿++ Web services
+
+[Axis] an open source, XML based Web service framework
+[Muse] an implementation of the WS-ResourceFramework (WSRF), WS-BaseNotification (WSN), and WS-DistributedManagement (WSDM) specifications
+[Rampart] an implementation of the WS-Security standard for the Axis2 Web services engine
+[Tuscany] a SCA implementation, also providing other SOA implementations

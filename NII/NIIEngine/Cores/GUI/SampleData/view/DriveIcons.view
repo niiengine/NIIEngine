@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<View ver="2" id="DriveIcons" src="DriveIcons.png" native_res_x="800" native_res_y="600" auto_res="vertical">
+	<Pixel id="Artic" pos_x="1" pos_y="1" width="62" height="54" />
+	<Pixel id="Lime" pos_x="64" pos_y="1" width="62" height="54" />
+	<Pixel id="Sunset" pos_x="127" pos_y="1" width="62" height="54" />
+	<Pixel id="Black" pos_x="190" pos_y="1" width="62" height="54" />
+	<Pixel id="Blue" pos_x="1" pos_y="58" width="62" height="54" />
+	<Pixel id="Silver" pos_x="65" pos_y="58" width="62" height="54" />
+	<Pixel id="DriveStack" pos_x="128" pos_y="57" width="62" height="54" />
+	<Pixel id="GreenCandy" pos_x="192" pos_y="57" width="62" height="54" />
+	<Pixel id="GlobalDrive" pos_x="1" pos_y="114" width="62" height="54" />
+</View>

@@ -1,0 +1,2316 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Style ver="7">
+    <WidgetStyle name="Vanilla/Label">
+        <StyleProperty signal_refresh="true" value="FFFFFFFF" type="Colour" name="NormalTextColour"/>
+        <StyleProperty signal_refresh="true" value="FFDDDDDD" type="Colour" name="DisabledTextColour"/>
+        <StyleProperty signal_refresh="true" value="Centre" type="VTextLayout" name="VTLayout1"/>
+        <StyleProperty signal_refresh="true" value="Centre" type="HTextLayout" name="HTLayout1"/>
+        <Property name="Size" value="{{0, 128}, {0, 32}}" />
+        <StyleSection name="Label">
+            <TextCom>
+                <ComArea>
+                    <SizeDefine type="LeftEdge">
+                        <AbsSize value="0"/>
+                    </SizeDefine>
+                    <SizeDefine type="TopEdge">
+                        <AbsSize value="0"/>
+                    </SizeDefine>
+                    <SizeDefine type="Width">
+                        <RelSize scale="1" type="Width"/>
+                    </SizeDefine>
+                    <SizeDefine type="Height">
+                        <RelSize scale="1" type="Height"/>
+                    </SizeDefine>
+                </ComArea>
+                <VLayoutProperty name="VTLayout1"/>
+                <HLayoutProperty name="HTLayout1"/>
+            </TextCom>
+        </StyleSection>
+        <StyleLayout name="Enabled">
+            <Layer>
+                <Section id="Label">
+                    <ColourProperty name="NormalTextColour"/>
+                </Section>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Disabled">
+            <Layer>
+                <Section id="Label">
+                    <ColourProperty name="DisabledTextColour"/>
+                </Section>
+            </Layer>
+        </StyleLayout>
+    </WidgetStyle>
+    <WidgetStyle name="Vanilla/Shared">
+        <StyleSection name="Frame">
+            <FrameCom>
+                <ComArea>
+                    <SizeDefine type="LeftEdge">
+                        <AbsSize value="0"/>
+                    </SizeDefine>
+                    <SizeDefine type="TopEdge">
+                        <AbsSize value="0"/>
+                    </SizeDefine>
+                    <SizeDefine type="RightEdge">
+                        <RelSize scale="1" type="RightEdge"/>
+                    </SizeDefine>
+                    <SizeDefine type="BottomEdge">
+                        <RelSize scale="1" type="BottomEdge"/>
+                    </SizeDefine>
+                </ComArea>
+                <ComPixel type="TopLeftCorner" pixel_id="Vanilla-Images/FrameTopLeft"/>
+                <ComPixel type="TopRightCorner" pixel_id="Vanilla-Images/FrameTopRight"/>
+                <ComPixel type="BottomLeftCorner" pixel_id="Vanilla-Images/FrameBottomLeft"/>
+                <ComPixel type="BottomRightCorner" pixel_id="Vanilla-Images/FrameBottomRight"/>
+                <ComPixel type="LeftEdge" pixel_id="Vanilla-Images/FrameLeft"/>
+                <ComPixel type="TopEdge" pixel_id="Vanilla-Images/FrameTop"/>
+                <ComPixel type="RightEdge" pixel_id="Vanilla-Images/FrameRight"/>
+                <ComPixel type="BottomEdge" pixel_id="Vanilla-Images/FrameBottom"/>
+                <ComPixel type="Background" pixel_id="Vanilla-Images/GenericBrush"/>
+            </FrameCom>
+        </StyleSection>
+        <StyleSection name="FrameOnly">
+            <FrameCom>
+                <ComArea>
+                    <SizeDefine type="LeftEdge">
+                        <AbsSize value="0"/>
+                    </SizeDefine>
+                    <SizeDefine type="TopEdge">
+                        <AbsSize value="0"/>
+                    </SizeDefine>
+                    <SizeDefine type="RightEdge">
+                        <RelSize scale="1" type="RightEdge"/>
+                    </SizeDefine>
+                    <SizeDefine type="BottomEdge">
+                        <RelSize scale="1" type="BottomEdge"/>
+                    </SizeDefine>
+                </ComArea>
+                <ComPixel type="TopLeftCorner" pixel_id="Vanilla-Images/FrameTopLeft"/>
+                <ComPixel type="TopRightCorner" pixel_id="Vanilla-Images/FrameTopRight"/>
+                <ComPixel type="BottomLeftCorner" pixel_id="Vanilla-Images/FrameBottomLeft"/>
+                <ComPixel type="BottomRightCorner" pixel_id="Vanilla-Images/FrameBottomRight"/>
+                <ComPixel type="LeftEdge" pixel_id="Vanilla-Images/FrameLeft"/>
+                <ComPixel type="TopEdge" pixel_id="Vanilla-Images/FrameTop"/>
+                <ComPixel type="RightEdge" pixel_id="Vanilla-Images/FrameRight"/>
+                <ComPixel type="BottomEdge" pixel_id="Vanilla-Images/FrameBottom"/>
+            </FrameCom>
+        </StyleSection>
+        <StyleSection name="BackgroundOnly">
+            <FrameCom>
+                <ComArea>
+                    <SizeDefine type="LeftEdge">
+                        <PixelSize name="Vanilla-Images/FrameLeft" dimension="Width"/>
+                    </SizeDefine>
+                    <SizeDefine type="TopEdge">
+                        <PixelSize name="Vanilla-Images/FrameTop" dimension="Height"/>
+                    </SizeDefine>
+                    <SizeDefine type="RightEdge">
+                        <SizeOp op="Subtract">
+                            <RelSize scale="1" type="RightEdge"/>
+                            <PixelSize name="Vanilla-Images/FrameRight" dimension="Width"/>
+                        </SizeOp>
+                    </SizeDefine>
+                    <SizeDefine type="BottomEdge">
+                        <SizeOp op="Subtract">
+                            <RelSize scale="1" type="BottomEdge"/>
+                            <PixelSize name="Vanilla-Images/FrameBottom" dimension="Height"/>
+                        </SizeOp>
+                    </SizeDefine>
+                </ComArea>
+                <ComPixel type="Background" pixel_id="Vanilla-Images/GenericBrush"/>
+            </FrameCom>
+        </StyleSection>
+        <StyleSection name="BackgroundOnlyFull">
+            <FrameCom>
+                <ComArea>
+                    <SizeDefine type="LeftEdge">
+                        <AbsSize value="0"/>
+                    </SizeDefine>
+                    <SizeDefine type="TopEdge">
+                        <AbsSize value="0"/>
+                    </SizeDefine>
+                    <SizeDefine type="RightEdge">
+                        <RelSize scale="1" type="RightEdge"/>
+                    </SizeDefine>
+                    <SizeDefine type="BottomEdge">
+                        <RelSize scale="1" type="BottomEdge"/>
+                    </SizeDefine>
+                </ComArea>
+                <ComPixel type="Background" pixel_id="Vanilla-Images/GenericBrush"/>
+            </FrameCom>
+        </StyleSection>
+    </WidgetStyle>
+    <WidgetStyle name="Vanilla/Titlebar">
+        <StyleProperty signal_refresh="true" value="FFFFFFFF" type="ColourArea" name="CaptionColour"/>
+        <Property name="NonClient" value="true"/>
+        <Property name="Size" value="{{0, 256}, {0, 32}}" />
+        <StyleSection name="caption">
+            <TextCom>
+                <ComArea>
+                    <SizeDefine type="LeftEdge">
+                        <AbsSize value="0"/>
+                    </SizeDefine>
+                    <SizeDefine type="TopEdge">
+                        <AbsSize value="0"/>
+                    </SizeDefine>
+                    <SizeDefine type="RightEdge">
+                        <RelSize scale="1" type="RightEdge"/>
+                    </SizeDefine>
+                    <SizeDefine type="BottomEdge">
+                        <RelSize scale="1" type="BottomEdge"/>
+                    </SizeDefine>
+                </ComArea>
+                <ColourProperty name="CaptionColour"/>
+                <VLayout type="Centre"/>
+                <HLayout type="Centre"/>
+            </TextCom>
+        </StyleSection>
+        <StyleLayout name="Active">
+            <Layer>
+                <Section id="caption"/>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Inactive">
+            <Layer>
+                <Section id="caption"/>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Disabled">
+            <Layer>
+                <Section id="caption"/>
+            </Layer>
+        </StyleLayout>
+    </WidgetStyle>
+    <WidgetStyle name="Vanilla/Button">
+        <StyleProperty signal_refresh="true" value="FFFFFFFF" type="ColourArea" name="NormalTextColour"/>
+        <StyleProperty signal_refresh="true" value="FFFFFFFF" type="ColourArea" name="HoverTextColour"/>
+        <StyleProperty signal_refresh="true" value="FFFFFFFF" type="ColourArea" name="PushedTextColour"/>
+        <StyleProperty signal_refresh="true" value="FF888888" type="ColourArea" name="DisabledTextColour"/>
+        <StyleProperty signal_refresh="true" value="true" type="bool" name="UseStandardImagery"/>
+        <StyleProperty signal_refresh="true" value="" type="Image" name="NormalImage"/>
+        <StyleProperty signal_refresh="true" value="" type="Image" name="HoverImage"/>
+        <StyleProperty signal_refresh="true" value="" type="Image" name="PushedImage"/>
+        <StyleProperty signal_refresh="true" value="Extrude" type="VLayout" name="VLayout1"/>
+        <StyleProperty signal_refresh="true" value="Extrude" type="HLayout" name="HLayout1"/>
+        <Property name="WantsMultiClickEvents" value="false"/>
+        <Property name="Size" value="{{0, 96}, {0, 32}}" />
+        <StyleSection name="label">
+            <TextCom>
+                <ComArea>
+                    <SizeDefine type="LeftEdge">
+                        <AbsSize value="0"/>
+                    </SizeDefine>
+                    <SizeDefine type="TopEdge">
+                        <AbsSize value="0"/>
+                    </SizeDefine>
+                    <SizeDefine type="RightEdge">
+                        <RelSize scale="1" type="RightEdge"/>
+                    </SizeDefine>
+                    <SizeDefine type="BottomEdge">
+                        <RelSize scale="1" type="BottomEdge"/>
+                    </SizeDefine>
+                </ComArea>
+                <VLayout type="Centre"/>
+                <HLayout type="WordWrapCentreAligned"/>
+            </TextCom>
+        </StyleSection>
+        <StyleSection name="normal_image">
+            <ImageryCom>
+                <ComArea>
+                    <SizeDefine type="LeftEdge">
+                        <AbsSize value="0"/>
+                    </SizeDefine>
+                    <SizeDefine type="TopEdge">
+                        <AbsSize value="0"/>
+                    </SizeDefine>
+                    <SizeDefine type="Width">
+                        <RelSize scale="1" type="Width"/>
+                    </SizeDefine>
+                    <SizeDefine type="Height">
+                        <RelSize scale="1" type="Height"/>
+                    </SizeDefine>
+                </ComArea>
+                <PixelProperty name="NormalImage"/>
+                <VLayoutProperty name="VLayout1"/>
+                <HLayoutProperty name="HLayout1"/>
+            </ImageryCom>
+        </StyleSection>
+        <StyleSection name="hover_image">
+            <ImageryCom>
+                <ComArea>
+                    <SizeDefine type="LeftEdge">
+                        <AbsSize value="0"/>
+                    </SizeDefine>
+                    <SizeDefine type="TopEdge">
+                        <AbsSize value="0"/>
+                    </SizeDefine>
+                    <SizeDefine type="Width">
+                        <RelSize scale="1" type="Width"/>
+                    </SizeDefine>
+                    <SizeDefine type="Height">
+                        <RelSize scale="1" type="Height"/>
+                    </SizeDefine>
+                </ComArea>
+                <PixelProperty name="HoverImage"/>
+                <VLayoutProperty name="VLayout1"/>
+                <HLayoutProperty name="HLayout1"/>
+            </ImageryCom>
+        </StyleSection>
+        <StyleSection name="pushed_image">
+            <ImageryCom>
+                <ComArea>
+                    <SizeDefine type="LeftEdge">
+                        <AbsSize value="0"/>
+                    </SizeDefine>
+                    <SizeDefine type="TopEdge">
+                        <AbsSize value="0"/>
+                    </SizeDefine>
+                    <SizeDefine type="Width">
+                        <RelSize scale="1" type="Width"/>
+                    </SizeDefine>
+                    <SizeDefine type="Height">
+                        <RelSize scale="1" type="Height"/>
+                    </SizeDefine>
+                </ComArea>
+                <PixelProperty name="PushedImage"/>
+                <VLayoutProperty name="VLayout1"/>
+                <HLayoutProperty name="HLayout1"/>
+            </ImageryCom>
+        </StyleSection>
+        <StyleLayout name="Normal">
+            <Layer>
+                <Section id="Frame" widget_style="Vanilla/Shared" ctl_property="UseStandardImagery">
+                    <Colours top_left="FF7F7F7F" bottom_left="FF7F7F7F" top_right="FF7F7F7F" bottom_right="FF7F7F7F"/>
+                </Section>
+                <Section id="normal_image"/>
+                <Section id="label">
+                    <ColourProperty name="NormalTextColour"/>
+                </Section>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Hover">
+            <Layer>
+                <Section id="Frame" widget_style="Vanilla/Shared" ctl_property="UseStandardImagery">
+                    <Colours top_left="FF9F9F9F" bottom_left="FF9F9F9F" top_right="FF9F9F9F" bottom_right="FF9F9F9F"/>
+                </Section>
+                <Section id="hover_image"/>
+                <Section id="label">
+                    <ColourProperty name="HoverTextColour"/>
+                </Section>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Pushed">
+            <Layer>
+                <Section id="Frame" widget_style="Vanilla/Shared" ctl_property="UseStandardImagery">
+                    <Colours top_left="FF6F6F6F" bottom_left="FF6F6F6F" top_right="FF6F6F6F" bottom_right="FF6F6F6F"/>
+                </Section>
+                <Section id="pushed_image"/>
+                <Section id="label">
+                    <ColourProperty name="PushedTextColour"/>
+                </Section>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Disabled">
+            <Layer>
+                <Section id="Frame" widget_style="Vanilla/Shared" ctl_property="UseStandardImagery">
+                    <Colours top_left="FF3F3F3F" bottom_left="FF3F3F3F" top_right="FF3F3F3F" bottom_right="FF3F3F3F"/>
+                </Section>
+                <Section id="normal_image">
+                    <Colours top_left="FF3F3F3F" bottom_left="FF3F3F3F" top_right="FF3F3F3F" bottom_right="FF3F3F3F"/>
+                </Section>
+                <Section id="label">
+                    <ColourProperty name="DisabledTextColour"/>
+                </Section>
+            </Layer>
+        </StyleLayout>
+    </WidgetStyle>
+    <WidgetStyle name="Vanilla/FrameWindow">
+        <ListenerProperty target="CaptionColour" widget="__auto_titlebar__" value="FFFFFFFF" type="ColourArea" name="CaptionColour"/>
+        <ListenerProperty target="Font" widget="__auto_titlebar__" type="Font" name="TitlebarFont"/>
+        <Property name="NSSizingCursorImage" value="Vanilla-Images/MouseArrow"/>
+        <Property name="EWSizingCursorImage" value="Vanilla-Images/MouseArrow"/>
+        <Property name="NWSESizingCursorImage" value="Vanilla-Images/MouseArrow"/>
+        <Property name="NESWSizingCursorImage" value="Vanilla-Images/MouseArrow"/>
+        <Property name="RollUpEnabled" value="false"/>
+        <Property name="MinSize" value="{{0.1,0},{0.1,0}}"/>
+        <Property name="AutoRenderingSurface" value="true"/>
+        <Property name="Size" value="{{0.3, 0}, {0.3, 0}}" />
+        <StyleSpecial name="ClientWithTitleWithFrame">
+            <ComArea>
+                <SizeDefine type="LeftEdge">
+                    <AbsSize value="7"/>
+                </SizeDefine>
+                <SizeDefine type="TopEdge">
+                    <WidgetSize widget="__auto_titlebar__" dimension="BottomEdge"/>
+                </SizeDefine>
+                <SizeDefine type="RightEdge">
+                    <RelSize scale="1" type="RightEdge" offset="-7"/>
+                </SizeDefine>
+                <SizeDefine type="BottomEdge">
+                    <RelSize scale="1" type="BottomEdge" offset="-7"/>
+                </SizeDefine>
+            </ComArea>
+        </StyleSpecial>
+        <StyleSpecial name="ClientWithTitleNoFrame">
+            <ComArea>
+                <SizeDefine type="LeftEdge">
+                    <AbsSize value="0"/>
+                </SizeDefine>
+                <SizeDefine type="TopEdge">
+                    <WidgetSize widget="__auto_titlebar__" dimension="BottomEdge"/>
+                </SizeDefine>
+                <SizeDefine type="RightEdge">
+                    <RelSize scale="1" type="RightEdge"/>
+                </SizeDefine>
+                <SizeDefine type="BottomEdge">
+                    <RelSize scale="1" type="BottomEdge"/>
+                </SizeDefine>
+            </ComArea>
+        </StyleSpecial>
+        <StyleSpecial name="ClientNoTitleWithFrame">
+            <ComArea>
+                <SizeDefine type="LeftEdge">
+                    <AbsSize value="7"/>
+                </SizeDefine>
+                <SizeDefine type="TopEdge">
+                    <AbsSize value="7"/>
+                </SizeDefine>
+                <SizeDefine type="RightEdge">
+                    <RelSize scale="1" type="RightEdge" offset="-7"/>
+                </SizeDefine>
+                <SizeDefine type="BottomEdge">
+                    <RelSize scale="1" type="BottomEdge" offset="-7"/>
+                </SizeDefine>
+            </ComArea>
+        </StyleSpecial>
+        <StyleSpecial name="ClientNoTitleNoFrame">
+            <ComArea>
+                <SizeDefine type="LeftEdge">
+                    <AbsSize value="0"/>
+                </SizeDefine>
+                <SizeDefine type="TopEdge">
+                    <AbsSize value="0"/>
+                </SizeDefine>
+                <SizeDefine type="Width">
+                    <RelSize scale="1" type="Width"/>
+                </SizeDefine>
+                <SizeDefine type="Height">
+                    <RelSize scale="1" type="Height"/>
+                </SizeDefine>
+            </ComArea>
+        </StyleSpecial>
+        <StyleWidget id="__auto_titlebar__" type="Vanilla/Titlebar">
+            <ComArea>
+                <SizeDefine type="LeftEdge">
+                    <AbsSize value="0"/>
+                </SizeDefine>
+                <SizeDefine type="TopEdge">
+                    <AbsSize value="0"/>
+                </SizeDefine>
+                <SizeDefine type="Width">
+                    <RelSize scale="1" type="Width"/>
+                </SizeDefine>
+                <SizeDefine type="Height">
+                    <FontSize padding="14" type="LineSpacing"/>
+                </SizeDefine>
+            </ComArea>
+            <Property name="AlwaysOnTop" value="false"/>
+        </StyleWidget>
+        <StyleWidget id="__auto_closebutton__" type="Vanilla/Button">
+            <ComArea>
+                <SizeDefine type="LeftEdge">
+                    <AbsSize value="-7"/>
+                </SizeDefine>
+                <SizeDefine type="TopEdge">
+                    <AbsSize value="7"/>
+                </SizeDefine>
+                <SizeDefine type="Width">
+                    <AbsSize value="7"/>
+                </SizeDefine>
+                <SizeDefine type="Height">
+                    <AbsSize value="7"/>
+                </SizeDefine>
+            </ComArea>
+            <HAlign type="RightAligned"/>
+            <Property name="NonClient" value="true"/>
+            <Property name="AlwaysOnTop" value="true"/>
+        </StyleWidget>
+        <StyleSection name="withtitle_frame">
+            <FrameCom>
+                <ComArea>
+                    <SizeDefine type="LeftEdge">
+                        <AbsSize value="0"/>
+                    </SizeDefine>
+                    <SizeDefine type="TopEdge">
+                        <AbsSize value="0"/>
+                    </SizeDefine>
+                    <SizeDefine type="RightEdge">
+                        <RelSize scale="1" type="RightEdge"/>
+                    </SizeDefine>
+                    <SizeDefine type="BottomEdge">
+                        <RelSize scale="1" type="BottomEdge"/>
+                    </SizeDefine>
+                </ComArea>
+                <ComPixel type="TopLeftCorner" pixel_id="Vanilla-Images/FrameTopLeft"/>
+                <ComPixel type="TopRightCorner" pixel_id="Vanilla-Images/FrameTopRight"/>
+                <ComPixel type="BottomLeftCorner" pixel_id="Vanilla-Images/FrameBottomLeft"/>
+                <ComPixel type="BottomRightCorner" pixel_id="Vanilla-Images/FrameBottomRight"/>
+                <ComPixel type="LeftEdge" pixel_id="Vanilla-Images/FrameLeft"/>
+                <ComPixel type="TopEdge" pixel_id="Vanilla-Images/FrameTop"/>
+                <ComPixel type="RightEdge" pixel_id="Vanilla-Images/FrameRight"/>
+                <ComPixel type="BottomEdge" pixel_id="Vanilla-Images/FrameBottom"/>
+                <ComPixel type="Background" pixel_id="Vanilla-Images/GenericBrush"/>
+                <Colours top_left="FF333333" bottom_left="FF333333" top_right="FF333333" bottom_right="FF333333"/>
+            </FrameCom>
+        </StyleSection>
+        <StyleSection name="notitle_frame">
+            <FrameCom>
+                <ComArea>
+                    <SizeDefine type="LeftEdge">
+                        <AbsSize value="0"/>
+                    </SizeDefine>
+                    <SizeDefine type="TopEdge">
+                        <AbsSize value="0"/>
+                    </SizeDefine>
+                    <SizeDefine type="RightEdge">
+                        <RelSize scale="1" type="RightEdge"/>
+                    </SizeDefine>
+                    <SizeDefine type="BottomEdge">
+                        <RelSize scale="1" type="BottomEdge"/>
+                    </SizeDefine>
+                </ComArea>
+                <ComPixel type="TopLeftCorner" pixel_id="Vanilla-Images/FrameTopLeft"/>
+                <ComPixel type="TopRightCorner" pixel_id="Vanilla-Images/FrameTopRight"/>
+                <ComPixel type="BottomLeftCorner" pixel_id="Vanilla-Images/FrameBottomLeft"/>
+                <ComPixel type="BottomRightCorner" pixel_id="Vanilla-Images/FrameBottomRight"/>
+                <ComPixel type="LeftEdge" pixel_id="Vanilla-Images/FrameLeft"/>
+                <ComPixel type="TopEdge" pixel_id="Vanilla-Images/FrameTop"/>
+                <ComPixel type="RightEdge" pixel_id="Vanilla-Images/FrameRight"/>
+                <ComPixel type="BottomEdge" pixel_id="Vanilla-Images/FrameBottom"/>
+                <ComPixel type="Background" pixel_id="Vanilla-Images/GenericBrush"/>
+                <Colours top_left="FF333333" bottom_left="FF333333" top_right="FF333333" bottom_right="FF333333"/>
+            </FrameCom>
+        </StyleSection>
+        <StyleSection name="withtitle_noframe_client_area">
+            <FrameCom>
+                <ComArea>
+                    <SizeDefine type="LeftEdge">
+                        <AbsSize value="0"/>
+                    </SizeDefine>
+                    <SizeDefine type="TopEdge">
+                        <WidgetSize widget="__auto_titlebar__" dimension="BottomEdge"/>
+                    </SizeDefine>
+                    <SizeDefine type="RightEdge">
+                        <RelSize scale="1" type="RightEdge"/>
+                    </SizeDefine>
+                    <SizeDefine type="BottomEdge">
+                        <RelSize scale="1" type="BottomEdge"/>
+                    </SizeDefine>
+                </ComArea>
+                <ComPixel type="TopLeftCorner" pixel_id="Vanilla-Images/FrameTopLeft"/>
+                <ComPixel type="TopRightCorner" pixel_id="Vanilla-Images/FrameTopRight"/>
+                <ComPixel type="BottomLeftCorner" pixel_id="Vanilla-Images/FrameBottomLeft"/>
+                <ComPixel type="BottomRightCorner" pixel_id="Vanilla-Images/FrameBottomRight"/>
+                <ComPixel type="LeftEdge" pixel_id="Vanilla-Images/FrameLeft"/>
+                <ComPixel type="TopEdge" pixel_id="Vanilla-Images/FrameTop"/>
+                <ComPixel type="RightEdge" pixel_id="Vanilla-Images/FrameRight"/>
+                <ComPixel type="BottomEdge" pixel_id="Vanilla-Images/FrameBottom"/>
+                <ComPixel type="Background" pixel_id="Vanilla-Images/GenericBrush"/>
+                <Colours top_left="FF333333" bottom_left="FF333333" top_right="FF333333" bottom_right="FF333333"/>
+            </FrameCom>
+        </StyleSection>
+        <StyleSection name="notitle_noframe_client_area">
+            <FrameCom>
+                <ComArea>
+                    <SizeDefine type="LeftEdge">
+                        <AbsSize value="0"/>
+                    </SizeDefine>
+                    <SizeDefine type="TopEdge">
+                        <AbsSize value="0"/>
+                    </SizeDefine>
+                    <SizeDefine type="RightEdge">
+                        <RelSize scale="1" type="RightEdge"/>
+                    </SizeDefine>
+                    <SizeDefine type="BottomEdge">
+                        <RelSize scale="1" type="BottomEdge"/>
+                    </SizeDefine>
+                </ComArea>
+                <ComPixel type="TopLeftCorner" pixel_id="Vanilla-Images/FrameTopLeft"/>
+                <ComPixel type="TopRightCorner" pixel_id="Vanilla-Images/FrameTopRight"/>
+                <ComPixel type="BottomLeftCorner" pixel_id="Vanilla-Images/FrameBottomLeft"/>
+                <ComPixel type="BottomRightCorner" pixel_id="Vanilla-Images/FrameBottomRight"/>
+                <ComPixel type="LeftEdge" pixel_id="Vanilla-Images/FrameLeft"/>
+                <ComPixel type="TopEdge" pixel_id="Vanilla-Images/FrameTop"/>
+                <ComPixel type="RightEdge" pixel_id="Vanilla-Images/FrameRight"/>
+                <ComPixel type="BottomEdge" pixel_id="Vanilla-Images/FrameBottom"/>
+                <ComPixel type="Background" pixel_id="Vanilla-Images/GenericBrush"/>
+                <Colours top_left="FF333333" bottom_left="FF333333" top_right="FF333333" bottom_right="FF333333"/>
+            </FrameCom>
+        </StyleSection>
+        <StyleLayout name="ActiveWithTitleWithFrame">
+            <Layer>
+                <Section id="withtitle_frame"/>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="InactiveWithTitleWithFrame">
+            <Layer>
+                <Section id="withtitle_frame"/>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="DisabledWithTitleWithFrame">
+            <Layer>
+                <Section id="withtitle_frame"/>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="ActiveWithTitleNoFrame">
+            <Layer>
+                <Section id="withtitle_noframe_client_area"/>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="InactiveWithTitleNoFrame">
+            <Layer>
+                <Section id="withtitle_noframe_client_area"/>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="DisabledWithTitleNoFrame">
+            <Layer>
+                <Section id="withtitle_noframe_client_area"/>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="ActiveNoTitleWithFrame">
+            <Layer>
+                <Section id="notitle_frame"/>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="InactiveNoTitleWithFrame">
+            <Layer>
+                <Section id="notitle_frame"/>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="DisabledNoTitleWithFrame">
+            <Layer>
+                <Section id="notitle_frame"/>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="ActiveNoTitleNoFrame">
+            <Layer>
+                <Section id="notitle_noframe_client_area"/>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="InactiveNoTitleNoFrame">
+            <Layer>
+                <Section id="notitle_noframe_client_area"/>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="DisabledNoTitleNoFrame">
+            <Layer>
+                <Section id="notitle_noframe_client_area"/>
+            </Layer>
+        </StyleLayout>
+    </WidgetStyle>
+    <WidgetStyle name="Vanilla/Editbox">
+        <StyleProperty signal_refresh="true" value="FFDFDFDF" type="ColourArea" name="ReadOnlyBGColour"/>
+        <StyleProperty signal_refresh="true" value="FF000000" type="ColourArea" name="NormalTextColour"/>
+        <StyleProperty signal_refresh="true" value="FFFFFFFF" type="ColourArea" name="SelectedTextColour"/>
+        <StyleProperty signal_refresh="true" value="FF607FFF" type="ColourArea" name="ActiveSelectionColour"/>
+        <StyleProperty signal_refresh="true" value="FF808080" type="ColourArea" name="InactiveSelectionColour"/>
+        <Property name="Size" value="{{0, 256}, {0, 32}}" />
+        <StyleSpecial name="TextArea">
+            <ComArea>
+                <SizeDefine type="LeftEdge">
+                    <AbsSize value="7"/>
+                </SizeDefine>
+                <SizeDefine type="TopEdge">
+                    <AbsSize value="3"/>
+                </SizeDefine>
+                <SizeDefine type="RightEdge">
+                    <RelSize scale="1.0" type="RightEdge" offset="-7"/>
+                </SizeDefine>
+                <SizeDefine type="BottomEdge">
+                    <RelSize scale="1.0" type="BottomEdge" offset="-7"/>
+                </SizeDefine>
+            </ComArea>
+        </StyleSpecial>
+        <StyleSection name="selection">
+            <ImageryCom>
+                <ComArea>
+                    <SizeDefine type="LeftEdge">
+                        <AbsSize value="0"/>
+                    </SizeDefine>
+                    <SizeDefine type="TopEdge">
+                        <AbsSize value="0"/>
+                    </SizeDefine>
+                    <SizeDefine type="RightEdge">
+                        <RelSize scale="1.0" type="RightEdge"/>
+                    </SizeDefine>
+                    <SizeDefine type="BottomEdge">
+                        <RelSize scale="1.0" type="BottomEdge"/>
+                    </SizeDefine>
+                </ComArea>
+                <Pixel id="Vanilla-Images/GenericBrush"/>
+                <VLayout type="Extrude"/>
+                <HLayout type="Extrude"/>
+            </ImageryCom>
+        </StyleSection>
+        <StyleSection name="Caret">
+            <ImageryCom>
+                <ComArea>
+                    <SizeDefine type="LeftEdge">
+                        <AbsSize value="0"/>
+                    </SizeDefine>
+                    <SizeDefine type="TopEdge">
+                        <AbsSize value="0"/>
+                    </SizeDefine>
+                    <SizeDefine type="Width">
+                        <AbsSize value="2"/>
+                    </SizeDefine>
+                    <SizeDefine type="BottomEdge">
+                        <RelSize scale="1.0" type="BottomEdge"/>
+                    </SizeDefine>
+                </ComArea>
+                <Pixel id="Vanilla-Images/GenericBrush"/>
+                <Colours top_left="FF2222FF" bottom_left="FF2222FF" top_right="FF2222FF" bottom_right="FF2222FF"/>
+                <VLayout type="Extrude"/>
+                <HLayout type="Extrude"/>
+            </ImageryCom>
+        </StyleSection>
+        <StyleLayout name="Enabled">
+            <Layer>
+                <Section id="Frame" widget_style="Vanilla/Shared"/>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="ReadOnly">
+            <Layer>
+                <Section id="Frame" widget_style="Vanilla/Shared">
+                    <ColourProperty name="ReadOnlyBGColour"/>
+                </Section>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Disabled">
+            <Layer>
+                <Section id="Frame" widget_style="Vanilla/Shared">
+                    <ColourProperty name="ReadOnlyBGColour"/>
+                </Section>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="ActiveSelection">
+            <Layer>
+                <Section id="selection">
+                    <ColourProperty name="ActiveSelectionColour"/>
+                </Section>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="InactiveSelection">
+            <Layer>
+                <Section id="selection">
+                    <ColourProperty name="InactiveSelectionColour"/>
+                </Section>
+            </Layer>
+        </StyleLayout>
+    </WidgetStyle>
+    <WidgetStyle name="Vanilla/VerticalScrollbarThumb">
+        <Property name="VertFree" value="true"/>
+        <Property name="MouseInputPropagationEnabled" value="true"/>
+        <Property name="Size" value="{{0, 32}, {0, 32}}" />
+        <StyleSection name="thumb">
+            <ImageryCom>
+                <ComArea>
+                    <SizeDefine type="LeftEdge">
+                        <AbsSize value="0"/>
+                    </SizeDefine>
+                    <SizeDefine type="TopEdge">
+                        <AbsSize value="0"/>
+                    </SizeDefine>
+                    <SizeDefine type="Width">
+                        <RelSize scale="1.0" type="Width"/>
+                    </SizeDefine>
+                    <SizeDefine type="Height">
+                        <RelSize scale="1.0" type="Height"/>
+                    </SizeDefine>
+                </ComArea>
+                <Pixel id="Vanilla-Images/ScrollbarThumb"/>
+                <Colours top_left="FF494949" bottom_left="FF494949" top_right="FF494949" bottom_right="FF494949"/>
+                <VLayout type="Extrude"/>
+                <HLayout type="Extrude"/>
+            </ImageryCom>
+        </StyleSection>
+        <StyleLayout name="Normal">
+            <Layer>
+                <Section id="thumb"/>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Hover">
+            <Layer>
+                <Section id="thumb"/>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Pushed">
+            <Layer>
+                <Section id="thumb"/>
+            </Layer>
+        </StyleLayout>
+    </WidgetStyle>
+    <WidgetStyle name="Vanilla/HorizontalScrollbarThumb">
+        <Property name="HorzFree" value="true"/>
+        <Property name="MouseInputPropagationEnabled" value="true"/>
+        <Property name="Size" value="{{0, 32}, {0, 32}}" />
+        <StyleSection name="thumb">
+            <ImageryCom>
+                <ComArea>
+                    <SizeDefine type="LeftEdge">
+                        <AbsSize value="0"/>
+                    </SizeDefine>
+                    <SizeDefine type="TopEdge">
+                        <AbsSize value="0"/>
+                    </SizeDefine>
+                    <SizeDefine type="Width">
+                        <RelSize scale="1.0" type="Width"/>
+                    </SizeDefine>
+                    <SizeDefine type="Height">
+                        <RelSize scale="1.0" type="Height"/>
+                    </SizeDefine>
+                </ComArea>
+                <Pixel id="Vanilla-Images/ScrollbarThumb"/>
+                <Colours top_left="FF494949" bottom_left="FF494949" top_right="FF494949" bottom_right="FF494949"/>
+                <VLayout type="Extrude"/>
+                <HLayout type="Extrude"/>
+            </ImageryCom>
+        </StyleSection>
+        <StyleLayout name="Normal">
+            <Layer>
+                <Section id="thumb"/>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Hover">
+            <Layer>
+                <Section id="thumb"/>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Pushed">
+            <Layer>
+                <Section id="thumb"/>
+            </Layer>
+        </StyleLayout>
+    </WidgetStyle>
+    <WidgetStyle name="Vanilla/HorizontalScrollbar">
+        <Property name="Size" value="{{1, 0}, {0, 32}}" />
+        <StyleSpecial name="ThumbTrackArea">
+            <ComArea>
+                <SizeDefine type="LeftEdge">
+                    <WidgetSize widget="__auto_decbtn__" dimension="RightEdge"/>
+                </SizeDefine>
+                <SizeDefine type="TopEdge">
+                    <AbsSize value="0"/>
+                </SizeDefine>
+                <SizeDefine type="RightEdge">
+                    <SizeOp op="Subtract">
+                        <RelSize scale="1" type="RightEdge"/>
+                        <WidgetSize widget="__auto_incbtn__" dimension="Width"/>
+                    </SizeOp>
+                </SizeDefine>
+                <SizeDefine type="BottomEdge">
+                    <RelSize scale="1" type="BottomEdge"/>
+                </SizeDefine>
+            </ComArea>
+        </StyleSpecial>
+        <StyleWidget id="__auto_incbtn__" type="Vanilla/Button">
+            <ComArea>
+                <SizeDefine type="LeftEdge">
+                    <AbsSize value="0"/>
+                </SizeDefine>
+                <SizeDefine type="TopEdge">
+                    <AbsSize value="0"/>
+                </SizeDefine>
+                <SizeDefine type="Width">
+                    <RelSize scale="1" type="Height"/>
+                </SizeDefine>
+                <SizeDefine type="Height">
+                    <RelSize scale="1" type="Height"/>
+                </SizeDefine>
+            </ComArea>
+            <VAlign type="Centre"/>
+            <HAlign type="RightAligned"/>
+            <Property name="UseStandardImagery" value="false"/>
+            <Property name="NormalImage" value="Vanilla-Images/ScrollRightArrow"/>
+            <Property name="HoverImage" value="Vanilla-Images/ScrollRightArrow"/>
+            <Property name="PushedImage" value="Vanilla-Images/ScrollRightArrow"/>
+        </StyleWidget>
+        <StyleWidget id="__auto_decbtn__" type="Vanilla/Button">
+            <ComArea>
+                <SizeDefine type="LeftEdge">
+                    <AbsSize value="0"/>
+                </SizeDefine>
+                <SizeDefine type="TopEdge">
+                    <AbsSize value="0"/>
+                </SizeDefine>
+                <SizeDefine type="Width">
+                    <RelSize scale="1" type="Height"/>
+                </SizeDefine>
+                <SizeDefine type="Height">
+                    <RelSize scale="1" type="Height"/>
+                </SizeDefine>
+            </ComArea>
+            <VAlign type="Centre"/>
+            <Property name="UseStandardImagery" value="false"/>
+            <Property name="NormalImage" value="Vanilla-Images/ScrollLeftArrow"/>
+            <Property name="HoverImage" value="Vanilla-Images/ScrollLeftArrow"/>
+            <Property name="PushedImage" value="Vanilla-Images/ScrollLeftArrow"/>
+        </StyleWidget>
+        <StyleWidget id="__auto_thumb__" type="Vanilla/HorizontalScrollbarThumb">
+            <ComArea>
+                <SizeDefine type="LeftEdge">
+                    <AbsSize value="0"/>
+                </SizeDefine>
+                <SizeDefine type="TopEdge">
+                    <AbsSize value="0"/>
+                </SizeDefine>
+                <SizeDefine type="Width">
+                    <RelSize scale="1" type="Height"/>
+                </SizeDefine>
+                <SizeDefine type="Height">
+                    <RelSize scale="1" type="Height"/>
+                </SizeDefine>
+            </ComArea>
+        </StyleWidget>
+        <StyleSection name="main">
+            <ImageryCom>
+                <ComArea>
+                    <SizeDefine type="LeftEdge">
+                        <WidgetSize widget="__auto_decbtn__" dimension="RightEdge"/>
+                    </SizeDefine>
+                    <SizeDefine type="TopEdge">
+                        <AbsSize value="0"/>
+                    </SizeDefine>
+                    <SizeDefine type="RightEdge">
+                        <SizeOp op="Subtract">
+                            <RelSize scale="1" type="RightEdge"/>
+                            <WidgetSize widget="__auto_incbtn__" dimension="Width"/>
+                        </SizeOp>
+                    </SizeDefine>
+                    <SizeDefine type="BottomEdge">
+                        <RelSize scale="1" type="BottomEdge"/>
+                    </SizeDefine>
+                </ComArea>
+                <Pixel id="Vanilla-Images/HorzScrollContainer"/>
+                <VLayout type="Extrude"/>
+                <HLayout type="Extrude"/>
+            </ImageryCom>
+        </StyleSection>
+        <StyleLayout name="Enabled">
+            <Layer>
+                <Section id="main"/>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Disabled">
+            <Layer>
+                <Section id="main"/>
+            </Layer>
+        </StyleLayout>
+    </WidgetStyle>
+    <WidgetStyle name="Vanilla/VerticalScrollbar">
+        <Property name="VerticalScrollbar" value="true"/>
+        <Property name="Size" value="{{0, 32}, {1, 0}}" />
+        <StyleSpecial name="ThumbTrackArea">
+            <ComArea>
+                <SizeDefine type="LeftEdge">
+                    <AbsSize value="0"/>
+                </SizeDefine>
+                <SizeDefine type="TopEdge">
+                    <WidgetSize widget="__auto_decbtn__" dimension="BottomEdge"/>
+                </SizeDefine>
+                <SizeDefine type="RightEdge">
+                    <RelSize scale="1.0" type="RightEdge"/>
+                </SizeDefine>
+                <SizeDefine type="BottomEdge">
+                    <SizeOp op="Subtract">
+                        <RelSize scale="1.0" type="BottomEdge"/>
+                        <WidgetSize widget="__auto_incbtn__" dimension="Height"/>
+                    </SizeOp>
+                </SizeDefine>
+            </ComArea>
+        </StyleSpecial>
+        <StyleWidget id="__auto_incbtn__" type="Vanilla/Button">
+            <ComArea>
+                <SizeDefine type="LeftEdge">
+                    <AbsSize value="0"/>
+                </SizeDefine>
+                <SizeDefine type="TopEdge">
+                    <AbsSize value="0"/>
+                </SizeDefine>
+                <SizeDefine type="Width">
+                    <RelSize scale="1" type="Width"/>
+                </SizeDefine>
+                <SizeDefine type="Height">
+                    <RelSize scale="1" type="Width"/>
+                </SizeDefine>
+            </ComArea>
+            <VAlign type="BottomAligned"/>
+            <HAlign type="Centre"/>
+            <Property name="UseStandardImagery" value="false"/>
+            <Property name="NormalImage" value="Vanilla-Images/ScrollDownArrow"/>
+            <Property name="HoverImage" value="Vanilla-Images/ScrollDownArrow"/>
+            <Property name="PushedImage" value="Vanilla-Images/ScrollDownArrow"/>
+        </StyleWidget>
+        <StyleWidget id="__auto_decbtn__" type="Vanilla/Button">
+            <ComArea>
+                <SizeDefine type="LeftEdge">
+                    <AbsSize value="0"/>
+                </SizeDefine>
+                <SizeDefine type="TopEdge">
+                    <AbsSize value="0"/>
+                </SizeDefine>
+                <SizeDefine type="Width">
+                    <RelSize scale="1" type="Width"/>
+                </SizeDefine>
+                <SizeDefine type="Height">
+                    <RelSize scale="1" type="Width"/>
+                </SizeDefine>
+            </ComArea>
+            <HAlign type="Centre"/>
+            <Property name="UseStandardImagery" value="false"/>
+            <Property name="NormalImage" value="Vanilla-Images/ScrollUpArrow"/>
+            <Property name="HoverImage" value="Vanilla-Images/ScrollUpArrow"/>
+            <Property name="PushedImage" value="Vanilla-Images/ScrollUpArrow"/>
+        </StyleWidget>
+        <StyleWidget id="__auto_thumb__" type="Vanilla/VerticalScrollbarThumb">
+            <ComArea>
+                <SizeDefine type="LeftEdge">
+                    <AbsSize value="0"/>
+                </SizeDefine>
+                <SizeDefine type="TopEdge">
+                    <AbsSize value="0"/>
+                </SizeDefine>
+                <SizeDefine type="Width">
+                    <RelSize scale="1" type="Width"/>
+                </SizeDefine>
+                <SizeDefine type="Height">
+                    <RelSize scale="1" type="Width"/>
+                </SizeDefine>
+            </ComArea>
+        </StyleWidget>
+        <StyleSection name="main">
+            <ImageryCom>
+                <ComArea>
+                    <SizeDefine type="LeftEdge">
+                        <AbsSize value="0"/>
+                    </SizeDefine>
+                    <SizeDefine type="TopEdge">
+                        <WidgetSize widget="__auto_decbtn__" dimension="BottomEdge"/>
+                    </SizeDefine>
+                    <SizeDefine type="RightEdge">
+                        <RelSize scale="1.0" type="RightEdge"/>
+                    </SizeDefine>
+                    <SizeDefine type="BottomEdge">
+                        <SizeOp op="Subtract">
+                            <RelSize scale="1.0" type="BottomEdge"/>
+                            <WidgetSize widget="__auto_incbtn__" dimension="Height"/>
+                        </SizeOp>
+                    </SizeDefine>
+                </ComArea>
+                <Pixel id="Vanilla-Images/VertScrollContainer"/>
+                <VLayout type="Extrude"/>
+                <HLayout type="Extrude"/>
+            </ImageryCom>
+        </StyleSection>
+        <StyleLayout name="Enabled">
+            <Layer>
+                <Section id="main"/>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Disabled">
+            <Layer>
+                <Section id="main"/>
+            </Layer>
+        </StyleLayout>
+    </WidgetStyle>
+    <WidgetStyle name="Vanilla/StaticImage">
+        <StyleProperty signal_refresh="true" value="tl:FFFFFFFF tr:FFFFFFFF bl:FFFFFFFF br:FFFFFFFF" type="ColourArea" name="ImageColours"/>
+        <StyleProperty signal_refresh="true" value="Extrude" type="VLayout" name="VTLayout1"/>
+        <StyleProperty signal_refresh="true" value="Extrude" type="HLayout" name="HTLayout1"/>
+        <Property name="BackgroundEnabled" value="true"/>
+        <Property name="FrameEnabled" value="true"/>
+        <Property name="Size" value="{{0, 128}, {0, 128}}" />
+        <StyleSection name="image_withframe">
+            <ImageryCom>
+                <ComArea>
+                    <SizeDefine type="LeftEdge">
+                        <PixelSize name="Vanilla-Images/FrameLeft" dimension="Width"/>
+                    </SizeDefine>
+                    <SizeDefine type="TopEdge">
+                        <PixelSize name="Vanilla-Images/FrameTop" dimension="Height"/>
+                    </SizeDefine>
+                    <SizeDefine type="RightEdge">
+                        <SizeOp op="Subtract">
+                            <RelSize scale="1" type="RightEdge"/>
+                            <PixelSize name="Vanilla-Images/FrameRight" dimension="Width"/>
+                        </SizeOp>
+                    </SizeDefine>
+                    <SizeDefine type="BottomEdge">
+                        <SizeOp op="Subtract">
+                            <RelSize scale="1" type="BottomEdge"/>
+                            <PixelSize name="Vanilla-Images/FrameBottom" dimension="Height"/>
+                        </SizeOp>
+                    </SizeDefine>
+                </ComArea>
+                <PixelProperty name="Image"/>
+                <ColoursProperty name="ImageColours"/>
+                <VLayoutProperty name="VTLayout1"/>
+                <HLayoutProperty name="HTLayout1"/>
+            </ImageryCom>
+        </StyleSection>
+        <StyleSection name="image_noframe">
+            <ImageryCom>
+                <ComArea>
+                    <SizeDefine type="LeftEdge">
+                        <AbsSize value="0"/>
+                    </SizeDefine>
+                    <SizeDefine type="TopEdge">
+                        <AbsSize value="0"/>
+                    </SizeDefine>
+                    <SizeDefine type="RightEdge">
+                        <RelSize scale="1.0" type="RightEdge"/>
+                    </SizeDefine>
+                    <SizeDefine type="BottomEdge">
+                        <RelSize scale="1.0" type="BottomEdge"/>
+                    </SizeDefine>
+                </ComArea>
+                <PixelProperty name="Image"/>
+                <ColoursProperty name="ImageColours"/>
+                <VLayoutProperty name="VTLayout1"/>
+                <HLayoutProperty name="HTLayout1"/>
+            </ImageryCom>
+        </StyleSection>
+        <StyleLayout name="Enabled"/>
+        <StyleLayout name="Disabled"/>
+        <StyleLayout name="EnabledFrame">
+            <Layer>
+                <Section id="FrameOnly" widget_style="Vanilla/Shared">
+                    <Colours top_left="FF7F7F7F" bottom_left="FF7F7F7F" top_right="FF7F7F7F" bottom_right="FF7F7F7F"/>
+                </Section>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="DisabledFrame">
+            <Layer>
+                <Section id="FrameOnly" widget_style="Vanilla/Shared">
+                    <Colours top_left="FF7F7F7F" bottom_left="FF7F7F7F" top_right="FF7F7F7F" bottom_right="FF7F7F7F"/>
+                </Section>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="WithFrameEnabledBackground">
+            <Layer>
+                <Section id="BackgroundOnly" widget_style="Vanilla/Shared">
+                    <Colours top_left="FF7F7F7F" bottom_left="FF7F7F7F" top_right="FF7F7F7F" bottom_right="FF7F7F7F"/>
+                </Section>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="WithFrameDisabledBackground">
+            <Layer>
+                <Section id="BackgroundOnly" widget_style="Vanilla/Shared">
+                    <Colours top_left="FF7F7F7F" bottom_left="FF7F7F7F" top_right="FF7F7F7F" bottom_right="FF7F7F7F"/>
+                </Section>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="NoFrameEnabledBackground">
+            <Layer>
+                <Section id="BackgroundOnlyFull" widget_style="Vanilla/Shared">
+                    <Colours top_left="FF7F7F7F" bottom_left="FF7F7F7F" top_right="FF7F7F7F" bottom_right="FF7F7F7F"/>
+                </Section>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="NoFrameDisabledBackground">
+            <Layer>
+                <Section id="BackgroundOnlyFull" widget_style="Vanilla/Shared">
+                    <Colours top_left="FF7F7F7F" bottom_left="FF7F7F7F" top_right="FF7F7F7F" bottom_right="FF7F7F7F"/>
+                </Section>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="WithFrameImage">
+            <Layer>
+                <Section id="image_withframe"/>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="NoFrameImage">
+            <Layer>
+                <Section id="image_noframe"/>
+            </Layer>
+        </StyleLayout>
+    </WidgetStyle>
+    <WidgetStyle name="Vanilla/StaticText">
+        <ListenerProperty target="ScrollPosition" widget="__auto_hscrollbar__" type="float" name="HorzScrollPosition"/>
+        <ListenerProperty target="PageSize" widget="__auto_hscrollbar__" type="float" name="HorzScrollPageSize"/>
+        <ListenerProperty target="DocumentSize" widget="__auto_hscrollbar__" type="float" name="HorzScrollDocumentSize"/>
+        <ListenerProperty target="ScrollPosition" widget="__auto_vscrollbar__" type="float" name="VertScrollPosition"/>
+        <ListenerProperty target="PageSize" widget="__auto_vscrollbar__" type="float" name="VertScrollPageSize"/>
+        <ListenerProperty target="DocumentSize" widget="__auto_vscrollbar__" type="float" name="VertScrollDocumentSize"/>
+        <Property name="BackgroundEnabled" value="true"/>
+        <Property name="FrameEnabled" value="true"/>
+        <Property name="Size" value="{{0, 256}, {0, 128}}" />
+        <StyleSpecial name="WithFrameTextRenderArea">
+            <ComArea>
+                <SizeDefine type="LeftEdge">
+                    <PixelSize name="Vanilla-Images/FrameLeft" dimension="Width"/>
+                </SizeDefine>
+                <SizeDefine type="TopEdge">
+                    <PixelSize name="Vanilla-Images/FrameTop" dimension="Height"/>
+                </SizeDefine>
+                <SizeDefine type="RightEdge">
+                    <SizeOp op="Subtract">
+                        <RelSize scale="1" type="RightEdge"/>
+                        <PixelSize name="Vanilla-Images/FrameRight" dimension="Width"/>
+                    </SizeOp>
+                </SizeDefine>
+                <SizeDefine type="BottomEdge">
+                    <SizeOp op="Subtract">
+                        <RelSize scale="1" type="BottomEdge"/>
+                        <PixelSize name="Vanilla-Images/FrameBottom" dimension="Height"/>
+                    </SizeOp>
+                </SizeDefine>
+            </ComArea>
+        </StyleSpecial>
+        <StyleSpecial name="WithFrameTextRenderAreaHScroll">
+            <ComArea>
+                <SizeDefine type="LeftEdge">
+                    <PixelSize name="Vanilla-Images/FrameLeft" dimension="Width"/>
+                </SizeDefine>
+                <SizeDefine type="TopEdge">
+                    <PixelSize name="Vanilla-Images/FrameTop" dimension="Height"/>
+                </SizeDefine>
+                <SizeDefine type="RightEdge">
+                    <SizeOp op="Subtract">
+                        <RelSize scale="1" type="RightEdge"/>
+                        <PixelSize name="Vanilla-Images/FrameRight" dimension="Width"/>
+                    </SizeOp>
+                </SizeDefine>
+                <SizeDefine type="BottomEdge">
+                    <RelSize scale="1" type="BottomEdge" offset="-20"/>
+                </SizeDefine>
+            </ComArea>
+        </StyleSpecial>
+        <StyleSpecial name="WithFrameTextRenderAreaVScroll">
+            <ComArea>
+                <SizeDefine type="LeftEdge">
+                    <PixelSize name="Vanilla-Images/FrameLeft" dimension="Width"/>
+                </SizeDefine>
+                <SizeDefine type="TopEdge">
+                    <PixelSize name="Vanilla-Images/FrameTop" dimension="Height"/>
+                </SizeDefine>
+                <SizeDefine type="RightEdge">
+                    <RelSize scale="1" type="RightEdge" offset="-20"/>
+                </SizeDefine>
+                <SizeDefine type="BottomEdge">
+                    <SizeOp op="Subtract">
+                        <RelSize scale="1" type="BottomEdge"/>
+                        <PixelSize name="Vanilla-Images/FrameBottom" dimension="Height"/>
+                    </SizeOp>
+                </SizeDefine>
+            </ComArea>
+        </StyleSpecial>
+        <StyleSpecial name="WithFrameTextRenderAreaHVScroll">
+            <ComArea>
+                <SizeDefine type="LeftEdge">
+                    <PixelSize name="Vanilla-Images/FrameLeft" dimension="Width"/>
+                </SizeDefine>
+                <SizeDefine type="TopEdge">
+                    <PixelSize name="Vanilla-Images/FrameTop" dimension="Height"/>
+                </SizeDefine>
+                <SizeDefine type="RightEdge">
+                    <RelSize scale="1" type="RightEdge" offset="-20"/>
+                </SizeDefine>
+                <SizeDefine type="BottomEdge">
+                    <RelSize scale="1" type="BottomEdge" offset="-20"/>
+                </SizeDefine>
+            </ComArea>
+        </StyleSpecial>
+        <StyleSpecial name="NoFrameTextRenderArea">
+            <ComArea>
+                <SizeDefine type="LeftEdge">
+                    <AbsSize value="0"/>
+                </SizeDefine>
+                <SizeDefine type="TopEdge">
+                    <AbsSize value="0"/>
+                </SizeDefine>
+                <SizeDefine type="RightEdge">
+                    <RelSize scale="1" type="RightEdge"/>
+                </SizeDefine>
+                <SizeDefine type="BottomEdge">
+                    <RelSize scale="1" type="BottomEdge"/>
+                </SizeDefine>
+            </ComArea>
+        </StyleSpecial>
+        <StyleSpecial name="NoFrameTextRenderAreaHScroll">
+            <ComArea>
+                <SizeDefine type="LeftEdge">
+                    <AbsSize value="0"/>
+                </SizeDefine>
+                <SizeDefine type="TopEdge">
+                    <AbsSize value="0"/>
+                </SizeDefine>
+                <SizeDefine type="RightEdge">
+                    <RelSize scale="1" type="RightEdge"/>
+                </SizeDefine>
+                <SizeDefine type="BottomEdge">
+                    <RelSize scale="1" type="BottomEdge" offset="-20"/>
+                </SizeDefine>
+            </ComArea>
+        </StyleSpecial>
+        <StyleSpecial name="NoFrameTextRenderAreaVScroll">
+            <ComArea>
+                <SizeDefine type="LeftEdge">
+                    <AbsSize value="0"/>
+                </SizeDefine>
+                <SizeDefine type="TopEdge">
+                    <AbsSize value="0"/>
+                </SizeDefine>
+                <SizeDefine type="RightEdge">
+                    <RelSize scale="1" type="RightEdge" offset="-20"/>
+                </SizeDefine>
+                <SizeDefine type="BottomEdge">
+                    <RelSize scale="1" type="BottomEdge"/>
+                </SizeDefine>
+            </ComArea>
+        </StyleSpecial>
+        <StyleSpecial name="NoFrameTextRenderAreaHVScroll">
+            <ComArea>
+                <SizeDefine type="LeftEdge">
+                    <AbsSize value="0"/>
+                </SizeDefine>
+                <SizeDefine type="TopEdge">
+                    <AbsSize value="0"/>
+                </SizeDefine>
+                <SizeDefine type="RightEdge">
+                    <RelSize scale="1" type="RightEdge" offset="-20"/>
+                </SizeDefine>
+                <SizeDefine type="BottomEdge">
+                    <RelSize scale="1" type="BottomEdge" offset="-20"/>
+                </SizeDefine>
+            </ComArea>
+        </StyleSpecial>
+        <StyleWidget id="__auto_hscrollbar__" type="Vanilla/HorizontalScrollbar">
+            <ComArea>
+                <SizeDefine type="LeftEdge">
+                    <AbsSize value="0"/>
+                </SizeDefine>
+                <SizeDefine type="TopEdge">
+                    <AbsSize value="0"/>
+                </SizeDefine>
+                <SizeDefine type="Width">
+                    <RelSize scale="1" type="Width" offset="-20"/>
+                </SizeDefine>
+                <SizeDefine type="Height">
+                    <AbsSize value="20"/>
+                </SizeDefine>
+            </ComArea>
+            <VAlign type="BottomAligned"/>
+        </StyleWidget>
+        <StyleWidget id="__auto_vscrollbar__" type="Vanilla/VerticalScrollbar">
+            <ComArea>
+                <SizeDefine type="LeftEdge">
+                    <AbsSize value="0"/>
+                </SizeDefine>
+                <SizeDefine type="TopEdge">
+                    <AbsSize value="0"/>
+                </SizeDefine>
+                <SizeDefine type="Width">
+                    <AbsSize value="20"/>
+                </SizeDefine>
+                <SizeDefine type="Height">
+                    <RelSize scale="1" type="Height" offset="-20"/>
+                </SizeDefine>
+            </ComArea>
+            <HAlign type="RightAligned"/>
+        </StyleWidget>
+        <StyleLayout name="Enabled"/>
+        <StyleLayout name="Disabled"/>
+        <StyleLayout name="EnabledFrame">
+            <Layer>
+                <Section id="FrameOnly" widget_style="Vanilla/Shared">
+                    <Colours top_left="FF7F7F7F" bottom_left="FF7F7F7F" top_right="FF7F7F7F" bottom_right="FF7F7F7F"/>
+                </Section>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="DisabledFrame">
+            <Layer>
+                <Section id="FrameOnly" widget_style="Vanilla/Shared">
+                    <Colours top_left="FF7F7F7F" bottom_left="FF7F7F7F" top_right="FF7F7F7F" bottom_right="FF7F7F7F"/>
+                </Section>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="WithFrameEnabledBackground">
+            <Layer>
+                <Section id="BackgroundOnly" widget_style="Vanilla/Shared">
+                    <Colours top_left="FF7F7F7F" bottom_left="FF7F7F7F" top_right="FF7F7F7F" bottom_right="FF7F7F7F"/>
+                </Section>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="WithFrameDisabledBackground">
+            <Layer>
+                <Section id="BackgroundOnly" widget_style="Vanilla/Shared">
+                    <Colours top_left="FF7F7F7F" bottom_left="FF7F7F7F" top_right="FF7F7F7F" bottom_right="FF7F7F7F"/>
+                </Section>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="NoFrameEnabledBackground">
+            <Layer>
+                <Section id="BackgroundOnlyFull" widget_style="Vanilla/Shared">
+                    <Colours top_left="FF7F7F7F" bottom_left="FF7F7F7F" top_right="FF7F7F7F" bottom_right="FF7F7F7F"/>
+                </Section>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="NoFrameDisabledBackground">
+            <Layer>
+                <Section id="BackgroundOnlyFull" widget_style="Vanilla/Shared">
+                    <Colours top_left="FF7F7F7F" bottom_left="FF7F7F7F" top_right="FF7F7F7F" bottom_right="FF7F7F7F"/>
+                </Section>
+            </Layer>
+        </StyleLayout>
+    </WidgetStyle>
+    <WidgetStyle name="Vanilla/Listbox">
+        <Property name="ForceVertScrollbar" value="true"/>
+        <Property name="Size" value="{{0, 256}, {0, 256}}" />
+        <StyleSpecial name="ItemRenderingArea">
+            <ComArea>
+                <SizeDefine type="LeftEdge">
+                    <PixelSize name="Vanilla-Images/FrameLeft" dimension="Width"/>
+                </SizeDefine>
+                <SizeDefine type="TopEdge">
+                    <PixelSize name="Vanilla-Images/FrameTop" dimension="Height"/>
+                </SizeDefine>
+                <SizeDefine type="RightEdge">
+                    <SizeOp op="Subtract">
+                        <RelSize scale="1" type="RightEdge"/>
+                        <PixelSize name="Vanilla-Images/FrameRight" dimension="Width"/>
+                    </SizeOp>
+                </SizeDefine>
+                <SizeDefine type="BottomEdge">
+                    <SizeOp op="Subtract">
+                        <RelSize scale="1" type="BottomEdge"/>
+                        <PixelSize name="Vanilla-Images/FrameBottom" dimension="Height"/>
+                    </SizeOp>
+                </SizeDefine>
+            </ComArea>
+        </StyleSpecial>
+        <StyleWidget id="__auto_hscrollbar__" type="Vanilla/HorizontalScrollbar">
+            <ComArea>
+                <SizeDefine type="LeftEdge">
+                    <AbsSize value="5"/>
+                </SizeDefine>
+                <SizeDefine type="TopEdge">
+                    <AbsSize value="-5"/>
+                </SizeDefine>
+                <SizeDefine type="Width">
+                    <RelSize scale="1" type="Width" offset="-25"/>
+                </SizeDefine>
+                <SizeDefine type="Height">
+                    <AbsSize value="20"/>
+                </SizeDefine>
+            </ComArea>
+            <VAlign type="BottomAligned"/>
+        </StyleWidget>
+        <StyleWidget id="__auto_vscrollbar__" type="Vanilla/VerticalScrollbar">
+            <ComArea>
+                <SizeDefine type="LeftEdge">
+                    <AbsSize value="-5"/>
+                </SizeDefine>
+                <SizeDefine type="TopEdge">
+                    <AbsSize value="5"/>
+                </SizeDefine>
+                <SizeDefine type="Width">
+                    <AbsSize value="20"/>
+                </SizeDefine>
+                <SizeDefine type="Height">
+                    <RelSize scale="1" type="Height" offset="-10"/>
+                </SizeDefine>
+            </ComArea>
+            <HAlign type="RightAligned"/>
+        </StyleWidget>
+        <StyleLayout name="Enabled">
+            <Layer>
+                <Section id="Frame" widget_style="Vanilla/Shared">
+                    <Colours top_left="FF7F7F7F" bottom_left="FF7F7F7F" top_right="FF7F7F7F" bottom_right="FF7F7F7F"/>
+                </Section>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Disabled">
+            <Layer>
+                <Section id="Frame" widget_style="Vanilla/Shared">
+                    <Colours top_left="FF7F7F7F" bottom_left="FF7F7F7F" top_right="FF7F7F7F" bottom_right="FF7F7F7F"/>
+                </Section>
+            </Layer>
+        </StyleLayout>
+    </WidgetStyle>
+    <WidgetStyle name="Vanilla/MultiLineEditbox">
+        <StyleProperty signal_refresh="true" value="FF000000" type="ColourArea" name="NormalTextColour"/>
+        <StyleProperty signal_refresh="true" value="FFFFFFFF" type="ColourArea" name="SelectedTextColour"/>
+        <StyleProperty signal_refresh="true" value="FF607FFF" type="ColourArea" name="ActiveSelectionColour"/>
+        <StyleProperty signal_refresh="true" value="FF808080" type="ColourArea" name="InactiveSelectionColour"/>
+        <Property name="SelectionBrushImage" value="Vanilla-Images/GenericBrush"/>
+        <Property name="Size" value="{{0, 256}, {0, 256}}" />
+        <StyleSpecial name="TextArea">
+            <ComArea>
+                <SizeDefine type="LeftEdge">
+                    <PixelSize name="Vanilla-Images/FrameLeft" dimension="Width"/>
+                </SizeDefine>
+                <SizeDefine type="TopEdge">
+                    <PixelSize name="Vanilla-Images/FrameTop" dimension="Height"/>
+                </SizeDefine>
+                <SizeDefine type="RightEdge">
+                    <SizeOp op="Subtract">
+                        <RelSize scale="1" type="RightEdge"/>
+                        <PixelSize name="Vanilla-Images/FrameRight" dimension="Width"/>
+                    </SizeOp>
+                </SizeDefine>
+                <SizeDefine type="BottomEdge">
+                    <SizeOp op="Subtract">
+                        <RelSize scale="1" type="BottomEdge"/>
+                        <PixelSize name="Vanilla-Images/FrameBottom" dimension="Height"/>
+                    </SizeOp>
+                </SizeDefine>
+            </ComArea>
+        </StyleSpecial>
+        <StyleSpecial name="TextAreaHScroll">
+            <ComArea>
+                <SizeDefine type="LeftEdge">
+                    <PixelSize name="Vanilla-Images/FrameLeft" dimension="Width"/>
+                </SizeDefine>
+                <SizeDefine type="TopEdge">
+                    <PixelSize name="Vanilla-Images/FrameTop" dimension="Height"/>
+                </SizeDefine>
+                <SizeDefine type="RightEdge">
+                    <SizeOp op="Subtract">
+                        <RelSize scale="1" type="RightEdge"/>
+                        <PixelSize name="Vanilla-Images/FrameRight" dimension="Width"/>
+                    </SizeOp>
+                </SizeDefine>
+                <SizeDefine type="BottomEdge">
+                    <SizeOp op="Subtract">
+                        <RelSize scale="1" type="BottomEdge"/>
+                        <SizeOp op="Add">
+                            <PixelSize name="Vanilla-Images/FrameBottom" dimension="Height"/>
+                            <WidgetSize widget="__auto_hscrollbar__" dimension="Height"/>
+                        </SizeOp>
+                    </SizeOp>
+                </SizeDefine>
+            </ComArea>
+        </StyleSpecial>
+        <StyleSpecial name="TextAreaVScroll">
+            <ComArea>
+                <SizeDefine type="LeftEdge">
+                    <PixelSize name="Vanilla-Images/FrameLeft" dimension="Width"/>
+                </SizeDefine>
+                <SizeDefine type="TopEdge">
+                    <PixelSize name="Vanilla-Images/FrameTop" dimension="Height"/>
+                </SizeDefine>
+                <SizeDefine type="RightEdge">
+                    <SizeOp op="Subtract">
+                        <RelSize scale="1" type="RightEdge"/>
+                        <SizeOp op="Add">
+                            <PixelSize name="Vanilla-Images/FrameRight" dimension="Width"/>
+                            <WidgetSize widget="__auto_vscrollbar__" dimension="Width"/>
+                        </SizeOp>
+                    </SizeOp>
+                </SizeDefine>
+                <SizeDefine type="BottomEdge">
+                    <SizeOp op="Subtract">
+                        <RelSize scale="1" type="BottomEdge"/>
+                        <PixelSize name="Vanilla-Images/FrameBottom" dimension="Height"/>
+                    </SizeOp>
+                </SizeDefine>
+            </ComArea>
+        </StyleSpecial>
+        <StyleSpecial name="TextAreaHVScroll">
+            <ComArea>
+                <SizeDefine type="LeftEdge">
+                    <PixelSize name="Vanilla-Images/FrameLeft" dimension="Width"/>
+                </SizeDefine>
+                <SizeDefine type="TopEdge">
+                    <PixelSize name="Vanilla-Images/FrameTop" dimension="Height"/>
+                </SizeDefine>
+                <SizeDefine type="RightEdge">
+                    <SizeOp op="Subtract">
+                        <RelSize scale="1" type="RightEdge"/>
+                        <SizeOp op="Add">
+                            <PixelSize name="Vanilla-Images/FrameRight" dimension="Width"/>
+                            <WidgetSize widget="__auto_vscrollbar__" dimension="Width"/>
+                        </SizeOp>
+                    </SizeOp>
+                </SizeDefine>
+                <SizeDefine type="BottomEdge">
+                    <SizeOp op="Subtract">
+                        <RelSize scale="1" type="BottomEdge"/>
+                        <SizeOp op="Add">
+                            <PixelSize name="Vanilla-Images/FrameBottom" dimension="Height"/>
+                            <WidgetSize widget="__auto_hscrollbar__" dimension="Height"/>
+                        </SizeOp>
+                    </SizeOp>
+                </SizeDefine>
+            </ComArea>
+        </StyleSpecial>
+        <StyleWidget id="__auto_hscrollbar__" type="Vanilla/HorizontalScrollbar">
+            <ComArea>
+                <SizeDefine type="LeftEdge">
+                    <AbsSize value="5"/>
+                </SizeDefine>
+                <SizeDefine type="TopEdge">
+                    <AbsSize value="-5"/>
+                </SizeDefine>
+                <SizeDefine type="Width">
+                    <RelSize scale="1" type="Width" offset="-25"/>
+                </SizeDefine>
+                <SizeDefine type="Height">
+                    <AbsSize value="20"/>
+                </SizeDefine>
+            </ComArea>
+            <VAlign type="BottomAligned"/>
+        </StyleWidget>
+        <StyleWidget id="__auto_vscrollbar__" type="Vanilla/VerticalScrollbar">
+            <ComArea>
+                <SizeDefine type="LeftEdge">
+                    <AbsSize value="-5"/>
+                </SizeDefine>
+                <SizeDefine type="TopEdge">
+                    <AbsSize value="5"/>
+                </SizeDefine>
+                <SizeDefine type="Width">
+                    <AbsSize value="20"/>
+                </SizeDefine>
+                <SizeDefine type="Height">
+                    <RelSize scale="1" type="Height" offset="-10"/>
+                </SizeDefine>
+            </ComArea>
+            <HAlign type="RightAligned"/>
+        </StyleWidget>
+        <StyleSection name="Caret">
+            <ImageryCom>
+                <ComArea>
+                    <SizeDefine type="LeftEdge">
+                        <AbsSize value="0"/>
+                    </SizeDefine>
+                    <SizeDefine type="TopEdge">
+                        <AbsSize value="0"/>
+                    </SizeDefine>
+                    <SizeDefine type="Width">
+                        <AbsSize value="2"/>
+                    </SizeDefine>
+                    <SizeDefine type="BottomEdge">
+                        <RelSize scale="1.0" type="BottomEdge"/>
+                    </SizeDefine>
+                </ComArea>
+                <Pixel id="Vanilla-Images/GenericBrush"/>
+                <Colours top_left="FF2222FF" bottom_left="FF2222FF" top_right="FF2222FF" bottom_right="FF2222FF"/>
+                <VLayout type="Extrude"/>
+                <HLayout type="Extrude"/>
+            </ImageryCom>
+        </StyleSection>
+        <StyleLayout name="Enabled">
+            <Layer>
+                <Section id="Frame" widget_style="Vanilla/Shared"/>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="ReadOnly">
+            <Layer>
+                <Section id="Frame" widget_style="Vanilla/Shared"/>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Disabled">
+            <Layer>
+                <Section id="Frame" widget_style="Vanilla/Shared"/>
+            </Layer>
+        </StyleLayout>
+    </WidgetStyle>
+    <WidgetStyle name="Vanilla/Combobox">
+        <ListenerProperty target="NormalTextColour" widget="__auto_editbox__" value="FF000000" type="ColourArea" name="NormalEditTextColour"/>
+        <ListenerProperty target="SelectedTextColour" widget="__auto_editbox__" value="FFFFFFFF" type="ColourArea" name="SelectedEditTextColour"/>
+        <ListenerProperty target="ActiveSelectionColour" widget="__auto_editbox__" value="FF607FFF" type="ColourArea" name="ActiveEditSelectionColour"/>
+        <ListenerProperty target="InactiveSelectionColour" widget="__auto_editbox__" value="FF808080" type="ColourArea" name="InactiveEditSelectionColour"/>
+        <ListenerProperty target="NormalImage" widget="__auto_button__" value="Vanilla-Images/DropDownButtonNormal" name="DropDownButtonNormalImage"/>
+        <ListenerProperty target="HoverImage" widget="__auto_button__" value="Vanilla-Images/DropDownButtonHover" name="DropDownButtonHoverImage"/>
+        <ListenerProperty target="PushedImage" widget="__auto_button__" value="Vanilla-Images/DropDownButtonPushed" name="DropDownButtonPushedImage"/>
+        <Property name="Size" value="{{0, 256}, {0, 256}}" />
+        <StyleWidget id="__auto_editbox__" type="Vanilla/Editbox">
+            <ComArea>
+                <SizeDefine type="LeftEdge">
+                    <AbsSize value="0"/>
+                </SizeDefine>
+                <SizeDefine type="TopEdge">
+                    <AbsSize value="0"/>
+                </SizeDefine>
+                <SizeDefine type="RightEdge">
+                    <SizeOp op="Subtract">
+                        <RelSize scale="1" type="RightEdge"/>
+                        <FontSize padding="10" type="LineSpacing"/>
+                    </SizeOp>
+                </SizeDefine>
+                <SizeDefine type="Height">
+                    <FontSize padding="10" type="LineSpacing"/>
+                </SizeDefine>
+            </ComArea>
+        </StyleWidget>
+        <StyleWidget id="__auto_droplist__" type="Vanilla/ComboDropList">
+            <ComArea>
+                <SizeDefine type="LeftEdge">
+                    <AbsSize value="0"/>
+                </SizeDefine>
+                <SizeDefine type="TopEdge">
+                    <WidgetSize widget="__auto_editbox__" dimension="BottomEdge"/>
+                </SizeDefine>
+                <SizeDefine type="Width">
+                    <RelSize scale="1" type="Width"/>
+                </SizeDefine>
+                <SizeDefine type="BottomEdge">
+                    <RelSize scale="1" type="BottomEdge"/>
+                </SizeDefine>
+            </ComArea>
+        </StyleWidget>
+        <StyleWidget id="__auto_button__" type="Vanilla/Button">
+            <ComArea>
+                <SizeDefine type="LeftEdge">
+                    <AbsSize value="0"/>
+                </SizeDefine>
+                <SizeDefine type="TopEdge">
+                    <AbsSize value="0"/>
+                </SizeDefine>
+                <SizeDefine type="Width">
+                    <WidgetSize widget="__auto_editbox__" dimension="Height"/>
+                </SizeDefine>
+                <SizeDefine type="Height">
+                    <WidgetSize widget="__auto_editbox__" dimension="Height"/>
+                </SizeDefine>
+            </ComArea>
+            <HAlign type="RightAligned"/>
+        </StyleWidget>
+        <StyleLayout name="Enabled"/>
+        <StyleLayout name="Disabled"/>
+    </WidgetStyle>
+    <WidgetStyle name="Vanilla/ComboDropList">
+        <Property name="ForceVertScrollbar" value="true"/>
+        <Property name="Size" value="{{0, 256}, {0, 256}}" />
+        <StyleSpecial name="ItemRenderingArea">
+            <ComArea>
+                <SizeDefine type="LeftEdge">
+                    <PixelSize name="Vanilla-Images/FrameLeft" dimension="Width"/>
+                </SizeDefine>
+                <SizeDefine type="TopEdge">
+                    <PixelSize name="Vanilla-Images/FrameTop" dimension="Height"/>
+                </SizeDefine>
+                <SizeDefine type="RightEdge">
+                    <SizeOp op="Subtract">
+                        <RelSize scale="1" type="RightEdge"/>
+                        <PixelSize name="Vanilla-Images/FrameRight" dimension="Width"/>
+                    </SizeOp>
+                </SizeDefine>
+                <SizeDefine type="BottomEdge">
+                    <SizeOp op="Subtract">
+                        <RelSize scale="1" type="BottomEdge"/>
+                        <PixelSize name="Vanilla-Images/FrameBottom" dimension="Height"/>
+                    </SizeOp>
+                </SizeDefine>
+            </ComArea>
+        </StyleSpecial>
+        <StyleSpecial name="ItemRenderingAreaVScroll">
+            <ComArea>
+                <SizeDefine type="LeftEdge">
+                    <PixelSize name="Vanilla-Images/FrameLeft" dimension="Width"/>
+                </SizeDefine>
+                <SizeDefine type="TopEdge">
+                    <PixelSize name="Vanilla-Images/FrameTop" dimension="Height"/>
+                </SizeDefine>
+                <SizeDefine type="RightEdge">
+                    <SizeOp op="Subtract">
+                        <RelSize scale="1" type="RightEdge"/>
+                        <AbsSize value="30"/>
+                    </SizeOp>
+                </SizeDefine>
+                <SizeDefine type="BottomEdge">
+                    <SizeOp op="Subtract">
+                        <RelSize scale="1" type="BottomEdge"/>
+                        <PixelSize name="Vanilla-Images/FrameBottom" dimension="Height"/>
+                    </SizeOp>
+                </SizeDefine>
+            </ComArea>
+        </StyleSpecial>
+        <StyleSpecial name="ItemRenderingAreaHVScroll">
+            <ComArea>
+                <SizeDefine type="LeftEdge">
+                    <PixelSize name="Vanilla-Images/FrameLeft" dimension="Width"/>
+                </SizeDefine>
+                <SizeDefine type="TopEdge">
+                    <PixelSize name="Vanilla-Images/FrameTop" dimension="Height"/>
+                </SizeDefine>
+                <SizeDefine type="RightEdge">
+                    <SizeOp op="Subtract">
+                        <RelSize scale="1" type="RightEdge"/>
+                        <AbsSize value="30"/>
+                    </SizeOp>
+                </SizeDefine>
+                <SizeDefine type="BottomEdge">
+                    <SizeOp op="Subtract">
+                        <RelSize scale="1" type="BottomEdge"/>
+                        <AbsSize value="30"/>
+                    </SizeOp>
+                </SizeDefine>
+            </ComArea>
+        </StyleSpecial>
+        <StyleWidget id="__auto_hscrollbar__" type="Vanilla/HorizontalScrollbar">
+            <ComArea>
+                <SizeDefine type="LeftEdge">
+                    <AbsSize value="5"/>
+                </SizeDefine>
+                <SizeDefine type="TopEdge">
+                    <AbsSize value="-5"/>
+                </SizeDefine>
+                <SizeDefine type="Width">
+                    <RelSize scale="1" type="Width" offset="-30"/>
+                </SizeDefine>
+                <SizeDefine type="Height">
+                    <AbsSize value="20"/>
+                </SizeDefine>
+            </ComArea>
+            <VAlign type="BottomAligned"/>
+        </StyleWidget>
+        <StyleWidget id="__auto_vscrollbar__" type="Vanilla/VerticalScrollbar">
+            <ComArea>
+                <SizeDefine type="LeftEdge">
+                    <AbsSize value="-5"/>
+                </SizeDefine>
+                <SizeDefine type="TopEdge">
+                    <AbsSize value="5"/>
+                </SizeDefine>
+                <SizeDefine type="Width">
+                    <AbsSize value="20"/>
+                </SizeDefine>
+                <SizeDefine type="Height">
+                    <RelSize scale="1" type="Height" offset="-10"/>
+                </SizeDefine>
+            </ComArea>
+            <HAlign type="RightAligned"/>
+        </StyleWidget>
+        <StyleLayout name="Enabled">
+            <Layer>
+                <Section id="Frame" widget_style="Vanilla/Shared">
+                    <Colours top_left="FF7F7F7F" bottom_left="FF7F7F7F" top_right="FF7F7F7F" bottom_right="FF7F7F7F"/>
+                </Section>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Disabled">
+            <Layer>
+                <Section id="Frame" widget_style="Vanilla/Shared">
+                    <Colours top_left="FF7F7F7F" bottom_left="FF7F7F7F" top_right="FF7F7F7F" bottom_right="FF7F7F7F"/>
+                </Section>
+            </Layer>
+        </StyleLayout>
+    </WidgetStyle>
+    <WidgetStyle name="Vanilla/ProgressBar">
+        <StyleProperty signal_refresh="true" value="FF607FFF" type="ColourArea" name="EnabledColour"/>
+        <StyleProperty signal_refresh="true" value="FF808080" type="ColourArea" name="DisabledColour"/>
+        <Property name="Size" value="{{0, 256}, {0, 32}}" />
+        <StyleSpecial name="ProgressArea">
+            <ComArea>
+                <SizeDefine type="LeftEdge">
+                    <PixelSize name="Vanilla-Images/FrameLeft" dimension="Width"/>
+                </SizeDefine>
+                <SizeDefine type="TopEdge">
+                    <PixelSize name="Vanilla-Images/FrameTop" dimension="Height"/>
+                </SizeDefine>
+                <SizeDefine type="RightEdge">
+                    <SizeOp op="Subtract">
+                        <RelSize scale="1.0" type="RightEdge"/>
+                        <PixelSize name="Vanilla-Images/FrameRight" dimension="Width"/>
+                    </SizeOp>
+                </SizeDefine>
+                <SizeDefine type="BottomEdge">
+                    <SizeOp op="Subtract">
+                        <RelSize scale="1.0" type="BottomEdge"/>
+                        <PixelSize name="Vanilla-Images/FrameBottom" dimension="Height"/>
+                    </SizeOp>
+                </SizeDefine>
+            </ComArea>
+        </StyleSpecial>
+        <StyleSection name="progress_lights">
+            <ImageryCom>
+                <ComArea>
+                    <SizeDefine type="LeftEdge">
+                        <AbsSize value="0"/>
+                    </SizeDefine>
+                    <SizeDefine type="TopEdge">
+                        <AbsSize value="0"/>
+                    </SizeDefine>
+                    <SizeDefine type="Width">
+                        <RelSize scale="1" type="Width"/>
+                    </SizeDefine>
+                    <SizeDefine type="Height">
+                        <RelSize scale="1" type="Height"/>
+                    </SizeDefine>
+                </ComArea>
+                <Pixel id="Vanilla-Images/GenericBrush"/>
+                <VLayout type="Extrude"/>
+                <HLayout type="Extrude"/>
+            </ImageryCom>
+        </StyleSection>
+        <StyleLayout name="Enabled">
+            <Layer>
+                <Section id="Frame" widget_style="Vanilla/Shared"/>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Disabled">
+            <Layer>
+                <Section id="Frame" widget_style="Vanilla/Shared"/>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="EnabledProgress">
+            <Layer>
+                <Section id="progress_lights">
+                    <ColourProperty name="EnabledColour"/>
+                </Section>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="DisabledProgress">
+            <Layer>
+                <Section id="progress_lights">
+                    <ColourProperty name="DisabledColour"/>
+                </Section>
+            </Layer>
+        </StyleLayout>
+    </WidgetStyle>
+    <WidgetStyle name="Vanilla/Checkbox">
+        <StyleProperty signal_refresh="true" value="FFFFFFFF" type="ColourArea" name="NormalTextColour"/>
+        <StyleProperty signal_refresh="true" value="FFFFFFFF" type="ColourArea" name="HoverTextColour"/>
+        <StyleProperty signal_refresh="true" value="FFFFFFFF" type="ColourArea" name="PushedTextColour"/>
+        <StyleProperty signal_refresh="true" value="FF7F7F7F" type="ColourArea" name="DisabledTextColour"/>
+        <Property name="Size" value="{{0, 128}, {0, 32}}" />
+        <StyleSection name="label">
+            <TextCom>
+                <ComArea>
+                    <SizeDefine type="LeftEdge">
+                        <SizeOp op="Add">
+                            <PixelSize name="Vanilla-Images/CheckboxNormal" dimension="Width"/>
+                            <AbsSize value="3"/>
+                        </SizeOp>
+                    </SizeDefine>
+                    <SizeDefine type="TopEdge">
+                        <AbsSize value="0"/>
+                    </SizeDefine>
+                    <SizeDefine type="RightEdge">
+                        <RelSize scale="1" type="Width"/>
+                    </SizeDefine>
+                    <SizeDefine type="Height">
+                        <RelSize scale="1" type="Height"/>
+                    </SizeDefine>
+                </ComArea>
+                <VLayout type="Centre"/>
+                <HLayout type="LeftAligned"/>
+            </TextCom>
+        </StyleSection>
+        <StyleSection name="normal">
+            <ImageryCom>
+                <ComArea>
+                    <SizeDefine type="LeftEdge">
+                        <AbsSize value="0"/>
+                    </SizeDefine>
+                    <SizeDefine type="TopEdge">
+                        <AbsSize value="0"/>
+                    </SizeDefine>
+                    <SizeDefine type="Width">
+                        <RelSize scale="1" type="Width"/>
+                    </SizeDefine>
+                    <SizeDefine type="Height">
+                        <RelSize scale="1" type="Height"/>
+                    </SizeDefine>
+                </ComArea>
+                <Pixel id="Vanilla-Images/CheckboxNormal"/>
+                <VLayout type="Centre"/>
+                <HLayout type="LeftAligned"/>
+            </ImageryCom>
+        </StyleSection>
+        <StyleSection name="hover">
+            <ImageryCom>
+                <ComArea>
+                    <SizeDefine type="LeftEdge">
+                        <AbsSize value="0"/>
+                    </SizeDefine>
+                    <SizeDefine type="TopEdge">
+                        <AbsSize value="0"/>
+                    </SizeDefine>
+                    <SizeDefine type="Width">
+                        <RelSize scale="1" type="Width"/>
+                    </SizeDefine>
+                    <SizeDefine type="Height">
+                        <RelSize scale="1" type="Height"/>
+                    </SizeDefine>
+                </ComArea>
+                <Pixel id="Vanilla-Images/CheckboxHover"/>
+                <VLayout type="Centre"/>
+                <HLayout type="LeftAligned"/>
+            </ImageryCom>
+        </StyleSection>
+        <StyleSection name="select_mark">
+            <ImageryCom>
+                <ComArea>
+                    <SizeDefine type="LeftEdge">
+                        <AbsSize value="0"/>
+                    </SizeDefine>
+                    <SizeDefine type="TopEdge">
+                        <AbsSize value="0"/>
+                    </SizeDefine>
+                    <SizeDefine type="Width">
+                        <RelSize scale="1" type="Width"/>
+                    </SizeDefine>
+                    <SizeDefine type="Height">
+                        <RelSize scale="1" type="Height"/>
+                    </SizeDefine>
+                </ComArea>
+                <Pixel id="Vanilla-Images/CheckboxMark"/>
+                <VLayout type="Centre"/>
+                <HLayout type="LeftAligned"/>
+            </ImageryCom>
+        </StyleSection>
+        <StyleLayout name="Normal">
+            <Layer>
+                <Section id="normal"/>
+                <Section id="label">
+                    <ColourProperty name="NormalTextColour"/>
+                </Section>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Hover">
+            <Layer>
+                <Section id="hover"/>
+                <Section id="label">
+                    <ColourProperty name="HoverTextColour"/>
+                </Section>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Disabled">
+            <Layer>
+                <Section id="normal">
+                    <Colours top_left="FF7F7F7F" bottom_left="FF7F7F7F" top_right="FF7F7F7F" bottom_right="FF7F7F7F"/>
+                </Section>
+                <Section id="label">
+                    <ColourProperty name="DisabledTextColour"/>
+                </Section>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="SelectedNormal">
+            <Layer>
+                <Section id="normal"/>
+                <Section id="select_mark"/>
+                <Section id="label">
+                    <ColourProperty name="NormalTextColour"/>
+                </Section>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="SelectedHover">
+            <Layer>
+                <Section id="hover"/>
+                <Section id="select_mark"/>
+                <Section id="label">
+                    <ColourProperty name="HoverTextColour"/>
+                </Section>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="SelectedDisabled">
+            <Layer>
+                <Section id="normal">
+                    <Colours top_left="FF7F7F7F" bottom_left="FF7F7F7F" top_right="FF7F7F7F" bottom_right="FF7F7F7F"/>
+                </Section>
+                <Section id="select_mark">
+                    <Colours top_left="FF7F7F7F" bottom_left="FF7F7F7F" top_right="FF7F7F7F" bottom_right="FF7F7F7F"/>
+                </Section>
+                <Section id="label">
+                    <ColourProperty name="DisabledTextColour"/>
+                </Section>
+            </Layer>
+        </StyleLayout>
+    </WidgetStyle>
+    <WidgetStyle name="Vanilla/RadioButton">
+        <StyleProperty signal_refresh="true" value="FFFFFFFF" type="ColourArea" name="NormalTextColour"/>
+        <StyleProperty signal_refresh="true" value="FFFFFFFF" type="ColourArea" name="HoverTextColour"/>
+        <StyleProperty signal_refresh="true" value="FFFFFFFF" type="ColourArea" name="PushedTextColour"/>
+        <StyleProperty signal_refresh="true" value="FF7F7F7F" type="ColourArea" name="DisabledTextColour"/>
+        <StyleProperty signal_refresh="true" value="1.0" type="float" name="RadioButtonRelativeWidth"/>
+        <StyleProperty signal_refresh="true" value="1.0" type="float" name="RadioButtonRelativeHeight"/>
+        <Property name="Size" value="{{0, 256}, {0, 32}}" />
+        <StyleSection name="label">
+            <TextCom>
+                <ComArea>
+                    <SizeDefine type="LeftEdge">
+                        <SizeOp op="Add">
+                            <AbsSize value="3"/>
+                            <SizeOp op="Multiply">
+                                <PixelSize name="Vanilla-Images/RadioButtonNormal" dimension="Width"/>
+                                <SizeProperty name="RadioButtonRelativeWidth"/>
+                            </SizeOp>
+                        </SizeOp>
+                    </SizeDefine>
+                    <SizeDefine type="TopEdge">
+                        <AbsSize value="0"/>
+                    </SizeDefine>
+                    <SizeDefine type="RightEdge">
+                        <RelSize scale="1" type="Width"/>
+                    </SizeDefine>
+                    <SizeDefine type="Height">
+                        <RelSize scale="1" type="Height"/>
+                    </SizeDefine>
+                </ComArea>
+                <VLayout type="Centre"/>
+                <HLayout type="LeftAligned"/>
+            </TextCom>
+        </StyleSection>
+        <StyleSection name="normal">
+            <ImageryCom>
+                <ComArea>
+                    <SizeDefine type="LeftEdge">
+                        <AbsSize value="0"/>
+                    </SizeDefine>
+                    <SizeDefine type="TopEdge">
+                        <SizeOp op="Subtract">
+                            <RelSize scale="0.5" type="Height"/>
+                            <SizeOp op="Multiply">
+                                <PixelSize name="Vanilla-Images/RadioButtonNormal" dimension="Height"/>
+                                <SizeOp op="Multiply">
+                                    <SizeProperty name="RadioButtonRelativeHeight"/>
+                                    <AbsSize value="0.5"/>
+                                </SizeOp>
+                            </SizeOp>
+                        </SizeOp>
+                    </SizeDefine>
+                    <SizeDefine type="Width">
+                        <SizeOp op="Multiply">
+                            <PixelSize name="Vanilla-Images/RadioButtonNormal" dimension="Width"/>
+                            <SizeProperty name="RadioButtonRelativeWidth"/>
+                        </SizeOp>
+                    </SizeDefine>
+                    <SizeDefine type="Height">
+                        <SizeOp op="Multiply">
+                            <PixelSize name="Vanilla-Images/RadioButtonNormal" dimension="Height"/>
+                            <SizeProperty name="RadioButtonRelativeHeight"/>
+                        </SizeOp>
+                    </SizeDefine>
+                </ComArea>
+                <Pixel id="Vanilla-Images/RadioButtonNormal"/>
+                <VLayout type="Extrude"/>
+                <HLayout type="Extrude"/>
+            </ImageryCom>
+        </StyleSection>
+        <StyleSection name="hover">
+            <ImageryCom>
+                <ComArea>
+                    <SizeDefine type="LeftEdge">
+                        <AbsSize value="0"/>
+                    </SizeDefine>
+                    <SizeDefine type="TopEdge">
+                        <SizeOp op="Subtract">
+                            <RelSize scale="0.5" type="Height"/>
+                            <SizeOp op="Multiply">
+                                <PixelSize name="Vanilla-Images/RadioButtonNormal" dimension="Height"/>
+                                <SizeOp op="Multiply">
+                                    <SizeProperty name="RadioButtonRelativeHeight"/>
+                                    <AbsSize value="0.5"/>
+                                </SizeOp>
+                            </SizeOp>
+                        </SizeOp>
+                    </SizeDefine>
+                    <SizeDefine type="Width">
+                        <SizeOp op="Multiply">
+                            <PixelSize name="Vanilla-Images/RadioButtonHover" dimension="Width"/>
+                            <SizeProperty name="RadioButtonRelativeWidth"/>
+                        </SizeOp>
+                    </SizeDefine>
+                    <SizeDefine type="Height">
+                        <SizeOp op="Multiply">
+                            <PixelSize name="Vanilla-Images/RadioButtonHover" dimension="Height"/>
+                            <SizeProperty name="RadioButtonRelativeHeight"/>
+                        </SizeOp>
+                    </SizeDefine>
+                </ComArea>
+                <Pixel id="Vanilla-Images/RadioButtonHover"/>
+                <VLayout type="Extrude"/>
+                <HLayout type="Extrude"/>
+            </ImageryCom>
+        </StyleSection>
+        <StyleSection name="select_mark">
+            <ImageryCom>
+                <ComArea>
+                    <SizeDefine type="LeftEdge">
+                        <AbsSize value="0"/>
+                    </SizeDefine>
+                    <SizeDefine type="TopEdge">
+                        <SizeOp op="Subtract">
+                            <RelSize scale="0.5" type="Height"/>
+                            <SizeOp op="Multiply">
+                                <PixelSize name="Vanilla-Images/RadioButtonNormal" dimension="Height"/>
+                                <SizeOp op="Multiply">
+                                    <SizeProperty name="RadioButtonRelativeHeight"/>
+                                    <AbsSize value="0.5"/>
+                                </SizeOp>
+                            </SizeOp>
+                        </SizeOp>
+                    </SizeDefine>
+                    <SizeDefine type="Width">
+                        <SizeOp op="Multiply">
+                            <PixelSize name="Vanilla-Images/RadioButtonMark" dimension="Width"/>
+                            <SizeProperty name="RadioButtonRelativeWidth"/>
+                        </SizeOp>
+                    </SizeDefine>
+                    <SizeDefine type="Height">
+                        <SizeOp op="Multiply">
+                            <PixelSize name="Vanilla-Images/RadioButtonMark" dimension="Height"/>
+                            <SizeProperty name="RadioButtonRelativeHeight"/>
+                        </SizeOp>
+                    </SizeDefine>
+                </ComArea>
+                <Pixel id="Vanilla-Images/RadioButtonMark"/>
+                <VLayout type="Extrude"/>
+                <HLayout type="Extrude"/>
+            </ImageryCom>
+        </StyleSection>
+        <StyleLayout name="Normal">
+            <Layer>
+                <Section id="normal"/>
+                <Section id="label">
+                    <ColourProperty name="NormalTextColour"/>
+                </Section>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Hover">
+            <Layer>
+                <Section id="hover"/>
+                <Section id="label">
+                    <ColourProperty name="HoverTextColour"/>
+                </Section>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Disabled">
+            <Layer>
+                <Section id="normal">
+                    <Colours top_left="FF7F7F7F" bottom_left="FF7F7F7F" top_right="FF7F7F7F" bottom_right="FF7F7F7F"/>
+                </Section>
+                <Section id="label">
+                    <ColourProperty name="DisabledTextColour"/>
+                </Section>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="SelectedNormal">
+            <Layer>
+                <Section id="normal"/>
+                <Section id="select_mark"/>
+                <Section id="label">
+                    <ColourProperty name="NormalTextColour"/>
+                </Section>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="SelectedHover">
+            <Layer>
+                <Section id="hover"/>
+                <Section id="select_mark"/>
+                <Section id="label">
+                    <ColourProperty name="HoverTextColour"/>
+                </Section>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="SelectedDisabled">
+            <Layer>
+                <Section id="normal">
+                    <Colours top_left="FF7F7F7F" bottom_left="FF7F7F7F" top_right="FF7F7F7F" bottom_right="FF7F7F7F"/>
+                </Section>
+                <Section id="select_mark">
+                    <Colours top_left="FF7F7F7F" bottom_left="FF7F7F7F" top_right="FF7F7F7F" bottom_right="FF7F7F7F"/>
+                </Section>
+                <Section id="label">
+                    <ColourProperty name="DisabledTextColour"/>
+                </Section>
+            </Layer>
+        </StyleLayout>
+    </WidgetStyle>
+    
+    <WidgetStyle name="Vanilla/Tooltip">
+    <Property name="Size" value="{{0, 128}, {0, 32}}" />
+        <StyleSpecial name="TextArea">
+            <ComArea>
+                <SizeDefine type="LeftEdge" ><PixelSize name="Vanilla-Images/TooltipLeftEdge" dimension="Width" /></SizeDefine>
+                <SizeDefine type="TopEdge" ><PixelSize name="Vanilla-Images/TooltipTopEdge" dimension="Height" /></SizeDefine>
+                <SizeDefine type="RightEdge" >
+                    <SizeOp op="Subtract">
+                        <RelSize scale="1" type="RightEdge" />
+                        <PixelSize name="Vanilla-Images/TooltipRightEdge" dimension="Width" />
+                    </SizeOp>
+                </SizeDefine>
+                <SizeDefine type="BottomEdge" >
+                    <SizeOp op="Subtract">
+                        <RelSize scale="1" type="BottomEdge" />
+                        <PixelSize name="Vanilla-Images/TooltipBottomEdge" dimension="Height" />
+                    </SizeOp>
+                </SizeDefine>
+            </ComArea>
+        </StyleSpecial>
+        <StyleSection name="main">
+            <FrameCom>
+                <ComPixel type="TopLeftCorner" pixel_id="Vanilla-Images/TooltipTopLeft" />
+                <ComPixel type="TopRightCorner" pixel_id="Vanilla-Images/TooltipTopRight" />
+                <ComPixel type="BottomLeftCorner" pixel_id="Vanilla-Images/TooltipBottomLeft" />
+                <ComPixel type="BottomRightCorner" pixel_id="Vanilla-Images/TooltipBottomRight" />
+                <ComPixel type="LeftEdge" pixel_id="Vanilla-Images/TooltipLeftEdge" />
+                <ComPixel type="RightEdge" pixel_id="Vanilla-Images/TooltipRightEdge" />
+                <ComPixel type="TopEdge" pixel_id="Vanilla-Images/TooltipTopEdge" />
+                <ComPixel type="BottomEdge" pixel_id="Vanilla-Images/TooltipBottomEdge" />
+                <ComPixel type="Background" pixel_id="Vanilla-Images/TooltipMiddle" />
+            </FrameCom>
+        </StyleSection>
+        <StyleSection name="label">
+            <TextCom>
+                <ComArea>
+                    <SizeDefine type="LeftEdge" ><PixelSize name="Vanilla-Images/TooltipLeftEdge" dimension="Width" /></SizeDefine>
+                    <SizeDefine type="TopEdge" ><PixelSize name="Vanilla-Images/TooltipTopEdge" dimension="Height" /></SizeDefine>
+                    <SizeDefine type="RightEdge" >
+                        <SizeOp op="Subtract">
+                            <RelSize scale="1" type="RightEdge" />
+                            <PixelSize name="Vanilla-Images/TooltipRightEdge" dimension="Width" />
+                        </SizeOp>
+                    </SizeDefine>
+                    <SizeDefine type="BottomEdge" >
+                        <SizeOp op="Subtract">
+                            <RelSize scale="1" type="BottomEdge" />
+                            <PixelSize name="Vanilla-Images/TooltipBottomEdge" dimension="Height" />
+                        </SizeOp>
+                    </SizeDefine>
+                </ComArea>
+                <Colours top_left="FF000000" top_right="FF000000" bottom_left="FF000000" bottom_right="FF000000" />
+                <VLayout type="Centre" />
+                <HLayout type="Centre" />
+            </TextCom>
+        </StyleSection>
+        <StyleLayout name="Enabled">
+            <Layer>
+                <Section id="main" />
+                <Section id="label" />
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Disabled">
+            <Layer>
+                <Section id="main" />
+                <Section id="label" />
+            </Layer>
+        </StyleLayout>
+        
+        <Animation name="FadeIn" duration="0.33" play_mode="once">
+            <Track property="Alpha" data_type="float">
+                <KeyFrame position="0" property_value="Alpha" />
+                <KeyFrame position="0.33" value="1" calc_mode="constant" />
+            </Track>
+            
+            <Event event="TooltipActive" action="Start" />
+        </Animation>
+        
+        <Animation name="FadeOut" duration="0.33" play_mode="once">
+            <Track property="Alpha" data_type="float">
+                <KeyFrame position="0" property_value="Alpha" />
+                <KeyFrame position="0.33" value="0" calc_mode="constant" />
+            </Track>
+            <Track property="Visible" data_type="bool">
+                <KeyFrame position="0" property_value="Visible" />
+                <KeyFrame position="0.33" value="false" calc_mode="point" />
+            </Track>
+            
+            <Event event="TooltipInactive" action="Start" />
+        </Animation>
+    </WidgetStyle>
+</Style>

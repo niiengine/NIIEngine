@@ -1,0 +1,1506 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Style ver="7">
+    <WidgetStyle id="Vanilla/VerticalImageSliderThumb">
+        <PropertyDefine value="tl:FFFFFFFF tr:FFFFFFFF bl:FFFFFFFF br:FFFFFFFF" type="ColourRect" id="ScrollThumbColours"/>
+        <Property name="VertFree" value="True"/>
+        <Property name="MouseInputPropagationEnabled" value="True"/>
+        <StyleSection id="thumb">
+            <ImageryCom>
+                <Area>
+                    <Border type="LeftEdge">
+                        <Abs value="0"/>
+                    </Border>
+                    <Border type="TopEdge">
+                        <Abs value="0"/>
+                    </Border>
+                    <Border type="Width">
+                        <Rel scale="1.0" value="Width"/>
+                    </Border>
+                    <Border type="Height">
+                        <Rel scale="1.0" value="Height"/>
+                    </Border>
+                </Area>
+                <Com pixel_id="Vanilla-Images/VerticalImageSliderThumb"/>
+                <ColourAttribute name="ScrollThumbColours"/>
+                <VLayout type="stretch"/>
+                <HLayout type="stretch"/>
+            </ImageryCom>
+        </StyleSection>
+        <StyleLayout name="Enable">
+            <Layer>
+                <Section style_section="thumb"/>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Hover">
+            <Layer>
+                <Section style_section="thumb"/>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Pushed">
+            <Layer>
+                <Section style_section="thumb"/>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Disable">
+            <Layer>
+                <Section style_section="thumb">
+                    <Colours top_left="FF7F7F7F" bottom_left="FF7F7F7F" top_right="FF7F7F7F" bottom_right="FF7F7F7F"/>
+                </Section>
+            </Layer>
+        </StyleLayout>
+    </WidgetStyle>
+    <WidgetStyle id="Vanilla/VerticalImageSlider">
+        <PropertyDefine value="Vanilla-Images/DefaultScrollImage" type="Pixel" id="ScrollImage"/>
+        <PropertyDefine value="tl:FF000000 tr:FF000000 bl:FF000000 br:FF000000" type="ColourRect" id="TopEndColours"/>
+        <PropertyDefine value="tl:FF000000 tr:FF000000 bl:FF000000 br:FF000000" type="ColourRect" id="BottomEndColours"/>
+        <PropertyLinkDefinition widget="__auto_thumb__" value="tl:FF000000 tr:FF000000 bl:FF000000 br:FF000000" name="ScrollThumbColours" signal_refresh="true" targetProperty="ScrollThumbColours" type="ColourRect"/>
+        <Property name="VerticalSlider" value="True"/>
+        <Property name="MouseAutoRepeatEnabled" value="True"/>
+        <Property name="WantsMultiClickEvents" value="False"/>
+        <Special name="ThumbTrackArea">
+            <Area>
+                <Border type="LeftEdge">
+                    <Abs value="0"/>
+                </Border>
+                <Border type="TopEdge">
+                    <Abs value="0"/>
+                </Border>
+                <Border type="RightEdge">
+                    <Rel scale="1.0" value="RightEdge"/>
+                </Border>
+                <Border type="BottomEdge">
+                    <Rel scale="1.0" value="BottomEdge"/>
+                </Border>
+            </Area>
+        </Special>
+        <Widget id="__auto_thumb__" style_id="Vanilla/VerticalImageSliderThumb">
+            <Area>
+                <Border type="LeftEdge">
+                    <Abs value="0"/>
+                </Border>
+                <Border type="TopEdge">
+                    <Abs value="0"/>
+                </Border>
+                <Border type="Width">
+                    <Rel scale="1.0" value="Width"/>
+                </Border>
+                <Border type="Height">
+                    <Operator type="Multiply">
+                        <Rel scale="1.0" value="Width"/>
+                        <Operator type="Divide">
+                            <PixelSize pixel_id="Vanilla-Images/VerticalImageSliderThumb" value="Height"/>
+                            <PixelSize pixel_id="Vanilla-Images/VerticalImageSliderThumb" value="Width"/>
+                        </Operator>
+                    </Operator>
+                </Border>
+            </Area>
+        </Widget>
+        <StyleSection id="main">
+            <ImageryCom>
+                <Area>
+                    <Border type="LeftEdge">
+                        <Rel scale="0.2" value="Width"/>
+                    </Border>
+                    <Border type="TopEdge">
+                        <Operator type="Multiply">
+                            <WidgetSize widget="__auto_thumb__" value="Height"/>
+                            <Abs value="0.5"/>
+                        </Operator>
+                    </Border>
+                    <Border type="RightEdge">
+                        <Rel scale="0.8" value="Width"/>
+                    </Border>
+                    <Border type="BottomEdge">
+                        <Operator type="Subtract">
+                            <Rel scale="1.0" value="Height"/>
+                            <Operator type="Multiply">
+                                <WidgetSize widget="__auto_thumb__" value="Height"/>
+                                <Abs value="0.5"/>
+                            </Operator>
+                        </Operator>
+                    </Border>
+                </Area>
+                <Com pixel_id="Vanilla-Images/VerticalImageSliderContainer"/>
+                <VLayout type="stretch"/>
+                <HLayout type="stretch"/>
+            </ImageryCom>
+        </StyleSection>
+        <StyleSection id="scrollimage">
+            <ImageryCom>
+                <Area>
+                    <Border type="LeftEdge">
+                        <Rel scale="0.2" value="Width"/>
+                    </Border>
+                    <Border type="TopEdge">
+                        <Operator type="Multiply">
+                            <WidgetSize widget="__auto_thumb__" value="Height"/>
+                            <Abs value="0.5"/>
+                        </Operator>
+                    </Border>
+                    <Border type="RightEdge">
+                        <Rel scale="0.8" value="Width"/>
+                    </Border>
+                    <Border type="BottomEdge">
+                        <Operator type="Subtract">
+                            <Rel scale="1.0" value="Height"/>
+                            <Operator type="Multiply">
+                                <WidgetSize widget="__auto_thumb__" value="Height"/>
+                                <Abs value="0.5"/>
+                            </Operator>
+                        </Operator>
+                    </Border>
+                </Area>
+                <ImageProperty name="ScrollImage"/>
+                <VLayout type="stretch"/>
+                <HLayout type="stretch"/>
+            </ImageryCom>
+            <ImageryCom>
+                <Area>
+                    <Border type="LeftEdge">
+                        <Rel scale="0.2" value="Width"/>
+                    </Border>
+                    <Border type="TopEdge">
+                        <Abs value="0"/>
+                    </Border>
+                    <Border type="RightEdge">
+                        <Rel scale="0.8" value="Width"/>
+                    </Border>
+                    <Border type="BottomEdge">
+                        <Operator type="Multiply">
+                            <WidgetSize widget="__auto_thumb__" value="Height"/>
+                            <Abs value="0.5"/>
+                        </Operator>
+                    </Border>
+                </Area>
+                <Com pixel_id="Vanilla-Images/VerticalImageSliderTopEnd"/>
+                <ColourAttribute name="TopEndColours"/>
+                <VLayout type="stretch"/>
+                <HLayout type="stretch"/>
+            </ImageryCom>
+            <ImageryCom>
+                <Area>
+                    <Border type="LeftEdge">
+                        <Rel scale="0.2" value="Width"/>
+                    </Border>
+                    <Border type="TopEdge">
+                        <Operator type="Subtract">
+                            <Rel scale="1.0" value="Height"/>
+                            <Operator type="Multiply">
+                                <WidgetSize widget="__auto_thumb__" value="Height"/>
+                                <Abs value="0.5"/>
+                            </Operator>
+                        </Operator>
+                    </Border>
+                    <Border type="RightEdge">
+                        <Rel scale="0.8" value="Width"/>
+                    </Border>
+                    <Border type="BottomEdge">
+                        <Rel scale="1.0" value="Height"/>
+                    </Border>
+                </Area>
+                <Com pixel_id="Vanilla-Images/VerticalImageSliderBottomEnd"/>
+                <ColourAttribute name="BottomEndColours"/>
+                <VLayout type="stretch"/>
+                <HLayout type="stretch"/>
+            </ImageryCom>
+        </StyleSection>
+        <StyleLayout name="Enable">
+            <Layer>
+                <Section style_section="scrollimage"/>
+                <Section style_section="main"/>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Disable">
+            <Layer>
+                <Section style_section="scrollimage">
+                    <Colours top_left="FF7F7F7F" bottom_left="FF7F7F7F" top_right="FF7F7F7F" bottom_right="FF7F7F7F"/>
+                </Section>
+                <Section style_section="main">
+                    <Colours top_left="FF7F7F7F" bottom_left="FF7F7F7F" top_right="FF7F7F7F" bottom_right="FF7F7F7F"/>
+                </Section>
+            </Layer>
+        </StyleLayout>
+    </WidgetStyle>
+    <WidgetStyle id="Vanilla/HorizontalImageSliderThumb">
+        <PropertyDefine value="tl:FFFFFFFF tr:FFFFFFFF bl:FFFFFFFF br:FFFFFFFF" type="ColourRect" id="ScrollThumbColours"/>
+        <Property name="HorzFree" value="True"/>
+        <Property name="MouseInputPropagationEnabled" value="True"/>
+        <StyleSection id="thumb">
+            <ImageryCom>
+                <Area>
+                    <Border type="LeftEdge">
+                        <Abs value="0"/>
+                    </Border>
+                    <Border type="TopEdge">
+                        <Abs value="0"/>
+                    </Border>
+                    <Border type="Width">
+                        <Rel scale="1.0" value="Width"/>
+                    </Border>
+                    <Border type="Height">
+                        <Rel scale="1.0" value="Height"/>
+                    </Border>
+                </Area>
+                <Com pixel_id="Vanilla-Images/HorizontalImageSliderThumb"/>
+                <ColourAttribute name="ScrollThumbColours"/>
+                <VLayout type="stretch"/>
+                <HLayout type="stretch"/>
+            </ImageryCom>
+        </StyleSection>
+        <StyleLayout name="Enable">
+            <Layer>
+                <Section style_section="thumb"/>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Hover">
+            <Layer>
+                <Section style_section="thumb"/>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Pushed">
+            <Layer>
+                <Section style_section="thumb"/>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Disable">
+            <Layer>
+                <Section style_section="thumb">
+                    <Colours top_left="FF7F7F7F" bottom_left="FF7F7F7F" top_right="FF7F7F7F" bottom_right="FF7F7F7F"/>
+                </Section>
+            </Layer>
+        </StyleLayout>
+    </WidgetStyle>
+    <WidgetStyle id="Vanilla/HorizontalImageSlider">
+        <PropertyDefine value="Vanilla-Images/DefaultScrollImage" type="Pixel" id="ScrollImage"/>
+        <PropertyDefine value="tl:FF000000 tr:FF000000 bl:FF000000 br:FF000000" type="ColourRect" id="TopEndColours"/>
+        <PropertyDefine value="tl:FF000000 tr:FF000000 bl:FF000000 br:FF000000" type="ColourRect" id="BottomEndColours"/>
+        <PropertyLinkDefinition widget="__auto_thumb__" value="tl:FF000000 tr:FF000000 bl:FF000000 br:FF000000" name="ScrollThumbColours" signal_refresh="true" targetProperty="ScrollThumbColours" type="ColourRect"/>
+        <Property name="VerticalSlider" value="False"/>
+        <Property name="MouseAutoRepeatEnabled" value="True"/>
+        <Property name="WantsMultiClickEvents" value="False"/>
+        <Special name="ThumbTrackArea">
+            <Area>
+                <Border type="LeftEdge">
+                    <Abs value="0"/>
+                </Border>
+                <Border type="TopEdge">
+                    <Abs value="0"/>
+                </Border>
+                <Border type="RightEdge">
+                    <Rel scale="1.0" value="RightEdge"/>
+                </Border>
+                <Border type="BottomEdge">
+                    <Rel scale="1.0" value="BottomEdge"/>
+                </Border>
+            </Area>
+        </Special>
+        <Widget id="__auto_thumb__" style_id="Vanilla/HorizontalImageSliderThumb">
+            <Area>
+                <Border type="LeftEdge">
+                    <Abs value="0"/>
+                </Border>
+                <Border type="TopEdge">
+                    <Abs value="0"/>
+                </Border>
+                <Border type="Width">
+                    <Operator type="Multiply">
+                        <Rel scale="1.0" value="Height"/>
+                        <Operator type="Divide">
+                            <PixelSize pixel_id="Vanilla-Images/HorizontalImageSliderThumb" value="Width"/>
+                            <PixelSize pixel_id="Vanilla-Images/HorizontalImageSliderThumb" value="Height"/>
+                        </Operator>
+                    </Operator>
+                </Border>
+                <Border type="Height">
+                    <Rel scale="1.0" value="Height"/>
+                </Border>
+            </Area>
+        </Widget>
+        <StyleSection id="main">
+            <ImageryCom>
+                <Area>
+                    <Border type="LeftEdge">
+                        <Operator type="Multiply">
+                            <WidgetSize widget="__auto_thumb__" value="Width"/>
+                            <Abs value="0.5"/>
+                        </Operator>
+                    </Border>
+                    <Border type="TopEdge">
+                        <Rel scale="0.2" value="Height"/>
+                    </Border>
+                    <Border type="RightEdge">
+                        <Operator type="Subtract">
+                            <Rel scale="1.0" value="Width"/>
+                            <Operator type="Multiply">
+                                <WidgetSize widget="__auto_thumb__" value="Width"/>
+                                <Abs value="0.5"/>
+                            </Operator>
+                        </Operator>
+                    </Border>
+                    <Border type="BottomEdge">
+                        <Rel scale="0.8" value="Height"/>
+                    </Border>
+                </Area>
+                <Com pixel_id="Vanilla-Images/HorizontalImageSliderContainer"/>
+                <VLayout type="stretch"/>
+                <HLayout type="stretch"/>
+            </ImageryCom>
+        </StyleSection>
+        <StyleSection id="scrollimage">
+            <ImageryCom>
+                <Area>
+                    <Border type="LeftEdge">
+                        <Operator type="Multiply">
+                            <WidgetSize widget="__auto_thumb__" value="Width"/>
+                            <Abs value="0.5"/>
+                        </Operator>
+                    </Border>
+                    <Border type="TopEdge">
+                        <Rel scale="0.2" value="Height"/>
+                    </Border>
+                    <Border type="RightEdge">
+                        <Operator type="Subtract">
+                            <Rel scale="1.0" value="Width"/>
+                            <Operator type="Multiply">
+                                <WidgetSize widget="__auto_thumb__" value="Width"/>
+                                <Abs value="0.5"/>
+                            </Operator>
+                        </Operator>
+                    </Border>
+                    <Border type="BottomEdge">
+                        <Rel scale="0.8" value="Height"/>
+                    </Border>
+                </Area>
+                <ImageProperty name="ScrollImage"/>
+                <VLayout type="stretch"/>
+                <HLayout type="stretch"/>
+            </ImageryCom>
+            <ImageryCom>
+                <Area>
+                    <Border type="LeftEdge">
+                        <Abs value="0"/>
+                    </Border>
+                    <Border type="TopEdge">
+                        <Rel scale="0.2" value="Height"/>
+                    </Border>
+                    <Border type="RightEdge">
+                        <Operator type="Multiply">
+                            <WidgetSize widget="__auto_thumb__" value="Width"/>
+                            <Abs value="0.5"/>
+                        </Operator>
+                    </Border>
+                    <Border type="BottomEdge">
+                        <Rel scale="0.8" value="Height"/>
+                    </Border>
+                </Area>
+                <Com pixel_id="Vanilla-Images/HorizontalImageSliderLeftEnd"/>
+                <ColourAttribute name="TopEndColours"/>
+                <VLayout type="stretch"/>
+                <HLayout type="stretch"/>
+            </ImageryCom>
+            <ImageryCom>
+                <Area>
+                    <Border type="LeftEdge">
+                        <Operator type="Subtract">
+                            <Rel scale="1.0" value="Width"/>
+                            <Operator type="Multiply">
+                                <WidgetSize widget="__auto_thumb__" value="Width"/>
+                                <Abs value="0.5"/>
+                            </Operator>
+                        </Operator>
+                    </Border>
+                    <Border type="TopEdge">
+                        <Rel scale="0.2" value="Height"/>
+                    </Border>
+                    <Border type="RightEdge">
+                        <Rel scale="1.0" value="Width"/>
+                    </Border>
+                    <Border type="BottomEdge">
+                        <Rel scale="0.8" value="Height"/>
+                    </Border>
+                </Area>
+                <Com pixel_id="Vanilla-Images/HorizontalImageSliderRightEnd"/>
+                <ColourAttribute name="BottomEndColours"/>
+                <VLayout type="stretch"/>
+                <HLayout type="stretch"/>
+            </ImageryCom>
+        </StyleSection>
+        <StyleLayout name="Enable">
+            <Layer>
+                <Section style_section="scrollimage"/>
+                <Section style_section="main"/>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Disable">
+            <Layer>
+                <Section style_section="scrollimage">
+                    <Colours top_left="FF7F7F7F" bottom_left="FF7F7F7F" top_right="FF7F7F7F" bottom_right="FF7F7F7F"/>
+                </Section>
+                <Section style_section="main">
+                    <Colours top_left="FF7F7F7F" bottom_left="FF7F7F7F" top_right="FF7F7F7F" bottom_right="FF7F7F7F"/>
+                </Section>
+            </Layer>
+        </StyleLayout>
+    </WidgetStyle>
+    <WidgetStyle id="Vanilla/FrameColourRect">
+        <PropertyDefine signal_refresh="true" value="tl:FFFFFFFF tr:FFFFFFFF bl:FFFFFFFF br:FFFFFFFF" type="ColourRect" id="Colour"/>
+        <StyleSection id="withframe">
+            <FrameCom>
+                <Area>
+                    <Border type="LeftEdge">
+                        <Abs value="0"/>
+                    </Border>
+                    <Border type="TopEdge">
+                        <Abs value="0"/>
+                    </Border>
+                    <Border type="RightEdge">
+                        <Rel scale="1" value="RightEdge"/>
+                    </Border>
+                    <Border type="BottomEdge">
+                        <Rel scale="1" value="BottomEdge"/>
+                    </Border>
+                </Area>
+                <Com type="TopLeftCorner" pixel_id="Vanilla-Images/FrameTopLeft"/>
+                <Com type="TopRightCorner" pixel_id="Vanilla-Images/FrameTopRight"/>
+                <Com type="BottomLeftCorner" pixel_id="Vanilla-Images/FrameBottomLeft"/>
+                <Com type="BottomRightCorner" pixel_id="Vanilla-Images/FrameBottomRight"/>
+                <Com type="LeftEdge" pixel_id="Vanilla-Images/FrameLeft"/>
+                <Com type="TopEdge" pixel_id="Vanilla-Images/FrameTop"/>
+                <Com type="RightEdge" pixel_id="Vanilla-Images/FrameRight"/>
+                <Com type="BottomEdge" pixel_id="Vanilla-Images/FrameBottom"/>
+                <Com type="Background" pixel_id="Vanilla-Images/GenericBrush"/>
+                <ColourAttribute name="Colour"/>
+            </FrameCom>
+        </StyleSection>
+        <StyleLayout name="Enable">
+            <Layer>
+                <Section style_section="withframe"/>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Disable">
+            <Layer>
+                <Section style_section="withframe"/>
+            </Layer>
+        </StyleLayout>
+    </WidgetStyle>
+    <WidgetStyle id="Vanilla/ColourPicker">
+        <PropertyDefine value="Vanilla/ColourPickerControls" type="String" id="ColourPickerControlsStyle"/>
+        <PropertyDefine value="True" type="bool" id="ShareColourPickerControlsWidget"/>
+        <PropertyLinkDefinition widget="__auto_colourrect__" value="tl:FFFF0000 tr:FFFF0000 bl:FFFF0000 br:FFFF0000" name="Colour" signal_refresh="true" targetProperty="Colour" type="ColourRect"/>
+        <Widget id="__auto_colourrect__" style_id="Vanilla/FrameColourRect">
+            <Area>
+                <Border type="LeftEdge">
+                    <Abs value="0"/>
+                </Border>
+                <Border type="TopEdge">
+                    <Abs value="0"/>
+                </Border>
+                <Border type="Width">
+                    <Rel scale="1" value="Width"/>
+                </Border>
+                <Border type="Height">
+                    <Rel scale="1" value="Height"/>
+                </Border>
+            </Area>
+        </Widget>
+        <StyleLayout name="Enable">
+    </StyleLayout>
+        <StyleLayout name="Disable">
+    </StyleLayout>
+    </WidgetStyle>
+    <WidgetStyle id="Vanilla/ColourPickerControls">
+        <PropertyDefine value="Vanilla/StaticImage" type="String" id="ColourPickerCursorStyle"/>
+        <PropertyDefine value="Vanilla-Images/ColourPickerCursor" type="Pixel" id="ColourPickerCursorImage"/>
+        <PropertyDefine signal_refresh="true" value="tl:D3FFFFFF tr:D3FFFFFF bl:D3FFFFFF br:D3FFFFFF" type="ColourRect" id="BackgroundColours"/>
+        <PropertyDefine signal_refresh="true" value="20" type="uint" id="ColourPickerImageSliderWidth"/>
+        <PropertyLinkDefinition targetProperty="Colour" widget="__auto_oldcolourrect__" value="tl:FFFFFFFF tr:FFFFFFFF bl:FFFFFFFF br:FFFFFFFF" type="ColourRect" name="PreviousColour"/>
+        <PropertyLinkDefinition targetProperty="Colour" widget="__auto_newcolourrect__" value="tl:FFFFFFFF tr:FFFFFFFF bl:FFFFFFFF br:FFFFFFFF" type="ColourRect" name="NewColour"/>
+        <PropertyLinkDefinition targetProperty="CaptionColour" widget="__auto_titlebar__" value="FF4A4A4A" type="ColourRect" name="CaptionColour"/>
+        <PropertyLinkDefinition value="DejaVuSans-10-NoScale" type="Font" name="ColourPickerFontType">
+            <PropertyLinkTarget widget="__auto_cancelbutton__" property="Font"/>
+            <PropertyLinkTarget widget="__auto_acceptbutton__" property="Font"/>
+            <PropertyLinkTarget widget="__auto_titlebar__" property="Font"/>
+            <PropertyLinkTarget widget="__auto_hexadecimaleditbox__" property="Font"/>
+            <PropertyLinkTarget widget="__auto_hexadecimalstatictext__" property="Font"/>
+            <PropertyLinkTarget widget="__auto_newcolourdescription__" property="Font"/>
+            <PropertyLinkTarget widget="__auto_oldcolourdescription__" property="Font"/>
+            <PropertyLinkTarget widget="__auto_coloureditboxRdescription__" property="Font"/>
+            <PropertyLinkTarget widget="__auto_coloureditboxR__" property="Font"/>
+            <PropertyLinkTarget widget="__auto_coloureditboxGdescription__" property="Font"/>
+            <PropertyLinkTarget widget="__auto_coloureditboxG__" property="Font"/>
+            <PropertyLinkTarget widget="__auto_coloureditboxBdescription__" property="Font"/>
+            <PropertyLinkTarget widget="__auto_coloureditboxB__" property="Font"/>
+            <PropertyLinkTarget widget="__auto_HSVeditboxH__" property="Font"/>
+            <PropertyLinkTarget widget="__auto_HSVradiobuttonH__" property="Font"/>
+            <PropertyLinkTarget widget="__auto_HSVeditboxS__" property="Font"/>
+            <PropertyLinkTarget widget="__auto_HSVradiobuttonS__" property="Font"/>
+            <PropertyLinkTarget widget="__auto_HSVradiobuttonV__" property="Font"/>
+            <PropertyLinkTarget widget="__auto_HSVeditboxV__" property="Font"/>
+            <PropertyLinkTarget widget="__auto_Labeditboxa__" property="Font"/>
+            <PropertyLinkTarget widget="__auto_Labradiobuttona__" property="Font"/>
+            <PropertyLinkTarget widget="__auto_Labeditboxb__" property="Font"/>
+            <PropertyLinkTarget widget="__auto_Labradiobuttonb__" property="Font"/>
+            <PropertyLinkTarget widget="__auto_LabeditboxL__" property="Font"/>
+            <PropertyLinkTarget widget="__auto_LabradiobuttonL__" property="Font"/>
+            <PropertyLinkTarget widget="__auto_alphaeditbox__" property="Font"/>
+            <PropertyLinkTarget widget="__auto_alphastatictext__" property="Font"/>
+        </PropertyLinkDefinition>
+        <PropertyLinkDefinition value="tl:FF000000 tr:FF000000 bl:FF000000 br:FF000000" type="ColourRect" name="ColourPickerFontColours">
+            <PropertyLinkTarget widget="__auto_hexadecimalstatictext__" property="TextColours"/>
+            <PropertyLinkTarget widget="__auto_newcolourdescription__" property="TextColours"/>
+            <PropertyLinkTarget widget="__auto_oldcolourdescription__" property="TextColours"/>
+            <PropertyLinkTarget widget="__auto_coloureditboxRdescription__" property="TextColours"/>
+            <PropertyLinkTarget widget="__auto_coloureditboxGdescription__" property="TextColours"/>
+            <PropertyLinkTarget widget="__auto_coloureditboxBdescription__" property="TextColours"/>
+            <PropertyLinkTarget widget="__auto_alphastatictext__" property="TextColours"/>
+        </PropertyLinkDefinition>
+        <PropertyLinkDefinition value="tl:FF000000 tr:FF000000 bl:FF000000 br:FF000000" type="ColourRect" name="RadioButtonNormalTextColours">
+            <PropertyLinkTarget widget="__auto_HSVradiobuttonH__" property="NormalTextColour"/>
+            <PropertyLinkTarget widget="__auto_HSVradiobuttonS__" property="NormalTextColour"/>
+            <PropertyLinkTarget widget="__auto_HSVradiobuttonV__" property="NormalTextColour"/>
+            <PropertyLinkTarget widget="__auto_LabradiobuttonL__" property="NormalTextColour"/>
+            <PropertyLinkTarget widget="__auto_Labradiobuttona__" property="NormalTextColour"/>
+            <PropertyLinkTarget widget="__auto_Labradiobuttonb__" property="NormalTextColour"/>
+        </PropertyLinkDefinition>
+        <PropertyLinkDefinition value="tl:FF434343 tr:FF434343 bl:FF434343 br:FF434343" type="ColourRect" name="RadioButtonHoverTextColours">
+            <PropertyLinkTarget widget="__auto_HSVradiobuttonH__" property="HoverTextColour"/>
+            <PropertyLinkTarget widget="__auto_HSVradiobuttonS__" property="HoverTextColour"/>
+            <PropertyLinkTarget widget="__auto_HSVradiobuttonV__" property="HoverTextColour"/>
+            <PropertyLinkTarget widget="__auto_LabradiobuttonL__" property="HoverTextColour"/>
+            <PropertyLinkTarget widget="__auto_Labradiobuttona__" property="HoverTextColour"/>
+            <PropertyLinkTarget widget="__auto_Labradiobuttonb__" property="HoverTextColour"/>
+        </PropertyLinkDefinition>
+        <PropertyLinkDefinition value="tl:FF636363 tr:FF636363 bl:FF636363 br:FF636363" type="ColourRect" name="RadioButtonPushedTextColours">
+            <PropertyLinkTarget widget="__auto_HSVradiobuttonH__" property="PushedTextColour"/>
+            <PropertyLinkTarget widget="__auto_HSVradiobuttonS__" property="PushedTextColour"/>
+            <PropertyLinkTarget widget="__auto_HSVradiobuttonV__" property="PushedTextColour"/>
+            <PropertyLinkTarget widget="__auto_LabradiobuttonL__" property="PushedTextColour"/>
+            <PropertyLinkTarget widget="__auto_Labradiobuttona__" property="PushedTextColour"/>
+            <PropertyLinkTarget widget="__auto_Labradiobuttonb__" property="PushedTextColour"/>
+        </PropertyLinkDefinition>
+        <Property name="AlwaysOnTop" value="True"/>
+        <Property name="Size" value="{{0,460},{0,460}}"/>
+        <Property name="HorizontalAlignment" value="centre"/>
+        <Property name="VerticalAlignment" value="centre"/>
+        <Widget id="__auto_titlebar__" style_id="Vanilla/Titlebar">
+            <Area>
+                <Border type="LeftEdge">
+                    <Abs value="0"/>
+                </Border>
+                <Border type="TopEdge">
+                    <Abs value="0"/>
+                </Border>
+                <Border type="Width">
+                    <Rel scale="1" value="Width"/>
+                </Border>
+                <Border type="Height">
+                    <FontDim padding="14" type="LineSpacing"/>
+                </Border>
+            </Area>
+            <VAlign type="top"/>
+            <HAlign type="centre"/>
+            <Property name="Text" value="ColourPicker"/>
+        </Widget>
+        <Widget id="__auto_cancelbutton__" style_id="Vanilla/Button">
+            <Area>
+                <Border type="LeftEdge">
+                    <Rel scale="-0.02" value="Width"/>
+                </Border>
+                <Border type="TopEdge">
+                    <Rel scale="-0.02" value="Height"/>
+                </Border>
+                <Border type="Width">
+                    <Rel scale="0.18" value="Width"/>
+                </Border>
+                <Border type="Height">
+                    <Rel scale="0.055" value="Height"/>
+                </Border>
+            </Area>
+            <VAlign type="bottom"/>
+            <HAlign type="right"/>
+            <Property name="Text" value="Cancel"/>
+        </Widget>
+        <Widget id="__auto_acceptbutton__" style_id="Vanilla/Button">
+            <Area>
+                <Border type="LeftEdge">
+                    <Operator type="Add">
+                        <Rel scale="-0.01" value="Width"/>
+                        <Operator type="Subtract">
+                            <WidgetSize widget="__auto_cancelbutton__" value="LeftEdge"/>
+                            <WidgetSize widget="__auto_cancelbutton__" value="Width"/>
+                        </Operator>
+                    </Operator>
+                </Border>
+                <Border type="TopEdge">
+                    <Rel scale="-0.02" value="Height"/>
+                </Border>
+                <Border type="Width">
+                    <Rel scale="0.18" value="Width"/>
+                </Border>
+                <Border type="Height">
+                    <Rel scale="0.055" value="Height"/>
+                </Border>
+            </Area>
+            <VAlign type="bottom"/>
+            <HAlign type="right"/>
+            <Property name="Text" value="Accept"/>
+        </Widget>
+        <Widget id="__auto_oldcolourrect__" style_id="Vanilla/FrameColourRect">
+            <Area>
+                <Border type="LeftEdge">
+                    <Rel scale="0.04" value="Width"/>
+                </Border>
+                <Border type="TopEdge">
+                    <Operator type="Subtract">
+                        <Rel scale="-0.06" value="Height"/>
+                        <Rel scale="0.05" value="Height"/>
+                    </Operator>
+                </Border>
+                <Border type="Width">
+                    <Rel scale="0.11" value="Width"/>
+                </Border>
+                <Border type="Height">
+                    <Rel scale="0.11" value="Width"/>
+                </Border>
+            </Area>
+            <VAlign type="bottom"/>
+            <HAlign type="left"/>
+        </Widget>
+        <Widget id="__auto_newcolourrect__" style_id="Vanilla/FrameColourRect">
+            <Area>
+                <Border type="LeftEdge">
+                    <Operator type="Add">
+                        <Rel scale="0.04" value="Width"/>
+                        <Operator type="Add">
+                            <WidgetSize widget="__auto_oldcolourrect__" value="Width"/>
+                            <WidgetSize widget="__auto_oldcolourrect__" value="LeftEdge"/>
+                        </Operator>
+                    </Operator>
+                </Border>
+                <Border type="TopEdge">
+                    <WidgetSize widget="__auto_oldcolourrect__" value="TopEdge"/>
+                </Border>
+                <Border type="Width">
+                    <Rel scale="0.11" value="Width"/>
+                </Border>
+                <Border type="Height">
+                    <Rel scale="0.11" value="Width"/>
+                </Border>
+            </Area>
+            <VAlign type="bottom"/>
+            <HAlign type="left"/>
+        </Widget>
+        <Widget id="__auto_newcolourdescription__" style_id="Vanilla/StaticText">
+            <Area>
+                <Border type="LeftEdge">
+                    <Operator type="Add">
+                        <Rel scale="-0.02" value="Width"/>
+                        <WidgetSize widget="__auto_oldcolourrect__" value="LeftEdge"/>
+                    </Operator>
+                </Border>
+                <Border type="TopEdge">
+                    <Operator type="Add">
+                        <Rel scale="0.0" value="Height"/>
+                        <Operator type="Subtract">
+                            <WidgetSize widget="__auto_oldcolourrect__" value="TopEdge"/>
+                            <WidgetSize widget="__auto_oldcolourrect__" value="Height"/>
+                        </Operator>
+                    </Operator>
+                </Border>
+                <Border type="Width">
+                    <Operator type="Add">
+                        <Rel scale="0.04" value="Width"/>
+                        <WidgetSize widget="__auto_oldcolourrect__" value="Width"/>
+                    </Operator>
+                </Border>
+                <Border type="Height">
+                    <Rel scale="0.04" value="Height"/>
+                </Border>
+            </Area>
+            <VAlign type="bottom"/>
+            <HAlign type="left"/>
+            <Property name="Text" value="Previous"/>
+            <Property name="FrameEnabled" value="False"/>
+            <Property name="BackgroundEnabled" value="False"/>
+            <Property name="HorzFormatting" value="centre"/>
+        </Widget>
+        <Widget id="__auto_oldcolourdescription__" style_id="Vanilla/StaticText">
+            <Area>
+                <Border type="LeftEdge">
+                    <Operator type="Add">
+                        <Rel scale="-0.02" value="Width"/>
+                        <WidgetSize widget="__auto_newcolourrect__" value="LeftEdge"/>
+                    </Operator>
+                </Border>
+                <Border type="TopEdge">
+                    <Operator type="Add">
+                        <Rel scale="0.0" value="Height"/>
+                        <Operator type="Subtract">
+                            <WidgetSize widget="__auto_newcolourrect__" value="TopEdge"/>
+                            <WidgetSize widget="__auto_newcolourrect__" value="Height"/>
+                        </Operator>
+                    </Operator>
+                </Border>
+                <Border type="Width">
+                    <Operator type="Add">
+                        <Rel scale="0.04" value="Width"/>
+                        <WidgetSize widget="__auto_newcolourrect__" value="Width"/>
+                    </Operator>
+                </Border>
+                <Border type="Height">
+                    <Rel scale="0.04" value="Height"/>
+                </Border>
+            </Area>
+            <VAlign type="bottom"/>
+            <HAlign type="left"/>
+            <Property name="Text" value="Current"/>
+            <Property name="FrameEnabled" value="False"/>
+            <Property name="BackgroundEnabled" value="False"/>
+            <Property name="HorzFormatting" value="centre"/>
+        </Widget>
+        <!--
+		***************************************************
+			ColourPicker Texture and Scrollbar
+		***************************************************
+		-->
+        <Widget id="__auto_colourpickerstaticimage__" style_id="Vanilla/StaticImage">
+            <Area>
+                <Border type="LeftEdge">
+                    <Rel scale="0.04" value="Width"/>
+                </Border>
+                <Border type="TopEdge">
+                    <Operator type="Add">
+                        <PropertyDim name="ColourPickerImageSliderWidth"/>
+                        <WidgetSize widget="__auto_titlebar__" value="Height"/>
+                    </Operator>
+                </Border>
+                <Border type="Width">
+                    <Abs value="260"/>
+                </Border>
+                <Border type="Height">
+                    <Abs value="260"/>
+                </Border>
+            </Area>
+            <VAlign type="top"/>
+            <HAlign type="left"/>
+            <Property name="FrameEnabled" value="False"/>
+            <Property name="BackgroundEnabled" value="False"/>
+        </Widget>
+        <Widget id="__auto_colourpickerimageslider__" style_id="Vanilla/VerticalImageSlider">
+            <Area>
+                <Border type="LeftEdge">
+                    <Operator type="Add">
+                        <Abs value="5"/>
+                        <WidgetSize widget="__auto_colourpickerstaticimage__" value="RightEdge"/>
+                    </Operator>
+                </Border>
+                <Border type="TopEdge">
+                    <WidgetSize widget="__auto_colourpickerstaticimage__" value="TopEdge"/>
+                </Border>
+                <Border type="Width">
+                    <PropertyDim name="ColourPickerImageSliderWidth"/>
+                </Border>
+                <Border type="Height">
+                    <WidgetSize widget="__auto_colourpickerstaticimage__" value="Height"/>
+                </Border>
+            </Area>
+            <VAlign type="top"/>
+            <HAlign type="left"/>
+        </Widget>
+        <!--
+		***************************************************
+			Start of RGB colour attribute child widgets
+		***************************************************
+		-->
+        <Widget id="__auto_coloureditboxBdescription__" style_id="Vanilla/StaticText">
+            <Area>
+                <Border type="LeftEdge">
+                    <Operator type="Add">
+                        <Rel scale="0.08" value="Width"/>
+                        <WidgetSize widget="__auto_newcolourrect__" value="RightEdge"/>
+                    </Operator>
+                </Border>
+                <Border type="TopEdge">
+                    <Rel scale="-0.1" value="Height"/>
+                </Border>
+                <Border type="Width">
+                    <Rel scale="0.04" value="Width"/>
+                </Border>
+                <Border type="Height">
+                    <Rel scale="0.05" value="Height"/>
+                </Border>
+            </Area>
+            <VAlign type="bottom"/>
+            <HAlign type="left"/>
+            <Property name="Text" value="B"/>
+            <Property name="FrameEnabled" value="False"/>
+            <Property name="BackgroundEnabled" value="False"/>
+            <Property name="HorzFormatting" value="left"/>
+        </Widget>
+        <Widget id="__auto_coloureditboxB__" style_id="Vanilla/Editbox">
+            <Area>
+                <Border type="LeftEdge">
+                    <WidgetSize widget="__auto_coloureditboxBdescription__" value="RightEdge"/>
+                </Border>
+                <Border type="TopEdge">
+                    <WidgetSize widget="__auto_coloureditboxBdescription__" value="TopEdge"/>
+                </Border>
+                <Border type="Width">
+                    <Rel scale="0.09" value="Width"/>
+                </Border>
+                <Border type="Height">
+                    <Rel scale="0.05" value="Height"/>
+                </Border>
+            </Area>
+            <VAlign type="bottom"/>
+            <HAlign type="left"/>
+            <Property name="Text" value="255"/>
+            <Property name="TextFormatting" value="centre"/>
+            <Property name="MaxTextLength" value="3"/>
+            <Property name="ValidationString" value="^$|[1][0-9][0-9]|[0-2][5][0-5]|[0-2][0-4][0-9]|[0-9]{1,2}"/>
+        </Widget>
+        <Widget id="__auto_coloureditboxGdescription__" style_id="Vanilla/StaticText">
+            <Area>
+                <Border type="LeftEdge">
+                    <WidgetSize widget="__auto_coloureditboxBdescription__" value="LeftEdge"/>
+                </Border>
+                <Border type="TopEdge">
+                    <Operator type="Add">
+                        <Rel scale="-0.01" value="Height"/>
+                        <Operator type="Subtract">
+                            <WidgetSize widget="__auto_coloureditboxBdescription__" value="TopEdge"/>
+                            <WidgetSize widget="__auto_coloureditboxBdescription__" value="Height"/>
+                        </Operator>
+                    </Operator>
+                </Border>
+                <Border type="Width">
+                    <Rel scale="0.04" value="Width"/>
+                </Border>
+                <Border type="Height">
+                    <Rel scale="0.05" value="Height"/>
+                </Border>
+            </Area>
+            <VAlign type="bottom"/>
+            <HAlign type="left"/>
+            <Property name="Text" value="G"/>
+            <Property name="FrameEnabled" value="False"/>
+            <Property name="BackgroundEnabled" value="False"/>
+            <Property name="HorzFormatting" value="left"/>
+        </Widget>
+        <Widget id="__auto_coloureditboxG__" style_id="Vanilla/Editbox">
+            <Area>
+                <Border type="LeftEdge">
+                    <WidgetSize widget="__auto_coloureditboxGdescription__" value="RightEdge"/>
+                </Border>
+                <Border type="TopEdge">
+                    <WidgetSize widget="__auto_coloureditboxGdescription__" value="TopEdge"/>
+                </Border>
+                <Border type="Width">
+                    <Rel scale="0.09" value="Width"/>
+                </Border>
+                <Border type="Height">
+                    <Rel scale="0.05" value="Height"/>
+                </Border>
+            </Area>
+            <VAlign type="bottom"/>
+            <HAlign type="left"/>
+            <Property name="TextFormatting" value="centre"/>
+            <Property name="Text" value="255"/>
+            <Property name="MaxTextLength" value="3"/>
+            <Property name="ValidationString" value="^$|[1][0-9][0-9]|[0-2][5][0-5]|[0-2][0-4][0-9]|[0-9]{1,2}"/>
+        </Widget>
+        <Widget id="__auto_coloureditboxRdescription__" style_id="Vanilla/StaticText">
+            <Area>
+                <Border type="LeftEdge">
+                    <WidgetSize widget="__auto_coloureditboxGdescription__" value="LeftEdge"/>
+                </Border>
+                <Border type="TopEdge">
+                    <Operator type="Add">
+                        <Rel scale="-0.01" value="Height"/>
+                        <Operator type="Subtract">
+                            <WidgetSize widget="__auto_coloureditboxGdescription__" value="TopEdge"/>
+                            <WidgetSize widget="__auto_coloureditboxGdescription__" value="Height"/>
+                        </Operator>
+                    </Operator>
+                </Border>
+                <Border type="Width">
+                    <Rel scale="0.04" value="Width"/>
+                </Border>
+                <Border type="Height">
+                    <Rel scale="0.05" value="Height"/>
+                </Border>
+            </Area>
+            <VAlign type="bottom"/>
+            <HAlign type="left"/>
+            <Property name="Text" value="R"/>
+            <Property name="FrameEnabled" value="False"/>
+            <Property name="BackgroundEnabled" value="False"/>
+            <Property name="HorzFormatting" value="left"/>
+        </Widget>
+        <Widget id="__auto_coloureditboxR__" style_id="Vanilla/Editbox">
+            <Area>
+                <Border type="LeftEdge">
+                    <WidgetSize widget="__auto_coloureditboxRdescription__" value="RightEdge"/>
+                </Border>
+                <Border type="TopEdge">
+                    <WidgetSize widget="__auto_coloureditboxRdescription__" value="TopEdge"/>
+                </Border>
+                <Border type="Width">
+                    <Rel scale="0.09" value="Width"/>
+                </Border>
+                <Border type="Height">
+                    <Rel scale="0.05" value="Height"/>
+                </Border>
+            </Area>
+            <VAlign type="bottom"/>
+            <HAlign type="left"/>
+            <Property name="TextFormatting" value="centre"/>
+            <Property name="Text" value="255"/>
+            <Property name="MaxTextLength" value="3"/>
+            <Property name="ValidationString" value="^$|[1][0-9][0-9]|[0-2][5][0-5]|[0-2][0-4][0-9]|[0-9]{1,2}"/>
+        </Widget>
+        <!--
+		***************************************************
+			Hexadecimal description and editbox
+		***************************************************
+		-->
+        <Widget id="__auto_hexadecimaleditbox__" style_id="Vanilla/Editbox">
+            <Area>
+                <Border type="LeftEdge">
+                    <Operator type="Subtract">
+                        <WidgetSize widget="__auto_coloureditboxB__" value="RightEdge"/>
+                        <Rel scale="0.17" value="Width"/>
+                    </Operator>
+                </Border>
+                <Border type="TopEdge">
+                    <Rel scale="-0.02" value="Height"/>
+                </Border>
+                <Border type="Width">
+                    <Rel scale="0.17" value="Width"/>
+                </Border>
+                <Border type="Height">
+                    <Rel scale="0.05" value="Height"/>
+                </Border>
+            </Area>
+            <VAlign type="bottom"/>
+            <HAlign type="left"/>
+            <Property name="Text" value="FFFFFFFF"/>
+            <Property name="MaxTextLength" value="8"/>
+            <Property name="TextFormatting" value="centre"/>
+            <Property name="ValidationString" value="[0-9a-fA-F]{0,8}"/>
+        </Widget>
+        <Widget id="__auto_hexadecimalstatictext__" style_id="Vanilla/StaticText">
+            <Area>
+                <Border type="LeftEdge">
+                    <Operator type="Subtract">
+                        <WidgetSize widget="__auto_hexadecimaleditbox__" value="LeftEdge"/>
+                        <Rel scale="0.22" value="Width"/>
+                    </Operator>
+                </Border>
+                <Border type="TopEdge">
+                    <Rel scale="-0.02" value="Height"/>
+                </Border>
+                <Border type="Width">
+                    <Rel scale="0.20" value="Width"/>
+                </Border>
+                <Border type="Height">
+                    <Rel scale="0.05" value="Height"/>
+                </Border>
+            </Area>
+            <VAlign type="bottom"/>
+            <HAlign type="left"/>
+            <Property name="Text" value="Hexadecimal:"/>
+            <Property name="FrameEnabled" value="False"/>
+            <Property name="BackgroundEnabled" value="False"/>
+            <Property name="HorzFormatting" value="centre"/>
+        </Widget>
+        <!--
+		***************************************************
+			Start of HSV colour model child widgets
+		***************************************************
+		-->
+        <Widget id="__auto_HSVeditboxH__" style_id="Vanilla/Editbox">
+            <Area>
+                <Border type="LeftEdge">
+                    <Rel scale="-0.070" value="Width"/>
+                </Border>
+                <Border type="TopEdge">
+                    <Operator type="Add">
+                        <Rel scale="0.05" value="Height"/>
+                        <WidgetSize widget="__auto_colourpickerstaticimage__" value="TopEdge"/>
+                    </Operator>
+                </Border>
+                <Border type="Width">
+                    <Rel scale="0.15" value="Width"/>
+                </Border>
+                <Border type="Height">
+                    <Rel scale="0.055" value="Height"/>
+                </Border>
+            </Area>
+            <VAlign type="top"/>
+            <HAlign type="right"/>
+            <Property name="TextFormatting" value="centre"/>
+            <Property name="Text" value="255.000"/>
+            <Property name="MaxTextLength" value="8"/>
+            <Property name="ValidationString" value="[-+]?[0-9]*\.?[0-9]+"/>
+        </Widget>
+        <Widget id="__auto_HSVradiobuttonH__" style_id="Vanilla/RadioButton">
+            <Area>
+                <Border type="LeftEdge">
+                    <Operator type="Add">
+                        <Abs value="-6"/>
+                        <Operator type="Subtract">
+                            <WidgetSize widget="__auto_HSVeditboxH__" value="LeftEdge"/>
+                            <WidgetSize widget="__auto_HSVeditboxH__" value="Width"/>
+                        </Operator>
+                    </Operator>
+                </Border>
+                <Border type="TopEdge">
+                    <Operator type="Add">
+                        <Rel scale="0.0" value="Height"/>
+                        <WidgetSize widget="__auto_HSVeditboxH__" value="TopEdge"/>
+                    </Operator>
+                </Border>
+                <Border type="Width">
+                    <Rel scale="0.055" value="Width"/>
+                </Border>
+                <Border type="Height">
+                    <WidgetSize widget="__auto_HSVeditboxH__" value="Height"/>
+                </Border>
+            </Area>
+            <VAlign type="top"/>
+            <HAlign type="right"/>
+            <Property name="Text" value="H"/>
+            <Property name="RadioButtonRelativeWidth" value="0.5"/>
+            <Property name="RadioButtonRelativeHeight" value="0.5"/>
+        </Widget>
+        <Widget id="__auto_HSVeditboxS__" style_id="Vanilla/Editbox">
+            <Area>
+                <Border type="LeftEdge">
+                    <WidgetSize widget="__auto_HSVeditboxH__" value="LeftEdge"/>
+                </Border>
+                <Border type="TopEdge">
+                    <Operator type="Add">
+                        <Rel scale="0.01" value="Height"/>
+                        <WidgetSize widget="__auto_HSVeditboxH__" value="BottomEdge"/>
+                    </Operator>
+                </Border>
+                <Border type="Width">
+                    <Rel scale="0.15" value="Width"/>
+                </Border>
+                <Border type="Height">
+                    <Rel scale="0.055" value="Height"/>
+                </Border>
+            </Area>
+            <VAlign type="top"/>
+            <HAlign type="right"/>
+            <Property name="TextFormatting" value="centre"/>
+            <Property name="Text" value="100.000"/>
+            <Property name="MaxTextLength" value="8"/>
+            <Property name="ValidationString" value="[-+]?[0-9]*\.?[0-9]+"/>
+        </Widget>
+        <Widget id="__auto_HSVradiobuttonS__" style_id="Vanilla/RadioButton">
+            <Area>
+                <Border type="LeftEdge">
+                    <Operator type="Add">
+                        <Abs value="-6"/>
+                        <Operator type="Subtract">
+                            <WidgetSize widget="__auto_HSVeditboxS__" value="LeftEdge"/>
+                            <WidgetSize widget="__auto_HSVeditboxS__" value="Width"/>
+                        </Operator>
+                    </Operator>
+                </Border>
+                <Border type="TopEdge">
+                    <Operator type="Add">
+                        <Rel scale="0.0" value="Height"/>
+                        <WidgetSize widget="__auto_HSVeditboxS__" value="TopEdge"/>
+                    </Operator>
+                </Border>
+                <Border type="Width">
+                    <Rel scale="0.055" value="Width"/>
+                </Border>
+                <Border type="Height">
+                    <WidgetSize widget="__auto_HSVeditboxS__" value="Height"/>
+                </Border>
+            </Area>
+            <VAlign type="top"/>
+            <HAlign type="right"/>
+            <Property name="Text" value="S"/>
+            <Property name="RadioButtonRelativeWidth" value="0.5"/>
+            <Property name="RadioButtonRelativeHeight" value="0.5"/>
+        </Widget>
+        <Widget id="__auto_HSVeditboxV__" style_id="Vanilla/Editbox">
+            <Area>
+                <Border type="LeftEdge">
+                    <WidgetSize widget="__auto_HSVeditboxS__" value="LeftEdge"/>
+                </Border>
+                <Border type="TopEdge">
+                    <Operator type="Add">
+                        <Rel scale="0.01" value="Height"/>
+                        <WidgetSize widget="__auto_HSVeditboxS__" value="BottomEdge"/>
+                    </Operator>
+                </Border>
+                <Border type="Width">
+                    <Rel scale="0.15" value="Width"/>
+                </Border>
+                <Border type="Height">
+                    <Rel scale="0.055" value="Height"/>
+                </Border>
+            </Area>
+            <VAlign type="top"/>
+            <HAlign type="right"/>
+            <Property name="TextFormatting" value="centre"/>
+            <Property name="Text" value="255.000"/>
+            <Property name="MaxTextLength" value="8"/>
+            <Property name="ValidationString" value="[-+]?[0-9]*\.?[0-9]+"/>
+        </Widget>
+        <Widget id="__auto_HSVradiobuttonV__" style_id="Vanilla/RadioButton">
+            <Area>
+                <Border type="LeftEdge">
+                    <Operator type="Add">
+                        <Abs value="-6"/>
+                        <Operator type="Subtract">
+                            <WidgetSize widget="__auto_HSVeditboxV__" value="LeftEdge"/>
+                            <WidgetSize widget="__auto_HSVeditboxV__" value="Width"/>
+                        </Operator>
+                    </Operator>
+                </Border>
+                <Border type="TopEdge">
+                    <Operator type="Add">
+                        <Rel scale="0.0" value="Height"/>
+                        <WidgetSize widget="__auto_HSVeditboxV__" value="TopEdge"/>
+                    </Operator>
+                </Border>
+                <Border type="Width">
+                    <Rel scale="0.055" value="Width"/>
+                </Border>
+                <Border type="Height">
+                    <WidgetSize widget="__auto_HSVeditboxV__" value="Height"/>
+                </Border>
+            </Area>
+            <VAlign type="top"/>
+            <HAlign type="right"/>
+            <Property name="Text" value="V"/>
+            <Property name="RadioButtonRelativeWidth" value="0.5"/>
+            <Property name="RadioButtonRelativeHeight" value="0.5"/>
+        </Widget>
+        <!--
+		***************************************************
+			Start of L*a*b colour model child widgets
+		***************************************************
+		-->
+        <Widget id="__auto_LabeditboxL__" style_id="Vanilla/Editbox">
+            <Area>
+                <Border type="LeftEdge">
+                    <WidgetSize widget="__auto_HSVeditboxH__" value="LeftEdge"/>
+                </Border>
+                <Border type="TopEdge">
+                    <Operator type="Add">
+                        <Rel scale="0.07" value="Height"/>
+                        <WidgetSize widget="__auto_HSVeditboxV__" value="BottomEdge"/>
+                    </Operator>
+                </Border>
+                <Border type="Width">
+                    <Rel scale="0.15" value="Width"/>
+                </Border>
+                <Border type="Height">
+                    <Rel scale="0.055" value="Height"/>
+                </Border>
+            </Area>
+            <VAlign type="top"/>
+            <HAlign type="right"/>
+            <Property name="TextFormatting" value="centre"/>
+            <Property name="Text" value="100.000"/>
+            <Property name="MaxTextLength" value="8"/>
+            <Property name="ValidationString" value="[-+]?[0-9]*\.?[0-9]+"/>
+        </Widget>
+        <Widget id="__auto_LabradiobuttonL__" style_id="Vanilla/RadioButton">
+            <Area>
+                <Border type="LeftEdge">
+                    <Operator type="Add">
+                        <Abs value="-6"/>
+                        <Operator type="Subtract">
+                            <WidgetSize widget="__auto_LabeditboxL__" value="LeftEdge"/>
+                            <WidgetSize widget="__auto_LabeditboxL__" value="Width"/>
+                        </Operator>
+                    </Operator>
+                </Border>
+                <Border type="TopEdge">
+                    <Operator type="Add">
+                        <Rel scale="0.0" value="Height"/>
+                        <WidgetSize widget="__auto_LabeditboxL__" value="TopEdge"/>
+                    </Operator>
+                </Border>
+                <Border type="Width">
+                    <Rel scale="0.055" value="Width"/>
+                </Border>
+                <Border type="Height">
+                    <WidgetSize widget="__auto_LabeditboxL__" value="Height"/>
+                </Border>
+            </Area>
+            <VAlign type="top"/>
+            <HAlign type="right"/>
+            <Property name="Text" value="L"/>
+            <Property name="RadioButtonRelativeWidth" value="0.5"/>
+            <Property name="RadioButtonRelativeHeight" value="0.5"/>
+        </Widget>
+        <Widget id="__auto_Labeditboxa__" style_id="Vanilla/Editbox">
+            <Area>
+                <Border type="LeftEdge">
+                    <WidgetSize widget="__auto_LabeditboxL__" value="LeftEdge"/>
+                </Border>
+                <Border type="TopEdge">
+                    <Operator type="Add">
+                        <Rel scale="0.01" value="Height"/>
+                        <WidgetSize widget="__auto_LabeditboxL__" value="BottomEdge"/>
+                    </Operator>
+                </Border>
+                <Border type="Width">
+                    <Rel scale="0.15" value="Width"/>
+                </Border>
+                <Border type="Height">
+                    <Rel scale="0.055" value="Height"/>
+                </Border>
+            </Area>
+            <VAlign type="top"/>
+            <HAlign type="right"/>
+            <Property name="TextFormatting" value="centre"/>
+            <Property name="Text" value="130.000"/>
+            <Property name="MaxTextLength" value="8"/>
+            <Property name="ValidationString" value="[-+]?[0-9]*\.?[0-9]+"/>
+        </Widget>
+        <Widget id="__auto_Labradiobuttona__" style_id="Vanilla/RadioButton">
+            <Area>
+                <Border type="LeftEdge">
+                    <Operator type="Add">
+                        <Abs value="-6"/>
+                        <Operator type="Subtract">
+                            <WidgetSize widget="__auto_Labeditboxa__" value="LeftEdge"/>
+                            <WidgetSize widget="__auto_Labeditboxa__" value="Width"/>
+                        </Operator>
+                    </Operator>
+                </Border>
+                <Border type="TopEdge">
+                    <Operator type="Add">
+                        <Rel scale="0.0" value="Height"/>
+                        <WidgetSize widget="__auto_Labeditboxa__" value="TopEdge"/>
+                    </Operator>
+                </Border>
+                <Border type="Width">
+                    <Rel scale="0.055" value="Width"/>
+                </Border>
+                <Border type="Height">
+                    <WidgetSize widget="__auto_Labeditboxa__" value="Height"/>
+                </Border>
+            </Area>
+            <VAlign type="top"/>
+            <HAlign type="right"/>
+            <Property name="Text" value="a"/>
+            <Property name="RadioButtonRelativeWidth" value="0.5"/>
+            <Property name="RadioButtonRelativeHeight" value="0.5"/>
+        </Widget>
+        <Widget id="__auto_Labeditboxb__" style_id="Vanilla/Editbox">
+            <Area>
+                <Border type="LeftEdge">
+                    <WidgetSize widget="__auto_Labeditboxa__" value="LeftEdge"/>
+                </Border>
+                <Border type="TopEdge">
+                    <Operator type="Add">
+                        <Rel scale="0.01" value="Height"/>
+                        <WidgetSize widget="__auto_Labeditboxa__" value="BottomEdge"/>
+                    </Operator>
+                </Border>
+                <Border type="Width">
+                    <Rel scale="0.15" value="Width"/>
+                </Border>
+                <Border type="Height">
+                    <Rel scale="0.055" value="Height"/>
+                </Border>
+            </Area>
+            <VAlign type="top"/>
+            <HAlign type="right"/>
+            <Property name="TextFormatting" value="centre"/>
+            <Property name="Text" value="130.000"/>
+            <Property name="MaxTextLength" value="8"/>
+            <Property name="ValidationString" value="[-+]?[0-9]*\.?[0-9]+"/>
+        </Widget>
+        <Widget id="__auto_Labradiobuttonb__" style_id="Vanilla/RadioButton">
+            <Area>
+                <Border type="LeftEdge">
+                    <Operator type="Add">
+                        <Abs value="-6"/>
+                        <Operator type="Subtract">
+                            <WidgetSize widget="__auto_Labeditboxb__" value="LeftEdge"/>
+                            <WidgetSize widget="__auto_Labeditboxb__" value="Width"/>
+                        </Operator>
+                    </Operator>
+                </Border>
+                <Border type="TopEdge">
+                    <Operator type="Add">
+                        <Rel scale="0.0" value="Height"/>
+                        <WidgetSize widget="__auto_Labeditboxb__" value="TopEdge"/>
+                    </Operator>
+                </Border>
+                <Border type="Width">
+                    <Rel scale="0.055" value="Width"/>
+                </Border>
+                <Border type="Height">
+                    <WidgetSize widget="__auto_Labeditboxb__" value="Height"/>
+                </Border>
+            </Area>
+            <VAlign type="top"/>
+            <HAlign type="right"/>
+            <Property name="Text" value="b"/>
+            <Property name="RadioButtonRelativeWidth" value="0.5"/>
+            <Property name="RadioButtonRelativeHeight" value="0.5"/>
+        </Widget>
+        <!--
+		***************************************************
+			Start of Alpha child widgets
+		***************************************************
+		-->
+        <Widget id="__auto_colourpickeralphaslider__" style_id="Vanilla/HorizontalImageSlider">
+            <Area>
+                <Border type="LeftEdge">
+                    <Rel scale="0.57" value="Width"/>
+                </Border>
+                <Border type="TopEdge">
+                    <Rel scale="0.74" value="Height"/>
+                </Border>
+                <Border type="Width">
+                    <Rel scale="0.40" value="Width"/>
+                </Border>
+                <Border type="Height">
+                    <Rel scale="0.07" value="Height"/>
+                </Border>
+            </Area>
+            <VAlign type="top"/>
+            <HAlign type="left"/>
+        </Widget>
+        <Widget id="__auto_alphaeditbox__" style_id="Vanilla/Editbox">
+            <Area>
+                <Border type="LeftEdge">
+                    <Operator type="Add">
+                        <Rel scale="-0.075" value="Width"/>
+                        <Operator type="Add">
+                            <WidgetSize widget="__auto_colourpickeralphaslider__" value="LeftEdge"/>
+                            <Operator type="Multiply">
+                                <WidgetSize widget="__auto_colourpickeralphaslider__" value="Width"/>
+                                <Abs value="0.5"/>
+                            </Operator>
+                        </Operator>
+                    </Operator>
+                </Border>
+                <Border type="TopEdge">
+                    <Operator type="Add">
+                        <Rel scale="0.01" value="Height"/>
+                        <WidgetSize widget="__auto_colourpickeralphaslider__" value="BottomEdge"/>
+                    </Operator>
+                </Border>
+                <Border type="Width">
+                    <Rel scale="0.15" value="Width"/>
+                </Border>
+                <Border type="Height">
+                    <Rel scale="0.055" value="Height"/>
+                </Border>
+            </Area>
+            <VAlign type="top"/>
+            <HAlign type="left"/>
+            <Property name="TextFormatting" value="centre"/>
+            <Property name="Text" value="0.000"/>
+            <Property name="MaxTextLength" value="8"/>
+            <Property name="ValidationString" value="[-+]?[0-9]*\.?[0-9]+"/>
+        </Widget>
+        <Widget id="__auto_alphastatictext__" style_id="Vanilla/StaticText">
+            <Area>
+                <Border type="LeftEdge">
+                    <Operator type="Add">
+                        <Rel scale="-0.10" value="Width"/>
+                        <WidgetSize widget="__auto_alphaeditbox__" value="LeftEdge"/>
+                    </Operator>
+                </Border>
+                <Border type="TopEdge">
+                    <Operator type="Add">
+                        <Rel scale="0.01" value="Height"/>
+                        <WidgetSize widget="__auto_colourpickeralphaslider__" value="BottomEdge"/>
+                    </Operator>
+                </Border>
+                <Border type="Width">
+                    <Rel scale="0.10" value="Width"/>
+                </Border>
+                <Border type="Height">
+                    <Rel scale="0.055" value="Height"/>
+                </Border>
+            </Area>
+            <VAlign type="top"/>
+            <HAlign type="left"/>
+            <Property name="Text" value="Alpha:"/>
+            <Property name="FrameEnabled" value="False"/>
+            <Property name="BackgroundEnabled" value="False"/>
+            <Property name="HorzFormatting" value="centre"/>
+        </Widget>
+        <!--
+		***************************************************
+			Start of StyleSection definitions
+		***************************************************
+		-->
+        <StyleSection id="withframe">
+            <FrameCom>
+                <Area>
+                    <Border type="LeftEdge">
+                        <Abs value="0"/>
+                    </Border>
+                    <Border type="TopEdge">
+                        <Abs value="0"/>
+                    </Border>
+                    <Border type="RightEdge">
+                        <Rel scale="1" value="RightEdge"/>
+                    </Border>
+                    <Border type="BottomEdge">
+                        <Rel scale="1" value="BottomEdge"/>
+                    </Border>
+                </Area>
+                <Com type="TopLeftCorner" pixel_id="Vanilla-Images/FrameTopLeft"/>
+                <Com type="TopRightCorner" pixel_id="Vanilla-Images/FrameTopRight"/>
+                <Com type="BottomLeftCorner" pixel_id="Vanilla-Images/FrameBottomLeft"/>
+                <Com type="BottomRightCorner" pixel_id="Vanilla-Images/FrameBottomRight"/>
+                <Com type="LeftEdge" pixel_id="Vanilla-Images/FrameLeft"/>
+                <Com type="TopEdge" pixel_id="Vanilla-Images/FrameTop"/>
+                <Com type="RightEdge" pixel_id="Vanilla-Images/FrameRight"/>
+                <Com type="BottomEdge" pixel_id="Vanilla-Images/FrameBottom"/>
+                <Com type="Background" pixel_id="Vanilla-Images/GenericBrush"/>
+                <ColourAttribute name="BackgroundColours"/>
+            </FrameCom>
+        </StyleSection>
+        <StyleSection id="noframe">
+            <FrameCom>
+                <Area>
+                    <Border type="LeftEdge">
+                        <Abs value="0"/>
+                    </Border>
+                    <Border type="TopEdge">
+                        <Abs value="0"/>
+                    </Border>
+                    <Border type="RightEdge">
+                        <Rel scale="1" value="RightEdge"/>
+                    </Border>
+                    <Border type="BottomEdge">
+                        <Rel scale="1" value="BottomEdge"/>
+                    </Border>
+                </Area>
+                <Com type="Background" pixel_id="Vanilla-Images/GenericBrush"/>
+                <ColourAttribute name="BackgroundColours"/>
+            </FrameCom>
+        </StyleSection>
+        <StyleLayout name="Enable">
+            <Layer>
+                <Section style_section="withframe"/>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Disable">
+            <Layer>
+                <Section style_section="noframe"/>
+            </Layer>
+        </StyleLayout>
+    </WidgetStyle>
+</Style>

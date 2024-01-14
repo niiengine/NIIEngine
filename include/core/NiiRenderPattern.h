@@ -129,7 +129,7 @@ namespace NII
 			/**
 			@version NIIEngine 6.0.0
 			*/
-			virtual void onStateChange(SpaceManager * sm, ShadowType type, DrawCallGroup * op) {}
+			virtual void onStateChange(SpaceManager * sm, ShadowType type, RenderCommandGroup * op) {}
 
 			/**
 			@version NIIEngine 6.0.0
@@ -178,6 +178,11 @@ namespace NII
     public :
         RenderPattern(RenderPatternType type, Nid id, SpaceManager * sm, RenderSys * rsys, SysSyncParam * param, const String & name = N_StrBlank);
         virtual ~RenderPattern();
+        
+        /**
+        @version NIIEngine 6.0.0
+        */
+        inline SpaceManager * getSpace() const              { return mParent; }
 		
         /**
         @version NIIEngine 6.0.0
@@ -344,7 +349,7 @@ namespace NII
         /** 
         @version NIIEngine 6.0.0
         */
-        virtual NCount queue(DrawCallGroup * dcg, const RenderStateCache * cache, const RenderItem & inItem, ShadowType type, HashType objhash){}
+        virtual NCount queue(RenderCommandGroup * dcg, const RenderStateCache * cache, const RenderItem & inItem, ShadowType type, HashType objhash){}
 
         /**
         @version NIIEngine 6.0.0
@@ -557,7 +562,7 @@ namespace NII
             ObjectShader(const SegmentRefGroupList & slist) : 
                 mObject(PropertyValueData(), slist){}
 
-            bool operator == (const ObjectShader & o) const
+            inline bool operator == (const ObjectShader & o) const
             {
                 return mObject == o.mObject;
             }
@@ -569,7 +574,7 @@ namespace NII
             SampleObject mSampleObject;
             PropertyValueData mPropertyList;
 
-            bool operator == (const Sample & o) const
+            inline bool operator == (const Sample & o) const
             {
                 return mPropertyList == o.mPropertyList && mSampleObject == o.mSampleObject;
             }

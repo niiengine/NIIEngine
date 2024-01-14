@@ -1,0 +1,52 @@
+<?xml version="1.0" ?>
+<UIDefine version="5" name="TaharezLook">
+	<View src="TaharezLook.view" />
+	<Font src="DejaVuSans-12.font" />
+	<Style src="TaharezLook.style" />
+	<WidgetRenderSrc src="CEGUICoreWindowRendererSet" />
+
+	<WidgetStyle type="DefaultWindow" renderer="Core/Default" name="TaharezLook/Label" />
+	<WidgetStyle type="PushButton" renderer="Core/Button" name="TaharezLook/Button" />
+	<WidgetStyle type="ToggleButton" renderer="Core/ToggleButton" name="TaharezLook/Checkbox" />
+	<WidgetStyle type="PushButton" renderer="Core/Button" name="TaharezLook/ImageButton" />
+	<WidgetStyle type="RadioButton" renderer="Core/ToggleButton" name="TaharezLook/RadioButton" />
+	<WidgetStyle type="FrameWindow" renderer="Core/FrameWindow" name="TaharezLook/FrameWindow" />
+	<WidgetStyle type="Titlebar" renderer="Core/Titlebar" name="TaharezLook/Titlebar" />
+	<WidgetStyle type="Editbox" renderer="Core/Editbox" name="TaharezLook/Editbox" />
+	<WidgetStyle type="MultiLineEditbox" renderer="Core/MultiLineEditbox" name="TaharezLook/MultiLineEditbox" />
+	<WidgetStyle type="Menubar"   renderer="Core/Menubar" name="TaharezLook/Menubar" />
+	<WidgetStyle type="PopupMenu" renderer="Core/PopupMenu" name="TaharezLook/PopupMenu" />
+	<WidgetStyle type="MenuItem"  renderer="Core/MenuItem" name="TaharezLook/MenuItem" />
+	<WidgetStyle type="ProgressBar" renderer="Core/ProgressBar" name="TaharezLook/AlternateProgressBar" />
+	<WidgetStyle type="ProgressBar" renderer="Core/ProgressBar" name="TaharezLook/ProgressBar" />
+	<WidgetStyle type="ProgressBar" renderer="Core/ProgressBar" name="TaharezLook/VUMeter" />
+	<WidgetStyle type="Scrollbar" renderer="Core/Scrollbar" name="TaharezLook/VerticalScrollbar"/>
+	<WidgetStyle type="Scrollbar" renderer="Core/Scrollbar" name="TaharezLook/HorizontalScrollbar"/>
+	<WidgetStyle type="Thumb" renderer="Core/Button" name="TaharezLook/VerticalScrollbarThumb"/>
+	<WidgetStyle type="Thumb" renderer="Core/Button" name="TaharezLook/HorizontalScrollbarThumb"/>
+	<WidgetStyle type="Scrollbar" renderer="Core/Scrollbar" name="TaharezLook/LargeVerticalScrollbar"/>
+	<WidgetStyle type="Thumb" renderer="Core/Button" name="TaharezLook/LargeVerticalScrollbarThumb"/>
+	<WidgetStyle type="TabButton" renderer="Core/TabButton" name="TaharezLook/TabButton"/>
+	<WidgetStyle type="TabControl" renderer="Core/TabControl" name="TaharezLook/TabControl"/>
+	<WidgetStyle type="DefaultWindow" renderer="Core/Default" name="TaharezLook/TabContentPane"/>
+	<WidgetStyle type="DefaultWindow" renderer="Core/Default" name="TaharezLook/TabButtonPane"/>
+	<WidgetStyle type="ComboDropList" renderer="Core/Listbox" name="TaharezLook/ComboDropList"/>
+	<WidgetStyle type="Editbox" renderer="Core/Editbox" name="TaharezLook/ComboEditbox"/>
+	<WidgetStyle type="Combobox" renderer="Core/Default" name="TaharezLook/Combobox"/>
+	<WidgetStyle type="Listbox" renderer="Core/Listbox" name="TaharezLook/Listbox"/>
+	<WidgetStyle type="ListHeader" renderer="Core/ListHeader" name="TaharezLook/ListHeader"/>
+	<WidgetStyle type="ListHeaderSegment" renderer="Core/ListHeaderSegment" name="TaharezLook/ListHeaderSegment"/>
+	<WidgetStyle type="MultiColumnList" renderer="Core/MultiColumnList" name="TaharezLook/MultiColumnList"/>
+	<WidgetStyle type="Slider" renderer="Core/Slider" name="TaharezLook/Slider"/>
+	<WidgetStyle type="Thumb" renderer="Core/Button" name="TaharezLook/SliderThumb"/>
+	<WidgetStyle type="ScrollablePane" renderer="Core/ScrollablePane" name="TaharezLook/ScrollablePane"/>
+	<WidgetStyle type="Spinner" renderer="Core/Default" name="TaharezLook/Spinner"/>
+	<WidgetStyle type="Tooltip" renderer="Core/Tooltip" name="TaharezLook/Tooltip"/>
+	<WidgetStyle type="DefaultWindow" renderer="Core/StaticImage" name="TaharezLook/StaticImage"/>
+	<WidgetStyle type="DefaultWindow" renderer="Core/StaticText" name="TaharezLook/StaticText"/>
+	<WidgetStyle type="ItemListbox" renderer="Core/ItemListbox" name="TaharezLook/ItemListbox"/>
+	<WidgetStyle type="ItemEntry" renderer="Core/ItemEntry" name="TaharezLook/ListboxItem"/>
+	<WidgetStyle type="DefaultWindow" renderer="Core/Default" name="TaharezLook/GroupBox"/>
+    <WidgetStyle type="Tree" renderer="Core/Tree" name="TaharezLook/Tree"/>
+</UIDefine>
+

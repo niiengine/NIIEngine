@@ -1,0 +1,178 @@
+﻿++ freedesktop中列举的软件
+
+AccountsService is a dbus service for accessing user accounts
+
+Avahi is a multicast dns network service discovery library
+
+cairo is a vector graphics library with cross-device output support.
+
+CJK-Unifonts open source CJK unicode truetype fonts with additional support for Minnan and Hakka languages.
+
+Clipart is an open source clipart repository.
+
+CppUnit is the C++ port of the famous JUnit framework for unit testing.
+
+cups-pk-helper is a PolicyKit helper to configure cups with fine-grained privileges.
+
+D-Bus is a message bus system.
+
+dbus-cpp aims to provide a C++ API for D-Bus.
+
+Desktop VFS is a Virtual File System aimed at message loop (gui) applications.
+
+desktop-file-utils contains command line utilities for working with desktop entries and .menu files
+
+DRI is a framework for allowing direct access to graphics hardware in a safe and efficient manner.
+
+Enchant is a new cross-platform abstract layer to spellchecking.
+
+Elektra is an configuration storage.
+
+Enlightenment is a desktop environment and application toolkit suite with lots of pretty pixels.
+
+Eventuality is an "application automation meets cron" type DBUS based framework for creating a means to schedule arbitrary "actions" performed by conforming apps.
+
+Fontconfig is a library for configuring and customizing font access.
+
+fprint offers hardware support for a variety of fingerprint readers
+
+GNU FriBidi is a library implementing the Unicode Bidirectional Algorithm and Arabic Joining/Shaping.
+
+Galago is a desktop-neutral presence system.
+
+Gallium3D is the new 3D driver infrastructure used by Mesa
+
+Glamor is an Open source X.org graphics common driver based on GL library.
+
+glitz is an OpenGL 2D graphics library and a backend for gl output in cairo.
+
+GStreamer is a streaming media framework.
+
+GTK-Qt Theme Engine is a project to unify the GTK and Qt theming engines.
+
+HAL is a specification and an implementation of a hardware abstraction layer.
+
+HarfBuzz is the common OpenType Layout engine shared by Pango, Qt, and possibly others.
+
+Hieroglyph is a PostScript rendering library.
+
+icon-slicer is a utility for generating icon themes and libXcursor cursor themes.
+
+icon-theme contains the standard and also references the default icon theme called hicolor.
+
+IMBUS is a common tier-1 architecture of IM frameworks for connecting input method engine containers and client application libraries.
+
+immodule for Qt is a modular, extensible input method subsystem for Qt.
+
+IPCF is an inter-personal communication framework.
+
+jhbuild is a program that makes it easy to build software from CVS. It includes support for a number of packages hosted on freedesktop.org.
+
+kmscon is a KMS/DRM based system console
+
+LDTP - Linux Desktop Testing Project
+
+libbsd is a library providing utility functions from BSD systems
+
+libburn is an open source library suite for reading, mastering and writing optical discs.
+
+libdlo is an LGPL library for talking to DisplayLink USB graphics adapters.
+
+libexttextcat is an N-Gram-Based Text Categorization library primarily intended for language guessing.
+
+liblazy D-Bus methods provided for convenience.
+
+libmimetype is a simple implementation accessing the shared-mime-database included in PCManFM, a lightweight graphical file manager featuring speed, low resource usage, and tabbed-browsing. This small GPL'd lib can be used for mime-type handling as a lightweight replacement of xdgmime.
+
+liboil is a library that makes it easier to develop and maintain code written for MMX/SSE/Altivec extensions.
+
+libopenraw is an open source library for Camera RAW file decoding and processing.
+
+libspectre is a small library for rendering Postscript documents.
+
+libvisio is library providing ability to interpret and import visio diagrams into various applications.
+
+libxklavier is an utility library for X keyboard-related projects.
+
+LightDM is a cross-desktop display manager.
+
+Mesa The Mesa 3D Graphics Library, an implementation of OpenGL.
+
+Nouveau is a project to build an open source driver for nVidia cards.
+
+OpenSync is a project to create a standardized synchronization framework.
+
+Oyranos is a cross platform colour management system.
+
+pkg-config is a system for managing library compile/link flags that works with automake and autoconf. It replaces the once ubiquitous *-config scripts you may have seen with a single tool. There's nothing desktop-specific or desktop-related about pkg-config, despite it being on freedesktop.org.
+
+Plymouth is a daemon that runs during startup and shutdown that handles showing a splash screen animation and boot logging.
+
+pm-utils is a collection of scripts that manage suspend/resume in a distro-agnostic fashion.
+
+PolicyKit is an application-level toolkit for defining and handling the policy that allows unprivileged processes to speak to privileged processes.
+
+poppler is a PDF rendering library, forked from xpdf.
+
+Portland provides a set of high level desktop-integration APIs
+
+pyxdg is a python library to access freedesktop.org standards.
+
+SCIM Smart Common Input Method platform, is a platform to develop input method services.
+
+Scratchbox2 is a cross-compilation tool.
+
+shared-mime-info is a package containing a large number of common MIME types, created by converting the existing KDE and GNOME databases to the new format and merging them together, and software for updating the database based on the share-mime-info specification.
+
+startup-notification is a sample implementation of startup notification (telling the desktop environment when an app is done starting up).
+
+sysconfig contains scripts used for managing freedesktop.org; right now this just contains the tinderclient and tinderserver.
+
+Tracker is a highly memory efficient file indexer and metadata harvester.
+
+uim is a library to support input many languages.
+
+UTF-8 is a project to document and evangelize the use of UTF-8 encodings for open source projects.
+
+unicode-translation aims to translate Unicode character names and other data into many languages.
+
+vaAPI provides a decode only video acceleration API for all video formats. Currently in proposal stage.
+
+VDPAU provides video decode acceleration and high-quality video presentation.
+
+waimea aims to be a standards compliant window manager for the X Window System making use of the cairo graphics library for all rendering.
+
+wmctrl is a command-line tool to interact with a EWMH-compatible window manager.
+
+XCB/XCL together are an attempt to re-architect Xlib for resource-constrained environments and different application design techniques.
+
+xdg-utils is a set of command line utilities to simplify integration with a Free Desktop. It has simple functions for creating menus, opening files, setting mime types, and so on. It is part of the Portland project.
+
+xdg-user-dirs is a tool to handle well known directories in the users homedir
+
+Xephyr is a kdrive X Server which uses a window on a host X Server as its framebuffer.
+
+Xft is a library for client-side rendering of fonts.
+
+xfullscreen is a useful module for applications or window managers supporting fullscreen modes.
+
+[Xorg] is the XOrg Foundation's Public Implementation of the X Window System™.
+
+xkeyboard-config is a central project for keyboard configuration.
+
+Xoo is a wrapper around a nested X server.
+
+xprint is the X11 printing system.
+
+xresponse is a tool to measure response times to a mouse click event.
+
+xrestop is a 'top' like X Server resource usage monitor that uses the XRes extension.
+
+xsettings is a reference implementation.
+
+X Testing provides information on various software for testing X Servers and Clients.
+
+X Window Information is a window information utility for developers of applications, toolkits, and window managers.
+
+Zeitgeist is a desktop event logging framework.
+

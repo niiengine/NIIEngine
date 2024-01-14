@@ -1,0 +1,54 @@
+NII_Document
+    AutoParam
+    BezierPatch
+    FrameFusion
+    Controller
+    EdgeList
+    ParticleSys
+    GeometrySpace
+    Font
+    RenderFrameListener
+    Frustum
+    Light
+    Lod
+    CustomSpace
+    Material
+    Mesh
+    SpaceObj
+    PosNode
+    Profiler
+    RenderSys
+    GeometryObj
+    RenderQueue
+    SpaceNode
+    SpaceQuery
+    ShadowObj
+    RenderObj
+    Skeleton
+    Texture
+    Viewport
+NII_Document_END
+
+NII_ALL
+NIIINCLUDE
+    NiiSpaceManager.h
+    NiiSpaceTypeManager.h
+NIISOURCE
+    NiiSpaceTypeManager.cpp
+    NiiSpaceManager.cpp
+NII_ALL_END
+
+NII_WIN32
+NIIINCLUDE 
+        
+NIISOURCE 
+
+NII_WIN32_END
+NII_LINUX
+NIIINCLUDE
+NIISOURCE
+NII_LINUX_END
+NII_OSX
+NIIINCLUDE
+NIISOURCE 
+NII_OSX_END

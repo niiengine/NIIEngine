@@ -1,0 +1,3 @@
+﻿++ Nautilus Send-to
+
+Nautilus plugin to send files

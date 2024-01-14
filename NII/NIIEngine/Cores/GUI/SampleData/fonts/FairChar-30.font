@@ -1,0 +1,30 @@
+<?xml version="1.0" ?>
+<Font version="3" name="FairChar" src="FairChar.view" type="pixmap" native_res_x="640" native_res_y="480" auto_res="false">
+	<Define codepoint="32" image=" " horzAdvance="15" />
+	<Define codepoint="65" image="A" />
+	<Define codepoint="66" image="B" />
+	<Define codepoint="67" image="C" />
+	<Define codepoint="68" image="D" />
+	<Define codepoint="69" image="E" />
+	<Define codepoint="70" image="F" />
+	<Define codepoint="71" image="G" />
+	<Define codepoint="72" image="H" />
+	<Define codepoint="73" image="I" />
+	<Define codepoint="74" image="J" />
+	<Define codepoint="75" image="K" />
+	<Define codepoint="76" image="L" />
+	<Define codepoint="77" image="M" />
+	<Define codepoint="78" image="N" />
+	<Define codepoint="79" image="O" />
+	<Define codepoint="80" image="P" />
+	<Define codepoint="81" image="Q" />
+	<Define codepoint="82" image="R" />
+	<Define codepoint="83" image="S" />
+	<Define codepoint="84" image="T" />
+	<Define codepoint="85" image="U" />
+	<Define codepoint="86" image="V" />
+	<Define codepoint="87" image="W" />
+	<Define codepoint="88" image="X" />
+	<Define codepoint="89" image="Y" />
+	<Define codepoint="90" image="Z" />
+</Font>

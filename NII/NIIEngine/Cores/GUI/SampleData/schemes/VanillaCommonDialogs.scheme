@@ -1,0 +1,20 @@
+<?xml version="1.0" ?>
+<!--
+     Note: Currently to use this you must also load the VanillaSkin.scheme.
+     Eventually it will be possible to 'include' one scheme from another, but
+     we're not quite there yet.
+-->
+
+<UIDefine version="5" name="VanillaCommonDialogs">
+	<Font src="DejaVuSans-10-NoScale.font" />
+	<Style src="VanillaCommonDialogs.style" />
+	<WidgetRenderSrc src="CEGUICoreWindowRendererSet" />
+	<WidgetStyle type="Thumb" renderer="Core/Button" name="Vanilla/VerticalImageSliderThumb" />
+	<WidgetStyle type="Slider" renderer="Core/Slider" name="Vanilla/VerticalImageSlider" />
+	<WidgetStyle type="Thumb" renderer="Core/Button" name="Vanilla/HorizontalImageSliderThumb" />
+	<WidgetStyle type="Slider" renderer="Core/Slider" name="Vanilla/HorizontalImageSlider" />
+	<WidgetStyle type="DefaultWindow" renderer="Core/Default" name="Vanilla/FrameColourRect" />
+	<WidgetStyle type="ColourPicker" renderer="Core/Default" name="Vanilla/ColourPicker" />
+	<WidgetStyle type="ColourPickerControls" renderer="Core/Default" name="Vanilla/ColourPickerControls" />
+</UIDefine>
+

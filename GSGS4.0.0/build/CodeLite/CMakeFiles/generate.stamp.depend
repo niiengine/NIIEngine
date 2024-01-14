@@ -1,0 +1,6 @@
+# CMake generation dependency list for this directory.
+D:/Program Files/CMake/share/cmake-3.13/Modules/FindPackageHandleStandardArgs.cmake
+D:/Program Files/CMake/share/cmake-3.13/Modules/FindPackageMessage.cmake
+D:/Program Files/CMake/share/cmake-3.13/Modules/FindwxWidgets.cmake
+D:/Program Files/CMake/share/cmake-3.13/Modules/UsewxWidgets.cmake
+F:/tool/GSGS4.0.0/CodeLite/CMakeLists.txt

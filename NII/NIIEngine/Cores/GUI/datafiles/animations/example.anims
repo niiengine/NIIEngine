@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AnimationCollector>
+    <Animation name="Example1A" duration="0.3" play_mode="once">
+        <Track property="Alpha" data_type="float">
+            <KeyFrame position="0" value="1" />
+            <KeyFrame position="0.3" value="0.66" calc_mode="square_root" />
+        </Track>
+        <Event event="MouseLeavesArea" action="Start" />
+    </Animation>
+
+    <Animation name="Example1B" duration="0.3" play_mode="once">
+        <Track property="Alpha" data_type="float">
+            <KeyFrame position="0" value="0.66" />
+            <KeyFrame position="0.3" value="1" calc_mode="square" />
+        </Track>
+        <Event event="MouseEntersArea" action="Start" />
+    </Animation>
+</AnimationCollector>
+

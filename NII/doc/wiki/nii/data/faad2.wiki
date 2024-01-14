@@ -1,0 +1,11 @@
+﻿++ faad2
+
+FAAD2 是一个开源的 MPEG-4 和 MPEG-2 AAC 解码,通常情况下是使用 GPLv2 协议.
+
+特色
+
+Portable
+Reasonably fast
+LC, Main, LTP, SBR, PS support
+DRM support through DreaM
+DAB+ support

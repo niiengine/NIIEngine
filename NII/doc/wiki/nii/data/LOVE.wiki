@@ -1,0 +1,5 @@
+﻿++ LOVE
+
+http://love2d.org/
+
+Hi there! LÖVE is an *awesome* framework you can use to make 2D games in Lua. It's free, open-source, and works on Windows, Mac OS X and Linux.

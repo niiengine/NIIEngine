@@ -1,0 +1,27 @@
+<?xml version="1.0" ?>
+<UIDefine version="5" name="VanillaSkin">
+	<View src="Vanilla.view" />
+	<Style src="Vanilla.style" />
+	<WidgetRenderSrc src="CEGUICoreWindowRendererSet" />
+
+	<WidgetStyle type="DefaultWindow" renderer="Core/Default" name="Vanilla/Label" />
+	<WidgetStyle type="Titlebar" renderer="Core/Titlebar" name="Vanilla/Titlebar" />
+	<WidgetStyle type="PushButton" renderer="Core/Button" name="Vanilla/Button" />
+	<WidgetStyle type="FrameWindow" renderer="Core/FrameWindow" name="Vanilla/FrameWindow" />
+	<WidgetStyle type="Editbox" renderer="Core/Editbox" name="Vanilla/Editbox" />
+	<WidgetStyle type="Thumb" renderer="Core/Button" name="Vanilla/VerticalScrollbarThumb" />
+	<WidgetStyle type="Scrollbar" renderer="Core/Scrollbar" name="Vanilla/VerticalScrollbar" />
+	<WidgetStyle type="Thumb" renderer="Core/Button" name="Vanilla/HorizontalScrollbarThumb" />
+	<WidgetStyle type="Scrollbar" renderer="Core/Scrollbar" name="Vanilla/HorizontalScrollbar" />
+	<WidgetStyle type="DefaultWindow" renderer="Core/StaticImage" name="Vanilla/StaticImage" />
+	<WidgetStyle type="DefaultWindow" renderer="Core/StaticText" name="Vanilla/StaticText" />
+	<WidgetStyle type="Listbox" renderer="Core/Listbox" name="Vanilla/Listbox" />
+	<WidgetStyle type="MultiLineEditbox" renderer="Core/MultiLineEditbox" name="Vanilla/MultiLineEditbox" />
+	<WidgetStyle type="ComboDropList" renderer="Core/Listbox" name="Vanilla/ComboDropList" />
+	<WidgetStyle type="Combobox" renderer="Core/Default" name="Vanilla/Combobox" />
+	<WidgetStyle type="ProgressBar" renderer="Core/ProgressBar" name="Vanilla/ProgressBar" />
+	<WidgetStyle type="ToggleButton" renderer="Core/ToggleButton" name="Vanilla/Checkbox" />
+	<WidgetStyle type="RadioButton" renderer="Core/ToggleButton" name="Vanilla/RadioButton" />
+    <WidgetStyle type="Tooltip" renderer="Core/Tooltip" name="Vanilla/Tooltip" />
+</UIDefine>
+

@@ -1,0 +1,8 @@
+﻿++ sql
+
+[postgresql]
+[mysql]
+[mssql]
+[db2]
+[oralce]
+[sqlite]

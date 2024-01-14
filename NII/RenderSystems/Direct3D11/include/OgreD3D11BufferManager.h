@@ -1,0 +1,339 @@
+/*
+-----------------------------------------------------------------------------
+This source file is part of OGRE
+(Object-oriented Graphics Rendering Engine)
+For the latest info, see http://www.ogre3d.org/
+
+Copyright (c) 2000-2014 Torus Knot Software Ltd
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+-----------------------------------------------------------------------------
+*/
+#ifndef __D3D11HARWAREBUFFERMANAGER_H__
+#define __D3D11HARWAREBUFFERMANAGER_H__
+
+#include "OgreD3D11Prerequisites.h"
+#include "OgreHardwareBufferManager.h"
+
+namespace NII 
+{
+    /** Implementation of GBufferManager for D3D11. */
+    class _OgreD3D11Export D3D11HardwareBufferManager : public GBufferManager
+    {
+    public:
+        D3D11HardwareBufferManager(D3D11Device & device);
+        ~D3D11HardwareBufferManager();
+        /// Creates a vertex buffer
+        HardwareVertexBufferSharedPtr 
+            createVertexBuffer(size_t vertexSize, size_t numVerts, Buffer::Usage usage, bool useShadowBuffer = false);
+        /// Creates a stream output vertex buffer
+        HardwareVertexBufferSharedPtr 
+            createStreamOutputVertexBuffer(size_t vertexSize, size_t numVerts, Buffer::Usage usage, bool useShadowBuffer = false);
+        /// Create a hardware vertex buffer
+        HardwareIndexBufferSharedPtr 
+            createIndexBuffer(IndexBuffer::IndexType itype, size_t numIndexes, Buffer::Usage usage, bool useShadowBuffer = false);
+        /// @copydoc GBufferManager::createRenderToVertexBuffer
+        RenderToVertexBufferSharedPtr createRenderToVertexBuffer();
+        /// @copydoc GBufferManager::createUniformBuffer
+        StructBuffer * createUniformBuffer(size_t sizeBytes, Buffer::Usage usage = Buffer::HBU_DYNAMIC_WRITE_ONLY_DISCARDABLE, 
+                                    bool useShadowBuffer = false, const String& name = "");
+        /// @copydoc GBufferManager::createCounterBuffer
+        CounterBuffer * createCounterBuffer(size_t sizeBytes, Buffer::Usage usage = Buffer::HBU_DYNAMIC_WRITE_ONLY_DISCARDABLE,
+                                    bool useShadowBuffer = false, const String& name = "");
+
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        enum InternalBufferType
+        {
+            VERTEX_BUFFER,
+            INDEX_BUFFER,
+            SHADER_BUFFER,
+            NumInternalBufferTypes
+        };
+    public:
+        struct Block
+        {
+            size_t offset;
+            size_t size;
+
+            Block( size_t _offset, size_t _size ) : offset( _offset ), size( _size ) {}
+        };
+        struct StrideChanger
+        {
+            size_t offsetAfterPadding;
+            size_t paddedBytes;
+
+            StrideChanger() : offsetAfterPadding( 0 ), paddedBytes( 0 ) {}
+            StrideChanger( size_t _offsetAfterPadding, size_t _paddedBytes ) :
+                offsetAfterPadding( _offsetAfterPadding ), paddedBytes( _paddedBytes ) {}
+
+            bool operator () ( const StrideChanger &left, size_t right ) const
+            {
+                return left.offsetAfterPadding < right;
+            }
+            bool operator () ( size_t left, const StrideChanger &right ) const
+            {
+                return left < right.offsetAfterPadding;
+            }
+            bool operator () ( const StrideChanger &left, const StrideChanger &right ) const
+            {
+                return left.offsetAfterPadding < right.offsetAfterPadding;
+            }
+        };
+
+        typedef vector<Block>::type BlockVec;
+        typedef vector<StrideChanger>::type StrideChangerVec;
+
+    protected:
+        struct Vbo
+        {
+            ComPtr<ID3D11Buffer> vboName;
+            size_t              sizeBytes;
+            D3D11Buffer  *mBuffer; //Null for non BT_DYNAMIC_* BOs.
+
+            BlockVec            mFreeList;
+            StrideChangerVec    strideChangers;
+        };
+
+        struct Vao
+        {
+            uint32 vaoName;
+            D3D11VertexArrayObjectShared *sharedData;
+
+            struct VertexBinding
+            {
+                ComPtr<ID3D11Buffer> vertexBufferVbo;
+                VertexUnitList mUnits;
+                uint32 stride;
+                size_t offset;
+
+                //OpenGL supports this parameter per attribute, but
+                //we're a bit more conservative and do it per buffer
+                uint32 instancingDivisor;
+
+                bool operator == ( const VertexBinding &_r ) const
+                {
+                    return vertexBufferVbo == _r.vertexBufferVbo &&
+                            mUnits == _r.mUnits &&
+                            stride == _r.stride &&
+                            offset == _r.offset &&
+                            instancingDivisor == _r.instancingDivisor;
+                }
+            };
+
+            typedef vector<VertexBinding>::type VertexBindingVec;
+
+            /// Not used anymore, however it's useful for sorting
+            /// purposes in the RenderQueue (using the Vao's ID).
+            OperationType mType;
+            VertexBindingVec    vertexBuffers;
+            ComPtr<ID3D11Buffer> indexBufferVbo;
+            IndexBufferPacked::IndexType indexType;
+            uint32              refCount;
+        };
+
+        typedef vector<Vbo>::type VboVec;
+        typedef vector<Vao>::type VaoVec;
+        typedef vector<ComPtr<ID3D11Query> >::type D3D11SyncVec;
+
+        VboVec  mVbos[NumInternalBufferTypes][M_NORMAL + 1];
+        size_t  mDefaultPoolSize[NumInternalBufferTypes][M_NORMAL + 1];
+
+        BufferPackedVec mDelayedBuffers[NumInternalBufferTypes];
+
+        VaoVec  mVaos;
+        uint32  mVaoNames;
+
+        D3D11Device &mDevice;
+
+        D3D11SyncVec mFrameSyncVec;
+
+        VertexBufferPacked  *mDrawId;
+        ComPtr<ID3D11Buffer> mSplicingHelperBuffer;
+
+        D3D11RenderSystem   *mD3D11RenderSystem;
+
+        /** Asks for allocating buffer space in a VBO (Vertex Buffer Object).
+            If the VBO doesn't exist, all VBOs are full or can't fit this request,
+            then a new VBO will be created.
+        @remarks
+            Can throw if out of video memory
+        @param sizeBytes
+            The requested size, in bytes.
+        @param bytesPerElement
+            The number of bytes per vertex or per index (i.e. 16-bit indices = 2).
+            Cannot be 0.
+        @param bufferType
+            The type of buffer
+        @param outVboIdx [out]
+            The index to the mVbos.
+        @param outBufferOffset [out]
+            The offset in bytes at which the buffer data should be placed.
+        */
+        void allocateVbo( size_t sizeBytes, size_t alignment, BufferModeMark bufferType, InternalBufferType internalType, size_t &outVboIdx, size_t &outBufferOffset );
+
+        /** Deallocates a buffer allocated with @allocateVbo.
+        @remarks
+            All four parameters *must* match with the ones provided to or
+            returned from allocateVbo, otherwise the behavior is undefined.
+        @param vboIdx
+            The index to the mVbos pool that was returned by allocateVbo
+        @param bufferOffset
+            The buffer offset that was returned by allocateVbo
+        @param sizeBytes
+            The sizeBytes parameter that was passed to allocateVbos.
+        @param bufferType
+            The type of buffer that was passed to allocateVbo.
+        */
+        void deallocateVbo(size_t vboIdx, size_t bufferOffset, size_t sizeBytes, BufferModeMark bufferType, InternalBufferType internalType );
+
+        void removeBufferFromDelayedQueue(BufferPackedVec & container, GpuBuffer * buffer);
+
+        void createImmutableBuffer(InternalBufferType internalType, size_t sizeBytes, void * initialData, Vbo & inOutVbo);
+
+    public:
+        /// @see MappedBuffer::mergeContiguousBlocks
+        static void mergeContiguousBlocks( BlockVec::iterator blockToMerge, BlockVec & blocks );
+    protected:
+        virtual VertexBufferPacked* createVertexBufferImpl( size_t numElements, uint32 bytesPerElement, BufferModeMark bufferType, 
+                                                            void *initialData, bool keepAsShadow, const VertexUnitList & units );
+
+        virtual void destroyVertexBufferImpl( VertexBufferPacked *vertexBuffer );
+
+    public:
+        void _forceCreateDelayedImmutableBuffers(void);
+    protected:
+        void createDelayedImmutableBuffers(void);
+        void reorganizeImmutableVaos(void);
+
+        virtual IndexBufferPacked* createIndexBufferImpl( size_t numElements,
+                                                          uint32 bytesPerElement,
+                                                          BufferModeMark bufferType,
+                                                          void *initialData, bool keepAsShadow );
+
+        virtual void destroyIndexBufferImpl( IndexBufferPacked *indexBuffer );
+
+        virtual StructBuffer* createConstBufferImpl( size_t sizeBytes, BufferModeMark bufferType, void *initialData, bool keepAsShadow );
+        virtual void destroyConstBufferImpl( StructBuffer *constBuffer );
+
+        virtual TextureBuffer* createTexBufferImpl( PixelFormat pf, size_t sizeBytes, BufferModeMark bufferType, void *initialData, bool keepAsShadow );
+        virtual void destroyTexBufferImpl( TextureBuffer *texBuffer );
+
+        virtual StorageBuffer* createUavBufferImpl( size_t numElements, uint32 bytesPerElement, uint32 bindFlags, void *initialData, bool keepAsShadow );
+        virtual void destroyUavBufferImpl( StorageBuffer *uavBuffer );
+
+        virtual IndirectBuffer* createIndirectBufferImpl( size_t sizeBytes, BufferModeMark bufferType, void *initialData, bool keepAsShadow );
+        virtual void destroyIndirectBufferImpl( IndirectBuffer *indirectBuffer );
+
+        /// Finds the Vao. Calls createVao automatically if not found.
+        /// Increases refCount before returning the iterator.
+        VaoVec::iterator findVao( const VertexBufferList &vertexBuffers, IndexBufferPacked *indexBuffer, OperationType opType );
+        uint32 createVao( const Vao &vaoRef );
+        void releaseVao( GeometryRaw *vao );
+
+        static uint32 generateRenderQueueId( uint32 vaoName, uint32 uniqueVaoId );
+        static uint32 extractUniqueVaoIdFromRenderQueueId( uint32 rqId );
+
+        virtual GeometryRaw* createVertexArrayObjectImpl(const VertexBufferList &vertexBuffers, IndexBufferPacked *indexBuffer, OperationType opType );
+
+        virtual void destroyVertexArrayObjectImpl( GeometryRaw * vao );
+
+        D3D11CompatBufferInterface* createShaderBufferInterface( uint32 bindFlags,
+                                                                 size_t sizeBytes,
+                                                                 BufferModeMark bufferType,
+                                                                 void *initialData,
+                                                                 uint32 structureByteStride = 0 );
+
+        inline void getMemoryStats( const Block &block, uint32 vboIdx0, uint32 vboIdx1,
+                                    size_t poolCapacity, LwString &text,
+                                    MemoryStatsList &outStats,
+                                    Log *log ) const;
+
+        //virtual void switchVboPoolIndexImpl( size_t oldPoolIdx, size_t newPoolIdx, GpuBuffer *buffer );
+
+    public:
+        D3D11VaoManager( bool supportsIndirectBuffers, D3D11Device & device, D3D11RenderSystem * sys, const PropertyData * params);
+        virtual ~D3D11VaoManager();
+
+        virtual void getMemoryStats( MemoryStatsList & outStats, size_t & outCapacityBytes, size_t &outFreeBytes, Log *log ) const;
+
+        virtual void recoverPool(void);
+
+        D3D11RenderSystem * getD3D11RenderSystem(void) const             { return mD3D11RenderSystem; }
+        D3D11Device & getDevice(void) const                              { return mDevice; }
+
+        /// Binds the Draw ID to the currently bound vertex array object.
+        void bindDrawId( uint32 bindSlotId );
+
+        /** Creates a new staging buffer and adds it to the pool. @see getStagingBuffer.
+        @remarks
+            The returned buffer starts with a reference count of 1. You should decrease
+            it when you're done using it.
+        */
+        virtual void createImpl(MappedBuffer* buf, NCount sizeBytes, Nmark modemark );
+
+        virtual void create(GpuBufferAsync *& out, GpuBuffer *creator, MappedBuffer *buf, NCount oft, NCount size );
+
+        virtual void _beginFrame(void);
+        virtual void _update(void);
+
+        /// When dealing with copy operations on structured buffers, D3D11 wants buffers
+        /// to be of the same size as the structured buffer's stride. Because we allow
+        /// more relaxed copies, we create a helper buffer of 2kb (max stride) to splice
+        /// buffer copies and workaround this limitation
+        ID3D11Buffer* getSplicingHelperBuffer(void);
+
+        /// @see GBufferManager::wait
+        virtual uint8 wait(void);
+
+        /// See GBufferManager::wait
+        virtual void wait( uint32 frameCount );
+
+        /// See GBufferManager::isFrameFinished
+        virtual bool isFrameFinished( uint32 frameCount );
+
+        static ComPtr<ID3D11Query> createFence( D3D11Device &device );
+        ComPtr<ID3D11Query> createFence(void);
+
+        /** Will stall undefinitely until GPU finishes (signals the sync object).
+        @param fenceName
+            Sync object to wait for. Will be deleted on success. On failure,
+            throws an exception and fenceName will not be deleted.
+        @returns
+            Null ptr on success. Should throw on failure, but if this function for some
+            strange reason doesn't throw, it is programmed to return 'fenceName'
+        */
+        static ID3D11Query* waitFor( ID3D11Query *fenceName, ID3D11DeviceContextN *deviceContext );
+        ID3D11Query* waitFor( ID3D11Query *fenceName );
+
+        static bool queryIsDone( ID3D11Query *fenceName, ID3D11DeviceContextN *deviceContext );
+        bool queryIsDone( ID3D11Query *fenceName );
+    protected:
+        D3D11Device & mlpD3DDevice;
+
+        /// Internal method for creates a new vertex declaration, may be overridden by certain rendering APIs
+        VertexDeclaration* createVertexDeclarationImpl(void);
+        /// Internal method for destroys a vertex declaration, may be overridden by certain rendering APIs
+        void destroyVertexDeclarationImpl(VertexDeclaration* decl);
+    };
+
+    typedef D3D11HardwareBufferManager D3D11HardwareBufferManagerBase;
+}
+
+
+#endif

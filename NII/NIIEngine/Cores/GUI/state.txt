@@ -1,0 +1,174 @@
+Button                              5个
+    Disabled
+    Pushed
+    PushedOff
+    Hover
+    Normal 无效状态也是这样
+TabButton Bottom+ Top+              7个
+    Bottom + Disabled
+    Bottom + Selected
+    Bottom + Pushed
+    Bottom + Hover
+    Bottom + Normal 无效状态也是这样
+    Top + Disabled
+    Top + Selected
+    Top + Pushed
+    Top + Hover
+    Top + Normal 无效状态也是这样
+    Normal 最终无效状态也是这样
+ToggleButton 存在 Selected 状态     6个
+    Selected + Disabled
+    Selected + Pushed
+    Selected + PushedOff
+    Selected + Hover
+    Disabled
+    Pushed
+    PushedOff
+    Hover
+    Normal 无效状态也是这样
+RadioButton 存在 Selected 状态      6个
+    Selected + Disabled
+    Selected + Pushed
+    Selected + PushedOff
+    Selected + Hover
+    Disabled
+    Pushed
+    PushedOff
+    Hover
+    Normal 无效状态也是这样
+Listbox                             2个
+    Disabled
+    Enabled
+ListHeader                          2个
+    Disabled
+    Enabled
+ListHeaderItem                   8个
+    Disabled
+    Hover
+    SplitterHover
+    Normal 无效状态也是这样
+  附加
+    AscendingSortIcon
+    DescendingSortIcon
+  附加
+    GhostAscendingSortIcon
+    GhostDescendingSortIcon
+MultiColumnList                     2个
+    Disabled
+    Enabled
+MultiEditbox                        3个
+    Disabled
+    ReadOnly
+    Enabled
+ScrollContainer                     2个
+    Disabled
+    Enabled
+Scrollbar                           2个
+    Disabled
+    Enabled
+Slider                              2个
+    Disabled
+    Enabled
+Tree                                2个
+    Disabled
+    Enabled
+ListItem                           3个
+    Disabled
+    Enabled
+    SelectedDisabled
+    SelectedEnabled
+MenuItem                            9个
+    DisabledPopupOpen
+    DisabledPushed
+    DisabledPushedOff
+    DisabledHover
+    DisabledNormal 无效状态也是这样
+    EnabledPopupOpen
+    EnabledPushed
+    EnabledPushedOff
+    EnabledHover
+    EnabledNormal 无效状态也是这样
+  附加
+    PopupOpenIcon
+    PopupClosedIcon
+PopupMenu                           2个
+    Disabled
+    Enabled
+Menubar                             2个
+    Disabled
+    Enabled
+TabControl                          2个
+    Disabled
+    Enabled
+Widget                              2个
+    Disabled
+    Enabled
+Static                              8个
+    EnabledFrame
+    DisabledFrame
+  附加
+    WithFrameEnabledBackground
+    WithFrameDisabledBackground
+    NoFrameEnabledBackground
+    NoFrameDisabledBackground
+  附加
+    Enabled
+    Disabled
+StaticText                          8个
+    EnabledFrame
+    DisabledFrame
+  附加
+    WithFrameEnabledBackground
+    WithFrameDisabledBackground
+    NoFrameEnabledBackground
+    NoFrameDisabledBackground
+  附加
+    Enabled
+    Disabled
+StaticImage                         10个
+    EnabledFrame
+    DisabledFrame
+  附加
+    WithFrameEnabledBackground
+    WithFrameDisabledBackground
+    NoFrameEnabledBackground
+    NoFrameDisabledBackground
+  附加
+    Enabled
+    Disabled
+  附加
+    NoFrameImage
+    WithFrameImage
+FrameWindow                         5个
+    DisabledWithTitleWithFrame
+    ActiveWithTitleWithFrame
+    InactiveWithTitleWithFrame
+    DisabledNoTitleWithFrame
+    ActiveNoTitleWithFrame
+    InactiveNoTitleWithFrame
+    DisabledWithTitleNoFrame
+    ActiveWithTitleNoFrame
+    InactiveWithTitleNoFrame
+    DisabledNoTitleNoFrame
+    ActiveNoTitleNoFrame
+    InactiveNoTitleNoFrame
+Tooltip                             2个
+    Disabled
+    Enabled
+Titlebar                            3个
+    Active
+    Inactive
+    Disabled
+ProgressBar                         3个
+    Disabled
+    Enabled
+  附加
+    DisabledProgress
+    EnabledProgress
+Editbox                             6个
+    Disabled
+    ReadOnly
+    Enabled
+  附加
+    ActiveSelection
+    InactiveSelection

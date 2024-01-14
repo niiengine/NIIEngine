@@ -1,0 +1,35 @@
+/***********************************************************************
+    PixelManager
+***********************************************************************/
+class PixelManager
+{
+//    template <typename T> void addImageType(utf8string name);
+    void removeImageType(utf8string name);
+
+    bool isImageTypeAvailable(utf8string name) const;
+
+    PixelBuffer& create(utf8string type, utf8string name);
+//    PixelBuffer& create(const XMLAttributes& attributes);
+
+    void destroy(PixelBuffer& image);
+    void destroy(utf8string name);
+    void destroyAll();
+
+    PixelBuffer& get(utf8string name) const;
+    bool isDefined(utf8string name) const;
+
+    unsigned int getImageCount() const;
+
+    void loadImageset(utf8string filename, utf8string resource_group = "");
+    void destroyImageCollection(utf8string prefix, bool delete_texture = true);
+
+    void addFromImageFile(utf8string name,
+                          utf8string filename,
+                          utf8string resource_group = "");
+
+    void notifyDisplaySizeChanged(const Size<float>& size);
+
+    static void setImagesetDefaultResourceGroup(utf8string resourceGroup);
+    static string getImagesetDefaultResourceGroup();
+};
+

@@ -1,0 +1,306 @@
+/*
+-----------------------------------------------------------------------------
+A
+     __      _   _   _   ______
+    |   \   | | | | | | |  ____)                    _
+    | |\ \  | | | | | | | |         ___      ___   (_)   ___
+    | | \ \ | | | | | | | |____    / _ \   / ___ \  _   / _ \   ___
+    | |  \ \| | | | | | |  ____)  | / \ | | |  | | | | | / \ | / _ )
+    | |   \ | | | | | | | |_____  | | | | | |__| | | | | | | | | __/
+    |_|    \ _| |_| |_| |_______) |_| |_|  \___| | |_| |_| |_| |___|
+                                             __/ |                 
+                                            \___/   
+                                                
+                                                
+                                                                 F i l e
+
+
+Copyright: NIIEngine Team Group
+
+Home page: www.niiengine.com 
+
+Email: niiengine@gmail.com OR niiengine@163.com
+
+Licence: commerce(www.niiengine.com/license)(Three kinds)
+------------------------------------------------------------------------------
+*/
+
+#include "gsgsStyleManager.h"
+#include "SFTPStatusPage.h"
+#include "gsgsEvent.h"
+#include "gsgsLexerStyle.h"
+#include "sftp_item_comparator.h"
+#include "sftp_worker_thread.h"
+#include <wx/menu.h>
+#include "ssh_account_info.h"
+#include "sftp_worker_thread.h"
+#include "SFTPTreeView.h"
+
+SFTPGrepStyler::SFTPGrepStyler(wxStyledTextCtrl* stc)
+    : gsgs::FindResultsStyler(stc)
+{
+    m_curstate = kStartOfLine;
+}
+
+SFTPGrepStyler::SFTPGrepStyler() {}
+
+SFTPGrepStyler::~SFTPGrepStyler() {}
+
+void SFTPGrepStyler::StyleText(wxStyledTextCtrl* ctrl, wxStyledTextEvent& e, bool hasScope)
+{
+    int startPos = ctrl->GetEndStyled();
+    int endPos = e.GetPosition();
+    wxString text = ctrl->GetTextRange(startPos, endPos);
+#if wxCHECK_VERSION(3, 1, 1) && !defined(__WXOSX__)
+    // The scintilla syntax in wx3.1.1 changed
+    ctrl->StartStyling(startPos);
+#else
+    ctrl->StartStyling(startPos, 0x1f);
+#endif
+    size_t filenameStyleLen = 0;
+    size_t lineNumberStyleLen = 0;
+    size_t matchStyleLen = 0;
+    size_t headerStyleLen = 0;
+    size_t i = 0;
+    wxString::const_iterator iter = text.begin();
+    for(; iter != text.end(); ++iter) {
+        bool advance2Pos = false;
+        const wxUniChar& ch = *iter;
+        if((long)ch >= 128) { advance2Pos = true; }
+        switch(m_curstate) {
+        default:
+            break;
+        case kStartOfLine:
+            if(ch == '=') {
+                ++headerStyleLen;
+                m_curstate = kHeader;
+            } else {
+                ++filenameStyleLen;
+                m_curstate = kFile;
+            }
+            break;
+        case kHeader:
+            ++headerStyleLen;
+            if(ch == '\n') {
+                m_curstate = kStartOfLine;
+                ctrl->SetStyling(headerStyleLen, LEX_FIF_HEADER);
+                headerStyleLen = 0;
+            }
+            break;
+        case kFile:
+            ++filenameStyleLen;
+            if(ch == ':') {
+                m_curstate = kLineNumber;
+                ctrl->SetStyling(filenameStyleLen, LEX_FIF_FILE);
+                filenameStyleLen = 0;
+            }
+            break;
+        case kLineNumber:
+            ++lineNumberStyleLen;
+            if(ch == ':') {
+                m_curstate = kMatch;
+                ctrl->SetStyling(lineNumberStyleLen, LEX_FIF_LINE_NUMBER);
+                lineNumberStyleLen = 0;
+            }
+            break;
+        case kMatch:
+            ++matchStyleLen;
+            if(ch == '\n') {
+                m_curstate = kStartOfLine;
+                ctrl->SetStyling(matchStyleLen, LEX_FIF_MATCH);
+                matchStyleLen = 0;
+            }
+            break;
+        }
+
+        if(advance2Pos) {
+            i += 2;
+        } else {
+            ++i;
+        }
+    }
+
+    // Left overs...
+    if(filenameStyleLen) {
+        ctrl->SetStyling(filenameStyleLen, LEX_FIF_FILE);
+        filenameStyleLen = 0;
+    }
+
+    if(matchStyleLen) {
+        ctrl->SetStyling(matchStyleLen, LEX_FIF_MATCH);
+        matchStyleLen = 0;
+    }
+
+    if(lineNumberStyleLen) {
+        ctrl->SetStyling(lineNumberStyleLen, LEX_FIF_LINE_NUMBER);
+        lineNumberStyleLen = 0;
+    }
+    if(headerStyleLen) {
+        ctrl->SetStyling(headerStyleLen, LEX_FIF_HEADER);
+        headerStyleLen = 0;
+    }
+}
+
+void SFTPGrepStyler::Reset() { m_curstate = kStartOfLine; }
+
+SFTPStatusPage::SFTPStatusPage(wxWindow* parent, SFTPPlugin* plugin)
+    : SFTPStatusPageBase(parent)
+    , m_plugin(plugin)
+{
+    m_stcOutput->Bind(wxEVT_MENU, &SFTPStatusPage::OnClearLog, this, wxID_CLEAR);
+    m_stcOutput->Bind(wxEVT_MENU, &SFTPStatusPage::OnCopy, this, wxID_COPY);
+    m_stcOutput->Bind(wxEVT_MENU, &SFTPStatusPage::OnSelectAll, this, wxID_SELECTALL);
+    gsgs_Event().Bind(wxEVT_GSGS_THEME_CHANGED, &SFTPStatusPage::OnTheme, this);
+    m_stcOutput->SetReadOnly(true);
+    m_stcSearch->SetReadOnly(true);
+
+    Bind(wxEVT_SSH_CHANNEL_READ_ERROR, &SFTPStatusPage::OnFindError, this);
+    Bind(wxEVT_SSH_CHANNEL_READ_OUTPUT, &SFTPStatusPage::OnFindOutput, this);
+    Bind(wxEVT_SSH_CHANNEL_CLOSED, &SFTPStatusPage::OnFindFinished, this);
+    m_styler.Reset(new SFTPGrepStyler(m_stcSearch));
+    m_stcSearch->Bind(wxEVT_STC_HOTSPOT_CLICK, &SFTPStatusPage::OnHotspotClicked, this);
+}
+
+SFTPStatusPage::~SFTPStatusPage()
+{
+    m_stcSearch->Unbind(wxEVT_STC_HOTSPOT_CLICK, &SFTPStatusPage::OnHotspotClicked, this);
+    Unbind(wxEVT_SSH_CHANNEL_READ_ERROR, &SFTPStatusPage::OnFindError, this);
+    Unbind(wxEVT_SSH_CHANNEL_READ_OUTPUT, &SFTPStatusPage::OnFindOutput, this);
+    Unbind(wxEVT_SSH_CHANNEL_CLOSED, &SFTPStatusPage::OnFindFinished, this);
+
+    m_stcOutput->Unbind(wxEVT_MENU, &SFTPStatusPage::OnClearLog, this, wxID_CLEAR);
+    m_stcOutput->Unbind(wxEVT_MENU, &SFTPStatusPage::OnCopy, this, wxID_COPY);
+    m_stcOutput->Unbind(wxEVT_MENU, &SFTPStatusPage::OnSelectAll, this, wxID_SELECTALL);
+    gsgs_Event().Unbind(wxEVT_GSGS_THEME_CHANGED, &SFTPStatusPage::OnTheme, this);
+}
+
+void SFTPStatusPage::OnContentMenu(wxContextMenuEvent& event)
+{
+    wxUnusedVar(event);
+    ShowContextMenu();
+}
+
+void SFTPStatusPage::AddLine(SFTPThreadMessage* message)
+{
+    wxString msg;
+    msg << "[ " << wxDateTime::Now().FormatISOTime() << " ]";
+    wxBitmap bmp;
+    switch(message->GetStatus()) {
+    case SFTPThreadMessage::STATUS_ERROR:
+        msg << " [ERR]";
+        break;
+    case SFTPThreadMessage::STATUS_OK:
+        msg << " [OK ]";
+        break;
+    default:
+        msg << " [INF]";
+        break;
+    }
+
+    msg << " [" << message->GetAccount() << "] " << message->GetMessage();
+    wxDELETE(message);
+    m_stcOutput->SetReadOnly(false);
+    m_stcOutput->AppendText(msg + "\n");
+    m_stcOutput->SetReadOnly(true);
+    m_stcOutput->ScrollToEnd();
+}
+
+void SFTPStatusPage::ShowContextMenu()
+{
+    wxMenu menu;
+    menu.Append(wxID_COPY);
+    menu.Append(wxID_SELECTALL);
+    menu.AppendSeparator();
+    menu.Append(wxID_CLEAR);
+    menu.Enable(wxID_CLEAR, !m_stcOutput->IsEmpty());
+    m_stcOutput->PopupMenu(&menu);
+}
+
+void SFTPStatusPage::OnClearLog(wxCommandEvent& event)
+{
+    wxUnusedVar(event);
+    m_stcOutput->SetReadOnly(false);
+    m_stcOutput->ClearAll();
+    m_stcOutput->SetReadOnly(true);
+}
+
+void SFTPStatusPage::SetStatusBarMessage(const wxString& message) { m_plugin->GetManager()->SetStatusMessage(message); }
+
+void SFTPStatusPage::OnTheme(wxCommandEvent& event)
+{
+    event.Skip();
+    LexerStyle::Ptr_t lexer = gsgs_Style().GetLexer("text");
+    if(lexer) {
+        lexer->Apply(m_stcOutput);
+        lexer->Apply(m_stcSearch);
+    }
+    m_styler.Reset(new SFTPGrepStyler(m_stcSearch));
+}
+
+void SFTPStatusPage::OnCopy(wxCommandEvent& event)
+{
+    wxUnusedVar(event);
+    if(m_stcOutput->CanCopy()) { m_stcOutput->Copy(); }
+}
+
+void SFTPStatusPage::OnSelectAll(wxCommandEvent& event)
+{
+    wxUnusedVar(event);
+    m_stcOutput->SelectAll();
+}
+
+void SFTPStatusPage::OnFindOutput(gsgs::Event& event)
+{
+    m_stcSearch->SetReadOnly(false);
+    m_stcSearch->AddText(event.GetString());
+    m_stcSearch->SetReadOnly(true);
+    m_stcSearch->ScrollToEnd();
+}
+
+void SFTPStatusPage::OnFindFinished(gsgs::Event& event)
+{
+    wxUnusedVar(event);
+    AddSearchText("Search completed");
+}
+
+void SFTPStatusPage::OnFindError(gsgs::Event& event)
+{
+    m_stcSearch->SetReadOnly(false);
+    m_stcSearch->AddText("== " + event.GetString() + "\n");
+    m_stcSearch->SetReadOnly(true);
+    m_stcSearch->ScrollToEnd();
+}
+
+void SFTPStatusPage::ClearSearchOutput()
+{
+    m_stcSearch->SetReadOnly(false);
+    m_stcSearch->ClearAll();
+    m_stcSearch->SetReadOnly(true);
+}
+
+void SFTPStatusPage::OnHotspotClicked(wxStyledTextEvent& event)
+{
+    long pos = event.GetPosition();
+    int line = m_stcSearch->LineFromPosition(pos);
+    wxString strLine = m_stcSearch->GetLine(line);
+    wxString filename = strLine.BeforeFirst(':');
+    strLine = strLine.AfterFirst(':');
+    wxString sLineNumber = strLine.BeforeFirst(':');
+    long nLineNumber(0);
+    sLineNumber.ToCLong(&nLineNumber);
+
+    // Open the file
+    m_plugin->OpenFile(filename, nLineNumber - 1);
+}
+
+void SFTPStatusPage::ShowSearchTab() { m_notebook->SetSelection(0); }
+
+void SFTPStatusPage::ShowLogTab() { m_notebook->SetSelection(1); }
+
+void SFTPStatusPage::AddSearchText(const wxString& text)
+{
+    m_stcSearch->SetReadOnly(false);
+    m_stcSearch->AddText("== " + text + "\n");
+    m_stcSearch->SetReadOnly(true);
+    m_stcSearch->ScrollToEnd();
+}

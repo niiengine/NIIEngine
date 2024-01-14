@@ -1,0 +1,6 @@
+<?xml version="1.0"?> <resource version="2.3.0.1">
+   <object class="wxBitmap" name="16_standard_back">bitmaps-dark/16-back.png</object>
+   <object class="wxBitmap" name="16_standard_forward">bitmaps-dark/16-forward.png</object>
+   <object class="wxBitmap" name="wand">icons/wand.png</object>
+   <object class="wxBitmap" name="wxdirpickerctrl">wxcrafter/resources/wxdirpickerctrl.png</object>
+</resource>

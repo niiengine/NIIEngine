@@ -1,0 +1,3 @@
+﻿++ Cheese
+
+An application (inspired by Photo Booth) for taking pictures and videos from a webcam

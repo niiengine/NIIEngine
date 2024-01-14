@@ -1,0 +1,1506 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Style ver="7">
+    <WidgetStyle name="Vanilla/VerticalImageSliderThumb">
+        <StyleProperty value="tl:FFFFFFFF tr:FFFFFFFF bl:FFFFFFFF br:FFFFFFFF" type="ColourArea" name="ScrollThumbColours"/>
+        <Property name="VertFree" value="true"/>
+        <Property name="MouseInputPropagationEnabled" value="true"/>
+        <StyleSection name="thumb">
+            <ImageryCom>
+                <ComArea>
+                    <SizeDefine type="LeftEdge">
+                        <AbsSize value="0"/>
+                    </SizeDefine>
+                    <SizeDefine type="TopEdge">
+                        <AbsSize value="0"/>
+                    </SizeDefine>
+                    <SizeDefine type="Width">
+                        <RelSize scale="1.0" type="Width"/>
+                    </SizeDefine>
+                    <SizeDefine type="Height">
+                        <RelSize scale="1.0" type="Height"/>
+                    </SizeDefine>
+                </ComArea>
+                <Pixel id="Vanilla-Images/VerticalImageSliderThumb"/>
+                <ColoursProperty name="ScrollThumbColours"/>
+                <VLayout type="Extrude"/>
+                <HLayout type="Extrude"/>
+            </ImageryCom>
+        </StyleSection>
+        <StyleLayout name="Normal">
+            <Layer>
+                <Section id="thumb"/>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Hover">
+            <Layer>
+                <Section id="thumb"/>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Pushed">
+            <Layer>
+                <Section id="thumb"/>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Disabled">
+            <Layer>
+                <Section id="thumb">
+                    <Colours top_left="FF7F7F7F" bottom_left="FF7F7F7F" top_right="FF7F7F7F" bottom_right="FF7F7F7F"/>
+                </Section>
+            </Layer>
+        </StyleLayout>
+    </WidgetStyle>
+    <WidgetStyle name="Vanilla/VerticalImageSlider">
+        <StyleProperty value="Vanilla-Images/DefaultScrollImage" type="Image" name="ScrollImage"/>
+        <StyleProperty value="tl:FF000000 tr:FF000000 bl:FF000000 br:FF000000" type="ColourArea" name="TopEndColours"/>
+        <StyleProperty value="tl:FF000000 tr:FF000000 bl:FF000000 br:FF000000" type="ColourArea" name="BottomEndColours"/>
+        <ListenerProperty widget="__auto_thumb__" value="tl:FF000000 tr:FF000000 bl:FF000000 br:FF000000" name="ScrollThumbColours" signal_refresh="true" target="ScrollThumbColours" type="ColourArea"/>
+        <Property name="VerticalSlider" value="true"/>
+        <Property name="MouseAutoRepeatEnabled" value="true"/>
+        <Property name="WantsMultiClickEvents" value="false"/>
+        <StyleSpecial name="ThumbTrackArea">
+            <ComArea>
+                <SizeDefine type="LeftEdge">
+                    <AbsSize value="0"/>
+                </SizeDefine>
+                <SizeDefine type="TopEdge">
+                    <AbsSize value="0"/>
+                </SizeDefine>
+                <SizeDefine type="RightEdge">
+                    <RelSize scale="1.0" type="RightEdge"/>
+                </SizeDefine>
+                <SizeDefine type="BottomEdge">
+                    <RelSize scale="1.0" type="BottomEdge"/>
+                </SizeDefine>
+            </ComArea>
+        </StyleSpecial>
+        <StyleWidget id="__auto_thumb__" type="Vanilla/VerticalImageSliderThumb">
+            <ComArea>
+                <SizeDefine type="LeftEdge">
+                    <AbsSize value="0"/>
+                </SizeDefine>
+                <SizeDefine type="TopEdge">
+                    <AbsSize value="0"/>
+                </SizeDefine>
+                <SizeDefine type="Width">
+                    <RelSize scale="1.0" type="Width"/>
+                </SizeDefine>
+                <SizeDefine type="Height">
+                    <SizeOp op="Multiply">
+                        <RelSize scale="1.0" type="Width"/>
+                        <SizeOp op="Divide">
+                            <PixelSize name="Vanilla-Images/VerticalImageSliderThumb" dimension="Height"/>
+                            <PixelSize name="Vanilla-Images/VerticalImageSliderThumb" dimension="Width"/>
+                        </SizeOp>
+                    </SizeOp>
+                </SizeDefine>
+            </ComArea>
+        </StyleWidget>
+        <StyleSection name="main">
+            <ImageryCom>
+                <ComArea>
+                    <SizeDefine type="LeftEdge">
+                        <RelSize scale="0.2" type="Width"/>
+                    </SizeDefine>
+                    <SizeDefine type="TopEdge">
+                        <SizeOp op="Multiply">
+                            <WidgetSize widget="__auto_thumb__" dimension="Height"/>
+                            <AbsSize value="0.5"/>
+                        </SizeOp>
+                    </SizeDefine>
+                    <SizeDefine type="RightEdge">
+                        <RelSize scale="0.8" type="Width"/>
+                    </SizeDefine>
+                    <SizeDefine type="BottomEdge">
+                        <SizeOp op="Subtract">
+                            <RelSize scale="1.0" type="Height"/>
+                            <SizeOp op="Multiply">
+                                <WidgetSize widget="__auto_thumb__" dimension="Height"/>
+                                <AbsSize value="0.5"/>
+                            </SizeOp>
+                        </SizeOp>
+                    </SizeDefine>
+                </ComArea>
+                <Pixel id="Vanilla-Images/VerticalImageSliderContainer"/>
+                <VLayout type="Extrude"/>
+                <HLayout type="Extrude"/>
+            </ImageryCom>
+        </StyleSection>
+        <StyleSection name="scrollimage">
+            <ImageryCom>
+                <ComArea>
+                    <SizeDefine type="LeftEdge">
+                        <RelSize scale="0.2" type="Width"/>
+                    </SizeDefine>
+                    <SizeDefine type="TopEdge">
+                        <SizeOp op="Multiply">
+                            <WidgetSize widget="__auto_thumb__" dimension="Height"/>
+                            <AbsSize value="0.5"/>
+                        </SizeOp>
+                    </SizeDefine>
+                    <SizeDefine type="RightEdge">
+                        <RelSize scale="0.8" type="Width"/>
+                    </SizeDefine>
+                    <SizeDefine type="BottomEdge">
+                        <SizeOp op="Subtract">
+                            <RelSize scale="1.0" type="Height"/>
+                            <SizeOp op="Multiply">
+                                <WidgetSize widget="__auto_thumb__" dimension="Height"/>
+                                <AbsSize value="0.5"/>
+                            </SizeOp>
+                        </SizeOp>
+                    </SizeDefine>
+                </ComArea>
+                <PixelProperty name="ScrollImage"/>
+                <VLayout type="Extrude"/>
+                <HLayout type="Extrude"/>
+            </ImageryCom>
+            <ImageryCom>
+                <ComArea>
+                    <SizeDefine type="LeftEdge">
+                        <RelSize scale="0.2" type="Width"/>
+                    </SizeDefine>
+                    <SizeDefine type="TopEdge">
+                        <AbsSize value="0"/>
+                    </SizeDefine>
+                    <SizeDefine type="RightEdge">
+                        <RelSize scale="0.8" type="Width"/>
+                    </SizeDefine>
+                    <SizeDefine type="BottomEdge">
+                        <SizeOp op="Multiply">
+                            <WidgetSize widget="__auto_thumb__" dimension="Height"/>
+                            <AbsSize value="0.5"/>
+                        </SizeOp>
+                    </SizeDefine>
+                </ComArea>
+                <Pixel id="Vanilla-Images/VerticalImageSliderTopEnd"/>
+                <ColoursProperty name="TopEndColours"/>
+                <VLayout type="Extrude"/>
+                <HLayout type="Extrude"/>
+            </ImageryCom>
+            <ImageryCom>
+                <ComArea>
+                    <SizeDefine type="LeftEdge">
+                        <RelSize scale="0.2" type="Width"/>
+                    </SizeDefine>
+                    <SizeDefine type="TopEdge">
+                        <SizeOp op="Subtract">
+                            <RelSize scale="1.0" type="Height"/>
+                            <SizeOp op="Multiply">
+                                <WidgetSize widget="__auto_thumb__" dimension="Height"/>
+                                <AbsSize value="0.5"/>
+                            </SizeOp>
+                        </SizeOp>
+                    </SizeDefine>
+                    <SizeDefine type="RightEdge">
+                        <RelSize scale="0.8" type="Width"/>
+                    </SizeDefine>
+                    <SizeDefine type="BottomEdge">
+                        <RelSize scale="1.0" type="Height"/>
+                    </SizeDefine>
+                </ComArea>
+                <Pixel id="Vanilla-Images/VerticalImageSliderBottomEnd"/>
+                <ColoursProperty name="BottomEndColours"/>
+                <VLayout type="Extrude"/>
+                <HLayout type="Extrude"/>
+            </ImageryCom>
+        </StyleSection>
+        <StyleLayout name="Enabled">
+            <Layer>
+                <Section id="scrollimage"/>
+                <Section id="main"/>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Disabled">
+            <Layer>
+                <Section id="scrollimage">
+                    <Colours top_left="FF7F7F7F" bottom_left="FF7F7F7F" top_right="FF7F7F7F" bottom_right="FF7F7F7F"/>
+                </Section>
+                <Section id="main">
+                    <Colours top_left="FF7F7F7F" bottom_left="FF7F7F7F" top_right="FF7F7F7F" bottom_right="FF7F7F7F"/>
+                </Section>
+            </Layer>
+        </StyleLayout>
+    </WidgetStyle>
+    <WidgetStyle name="Vanilla/HorizontalImageSliderThumb">
+        <StyleProperty value="tl:FFFFFFFF tr:FFFFFFFF bl:FFFFFFFF br:FFFFFFFF" type="ColourArea" name="ScrollThumbColours"/>
+        <Property name="HorzFree" value="true"/>
+        <Property name="MouseInputPropagationEnabled" value="true"/>
+        <StyleSection name="thumb">
+            <ImageryCom>
+                <ComArea>
+                    <SizeDefine type="LeftEdge">
+                        <AbsSize value="0"/>
+                    </SizeDefine>
+                    <SizeDefine type="TopEdge">
+                        <AbsSize value="0"/>
+                    </SizeDefine>
+                    <SizeDefine type="Width">
+                        <RelSize scale="1.0" type="Width"/>
+                    </SizeDefine>
+                    <SizeDefine type="Height">
+                        <RelSize scale="1.0" type="Height"/>
+                    </SizeDefine>
+                </ComArea>
+                <Pixel id="Vanilla-Images/HorizontalImageSliderThumb"/>
+                <ColoursProperty name="ScrollThumbColours"/>
+                <VLayout type="Extrude"/>
+                <HLayout type="Extrude"/>
+            </ImageryCom>
+        </StyleSection>
+        <StyleLayout name="Normal">
+            <Layer>
+                <Section id="thumb"/>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Hover">
+            <Layer>
+                <Section id="thumb"/>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Pushed">
+            <Layer>
+                <Section id="thumb"/>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Disabled">
+            <Layer>
+                <Section id="thumb">
+                    <Colours top_left="FF7F7F7F" bottom_left="FF7F7F7F" top_right="FF7F7F7F" bottom_right="FF7F7F7F"/>
+                </Section>
+            </Layer>
+        </StyleLayout>
+    </WidgetStyle>
+    <WidgetStyle name="Vanilla/HorizontalImageSlider">
+        <StyleProperty value="Vanilla-Images/DefaultScrollImage" type="Image" name="ScrollImage"/>
+        <StyleProperty value="tl:FF000000 tr:FF000000 bl:FF000000 br:FF000000" type="ColourArea" name="TopEndColours"/>
+        <StyleProperty value="tl:FF000000 tr:FF000000 bl:FF000000 br:FF000000" type="ColourArea" name="BottomEndColours"/>
+        <ListenerProperty widget="__auto_thumb__" value="tl:FF000000 tr:FF000000 bl:FF000000 br:FF000000" name="ScrollThumbColours" signal_refresh="true" target="ScrollThumbColours" type="ColourArea"/>
+        <Property name="VerticalSlider" value="false"/>
+        <Property name="MouseAutoRepeatEnabled" value="true"/>
+        <Property name="WantsMultiClickEvents" value="false"/>
+        <StyleSpecial name="ThumbTrackArea">
+            <ComArea>
+                <SizeDefine type="LeftEdge">
+                    <AbsSize value="0"/>
+                </SizeDefine>
+                <SizeDefine type="TopEdge">
+                    <AbsSize value="0"/>
+                </SizeDefine>
+                <SizeDefine type="RightEdge">
+                    <RelSize scale="1.0" type="RightEdge"/>
+                </SizeDefine>
+                <SizeDefine type="BottomEdge">
+                    <RelSize scale="1.0" type="BottomEdge"/>
+                </SizeDefine>
+            </ComArea>
+        </StyleSpecial>
+        <StyleWidget id="__auto_thumb__" type="Vanilla/HorizontalImageSliderThumb">
+            <ComArea>
+                <SizeDefine type="LeftEdge">
+                    <AbsSize value="0"/>
+                </SizeDefine>
+                <SizeDefine type="TopEdge">
+                    <AbsSize value="0"/>
+                </SizeDefine>
+                <SizeDefine type="Width">
+                    <SizeOp op="Multiply">
+                        <RelSize scale="1.0" type="Height"/>
+                        <SizeOp op="Divide">
+                            <PixelSize name="Vanilla-Images/HorizontalImageSliderThumb" dimension="Width"/>
+                            <PixelSize name="Vanilla-Images/HorizontalImageSliderThumb" dimension="Height"/>
+                        </SizeOp>
+                    </SizeOp>
+                </SizeDefine>
+                <SizeDefine type="Height">
+                    <RelSize scale="1.0" type="Height"/>
+                </SizeDefine>
+            </ComArea>
+        </StyleWidget>
+        <StyleSection name="main">
+            <ImageryCom>
+                <ComArea>
+                    <SizeDefine type="LeftEdge">
+                        <SizeOp op="Multiply">
+                            <WidgetSize widget="__auto_thumb__" dimension="Width"/>
+                            <AbsSize value="0.5"/>
+                        </SizeOp>
+                    </SizeDefine>
+                    <SizeDefine type="TopEdge">
+                        <RelSize scale="0.2" type="Height"/>
+                    </SizeDefine>
+                    <SizeDefine type="RightEdge">
+                        <SizeOp op="Subtract">
+                            <RelSize scale="1.0" type="Width"/>
+                            <SizeOp op="Multiply">
+                                <WidgetSize widget="__auto_thumb__" dimension="Width"/>
+                                <AbsSize value="0.5"/>
+                            </SizeOp>
+                        </SizeOp>
+                    </SizeDefine>
+                    <SizeDefine type="BottomEdge">
+                        <RelSize scale="0.8" type="Height"/>
+                    </SizeDefine>
+                </ComArea>
+                <Pixel id="Vanilla-Images/HorizontalImageSliderContainer"/>
+                <VLayout type="Extrude"/>
+                <HLayout type="Extrude"/>
+            </ImageryCom>
+        </StyleSection>
+        <StyleSection name="scrollimage">
+            <ImageryCom>
+                <ComArea>
+                    <SizeDefine type="LeftEdge">
+                        <SizeOp op="Multiply">
+                            <WidgetSize widget="__auto_thumb__" dimension="Width"/>
+                            <AbsSize value="0.5"/>
+                        </SizeOp>
+                    </SizeDefine>
+                    <SizeDefine type="TopEdge">
+                        <RelSize scale="0.2" type="Height"/>
+                    </SizeDefine>
+                    <SizeDefine type="RightEdge">
+                        <SizeOp op="Subtract">
+                            <RelSize scale="1.0" type="Width"/>
+                            <SizeOp op="Multiply">
+                                <WidgetSize widget="__auto_thumb__" dimension="Width"/>
+                                <AbsSize value="0.5"/>
+                            </SizeOp>
+                        </SizeOp>
+                    </SizeDefine>
+                    <SizeDefine type="BottomEdge">
+                        <RelSize scale="0.8" type="Height"/>
+                    </SizeDefine>
+                </ComArea>
+                <PixelProperty name="ScrollImage"/>
+                <VLayout type="Extrude"/>
+                <HLayout type="Extrude"/>
+            </ImageryCom>
+            <ImageryCom>
+                <ComArea>
+                    <SizeDefine type="LeftEdge">
+                        <AbsSize value="0"/>
+                    </SizeDefine>
+                    <SizeDefine type="TopEdge">
+                        <RelSize scale="0.2" type="Height"/>
+                    </SizeDefine>
+                    <SizeDefine type="RightEdge">
+                        <SizeOp op="Multiply">
+                            <WidgetSize widget="__auto_thumb__" dimension="Width"/>
+                            <AbsSize value="0.5"/>
+                        </SizeOp>
+                    </SizeDefine>
+                    <SizeDefine type="BottomEdge">
+                        <RelSize scale="0.8" type="Height"/>
+                    </SizeDefine>
+                </ComArea>
+                <Pixel id="Vanilla-Images/HorizontalImageSliderLeftEnd"/>
+                <ColoursProperty name="TopEndColours"/>
+                <VLayout type="Extrude"/>
+                <HLayout type="Extrude"/>
+            </ImageryCom>
+            <ImageryCom>
+                <ComArea>
+                    <SizeDefine type="LeftEdge">
+                        <SizeOp op="Subtract">
+                            <RelSize scale="1.0" type="Width"/>
+                            <SizeOp op="Multiply">
+                                <WidgetSize widget="__auto_thumb__" dimension="Width"/>
+                                <AbsSize value="0.5"/>
+                            </SizeOp>
+                        </SizeOp>
+                    </SizeDefine>
+                    <SizeDefine type="TopEdge">
+                        <RelSize scale="0.2" type="Height"/>
+                    </SizeDefine>
+                    <SizeDefine type="RightEdge">
+                        <RelSize scale="1.0" type="Width"/>
+                    </SizeDefine>
+                    <SizeDefine type="BottomEdge">
+                        <RelSize scale="0.8" type="Height"/>
+                    </SizeDefine>
+                </ComArea>
+                <Pixel id="Vanilla-Images/HorizontalImageSliderRightEnd"/>
+                <ColoursProperty name="BottomEndColours"/>
+                <VLayout type="Extrude"/>
+                <HLayout type="Extrude"/>
+            </ImageryCom>
+        </StyleSection>
+        <StyleLayout name="Enabled">
+            <Layer>
+                <Section id="scrollimage"/>
+                <Section id="main"/>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Disabled">
+            <Layer>
+                <Section id="scrollimage">
+                    <Colours top_left="FF7F7F7F" bottom_left="FF7F7F7F" top_right="FF7F7F7F" bottom_right="FF7F7F7F"/>
+                </Section>
+                <Section id="main">
+                    <Colours top_left="FF7F7F7F" bottom_left="FF7F7F7F" top_right="FF7F7F7F" bottom_right="FF7F7F7F"/>
+                </Section>
+            </Layer>
+        </StyleLayout>
+    </WidgetStyle>
+    <WidgetStyle name="Vanilla/FrameColourArea">
+        <StyleProperty signal_refresh="true" value="tl:FFFFFFFF tr:FFFFFFFF bl:FFFFFFFF br:FFFFFFFF" type="ColourArea" name="Colour"/>
+        <StyleSection name="withframe">
+            <FrameCom>
+                <ComArea>
+                    <SizeDefine type="LeftEdge">
+                        <AbsSize value="0"/>
+                    </SizeDefine>
+                    <SizeDefine type="TopEdge">
+                        <AbsSize value="0"/>
+                    </SizeDefine>
+                    <SizeDefine type="RightEdge">
+                        <RelSize scale="1" type="RightEdge"/>
+                    </SizeDefine>
+                    <SizeDefine type="BottomEdge">
+                        <RelSize scale="1" type="BottomEdge"/>
+                    </SizeDefine>
+                </ComArea>
+                <ComPixel type="TopLeftCorner" pixel_id="Vanilla-Images/FrameTopLeft"/>
+                <ComPixel type="TopRightCorner" pixel_id="Vanilla-Images/FrameTopRight"/>
+                <ComPixel type="BottomLeftCorner" pixel_id="Vanilla-Images/FrameBottomLeft"/>
+                <ComPixel type="BottomRightCorner" pixel_id="Vanilla-Images/FrameBottomRight"/>
+                <ComPixel type="LeftEdge" pixel_id="Vanilla-Images/FrameLeft"/>
+                <ComPixel type="TopEdge" pixel_id="Vanilla-Images/FrameTop"/>
+                <ComPixel type="RightEdge" pixel_id="Vanilla-Images/FrameRight"/>
+                <ComPixel type="BottomEdge" pixel_id="Vanilla-Images/FrameBottom"/>
+                <ComPixel type="Background" pixel_id="Vanilla-Images/GenericBrush"/>
+                <ColoursProperty name="Colour"/>
+            </FrameCom>
+        </StyleSection>
+        <StyleLayout name="Enabled">
+            <Layer>
+                <Section id="withframe"/>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Disabled">
+            <Layer>
+                <Section id="withframe"/>
+            </Layer>
+        </StyleLayout>
+    </WidgetStyle>
+    <WidgetStyle name="Vanilla/ColourPicker">
+        <StyleProperty value="Vanilla/ColourPickerControls" type="String" name="ColourPickerControlsStyle"/>
+        <StyleProperty value="true" type="bool" name="ShareColourPickerControlsWidget"/>
+        <ListenerProperty widget="__auto_colourrect__" value="tl:FFFF0000 tr:FFFF0000 bl:FFFF0000 br:FFFF0000" name="Colour" signal_refresh="true" target="Colour" type="ColourArea"/>
+        <StyleWidget id="__auto_colourrect__" type="Vanilla/FrameColourArea">
+            <ComArea>
+                <SizeDefine type="LeftEdge">
+                    <AbsSize value="0"/>
+                </SizeDefine>
+                <SizeDefine type="TopEdge">
+                    <AbsSize value="0"/>
+                </SizeDefine>
+                <SizeDefine type="Width">
+                    <RelSize scale="1" type="Width"/>
+                </SizeDefine>
+                <SizeDefine type="Height">
+                    <RelSize scale="1" type="Height"/>
+                </SizeDefine>
+            </ComArea>
+        </StyleWidget>
+        <StyleLayout name="Enabled">
+    </StyleLayout>
+        <StyleLayout name="Disabled">
+    </StyleLayout>
+    </WidgetStyle>
+    <WidgetStyle name="Vanilla/ColourPickerControls">
+        <StyleProperty value="Vanilla/StaticImage" type="String" name="ColourPickerCursorStyle"/>
+        <StyleProperty value="Vanilla-Images/ColourPickerCursor" type="Image" name="ColourPickerCursorImage"/>
+        <StyleProperty signal_refresh="true" value="tl:D3FFFFFF tr:D3FFFFFF bl:D3FFFFFF br:D3FFFFFF" type="ColourArea" name="BackgroundColours"/>
+        <StyleProperty signal_refresh="true" value="20" type="uint" name="ColourPickerImageSliderWidth"/>
+        <ListenerProperty target="Colour" widget="__auto_oldcolourrect__" value="tl:FFFFFFFF tr:FFFFFFFF bl:FFFFFFFF br:FFFFFFFF" type="ColourArea" name="PreviousColour"/>
+        <ListenerProperty target="Colour" widget="__auto_newcolourrect__" value="tl:FFFFFFFF tr:FFFFFFFF bl:FFFFFFFF br:FFFFFFFF" type="ColourArea" name="NewColour"/>
+        <ListenerProperty target="CaptionColour" widget="__auto_titlebar__" value="FF4A4A4A" type="ColourArea" name="CaptionColour"/>
+        <ListenerProperty value="DejaVuSans-10-NoScale" type="Font" name="ColourPickerFontType">
+            <ListenerTarget widget="__auto_cancelbutton__" property="Font"/>
+            <ListenerTarget widget="__auto_acceptbutton__" property="Font"/>
+            <ListenerTarget widget="__auto_titlebar__" property="Font"/>
+            <ListenerTarget widget="__auto_hexadecimaleditbox__" property="Font"/>
+            <ListenerTarget widget="__auto_hexadecimalstatictext__" property="Font"/>
+            <ListenerTarget widget="__auto_newcolourdescription__" property="Font"/>
+            <ListenerTarget widget="__auto_oldcolourdescription__" property="Font"/>
+            <ListenerTarget widget="__auto_coloureditboxRdescription__" property="Font"/>
+            <ListenerTarget widget="__auto_coloureditboxR__" property="Font"/>
+            <ListenerTarget widget="__auto_coloureditboxGdescription__" property="Font"/>
+            <ListenerTarget widget="__auto_coloureditboxG__" property="Font"/>
+            <ListenerTarget widget="__auto_coloureditboxBdescription__" property="Font"/>
+            <ListenerTarget widget="__auto_coloureditboxB__" property="Font"/>
+            <ListenerTarget widget="__auto_HSVeditboxH__" property="Font"/>
+            <ListenerTarget widget="__auto_HSVradiobuttonH__" property="Font"/>
+            <ListenerTarget widget="__auto_HSVeditboxS__" property="Font"/>
+            <ListenerTarget widget="__auto_HSVradiobuttonS__" property="Font"/>
+            <ListenerTarget widget="__auto_HSVradiobuttonV__" property="Font"/>
+            <ListenerTarget widget="__auto_HSVeditboxV__" property="Font"/>
+            <ListenerTarget widget="__auto_Labeditboxa__" property="Font"/>
+            <ListenerTarget widget="__auto_Labradiobuttona__" property="Font"/>
+            <ListenerTarget widget="__auto_Labeditboxb__" property="Font"/>
+            <ListenerTarget widget="__auto_Labradiobuttonb__" property="Font"/>
+            <ListenerTarget widget="__auto_LabeditboxL__" property="Font"/>
+            <ListenerTarget widget="__auto_LabradiobuttonL__" property="Font"/>
+            <ListenerTarget widget="__auto_alphaeditbox__" property="Font"/>
+            <ListenerTarget widget="__auto_alphastatictext__" property="Font"/>
+        </ListenerProperty>
+        <ListenerProperty value="tl:FF000000 tr:FF000000 bl:FF000000 br:FF000000" type="ColourArea" name="ColourPickerFontColours">
+            <ListenerTarget widget="__auto_hexadecimalstatictext__" property="TextColours"/>
+            <ListenerTarget widget="__auto_newcolourdescription__" property="TextColours"/>
+            <ListenerTarget widget="__auto_oldcolourdescription__" property="TextColours"/>
+            <ListenerTarget widget="__auto_coloureditboxRdescription__" property="TextColours"/>
+            <ListenerTarget widget="__auto_coloureditboxGdescription__" property="TextColours"/>
+            <ListenerTarget widget="__auto_coloureditboxBdescription__" property="TextColours"/>
+            <ListenerTarget widget="__auto_alphastatictext__" property="TextColours"/>
+        </ListenerProperty>
+        <ListenerProperty value="tl:FF000000 tr:FF000000 bl:FF000000 br:FF000000" type="ColourArea" name="RadioButtonNormalTextColours">
+            <ListenerTarget widget="__auto_HSVradiobuttonH__" property="NormalTextColour"/>
+            <ListenerTarget widget="__auto_HSVradiobuttonS__" property="NormalTextColour"/>
+            <ListenerTarget widget="__auto_HSVradiobuttonV__" property="NormalTextColour"/>
+            <ListenerTarget widget="__auto_LabradiobuttonL__" property="NormalTextColour"/>
+            <ListenerTarget widget="__auto_Labradiobuttona__" property="NormalTextColour"/>
+            <ListenerTarget widget="__auto_Labradiobuttonb__" property="NormalTextColour"/>
+        </ListenerProperty>
+        <ListenerProperty value="tl:FF434343 tr:FF434343 bl:FF434343 br:FF434343" type="ColourArea" name="RadioButtonHoverTextColours">
+            <ListenerTarget widget="__auto_HSVradiobuttonH__" property="HoverTextColour"/>
+            <ListenerTarget widget="__auto_HSVradiobuttonS__" property="HoverTextColour"/>
+            <ListenerTarget widget="__auto_HSVradiobuttonV__" property="HoverTextColour"/>
+            <ListenerTarget widget="__auto_LabradiobuttonL__" property="HoverTextColour"/>
+            <ListenerTarget widget="__auto_Labradiobuttona__" property="HoverTextColour"/>
+            <ListenerTarget widget="__auto_Labradiobuttonb__" property="HoverTextColour"/>
+        </ListenerProperty>
+        <ListenerProperty value="tl:FF636363 tr:FF636363 bl:FF636363 br:FF636363" type="ColourArea" name="RadioButtonPushedTextColours">
+            <ListenerTarget widget="__auto_HSVradiobuttonH__" property="PushedTextColour"/>
+            <ListenerTarget widget="__auto_HSVradiobuttonS__" property="PushedTextColour"/>
+            <ListenerTarget widget="__auto_HSVradiobuttonV__" property="PushedTextColour"/>
+            <ListenerTarget widget="__auto_LabradiobuttonL__" property="PushedTextColour"/>
+            <ListenerTarget widget="__auto_Labradiobuttona__" property="PushedTextColour"/>
+            <ListenerTarget widget="__auto_Labradiobuttonb__" property="PushedTextColour"/>
+        </ListenerProperty>
+        <Property name="AlwaysOnTop" value="true"/>
+        <Property name="Size" value="{{0,460},{0,460}}"/>
+        <Property name="HorizontalAlignment" value="Centre"/>
+        <Property name="VerticalAlignment" value="Centre"/>
+        <StyleWidget id="__auto_titlebar__" type="Vanilla/Titlebar">
+            <ComArea>
+                <SizeDefine type="LeftEdge">
+                    <AbsSize value="0"/>
+                </SizeDefine>
+                <SizeDefine type="TopEdge">
+                    <AbsSize value="0"/>
+                </SizeDefine>
+                <SizeDefine type="Width">
+                    <RelSize scale="1" type="Width"/>
+                </SizeDefine>
+                <SizeDefine type="Height">
+                    <FontSize padding="14" type="LineSpacing"/>
+                </SizeDefine>
+            </ComArea>
+            <VAlign type="TopAligned"/>
+            <HAlign type="Centre"/>
+            <Property name="Text" value="ColourPicker"/>
+        </StyleWidget>
+        <StyleWidget id="__auto_cancelbutton__" type="Vanilla/Button">
+            <ComArea>
+                <SizeDefine type="LeftEdge">
+                    <RelSize scale="-0.02" type="Width"/>
+                </SizeDefine>
+                <SizeDefine type="TopEdge">
+                    <RelSize scale="-0.02" type="Height"/>
+                </SizeDefine>
+                <SizeDefine type="Width">
+                    <RelSize scale="0.18" type="Width"/>
+                </SizeDefine>
+                <SizeDefine type="Height">
+                    <RelSize scale="0.055" type="Height"/>
+                </SizeDefine>
+            </ComArea>
+            <VAlign type="BottomAligned"/>
+            <HAlign type="RightAligned"/>
+            <Property name="Text" value="Cancel"/>
+        </StyleWidget>
+        <StyleWidget id="__auto_acceptbutton__" type="Vanilla/Button">
+            <ComArea>
+                <SizeDefine type="LeftEdge">
+                    <SizeOp op="Add">
+                        <RelSize scale="-0.01" type="Width"/>
+                        <SizeOp op="Subtract">
+                            <WidgetSize widget="__auto_cancelbutton__" dimension="LeftEdge"/>
+                            <WidgetSize widget="__auto_cancelbutton__" dimension="Width"/>
+                        </SizeOp>
+                    </SizeOp>
+                </SizeDefine>
+                <SizeDefine type="TopEdge">
+                    <RelSize scale="-0.02" type="Height"/>
+                </SizeDefine>
+                <SizeDefine type="Width">
+                    <RelSize scale="0.18" type="Width"/>
+                </SizeDefine>
+                <SizeDefine type="Height">
+                    <RelSize scale="0.055" type="Height"/>
+                </SizeDefine>
+            </ComArea>
+            <VAlign type="BottomAligned"/>
+            <HAlign type="RightAligned"/>
+            <Property name="Text" value="Accept"/>
+        </StyleWidget>
+        <StyleWidget id="__auto_oldcolourrect__" type="Vanilla/FrameColourArea">
+            <ComArea>
+                <SizeDefine type="LeftEdge">
+                    <RelSize scale="0.04" type="Width"/>
+                </SizeDefine>
+                <SizeDefine type="TopEdge">
+                    <SizeOp op="Subtract">
+                        <RelSize scale="-0.06" type="Height"/>
+                        <RelSize scale="0.05" type="Height"/>
+                    </SizeOp>
+                </SizeDefine>
+                <SizeDefine type="Width">
+                    <RelSize scale="0.11" type="Width"/>
+                </SizeDefine>
+                <SizeDefine type="Height">
+                    <RelSize scale="0.11" type="Width"/>
+                </SizeDefine>
+            </ComArea>
+            <VAlign type="BottomAligned"/>
+            <HAlign type="LeftAligned"/>
+        </StyleWidget>
+        <StyleWidget id="__auto_newcolourrect__" type="Vanilla/FrameColourArea">
+            <ComArea>
+                <SizeDefine type="LeftEdge">
+                    <SizeOp op="Add">
+                        <RelSize scale="0.04" type="Width"/>
+                        <SizeOp op="Add">
+                            <WidgetSize widget="__auto_oldcolourrect__" dimension="Width"/>
+                            <WidgetSize widget="__auto_oldcolourrect__" dimension="LeftEdge"/>
+                        </SizeOp>
+                    </SizeOp>
+                </SizeDefine>
+                <SizeDefine type="TopEdge">
+                    <WidgetSize widget="__auto_oldcolourrect__" dimension="TopEdge"/>
+                </SizeDefine>
+                <SizeDefine type="Width">
+                    <RelSize scale="0.11" type="Width"/>
+                </SizeDefine>
+                <SizeDefine type="Height">
+                    <RelSize scale="0.11" type="Width"/>
+                </SizeDefine>
+            </ComArea>
+            <VAlign type="BottomAligned"/>
+            <HAlign type="LeftAligned"/>
+        </StyleWidget>
+        <StyleWidget id="__auto_newcolourdescription__" type="Vanilla/StaticText">
+            <ComArea>
+                <SizeDefine type="LeftEdge">
+                    <SizeOp op="Add">
+                        <RelSize scale="-0.02" type="Width"/>
+                        <WidgetSize widget="__auto_oldcolourrect__" dimension="LeftEdge"/>
+                    </SizeOp>
+                </SizeDefine>
+                <SizeDefine type="TopEdge">
+                    <SizeOp op="Add">
+                        <RelSize scale="0.0" type="Height"/>
+                        <SizeOp op="Subtract">
+                            <WidgetSize widget="__auto_oldcolourrect__" dimension="TopEdge"/>
+                            <WidgetSize widget="__auto_oldcolourrect__" dimension="Height"/>
+                        </SizeOp>
+                    </SizeOp>
+                </SizeDefine>
+                <SizeDefine type="Width">
+                    <SizeOp op="Add">
+                        <RelSize scale="0.04" type="Width"/>
+                        <WidgetSize widget="__auto_oldcolourrect__" dimension="Width"/>
+                    </SizeOp>
+                </SizeDefine>
+                <SizeDefine type="Height">
+                    <RelSize scale="0.04" type="Height"/>
+                </SizeDefine>
+            </ComArea>
+            <VAlign type="BottomAligned"/>
+            <HAlign type="LeftAligned"/>
+            <Property name="Text" value="Previous"/>
+            <Property name="FrameEnabled" value="false"/>
+            <Property name="BackgroundEnabled" value="false"/>
+            <Property name="HLayout" value="Centre"/>
+        </StyleWidget>
+        <StyleWidget id="__auto_oldcolourdescription__" type="Vanilla/StaticText">
+            <ComArea>
+                <SizeDefine type="LeftEdge">
+                    <SizeOp op="Add">
+                        <RelSize scale="-0.02" type="Width"/>
+                        <WidgetSize widget="__auto_newcolourrect__" dimension="LeftEdge"/>
+                    </SizeOp>
+                </SizeDefine>
+                <SizeDefine type="TopEdge">
+                    <SizeOp op="Add">
+                        <RelSize scale="0.0" type="Height"/>
+                        <SizeOp op="Subtract">
+                            <WidgetSize widget="__auto_newcolourrect__" dimension="TopEdge"/>
+                            <WidgetSize widget="__auto_newcolourrect__" dimension="Height"/>
+                        </SizeOp>
+                    </SizeOp>
+                </SizeDefine>
+                <SizeDefine type="Width">
+                    <SizeOp op="Add">
+                        <RelSize scale="0.04" type="Width"/>
+                        <WidgetSize widget="__auto_newcolourrect__" dimension="Width"/>
+                    </SizeOp>
+                </SizeDefine>
+                <SizeDefine type="Height">
+                    <RelSize scale="0.04" type="Height"/>
+                </SizeDefine>
+            </ComArea>
+            <VAlign type="BottomAligned"/>
+            <HAlign type="LeftAligned"/>
+            <Property name="Text" value="Current"/>
+            <Property name="FrameEnabled" value="false"/>
+            <Property name="BackgroundEnabled" value="false"/>
+            <Property name="HLayout" value="Centre"/>
+        </StyleWidget>
+        <!--
+		***************************************************
+			ColourPicker Texture and Scrollbar
+		***************************************************
+		-->
+        <StyleWidget id="__auto_colourpickerstaticimage__" type="Vanilla/StaticImage">
+            <ComArea>
+                <SizeDefine type="LeftEdge">
+                    <RelSize scale="0.04" type="Width"/>
+                </SizeDefine>
+                <SizeDefine type="TopEdge">
+                    <SizeOp op="Add">
+                        <SizeProperty name="ColourPickerImageSliderWidth"/>
+                        <WidgetSize widget="__auto_titlebar__" dimension="Height"/>
+                    </SizeOp>
+                </SizeDefine>
+                <SizeDefine type="Width">
+                    <AbsSize value="260"/>
+                </SizeDefine>
+                <SizeDefine type="Height">
+                    <AbsSize value="260"/>
+                </SizeDefine>
+            </ComArea>
+            <VAlign type="TopAligned"/>
+            <HAlign type="LeftAligned"/>
+            <Property name="FrameEnabled" value="false"/>
+            <Property name="BackgroundEnabled" value="false"/>
+        </StyleWidget>
+        <StyleWidget id="__auto_colourpickerimageslider__" type="Vanilla/VerticalImageSlider">
+            <ComArea>
+                <SizeDefine type="LeftEdge">
+                    <SizeOp op="Add">
+                        <AbsSize value="5"/>
+                        <WidgetSize widget="__auto_colourpickerstaticimage__" dimension="RightEdge"/>
+                    </SizeOp>
+                </SizeDefine>
+                <SizeDefine type="TopEdge">
+                    <WidgetSize widget="__auto_colourpickerstaticimage__" dimension="TopEdge"/>
+                </SizeDefine>
+                <SizeDefine type="Width">
+                    <SizeProperty name="ColourPickerImageSliderWidth"/>
+                </SizeDefine>
+                <SizeDefine type="Height">
+                    <WidgetSize widget="__auto_colourpickerstaticimage__" dimension="Height"/>
+                </SizeDefine>
+            </ComArea>
+            <VAlign type="TopAligned"/>
+            <HAlign type="LeftAligned"/>
+        </StyleWidget>
+        <!--
+		***************************************************
+			Start of RGB colour attribute child widgets 
+		***************************************************
+		-->
+        <StyleWidget id="__auto_coloureditboxBdescription__" type="Vanilla/StaticText">
+            <ComArea>
+                <SizeDefine type="LeftEdge">
+                    <SizeOp op="Add">
+                        <RelSize scale="0.08" type="Width"/>
+                        <WidgetSize widget="__auto_newcolourrect__" dimension="RightEdge"/>
+                    </SizeOp>
+                </SizeDefine>
+                <SizeDefine type="TopEdge">
+                    <RelSize scale="-0.1" type="Height"/>
+                </SizeDefine>
+                <SizeDefine type="Width">
+                    <RelSize scale="0.04" type="Width"/>
+                </SizeDefine>
+                <SizeDefine type="Height">
+                    <RelSize scale="0.05" type="Height"/>
+                </SizeDefine>
+            </ComArea>
+            <VAlign type="BottomAligned"/>
+            <HAlign type="LeftAligned"/>
+            <Property name="Text" value="B"/>
+            <Property name="FrameEnabled" value="false"/>
+            <Property name="BackgroundEnabled" value="false"/>
+            <Property name="HLayout" value="LeftAligned"/>
+        </StyleWidget>
+        <StyleWidget id="__auto_coloureditboxB__" type="Vanilla/Editbox">
+            <ComArea>
+                <SizeDefine type="LeftEdge">
+                    <WidgetSize widget="__auto_coloureditboxBdescription__" dimension="RightEdge"/>
+                </SizeDefine>
+                <SizeDefine type="TopEdge">
+                    <WidgetSize widget="__auto_coloureditboxBdescription__" dimension="TopEdge"/>
+                </SizeDefine>
+                <SizeDefine type="Width">
+                    <RelSize scale="0.09" type="Width"/>
+                </SizeDefine>
+                <SizeDefine type="Height">
+                    <RelSize scale="0.05" type="Height"/>
+                </SizeDefine>
+            </ComArea>
+            <VAlign type="BottomAligned"/>
+            <HAlign type="LeftAligned"/>
+            <Property name="Text" value="255"/>
+            <Property name="TextFormatting" value="Centre"/>
+            <Property name="MaxTextLength" value="3"/>
+            <Property name="ValidationString" value="^$|[1][0-9][0-9]|[0-2][5][0-5]|[0-2][0-4][0-9]|[0-9]{1,2}"/>
+        </StyleWidget>
+        <StyleWidget id="__auto_coloureditboxGdescription__" type="Vanilla/StaticText">
+            <ComArea>
+                <SizeDefine type="LeftEdge">
+                    <WidgetSize widget="__auto_coloureditboxBdescription__" dimension="LeftEdge"/>
+                </SizeDefine>
+                <SizeDefine type="TopEdge">
+                    <SizeOp op="Add">
+                        <RelSize scale="-0.01" type="Height"/>
+                        <SizeOp op="Subtract">
+                            <WidgetSize widget="__auto_coloureditboxBdescription__" dimension="TopEdge"/>
+                            <WidgetSize widget="__auto_coloureditboxBdescription__" dimension="Height"/>
+                        </SizeOp>
+                    </SizeOp>
+                </SizeDefine>
+                <SizeDefine type="Width">
+                    <RelSize scale="0.04" type="Width"/>
+                </SizeDefine>
+                <SizeDefine type="Height">
+                    <RelSize scale="0.05" type="Height"/>
+                </SizeDefine>
+            </ComArea>
+            <VAlign type="BottomAligned"/>
+            <HAlign type="LeftAligned"/>
+            <Property name="Text" value="G"/>
+            <Property name="FrameEnabled" value="false"/>
+            <Property name="BackgroundEnabled" value="false"/>
+            <Property name="HLayout" value="LeftAligned"/>
+        </StyleWidget>
+        <StyleWidget id="__auto_coloureditboxG__" type="Vanilla/Editbox">
+            <ComArea>
+                <SizeDefine type="LeftEdge">
+                    <WidgetSize widget="__auto_coloureditboxGdescription__" dimension="RightEdge"/>
+                </SizeDefine>
+                <SizeDefine type="TopEdge">
+                    <WidgetSize widget="__auto_coloureditboxGdescription__" dimension="TopEdge"/>
+                </SizeDefine>
+                <SizeDefine type="Width">
+                    <RelSize scale="0.09" type="Width"/>
+                </SizeDefine>
+                <SizeDefine type="Height">
+                    <RelSize scale="0.05" type="Height"/>
+                </SizeDefine>
+            </ComArea>
+            <VAlign type="BottomAligned"/>
+            <HAlign type="LeftAligned"/>
+            <Property name="TextFormatting" value="Centre"/>
+            <Property name="Text" value="255"/>
+            <Property name="MaxTextLength" value="3"/>
+            <Property name="ValidationString" value="^$|[1][0-9][0-9]|[0-2][5][0-5]|[0-2][0-4][0-9]|[0-9]{1,2}"/>
+        </StyleWidget>
+        <StyleWidget id="__auto_coloureditboxRdescription__" type="Vanilla/StaticText">
+            <ComArea>
+                <SizeDefine type="LeftEdge">
+                    <WidgetSize widget="__auto_coloureditboxGdescription__" dimension="LeftEdge"/>
+                </SizeDefine>
+                <SizeDefine type="TopEdge">
+                    <SizeOp op="Add">
+                        <RelSize scale="-0.01" type="Height"/>
+                        <SizeOp op="Subtract">
+                            <WidgetSize widget="__auto_coloureditboxGdescription__" dimension="TopEdge"/>
+                            <WidgetSize widget="__auto_coloureditboxGdescription__" dimension="Height"/>
+                        </SizeOp>
+                    </SizeOp>
+                </SizeDefine>
+                <SizeDefine type="Width">
+                    <RelSize scale="0.04" type="Width"/>
+                </SizeDefine>
+                <SizeDefine type="Height">
+                    <RelSize scale="0.05" type="Height"/>
+                </SizeDefine>
+            </ComArea>
+            <VAlign type="BottomAligned"/>
+            <HAlign type="LeftAligned"/>
+            <Property name="Text" value="R"/>
+            <Property name="FrameEnabled" value="false"/>
+            <Property name="BackgroundEnabled" value="false"/>
+            <Property name="HLayout" value="LeftAligned"/>
+        </StyleWidget>
+        <StyleWidget id="__auto_coloureditboxR__" type="Vanilla/Editbox">
+            <ComArea>
+                <SizeDefine type="LeftEdge">
+                    <WidgetSize widget="__auto_coloureditboxRdescription__" dimension="RightEdge"/>
+                </SizeDefine>
+                <SizeDefine type="TopEdge">
+                    <WidgetSize widget="__auto_coloureditboxRdescription__" dimension="TopEdge"/>
+                </SizeDefine>
+                <SizeDefine type="Width">
+                    <RelSize scale="0.09" type="Width"/>
+                </SizeDefine>
+                <SizeDefine type="Height">
+                    <RelSize scale="0.05" type="Height"/>
+                </SizeDefine>
+            </ComArea>
+            <VAlign type="BottomAligned"/>
+            <HAlign type="LeftAligned"/>
+            <Property name="TextFormatting" value="Centre"/>
+            <Property name="Text" value="255"/>
+            <Property name="MaxTextLength" value="3"/>
+            <Property name="ValidationString" value="^$|[1][0-9][0-9]|[0-2][5][0-5]|[0-2][0-4][0-9]|[0-9]{1,2}"/>
+        </StyleWidget>
+        <!--
+		***************************************************
+			Hexadecimal description and editbox
+		***************************************************
+		-->
+        <StyleWidget id="__auto_hexadecimaleditbox__" type="Vanilla/Editbox">
+            <ComArea>
+                <SizeDefine type="LeftEdge">
+                    <SizeOp op="Subtract">
+                        <WidgetSize widget="__auto_coloureditboxB__" dimension="RightEdge"/>
+                        <RelSize scale="0.17" type="Width"/>
+                    </SizeOp>
+                </SizeDefine>
+                <SizeDefine type="TopEdge">
+                    <RelSize scale="-0.02" type="Height"/>
+                </SizeDefine>
+                <SizeDefine type="Width">
+                    <RelSize scale="0.17" type="Width"/>
+                </SizeDefine>
+                <SizeDefine type="Height">
+                    <RelSize scale="0.05" type="Height"/>
+                </SizeDefine>
+            </ComArea>
+            <VAlign type="BottomAligned"/>
+            <HAlign type="LeftAligned"/>
+            <Property name="Text" value="FFFFFFFF"/>
+            <Property name="MaxTextLength" value="8"/>
+            <Property name="TextFormatting" value="Centre"/>
+            <Property name="ValidationString" value="[0-9a-fA-F]{0,8}"/>
+        </StyleWidget>
+        <StyleWidget id="__auto_hexadecimalstatictext__" type="Vanilla/StaticText">
+            <ComArea>
+                <SizeDefine type="LeftEdge">
+                    <SizeOp op="Subtract">
+                        <WidgetSize widget="__auto_hexadecimaleditbox__" dimension="LeftEdge"/>
+                        <RelSize scale="0.22" type="Width"/>
+                    </SizeOp>
+                </SizeDefine>
+                <SizeDefine type="TopEdge">
+                    <RelSize scale="-0.02" type="Height"/>
+                </SizeDefine>
+                <SizeDefine type="Width">
+                    <RelSize scale="0.20" type="Width"/>
+                </SizeDefine>
+                <SizeDefine type="Height">
+                    <RelSize scale="0.05" type="Height"/>
+                </SizeDefine>
+            </ComArea>
+            <VAlign type="BottomAligned"/>
+            <HAlign type="LeftAligned"/>
+            <Property name="Text" value="Hexadecimal:"/>
+            <Property name="FrameEnabled" value="false"/>
+            <Property name="BackgroundEnabled" value="false"/>
+            <Property name="HLayout" value="Centre"/>
+        </StyleWidget>
+        <!--
+		***************************************************
+			Start of HSV colour model child widgets 
+		***************************************************
+		-->
+        <StyleWidget id="__auto_HSVeditboxH__" type="Vanilla/Editbox">
+            <ComArea>
+                <SizeDefine type="LeftEdge">
+                    <RelSize scale="-0.070" type="Width"/>
+                </SizeDefine>
+                <SizeDefine type="TopEdge">
+                    <SizeOp op="Add">
+                        <RelSize scale="0.05" type="Height"/>
+                        <WidgetSize widget="__auto_colourpickerstaticimage__" dimension="TopEdge"/>
+                    </SizeOp>
+                </SizeDefine>
+                <SizeDefine type="Width">
+                    <RelSize scale="0.15" type="Width"/>
+                </SizeDefine>
+                <SizeDefine type="Height">
+                    <RelSize scale="0.055" type="Height"/>
+                </SizeDefine>
+            </ComArea>
+            <VAlign type="TopAligned"/>
+            <HAlign type="RightAligned"/>
+            <Property name="TextFormatting" value="Centre"/>
+            <Property name="Text" value="255.000"/>
+            <Property name="MaxTextLength" value="8"/>
+            <Property name="ValidationString" value="[-+]?[0-9]*\.?[0-9]+"/>
+        </StyleWidget>
+        <StyleWidget id="__auto_HSVradiobuttonH__" type="Vanilla/RadioButton">
+            <ComArea>
+                <SizeDefine type="LeftEdge">
+                    <SizeOp op="Add">
+                        <AbsSize value="-6"/>
+                        <SizeOp op="Subtract">
+                            <WidgetSize widget="__auto_HSVeditboxH__" dimension="LeftEdge"/>
+                            <WidgetSize widget="__auto_HSVeditboxH__" dimension="Width"/>
+                        </SizeOp>
+                    </SizeOp>
+                </SizeDefine>
+                <SizeDefine type="TopEdge">
+                    <SizeOp op="Add">
+                        <RelSize scale="0.0" type="Height"/>
+                        <WidgetSize widget="__auto_HSVeditboxH__" dimension="TopEdge"/>
+                    </SizeOp>
+                </SizeDefine>
+                <SizeDefine type="Width">
+                    <RelSize scale="0.055" type="Width"/>
+                </SizeDefine>
+                <SizeDefine type="Height">
+                    <WidgetSize widget="__auto_HSVeditboxH__" dimension="Height"/>
+                </SizeDefine>
+            </ComArea>
+            <VAlign type="TopAligned"/>
+            <HAlign type="RightAligned"/>
+            <Property name="Text" value="H"/>
+            <Property name="RadioButtonRelativeWidth" value="0.5"/>
+            <Property name="RadioButtonRelativeHeight" value="0.5"/>
+        </StyleWidget>
+        <StyleWidget id="__auto_HSVeditboxS__" type="Vanilla/Editbox">
+            <ComArea>
+                <SizeDefine type="LeftEdge">
+                    <WidgetSize widget="__auto_HSVeditboxH__" dimension="LeftEdge"/>
+                </SizeDefine>
+                <SizeDefine type="TopEdge">
+                    <SizeOp op="Add">
+                        <RelSize scale="0.01" type="Height"/>
+                        <WidgetSize widget="__auto_HSVeditboxH__" dimension="BottomEdge"/>
+                    </SizeOp>
+                </SizeDefine>
+                <SizeDefine type="Width">
+                    <RelSize scale="0.15" type="Width"/>
+                </SizeDefine>
+                <SizeDefine type="Height">
+                    <RelSize scale="0.055" type="Height"/>
+                </SizeDefine>
+            </ComArea>
+            <VAlign type="TopAligned"/>
+            <HAlign type="RightAligned"/>
+            <Property name="TextFormatting" value="Centre"/>
+            <Property name="Text" value="100.000"/>
+            <Property name="MaxTextLength" value="8"/>
+            <Property name="ValidationString" value="[-+]?[0-9]*\.?[0-9]+"/>
+        </StyleWidget>
+        <StyleWidget id="__auto_HSVradiobuttonS__" type="Vanilla/RadioButton">
+            <ComArea>
+                <SizeDefine type="LeftEdge">
+                    <SizeOp op="Add">
+                        <AbsSize value="-6"/>
+                        <SizeOp op="Subtract">
+                            <WidgetSize widget="__auto_HSVeditboxS__" dimension="LeftEdge"/>
+                            <WidgetSize widget="__auto_HSVeditboxS__" dimension="Width"/>
+                        </SizeOp>
+                    </SizeOp>
+                </SizeDefine>
+                <SizeDefine type="TopEdge">
+                    <SizeOp op="Add">
+                        <RelSize scale="0.0" type="Height"/>
+                        <WidgetSize widget="__auto_HSVeditboxS__" dimension="TopEdge"/>
+                    </SizeOp>
+                </SizeDefine>
+                <SizeDefine type="Width">
+                    <RelSize scale="0.055" type="Width"/>
+                </SizeDefine>
+                <SizeDefine type="Height">
+                    <WidgetSize widget="__auto_HSVeditboxS__" dimension="Height"/>
+                </SizeDefine>
+            </ComArea>
+            <VAlign type="TopAligned"/>
+            <HAlign type="RightAligned"/>
+            <Property name="Text" value="S"/>
+            <Property name="RadioButtonRelativeWidth" value="0.5"/>
+            <Property name="RadioButtonRelativeHeight" value="0.5"/>
+        </StyleWidget>
+        <StyleWidget id="__auto_HSVeditboxV__" type="Vanilla/Editbox">
+            <ComArea>
+                <SizeDefine type="LeftEdge">
+                    <WidgetSize widget="__auto_HSVeditboxS__" dimension="LeftEdge"/>
+                </SizeDefine>
+                <SizeDefine type="TopEdge">
+                    <SizeOp op="Add">
+                        <RelSize scale="0.01" type="Height"/>
+                        <WidgetSize widget="__auto_HSVeditboxS__" dimension="BottomEdge"/>
+                    </SizeOp>
+                </SizeDefine>
+                <SizeDefine type="Width">
+                    <RelSize scale="0.15" type="Width"/>
+                </SizeDefine>
+                <SizeDefine type="Height">
+                    <RelSize scale="0.055" type="Height"/>
+                </SizeDefine>
+            </ComArea>
+            <VAlign type="TopAligned"/>
+            <HAlign type="RightAligned"/>
+            <Property name="TextFormatting" value="Centre"/>
+            <Property name="Text" value="255.000"/>
+            <Property name="MaxTextLength" value="8"/>
+            <Property name="ValidationString" value="[-+]?[0-9]*\.?[0-9]+"/>
+        </StyleWidget>
+        <StyleWidget id="__auto_HSVradiobuttonV__" type="Vanilla/RadioButton">
+            <ComArea>
+                <SizeDefine type="LeftEdge">
+                    <SizeOp op="Add">
+                        <AbsSize value="-6"/>
+                        <SizeOp op="Subtract">
+                            <WidgetSize widget="__auto_HSVeditboxV__" dimension="LeftEdge"/>
+                            <WidgetSize widget="__auto_HSVeditboxV__" dimension="Width"/>
+                        </SizeOp>
+                    </SizeOp>
+                </SizeDefine>
+                <SizeDefine type="TopEdge">
+                    <SizeOp op="Add">
+                        <RelSize scale="0.0" type="Height"/>
+                        <WidgetSize widget="__auto_HSVeditboxV__" dimension="TopEdge"/>
+                    </SizeOp>
+                </SizeDefine>
+                <SizeDefine type="Width">
+                    <RelSize scale="0.055" type="Width"/>
+                </SizeDefine>
+                <SizeDefine type="Height">
+                    <WidgetSize widget="__auto_HSVeditboxV__" dimension="Height"/>
+                </SizeDefine>
+            </ComArea>
+            <VAlign type="TopAligned"/>
+            <HAlign type="RightAligned"/>
+            <Property name="Text" value="V"/>
+            <Property name="RadioButtonRelativeWidth" value="0.5"/>
+            <Property name="RadioButtonRelativeHeight" value="0.5"/>
+        </StyleWidget>
+        <!--
+		***************************************************
+			Start of L*a*b colour model child widgets 
+		***************************************************
+		-->
+        <StyleWidget id="__auto_LabeditboxL__" type="Vanilla/Editbox">
+            <ComArea>
+                <SizeDefine type="LeftEdge">
+                    <WidgetSize widget="__auto_HSVeditboxH__" dimension="LeftEdge"/>
+                </SizeDefine>
+                <SizeDefine type="TopEdge">
+                    <SizeOp op="Add">
+                        <RelSize scale="0.07" type="Height"/>
+                        <WidgetSize widget="__auto_HSVeditboxV__" dimension="BottomEdge"/>
+                    </SizeOp>
+                </SizeDefine>
+                <SizeDefine type="Width">
+                    <RelSize scale="0.15" type="Width"/>
+                </SizeDefine>
+                <SizeDefine type="Height">
+                    <RelSize scale="0.055" type="Height"/>
+                </SizeDefine>
+            </ComArea>
+            <VAlign type="TopAligned"/>
+            <HAlign type="RightAligned"/>
+            <Property name="TextFormatting" value="Centre"/>
+            <Property name="Text" value="100.000"/>
+            <Property name="MaxTextLength" value="8"/>
+            <Property name="ValidationString" value="[-+]?[0-9]*\.?[0-9]+"/>
+        </StyleWidget>
+        <StyleWidget id="__auto_LabradiobuttonL__" type="Vanilla/RadioButton">
+            <ComArea>
+                <SizeDefine type="LeftEdge">
+                    <SizeOp op="Add">
+                        <AbsSize value="-6"/>
+                        <SizeOp op="Subtract">
+                            <WidgetSize widget="__auto_LabeditboxL__" dimension="LeftEdge"/>
+                            <WidgetSize widget="__auto_LabeditboxL__" dimension="Width"/>
+                        </SizeOp>
+                    </SizeOp>
+                </SizeDefine>
+                <SizeDefine type="TopEdge">
+                    <SizeOp op="Add">
+                        <RelSize scale="0.0" type="Height"/>
+                        <WidgetSize widget="__auto_LabeditboxL__" dimension="TopEdge"/>
+                    </SizeOp>
+                </SizeDefine>
+                <SizeDefine type="Width">
+                    <RelSize scale="0.055" type="Width"/>
+                </SizeDefine>
+                <SizeDefine type="Height">
+                    <WidgetSize widget="__auto_LabeditboxL__" dimension="Height"/>
+                </SizeDefine>
+            </ComArea>
+            <VAlign type="TopAligned"/>
+            <HAlign type="RightAligned"/>
+            <Property name="Text" value="L"/>
+            <Property name="RadioButtonRelativeWidth" value="0.5"/>
+            <Property name="RadioButtonRelativeHeight" value="0.5"/>
+        </StyleWidget>
+        <StyleWidget id="__auto_Labeditboxa__" type="Vanilla/Editbox">
+            <ComArea>
+                <SizeDefine type="LeftEdge">
+                    <WidgetSize widget="__auto_LabeditboxL__" dimension="LeftEdge"/>
+                </SizeDefine>
+                <SizeDefine type="TopEdge">
+                    <SizeOp op="Add">
+                        <RelSize scale="0.01" type="Height"/>
+                        <WidgetSize widget="__auto_LabeditboxL__" dimension="BottomEdge"/>
+                    </SizeOp>
+                </SizeDefine>
+                <SizeDefine type="Width">
+                    <RelSize scale="0.15" type="Width"/>
+                </SizeDefine>
+                <SizeDefine type="Height">
+                    <RelSize scale="0.055" type="Height"/>
+                </SizeDefine>
+            </ComArea>
+            <VAlign type="TopAligned"/>
+            <HAlign type="RightAligned"/>
+            <Property name="TextFormatting" value="Centre"/>
+            <Property name="Text" value="130.000"/>
+            <Property name="MaxTextLength" value="8"/>
+            <Property name="ValidationString" value="[-+]?[0-9]*\.?[0-9]+"/>
+        </StyleWidget>
+        <StyleWidget id="__auto_Labradiobuttona__" type="Vanilla/RadioButton">
+            <ComArea>
+                <SizeDefine type="LeftEdge">
+                    <SizeOp op="Add">
+                        <AbsSize value="-6"/>
+                        <SizeOp op="Subtract">
+                            <WidgetSize widget="__auto_Labeditboxa__" dimension="LeftEdge"/>
+                            <WidgetSize widget="__auto_Labeditboxa__" dimension="Width"/>
+                        </SizeOp>
+                    </SizeOp>
+                </SizeDefine>
+                <SizeDefine type="TopEdge">
+                    <SizeOp op="Add">
+                        <RelSize scale="0.0" type="Height"/>
+                        <WidgetSize widget="__auto_Labeditboxa__" dimension="TopEdge"/>
+                    </SizeOp>
+                </SizeDefine>
+                <SizeDefine type="Width">
+                    <RelSize scale="0.055" type="Width"/>
+                </SizeDefine>
+                <SizeDefine type="Height">
+                    <WidgetSize widget="__auto_Labeditboxa__" dimension="Height"/>
+                </SizeDefine>
+            </ComArea>
+            <VAlign type="TopAligned"/>
+            <HAlign type="RightAligned"/>
+            <Property name="Text" value="a"/>
+            <Property name="RadioButtonRelativeWidth" value="0.5"/>
+            <Property name="RadioButtonRelativeHeight" value="0.5"/>
+        </StyleWidget>
+        <StyleWidget id="__auto_Labeditboxb__" type="Vanilla/Editbox">
+            <ComArea>
+                <SizeDefine type="LeftEdge">
+                    <WidgetSize widget="__auto_Labeditboxa__" dimension="LeftEdge"/>
+                </SizeDefine>
+                <SizeDefine type="TopEdge">
+                    <SizeOp op="Add">
+                        <RelSize scale="0.01" type="Height"/>
+                        <WidgetSize widget="__auto_Labeditboxa__" dimension="BottomEdge"/>
+                    </SizeOp>
+                </SizeDefine>
+                <SizeDefine type="Width">
+                    <RelSize scale="0.15" type="Width"/>
+                </SizeDefine>
+                <SizeDefine type="Height">
+                    <RelSize scale="0.055" type="Height"/>
+                </SizeDefine>
+            </ComArea>
+            <VAlign type="TopAligned"/>
+            <HAlign type="RightAligned"/>
+            <Property name="TextFormatting" value="Centre"/>
+            <Property name="Text" value="130.000"/>
+            <Property name="MaxTextLength" value="8"/>
+            <Property name="ValidationString" value="[-+]?[0-9]*\.?[0-9]+"/>
+        </StyleWidget>
+        <StyleWidget id="__auto_Labradiobuttonb__" type="Vanilla/RadioButton">
+            <ComArea>
+                <SizeDefine type="LeftEdge">
+                    <SizeOp op="Add">
+                        <AbsSize value="-6"/>
+                        <SizeOp op="Subtract">
+                            <WidgetSize widget="__auto_Labeditboxb__" dimension="LeftEdge"/>
+                            <WidgetSize widget="__auto_Labeditboxb__" dimension="Width"/>
+                        </SizeOp>
+                    </SizeOp>
+                </SizeDefine>
+                <SizeDefine type="TopEdge">
+                    <SizeOp op="Add">
+                        <RelSize scale="0.0" type="Height"/>
+                        <WidgetSize widget="__auto_Labeditboxb__" dimension="TopEdge"/>
+                    </SizeOp>
+                </SizeDefine>
+                <SizeDefine type="Width">
+                    <RelSize scale="0.055" type="Width"/>
+                </SizeDefine>
+                <SizeDefine type="Height">
+                    <WidgetSize widget="__auto_Labeditboxb__" dimension="Height"/>
+                </SizeDefine>
+            </ComArea>
+            <VAlign type="TopAligned"/>
+            <HAlign type="RightAligned"/>
+            <Property name="Text" value="b"/>
+            <Property name="RadioButtonRelativeWidth" value="0.5"/>
+            <Property name="RadioButtonRelativeHeight" value="0.5"/>
+        </StyleWidget>
+        <!--
+		***************************************************
+			Start of Alpha child widgets 
+		***************************************************
+		-->
+        <StyleWidget id="__auto_colourpickeralphaslider__" type="Vanilla/HorizontalImageSlider">
+            <ComArea>
+                <SizeDefine type="LeftEdge">
+                    <RelSize scale="0.57" type="Width"/>
+                </SizeDefine>
+                <SizeDefine type="TopEdge">
+                    <RelSize scale="0.74" type="Height"/>
+                </SizeDefine>
+                <SizeDefine type="Width">
+                    <RelSize scale="0.40" type="Width"/>
+                </SizeDefine>
+                <SizeDefine type="Height">
+                    <RelSize scale="0.07" type="Height"/>
+                </SizeDefine>
+            </ComArea>
+            <VAlign type="TopAligned"/>
+            <HAlign type="LeftAligned"/>
+        </StyleWidget>
+        <StyleWidget id="__auto_alphaeditbox__" type="Vanilla/Editbox">
+            <ComArea>
+                <SizeDefine type="LeftEdge">
+                    <SizeOp op="Add">
+                        <RelSize scale="-0.075" type="Width"/>
+                        <SizeOp op="Add">
+                            <WidgetSize widget="__auto_colourpickeralphaslider__" dimension="LeftEdge"/>
+                            <SizeOp op="Multiply">
+                                <WidgetSize widget="__auto_colourpickeralphaslider__" dimension="Width"/>
+                                <AbsSize value="0.5"/>
+                            </SizeOp>
+                        </SizeOp>
+                    </SizeOp>
+                </SizeDefine>
+                <SizeDefine type="TopEdge">
+                    <SizeOp op="Add">
+                        <RelSize scale="0.01" type="Height"/>
+                        <WidgetSize widget="__auto_colourpickeralphaslider__" dimension="BottomEdge"/>
+                    </SizeOp>
+                </SizeDefine>
+                <SizeDefine type="Width">
+                    <RelSize scale="0.15" type="Width"/>
+                </SizeDefine>
+                <SizeDefine type="Height">
+                    <RelSize scale="0.055" type="Height"/>
+                </SizeDefine>
+            </ComArea>
+            <VAlign type="TopAligned"/>
+            <HAlign type="LeftAligned"/>
+            <Property name="TextFormatting" value="Centre"/>
+            <Property name="Text" value="0.000"/>
+            <Property name="MaxTextLength" value="8"/>
+            <Property name="ValidationString" value="[-+]?[0-9]*\.?[0-9]+"/>
+        </StyleWidget>
+        <StyleWidget id="__auto_alphastatictext__" type="Vanilla/StaticText">
+            <ComArea>
+                <SizeDefine type="LeftEdge">
+                    <SizeOp op="Add">
+                        <RelSize scale="-0.10" type="Width"/>
+                        <WidgetSize widget="__auto_alphaeditbox__" dimension="LeftEdge"/>
+                    </SizeOp>
+                </SizeDefine>
+                <SizeDefine type="TopEdge">
+                    <SizeOp op="Add">
+                        <RelSize scale="0.01" type="Height"/>
+                        <WidgetSize widget="__auto_colourpickeralphaslider__" dimension="BottomEdge"/>
+                    </SizeOp>
+                </SizeDefine>
+                <SizeDefine type="Width">
+                    <RelSize scale="0.10" type="Width"/>
+                </SizeDefine>
+                <SizeDefine type="Height">
+                    <RelSize scale="0.055" type="Height"/>
+                </SizeDefine>
+            </ComArea>
+            <VAlign type="TopAligned"/>
+            <HAlign type="LeftAligned"/>
+            <Property name="Text" value="Alpha:"/>
+            <Property name="FrameEnabled" value="false"/>
+            <Property name="BackgroundEnabled" value="false"/>
+            <Property name="HLayout" value="Centre"/>
+        </StyleWidget>
+        <!--
+		***************************************************
+			Start of StyleSection definitions 
+		***************************************************
+		-->
+        <StyleSection name="withframe">
+            <FrameCom>
+                <ComArea>
+                    <SizeDefine type="LeftEdge">
+                        <AbsSize value="0"/>
+                    </SizeDefine>
+                    <SizeDefine type="TopEdge">
+                        <AbsSize value="0"/>
+                    </SizeDefine>
+                    <SizeDefine type="RightEdge">
+                        <RelSize scale="1" type="RightEdge"/>
+                    </SizeDefine>
+                    <SizeDefine type="BottomEdge">
+                        <RelSize scale="1" type="BottomEdge"/>
+                    </SizeDefine>
+                </ComArea>
+                <ComPixel type="TopLeftCorner" pixel_id="Vanilla-Images/FrameTopLeft"/>
+                <ComPixel type="TopRightCorner" pixel_id="Vanilla-Images/FrameTopRight"/>
+                <ComPixel type="BottomLeftCorner" pixel_id="Vanilla-Images/FrameBottomLeft"/>
+                <ComPixel type="BottomRightCorner" pixel_id="Vanilla-Images/FrameBottomRight"/>
+                <ComPixel type="LeftEdge" pixel_id="Vanilla-Images/FrameLeft"/>
+                <ComPixel type="TopEdge" pixel_id="Vanilla-Images/FrameTop"/>
+                <ComPixel type="RightEdge" pixel_id="Vanilla-Images/FrameRight"/>
+                <ComPixel type="BottomEdge" pixel_id="Vanilla-Images/FrameBottom"/>
+                <ComPixel type="Background" pixel_id="Vanilla-Images/GenericBrush"/>
+                <ColoursProperty name="BackgroundColours"/>
+            </FrameCom>
+        </StyleSection>
+        <StyleSection name="noframe">
+            <FrameCom>
+                <ComArea>
+                    <SizeDefine type="LeftEdge">
+                        <AbsSize value="0"/>
+                    </SizeDefine>
+                    <SizeDefine type="TopEdge">
+                        <AbsSize value="0"/>
+                    </SizeDefine>
+                    <SizeDefine type="RightEdge">
+                        <RelSize scale="1" type="RightEdge"/>
+                    </SizeDefine>
+                    <SizeDefine type="BottomEdge">
+                        <RelSize scale="1" type="BottomEdge"/>
+                    </SizeDefine>
+                </ComArea>
+                <ComPixel type="Background" pixel_id="Vanilla-Images/GenericBrush"/>
+                <ColoursProperty name="BackgroundColours"/>
+            </FrameCom>
+        </StyleSection>
+        <StyleLayout name="Enabled">
+            <Layer>
+                <Section id="withframe"/>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Disabled">
+            <Layer>
+                <Section id="noframe"/>
+            </Layer>
+        </StyleLayout>
+    </WidgetStyle>
+</Style>

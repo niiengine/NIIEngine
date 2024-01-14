@@ -1,0 +1,60 @@
+<?xml version="1.0" ?>
+<UIDefine version="5" name="AlfiskoSkin">
+    <Font src="DejaVuSans-12.font" />
+    <View src="AlfiskoSkin.view" />
+    <Style src="AlfiskoSkin.style" />
+    <WidgetRenderSrc src="CEGUICoreWindowRendererSet" />
+
+    <WidgetStyle type="DefaultWindow" renderer="Core/Default" name="AlfiskoSkin/Label"/>
+    <WidgetStyle type="PushButton" renderer="Core/Button" name="AlfiskoSkin/Button"/>
+    <WidgetStyle type="PushButton" renderer="Core/Button" name="AlfiskoSkin/ImageButton"/>
+    <WidgetStyle type="RadioButton" renderer="Core/ToggleButton" name="AlfiskoSkin/RadioButton"/>
+    <WidgetStyle type="ToggleButton" renderer="Core/ToggleButton" name="AlfiskoSkin/Checkbox"/>
+    <WidgetStyle type="Titlebar" renderer="Core/Titlebar" name="AlfiskoSkin/Titlebar"/>
+    <WidgetStyle type="FrameWindow" renderer="Core/FrameWindow" name="AlfiskoSkin/FrameWindow"/>
+    <WidgetStyle type="Editbox" renderer="Core/Editbox" name="AlfiskoSkin/Editbox"/>
+	<WidgetStyle type="Thumb" renderer="Core/Button" name="AlfiskoSkin/VerticalScrollbarThumb"/>
+	<WidgetStyle type="Scrollbar" renderer="Core/Scrollbar" name="AlfiskoSkin/VerticalScrollbar"/>
+	<WidgetStyle type="Thumb" renderer="Core/Button" name="AlfiskoSkin/HorizontalScrollbarThumb"/>
+	<WidgetStyle type="Scrollbar" renderer="Core/Scrollbar" name="AlfiskoSkin/HorizontalScrollbar"/>
+	<WidgetStyle type="MultiLineEditbox" renderer="Core/MultiLineEditbox" name="AlfiskoSkin/MultiLineEditbox"/>
+	<WidgetStyle type="ProgressBar" renderer="Core/ProgressBar" name="AlfiskoSkin/ProgressBar"/>
+	<WidgetStyle type="Thumb" renderer="Core/Button" name="AlfiskoSkin/HorizontalSliderThumb"/>
+	<WidgetStyle type="Slider" renderer="Core/Slider" name="AlfiskoSkin/HorizontalSlider"/>
+	<WidgetStyle type="Thumb" renderer="Core/Button" name="AlfiskoSkin/VerticalSliderThumb"/>
+	<WidgetStyle type="Slider" renderer="Core/Slider" name="AlfiskoSkin/VerticalSlider"/>
+
+	<WidgetStyle type="MenuItem" renderer="Core/MenuItem" name="AlfiskoSkin/MenuItem"/>
+<!--
+	<WidgetStyle type="Menubar" renderer="Core/Menubar" name="AlfiskoSkin/Menubar"/>
+	<WidgetStyle type="PopupMenu" renderer="Core/PopupMenu" name="AlfiskoSkin/PopupMenu"/>
+
+	<WidgetStyle type="TabButton" renderer="Core/TabButton" name="AlfiskoSkin/TabButton"/>
+	<WidgetStyle type="DefaultWindow" renderer="Core/Default" name="AlfiskoSkin/TabButtonPane"/>
+	<WidgetStyle type="DefaultWindow" renderer="Core/Default" name="AlfiskoSkin/TabContentPane"/>
+	<WidgetStyle type="TabControl" renderer="Core/TabControl" name="AlfiskoSkin/TabControl"/>
+
+	<WidgetStyle type="ComboDropList" renderer="Core/Listbox" name="AlfiskoSkin/ComboDropList"/>
+	<WidgetStyle type="Editbox"	 renderer="Core/Editbox" name="AlfiskoSkin/ComboEditbox"/>
+	<WidgetStyle type="Combobox"	 renderer="Core/Default" name="AlfiskoSkin/Combobox"/>
+
+	<WidgetStyle type="ItemEntry" renderer="Core/ItemEntry" name="AlfiskoSkin/ListboxItem"/>
+	<WidgetStyle type="ItemListbox" renderer="Core/ItemListbox" name="AlfiskoSkin/ItemListbox"/>
+	<WidgetStyle type="Listbox" renderer="Core/Listbox" name="AlfiskoSkin/Listbox"/>
+
+	<WidgetStyle type="ListHeaderSegment" renderer="Core/ListHeaderSegment" name="AlfiskoSkin/ListHeaderSegment" />
+	<WidgetStyle type="ListHeader" renderer="Core/ListHeader" name="AlfiskoSkin/ListHeader" />
+	<WidgetStyle type="MultiColumnList" renderer="Core/MultiColumnList" name="AlfiskoSkin/MultiColumnList" />
+
+	<WidgetStyle type="ScrollablePane" renderer="Core/ScrollablePane" name="AlfiskoSkin/ScrollablePane" />
+
+	<WidgetStyle type="Spinner" renderer="Core/Default" name="AlfiskoSkin/Spinner" />
+	<WidgetStyle type="Tooltip" renderer="Core/Tooltip" name="AlfiskoSkin/Tooltip" />
+	<WidgetStyle type="DefaultWindow" renderer="Core/StaticImage" name="AlfiskoSkin/StaticImage" />
+	<WidgetStyle type="DefaultWindow" renderer="Core/StaticText" name="AlfiskoSkin/StaticText" />
+	<WidgetStyle type="DefaultWindow" renderer="Core/Default" name="AlfiskoSkin/GroupBox" />
+    <WidgetStyle type="Tree" renderer="Core/Tree" name="AlfiskoSkin/Tree" />
+-->
+
+</UIDefine>
+

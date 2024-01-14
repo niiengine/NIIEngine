@@ -1,0 +1,307 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="MinSizeRel|Win32">
+      <Configuration>MinSizeRel</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="RelWithDebInfo|Win32">
+      <Configuration>RelWithDebInfo</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{206028EA-D7F2-3A43-AF9B-E5AE9C2001A8}</ProjectGuid>
+    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
+    <Keyword>Win32Proj</Keyword>
+    <Platform>Win32</Platform>
+    <ProjectName>Tail</ProjectName>
+    <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">F:\tool\GSGS4.0.0\Runtime\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Tail.dir\Debug\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Tail</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.dll</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">\bin\Release\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Tail.dir\Release\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Tail</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.dll</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">\bin\MinSizeRel\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">Tail.dir\MinSizeRel\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">Tail</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">.dll</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">false</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">\bin\RelWithDebInfo\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">Tail.dir\RelWithDebInfo\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">Tail</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">.dll</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">true</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">true</GenerateManifest>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>F:\tool\GSGS4.0.0\sdk\libssh\include;F:\tool\GSGS4.0.0\Plugin;F:\tool\GSGS4.0.0\sdk\wxsqlite3\include;F:\tool\GSGS4.0.0\Core;F:\tool\GSGS4.0.0\Editor_Scene;F:\tool\GSGS4.0.0\Editor_Code;F:\tool\GSGS4.0.0\PCH;F:\tool\GSGS4.0.0\Interfaces;F:\wxWidgets-3.1.2\lib\vc_dll\mswud;F:\wxWidgets-3.1.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>Debug/</AssemblerListingLocation>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <CppLanguageStandard>c++11</CppLanguageStandard>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <Optimization>Disabled</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <SuppressStartupBanner>
+      </SuppressStartupBanner>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;YY_NEVER_INTERACTIVE=1;wxUSE_GUI=1;INSTALL_DIR="/usr/share/codelite";PLUGINS_DIR="/usr/lib/codelite";USE_AUI_NOTEBOOK=0;NDEBUG;USE_SFTP=1;WXUSINGDLL;UNICODE;_UNICODE;WXUSINGDLL_WXSQLITE3;WXUSINGDLL_CL;WXUSINGDLL_SDK;ASTYLE_LIB;_DEBUG;__WXDEBUG__;CMAKE_INTDIR="Debug";Tail_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;YY_NEVER_INTERACTIVE=1;wxUSE_GUI=1;INSTALL_DIR=\"/usr/share/codelite\";PLUGINS_DIR=\"/usr/lib/codelite\";USE_AUI_NOTEBOOK=0;NDEBUG;USE_SFTP=1;WXUSINGDLL;UNICODE;_UNICODE;WXUSINGDLL_WXSQLITE3;WXUSINGDLL_CL;WXUSINGDLL_SDK;ASTYLE_LIB;__WXDEBUG__;CMAKE_INTDIR=\"Debug\";Tail_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>F:\tool\GSGS4.0.0\sdk\libssh\include;F:\tool\GSGS4.0.0\Plugin;F:\tool\GSGS4.0.0\sdk\wxsqlite3\include;F:\tool\GSGS4.0.0\CodeLite;F:\tool\GSGS4.0.0\PCH;F:\tool\GSGS4.0.0\Interfaces;F:\wxWidgets-3.1.2\lib\vc_dll\mswud;F:\wxWidgets-3.1.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>F:\tool\GSGS4.0.0\sdk\libssh\include;F:\tool\GSGS4.0.0\Plugin;F:\tool\GSGS4.0.0\sdk\wxsqlite3\include;F:\tool\GSGS4.0.0\CodeLite;F:\tool\GSGS4.0.0\PCH;F:\tool\GSGS4.0.0\Interfaces;F:\wxWidgets-3.1.2\lib\vc_dll\mswud;F:\wxWidgets-3.1.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalDependencies>F:\wxWidgets-3.1.2\lib\vc_dll\wxpngd.lib;F:\wxWidgets-3.1.2\lib\vc_dll\wxtiffd.lib;F:\wxWidgets-3.1.2\lib\vc_dll\wxjpegd.lib;F:\wxWidgets-3.1.2\lib\vc_dll\wxzlibd.lib;F:\wxWidgets-3.1.2\lib\vc_dll\wxexpatd.lib;F:\wxWidgets-3.1.2\lib\vc_dll\wxmsw30ud_xrc.lib;F:\wxWidgets-3.1.2\lib\vc_dll\wxmsw30ud_aui.lib;winmm.lib;comctl32.lib;oleacc.lib;rpcrt4.lib;shlwapi.lib;version.lib;wsock32.lib;\lib\Debug\libgsgs.lib;F:\wxWidgets-3.1.2\lib\vc_dll\wxmsw30ud_stc.lib;\lib\Debug\wxsqlite3.lib;F:\wxWidgets-3.1.2\lib\vc_dll\wxmsw30ud_core.lib;F:\wxWidgets-3.1.2\lib\vc_dll\wxbase30ud.lib;-lws2_32;-lz;-L"/lib";-luxtheme;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:X86</AdditionalOptions>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>/lib/Debug/Tail.lib</ImportLibrary>
+      <ProgramDataBaseFile>/bin/Debug/Tail.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>F:\tool\GSGS4.0.0\sdk\libssh\include;F:\tool\GSGS4.0.0\Plugin;F:\tool\GSGS4.0.0\sdk\wxsqlite3\include;F:\tool\GSGS4.0.0\CodeLite;F:\tool\GSGS4.0.0\PCH;F:\tool\GSGS4.0.0\Interfaces;F:\wxWidgets-3.1.2\lib\vc_dll\mswud;F:\wxWidgets-3.1.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>Release/</AssemblerListingLocation>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <CppLanguageStandard>c++11</CppLanguageStandard>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <SuppressStartupBanner>
+      </SuppressStartupBanner>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;YY_NEVER_INTERACTIVE=1;wxUSE_GUI=1;INSTALL_DIR="/usr/share/codelite";PLUGINS_DIR="/usr/lib/codelite";USE_AUI_NOTEBOOK=0;USE_SFTP=1;WXUSINGDLL;UNICODE;_UNICODE;WXUSINGDLL_WXSQLITE3;WXUSINGDLL_CL;WXUSINGDLL_SDK;ASTYLE_LIB;CMAKE_INTDIR="Release";Tail_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;YY_NEVER_INTERACTIVE=1;wxUSE_GUI=1;INSTALL_DIR=\"/usr/share/codelite\";PLUGINS_DIR=\"/usr/lib/codelite\";USE_AUI_NOTEBOOK=0;USE_SFTP=1;WXUSINGDLL;UNICODE;_UNICODE;WXUSINGDLL_WXSQLITE3;WXUSINGDLL_CL;WXUSINGDLL_SDK;ASTYLE_LIB;CMAKE_INTDIR=\"Release\";Tail_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>F:\tool\GSGS4.0.0\sdk\libssh\include;F:\tool\GSGS4.0.0\Plugin;F:\tool\GSGS4.0.0\sdk\wxsqlite3\include;F:\tool\GSGS4.0.0\CodeLite;F:\tool\GSGS4.0.0\PCH;F:\tool\GSGS4.0.0\Interfaces;F:\wxWidgets-3.1.2\lib\vc_dll\mswud;F:\wxWidgets-3.1.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>F:\tool\GSGS4.0.0\sdk\libssh\include;F:\tool\GSGS4.0.0\Plugin;F:\tool\GSGS4.0.0\sdk\wxsqlite3\include;F:\tool\GSGS4.0.0\CodeLite;F:\tool\GSGS4.0.0\PCH;F:\tool\GSGS4.0.0\Interfaces;F:\wxWidgets-3.1.2\lib\vc_dll\mswud;F:\wxWidgets-3.1.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalDependencies>F:\wxWidgets-3.1.2\lib\vc_dll\wxpng.lib;F:\wxWidgets-3.1.2\lib\vc_dll\wxtiff.lib;F:\wxWidgets-3.1.2\lib\vc_dll\wxjpeg.lib;F:\wxWidgets-3.1.2\lib\vc_dll\wxzlib.lib;F:\wxWidgets-3.1.2\lib\vc_dll\wxexpat.lib;winmm.lib;comctl32.lib;oleacc.lib;rpcrt4.lib;shlwapi.lib;version.lib;wsock32.lib;\lib\Release\plugin.lib;\lib\Release\libcodelite.lib;F:\wxWidgets-3.1.2\lib\vc_dll\wxmsw30u_stc.lib;sqlite3lib.lib;\lib\Release\wxsqlite3.lib;F:\wxWidgets-3.1.2\lib\vc_dll\wxmsw30u_core.lib;F:\wxWidgets-3.1.2\lib\vc_dll\wxbase30u.lib;-lsqlite3lib;..\..\sdk\libssh\lib\osx\libssh.a;..\..\sdk\libssh\lib\osx\libcrypto.a;-lws2_32;-lz;\usr\lib\libcrypto.dylib;-L"/lib";-luxtheme;F:\wxWidgets-3.1.2\lib\vc_dll\wxpng.lib;F:\wxWidgets-3.1.2\lib\vc_dll\wxtiff.lib;F:\wxWidgets-3.1.2\lib\vc_dll\wxjpeg.lib;F:\wxWidgets-3.1.2\lib\vc_dll\wxzlib.lib;F:\wxWidgets-3.1.2\lib\vc_dll\wxexpat.lib;winmm.lib;comctl32.lib;oleacc.lib;rpcrt4.lib;shlwapi.lib;version.lib;wsock32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:X86</AdditionalOptions>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>/lib/Release/Tail.lib</ImportLibrary>
+      <ProgramDataBaseFile>/bin/Release/Tail.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>F:\tool\GSGS4.0.0\sdk\libssh\include;F:\tool\GSGS4.0.0\Plugin;F:\tool\GSGS4.0.0\sdk\wxsqlite3\include;F:\tool\GSGS4.0.0\CodeLite;F:\tool\GSGS4.0.0\PCH;F:\tool\GSGS4.0.0\Interfaces;F:\wxWidgets-3.1.2\lib\vc_dll\mswud;F:\wxWidgets-3.1.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>MinSizeRel/</AssemblerListingLocation>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <CppLanguageStandard>c++11</CppLanguageStandard>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <Optimization>MinSpace</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <SuppressStartupBanner>
+      </SuppressStartupBanner>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;YY_NEVER_INTERACTIVE=1;wxUSE_GUI=1;INSTALL_DIR="/usr/share/codelite";PLUGINS_DIR="/usr/lib/codelite";USE_AUI_NOTEBOOK=0;USE_SFTP=1;WXUSINGDLL;UNICODE;_UNICODE;WXUSINGDLL_WXSQLITE3;WXUSINGDLL_CL;WXUSINGDLL_SDK;ASTYLE_LIB;CMAKE_INTDIR="MinSizeRel";Tail_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;YY_NEVER_INTERACTIVE=1;wxUSE_GUI=1;INSTALL_DIR=\"/usr/share/codelite\";PLUGINS_DIR=\"/usr/lib/codelite\";USE_AUI_NOTEBOOK=0;USE_SFTP=1;WXUSINGDLL;UNICODE;_UNICODE;WXUSINGDLL_WXSQLITE3;WXUSINGDLL_CL;WXUSINGDLL_SDK;ASTYLE_LIB;CMAKE_INTDIR=\"MinSizeRel\";Tail_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>F:\tool\GSGS4.0.0\sdk\libssh\include;F:\tool\GSGS4.0.0\Plugin;F:\tool\GSGS4.0.0\sdk\wxsqlite3\include;F:\tool\GSGS4.0.0\CodeLite;F:\tool\GSGS4.0.0\PCH;F:\tool\GSGS4.0.0\Interfaces;F:\wxWidgets-3.1.2\lib\vc_dll\mswud;F:\wxWidgets-3.1.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>F:\tool\GSGS4.0.0\sdk\libssh\include;F:\tool\GSGS4.0.0\Plugin;F:\tool\GSGS4.0.0\sdk\wxsqlite3\include;F:\tool\GSGS4.0.0\CodeLite;F:\tool\GSGS4.0.0\PCH;F:\tool\GSGS4.0.0\Interfaces;F:\wxWidgets-3.1.2\lib\vc_dll\mswud;F:\wxWidgets-3.1.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalDependencies>F:\wxWidgets-3.1.2\lib\vc_dll\wxpng.lib;F:\wxWidgets-3.1.2\lib\vc_dll\wxtiff.lib;F:\wxWidgets-3.1.2\lib\vc_dll\wxjpeg.lib;F:\wxWidgets-3.1.2\lib\vc_dll\wxzlib.lib;F:\wxWidgets-3.1.2\lib\vc_dll\wxexpat.lib;winmm.lib;comctl32.lib;oleacc.lib;rpcrt4.lib;shlwapi.lib;version.lib;wsock32.lib;\lib\MinSizeRel\plugin.lib;\lib\MinSizeRel\libcodelite.lib;F:\wxWidgets-3.1.2\lib\vc_dll\wxmsw30u_stc.lib;sqlite3lib.lib;\lib\MinSizeRel\wxsqlite3.lib;F:\wxWidgets-3.1.2\lib\vc_dll\wxmsw30u_core.lib;F:\wxWidgets-3.1.2\lib\vc_dll\wxbase30u.lib;-lsqlite3lib;..\..\sdk\libssh\lib\osx\libssh.a;..\..\sdk\libssh\lib\osx\libcrypto.a;-lws2_32;-lz;\usr\lib\libcrypto.dylib;-L"/lib";-luxtheme;F:\wxWidgets-3.1.2\lib\vc_dll\wxpng.lib;F:\wxWidgets-3.1.2\lib\vc_dll\wxtiff.lib;F:\wxWidgets-3.1.2\lib\vc_dll\wxjpeg.lib;F:\wxWidgets-3.1.2\lib\vc_dll\wxzlib.lib;F:\wxWidgets-3.1.2\lib\vc_dll\wxexpat.lib;winmm.lib;comctl32.lib;oleacc.lib;rpcrt4.lib;shlwapi.lib;version.lib;wsock32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:X86</AdditionalOptions>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>/lib/MinSizeRel/Tail.lib</ImportLibrary>
+      <ProgramDataBaseFile>/bin/MinSizeRel/Tail.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>F:\tool\GSGS4.0.0\sdk\libssh\include;F:\tool\GSGS4.0.0\Plugin;F:\tool\GSGS4.0.0\sdk\wxsqlite3\include;F:\tool\GSGS4.0.0\CodeLite;F:\tool\GSGS4.0.0\PCH;F:\tool\GSGS4.0.0\Interfaces;F:\wxWidgets-3.1.2\lib\vc_dll\mswud;F:\wxWidgets-3.1.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>RelWithDebInfo/</AssemblerListingLocation>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <CppLanguageStandard>c++11</CppLanguageStandard>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <SuppressStartupBanner>
+      </SuppressStartupBanner>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;YY_NEVER_INTERACTIVE=1;wxUSE_GUI=1;INSTALL_DIR="/usr/share/codelite";PLUGINS_DIR="/usr/lib/codelite";USE_AUI_NOTEBOOK=0;USE_SFTP=1;WXUSINGDLL;UNICODE;_UNICODE;WXUSINGDLL_WXSQLITE3;WXUSINGDLL_CL;WXUSINGDLL_SDK;ASTYLE_LIB;CMAKE_INTDIR="RelWithDebInfo";Tail_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;YY_NEVER_INTERACTIVE=1;wxUSE_GUI=1;INSTALL_DIR=\"/usr/share/codelite\";PLUGINS_DIR=\"/usr/lib/codelite\";USE_AUI_NOTEBOOK=0;USE_SFTP=1;WXUSINGDLL;UNICODE;_UNICODE;WXUSINGDLL_WXSQLITE3;WXUSINGDLL_CL;WXUSINGDLL_SDK;ASTYLE_LIB;CMAKE_INTDIR=\"RelWithDebInfo\";Tail_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>F:\tool\GSGS4.0.0\sdk\libssh\include;F:\tool\GSGS4.0.0\Plugin;F:\tool\GSGS4.0.0\sdk\wxsqlite3\include;F:\tool\GSGS4.0.0\CodeLite;F:\tool\GSGS4.0.0\PCH;F:\tool\GSGS4.0.0\Interfaces;F:\wxWidgets-3.1.2\lib\vc_dll\mswud;F:\wxWidgets-3.1.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>F:\tool\GSGS4.0.0\sdk\libssh\include;F:\tool\GSGS4.0.0\Plugin;F:\tool\GSGS4.0.0\sdk\wxsqlite3\include;F:\tool\GSGS4.0.0\CodeLite;F:\tool\GSGS4.0.0\PCH;F:\tool\GSGS4.0.0\Interfaces;F:\wxWidgets-3.1.2\lib\vc_dll\mswud;F:\wxWidgets-3.1.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalDependencies>F:\wxWidgets-3.1.2\lib\vc_dll\wxpng.lib;F:\wxWidgets-3.1.2\lib\vc_dll\wxtiff.lib;F:\wxWidgets-3.1.2\lib\vc_dll\wxjpeg.lib;F:\wxWidgets-3.1.2\lib\vc_dll\wxzlib.lib;F:\wxWidgets-3.1.2\lib\vc_dll\wxexpat.lib;winmm.lib;comctl32.lib;oleacc.lib;rpcrt4.lib;shlwapi.lib;version.lib;wsock32.lib;\lib\RelWithDebInfo\plugin.lib;\lib\RelWithDebInfo\libcodelite.lib;F:\wxWidgets-3.1.2\lib\vc_dll\wxmsw30u_stc.lib;sqlite3lib.lib;\lib\RelWithDebInfo\wxsqlite3.lib;F:\wxWidgets-3.1.2\lib\vc_dll\wxmsw30u_core.lib;F:\wxWidgets-3.1.2\lib\vc_dll\wxbase30u.lib;-lsqlite3lib;..\..\sdk\libssh\lib\osx\libssh.a;..\..\sdk\libssh\lib\osx\libcrypto.a;-lws2_32;-lz;\usr\lib\libcrypto.dylib;-L"/lib";-luxtheme;F:\wxWidgets-3.1.2\lib\vc_dll\wxpng.lib;F:\wxWidgets-3.1.2\lib\vc_dll\wxtiff.lib;F:\wxWidgets-3.1.2\lib\vc_dll\wxjpeg.lib;F:\wxWidgets-3.1.2\lib\vc_dll\wxzlib.lib;F:\wxWidgets-3.1.2\lib\vc_dll\wxexpat.lib;winmm.lib;comctl32.lib;oleacc.lib;rpcrt4.lib;shlwapi.lib;version.lib;wsock32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:X86</AdditionalOptions>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>/lib/RelWithDebInfo/Tail.lib</ImportLibrary>
+      <ProgramDataBaseFile>/bin/RelWithDebInfo/Tail.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="F:\tool\GSGS4.0.0\Tail\TailFrame.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\Tail\TailPanel.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\Tail\TailUI.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\Tail\TailUI_tail_bitmaps.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\Tail\tail.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="F:\tool\GSGS4.0.0\build\ZERO_CHECK.vcxproj">
+      <Project>{DD030B4A-B93D-3988-8F89-3086A2673373}</Project>
+      <Name>ZERO_CHECK</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="F:\tool\GSGS4.0.0\build\CodeLite\libcodelite.vcxproj">
+      <Project>{05C7600E-767B-3729-A0F1-61BCDEA7813E}</Project>
+      <Name>libcodelite</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="F:\tool\GSGS4.0.0\build\Plugin\plugin.vcxproj">
+      <Project>{007730CF-1C31-368F-872B-72CEAB795142}</Project>
+      <Name>plugin</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="F:\tool\GSGS4.0.0\build\sdk\wxsqlite3\wxsqlite3.vcxproj">
+      <Project>{A49EC5B3-7136-3D6C-ADB7-45E34A56E050}</Project>
+      <Name>wxsqlite3</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

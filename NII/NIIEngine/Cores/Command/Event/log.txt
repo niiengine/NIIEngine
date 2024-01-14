@@ -1,0 +1,7 @@
+EventObj 可接收命令的对象
+ObjectEvent 对象的事件
+CommandObj 可发出命令的对象
+ObjectCommand 对象的命令
+
+
+CommandObj 通过AI 处理 EventObj 的关系产生 ObjectEvent , EventObj 通过 ProcessorSerializer机制处理  ObjectEvent 产生 (ObjectCommand[由Processor去执行它] 还有使用通过 Distribution 再次让AI 处理)

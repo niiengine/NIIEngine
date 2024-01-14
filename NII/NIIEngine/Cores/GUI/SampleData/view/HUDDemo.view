@@ -1,0 +1,32 @@
+<View auto_res="vertical" src="HUDDemo.png" id="HUDDemo" native_res_x="1280" native_res_y="720" ver="2">
+    <Pixel id="Poo" height="162"  width="162" pos_x="0" pos_y="7" />
+    <Pixel id="Plate" height="146"  width="483" pos_x="779" pos_y="1113" />
+    <Pixel id="Bread" height="300"  width="300" pos_x="980" pos_y="37" />
+    <Pixel id="Prizza" height="260"  width="260" pos_x="35" pos_y="283" />
+    <Pixel id="Steak" height="310"  width="310" pos_x="951" pos_y="351" />
+    <Pixel id="VegetablePeople" height="260"  width="260" pos_x="20" pos_y="632" />
+    <Pixel id="VegetablesAndFruits" height="360"  width="360" pos_x="3" pos_y="920" />
+    <Pixel id="Background" height="55"  width="55" pos_x="220" pos_y="9" />
+    <Pixel id="LifeBarBG" height="15"  width="361" pos_x="905" pos_y="0" />
+    <Pixel id="LifeBarFill" height="13"  width="361" pos_x="906" pos_y="19" />
+    <Pixel id="Life" height="60" width="60" pos_x="442" pos_y="719" />
+    <Pixel id="Logo" height="198"  width="445" pos_x="835" pos_y="722" />
+    <Pixel id="ScoreBG" height="100"  width="200" pos_x="359" pos_y="26" />
+    <Pixel id="WeaponBG" height="100"  width="300" pos_x="624" pos_y="33" />
+    <Pixel id="Menu" height="463"  width="422" pos_x="535" pos_y="230" />
+    <Pixel id="IconSpoon" height="213"  width="86" pos_x="390" pos_y="805" />
+    <Pixel id="IconKnife" height="197"  width="42" pos_x="651" pos_y="821" />
+    <Pixel id="IconForkHL" height="164"  width="69" pos_x="466" pos_y="1041" />
+    <Pixel id="ToolMixer" height="80"  width="80" pos_x="569" pos_y="146" />
+    <Pixel id="ToolGlove" height="80"  width="80" pos_x="685" pos_y="147" />
+    <Pixel id="ToolPot" height="80"  width="80" pos_x="820" pos_y="145" />
+    <Pixel id="ToolBG" height="104"  width="171" pos_x="334" pos_y="196" />
+    <Pixel id="BGBar" height="1"  width="1" pos_x="285" pos_y="11" />
+    <Pixel id="IconSpoonHL" height="213"  width="86" pos_x="501" pos_y="805" />
+    <Pixel id="IconKnifeHL" height="197"  width="42" pos_x="727" pos_y="821" />
+    <Pixel id="IconFork" height="164"  width="69" pos_x="568" pos_y="1041" />
+    <Pixel id="Spoon" height="125"  width="103" pos_x="365" pos_y="320" />
+    <Pixel id="Filler" height="1"  width="1" pos_x="285" pos_y="22" />
+    <Pixel id="ButtonNormal" height="36"  width="130" pos_x="274" pos_y="148" />
+    <Pixel id="ButtonPressed" height="36"  width="130" pos_x="417" pos_y="148" />
+</View>

@@ -1,0 +1,10 @@
+﻿++ faac
+
+
+FAAC 是一个 MPEG-4 和 MPEG-2 AAC 加码器.
+请注意的FAAC质量没有达到与目前最好的AAC编码器
+特色：
+Portable
+Reasonably fast
+LC, Main, LTP support
+DRM support through DreaM

@@ -1,0 +1,11 @@
+prefix=@NII_PREFIX_PATH@
+exec_prefix=${prefix}
+libdir=${prefix}/@NII_LIB_DIRECTORY@
+includedir=${prefix}/include
+
+Name: NII-Property
+Description: General purpose property component for NII
+Version: @NII_VERSION@
+Requires: NII = @NII_VERSION@
+Libs: -L${libdir} -lNiiProperty@NII_LIB_SUFFIX@
+Cflags: -I${includedir}/NII/Property @NII_CFLAGS@

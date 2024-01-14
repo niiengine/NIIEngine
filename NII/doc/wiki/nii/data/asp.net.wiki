@@ -1,0 +1,40 @@
+﻿++ asp.net
+
+1、Ludico 
+Ludico是C#编写的居于ASP.NET 2.0的Portal/CMS系统。它的模块化设计是你可以按照你希望的使用或开发网站功能。它里面有高级的用户管理，一个所见即所的(WYSIWYG)的编辑器等。 
+下载地址：http://sourceforge.net/projects/ludico/ 
+2、umbraco　 
+Umbraco是一款在.net平台下C#开发的开源内容管理系统，该系统效率，灵活，用户界面都不错。
+
+下载地址：http://umbraco.org/ 
+3、mojoPortal 
+mojoPortal是一款C#开发的面相对象网站框架，它可以运行于Windows的ASP.NET 和GNU/Linux 或Mac OS X的Mono的平台上。 
+
+下载地址：http://www.mojoportal.com/ 
+4、Kodai CMS 
+Kodai CMS是.NET平台下的一款功能齐全的内容管理系统。 
+
+下载地址：http://www.gotdotnet.com/workspaces/workspace.aspx?id=070f30c3-6089-4a75-b84c-fac654a7ec08 
+
+5、nkCMS 
+NkCMS是使用ASP.net和Sql server 2000开发的内容管理系统。 
+
+下载地址：http://nkcms.sourceforge.net/ 
+6、Go.Kryo 
+Go.Kryo是一个用ASP.NET(C#).NET 实现的简单的内容管理系统，后台数据库使用Microsoft SQL Server 。 
+
+下载地址：http://sourceforge.net/projects/gokryo/ 
+
+7、Amplefile 
+Amplefile是一款内容管理系统，是.Net环境下的windows应用程序，使用了.Net remoting. 
+下载地址：http://sourceforge.net/projects/amplefile/ 
+8、ndCMS 
+ndCMS是 ASP.net (C#)下的一个内容管理系统。它提供了用户管理，文件管理，一个WYSIWYG编辑器，模板管理，拼写检查和内置的http压缩。ndCMS的目标是提供一个简单而快速的方式部署.Net站点 
+下载地址：http://ndcms-net.sourceforge.net/ 
+9、Cuyahoga 
+Cuyahoga是C#开发的灵活的CMS / Portal 解决方案。它可以运行于Microsoft .NET 和Mono 平台,支持SQL Server, PostgreSQL或MySQL作为底层数据库。 
+
+下载地址：http://www.cuyahoga-project.org/ 
+10、Rainbow 
+Rainbow项目是一款使用Microsoft's ASP.NET和C#技术开发的有丰富功能的开源内容管理系统。
+下载地址：http://www.rainbowportal.net/Rainbow/Default.aspx

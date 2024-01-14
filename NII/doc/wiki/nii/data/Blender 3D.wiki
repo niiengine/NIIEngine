@@ -1,0 +1,6 @@
+﻿++ Blender 3D
+
+
+Replacement for: Maya, 3DSMax
+
+Blender is the first and only fully integrated 3D graphics creation suite allowing modeling, animation, rendering, post-production, realtime interactive 3D and game creation and playback with cross-platform compatibility.

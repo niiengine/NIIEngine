@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="F:\tool\GSGS4.0.0\build\CMakeFiles\432ebe85bfb5b82d9e788c9ac40f285a\INSTALL_force.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{354B6D22-4329-352A-81D2-5EBD4BAFFE14}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

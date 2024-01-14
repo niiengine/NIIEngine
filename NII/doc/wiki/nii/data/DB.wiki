@@ -1,0 +1,10 @@
+﻿++ DB
+
+database systems
+
+[Cayenne] a Java ORM framework
+[Derby] a pure Java relational database management system
+[JDO] Persistence for Java objects
+[Apache Torque] an ORM for Java
+[CouchDB] Document-oriented database
+[Cassandra] a highly scalable second-generation distributed database

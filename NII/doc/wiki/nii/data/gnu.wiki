@@ -1,0 +1,13 @@
+﻿++ gnu
+
+[info]
+[man]
+[popt]
+[catgets]
+[pdcurses]
+[libunistring]
+[mpc]
+[mpfr]
+[gmp]
+[]
+[]

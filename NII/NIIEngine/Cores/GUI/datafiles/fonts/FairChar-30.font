@@ -1,0 +1,30 @@
+<?xml version="1.0" ?>
+<Font version="3" name="FairChar" src="FairChar.png" type="pixmap" native_res_x="800" native_res_y="600" auto_res="vertical">
+	<FontDefine codevalue="32" tex_idx="0" pos_x="0" pos_y="0" width="0" height="0" x_dvance="25" />
+	<FontDefine codevalue="65" tex_idx="0" pos_x="4" pos_y="1" width="30" height="30" pos_y_offset="-30" />
+	<FontDefine codevalue="66" tex_idx="0" pos_x="35" pos_y="1" width="31" height="30" pos_y_offset="-30" />
+	<FontDefine codevalue="67" tex_idx="0" pos_x="68" pos_y="1" width="31" height="30" pos_y_offset="-30" />
+	<FontDefine codevalue="68" tex_idx="0" pos_x="98" pos_y="1" width="32" height="30" pos_y_offset="-30" />
+	<FontDefine codevalue="69" tex_idx="0" pos_x="131" pos_y="1"  width="32" height="30" pos_y_offset="-30" />
+	<FontDefine codevalue="70" tex_idx="0" pos_x="163" pos_y="1"  width="32" height="30" pos_y_offset="-30" />
+	<FontDefine codevalue="71" tex_idx="0" pos_x="196" pos_y="1"  width="30" height="30" pos_y_offset="-30" />
+	<FontDefine codevalue="72" tex_idx="0" pos_x="1" pos_y="94" width="30" height="30" pos_y_offset="-30" />
+	<FontDefine codevalue="73" tex_idx="0" pos_x="32" pos_y="94" width="25" height="30" pos_y_offset="-30" />
+	<FontDefine codevalue="74" tex_idx="0" pos_x="1" pos_y="32" width="24" height="30" pos_y_offset="-30" />
+	<FontDefine codevalue="75" tex_idx="0" pos_x="28"  pos_y="32" width="30" height="30" pos_y_offset="-30" />
+	<FontDefine codevalue="76" tex_idx="0" pos_x="60"  pos_y="32" width="30" height="30" pos_y_offset="-30" />
+	<FontDefine codevalue="77" tex_idx="0" pos_x="92"  pos_y="32" width="30" height="30" pos_y_offset="-30" />
+	<FontDefine codevalue="78" tex_idx="0" pos_x="123" pos_y="32" width="31" height="30" pos_y_offset="-30" />
+	<FontDefine codevalue="79" tex_idx="0" pos_x="156" pos_y="32" width="30" height="30" pos_y_offset="-30" />
+	<FontDefine codevalue="80" tex_idx="0" pos_x="187" pos_y="32" width="31" height="30" pos_y_offset="-30" />
+	<FontDefine codevalue="81" tex_idx="0" pos_x="58"  pos_y="94" width="30" height="30" pos_y_offset="-30" />
+	<FontDefine codevalue="82" tex_idx="0" pos_x="89"  pos_y="94" width="32" height="30" pos_y_offset="-30" />
+	<FontDefine codevalue="83" tex_idx="0" pos_x="1"   pos_y="63" width="30" height="30" pos_y_offset="-30" />
+	<FontDefine codevalue="84" tex_idx="0" pos_x="32"  pos_y="63" width="24" height="30" pos_y_offset="-30" />
+	<FontDefine codevalue="85" tex_idx="0" pos_x="59"  pos_y="63" width="30" height="30" pos_y_offset="-30" />
+	<FontDefine codevalue="86" tex_idx="0" pos_x="91"  pos_y="63" width="30" height="30" pos_y_offset="-30" />
+	<FontDefine codevalue="87" tex_idx="0" pos_x="123" pos_y="63" width="30" height="30" pos_y_offset="-30" />
+	<FontDefine codevalue="88" tex_idx="0" pos_x="155" pos_y="63" width="30" height="30" pos_y_offset="-30" />
+	<FontDefine codevalue="89" tex_idx="0" pos_x="186" pos_y="63" width="30" height="30" pos_y_offset="-30" />
+	<FontDefine codevalue="90" tex_idx="0" pos_x="123" pos_y="94" width="30" height="30" pos_y_offset="-30" />
+</Font>

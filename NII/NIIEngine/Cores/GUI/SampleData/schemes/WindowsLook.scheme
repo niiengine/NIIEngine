@@ -1,0 +1,49 @@
+<?xml version="1.0" ?>
+<UIDefine version="5" name="WindowsLookSkin">
+	<View src="WindowsLook.view" />
+	<Style src="WindowsLook.style" />
+	<WidgetRenderSrc src="CEGUICoreWindowRendererSet" />
+
+	<WidgetStyle type="DefaultWindow" renderer="Core/Default" name="WindowsLook/Label" />
+	<WidgetStyle type="PushButton"renderer="Core/Button" name="WindowsLook/Button" />
+	<WidgetStyle type="ToggleButton" renderer="Core/ToggleButton" name="WindowsLook/Checkbox" />
+	<WidgetStyle type="PushButton" renderer="Core/Button" name="WindowsLook/IconButton" />
+	<WidgetStyle type="RadioButton" renderer="Core/ToggleButton" name="WindowsLook/RadioButton" />
+	<WidgetStyle type="FrameWindow" renderer="Core/FrameWindow" name="WindowsLook/FrameWindow" />
+	<WidgetStyle type="Titlebar" renderer="Core/Titlebar" name="WindowsLook/Titlebar" />
+	<WidgetStyle type="PushButton" renderer="Core/Button" name="WindowsLook/SystemButton" />
+	<WidgetStyle type="Editbox" renderer="Core/Editbox" name="WindowsLook/Editbox" />
+	<WidgetStyle type="MultiLineEditbox" renderer="Core/MultiLineEditbox" name="WindowsLook/MultiLineEditbox" />
+	<WidgetStyle type="Menubar"  renderer="Core/Menubar" name="WindowsLook/Menubar" />
+	<WidgetStyle type="PopupMenu" renderer="Core/PopupMenu" name="WindowsLook/PopupMenu" />
+	<WidgetStyle type="MenuItem" renderer="Core/MenuItem" name="WindowsLook/MenuItem" />
+	<WidgetStyle type="ProgressBar" renderer="Core/ProgressBar" name="WindowsLook/ProgressBar" />
+	<WidgetStyle type="Scrollbar" renderer="Core/Scrollbar" name="WindowsLook/VerticalScrollbar" />
+	<WidgetStyle type="Scrollbar" renderer="Core/Scrollbar" name="WindowsLook/HorizontalScrollbar" />
+	<WidgetStyle type="Thumb" renderer="Core/Button" name="WindowsLook/VerticalScrollbarThumb" />
+	<WidgetStyle type="Thumb" renderer="Core/Button" name="WindowsLook/HorizontalScrollbarThumb" />
+	<WidgetStyle type="TabButton" renderer="Core/TabButton" name="WindowsLook/TabButton" />
+	<WidgetStyle type="TabControl" renderer="Core/TabControl" name="WindowsLook/TabControl" />
+	<WidgetStyle type="DefaultWindow" renderer="Core/Default" name="WindowsLook/TabContentPane" />
+	<WidgetStyle type="DefaultWindow" renderer="Core/Default"  name="WindowsLook/TabButtonPane" />
+	<WidgetStyle type="ComboDropList" renderer="Core/Listbox" name="WindowsLook/ComboDropList" />
+	<WidgetStyle type="Combobox" renderer="Core/Default" name="WindowsLook/Combobox" />
+	<WidgetStyle type="Listbox" renderer="Core/Listbox"  name="WindowsLook/Listbox" />
+	<WidgetStyle type="ListHeader" renderer="Core/ListHeader" name=" WindowsLook/ListHeader" />
+	<WidgetStyle type="ListHeaderSegment" renderer="Core/ListHeaderSegment" name="WindowsLook/ListHeaderSegment" />
+	<WidgetStyle type="MultiColumnList" renderer="Core/MultiColumnList" name="WindowsLook/MultiColumnList" />
+	<WidgetStyle type="Slider" renderer="Core/Slider" name=" WindowsLook/Slider" />
+	<WidgetStyle type="Thumb"  renderer="Core/Button" name=" WindowsLook/SliderThumb" />
+	<WidgetStyle type="ScrollablePane" renderer="Core/ScrollablePane" name="WindowsLook/ScrollablePane" />
+	<WidgetStyle type="Spinner" renderer="Core/Default" name=" WindowsLook/Spinner" />
+	<WidgetStyle type="Tooltip" renderer="Core/Tooltip" name=" WindowsLook/Tooltip" />
+	<WidgetStyle type="DefaultWindow" renderer="Core/Static" name="WindowsLook/Static" />
+	<WidgetStyle type="DefaultWindow" renderer="Core/StaticImage" name="WindowsLook/StaticImage" />
+	<WidgetStyle type="DefaultWindow" renderer="Core/StaticText" name="WindowsLook/StaticText" />
+	<WidgetStyle type="ItemListbox" renderer="Core/ItemListbox" name="WindowsLook/ItemListbox" />
+	<WidgetStyle type="ItemEntry" renderer="Core/ItemEntry" name="WindowsLook/ListboxItem" />
+<!--
+	<WidgetStyle type="DefaultWindow" renderer="Core/Default" name="WindowsLook/GroupBox" />
+-->
+</UIDefine>
+

@@ -1,0 +1,97 @@
+﻿++ gnome基金中的软件
+
+gnome曾经是gnu中的一部分
+
+[Official applications]
+[Other applications]
+
+Although GNOME can run most X11-compatible applications, the following list presents software products which use GNOME development libraries and technology, grouped by where they will most likely appear in the GNOME menu structure.
+[Accessories]
+
+[Games]
+
+[Graphics]
+
+[Internet]
+Balsa	Email client
+Chromium	Web browser
+Deluge	BitTorrent client
+Emesene	Instant messenger
+Gabber	Instant messenger
+Gajim	Instant messenger
+Galago	Desktop presence
+Galaxium	Instant messenger
+GFeedLine	Social networking client. Supports Twitter and Facebook.
+Gwget	Download manager framework
+Gwibber	Microblogging client
+Liferea	RSS feed reader
+Pan	Usenet news reader
+Pidgin	Instant messenger
+Smuxi	User-friendly IRC Client
+Thunderbird	E-mail and news client
+Transmission	BitTorrent client
+uGet	Download manager
+XChat	IRC client
+[Office]
+AbiWord	Word processor
+Ease	Presentation application
+GnuCash	Personal and small business finance manager
+Gnumeric	Spreadsheet
+BOND	Database frontend
+LibreOffice	Processador de Texto, Planilha - Pacote Office completo
+[Other]
+Alexandria	Book collection manager
+AutoScan-Network	Network discovery and management application
+Banter	Real-time collaboration client focused on the big three: text, voice and video (no updates since 2007)
+Beagle	Search tool
+GNOME Split	File splitter
+GCstar	Personal collections manager
+GRAMPS	Genealogy software
+PSPPIRE	the Gnome front end to PSPP
+Scribes	Text editor
+[Programming]
+Bluefish	Web design editor
+Conglomerate	XML editor
+Geany	Text editor
+MonoDevelop	Integrated development environment
+OpenLDev	Development environment
+ActiveState Komodo	Integrated development environment
+[edit]Sound and video
+Audio CD manipulation
+GnomeBaker	CD burner
+Goobox	CD ripper and player
+Graveman -	CD burner
+Grip	CD ripper and player
+Serpentine	Audio CD burner
+Music
+Audacious	Audio player
+Banshee	Audio player
+Exaile	Audio player
+Gnomoradio	Music jukebox with built-in discovery
+Listen	Audio player
+MPRIS Applet	Panel applet that can control MPRIS capable players.
+Muine	Audio player
+Rhythmbox	Audio player
+Video
+Acidrip	DVD ripper
+CeeMedia	Movie catalog
+Diva	Video editor
+FJMovieEditor	A video editor with support for key frames.
+GCfilms	Movies collection manager
+Gnome Subtitles	Video subtitling
+OpenShot	Video editor
+PiTiVi	Video editor
+Thoggen	DVD backup utility
+Other
+Parano	HashFile manager
+[System tools]
+Alacarte	Menu editor
+GNOME Commander	Two-pane graphical file manager
+GParted	Partition editor
+Palimpsest Disk Utility	S.M.A.R.T. monitoring
+wnck	The Window Navigator Construction Kit
+gnee	A GNOME GUI and a panel applet that can be used to record and replay test cases.
+[Tablet applications]
+Gournal	Pen notetaking application
+Xournal	Pen notetaking application
+Jarnal	Pen notetaking application

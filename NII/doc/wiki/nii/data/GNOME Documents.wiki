@@ -1,0 +1,3 @@
+﻿++ GNOME Documents
+
+Document manager

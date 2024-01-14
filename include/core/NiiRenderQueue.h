@@ -215,7 +215,7 @@ namespace NII
             Nmark mSortMark;
         };
 	public:
-        RenderLevelGroup(RenderGroup * parent);
+        RenderLevelGroup(RenderGroup * parent, RenderCommandGroup * dcg);
 
         virtual ~RenderLevelGroup();
 
@@ -285,7 +285,7 @@ namespace NII
         virtual void merge(const RenderLevelGroup * o);
     protected:
         RenderGroup * mParent;
-        DrawCallGroup * mDrawCallList;
+        RenderCommandGroup * mDrawCallList;
         Group mBasic;
         Group mAlpha;
     };
@@ -296,7 +296,7 @@ namespace NII
     class _EngineAPI RenderGroup : public RenderAlloc
     {
     public:
-        typedef map<Nui16, RenderLevelGroup *, std::less<Nui16> >::type RenderList;
+        typedef map<Nui16, RenderLevelGroup *, std::less<Nui16> >::type LevelList;
     public:
         RenderGroup(RenderQueue * parent);
 
@@ -371,7 +371,7 @@ namespace NII
         /** 获取渲染列表
         @version NIIEngine 3.0.0
         */
-        inline const RenderList & getRenderList() const 	{ return mRenderList; }
+        inline const LevelList & getLevelList() const 	{ return mLevelList; }
     protected:
         /** 创建渲染等级组实现
         @version NIIEngine 3.0.0
@@ -380,7 +380,7 @@ namespace NII
     protected:
         RenderQueue * mParent;
 		RenderType mRenderType;
-        RenderList mRenderList;
+        LevelList mLevelList;
         Nmark mSortMark;
         bool mShadowsEnable;
     };
@@ -454,8 +454,13 @@ namespace NII
     public:
         typedef vector<std::pair<RenderGroupType, RenderGroup *> >::type GroupList;
     public:
-        RenderQueue(DrawCallGroup * dcg);
+        RenderQueue(RenderCommandGroup * dcg);
         virtual ~RenderQueue();
+        
+        /** 创建主组
+        @version NIIEngine 3.0.0
+        */
+        virtual void init();
 
 		/**
 		@version NIIEngine 6.0.0
@@ -496,12 +501,12 @@ namespace NII
         @versioin NIIEngine 3.0.0
         */
         inline void setDestroyAllOnClear(bool r)        { mRemoveGroupOnClear = r; }
-        
+
         /** 清理队列时是否删除所有渲染组
         @version NIIEngine 3.0.0
         */
         inline bool isDestroyAllOnClear() const         { return mRemoveGroupOnClear; }
-		
+
         /** 添加排序模式
         @see RenderSortMode
         */
@@ -521,7 +526,7 @@ namespace NII
         @version NIIEngine 3.0.0
         */
         void removeSort(RenderGroupType rgt, RenderSortMode om);
-		
+
 		/** 重至排序模式
 		@version NIIEngine 3.0.0
 		*/
@@ -540,7 +545,7 @@ namespace NII
         /** 添加指定对象到队列
         @version NIIEngine 3.0.0
         */
-        void add(SpaceObj * sobj, GeometryObj * gobj, RenderGroupType rgt, Nui16 rlg, ShadowType stype);
+        void add(SpaceObj * sobj, GeometryObj * gobj, RenderGroupType rgt, Nui16 level, ShadowType stype);
 
         /** 清理队列
         @version NIIEngine 3.0.0
@@ -577,22 +582,19 @@ namespace NII
         */
         void merge(const RenderQueue * o);
     protected:
+        RenderQueue(){}
+
 		/**
 		@version NIIEngine 6.0.0
 		*/
         IndirectBuffer * getIndirectBuffer(NCount cnt);
-	
+
         /** 创建渲染组
         @version NIIEngine 3.0.0
         */
         void createImpl(RenderGroup *& out);
-
-        /** 创建主组
-        @version NIIEngine 3.0.0
-        */
-        virtual void createMainGroup();
     protected:
-		DrawCallGroup * mDrawCallList;
+		RenderCommandGroup * mDrawCallList;
         GroupList mGroups;
         IndirectBufferList mFreeBufferList;
         IndirectBufferList mUsedBufferList;

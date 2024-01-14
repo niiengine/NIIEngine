@@ -1,0 +1,466 @@
+﻿++ gnu中的软件
+
+[3DLDF]
+[A2ps]
+[ACM]
+AUCTeX	Integrated environment for editing LaTeX and TeX files	http://www.gnu.org/software/auctex/	GPLv2orlater
+Abdabi	Service discovery system for DotGNU	http://savannah.gnu.org/projects/abdabi/	GPL
+Acct	GNU system accounting utilities	http://www.gnu.org/software/acct/	GPLv2
+Adns	Resolver library for C and C++ programs	http://www.gnu.org/software/adns/	GPLv2orlater
+Aetherspace	Project to produce a multiplayer game	http://www.gnu.org/software/aetherspace	GPLv2orlater
+Anubis	Processes outgoing mail	http://www.gnu.org/software/anubis/	GPLv2
+GPLv3orlater
+Archimedes	Software for designing and simulating submicron semiconductor devices	http://www.gnu.org/software/archimedes	GPLv2orlater
+GPLv3
+Aris	A formal logical proof program	http://www.gnu.org/software/aris	GPLv3orlater
+Aroundme	Social networking and team interaction software	http://www.gnu.org/software/aroundme/	GPLv3orlater
+Aspell	Spell checker	http://aspell.net/	LGPL
+Autoconf	Produces shell scripts which automatically configure source code	http://www.gnu.org/software/autoconf	GPLv2orlater
+GPLv2 with exception
+GPLv3orlater with exception
+Autoconf-archive	collection of free autoconf macros	http://www.gnu.org/software/autoconf-archive/	
+Autogen	Automated program and text generation	http://www.gnu.org/software/autogen/	GPLv3orlater
+Automake	Generates Makefile.in files	http://www.gnu.org/software/automake/	GPLv2orlater
+Avl	Library for balanced binary trees	http://www.stanford.edu/~blp/avl/	GPLv3orlater
+LGPLv3orlater
+BPEL2oWFN	translates a web service expressed in BPEL into an oWFN	http://www.gnu.org/software/bpel2owfn/index.html	GPLv2orlater
+Ball and Paddle	an old-fashioned ball and paddle game.	http://www.gnu.org/software/ballandpaddle/	GPLv3
+GFDL
+Barcode	Converts text strings to printed bars	http://www.gnu.org/software/barcode	GPLv2
+Bash	Shell of the GNU operating system	http://www.gnu.org/software/bash/bash.html	GPLv3orlater
+Bayonne	GNU telephony server	http://www.gnu.org/software/bayonne/bayonne.html	GPLv2orlater
+Bazaar	a friendly powerful distributed version control system.	http://gnu.org/software/bzr	GPLv2orlater
+Bc	Interactive algebraic language	http://www.gnu.org/software/bc/manual/bc.html	GPLv2orlater
+Beacon	Simple date and category-driven Web publishing system	http://www.barnraiser.org/index.php?page=SoftwareBeacon	GPLv2orlater
+Binutils	Collection of binary utilities	http://www.gnu.org/software/binutils	GPLv2orlater
+GPLv2
+LGPLv2
+GPLv3
+Bison	Replacement for the parser generator 'yacc'	http://www.gnu.org/software/bison/bison.html	GPLv2orlater
+Bool	Utility for matching boolean queries in text	http://www.gnu.org/software/bool	GPLv2orlater
+C-Graph	software for visualizing convolution and demonstrating the convolution theorem	http://www.gnu.org/software/c-graph	GPLv3orlater
+COBOL for gcc	Project to produce a free COBOL compiler	http://www.gnu.org/software/cobol/	GPLv2
+CPPI	a cpp directive indenter.	http://www.gnu.org/software/cppi	GPLv3orlater
+Calendula	Fund-raising/contact management software for non-profits	http://www.gnu.org/software/calendula/	GPLv2orlater
+CcAudio2	Library and software for manipulating audio data	http://www.gnu.org/software/ccaudio	GPLv2orlater
+Ccrtp	RTP stack	http://www.gnu.org/software/ccrtp	GPLv2orlater
+Ccscript	C++ class framework for creating a virtual machine execution system	http://www.gnu.org/software/ccscript/	GPLv2orlater with exception
+Cfengine	Maintains configuration of a heterogenous UNIX network	http://www.gnu.org/software/cfengine	GPLv2orlater
+Cflow	Charts control flow within source code	http://www.gnu.org/software/cflow/	GPLv3orlater
+Cgicc	C++ class library for writing CGI applications	http://www.gnu.org/software/cgicc/	LGPLv3orlater
+GPLv2
+GFDL
+Chess	Chess game	http://www.gnu.org/software/chess/	GPLv3orlater
+Cim	Compiler for the programming language Simula	http://www.gnu.org/software/cim/cim.html	GPLv2
+Classpath	Free core class libraries for the Java programming language	http://www.gnu.org/software/classpath/	GPLv2orlater with exception
+GPLv2orlater
+Clisp	ANSI Common Lisp compiler, debugger, and interpreter	http://clisp.cons.org/	GPLv2
+Collab	real-time shared painting software (paint chat)	http://collab.mgn.cz/	
+Combine	Extensible file matching and filtering	http://www.gnu.org/software/combine/	GPLv2orlater
+Common C++	Highly portable C++ class library	http://www.gnu.org/software/commoncpp/	GPLv2orlater
+Complexity	Measure the complexity of C source	http://www.gnu.org/software/complexity	GPLv3orlater
+Coreutils	Collection of basic file, shell and text manipulation utilities	http://www.gnu.org/software/coreutils/	GPLv3orlater
+Cp-tools 2	Tools for use with GNU Classpath	http://www.gnu.org/software/cp-tools/	GPLv2orlater with exception
+Cpio	Archiver that handles various types of cpio and tar archives	http://www.gnu.org/software/cpio/	GPLv3orlater
+Cssc	Free clone of SCCS	http://sourceforge.net/projects/cssc/	GPLv2
+GPLv3
+DJGPP	GCC, G++, and GNU utilities for DOS	http://www.delorie.com/djgpp/	GPLv2orlater
+DMD	Service manager that's a replacement for SysV-init	http://www.8ung.at/shell/	GPLv2orlater
+Dap	Statistics and graphics package	http://www.gnu.org/software/dap	GPLv2orlater
+Ddd	Graphical front end for command line debuggers	http://www.gnu.org/software/ddd/ddd.html	GPLv3orlater
+DejaGnu	Framework to test programs	http://www.gnu.org/software/dejagnu/dejagnu.html	GPLv2
+Denemo	Graphical music notation program	http://www.gnu.org/software/denemo	GPLv3orlater
+Dia	GTK-based diagram drawing program	http://live.gnome.org/Dia	GPLv2orlater
+Dico	a flexible modular implementation of DICT server (RFC 2229).	http://dico.software.gnu.org.ua/	GPLv3orlater
+LGPLv2.1orlater
+Diction	Checks text for readability and bad usage	http://www.gnu.org/software/diction/diction.html	GPLv2orlater
+GPLv3orlater
+Diffutils	Finds differences between and among files	http://www.gnu.org/s/diffutils/	GPLv2
+Dionysus	a local machine search engine for universal constants and parameters of scientific and engineering relevance.	http://savannah.gnu.org/projects/dionysus	GPLv3orlater
+Dismal	A major mode for GNU Emacs that implements a spreadsheet.	http://acs.ist.psu.edu/dismal/dismal.html	GPLv2
+Dominion	Multi-player role-playing simulation	http://savannah.gnu.org/projects/dominion/	GPLv2orlater
+Double Choco Latte	System for tracking bugs, changes, enhancements, and requests for software	http://dcl.sourceforge.net/	GPLv2
+Dr. geo	Builds geometric figures	http://gnu.org/software/dr-geo	GPLv2orlater
+EDMA	Modular development environment	http://www.gnu.org/software/edma/edma.html	GPLv2
+EPrints	Online information archiving system	http://www.gnu.org/software/eprints	GPLv2orlater
+Ed	Line-oriented text editor	http://www.gnu.org/software/ed/	GPLv3orlater
+Electric	An electrical CAD system	http://www.gnu.org/software/electric	GPLv3orlater
+Emacs	Extensible, real-time editor	http://www.gnu.org/software/emacs/emacs.html	GPLv3orlater
+Emms	Emacs multimedia system	http://www.gnu.org/software/emms/	GPLv3orlater
+Enscript	Converts ASCII files to PostScript	http://www.gnu.org/software/enscript/	GPLv2orlater
+GPLv3orlater
+Epsilon	Strongly-typed omega-order programming language	http://www.gnu.org/software/epsilon/	GPLv2orlater
+Ferret	GNU data modeller	http://www.gnu.org/software/ferret/project/what.html	GPLv2orlater
+GPLv3
+Findutils	Tools to find files and to operate on groups of files	http://www.gnu.org/software/findutils/findutils.html	GPLv2orlater
+GPLv3orlater
+Finger 2	Lets Unix users exchange information	http://www.gnu.org/software/finger/finger.html	GPLv2orlater
+Fontutils	Converts between font formats and creates fonts	http://www.gnu.org/software/fontutils/fontutils.html	GPLv2
+FreeDink	Free enhancement of the Dink Smallwood game engine	http://www.gnu.org/software/freedink/	GPLv3orlater
+FreeIPMI	Intelligent platform management system	http://www.gnu.org/software/freeipmi	GPLv3orlater
+Freefont	Free UCS outline fonts	http://www.gnu.org/software/freefont/	GPL
+GPLv2orlater
+GPLv3orlater
+Fribidi	Free implementation of the Unicode Bidirectional (BiDi) Algorithm	http://fribidi.org/wiki/	LGPL
+GCC	GNU Compiler Collection	http://www.gnu.org/software/gcc/	GPLv3orlater with exception
+LGPLv2.1orlater
+GCL	Compiler and interpreter for Common Lisp	http://savannah.gnu.org/projects/gcl/	LGPL
+GIFT	Content based image retrieval system	http://www.gnu.org/software/gift/gift.html	GPLv2
+GIMP	GNU Image Manipulation Program	http://gnu.org/software/gimp	LGPLv3orlater
+GLPK	GNU Linear Programming Kit	http://www.gnu.org/software/glpk	GPLv3orlater
+GLUE 2	GNU Internet groupware project	http://www.gnu.org/software/glue/glue.html	
+GLib	Core library that forms the basis of GTK+ and GNOME	http://www.gtk.org/	LGPL
+GMP	The GNU Multiple Precision Arithmetic Library	http://www.gnu.org/software/gmp	LGPLv2.1orlater
+GNAT	A complete Ada95 compilation system	http://gnu.org/software/gnat	GPLv3orlater
+GNOWSYS	Hybrid database server with a kernel for semantic computing	http://www.gnu.org/software/gnowsys/	GPLv2orlater
+GNU Alive	Automatic login and keep-alive utility for Internet connections.	http://savannah.gnu.org/projects/alive/	GPLv2orlater
+GNU Classspathx	Unfinished free implementation of the Java extension libraries	http://www.gnu.org/software/classpathx/	GPLv2orlater
+GNU FM	GNU FM is free software for running music community websites.	http://gnu.org/s/fm	AGPLv3orlater
+GNU Font Editor	Graphical font editor	http://www.gnu.org/software/gfe/gfe.html	GPLv2orlater
+GNU GLOBAL	Source code tag system for C, C++, Java, and Yacc	http://www.gnu.org/software/global/	GPLv3orlater
+GNU GRUB	GNU GRand Unified Bootloader	http://www.gnu.org/software/grub/	GPLv3orlater
+GNU Generic Security Service - Libgss	Implementation of the Generic Security Service API	http://www.gnu.org/software/gss/	GPLv3orlater
+GNU Gnash	Flash Movie Player	http://www.gnu.org/software/gnash/	GPLv3orlater
+GNU Libidn	Internationalized string preparation library	http://www.gnu.org/software/libidn/	GPLv3orlater
+LGPLv2.1orlater
+LGPLv2.1
+GNU Linux-libre	UNIX-like monolithic kernel liberated and adopted by the GNU system	http://linux-libre.fsfla.org	GPLv2
+GNU MAC Changer	Is a utility to manipulate a MAC address	http://www.alobbs.com/macchanger/	GPLv2orlater
+GNU MDK	Emulator and development environment for Knuth's MIX computer	http://www.gnu.org/software/mdk/mdk.html	GPL
+GNU Messenger	Secure messaging system	http://www.gnu.org/software/gm/	GPLv2orlater
+GNU MyServer	Web server designed for inexperienced users	http://www.myserverproject.net	GPLv2orlater
+GNU Ocrad	OCR program based on feature extraction	http://www.gnu.org/software/ocrad/ocrad.html	GPLv3orlater
+GNU POC	manages smartcard passwords	http://www.gnu.org/software/poc/poc.html	GPLv2orlater
+GNU Pascal	Pascal compiler of the GNU Project	http://www.gnu.org/software/pascal/	GPLv2
+GNU Pipo	A GNU Bulletion Board System	http://www.gnu.org/software/pipo	GPLv2orlater
+GNU Proxyknife	Validate free proxies for users behind firewalls	http://www.gnu.org/software/proxyknife	GPLv3orlater
+GNU R	a language and environment for statistical computing and graphics.	http://gnu.org/software/r	GPLv2orlater
+LGPLv2.1
+LGPLv2.1orlater
+GNU Recutils	Tools and libraries to access human-editable text-based databases	http://www.gnu.org/software/recutils	GPLv3orlater
+GFDL
+GNU Remotecontrol	GNU remotecontrol is a web application serving as a management tool for multiple IP enabled HVAC thermostats (device), and other Building Automation devices. The purpose of GNU remotecontrol is to read from and write to multiple IP enabled thermostats.	https://savannah.gnu.org/projects/remotecontrol/	AGPLv3orlater
+GNU SASL	SASL network authentication library	http://www.gnu.org/software/gsasl/	GPLv3orlater
+GNU Smalltalk	Implementation of the Smalltalk object oriented language	http://smalltalk.gnu.org/	GPLv2orlater
+GNU Solfege	Eartraining program for GNOME	http://www.gnu.org/software/solfege/	GPLv2orlater
+GPLv3orlater
+GNU Songanizer	Script to organize a directory containing ogg and mp3 files.	http://www.gnu.org/software/songanizer	GPLv2orlater
+GNU Source-highlight	This program, given a source file, produces a document with syntax highlighting.	http://www.gnu.org/software/src-highlite	GPLv3orlater
+GNU Spool	a spooling system which can support any type of printer and printer interface.	http://www.gnu.org/software/gnuspool/	GPLv3orlater
+GNU TeXmacs	Scientific text editor	http://www.texmacs.org/	GPLv2orlater
+GNU Teseq	a tool for analyzing files that contain control characters and terminal control sequences.	http://www.gnu.org/software/teseq/	GPLv3orlater
+GNU ddrescue	Data recovery tool	http://www.gnu.org/software/ddrescue/ddrescue.html	GPLv3orlater
+GNU fcrypt	Transparent and automatic encryption. Allow you to access encrypted data like unecrypted HD's.	http://www.gnu.org/software/fcrypt	
+GNU fdisk	Is a libparted-based partitioning tool	http://www.gnu.org/software/fdisk/	GPLv3orlater
+GNU ghostscript	Interpreter for the Postscript and PDF graphics languages	http://gnu.org/software/ghostscript	GPLv2
+GNU go	Plays the game of Go	http://www.gnu.org/software/gnugo/gnugo.html	GPLv2
+GPLv3
+GNU libmatheval	Library for evaluating mathematical expressions	http://www.gnu.org/software/libmatheval/	GPLv3orlater
+GNU lightning	Generates assembly language code at run-time	http://www.gnu.org/software/lightning/lightning.html	LGPLv3orlater
+GNU moe	A powerful and user-friendly text editor	http://www.gnu.org/software/moe/moe.html	GPLv3orlater
+GNU robots	Real-time game	http://www.gnu.org/software/gnurobots	GPLv2orlater
+GNU sauce	Anti-spam server	http://www.gnu.org/software/sauce/	GPLv2orlater
+GNU social	GNU social implements the OStatus standard for decentralized social networking.	http://www.gnu.org/software/social/	AGPLv3orlater
+GNU tar	Creates tar archives	http://www.gnu.org/software/tar/	GPLv2
+GPLv3orlater
+GNU trueprint	Prints source code to PostScript printers	http://www.gnu.org/software/trueprint/trueprint.html	GPLv2
+GNUCash	Personal and small business money-management software	http://www.gnucash.org/	GPLv2orlater
+GNUKart	Racing game	http://www.gnu.org/software/gnukart/	GPLv2orlater
+GNUMP3d	A light-weight audio server	http://www.gnu.org/software/gnump3d/	GPLv2orlater
+GNUMed	Software for a paperless medical practice	http://www.gnu.org/software/gnumed/	GPLv2
+GNUbatch	an advanced batch scheduling system for GNU.	http://www.gnu.org/software/gnubatch/	GPLv3orlater
+GFDL
+GNUbik	3D Rubik's cube game	http://www.gnu.org/software/gnubik/	GPLv3orlater
+GNUcap	A general purpose circuit simulator	http://www.gnu.org/software/gnucap/	GPLv2orlater
+GNUe Application Server	Business logic server for 3-tier database applications.	http://www.gnuenterprise.org	GPLv2orlater
+GNUe Common Library	Python library for database abstraction, RPC abstraction, and lots of other things.	http://www.gnuenterprise.org/	GPLv2
+GNUe Forms	Multi-platform user interface generator for database applications with support for various database backends.	http://www.gnuenterprise.org/	GPLv2
+GNUe Navigator	Multi-platform menuing system.	http://www.gnuenterprise.org/	GPLv3
+GNUe Reports	Report generator with support for various datasources and different output formats.	http://www.gnuenterprise.org/	GPLv3
+GNUjump	GNUjump is a simple game where your goal is to keep jumping to upper falling platforms in order to avoid touching the lower part of the screen.	http://www.gnu.org/software/gnujump/	GPLv3orlater
+GNUnited Nations	a build system for www.gnu.org translations.	http://www.gnu.org/software/gnun/	X11
+GPLv3orlater
+GFDL
+W3C
+GNUstep	A graphical, object oriented programming environment	http://www.gnustep.org/	LGPL
+GPLv3
+GNUtls	A library implementing TLS 1.0 and SSL 3.0 protocols	http://www.gnu.org/software/gnutls/	LGPL
+GPLv3orlater
+GOOPS	Object-oriented extension to 'guile'	http://www.gnu.org/software/goops/goops.html	GPLv2orlater
+GSEGrafix	a GNOME application which uses an anti-aliased GNOME canvas for creating scientific and engineering plots.	http://www.gnu.org/software/gsegrafix/	GPLv3orlater
+GFDL
+GSL	Routines for numerical computing	http://www.gnu.org/software/gsl/	GPLv3orlater
+GSRC	GNU Source Release Collection	http://www.gnu.org/software/gsrc	GPLv3orlater
+SimplePermissiveNonWarranty
+GTK+	GNU toolkit for X windows development	http://www.gtk.org/	LGPL
+GTS	Functions for 3D surfaces meshed with interconnected triangles	http://gts.sourceforge.net/	GPLv2
+GWorkspace	GNUstep workspace and file manager	http://www.gnu.org/software/gnustep/experience/GWorkspace.html	GPLv2orlater
+Gama	Geodetic network adjustment program	http://www.gnu.org/software/gama/	GPLv3orlater
+Garpd	GNU Gratuitous ARP Daemon	https://savannah.gnu.org/projects/garpd	GPLv2orlater
+Gawk	String manipulation language	http://www.gnu.org/software/gawk/gawk.html	GPLv2orlater
+Gcal	Is a program for calculating and printing calendars, and is the GNU implementation of the universally known cal and calendar programs.	http://www.gnu.org/software/gcal/	GPLv2orlater
+GPLv3orlater
+Gcjwebplugin	Browser plugin that executes Java applets	http://www.nongnu.org/gcjwebplugin/	GPLv2orlater with exception
+Gcompris	Educational suite for children from 2 to 10	http://gcompris.net	GPLv2orlater
+Gcron	Replacement for Vixie cron	http://www.gnu.org/software/gcron	GPLv2
+Gdb	GNU Debugger	http://www.gnu.org/software/gdb/gdb.html	GPLv2orlater
+Gdbm	Replacement for the 'dbm' and 'ndbm' libraries	http://gnu.org/software/gdbm	GPLv2
+Gengen	A parameterized-text-generator generator based on a template	http://www.lorenzobettini.it/software/gengen/index.php	GPLv2orlater
+Gengetopt	Generates a C function that parses and validates command line options	http://www.gnu.org/software/gengetopt	GPLv3orlater
+Gettext	Tools to produce multi-lingual messages	http://www.gnu.org/software/gettext	GPLv3orlater
+LGPLv2.1orlater
+Gforth	Free implementation of the ANS Forth language	http://www.jwdt.com/~paysan/gforth.html	GPLv2
+Gfortran	Fortran compiler	http://gcc.gnu.org/	GPLv2orlater
+Ggradebook	Fully-featured GNU gradebook	http://www.gnu.org/software/ggradebook/	GPLv2orlater
+Gleem	Library of 3D widgets	http://www.gnu.org/software/gleem/	GPLv2orlater
+Gnats	Bug tracking system	http://www.gnu.org/software/gnats/	GPL
+Gnatsweb	Web interface to the GNU bug management system	http://www.gnu.org/software/gnatsweb/	GPL
+Gnochive	GUI frontend for multiple archivers	http://gnochive.sourceforge.net/	GPLv2orlater
+Gnome	The GNU desktop	http://www.gnome.org/	GPLv2orlater
+Gnotary	Project to produce a digital notary service	http://www.gnumed.net/gnotary/	GPLv2orlater
+Gnotepad+	HTML and text editor	http://gnotepad.sourceforge.net/	GPLv2orlater
+Gnu-arch	Revision control system	http://www.gnu.org/software/gnu-arch	GPLv2
+Gnu-c-manual	A reference manual of the C programming language as implemented by GCC	http://www.gnu.org/software/gnu-c-manual/	GFDLv1.3orlater
+Gnu-crypto	Project to produce a full set of Java cryptographic tools	http://www.gnu.org/software/gnu-crypto	GPLv2orlater with library exception
+GnuCAD 2	Unfinished project to write a free CAD system	http://gnu-cad.sourceforge.net/	GPLv2
+Gnuae	Software to produce alternative energy systems	http://www.senecass.com/software/gnuae/	GPLv2orlater
+Gnubg	Plays and analyzes backgammon games and matches	http://www.gnu.org/software/gnubg/gnubg.html	GPLv2orlater
+Gnubiff	Mail notification program	http://gnu.org/software/gnubiff	GPLv3orlater
+Gnucomm	GNU telecommunications project	http://www.gnu.org/software/gnucomm/	GPLv2orlater
+Gnuit	Tools for simple, daily file and system management tasks	http://www.gnu.org/software/gnuit/	GPLv2
+GPLv3orlater
+Gnulib	GNU portability library	http://www.gnu.org/software/gnulib/	
+Gnumach	Microkernel of the GNU system	http://www.gnu.org/software/hurd/microkernel/mach/gnumach.html	GPLv2orlater
+Gnumeric	Math program intended to replace commercial spreadsheets	http://www.gnome.org/projects/gnumeric/	GPLv2orlater
+Gnunet	Anonymous peer-to-peer file-sharing	http://www.gnu.org/software/GNUnet/	GPLv3orlater
+Gnupg (GPG)	Complete implementation of the OpenPGP Internet standard	http://www.gnu.org/software/gnupg/	GPLv3orlater
+Gnupod	Lets you use an iPod under GNU/Linux	http://www.gnu.org/software/gnupod/	GPLv3orlater
+Gnuradio	Software to create digital radio signals	http://www.gnu.org/software/gnuradio/	GPLv3orlater
+Gnuschool	Is a web application for educators, students, and school administrators.	http://www.gnu.org/software/gnuschool/	GPLv3orlater
+Gnushogi	Japanese version of chess	http://www.gnu.org/software/gnushogi	GPLv2orlater
+GPLv3orlater
+Gnuskies	Project to create a free version of the xephem program	http://www.gnu.org/software/gnuskies/gnuskies.html	GPLv2orlater
+Gnusound	Multitrack sound editor for Gnome	http://www.gnu.org/software/gnusound	GPLv2orlater
+Gnusysutils	Planned group of utilities for system administrators	http://savannah.gnu.org/projects/sysutils	GPLv2orlater
+Gnutrition	Nutrition analysis software	http://gnu.org/software/gnutrition	GPLv3orlater
+Gnuzilla IceCat	GNU version of popular web browser	http://www.gnu.org/software/gnuzilla/	GPLv2orlater
+LGPLv2.1orlater
+MPL1.1
+Goldwater	Middleware component of the DotGNU project	http://www.gnu.org/software/goldwater	GPL
+Goptical	GNU Optical design and simulation library	http://www.gnu.org/software/goptical/	GPLv3orlater
+Gorm	Graphic Object Relationship Modeler	http://gnustep.org/experience/Gorm.html	GPLv2orlater
+Gpaint	GNOME paint program	http://www.gnu.org/software/gpaint/	GPLv3orlater
+Gperf	Generates a hash function	http://www.gnu.org/software/gperf/gperf.html	GPLv2
+GPLv3orlater
+Gprolog	Prolog compiler	http://gnu.org/software/gprolog	GPLv2
+Greg	Software testing framework	http://www.gnu.org/software/greg/greg.html	GPLv2orlater
+Grep	Finds lines that match entered patterns	http://www.gnu.org/s/grep/	GPLv3orlater
+Gretl	Software for econometric analysis	http://gretl.sourceforge.net/	GPLv2
+Groff	Document formatting system	http://www.gnu.org/software/groff/groff.html	GPLv2
+Gtick	Digital metronome	http://www.antcom.de/gtick/	GPLv3orlater
+Gtypist	Typing tutor program	http://www.gnu.org/software/gtypist	GPLv3orlater
+Guile	GNU extensibility library	http://www.gnu.org/software/guile/guile.html	LGPLv2.1orlater
+Guile-dbi	Guile database abstraction layer	http://home.gna.org/guile-dbi/	GPLv2orlater
+Guile-gnome	Helps Scheme programmers develop visual applications	http://www.gnu.org/software/guile-gnome/	GPLv2orlater
+Guile-gtk	Guile language bindings for Gtk+ version 1.2	http://www.gnu.org/software/guile-gtk/	GPLv2orlater
+Guile-ncurses	A library for interfacing GNU Guile with ncurses for the creation of textual user interfaces.	http://www.gnu.org/software/guile-ncurses/	LGPLv3orlater
+Gurgle	Formerly the GNU Report Generator	http://homepages.inf.ed.ac.uk/timc/gurgle/	GPLv2orlater
+GPLv3orlater
+Gv	Frontend for ghostscript	http://www.gnu.org/software/gv	GPLv3orlater
+Gvpe	Secure vpn network among multiple nodes over an untrusted network	http://savannah.gnu.org/projects/gvpe	GPLv2orlater
+Gxmessage	GTK2-based xmessage clone.	http://gnu.org/software/gxmessage	
+Gzip	Compresses and decompresses files	http://www.gnu.org/software/gzip	GPLv2orlater
+GPLv3orlater
+Halifax	Client applications suite for fax applications	http://gnu.org/software/halifax	GPLv2orlater
+Health	Hospital and Health Information System	http://gnu.org/software/health	GPLv3orlater
+Hello	GNU version of "Hello, world!"	http://www.gnu.org/software/hello/hello.html	GPLv3orlater
+GPLv2orlater
+Help2man	Generates manual pages from program files	http://www.gnu.org/software/help2man	GPLv3
+Hp2xx	Reads and converts HP-GL files to various formats	http://www.gnu.org/software/hp2xx/hp2xx.html	GPLv2orlater
+Httptunnel	Creates a data path in HTTP requests	http://www.gnu.org/software/httptunnel/	GPLv2
+Hurd	Project GNU's replacement for the Unix kernel	http://www.gnu.org/software/hurd/	GPLv2orlater
+Hyperbole	Information and text management program	http://www.gnu.org/software/hyperbole/hyperbole.html	GPLv3orlater
+Idutils	Tools for indexing	http://www.gnu.org/software/idutils	GPLv2orlater
+Ignuit	A flash-card based memorization aid.	http://gnu.org/software/ignuit	GPLv3orlater
+Indent	C source beautifier	http://www.gnu.org/software/indent/	GPLv2orlater
+GPLv3
+Inetutils	Collection of common network programs	http://www.gnu.org/software/inetutils/inetutils.html	GPLv2orlater
+GPLv3orlater
+Intlfonts	Fonts for all characters Emacs 20 can handle	http://gnu.org/software/intlfonts	GPLv2orlater
+Jacal	Mathematics program	http://people.csail.mit.edu/jaffer/JACAL	GPLv2orlater
+GPLv3
+Jel	Compiler for simple expressions into Java byte code	http://galaxy.fzu.cz/JEL/	GPLv2
+Jgay/Test GIMP	GNU image manipulation program	http://www.gimp.org/	
+Jwhois	Internet whois client	http://www.gnu.org/software/jwhois/	GPLv3orlater
+Kawa	Featureful scheme implementation	http://www.gnu.org/software/kawa/	X11
+GPLv2orlater
+Less	Display paginator	http://www.gnu.org/software/less/	SimplePermissiveNonWarranty
+LibCVS	Provides CVS functionality in library form	https://savannah.nongnu.org/projects/libcvs-perl/	Perl
+Libc	Library for use with GNU/Hurd and GNU/Linux	http://www.gnu.org/software/libc/libc.html	LGPL
+Libcdio	Encapsulates CD-ROM reading and control	http://savannah.nongnu.org/projects/libcdio/	GPLv2
+GPLv2orlater
+Libextractor	Extracts metadata information from files	http://www.gnu.org/software/libextractor/	GPLv3orlater
+GFDLv1.3orlater
+Libffcall	Builds foreign function call interfaces in embedded interpreters	http://savannah.gnu.org/projects/libffcall	GPLv2orlater
+Libgcrypt	Cryptographic library	http://www.gnupg.org	LGPL
+GPLv3
+Libiconv	Converts between character encodings	http://www.gnu.org/software/libiconv/	LGPL
+LGPLv2orlater
+GPLv3orlater
+Libmicrohttpd	GNU library	http://www.gnu.org/software/libmicrohttpd/	LGPLv2.1
+LibreJS	Blocks javascript that is both non-trivial and non-free	http://www.gnu.org/software/librejs/	GPLv3orlater
+Libsigsegv	Library for handling page faults	http://www.gnu.org/software/libsigsegv/	GPLv2orlater
+Libtasn1	the ASN.1 library used by GnuTLS, GNU Shishi and some other packages.	http://www.gnu.org/software/libtasn1/	GPLv3orlater
+LGPLv2.1orlater
+GFDL
+Libtool	Generic library support script	http://www.gnu.org/software/libtool	GPLv2
+GPLv2orlater with exception
+LGPLv2.1orlater
+Libunistring	a library provides functions for manipulating Unicode strings and for manipulating C strings according to the Unicode standard.	http://www.gnu.org/software/libunistring/	GPLv3orlater
+GFDL
+LGPLv3orlater
+Libxmi	Library for rasterizing 2-D vector graphics	http://www.gnu.org/software/libxmi	GPLv2
+Lilypond	Music typesetter	http://www.lilypond.org/	GPLv3orlater
+Liquidwar6	Liquid War 6 is a unique multiplayer wargame.	http://www.gnu.org/software/liquidwar6	GPLv3orlater
+Lsh	Free implementation of the SSH protocol	http://www.gnu.org/software/lsh/	GPLv2orlater
+M4	Macro processor	http://www.gnu.org/software/m4/m4.html	GPLv3orlater
+GPLv2orlater
+MPC	C library for the arithmetic of complex numbers with arbitrarily high precision and correct rounding of the result	http://mpc.multiprecision.org/	LGPLv3orlater
+MPFR	Multiple-precision Floating-point library with correct rounding.	http://www.gnu.org/software/mpfr	LGPLv3orlater
+Mailman	Manages discussion lists	http://www.gnu.org/software/mailman/	GPLv2orlater
+Mailutils	A set of libraries and programs for handling e-mail messages	http://gnu.org/software/mailutils	GPLv3orlater
+Make	Generates executables and other non-source programs	http://www.gnu.org/software/make/make.html	GPLv2orlater
+Marst	Algol to C translator	http://www.gnu.org/software/marst/marst.html	GPLv3orlater
+Maverik	Virtual reality micro kernel	http://aig.cs.man.ac.uk/maverik/	GPLv2
+GPLv3orlater
+Mc 2	Converts text documents into a vector space model	http://www.cs.utexas.edu/users/jfan/dm/	GPLv2
+Mcron	Vixie cron replacement	http://www.gnu.org/software/mcron/	GPLv2orlater
+Mcsim	Simulation software for designing, analyzing and calibrating mathematical models	http://www.gnu.org/software/mcsim/	GPLv2orlater
+MediaGoblin	A way to share your pictures with the world	http://www.gnu.org/software/mediagoblin	AGPLv3orlater
+Melting	Nearest-neighbor compilation of nucleic acid hybridation	http://gnu.org/software/melting	GPLv2orlater
+Metahtml	Programming language for the Web	http://metahtml.sourceforge.net/	GPLv2orlater
+Midnight Commander	Unix file manager	http://www.ibiblio.org/mc/	GPLv2
+Mifluz	Full text inverted index query library	http://www.gnu.org/software/mifluz/	GPLv2
+Mig	Interface generator for the Hurd	http://www.gnu.org/software/mig	GPLv2
+Miscfiles	Collection of various files	http://www.gnu.org/software/miscfiles	GFDL
+Mit-scheme	MIT/GNU Scheme programming language	http://www.gnu.org/software/mit-scheme/	GPLv2orlater
+Mll2html	Converts a mailing lists file to an HTML file	http://www.gnu.org/software/mll2html/mll2html.html	GPLv2orlater
+Motti	Multiplayer, networked strategy game	http://www.gnu.org/software/motti/	GPLv3orlater
+Mtools	Lets Unix systems work with DOS files	http://www.gnu.org/software/mtools	GPLv3orlater
+Muse	Emacs mode for publishing in various modes	http://www.mwolson.org/projects/MuseMode.html	GPLv3orlater
+Nana	Library for assertion checking and logging in GNU C/C++	http://www.gnu.org/software/nana/nana.html	GPLv2orlater
+Nano	Pico clone for *NIX	http://www.nano-editor.org/	GPLv3orlater
+Nautilus	File manager and graphical shell	http://www.gnome.org/projects/nautilus/	GPLv2orlater
+Ncurses	Displays and updates text on text-only terminals	http://dickey.his.com/ncurses/ncurses.html	X11
+Nettle	Cryptographic library	http://www.lysator.liu.se/~nisse/nettle/	GPLv2orlater
+OMGCP 2	Free implementation of the Open Media Gateway Control Protocol	http://www.gnu.no/directory/telephony/oMGCP.html	LGPLv2orlater
+Octal 2	Free digital sound workstation for Unix-like systems	http://www.gnu.org/software/octal/	GPLv2
+Octave	High-level language for numerical computations	http://www.gnu.org/software/octave/	GPLv2
+GPLv3orlater
+Oleo	Lightweight spreadsheet program	http://www.gnu.org/software/oleo/oleo.html	GPLv2
+Orgadoc	Helps organize documentation	http://www.gnu.org/software/orgadoc/	GPLv2orlater
+Osip	Library supporting the Session Initiation Protocol	http://www.gnu.org/software/osip	LGPL
+PCB	Designs printed circuit board layouts	http://gnu.org/software/pcb	GPLv2
+PHP GroupWare	Groupware suite	http://www.phpgroupware.org/	GPLv2orlater
+GPLv3orlater
+PIPS	Converts data between formats	http://ftp.gnu.org/gnu/pips/	GPLv2
+PSPP	Statistics package	http://www.gnu.org/software/pspp/pspp.html	GPLv3orlater
+Panorama	Framework for 3D graphics production	http://www.gnu.org/software/panorama	GPLv2
+Paperclips	Webserver and dynamic content container	http://www.gnu.org/software/paperclips/	GPLv2
+Parallel	a shell tool for executing jobs in parallel using one or more computers	http://www.gnu.org/software/parallel/	GPLv3orlater
+Parted	Manipulates disk partitions	http://www.gnu.org/software/parted/parted.html	GPLv3orlater
+Patch	Applies a patch to a file	http://www.gnu.org/software/patch/patch.html	GPLv2
+Patchwork	Utility for rapid patch development and submission	http://savannah.nongnu.org/cvs/?group=epm	GPLv2orlater
+Paxutils	Tool to manage file archives	http://www.gnu.org/software/paxutils/paxutils.html	GPLv2
+Personal Expenses Manager	Is a command line accounting program	http://www.gnu.org/software/pem/	GPLv2
+Pexec	Execute commands or shell scripts in parallel on a local or remote host	http://www.gnu.org/software/pexec/	GPLv3orlater
+Phantom home	Home automation system	http://www.joethielen.com/phantom/home/	GPLv2orlater
+Phantom security	Home security system	http://www.gnu.org/software/phantom.security/	GPLv2orlater
+Phpgrabcomics	Retrieves and saves comics from the Web	http://www.baravalle.it/phpGrabComics/	GPLv2orlater
+Pies	Program Invocation and Execution Supervisor	http://www.gnu.org.ua/software/pies/	GPLv3orlater
+Plotutils	Plotting and graphics utilities	http://www.gnu.org/software/plotutils	GPL
+Polyxmass	Mass spectrometric framework for simulation and analysis of mass spectrometric data of (bio-)polymers	http://www.gnu.org/software/polyxmass	GPLv2orlater
+Prolog for Java	an implementation of ISO Prolog as a Java library	http://www.gnu.org/software/gnuprologjava	GPLv3orlater
+GFDL
+LGPLv3orlater
+Proto	Tools to find function prototypes	http://www.oualline.com/sw/index.html	PublicDomain
+Protoize	Creates or removes prototypes from C code	http://www.gnu.org/software/gcc	GPLv2orlater
+Psychosynth	an interactive modular soft-synth.	http://www.psychosynth.com/index.php/Main_Page	GPLv3orlater
+Expat
+Pth	GNU Portable Threads library	http://www.gnu.org/software/pth/pth.html	LGPL
+Ptx	Index generator	http://www.gnu.org/software/ptx/ptx.html	GPLv2
+Pyconfigure	Configure and install Python software the GNU way	http://www.gnu.org/software/pyconfigure	GPLv3orlater
+SimplePermissiveNonWarranty
+Qexo	XQuery to Java compiler	http://gnu.org/software/qexo	Kawa
+Queue	Batch processing and local rsh replacement system	http://www.gnu.org/software/gnu-queue/	GPLv2orlater
+RCS	Version control and project management software	http://www.gnu.org/software/rcs/	GPLv2orlater
+RPGE	an engine for 2D role playing games.	http://www.gnu.org/software/rpge/	GPLv3orlater
+GFDL
+Radius	Remote authentication and accounting system	http://www.gnu.org/software/radius/radius.html	GPLv3orlater
+Readline	Lets users edit command lines as they are typed in	http://cnswww.cns.cwru.edu/php/chet/readline/rltop.html	GPLv2orlater
+RefTeX	a specialized package for support of labels, references, citations, and the indices in LaTeX.	http://www.gnu.org/software/auctex/reftex.html	GPLv3
+Rottlog	GNU log management utility.	http://www.gnu.org/software/rottlog	GPLv2orlater
+GPLv3orlater
+Rush	Restricted User Shell with sophisticated configuration files.	http://www.gnu.org/software/rush	GPLv3orlater
+SIP Witch	a pure SIP-based office telephone call server that offers generic business telephone system features.	http://www.gnu.org/software/sipwitch/	GPLv3orlater
+SXML	Defines and implements a mark-up language	http://medialab.di.unipi.it/Project/SXML/	GPLv2orlater
+Sather	Object-oriented language	http://savannah.gnu.org/projects/sather	GPLv3orlater
+Screen	Runs separate screens on a single terminal	http://www.gnu.org/software/screen	GPLv2orlater
+Sed	A stream-oriented non-interactive text editor	http://www.gnu.org/software/sed//sed.html	GPLv3orlater
+GPLv3
+Serveez	Server framework	http://www.gnu.org/software/serveez/	GPLv2orlater
+Shared Memory Manager	access all shared memory	http://gnu.org/software/shmm	GPLv3orlater
+Sharutils	Creates and helps unpack shell archives	http://www.gnu.org/software/sharutils/sharutils.html	GPLv3orlater
+Shishi	Free implementation of the Kerberos 5 network security system	http://www.gnu.org/software/shishi/	GPLv3orlater
+Shtool	The GNU portable shell tool	http://www.gnu.org/software/shtool/	GPLv2orlater
+Slib	Portable scheme library	http://www.swiss.ai.mit.edu/~jaffer/SLIB	SimplePermissiveNonWarranty
+SmartEiffel	Eiffel compiler	http://smarteiffel.loria.fr/index.html	GPLv2
+Sourceinstaller	Graphical tool for source package configuration, installation, tracking and removal	http://www.gnu.org/software/sourceinstall	GPLv3orlater
+Sovix	PHP-based, semantic website revision system	http://sovix.org/Main_page.php	GPLv3orlater
+GFDL
+AGPLv3orlater
+Spacechart	Displays the stars in space in 3D	http://www.gnu.org/software/spacechart/	GPLv2orlater
+Speex	Speech compression format	http://www.speex.org/	Xiph
+Spell	Spell checker	http://savannah.gnu.org/projects/spell/	GPLv2orlater
+Sqltutor	Interactive web based tool for learning SQL by examples	http://www.gnu.org/software/sqltutor/	GPLv3orlater
+Src-highlite	Turns source code into a file with syntax highlighting	http://www.gnu.org/software/src-highlite/	GPLv2orlater
+GPLv3orlater
+Stow	Manages installation process	http://www.gnu.org/software/stow/	GPLv2orlater
+Superopt	Finds the shortest instruction sequence for a given function	http://gnu.org/software/superopt	GPLv2orlater
+Swbis	Extensions to the POSIX packaging standard	http://www.gnu.org/software/swbis/	GPLv3orlater
+Talkfilters	Translates English text into dialects	http://www.hyperrealm.com/main.php?s=talkfilters	GPLv2orlater
+Termcap	A library for sending terminal control codes	http://www.gnu.org/software/termutils/	GPLv2orlater
+Termutils	Programs for controlling terminals	http://www.gnu.org/software/termutils/termutils.html	GPLv2orlater
+Texinfo	Produces manuals, ASCII text, and on-line documentation	http://www.gnu.org/software/texinfo/	GPLv3orlater
+Thales	IRC to MySQL gateway	http://www.gnu.org/software/thales/	GPLv2orlater
+The GNU Objective C Class Library	The GNU Objective C Class Library (libobjects) is a library of general-purpose, non-graphical Objective C objects	http://www.cs.rochester.edu/u/mccallum/libobjects/	GPLv2orlater
+Time	Reports the user, system, and real time used by a process	http://www.gnu.org/software/time/time.html	GPLv2orlater
+ToutDoux	Project manager	http://www.gnu.org/software/toutdoux/	GPLv2orlater
+Tramp	Remote file editing software	http://www.gnu.org/software/tramp/	GPLv3orlater
+Units	Unit conversion and calculation	http://www.gnu.org/software/units/	GPLv2orlater
+GPLv3orlater
+Unrtf	Converts from RTF to other formats	http://www.gnu.org/software/unrtf/unrtf.html	GPLv2orlater
+Userv	Security boundary tool	http://www.gnu.org/software/userv/	GPLv2
+Uucp	File copying program	http://www.gnu.org/software/uucp/	GPLv2
+VC-dwim	a version-control-agnostic ChangeLog diff and commit tool.	http://www.gnu.org/software/vc-dwim/	GPLv3orlater
+GFDL
+VCD Imager	Free software (Super) video CD authoring solution	http://www.vcdimager.org/	GPLv2orlater
+Vera	V.E.R.A. Virtual Entity of Relevant Acronyms	http://www.gnu.org/software/vera	GFDL
+Vmslib	GNU vmslib is a bunch of files and small routines that can help people to port GNU programs to VMS	http://www.gnu.org/software/vmslib/	GPLv2orlater
+Wdiff	Front end to GNU 'diff'	http://www.gnu.org/software/wdiff/	GPLv2orlater
+WebSocket4J	a WebSocket protocol implementation in Java.	http://gnu.org/software/websocket4j	GPLv2orlater with exception
+GFDL
+Wget	Retrieves files from the Web	http://www.gnu.org/software/wget/	GPLv3orlater with exception
+Which	Prints out full path of execuatbles	http://www.xs4all.nl/~carlo17/which/	GPLv3orlater
+Window Maker	Window manager for X Window System	http://www.gnu.org/software/windowmaker/	GPLv2orlater
+Womb	Repository for homeless code	http://savannah.gnu.org/projects/womb/	GPLv2orlater
+Xaos	Real-time fractal zoomer	http://www.gnu.org/software/xaos	GPLv2orlater
+Xboard	Graphical chessboard	http://www.gnu.org/software/xboard	GPLv2orlater
+GPLv3orlater
+Xhippo	Playlist manager	http://www.gnu.org/software/xhippo/xhippo.html	GPLv3orlater
+Xlogmaster	Monitors logfiles and devices	http://www.gnu.org/software/xlogmaster/xlogmaster.html	GPLv2orlater
+Xmorph	Image morphing program	http://xmorph.sourceforge.net/	GPLv2
+Xnee	Records, distributes, and replays X11 protocol data	http://www.gnu.org/software/xnee	GPLv3orlater
+Xorriso	maps file objects	http://gnu.org/software/xorriso/	GPLv3orlater
+Zebra	Implementation of routing protocols	http://gnu.org/software/zebra	GPLv2
+Zile	A light Emacs clone.	http://www.gnu.org/software/zile/	GPLv3orlater

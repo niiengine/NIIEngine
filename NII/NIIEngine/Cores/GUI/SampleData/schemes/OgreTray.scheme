@@ -1,0 +1,49 @@
+<?xml version="1.0" ?>
+<UIDefine version="5" name="OgreTray">
+    <View src="OgreTray.view" />
+    <Font src="DejaVuSans-12.font" />
+    <Style src="OgreTray.style" />
+    <WidgetRenderSrc src="CEGUICoreWindowRendererSet" />
+
+    <WidgetStyle type="DefaultWindow" renderer="Core/Default" name="OgreTray/Label"/>
+    <WidgetStyle type="PushButton" renderer="Core/Button" name="OgreTray/PushButton"/>
+    <WidgetStyle type="Titlebar" renderer="Core/Titlebar" name="OgreTray/Titlebar" />
+    <WidgetStyle type="FrameWindow" renderer="Core/FrameWindow" name="OgreTray/FrameWindow" />
+    <WidgetStyle type="Thumb" renderer="Core/Button" name="OgreTray/Thumb" />
+    <WidgetStyle type="Scrollbar" renderer="Core/Scrollbar" name="OgreTray/VerticalScrollbar" />
+    <WidgetStyle type="Scrollbar" renderer="Core/Scrollbar" name="OgreTray/HorizontalScrollbar" />
+    <WidgetStyle type="DefaultWindow" renderer="Core/StaticText" name="OgreTray/StaticText" />
+    <WidgetStyle type="DefaultWindow" renderer="Core/Default" name="OgreTray/MiniTitle" />
+    <WidgetStyle type="DefaultWindow" renderer="Core/StaticText" name="OgreTray/CaptionedStaticText" />
+    <WidgetStyle type="ProgressBar" renderer="Core/ProgressBar" name="OgreTray/ProgressBar" />
+    <WidgetStyle type="Editbox" renderer="Core/Editbox" name="OgreTray/Editbox" />
+    <WidgetStyle type="MultiLineEditbox" renderer="Core/MultiLineEditbox" name="OgreTray/MultiLineEditbox" />
+    <WidgetStyle type="Listbox" renderer="Core/Listbox" name="OgreTray/Listbox" />
+    <WidgetStyle type="ComboDropList" renderer="Core/Listbox" name="OgreTray/ComboDropList" />
+    <WidgetStyle type="Combobox" renderer="Core/Default" name="OgreTray/Combobox" />
+    <WidgetStyle type="Combobox" renderer="Core/Default" name="OgreTray/DropDownMenu" />
+    <WidgetStyle type="DefaultWindow" renderer="Core/Default" name="OgreTray/Group" />
+    <WidgetStyle type="ToggleButton" renderer="Core/ToggleButton" name="OgreTray/Checkbox" />
+    <WidgetStyle type="RadioButton" renderer="Core/ToggleButton" name="OgreTray/RadioButton" />
+    <WidgetStyle type="Slider" renderer="Core/Slider" name="OgreTray/Slider" />
+    <WidgetStyle type="DefaultWindow" renderer="Core/StaticImage" name="OgreTray/StaticImage" />
+    <WidgetStyle type="DefaultWindow" renderer="Core/Default" name="OgreTray/AltStaticImage" />
+    <WidgetStyle type="Tooltip" renderer="Core/Tooltip" name="OgreTray/Tooltip" />
+    <WidgetStyle type="ItemListbox" renderer="Core/ItemListbox" name="OgreTray/ItemListbox" />
+    <WidgetStyle type="ItemEntry" renderer="Core/ItemEntry" name="OgreTray/ListboxItem" />
+    <WidgetStyle type="Spinner" renderer="Core/Default" name="OgreTray/Spinner" />
+    <WidgetStyle type="ScrollablePane" renderer="Core/ScrollablePane" name="OgreTray/ScrollablePane"/>
+    <WidgetStyle type="ListHeaderSegment" renderer="Core/ListHeaderSegment" name="OgreTray/ListHeaderSegment"/>
+    <WidgetStyle type="ListHeader" renderer="Core/ListHeader" name="OgreTray/ListHeader"/>
+    <WidgetStyle type="MultiColumnList" renderer="Core/MultiColumnList" name="OgreTray/MultiColumnList" />
+    <WidgetStyle type="MenuItem" renderer="Core/MenuItem" name="OgreTray/MenuItem"/>
+    <WidgetStyle type="Menubar" renderer="Core/Menubar" name="OgreTray/Menubar"/>
+    <WidgetStyle type="PopupMenu" renderer="Core/PopupMenu" name="OgreTray/PopupMenu"/>
+    <WidgetStyle type="TabButton" renderer="Core/TabButton" name="OgreTray/TabButton"/>
+    <WidgetStyle type="DefaultWindow" renderer="Core/Default" name="OgreTray/TabButtonPane"/>
+    <WidgetStyle type="DefaultWindow" renderer="Core/Default" name="OgreTray/TabContentPane"/>
+    <WidgetStyle type="TabControl" renderer="Core/TabControl" name="OgreTray/TabControl" />
+
+    <WidgetStyle type="DefaultWindow" renderer="Core/Default" name="OgreTray/BGTest"/>
+</UIDefine>
+

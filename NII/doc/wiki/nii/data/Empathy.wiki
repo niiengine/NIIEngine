@@ -1,0 +1,3 @@
+﻿++ Empathy
+
+	A GNOME instant messaging client

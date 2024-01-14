@@ -1,0 +1,149 @@
+<?xml version="1.0" ?>
+
+<!--
+    Generic.looknfeel by Lukas E. Meindl
+
+    This looknfeel was created for the HUDDemo to provide it with a score popup widget, it uses an animation defined
+    in this looknfeel file
+-->
+
+<Style ver="7">
+
+    <WidgetStyle name="HUDDemo/PopupLabel">
+        <StyleProperty signal_refresh="true" value="FFFF0000" type="Colour" name="NormalTextColour"/>
+        <StyleProperty signal_refresh="true" value="FFFF0000" type="Colour" name="DisabledTextColour"/>
+        <StyleProperty signal_refresh="true" value="Centre" type="VTextLayout" name="VTLayout1"/>
+        <StyleProperty signal_refresh="true" value="LeftAligned" type="HTextLayout" name="HTLayout1"/>
+        <Property name="Size" value="{{0.1, 0}, {0.08, 0}}" />
+        <Property name="MousePassThroughEnabled" value="true" />
+        <StyleSection name="Label">
+            <TextCom>
+                <ComArea>
+                    <SizeDefine type="LeftEdge">
+                        <AbsSize value="0"/>
+                    </SizeDefine>
+                    <SizeDefine type="TopEdge">
+                        <AbsSize value="0"/>
+                    </SizeDefine>
+                    <SizeDefine type="Width">
+                        <RelSize scale="1" type="Width"/>
+                    </SizeDefine>
+                    <SizeDefine type="Height">
+                        <RelSize scale="1" type="Height"/>
+                    </SizeDefine>
+                </ComArea>
+                <VLayoutProperty name="VTLayout1"/>
+                <HLayoutProperty name="HTLayout1"/>
+            </TextCom>
+        </StyleSection>
+        <StyleLayout name="Enabled">
+            <Layer>
+                <Section id="Label">
+                    <ColourProperty name="NormalTextColour"/>
+                </Section>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Disabled">
+            <Layer>
+                <Section id="Label">
+                    <ColourProperty name="DisabledTextColour"/>
+                </Section>
+            </Layer>
+        </StyleLayout>
+
+        <Animation auto_start="false" duration="2.5" name="PopupAnimation" play_mode="once">
+            <Track property="Position" data_type="RelVector2" calc_mode="relative">
+                <KeyFrame position="0.0" value="(0, 0), (0, 0)" />
+                <KeyFrame position="2.5" calc_mode="constant" value="(0, 0), (-0.2, 0)" />
+            </Track>
+            <Track property="Alpha" data_type="float" calc_mode="absolute">
+                <KeyFrame position="0.8" value="1.0" />
+                <KeyFrame position="2.5" calc_mode="constant" value="0.0" />
+            </Track>
+            <Event event="StartAnimation" action="Start" />
+        </Animation>
+    </WidgetStyle>
+
+    <WidgetStyle name="HUDDemo/ProgressBar">
+        <Property name="Size" value="{{0, 256}, {0, 32}}" />
+        <StyleSpecial name="ProgressArea">
+            <ComArea>
+                <SizeDefine type="LeftEdge">
+                    <AbsSize value="0"/>
+                </SizeDefine>
+                <SizeDefine type="TopEdge">
+                    <AbsSize value="0"/>
+                </SizeDefine>
+                <SizeDefine type="Width">
+                    <RelSize scale="1" type="Width"/>
+                </SizeDefine>
+                <SizeDefine type="Height">
+                    <RelSize scale="1" type="Height"/>
+                </SizeDefine>
+            </ComArea>
+        </StyleSpecial>
+        <StyleSection name="background">
+            <ImageryCom>
+                <ComArea>
+                    <SizeDefine type="LeftEdge">
+                        <AbsSize value="0"/>
+                    </SizeDefine>
+                    <SizeDefine type="TopEdge">
+                        <AbsSize value="0"/>
+                    </SizeDefine>
+                    <SizeDefine type="Width">
+                        <RelSize scale="1" type="Width"/>
+                    </SizeDefine>
+                    <SizeDefine type="Height">
+                        <RelSize scale="1" type="Height"/>
+                    </SizeDefine>
+                </ComArea>
+                <ComPixel pixel_id="HUDDemo/LifeBarBG"/>
+                <VLayout type="Extrude"/>
+                <HLayout type="Extrude"/>
+            </ImageryCom>
+        </StyleSection>
+        <StyleSection name="progress">
+            <ImageryCom>
+                <ComArea>
+                    <SizeDefine type="LeftEdge">
+                        <AbsSize value="0"/>
+                    </SizeDefine>
+                    <SizeDefine type="TopEdge">
+                        <AbsSize value="0"/>
+                    </SizeDefine>
+                    <SizeDefine type="Width">
+                        <RelSize scale="1" type="Width"/>
+                    </SizeDefine>
+                    <SizeDefine type="Height">
+                        <RelSize scale="1" type="Height"/>
+                    </SizeDefine>
+                </ComArea>
+                <ComPixel pixel_id="HUDDemo/LifeBarFill"/>
+                <VLayout type="Extrude"/>
+                <HLayout type="Extrude"/>
+            </ImageryCom>
+        </StyleSection>
+        <StyleLayout name="Enabled">
+            <Layer>
+                <Section id="background"/>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Disabled">
+            <Layer>
+                <Section id="background"/>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="EnabledProgress">
+            <Layer>
+                <Section id="progress"/>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="DisabledProgress">
+            <Layer>
+                <Section id="progress" />
+            </Layer>
+        </StyleLayout>
+    </WidgetStyle>
+
+</Style>

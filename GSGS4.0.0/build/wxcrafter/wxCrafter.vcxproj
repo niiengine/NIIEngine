@@ -1,0 +1,552 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="MinSizeRel|Win32">
+      <Configuration>MinSizeRel</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="RelWithDebInfo|Win32">
+      <Configuration>RelWithDebInfo</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{68C4611E-ABB5-39A8-90EB-0956B7AA4947}</ProjectGuid>
+    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
+    <Keyword>Win32Proj</Keyword>
+    <Platform>Win32</Platform>
+    <ProjectName>wxCrafter</ProjectName>
+    <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">F:\tool\GSGS4.0.0\Runtime\plugins\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">wxCrafter.dir\Debug\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">wxCrafter</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.dll</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">\bin\Release\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">wxCrafter.dir\Release\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">wxCrafter</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.dll</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">\bin\MinSizeRel\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">wxCrafter.dir\MinSizeRel\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">wxCrafter</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">.dll</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">false</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">\bin\RelWithDebInfo\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">wxCrafter.dir\RelWithDebInfo\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">wxCrafter</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">.dll</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">true</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">true</GenerateManifest>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>F:\tool\GSGS4.0.0\sdk\libssh\include;F:\tool\GSGS4.0.0\Plugin;F:\tool\GSGS4.0.0\sdk\wxsqlite3\include;F:\tool\GSGS4.0.0\Core;F:\tool\GSGS4.0.0\Editor_Code;F:\tool\GSGS4.0.0\Editor_Scene;F:\tool\GSGS4.0.0\PCH;F:\tool\GSGS4.0.0\Interfaces;F:\tool\GSGS4.0.0\wxcrafter;F:\tool\GSGS4.0.0\wxcrafter\wxcLib;F:\wxWidgets-3.1.2\lib\vc_dll\mswud;F:\wxWidgets-3.1.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) -fPIC</AdditionalOptions>
+      <AssemblerListingLocation>Debug/</AssemblerListingLocation>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <CppLanguageStandard>c++11</CppLanguageStandard>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <Optimization>Disabled</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <SuppressStartupBanner>
+      </SuppressStartupBanner>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;YY_NEVER_INTERACTIVE=1;wxUSE_GUI=1;INSTALL_DIR="/usr/share/codelite";PLUGINS_DIR="/usr/lib/codelite";USE_AUI_NOTEBOOK=0;USE_SFTP=1;WXCAPP=0;WXUSINGDLL;UNICODE;_UNICODE;WXUSINGDLL_WXSQLITE3;WXUSINGDLL_CL;WXUSINGDLL_SDK;WIN32_LEAN_AND_MEAN;__WXMSW__;_DEBUG;__WXDEBUG__;CMAKE_INTDIR="Debug";wxCrafter_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;YY_NEVER_INTERACTIVE=1;wxUSE_GUI=1;INSTALL_DIR=\"/usr/share/codelite\";PLUGINS_DIR=\"/usr/lib/codelite\";USE_AUI_NOTEBOOK=0;NDEBUG;USE_SFTP=1;WXCAPP=0;WXUSINGDLL;UNICODE;_UNICODE;WXUSINGDLL_WXSQLITE3;WXUSINGDLL_CL;WXUSINGDLL_SDK;__WXDEBUG__;CMAKE_INTDIR=\"Debug\";wxCrafter_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>F:\tool\GSGS4.0.0\sdk\libssh\include;F:\tool\GSGS4.0.0\Plugin;F:\tool\GSGS4.0.0\sdk\wxsqlite3\include;F:\tool\GSGS4.0.0\CodeLite;F:\tool\GSGS4.0.0\PCH;F:\tool\GSGS4.0.0\Interfaces;F:\tool\GSGS4.0.0\wxcrafter;F:\tool\GSGS4.0.0\wxcrafter\wxcLib;F:\wxWidgets-3.1.2\lib\vc_dll\mswud;F:\wxWidgets-3.1.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>F:\tool\GSGS4.0.0\sdk\libssh\include;F:\tool\GSGS4.0.0\Plugin;F:\tool\GSGS4.0.0\sdk\wxsqlite3\include;F:\tool\GSGS4.0.0\CodeLite;F:\tool\GSGS4.0.0\PCH;F:\tool\GSGS4.0.0\Interfaces;F:\tool\GSGS4.0.0\wxcrafter;F:\tool\GSGS4.0.0\wxcrafter\wxcLib;F:\wxWidgets-3.1.2\lib\vc_dll\mswud;F:\wxWidgets-3.1.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalDependencies>\lib\Debug\wxcLib.lib;F:\wxWidgets-3.1.2\lib\vc_dll\wxpngd.lib;F:\wxWidgets-3.1.2\lib\vc_dll\wxtiffd.lib;F:\wxWidgets-3.1.2\lib\vc_dll\wxjpegd.lib;F:\wxWidgets-3.1.2\lib\vc_dll\wxzlibd.lib;F:\wxWidgets-3.1.2\lib\vc_dll\wxexpatd.lib;F:\wxWidgets-3.1.2\lib\vc_dll\wxbase30ud_xml.lib;F:\wxWidgets-3.1.2\lib\vc_dll\wxmsw30ud_propgrid.lib;F:\wxWidgets-3.1.2\lib\vc_dll\wxmsw30ud_adv.lib;F:\wxWidgets-3.1.2\lib\vc_dll\wxmsw30ud_ribbon.lib;F:\wxWidgets-3.1.2\lib\vc_dll\wxmsw30ud_richtext.lib;F:\wxWidgets-3.1.2\lib\vc_dll\wxbase30ud_net.lib;F:\wxWidgets-3.1.2\lib\vc_dll\wxmsw30ud_html.lib;F:\wxWidgets-3.1.2\lib\vc_dll\wxmsw30ud_xrc.lib;F:\wxWidgets-3.1.2\lib\vc_dll\wxmsw30ud_aui.lib;winmm.lib;comctl32.lib;oleacc.lib;rpcrt4.lib;shlwapi.lib;version.lib;wsock32.lib;\lib\Debug\libgsgs.lib;\lib\Debug\wxsqlite3.lib;F:\wxWidgets-3.1.2\lib\vc_dll\wxmsw30ud_core.lib;F:\wxWidgets-3.1.2\lib\vc_dll\wxbase30ud.lib;F:\wxWidgets-3.1.2\lib\vc_dll\wxmsw30ud_stc.lib;F:\deps\lib\sqlite3.lib;F:\deps\lib\ssh.lib;F:\deps\lib\libcrypto.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:X86</AdditionalOptions>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>/lib/Debug/wxCrafter.lib</ImportLibrary>
+      <ProgramDataBaseFile>/bin/Debug/wxCrafter.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>F:\tool\GSGS4.0.0\sdk\libssh\include;F:\tool\GSGS4.0.0\Plugin;F:\tool\GSGS4.0.0\sdk\wxsqlite3\include;F:\tool\GSGS4.0.0\CodeLite;F:\tool\GSGS4.0.0\PCH;F:\tool\GSGS4.0.0\Interfaces;F:\tool\GSGS4.0.0\wxcrafter;F:\tool\GSGS4.0.0\wxcrafter\wxcLib;F:\wxWidgets-3.1.2\lib\vc_dll\mswud;F:\wxWidgets-3.1.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) -fPIC</AdditionalOptions>
+      <AssemblerListingLocation>Release/</AssemblerListingLocation>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <CppLanguageStandard>c++11</CppLanguageStandard>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <SuppressStartupBanner>
+      </SuppressStartupBanner>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;YY_NEVER_INTERACTIVE=1;wxUSE_GUI=1;INSTALL_DIR="/usr/share/codelite";PLUGINS_DIR="/usr/lib/codelite";USE_AUI_NOTEBOOK=0;USE_SFTP=1;WXCAPP=0;WXUSINGDLL;UNICODE;_UNICODE;WIN32_LEAN_AND_MEAN;WXUSINGDLL_WXSQLITE3;WXUSINGDLL_CL;WXUSINGDLL_SDK;CMAKE_INTDIR="Release";wxCrafter_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;YY_NEVER_INTERACTIVE=1;wxUSE_GUI=1;INSTALL_DIR=\"/usr/share/codelite\";PLUGINS_DIR=\"/usr/lib/codelite\";USE_AUI_NOTEBOOK=0;USE_SFTP=1;WXCAPP=0;WXUSINGDLL;UNICODE;_UNICODE;WXUSINGDLL_WXSQLITE3;WXUSINGDLL_CL;WXUSINGDLL_SDK;CMAKE_INTDIR=\"Release\";wxCrafter_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>F:\tool\GSGS4.0.0\sdk\libssh\include;F:\tool\GSGS4.0.0\Plugin;F:\tool\GSGS4.0.0\sdk\wxsqlite3\include;F:\tool\GSGS4.0.0\CodeLite;F:\tool\GSGS4.0.0\PCH;F:\tool\GSGS4.0.0\Interfaces;F:\tool\GSGS4.0.0\wxcrafter;F:\tool\GSGS4.0.0\wxcrafter\wxcLib;F:\wxWidgets-3.1.2\lib\vc_dll\mswud;F:\wxWidgets-3.1.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>F:\tool\GSGS4.0.0\sdk\libssh\include;F:\tool\GSGS4.0.0\Plugin;F:\tool\GSGS4.0.0\sdk\wxsqlite3\include;F:\tool\GSGS4.0.0\CodeLite;F:\tool\GSGS4.0.0\PCH;F:\tool\GSGS4.0.0\Interfaces;F:\tool\GSGS4.0.0\wxcrafter;F:\tool\GSGS4.0.0\wxcrafter\wxcLib;F:\wxWidgets-3.1.2\lib\vc_dll\mswud;F:\wxWidgets-3.1.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalDependencies>\lib\Release\wxcLib.lib;-Wl,-rpath,"/usr/lib/codelite";F:\wxWidgets-3.1.2\lib\vc_dll\wxpng.lib;F:\wxWidgets-3.1.2\lib\vc_dll\wxtiff.lib;F:\wxWidgets-3.1.2\lib\vc_dll\wxjpeg.lib;F:\wxWidgets-3.1.2\lib\vc_dll\wxzlib.lib;F:\wxWidgets-3.1.2\lib\vc_dll\wxexpat.lib;winmm.lib;comctl32.lib;oleacc.lib;rpcrt4.lib;shlwapi.lib;version.lib;wsock32.lib;-lsqlite3lib;\lib\Release\plugin.lib;\lib\Release\libcodelite.lib;\lib\Release\wxsqlite3.lib;F:\wxWidgets-3.1.2\lib\vc_dll\wxmsw30u_core.lib;F:\wxWidgets-3.1.2\lib\vc_dll\wxbase30u.lib;-lsqlite3lib;F:\wxWidgets-3.1.2\lib\vc_dll\wxmsw30u_stc.lib;sqlite3lib.lib;..\..\sdk\libssh\lib\osx\libssh.a;..\..\sdk\libssh\lib\osx\libcrypto.a;-lws2_32;-lz;\usr\lib\libcrypto.dylib;-L"/lib";-luxtheme;F:\wxWidgets-3.1.2\lib\vc_dll\wxpng.lib;F:\wxWidgets-3.1.2\lib\vc_dll\wxtiff.lib;F:\wxWidgets-3.1.2\lib\vc_dll\wxjpeg.lib;F:\wxWidgets-3.1.2\lib\vc_dll\wxzlib.lib;F:\wxWidgets-3.1.2\lib\vc_dll\wxexpat.lib;winmm.lib;comctl32.lib;oleacc.lib;rpcrt4.lib;shlwapi.lib;version.lib;wsock32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:X86</AdditionalOptions>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>/lib/Release/wxCrafter.lib</ImportLibrary>
+      <ProgramDataBaseFile>/bin/Release/wxCrafter.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>F:\tool\GSGS4.0.0\sdk\libssh\include;F:\tool\GSGS4.0.0\Plugin;F:\tool\GSGS4.0.0\sdk\wxsqlite3\include;F:\tool\GSGS4.0.0\CodeLite;F:\tool\GSGS4.0.0\PCH;F:\tool\GSGS4.0.0\Interfaces;F:\tool\GSGS4.0.0\wxcrafter;F:\tool\GSGS4.0.0\wxcrafter\wxcLib;F:\wxWidgets-3.1.2\lib\vc_dll\mswud;F:\wxWidgets-3.1.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) -fPIC</AdditionalOptions>
+      <AssemblerListingLocation>MinSizeRel/</AssemblerListingLocation>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <CppLanguageStandard>c++11</CppLanguageStandard>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <Optimization>MinSpace</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <SuppressStartupBanner>
+      </SuppressStartupBanner>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;YY_NEVER_INTERACTIVE=1;wxUSE_GUI=1;INSTALL_DIR="/usr/share/codelite";PLUGINS_DIR="/usr/lib/codelite";USE_AUI_NOTEBOOK=0;USE_SFTP=1;WXCAPP=0;WXUSINGDLL;UNICODE;_UNICODE;WXUSINGDLL_WXSQLITE3;WXUSINGDLL_CL;WXUSINGDLL_SDK;CMAKE_INTDIR="MinSizeRel";wxCrafter_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;YY_NEVER_INTERACTIVE=1;wxUSE_GUI=1;INSTALL_DIR=\"/usr/share/codelite\";PLUGINS_DIR=\"/usr/lib/codelite\";USE_AUI_NOTEBOOK=0;USE_SFTP=1;WXCAPP=0;WXUSINGDLL;UNICODE;_UNICODE;WXUSINGDLL_WXSQLITE3;WXUSINGDLL_CL;WXUSINGDLL_SDK;CMAKE_INTDIR=\"MinSizeRel\";wxCrafter_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>F:\tool\GSGS4.0.0\sdk\libssh\include;F:\tool\GSGS4.0.0\Plugin;F:\tool\GSGS4.0.0\sdk\wxsqlite3\include;F:\tool\GSGS4.0.0\CodeLite;F:\tool\GSGS4.0.0\PCH;F:\tool\GSGS4.0.0\Interfaces;F:\tool\GSGS4.0.0\wxcrafter;F:\tool\GSGS4.0.0\wxcrafter\wxcLib;F:\wxWidgets-3.1.2\lib\vc_dll\mswud;F:\wxWidgets-3.1.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>F:\tool\GSGS4.0.0\sdk\libssh\include;F:\tool\GSGS4.0.0\Plugin;F:\tool\GSGS4.0.0\sdk\wxsqlite3\include;F:\tool\GSGS4.0.0\CodeLite;F:\tool\GSGS4.0.0\PCH;F:\tool\GSGS4.0.0\Interfaces;F:\tool\GSGS4.0.0\wxcrafter;F:\tool\GSGS4.0.0\wxcrafter\wxcLib;F:\wxWidgets-3.1.2\lib\vc_dll\mswud;F:\wxWidgets-3.1.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalDependencies>\lib\MinSizeRel\wxcLib.lib;-Wl,-rpath,"/usr/lib/codelite";F:\wxWidgets-3.1.2\lib\vc_dll\wxpng.lib;F:\wxWidgets-3.1.2\lib\vc_dll\wxtiff.lib;F:\wxWidgets-3.1.2\lib\vc_dll\wxjpeg.lib;F:\wxWidgets-3.1.2\lib\vc_dll\wxzlib.lib;F:\wxWidgets-3.1.2\lib\vc_dll\wxexpat.lib;winmm.lib;comctl32.lib;oleacc.lib;rpcrt4.lib;shlwapi.lib;version.lib;wsock32.lib;-lsqlite3lib;\lib\MinSizeRel\plugin.lib;\lib\MinSizeRel\libcodelite.lib;\lib\MinSizeRel\wxsqlite3.lib;F:\wxWidgets-3.1.2\lib\vc_dll\wxmsw30u_core.lib;F:\wxWidgets-3.1.2\lib\vc_dll\wxbase30u.lib;-lsqlite3lib;F:\wxWidgets-3.1.2\lib\vc_dll\wxmsw30u_stc.lib;sqlite3lib.lib;..\..\sdk\libssh\lib\osx\libssh.a;..\..\sdk\libssh\lib\osx\libcrypto.a;-lws2_32;-lz;\usr\lib\libcrypto.dylib;-L"/lib";-luxtheme;F:\wxWidgets-3.1.2\lib\vc_dll\wxpng.lib;F:\wxWidgets-3.1.2\lib\vc_dll\wxtiff.lib;F:\wxWidgets-3.1.2\lib\vc_dll\wxjpeg.lib;F:\wxWidgets-3.1.2\lib\vc_dll\wxzlib.lib;F:\wxWidgets-3.1.2\lib\vc_dll\wxexpat.lib;winmm.lib;comctl32.lib;oleacc.lib;rpcrt4.lib;shlwapi.lib;version.lib;wsock32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:X86</AdditionalOptions>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>/lib/MinSizeRel/wxCrafter.lib</ImportLibrary>
+      <ProgramDataBaseFile>/bin/MinSizeRel/wxCrafter.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>F:\tool\GSGS4.0.0\sdk\libssh\include;F:\tool\GSGS4.0.0\Plugin;F:\tool\GSGS4.0.0\sdk\wxsqlite3\include;F:\tool\GSGS4.0.0\CodeLite;F:\tool\GSGS4.0.0\PCH;F:\tool\GSGS4.0.0\Interfaces;F:\tool\GSGS4.0.0\wxcrafter;F:\tool\GSGS4.0.0\wxcrafter\wxcLib;F:\wxWidgets-3.1.2\lib\vc_dll\mswud;F:\wxWidgets-3.1.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) -fPIC</AdditionalOptions>
+      <AssemblerListingLocation>RelWithDebInfo/</AssemblerListingLocation>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <CppLanguageStandard>c++11</CppLanguageStandard>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <SuppressStartupBanner>
+      </SuppressStartupBanner>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;YY_NEVER_INTERACTIVE=1;wxUSE_GUI=1;INSTALL_DIR="/usr/share/codelite";PLUGINS_DIR="/usr/lib/codelite";USE_AUI_NOTEBOOK=0;USE_SFTP=1;WXCAPP=0;WXUSINGDLL;UNICODE;_UNICODE;WXUSINGDLL_WXSQLITE3;WXUSINGDLL_CL;WXUSINGDLL_SDK;CMAKE_INTDIR="RelWithDebInfo";wxCrafter_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;YY_NEVER_INTERACTIVE=1;wxUSE_GUI=1;INSTALL_DIR=\"/usr/share/codelite\";PLUGINS_DIR=\"/usr/lib/codelite\";USE_AUI_NOTEBOOK=0;USE_SFTP=1;WXCAPP=0;WXUSINGDLL;UNICODE;_UNICODE;WXUSINGDLL_WXSQLITE3;WXUSINGDLL_CL;WXUSINGDLL_SDK;CMAKE_INTDIR=\"RelWithDebInfo\";wxCrafter_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>F:\tool\GSGS4.0.0\sdk\libssh\include;F:\tool\GSGS4.0.0\Plugin;F:\tool\GSGS4.0.0\sdk\wxsqlite3\include;F:\tool\GSGS4.0.0\CodeLite;F:\tool\GSGS4.0.0\PCH;F:\tool\GSGS4.0.0\Interfaces;F:\tool\GSGS4.0.0\wxcrafter;F:\tool\GSGS4.0.0\wxcrafter\wxcLib;F:\wxWidgets-3.1.2\lib\vc_dll\mswud;F:\wxWidgets-3.1.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>F:\tool\GSGS4.0.0\sdk\libssh\include;F:\tool\GSGS4.0.0\Plugin;F:\tool\GSGS4.0.0\sdk\wxsqlite3\include;F:\tool\GSGS4.0.0\CodeLite;F:\tool\GSGS4.0.0\PCH;F:\tool\GSGS4.0.0\Interfaces;F:\tool\GSGS4.0.0\wxcrafter;F:\tool\GSGS4.0.0\wxcrafter\wxcLib;F:\wxWidgets-3.1.2\lib\vc_dll\mswud;F:\wxWidgets-3.1.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalDependencies>\lib\RelWithDebInfo\wxcLib.lib;-Wl,-rpath,"/usr/lib/codelite";F:\wxWidgets-3.1.2\lib\vc_dll\wxpng.lib;F:\wxWidgets-3.1.2\lib\vc_dll\wxtiff.lib;F:\wxWidgets-3.1.2\lib\vc_dll\wxjpeg.lib;F:\wxWidgets-3.1.2\lib\vc_dll\wxzlib.lib;F:\wxWidgets-3.1.2\lib\vc_dll\wxexpat.lib;winmm.lib;comctl32.lib;oleacc.lib;rpcrt4.lib;shlwapi.lib;version.lib;wsock32.lib;-lsqlite3lib;\lib\RelWithDebInfo\plugin.lib;\lib\RelWithDebInfo\libcodelite.lib;\lib\RelWithDebInfo\wxsqlite3.lib;F:\wxWidgets-3.1.2\lib\vc_dll\wxmsw30u_core.lib;F:\wxWidgets-3.1.2\lib\vc_dll\wxbase30u.lib;-lsqlite3lib;F:\wxWidgets-3.1.2\lib\vc_dll\wxmsw30u_stc.lib;sqlite3lib.lib;..\..\sdk\libssh\lib\osx\libssh.a;..\..\sdk\libssh\lib\osx\libcrypto.a;-lws2_32;-lz;\usr\lib\libcrypto.dylib;-L"/lib";-luxtheme;F:\wxWidgets-3.1.2\lib\vc_dll\wxpng.lib;F:\wxWidgets-3.1.2\lib\vc_dll\wxtiff.lib;F:\wxWidgets-3.1.2\lib\vc_dll\wxjpeg.lib;F:\wxWidgets-3.1.2\lib\vc_dll\wxzlib.lib;F:\wxWidgets-3.1.2\lib\vc_dll\wxexpat.lib;winmm.lib;comctl32.lib;oleacc.lib;rpcrt4.lib;shlwapi.lib;version.lib;wsock32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:X86</AdditionalOptions>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>/lib/RelWithDebInfo/wxCrafter.lib</ImportLibrary>
+      <ProgramDataBaseFile>/bin/RelWithDebInfo/wxCrafter.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\AboutDlg.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\ActivityrIndicatorWrapper.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\AnimationCtrlWrapper.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\AuiToolBarTopLevel.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\AuiToolbarWrapperBase.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\BitmapComboxWrapper.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\BitmapSelectorDlg.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\BitmapTextArrayProperty.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\BmpTextSelectorDlg.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\CaptionBar.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\DefineCustomControlWizard.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\DeleteCustomControlDlg.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\EditCustomControlDlg.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\EventsEditorDlg.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\FontPickerDlg.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\FreeTrialVersionDlg.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\MediaCtrl.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\MessageDlg.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\MyComboBoxXmlHandler.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\MyRearrangeListXmlHandler.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\NewCustomEventDlg.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\NewFormWizard.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\OpenGLCanvas.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\RearrangeListWrapper.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\SimpleHtmlListBoxWrapper.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\SingleBitmapAndTextDlg.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\TimePickerCtrlWrapper.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\ToolBoxPanel.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\allocator_mgr.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\aui_manager_wrapper.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\aui_notebook_wrapper.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\aui_pane_info.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\aui_pane_info_list_view.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\banner_window_wrapper.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\bitmap_button_wrapper.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\bitmap_picker_property.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\bitmap_wrapepr.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\bitmaptogglebuttonwrapper.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\bool_property.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\box_sizer_wrapper.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\button_wrapper.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\calendar_ctrl_wrapper.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\category_property.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\check_box_wrapper.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\check_list_box_wrapper.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\choice_book_wrapper.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\choice_property.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\choice_wrapper.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\col_header_flags_property.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\collapsible_pane_wrapper.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\color_property.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\colour_picker_wrapper.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\combox_wrapper.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\command_link_button_wrapper.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\custom_control_wrapper.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\custom_pg_properties.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\data_view_list_ctrl_column.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\data_view_list_ctrl_wrapper.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\data_view_tree_ctrl_wrapper.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\data_view_tree_list_ctrl_wrapper.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\date_picker_ctrl.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\designer_container_panel.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\designer_panel.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\dialog_wrapper.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\dir_picker_ctrl_wrapper.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\duplicateTLWdlg.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\enter_strings_dlg.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\events_database.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\events_table_list_view.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\file_ficker_property.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\file_picker_ctrl.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\file_picker_ctrl_wrapper.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\flexgridsizer_wrapper.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\font_picker_ctrl_wrapper.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\font_property.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\frame_wrapper.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\functions_parser.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\gauge_wrapper.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\generic_dir_ctrl_wrapper.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\gl_canvas_wrapper.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\grid_bag_sizer_wrapper.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\grid_column_wrapper.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\grid_row_wrapper.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\grid_sizer_wrapper.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\grid_wrapper.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\gui.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\gui_wxcrafter_bitmaps.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\html_window_wrapper.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\hyper_link_ctrl_wrapper.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\image_list_wrapper.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\import_dlg.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\import_from_wxFB.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\import_from_wxSmith.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\import_from_xrc.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\info_bar_button_wrapper.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\info_bar_wrapper.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\int_property.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\list_book_wrapper.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\list_box_wrapper.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\list_ctrl_column_wrapper.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\list_ctrl_wrapper.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\main.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\media_ctrl_wrapper.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\menu_bar.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\menu_bar_wrapper.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\menu_item_wrapper.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\menu_wrapper.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\multi_string_ctrl.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\multi_strings_property.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\my_dialog.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\my_frame.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\my_panel.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\my_tree_ctrl.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\myxh_auibook.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\myxh_auimgr.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\myxh_auitoolb.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\myxh_cmdlinkbtn.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\myxh_dataview.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\myxh_dlg.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\myxh_dvlistctrl.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\myxh_dvtreectrl.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\myxh_frame.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\myxh_glcanvas.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\myxh_grid.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\myxh_infobar.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\myxh_listc.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\myxh_mediactrl.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\myxh_panel.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\myxh_propgrid.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\myxh_ribbon.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\myxh_richtext.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\myxh_searchctrl.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\myxh_simplebook.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\myxh_stc.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\myxh_textctrl.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\myxh_toolbk.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\myxh_treebk.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\myxh_treelist.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\myxh_webview.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\notebook_base_wrapper.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\notebook_page_wrapper.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\notebook_wrapper.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\output_nbook.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\panel_wrapper.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\panel_wrapper_top_level.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\popup_window_preview.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\popup_window_wrapper.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\preview_dialog.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\preview_frame.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\preview_panel.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\preview_wizard.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\properties_list_view.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\properties_sheet.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\property_base.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\property_grid_manager_wrapper.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\property_grid_wrapper.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\radio_box_wrapper.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\radio_button_wrapper.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\ribbon_bar_wrapper.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\ribbon_button.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\ribbon_button_bar_wrapper.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\ribbon_gallery_item_wrapper.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\ribbon_gallery_wrapper.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\ribbon_page_wrapper.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\ribbon_panel_wrapper.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\ribbon_tool_bar_wrapper.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\ribbon_tool_separator.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\rich_text_ctrl_wrapper.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\scroll_bar_wrapper.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\scrolled_window_wrapper.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\search_ctrl_wrapper.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\serial_number.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\simple_book_wrapper.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\sizer_flags_list_view.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\sizer_wrapper_base.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\slider_wrapper.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\spacer_wrapper.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\spin_button_wrapper.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\spin_ctrl_wrapper.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\spin_wrapper_base.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\splitter_window_page.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\splitter_window_wrapper.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\static_bitmap_wrapper.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\static_box_sizer_wrapper.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\static_line_wrapper.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\static_text_wrapper.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\status_bar_wrapper.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\std_button_wrapper.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\std_dialog_button_sizer_wrapper.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\string_property.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\styled_text_ctrl_wrapper.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\styles_sheet_list_view.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\task_bar_icon_wrapper.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\text_ctrl_wrapper.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\text_editor.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\timer_wrapper.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\toggle_button_wrapper.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\tool_bar.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\tool_bar_item_wrapper.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\tool_book_wrapper.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\toolbar_base_wrapper.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\top_level_win_wrapper.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\tree_book_wrapper.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\tree_ctrl_wrapper.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\tree_list_ctrl_column_wrapper.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\tree_list_ctrl_wrapper.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\virtual_folder_picker_ctrl.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\virtual_folder_property.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\web_view_wrapper.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\winid_property.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\wizard_page_wrapper.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\wizard_wrapper.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\wx_collapsible_pane_pane_wrapper.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\wxcEvent.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\wxcNetworkManager.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\wxcNetworkThread.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\wxcSettingsDlg.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\wxcTreeView.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\wxc_aui_manager.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\wxc_aui_tool_stickiness.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\wxc_bitmap_code_generator.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\wxc_edit_manager.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\wxc_notebook_code_helper.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\wxc_project_metadata.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\wxc_settings.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\wxc_widget.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\wxcrafter.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\wxcrafter_gui.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\wxcrafter_gui_wxcrafter_bitmaps.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\wxcrafter_plugin.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\wxcrafter_wxcrafter_bitmaps.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\wxcversion.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\wxgui_bitmaploader.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\wxgui_defs.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\wxgui_globals.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\wxgui_helpers.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\wxguicraft_main_view.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\wxrc.cpp" />
+    <ClCompile Include="F:\tool\GSGS4.0.0\wxcrafter\xy_pair.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="F:\tool\GSGS4.0.0\build\ZERO_CHECK.vcxproj">
+      <Project>{DD030B4A-B93D-3988-8F89-3086A2673373}</Project>
+      <Name>ZERO_CHECK</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="F:\tool\GSGS4.0.0\build\CodeLite\libcodelite.vcxproj">
+      <Project>{05C7600E-767B-3729-A0F1-61BCDEA7813E}</Project>
+      <Name>libcodelite</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="F:\tool\GSGS4.0.0\build\Plugin\plugin.vcxproj">
+      <Project>{007730CF-1C31-368F-872B-72CEAB795142}</Project>
+      <Name>plugin</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="F:\tool\GSGS4.0.0\build\wxcrafter\wxcLib.vcxproj">
+      <Project>{2612A08A-E739-3C0C-9CFF-9FA180A10F6F}</Project>
+      <Name>wxcLib</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="F:\tool\GSGS4.0.0\build\sdk\wxsqlite3\wxsqlite3.vcxproj">
+      <Project>{A49EC5B3-7136-3D6C-ADB7-45E34A56E050}</Project>
+      <Name>wxsqlite3</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

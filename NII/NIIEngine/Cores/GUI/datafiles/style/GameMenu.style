@@ -1,0 +1,104 @@
+<?xml version="1.0" ?>
+
+<!--
+    GameMenu.looknfeel by Lukas E. Meindl
+
+    This looknfeel was created for the GameMenu Demo
+-->
+
+<Style ver="7">
+    <WidgetStyle name="GameMenu/Editbox">
+        <StyleProperty signal_refresh="true" value="FFFFFFFF" type="ColourArea" name="NormalTextColour"/>
+        <StyleProperty signal_refresh="true" value="FF000000" type="ColourArea" name="SelectedTextColour"/>
+        <StyleProperty signal_refresh="true" value="FFB6D142" type="ColourArea" name="ActiveSelectionColour"/>
+        <StyleProperty signal_refresh="true" value="FF808080" type="ColourArea" name="InactiveSelectionColour"/>
+        <Property name="MouseCursorImage" value="GameMenuImages/MouseTextBar"/>
+        <Property name="Size" value="{{0, 256}, {0, 32}}" />
+        <StyleSpecial name="TextArea">
+            <ComArea>
+                <SizeDefine type="LeftEdge">
+                    <PixelSize name="GameMenuImages/EditboxLeft" dimension="Width"/>
+                </SizeDefine>
+                <SizeDefine type="TopEdge">
+                    <PixelSize name="GameMenuImages/EditboxTop" dimension="Height"/>
+                </SizeDefine>
+                <SizeDefine type="RightEdge">
+                    <SizeOp op="Subtract">
+                        <RelSize scale="1" type="RightEdge"/>
+                        <PixelSize name="GameMenuImages/EditboxRight" dimension="Width"/>
+                    </SizeOp>
+                </SizeDefine>
+                <SizeDefine type="BottomEdge">
+                    <SizeOp op="Subtract">
+                        <RelSize scale="1" type="BottomEdge"/>
+                        <PixelSize name="GameMenuImages/EditboxBot" dimension="Height"/>
+                    </SizeOp>
+                </SizeDefine>
+            </ComArea>
+        </StyleSpecial>
+        <StyleSection name="container_normal">
+            <FrameCom>
+                <ComPixel type="TopLeftCorner" pixel_id="GameMenuImages/EditboxLeftTop"/>
+                <ComPixel type="TopRightCorner" pixel_id="GameMenuImages/EditboxRightTop"/>
+                <ComPixel type="BottomLeftCorner" pixel_id="GameMenuImages/EditboxLeftBot"/>
+                <ComPixel type="BottomRightCorner" pixel_id="GameMenuImages/EditboxRightBot"/>
+                <ComPixel type="LeftEdge" pixel_id="GameMenuImages/EditboxLeft"/>
+                <ComPixel type="RightEdge" pixel_id="GameMenuImages/EditboxRight"/>
+                <ComPixel type="TopEdge" pixel_id="GameMenuImages/EditboxTop"/>
+                <ComPixel type="BottomEdge" pixel_id="GameMenuImages/EditboxBot"/>
+                <ComPixel type="Background" pixel_id="GameMenuImages/EditboxMid"/>
+            </FrameCom>
+        </StyleSection>
+        <StyleSection name="selection">
+            <ImageryCom>
+                <ComPixel pixel_id="GameMenuImages/GenericBrush"/>
+                <VLayout type="Extrude"/>
+                <HLayout type="Extrude"/>
+            </ImageryCom>
+        </StyleSection>
+        <StyleSection name="Caret">
+            <ImageryCom>
+                <ComArea>
+                    <SizeDefine type="Width">
+                        <AbsSize value="3"/>
+                    </SizeDefine>
+                </ComArea>
+                <ComPixel pixel_id="GameMenuImages/GenericBrush"/>
+                <VLayout type="Extrude"/>
+                <HLayout type="Extrude"/>
+            </ImageryCom>
+        </StyleSection>
+        <StyleLayout name="Enabled">
+            <Layer>
+                <Section id="container_normal"/>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="ReadOnly">
+            <Layer>
+                <Section id="container_normal"/>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="Disabled">
+            <Layer>
+                <Section id="container_normal">
+                    <Colours top_left="FF7F7F7F" bottom_left="FF7F7F7F" top_right="FF7F7F7F" bottom_right="FF7F7F7F"/>
+                </Section>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="ActiveSelection">
+            <Layer>
+                <Section id="selection">
+                    <ColourProperty name="ActiveSelectionColour"/>
+                </Section>
+            </Layer>
+        </StyleLayout>
+        <StyleLayout name="InactiveSelection">
+            <Layer>
+                <Section id="selection">
+                    <ColourProperty name="InactiveSelectionColour"/>
+                </Section>
+            </Layer>
+        </StyleLayout>
+    </WidgetStyle>
+    
+</Style>

@@ -1,0 +1,3 @@
+﻿++ Gedit
+
+Text editor

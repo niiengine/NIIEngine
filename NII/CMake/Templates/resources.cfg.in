@@ -1,0 +1,37 @@
+# Resources required by the sample browser and most samples.
+[Essential]
+Zip=@NII_MEDIA_DIR_REL@/packs/SdkTrays.zip
+FileSystem=@NII_MEDIA_DIR_REL@/thumbnails
+
+# Common sample resources needed by many of the samples.
+# Rarely used resources should be separately loaded by the
+# samples which require them.
+[Popular]
+FileSystem=@NII_MEDIA_DIR_REL@/fonts
+FileSystem=@NII_MEDIA_DIR_REL@/materials/programs
+FileSystem=@NII_MEDIA_DIR_REL@/materials/scripts
+FileSystem=@NII_MEDIA_DIR_REL@/materials/textures
+FileSystem=@NII_MEDIA_DIR_REL@/materials/textures/nvidia
+FileSystem=@NII_MEDIA_DIR_REL@/models
+FileSystem=@NII_MEDIA_DIR_REL@/particle
+FileSystem=@NII_MEDIA_DIR_REL@/DeferredShadingMedia
+FileSystem=@NII_MEDIA_DIR_REL@/PCZAppMedia
+FileSystem=@NII_MEDIA_DIR_REL@/RTShaderLib
+FileSystem=@NII_MEDIA_DIR_REL@/RTShaderLib/materials
+FileSystem=@NII_MEDIA_DIR_REL@/materials/scripts/SSAO
+FileSystem=@NII_MEDIA_DIR_REL@/materials/textures/SSAO
+Zip=@NII_MEDIA_DIR_REL@/packs/cubemap.zip
+Zip=@NII_MEDIA_DIR_REL@/packs/cubemapsJS.zip
+Zip=@NII_MEDIA_DIR_REL@/packs/dragon.zip
+Zip=@NII_MEDIA_DIR_REL@/packs/fresneldemo.zip
+Zip=@NII_MEDIA_DIR_REL@/packs/ogretestmap.zip
+Zip=@NII_MEDIA_DIR_REL@/packs/ogredance.zip
+Zip=@NII_MEDIA_DIR_REL@/packs/Sinbad.zip
+Zip=@NII_MEDIA_DIR_REL@/packs/skybox.zip
+
+[General]
+FileSystem=@NII_MEDIA_DIR_REL@
+
+# Materials for visual tests
+[Tests]
+FileSystem=@NII_MEDIA_DIR_REL@/../../Tests/Media

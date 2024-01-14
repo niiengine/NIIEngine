@@ -1,0 +1,16 @@
+/***********************************************************************
+    std::ostream
+***********************************************************************/
+
+class std::ostream
+{
+};
+
+class FileStream : public std::ostream
+{
+    FileStream();
+
+    bool is_open();
+    tolua_outside void CEGUI::ceguiLua_FileStream_open @ open(const char* filename);
+    void close();
+};

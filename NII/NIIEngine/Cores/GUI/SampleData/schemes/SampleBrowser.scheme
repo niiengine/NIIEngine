@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<UIDefine version="5" name="SampleBrowserSkin">
+	<View src="SampleBrowser.view" />
+	<Font src="DejaVuSans-12.font" />
+    <Font src="DejaVuSans-12-NoScale.font" />
+    <Font src="DejaVuSans-14-NoScale.font" />
+	<Style src="SampleBrowser.style" />
+	<WidgetRenderSrc src="CEGUICoreWindowRendererSet" />
+
+	<WidgetStyle type="DefaultWindow" renderer="Core/Default" name="SampleBrowserSkin/Label" />
+	<WidgetStyle type="DefaultWindow" renderer="Core/Default" name="SampleBrowserSkin/SampleWindow" />
+	<WidgetStyle type="PushButton" renderer="Core/Button" name="SampleBrowserSkin/Button" />
+	<WidgetStyle type="ProgressBar" renderer="Core/ProgressBar" name="SampleBrowserSkin/ProgressBar" />
+    <WidgetStyle type="Titlebar" renderer="Core/Titlebar" name="SampleBrowserSkin/Titlebar" />
+    <WidgetStyle type="FrameWindow" renderer="Core/FrameWindow" name="SampleBrowserSkin/FrameWindow" />
+    <WidgetStyle type="DefaultWindow" renderer="Core/StaticText" name="SampleBrowserSkin/StaticText" />
+    <WidgetStyle type="Scrollbar" renderer="Core/Scrollbar" name="SampleBrowserSkin/VerticalScrollbar" />
+    <WidgetStyle type="Scrollbar" renderer="Core/Scrollbar" name="SampleBrowserSkin/HorizontalScrollbar" />
+    <WidgetStyle type="Thumb" renderer="Core/Button" name="SampleBrowserSkin/Thumb" />
+    <WidgetStyle type="ScrollablePane" renderer="Core/ScrollablePane" name="SampleBrowserSkin/ScrollablePane" />
+    <WidgetStyle type="ProgressBar" renderer="Core/ProgressBar" name="SampleBrowserSkin/ProgressBar" />
+    <WidgetStyle type="DefaultWindow" renderer="Core/Default" name="SampleBrowserSkin/Light" />
+</UIDefine>

@@ -1,0 +1,30 @@
+<?xml version="1.0" ?>
+<View ver="2" id="FairChar" src="FairChar.png" native_res_x="800" native_res_y="600" auto_res="vertical">
+	<Pixel id=" " pos_x="0"   pos_y="0"  width="0"  height="0" />
+	<Pixel id="A" pos_x="4"   pos_y="1"  width="30" height="30" pos_y_offset="-30" />
+	<Pixel id="B" pos_x="35"  pos_y="1"  width="31" height="30" pos_y_offset="-30" />
+	<Pixel id="C" pos_x="68"  pos_y="1"  width="31" height="30" pos_y_offset="-30" />
+	<Pixel id="D" pos_x="98"  pos_y="1"  width="32" height="30" pos_y_offset="-30" />
+	<Pixel id="E" pos_x="131" pos_y="1"  width="32" height="30" pos_y_offset="-30" />
+	<Pixel id="F" pos_x="163" pos_y="1"  width="32" height="30" pos_y_offset="-30" />
+	<Pixel id="G" pos_x="196" pos_y="1"  width="30" height="30" pos_y_offset="-30" />
+	<Pixel id="H" pos_x="1"   pos_y="94" width="30" height="30" pos_y_offset="-30" />
+	<Pixel id="I" pos_x="32"  pos_y="94" width="25" height="30" pos_y_offset="-30" />
+	<Pixel id="J" pos_x="1"   pos_y="32" width="24" height="30" pos_y_offset="-30" />
+	<Pixel id="K" pos_x="28"  pos_y="32" width="30" height="30" pos_y_offset="-30" />
+	<Pixel id="L" pos_x="60"  pos_y="32" width="30" height="30" pos_y_offset="-30" />
+	<Pixel id="M" pos_x="92"  pos_y="32" width="30" height="30" pos_y_offset="-30" />
+	<Pixel id="N" pos_x="123" pos_y="32" width="31" height="30" pos_y_offset="-30" />
+	<Pixel id="O" pos_x="156" pos_y="32" width="30" height="30" pos_y_offset="-30" />
+	<Pixel id="P" pos_x="187" pos_y="32" width="31" height="30" pos_y_offset="-30" />
+	<Pixel id="Q" pos_x="58"  pos_y="94" width="30" height="30" pos_y_offset="-30" />
+	<Pixel id="R" pos_x="89"  pos_y="94" width="32" height="30" pos_y_offset="-30" />
+	<Pixel id="S" pos_x="1"   pos_y="63" width="30" height="30" pos_y_offset="-30" />
+	<Pixel id="T" pos_x="32"  pos_y="63" width="24" height="30" pos_y_offset="-30" />
+	<Pixel id="U" pos_x="59"  pos_y="63" width="30" height="30" pos_y_offset="-30" />
+	<Pixel id="V" pos_x="91"  pos_y="63" width="30" height="30" pos_y_offset="-30" />
+	<Pixel id="W" pos_x="123" pos_y="63" width="30" height="30" pos_y_offset="-30" />
+	<Pixel id="X" pos_x="155" pos_y="63" width="30" height="30" pos_y_offset="-30" />
+	<Pixel id="Y" pos_x="186" pos_y="63" width="30" height="30" pos_y_offset="-30" />
+	<Pixel id="Z" pos_x="123" pos_y="94" width="30" height="30" pos_y_offset="-30" />
+</View>

@@ -1,0 +1,3 @@
+﻿++ 3DLDF
+
+3D drawing package	http://www.gnu.org/software/3dldf/LDF.html	GPLv2orlater

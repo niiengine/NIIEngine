@@ -1,0 +1,126 @@
+/*
+-----------------------------------------------------------------------------
+A
+     __      _   _   _   ______
+    |   \   | | | | | | |  ____)                    _
+    | |\ \  | | | | | | | |         ___      ___   (_)   ___
+    | | \ \ | | | | | | | |____    / _ \   / ___ \  _   / _ \   ___
+    | |  \ \| | | | | | |  ____)  | / \ | | |  | | | | | / \ | / _ )
+    | |   \ | | | | | | | |_____  | | | | | |__| | | | | | | | | __/
+    |_|    \ _| |_| |_| |_______) |_| |_|  \___| | |_| |_| |_| |___|
+                                             __/ |
+                                            \___/
+
+
+                                                                 F i l e
+
+
+Copyright: NIIEngine Team Group
+
+Home page: www.niiengine.com
+
+Email: niiengine@gmail.com OR niiengine@163.com
+
+Licence: commerce(www.niiengine.com/license)(Three kinds)
+------------------------------------------------------------------------------
+*/
+
+#include "gsgsProgressCtrl.h"
+#include "gsgsStyleManager.h"
+#include <wx/dcbuffer.h>
+#include <wx/settings.h>
+namespace gsgs
+{
+    //-----------------------------------------------------------------------------
+    ProgressCtrl::ProgressCtrl(wxWindow* parent, wxWindowID id, const wxPoint& pos, const wxSize&, long style)
+        : wxPanel(parent, id, pos, wxDefaultSize, style)
+        , m_maxRange(100)
+        , m_currValue(0)
+        , m_fillCol(wxT("DARK GREEN"))
+    {
+        wxSize sz = wxWindow::GetTextExtent("Tp");
+        SetSizeHints(wxSize(-1, sz.GetHeight() + 2));
+        SetBackgroundStyle(wxBG_STYLE_PAINT);
+        Bind(wxEVT_PAINT, &ProgressCtrl::OnPaint, this);
+        Bind(wxEVT_ERASE_BACKGROUND, &ProgressCtrl::OnEraseBg, this);
+        Bind(wxEVT_SIZE, &ProgressCtrl::OnSize, this);
+    }
+    //-----------------------------------------------------------------------------
+    ProgressCtrl::~ProgressCtrl()
+    {
+        Unbind(wxEVT_PAINT, &ProgressCtrl::OnPaint, this);
+        Unbind(wxEVT_ERASE_BACKGROUND, &ProgressCtrl::OnEraseBg, this);
+        Unbind(wxEVT_SIZE, &ProgressCtrl::OnSize, this);
+    }
+    //-----------------------------------------------------------------------------
+    void ProgressCtrl::OnEraseBg(wxEraseEvent& e) { wxUnusedVar(e); }
+    //-----------------------------------------------------------------------------
+    void ProgressCtrl::OnPaint(wxPaintEvent& e)
+    {
+        wxUnusedVar(e);
+        wxAutoBufferedPaintDC dc(this);
+        PrepareDC(dc);
+
+        wxColour brushCol = wxSystemSettings::GetColour(wxSYS_COLOUR_3DFACE);
+        dc.SetPen(brushCol);
+        dc.SetBrush(brushCol);
+
+        dc.SetPen(wxSystemSettings::GetColour(wxSYS_COLOUR_3DSHADOW));
+        wxRect rect = GetClientSize();
+        // wxRect client_rect = GetClientSize();
+
+        // draw a bordered rectangle
+        dc.DrawRectangle(rect);
+
+        // fill it with progress range
+        if (m_currValue > m_maxRange) {
+            m_currValue = m_maxRange;
+        }
+
+        double factor = (double)m_currValue / (double)m_maxRange;
+        double fill_width = factor * rect.width;
+        wxRect rr(rect);
+        rr.Deflate(1, 1);
+        rr.width = static_cast<int>(fill_width);
+
+        dc.SetPen(wxPen(m_fillCol));
+        dc.SetBrush(wxBrush(m_fillCol));
+        dc.DrawRectangle(rr);
+        dc.SetBrush(*wxTRANSPARENT_BRUSH);
+
+        // calculate the location to place the string
+        wxCoord xx, yy;
+        wxFont f = wxSystemSettings::GetFont(wxSYS_DEFAULT_GUI_FONT);
+        dc.GetTextExtent(m_msg, &xx, &yy, NULL, NULL, &f);
+
+        wxCoord txtYCoord = (rect.GetHeight() - yy) / 2;
+        wxCoord txtXCoord = (rect.GetWidth() - xx) / 2; // text in the middle
+
+        // make sure the colour used here is the system default
+        dc.SetTextForeground(*wxBLACK);
+        dc.SetFont(wxSystemSettings::GetFont(wxSYS_DEFAULT_GUI_FONT));
+        dc.DrawText(m_msg, txtXCoord, txtYCoord);
+    }
+    //-----------------------------------------------------------------------------
+    void ProgressCtrl::Update(size_t value, const wxString& msg)
+    {
+        m_currValue = value;
+        m_msg = msg;
+        m_msg.append(wxT(" ")); // force our own copy of the string
+        Refresh();
+    }
+    //-----------------------------------------------------------------------------
+    void ProgressCtrl::Clear()
+    {
+        m_msg = wxEmptyString;
+        m_currValue = 0;
+        Refresh();
+    }
+    //-----------------------------------------------------------------------------
+    void ProgressCtrl::OnSize(wxSizeEvent& event)
+    {
+        event.Skip();
+        Refresh();
+    }
+    //-----------------------------------------------------------------------------
+}

@@ -1,0 +1,98 @@
+<?xml version="1.0" ?>
+<Layout ver="4">
+    <Widget name="Root" type="DefaultWindow">
+
+        <Widget name="MainWindow" type="WindowsLook/FrameWindow">
+            <Property name="Area" value="{{0.25,0},{0.25,0},{0.75,0},{0.75,0}" />
+            <Property name="Text" value="Drag and Drop Demo" />
+            <Property name="RollUpEnabled" value="False" />
+            <Property name="SizingEnabled" value="False" />
+
+            <Widget name="Slot1" type="WindowsLook/Static">
+                <Property name="Position" value="{{0.05,0},{0.05,0}}" />
+                <Property name="Size" value="{{0.2,0},{0.26,0}}" />
+
+                <Widget name="DragContainer1" type="DragContainer">
+                    <Property name="Area" value="{{0.05,0},{0.05,0},{0.95,0},{0.95,0}" />
+
+                    <Widget name="Image" type="WindowsLook/StaticImage">
+                        <Property name="Area" value="{{0,0},{0,0},{1,0},{1,0}" />
+                        <Property name="Image" value="DriveIcons/Lime" />
+                        <Property name="MousePassThroughEnabled" value="True" />
+                    </Widget>
+
+                </Widget>
+
+            </Widget>
+
+            <Widget name="Slot2" type="WindowsLook/Static">
+                <Property name="Position" value="{{0.283,0},{0.05,0}}" />
+                <Property name="Size" value="{{0.2,0},{0.26,0}}" />
+            </Widget>
+
+            <Widget name="Slot3" type="WindowsLook/Static">
+                <Property name="Position" value="{{0.516,0},{0.05,0}}" />
+                <Property name="Size" value="{{0.2,0},{0.26,0}}" />
+            </Widget>
+
+            <Widget name="Slot4" type="WindowsLook/Static">
+                <Property name="Position" value="{{0.749,0},{0.05,0}}" />
+                <Property name="Size" value="{{0.2,0},{0.26,0}}" />
+            </Widget>
+
+            <Widget name="Slot5" type="WindowsLook/Static">
+                <Property name="Position" value="{{0.05,0},{0.37,0}}" />
+                <Property name="Size" value="{{0.2,0},{0.26,0}}" />
+            </Widget>
+
+            <Widget name="Slot6" type="WindowsLook/Static">
+                <Property name="Position" value="{{0.283,0},{0.37,0}}" />
+                <Property name="Size" value="{{0.2,0},{0.26,0}}" />
+
+                <Widget name="DragContainer2" type="DragContainer">
+                    <Property name="Area" value="{{0.05,0},{0.05,0},{0.95,0},{0.95,0}" />
+
+                    <Widget name="Image" type="WindowsLook/StaticImage">
+                        <Property name="Area" value="{{0,0},{0,0},{1,0},{1,0}" />
+                        <Property name="Image" value="DriveIcons/GlobalDrive" />
+                        <Property name="MousePassThroughEnabled" value="True" />
+                    </Widget>
+
+                </Widget>
+
+            </Widget>
+
+            <Widget name="Slot7" type="WindowsLook/Static">
+                <Property name="Position" value="{{0.516,0},{0.37,0}}" />
+                <Property name="Size" value="{{0.2,0},{0.26,0}}" />
+            </Widget>
+
+            <Widget name="Slot8" type="WindowsLook/Static">
+                <Property name="Position" value="{{0.749,0},{0.37,0}}" />
+                <Property name="Size" value="{{0.2,0},{0.26,0}}" />
+            </Widget>
+
+            <Widget name="Slot9" type="WindowsLook/Static">
+                <Property name="Position" value="{{0.05,0},{0.69,0}}" />
+                <Property name="Size" value="{{0.2,0},{0.26,0}}" />
+            </Widget>
+
+            <Widget name="Slot10" type="WindowsLook/Static">
+                <Property name="Position" value="{{0.283,0},{0.69,0}}" />
+                <Property name="Size" value="{{0.2,0},{0.26,0}}" />
+            </Widget>
+
+            <Widget name="Slot11" type="WindowsLook/Static">
+                <Property name="Position" value="{{0.516,0},{0.69,0}}" />
+                <Property name="Size" value="{{0.2,0},{0.26,0}}" />
+            </Widget>
+
+            <Widget name="Slot12" type="WindowsLook/Static">
+                <Property name="Position" value="{{0.749,0},{0.69,0}}" />
+                <Property name="Size" value="{{0.2,0},{0.26,0}}" />
+            </Widget>
+
+        </Widget>
+
+    </Widget>
+</Layout>

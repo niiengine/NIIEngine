@@ -1,0 +1,3 @@
+﻿++ Lucene
+
+[Solr] enterprise search server based on the Lucene Java search library

@@ -1,0 +1,10 @@
+<?xml version="1.0" ?>
+<GUIScheme Name="ImagesetEditor">
+	<Imageset Name="ImagesetEditor" Filename="ImagesetEditor.imageset" />
+	<LookNFeel Filename="ImagesetEditor.looknfeel" />
+	<WindowRendererSet Filename="GUIFalagardWRBase">
+		<WindowRendererFactory Name="Falagard/StaticImage" />
+	</WindowRendererSet>
+	<FalagardMapping WindowType="100001" TargetType="DefaultWindow" Renderer="Falagard/StaticImage" LookNFeel="ImagesetEditor/StaticImage" />
+    <FalagardMapping WindowType="100002" TargetType="ImagesetEditor/ElasticBox" Renderer="ImagesetEditor/ElasticBoxRenderer" LookNFeel="ImagesetEditor/ElasticBox" />
+</GUIScheme>

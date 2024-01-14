@@ -1,0 +1,43 @@
+NII_ALL
+NIIINCLUDE
+    NiiAdditiveShadowMappingPattern.h
+    NiiAdditiveStencilRenderPattern.h
+    NiiIntegratedShadowMappingPattern.h
+    NiiModulativeShadowMappingPattern.h
+    NiiModulativeStencilRenderPattern.h
+    NiiNullShadowTechniquePattern.h
+    NiiGeometryObj.h
+    NiiGeometryObjListener.h
+    NiiGeometryRaw.h
+    NiiShadowMappingPattern.h
+    NiiRenderPattern.h
+    NiiStencilRenderPattern.h
+    NiiSpotShadowFadePng.h    
+    NiiViewRectGeo.h
+NIISOURCE
+    NiiAdditiveShadowMappingPattern.cpp
+    NiiAdditiveStencilRenderPattern.cpp
+    NiiIntegratedShadowMappingPattern.cpp
+    NiiModulativeShadowMappingPattern.cpp
+    NiiModulativeStencilRenderPattern.cpp
+    NiiNullShadowTechniquePattern.cpp
+    NiiShadowMappingPattern.cpp
+    NiiRenderPattern.cpp
+    NiiStencilRenderPattern.cpp
+    NiiViewRectGeo.cpp
+NII_ALL_END
+
+NII_WIN32
+NIIINCLUDE 
+        
+NIISOURCE 
+
+NII_WIN32_END
+NII_LINUX
+NIIINCLUDE
+NIISOURCE
+NII_LINUX_END
+NII_OSX
+NIIINCLUDE
+NIISOURCE 
+NII_OSX_END
