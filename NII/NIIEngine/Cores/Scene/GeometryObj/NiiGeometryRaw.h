@@ -216,16 +216,16 @@ namespace NII
         GeometryRaw * clone(BufferModeMark vertex = -1, BufferModeMark index = -1, BufferModeMark indirect = -1) const;
     public:
         VertexData * mVertex;       ///< 顶点数据
-        IndexData * mIndex;         ///< 索引数据(mMark & GRT_Index)
-        IndirectData * mIndirect;   ///< 绘制数据(mMark & GRT_Indirect)
-        Nid mVaoId;                 ///< 顶点数组对象(mMark & GRT_ArrayObject)
-        Nmark mVaoType;             ///< 顶点数组类型相同代表数据模型相同 (mMark & GRT_ArrayObject)
-        Nmark mRenderID;            ///< 渲染ID相同代表潜在优化渲染 (mMark & GRT_ArrayObject)
+        IndexData * mIndex;         ///< 索引数据((mMark & GRT_Index) == true)
+        IndirectData * mIndirect;   ///< 绘制数据((mMark & GRT_Indirect) == true)
+        Nid mVaoId;                 ///< 顶点数组对象((mMark & GRT_ArrayObject) == true)
+        Nmark mVaoType;             ///< 顶点数组类型相同代表数据模型相同 ((mMark & GRT_ArrayObject) == true)
+        Nmark mRenderID;            ///< 渲染ID相同代表潜在优化渲染 ((mMark & GRT_ArrayObject) == true)
         OperationType mType;        ///< 操作类型
-        NCount mOffset;             ///< 开始绘制处(顶点级偏移)((mMark & GRT_OffsetCount) && ~(mMark & GRT_Indirect))
-        NCount mCount;              ///< 从开始到结束绘制数(顶点级数量)((mMark & GRT_OffsetCount) && ~(mMark & GRT_Indirect))
-        NCount mInstanceOffset;     ///< 实例开始((mMark & GRT_Instancing) && ~(mMark & GRT_Indirect))
-        NCount mInstanceCount;      ///< 实例数量,着色程序才可控 ((mMark & GRT_Instancing) && ~(mMark & GRT_Indirect))
+        NCount mOffset;             ///< 开始绘制处(顶点级偏移)(((mMark & GRT_OffsetCount) == true) && ~((mMark & GRT_Indirect) == true))
+        NCount mCount;              ///< 从开始到结束绘制数(顶点级数量)((mMark & GRT_OffsetCount) == true) && ((~(mMark & GRT_Indirect)) == true)
+        NCount mInstanceOffset;     ///< 实例开始((mMark & GRT_Instancing) == true) && ((~(mMark & GRT_Indirect)) == true)
+        NCount mInstanceCount;      ///< 实例数量,着色程序才可控 ((mMark & GRT_Instancing) == true) && ((~(mMark & GRT_Indirect)) == true)
     private:
         GeoRawTypeMark mMark;
     };
