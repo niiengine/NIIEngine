@@ -600,10 +600,12 @@ namespace NII
         IndirectBufferList mFreeBufferList;
         IndirectBufferList mUsedBufferList;
         RenderStateCacheList mStateList;
+        SpaceManager * mSceneManager;
 		VertexData * mVertexData;
 		IndexData * mIndexData;
         ShadowType mShadowType;
         RenderGroupType mDefaultGroup;
+		RenderPatternType mRenderPatternType;
         Nui32 mRenderMark;
         Nui32 mVaoId;
         Nui16 mDefaultLevel;

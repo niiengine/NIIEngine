@@ -648,7 +648,7 @@ namespace NII
         @version NIIEngine 3.0.0
         */
         inline bool isBothSideStencil() const           { return mMark & ShaderCh_StencilBothSide; }
-        
+
         /** 设置测试的比较深度.
         @version NIIEngine 3.0.0
         */

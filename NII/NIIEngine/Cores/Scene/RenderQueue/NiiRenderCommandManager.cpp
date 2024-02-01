@@ -41,12 +41,10 @@ namespace NII
     RenderCommandGroup::RenderCommandGroup():
         mRenderSys(0)
     {
-        
     }
     //------------------------------------------------------------------------
     RenderCommandGroup::~RenderCommandGroup()
     {
-
     }
     //------------------------------------------------------------------------
     void RenderCommandGroup::run()

@@ -647,14 +647,14 @@ namespace NII
         ++mRenderMark;
         //N_EnginePtr()->beginFrame();
 
-        for(size_t i = 0; i < RPT_Count; ++i)
+        //for(size_t i = 0; i < RPT_Count; ++i)
+        //{
+        RenderPattern * rp = mRenderSys->getRenderPattern(mSceneManager, mRenderPatternType);
+        if(rp)
         {
-            RenderPattern * rp = mRenderSys->getRenderPattern(mSceneManager, (RenderPatternType)i);
-            if(rp)
-            {
-                mStateList[i] = rp->createState(type);
-            }
+            mStateList[i] = rp->createState(type);
         }
+        //}
     }
     //-----------------------------------------------------------------------
     void RenderQueue::setRenderType(RenderGroupType rgt, RenderType rtype)
@@ -1160,7 +1160,7 @@ namespace NII
                         lastIndexData = op.mIndex;
                     }
 
-                    RenderPattern * rp = mRenderSys->getRenderPattern(static_cast<RenderPatternType>(mat->mType));
+                    RenderPattern * rp = mRenderSys->getRenderPattern(mSceneManager, static_cast<RenderPatternType>(mat->mType));
 
                     lastHlmsCacheHash = lastRSC->mHash;
                     const RenderStateCache * rsc = rp->getCache(lastRSC->mHash, mStateList[mat->mType], renderItem, stype);
@@ -1222,7 +1222,7 @@ namespace NII
                     GeometryRaw renderOp;
                     renderItem.mGeometryObj->getGeometry(renderOp, stype & (mat->getAlphaTest() == CMPF_ALWAYS_PASS));
 
-                    RenderPattern * rp = mRenderSys->getRenderPattern(static_cast<RenderPatternType>(mat->mType));
+                    RenderPattern * rp = mRenderSys->getRenderPattern(mSceneManager, static_cast<RenderPatternType>(mat->mType));
 
                     lastHlmsCacheHash = lastRSC->mHash;
                     const RenderStateCache * rsc = rp->getCache(lastRSC->mHash, mStateList[mat->mType], renderItem, stype);
@@ -1357,7 +1357,7 @@ namespace NII
                     GeometryRaw * vao = vaos[meshLod];
                     const ShaderChMaterial * mat = renderItem.mGeometryObj->getMaterial();
 
-                    RenderPattern * rp = mRenderSys->getRenderPattern(static_cast<RenderPatternType>(mat->mType));
+                    RenderPattern * rp = mRenderSys->getRenderPattern(mSceneManager, static_cast<RenderPatternType>(mat->mType));
 
                     lastHlmsCacheHash = lastRSC->mHash;
                     const RenderStateCache * rsc = rp->getCache(lastRSC->mHash, mStateList[mat->mType], renderItem, stype);
@@ -1475,21 +1475,21 @@ namespace NII
         //OgreProfileBeginGroup("Command Execution", OGREPROF_RENDERING);
         //OgreProfileGpuBegin("Command Execution" );
 
-        for(size_t i = 0; i < RPT_Count; ++i)
-        {
-            RenderPattern * rp = mRenderSys->getRenderPattern(static_cast<RenderPatternType>(i));
-            if(rp)
-                rp->executeBegin(mDrawCallList);
-        }
+        //for(size_t i = 0; i < RPT_Count; ++i)
+        //{
+        RenderPattern * rp = mRenderSys->getRenderPattern(mSceneManager, mRenderPatternType);
+        if(rp)
+            rp->executeBegin(mDrawCallList);
+        //}
 
         mDrawCallList->execute();
 
-        for(size_t i = 0; i < RPT_Count; ++i)
-        {
-            RenderPattern * rp = mRenderSys->getRenderPattern(static_cast<RenderPatternType>(i));
-            if(rp)
-                rp->executeEnd(mDrawCallList);
-        }
+        //for(size_t i = 0; i < RPT_Count; ++i)
+        //{
+        RenderPattern * rp = mRenderSys->getRenderPattern(mSceneManager, mRenderPatternType);
+        if(rp)
+            rp->executeEnd(mDrawCallList);
+        //}
 
         --mRenderMark;
 
